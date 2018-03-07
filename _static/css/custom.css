@@ -1,0 +1,15 @@
+.wy-side-nav-search {
+	background-color: #dd1144;
+}
+
+dl.post, dl.patch, dl.delete, dl.get, dl.put {
+	display: none
+}
+
+.menu-content {
+	max-height: calc(100% - 200px) !important;
+}
+
+.wy-nav-content{
+	max-width: initial;
+}
