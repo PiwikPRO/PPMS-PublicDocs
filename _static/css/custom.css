@@ -6,7 +6,7 @@ dl.post, dl.patch, dl.delete, dl.get, dl.put {
 	display: none
 }
 
-[sticky-sidebar][_ngcontent-vyl-1], .menu-content {
+.menu-content {
 	max-height: calc(100% - 200px) !important;
 }
 
