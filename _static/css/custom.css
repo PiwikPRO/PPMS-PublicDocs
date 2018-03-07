@@ -1,0 +1,39 @@
+.wy-side-nav-search {
+	background-color: #dd1144;
+}
+
+.wy-side-scroll p.caption {
+	cursor: pointer;
+}
+
+.wy-side-scroll p.caption:hover {
+	color: #ffffff;
+}
+
+.wy-side-scroll p.caption + ul {
+	-webkit-transition: max-height 0.5s;
+	-moz-transition: max-height 0.5s;
+	-ms-transition: max-height 0.5s;
+	-o-transition: max-height 0.5s;
+	transition: max-height 0.5s;
+	max-height: 0;
+	overflow:hidden;
+	height:auto;
+}
+
+.wy-side-scroll p.caption.active-toc + ul {
+	max-height: 500px;
+}
+
+
+dl.post, dl.patch, dl.delete, dl.get, dl.put {
+	display: none
+}
+
+[sticky-sidebar][_ngcontent-vyl-1], .menu-content {
+	max-height: calc(100% - 200px) !important;
+}
+
+.wy-nav-content{
+	max-width: initial;
+}
