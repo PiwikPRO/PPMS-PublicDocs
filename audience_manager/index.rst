@@ -3,21 +3,12 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to Piwik PRO Developers documentation!
-=====================================
+Welcome to Piwik PRO Audience Manager documentation!
+====================================================
 
 .. toctree::
-   :maxdepth: 1
-   :name: test
-   :glob:
-
-   sdk/index
-
-
-
-.. toctree::
-  :maxdepth: 1
-  :name: test
+  :maxdepth: 2
   :glob:
 
-  audience_manager/index
+  api
+  form-tracker
