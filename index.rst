@@ -8,8 +8,6 @@ Welcome to Piwik PRO Developers documentation!
 
 .. toctree::
    :maxdepth: 1
-   :name: test
-   :glob:
 
    sdk/index
 
@@ -17,7 +15,5 @@ Welcome to Piwik PRO Developers documentation!
 
 .. toctree::
   :maxdepth: 1
-  :name: test
-  :glob:
 
   audience_manager/index
