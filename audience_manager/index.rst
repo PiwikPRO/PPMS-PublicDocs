@@ -1,6 +1,6 @@
 
-Piwik PRO Audience Manager documentation
-====================================================
+Audience Manager
+================
 
 .. toctree::
   :maxdepth: 2

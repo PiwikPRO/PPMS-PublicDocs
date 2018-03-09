@@ -1,6 +1,6 @@
 
-Piwik PRO SDK documentation
-=======================================
+SDK
+===
 
 .. toctree::
    :maxdepth: 2
