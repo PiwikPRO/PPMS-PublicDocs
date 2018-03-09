@@ -10,10 +10,4 @@ Welcome to Piwik PRO Developers documentation!
    :maxdepth: 1
 
    sdk/index
-
-
-
-.. toctree::
-  :maxdepth: 1
-
-  audience_manager/index
+   audience_manager/index
