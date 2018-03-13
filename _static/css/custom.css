@@ -116,6 +116,10 @@ p {
 	background: #1f2633;
 }
 
+.rst-other-versions a, .rst-other-versions a:hover, .rst-other-versions a:visited {
+	color: #82bcff;
+}
+
 .wy-side-nav-search {
 	background-color: #2f394d;
 }
