@@ -117,7 +117,7 @@ p {
 }
 
 div .rst-other-versions a, div .rst-other-versions a:hover, div .rst-other-versions a:visited {
-	color: #82bcff;
+	color: #82bcff !important;
 }
 
 .wy-side-nav-search {
