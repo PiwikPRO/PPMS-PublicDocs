@@ -83,8 +83,8 @@ h1 {
 	font-size: 38px;
 }
 
-h2, .rst-content .toctree-wrapper p.caption, h3, h4, h5, h6, legend {
-	font-family: "Museo Sans 300";
+.rst-content .toctree-wrapper p.caption, body {
+	font-family: "Museo Sans 300" !important;
 }
 
 h2 {
