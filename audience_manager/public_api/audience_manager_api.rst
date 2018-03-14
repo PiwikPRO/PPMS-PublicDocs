@@ -3,9 +3,9 @@ Audience Manager Public API
 ===========================
 
 
-.. openapi:: ./index.yaml
+#.. openapi:: ../../_static/api/audience_manager/public_api/index.yaml
 
 .. raw:: html
 
-    <redoc spec-url="./index.yaml" expand-responses="">
+    <redoc spec-url="../../_static/api/audience_manager/public_api/index.yaml" expand-responses="">
     </redoc>
