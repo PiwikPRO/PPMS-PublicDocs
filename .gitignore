@@ -39,7 +39,6 @@ prod_artifacts
 wheelhouse
 whoosh_index
 xml_output
-public_*
 private_*
 .rope_project/
 readthedocs/htmlcov

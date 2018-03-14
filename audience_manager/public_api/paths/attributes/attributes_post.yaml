@@ -1,0 +1,23 @@
+post:
+  tags:
+  - attributes
+  summary: Track attributes
+  description: |
+    <p>In order to enrich the profile with more attributes specific to your needs or business requirements, you can use that endpoint to send custom attribute_name-value pairs which will be saved in the profile. It can be anything you wish but remember that values are always saved as a string. For example, you can send a favourite_food attribute to profiles and later on create an audience of people who like Italian food.</p>
+    <p>You can send data in batches - multiple profiles in one request and multiple attributes in the profile. All of the data in one batch request should be related to websites that belong to the same organization.</p>
+    <p>Each item must have at least one of identifiers (<code>user_id</code> or <code>email</code> or <code>analytics_visitor_id</code> or <code>device_id</code>).</p>
+  parameters:
+    - name: attributes_data
+      in: body
+      required: true
+      schema:
+        type: array
+        items:
+          $ref: '#/definitions/AttributesData'
+  responses:
+    204:
+      description: No Content
+    400:
+      description: Bad Request
+    403:
+      description: Forbidden
