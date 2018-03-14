@@ -7,9 +7,7 @@ Welcome to Piwik PRO Developers documentation!
 =====================================
 
 .. toctree::
-   :maxdepth: 2
-   :caption: Mobile SDK documentation
-   :name: test
-   :glob:
+   :maxdepth: 1
 
-   sdk/*
+   sdk/index
+   audience_manager/index
