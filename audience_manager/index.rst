@@ -7,4 +7,4 @@ Audience Manager
 
   api
   form-tracker
-  public_api/index
+  public_api/audience_manager_api
