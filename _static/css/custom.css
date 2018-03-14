@@ -1,7 +1,148 @@
-.wy-side-nav-search {
-	background-color: #dd1144;
+@font-face {
+	font-family: 'Museo Sans 300';
+	src: url('../font/MuseoSans-300Italic.woff2') format('woff2'),
+	url('../font/MuseoSans-300Italic.woff') format('woff');
+	font-weight: 300;
+	font-style: italic;
 }
 
+@font-face {
+	font-family: 'Museo Sans 900';
+	src: url('../font/MuseoSans-900Italic.woff2') format('woff2'),
+	url('../font/MuseoSans-900Italic.woff') format('woff');
+	font-weight: bold;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: 'Museo Sans 500';
+	src: url('../font/MuseoSans-500Italic.woff2') format('woff2'),
+	url('../font/MuseoSans-500Italic.woff') format('woff');
+	font-weight: normal;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: 'Museo Sans 500';
+	src: url('../font/MuseoSans-500.woff2') format('woff2'),
+	url('../font/MuseoSans-500.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Museo Sans 900';
+	src: url('../font/MuseoSans-900.woff2') format('woff2'),
+	url('../font/MuseoSans-900.woff') format('woff');
+	font-weight: bold;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Museo Sans 300';
+	src: url('../font/MuseoSans-300.woff2') format('woff2'),
+	url('../font/MuseoSans-300.woff') format('woff');
+	font-weight: 300;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Museo Sans 100';
+	src: url('../font/MuseoSans-100.woff2') format('woff2'),
+	url('../font/MuseoSans-100.woff') format('woff');
+	font-weight: 200;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Museo Sans 700';
+	src: url('../font/MuseoSans-700.woff2') format('woff2'),
+	url('../font/MuseoSans-700.woff') format('woff');
+	font-weight: 600;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Museo Sans 700';
+	src: url('../font/MuseoSans-700Italic.woff2') format('woff2'),
+	url('../font/MuseoSans-700Italic.woff') format('woff');
+	font-weight: 600;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: 'Museo Sans 100';
+	src: url('../font/MuseoSans-100Italic.woff2') format('woff2'),
+	url('../font/MuseoSans-100Italic.woff') format('woff');
+	font-weight: 200;
+	font-style: italic;
+}
+
+h1 {
+	font-family: "Museo Sans 500";
+	font-size: 38px;
+}
+
+.rst-content .toctree-wrapper p.caption, body, h2, h3, h4, h5, h6, legend {
+	font-family: "Museo Sans 300" !important;
+}
+
+h2 {
+	font-size: 32px;
+}
+
+h3 {
+	font-size: 24px;
+}
+
+h4 {
+	font-size: 20px;
+}
+
+p {
+	font-size: 18px;
+}
+
+.rst-versions {
+	border-top: none;
+}
+
+.rst-versions .rst-current-version {
+	background-color: #2f394d;
+	color: #82bcff;
+}
+
+.rst-other-versions {
+	background: #1f2633;
+}
+
+div .rst-other-versions a, div .rst-other-versions a:hover, div .rst-other-versions a:visited {
+	color: #82bcff !important;
+}
+
+.wy-side-nav-search {
+	background-color: #2f394d;
+}
+
+.wy-side-nav-search input[type="text"] {
+	border-radius: 4px;
+}
+
+.wy-side-nav-search .version {
+	display: none
+}
+
+.wy-menu-vertical a {
+	color: #ebf2fa;
+}
+
+.wy-nav-side {
+	background: #1f2633;
+}
+
+.wy-menu-vertical a:hover {
+	background-color: #10131a;
+}
 dl.post, dl.patch, dl.delete, dl.get, dl.put {
 	display: none
 }
@@ -12,4 +153,20 @@ dl.post, dl.patch, dl.delete, dl.get, dl.put {
 
 .wy-nav-content{
 	max-width: initial;
+}
+
+.wy-nav-content a {
+	color: #0660f3;
+}
+
+.wy-nav-content a:hover, .wy-nav-content a:visited{
+	color: #094bb3;
+}
+
+a.icon.icon-home {
+	display: inline-block;
+	width: 150px;
+	background: url('../images/pp-logo_white.svgz') no-repeat;
+	background-size: contain;
+	text-indent: -9999px;
 }
