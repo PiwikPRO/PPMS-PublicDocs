@@ -163,14 +163,10 @@ dl.post, dl.patch, dl.delete, dl.get, dl.put {
 	color: #094bb3;
 }
 
-.fa-home:before, .icon-home:before {
-	content: ''
-}
-
 a.icon.icon-home {
 	display: inline-block;
-	background-size: contain;
 	width: 150px;
 	background: url('../images/pp-logo_white.svgz') no-repeat;
+	background-size: contain;
 	text-indent: -9999px;
 }
