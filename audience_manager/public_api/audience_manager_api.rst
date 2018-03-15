@@ -3,9 +3,9 @@ Audience Manager Public API
 ===========================
 
 
-.. openapi:: ../../_static/api/audience_manager/public_api/schema.json
+.. openapi:: ../../_static/api/audience_manager_public_api.json
 
 .. raw:: html
 
-    <redoc spec-url="../../_static/api/audience_manager/public_api/schema.json" expand-responses="">
+    <redoc spec-url="../../_static/api/audience_manager_public_api.json" expand-responses="">
     </redoc>

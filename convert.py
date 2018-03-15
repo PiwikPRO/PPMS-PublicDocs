@@ -5,6 +5,7 @@ compiled content to stdout.
 import argparse
 import json
 import os.path
+import sys
 
 import yaml
 
@@ -26,9 +27,13 @@ def resolve(content, dir):
     return content
 
 
+def write_open_api_json(path, file_handler):
+    file_handler.write(json.dumps(load(os.path.realpath(path))))
+
+
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='OpenAPI Build')
-    parser.add_argument('--path', type=str, required=True,
+    parser.add_argument('path', type=str,
                         help='Path to the OpenAPI index file')
     args = parser.parse_args()
-    print(json.dumps(load(os.path.realpath(args.path))))
+    write_open_api_json(args.path, sys.stdout)

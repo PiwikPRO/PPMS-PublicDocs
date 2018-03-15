@@ -17,10 +17,22 @@
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 #
 import os
-# import sys
-# sys.path.insert(0, os.path.abspath('.'))
+import sys
 
-os.system("convert.py --path _static/api/audience_manager/public_api/index.yaml > _static/api/audience_manager/public_api/schema.json")
+sys.path.insert(0, os.path.abspath('.'))
+
+from convert import write_open_api_json
+
+API_PATH = os.path.join(os.path.dirname(__file__), '_static/api')
+
+api_definitions = {
+    'audience_manager_public_api.json': 'audience_manager/public_api/index.yaml',
+}
+
+for output, input in api_definitions.items():
+    with open(os.path.join(API_PATH, output), 'w') as file_handler:
+        write_open_api_json(path=input, file_handler=file_handler)
+
 
 # -- General configuration ------------------------------------------------
 
@@ -200,7 +212,6 @@ source_parsers = {
 
 source_suffix = ['.rst', '.md']
 
-import sphinx_rtd_theme
 html_theme = "sphinx_rtd_theme"
 
 
