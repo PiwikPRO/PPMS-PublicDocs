@@ -3,7 +3,6 @@ Sphinx==1.5.3
 sphinxcontrib-httpdomain==1.4.0
 commonmark==0.5.5
 recommonmark==0.4.0
-PyYAML==3.12
 # Overwritten with requirements.txt
 # sphinx_rtd_theme==0.2.5b1
 -r requirements.txt
