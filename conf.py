@@ -16,10 +16,11 @@
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 #
-# import os
+import os
 # import sys
 # sys.path.insert(0, os.path.abspath('.'))
 
+os.system("convert.py --path _static/api/audience_manager/public_api/index.yaml > _static/api/audience_manager/public_api/schema.json")
 
 # -- General configuration ------------------------------------------------
 
@@ -206,7 +207,6 @@ html_theme = "sphinx_rtd_theme"
 html_theme_options = {
     'includehidden': False
 }
-
 
 def setup(app):
     app.add_stylesheet('css/custom.css')
