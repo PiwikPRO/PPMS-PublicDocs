@@ -1,0 +1,38 @@
+type: object
+required:
+  - website_id
+  - attributes
+properties:
+  website_id:
+    type: string
+    description: ID of the website.
+    example: '0fdd8cc2-93b1-428c-8373-97a452f5b10c'
+  user_id:
+    type: string
+    description: User identifier of the visitor on the website.
+    example: xman
+  device_id:
+    type: string
+    description: ID of the device.
+    example: 39d96a38018f490c
+  email:
+    type: string
+    description: Email address of the profile.
+    example: john@doe.com
+  analytics_visitor_id:
+    type: string
+    description: Piwik ID of the visitor.
+    example: 39d96a38018f490c
+  attributes:
+    type: array
+    description: Attributes of the occurred event.
+    items:
+      type: object
+      properties:
+        name:
+          type: object
+          description: Name of the event attribute.
+        value:
+          type: string
+          description: Value of the attribute with specified name.
+      example: {'name': 'occupation', 'value': 'unicorn'}

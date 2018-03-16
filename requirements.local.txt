@@ -1,0 +1,8 @@
+# Based on https://github.com/rtfd/readthedocs.org/blob/2.2.0/requirements/pip.txt
+Sphinx==1.5.3
+sphinxcontrib-httpdomain==1.4.0
+commonmark==0.5.5
+recommonmark==0.4.0
+# Overwritten with requirements.txt
+# sphinx_rtd_theme==0.2.5b1
+-r requirements.txt

@@ -1,0 +1,6 @@
+type: object
+properties:
+  result:
+    type: boolean
+    description: Specifies if a profile is a member of given audience.
+    example: false

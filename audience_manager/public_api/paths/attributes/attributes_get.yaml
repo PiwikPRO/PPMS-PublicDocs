@@ -1,0 +1,34 @@
+get:
+  tags:
+  - attributes
+  summary:
+    Get profile attributes
+  description: |
+    <p>Returns a list of attributes for a given profile.</p>
+    <p>In order to secure the PII data, no attributes are returned by default. You need to put on the whitelist attributes which you'd like to get in the response. In order to do that, go to Audience Manager, Attributes tab and enable attribute for the public API access. Please use it carefully and wisely, we recommend to not whitelist any attributes which contain PII data.<p>
+  parameters:
+  - name: website_id
+    in: query
+    type: string
+    format: uuid
+    description: ID of the website.
+    required: True
+    example: '0fdd8cc2-93b1-428c-8373-97a452f5b10'
+  - name: analytics_visitor_id
+    in: path
+    type: string
+    format: string
+    description: Piwik ID of the profile.
+    required: True
+    example: '3a0133748b3e524c'
+  responses:
+    200:
+      description: OK
+      schema:
+        $ref: '#/definitions/Attributes'
+    400:
+      description: Bad Request
+    404:
+      description: Not Found
+    403:
+      description: Forbidden

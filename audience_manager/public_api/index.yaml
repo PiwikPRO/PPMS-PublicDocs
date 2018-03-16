@@ -1,0 +1,16 @@
+swagger: '2.0'
+info:
+  title: Public API Documentation
+  description: |
+    <p><b>No authentication.</b></p>
+  version: '1.0.0'
+schemes:
+  - https
+produces:
+  - application/json
+paths:
+  $ref: ./paths/index.yaml
+definitions:
+  $ref: ./definitions/index.yaml
+host: ppms.example.com
+basePath: /

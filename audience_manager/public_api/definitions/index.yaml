@@ -1,0 +1,6 @@
+AudienceMembershipCheck:
+  $ref: ./audience_membership_check.yaml
+AttributesData:
+  $ref: ./attributes_data.yaml
+Attributes:
+  $ref: ./attributes.yaml
