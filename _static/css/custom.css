@@ -147,10 +147,6 @@ dl.post, dl.patch, dl.delete, dl.get, dl.put {
 	display: none
 }
 
-.menu-content {
-	max-height: calc(100% - 200px) !important;
-}
-
 .wy-nav-content{
 	max-width: initial;
 }
@@ -169,4 +165,12 @@ a.icon.icon-home {
 	background: url('../images/pp-logo_white.svgz') no-repeat;
 	background-size: contain;
 	text-indent: -9999px;
+}
+
+.redoc-wrap {
+	background-color: #fafafa;
+}
+
+redoc .background {
+	background-color: #FFFFFF;
 }
