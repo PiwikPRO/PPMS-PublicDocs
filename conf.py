@@ -26,6 +26,7 @@ from convert import write_open_api_json
 API_PATH = os.path.join(os.path.dirname(__file__), '_static/api')
 
 api_definitions = {
+    'analytics_tracking_api.json': 'analytics/index.yaml',
     'audience_manager_public_api.json': 'audience_manager/public_api/index.yaml',
 }
 
@@ -86,7 +87,7 @@ language = None
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
 # This patterns also effect to html_static_path and html_extra_path
-exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
+exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store', 'README.md']
 
 # The name of the Pygments (syntax highlighting) style to use.
 pygments_style = 'sphinx'

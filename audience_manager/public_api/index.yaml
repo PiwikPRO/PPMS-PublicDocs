@@ -1,16 +1,48 @@
 swagger: '2.0'
 info:
-  title: Public API Documentation
+  title: Audience Manager API
   description: |
     <p><b>No authentication.</b></p>
   version: '1.0.0'
-schemes:
-  - https
-produces:
-  - application/json
-paths:
-  $ref: ./paths/index.yaml
-definitions:
-  $ref: ./definitions/index.yaml
 host: ppms.example.com
 basePath: /
+schemes:
+  - https
+  - http
+consumes:
+  - application/json
+produces:
+  - application/json
+definitions:
+  AudienceMembershipCheck:
+    $ref: ./definitions/audience_membership_check.yaml
+  AttributesData:
+    $ref: ./definitions/attributes_data.yaml
+  Attributes:
+    $ref: ./definitions/attributes.yaml
+parameters:
+  WebsiteId:
+    name: website_id
+    in: query
+    type: string
+    format: uuid
+    description: ID of the website.
+    required: true
+    example: '0fdd8cc2-93b1-428c-8373-97a452f5b10'
+  AnalyticsVisitorId:
+    name: analytics_visitor_id
+    in: path
+    type: string
+    format: string
+    description: Piwik ID of the profile.
+    required: true
+    example: '3a0133748b3e524c'
+paths:
+  /audiences/public/api/profiles/{analytics_visitor_id}/audiences/:
+    $ref: ./paths/audience_get.yaml
+  /audiences/public/api/profiles/{analytics_visitor_id}/audiences/check/:
+    $ref: ./paths/audience_membership_check.yaml
+  /audiences/tracker/attributes/:
+    $ref: ./paths/attributes_post.yaml
+  /audiences/public/api/profiles/{analytics_visitor_id}/attributes/:
+    $ref: ./paths/attributes_get.yaml

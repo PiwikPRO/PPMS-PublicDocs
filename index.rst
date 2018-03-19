@@ -4,10 +4,11 @@
    contain the root `toctree` directive.
 
 Welcome to Piwik PRO Developers documentation!
-=====================================
+==============================================
 
 .. toctree::
    :maxdepth: 1
 
    sdk/index
+   analytics/index
    audience_manager/index

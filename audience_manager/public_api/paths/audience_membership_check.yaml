@@ -6,27 +6,15 @@ get:
   description: |
     <p>Check if the profile is a member of an audience. The only ID that can be used to identify the profile is <code>analytics_visitor_id</code>. You can get the audience ID from the Audience Manager - go to Audiences, select an audience, the ID is listed below the name of an audience.</p>
   parameters:
-  - name: website_id
-    in: query
-    type: string
-    format: uuid
-    description: ID of the website.
-    required: True
-    example: '0fdd8cc2-93b1-428c-8373-97a452f5b10'
+  - $ref: '#/parameters/WebsiteId'
+  - $ref: '#/parameters/AnalyticsVisitorId'
   - name: audience_id
     in: query
     type: string
     format: uuid
     description: ID of the audience.
-    required: True
+    required: true
     example: 'edd3b737-e390-4c14-af21-ce1cdbb572b7'
-  - name: analytics_visitor_id
-    in: path
-    type: string
-    format: string
-    description: Piwik ID of the profile.
-    required: True
-    example: '3a0133748b3e524c'
   responses:
     200:
       description: OK
