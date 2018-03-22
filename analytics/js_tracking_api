@@ -54,14 +54,12 @@ Loading snippet creates following API function:
 Commands
 --------
 
-Manual trigger
-^^^^^^^^^^^^^^
+Trigger tracking manually
+^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Manual event trigger
 ````````````````````
-Allows to manually trigger events that should not trigger on page load, but on some sort of user action.
-
-Code::
+Allows to manually trigger events that should not trigger on page load, but when user performs an action::
 
     _paq.push(['trackEvent', category, action, name, value, dimension);
 
@@ -89,11 +87,13 @@ Code::
         dimension1: 'example value'
     }
 
+Example of usage::
+
+        _paq.push(['trackEvent', 'Exit intent', 'Click on button', 'Cancel']);
+
 Manual goal conversion trigger
 ``````````````````````````````
-Allows to manually trigger goal coversion.
-
-Code::
+Allows to manually trigger goal coversion::
 
     _paq.push(['trackGoal', goal_name, goal_value, dimension]);
 
@@ -103,23 +103,26 @@ Code::
 
 .. data:: goal_value
 
-    Number value with tracked conversion value (optional).
+    Number value with tracked conversion value - optional.
 
 .. data:: dimension
 
-    Custom dimension that should be tracked with this action. Example::
+    Custom dimension that should be tracked with this action -optional. Example::
 
     {
         dimension1: 'example value'
     }
+
+Example of usage::
+
+    _paq.push(['trackGoal' 1, 15]);
 
 Ecommerce tracking
 ^^^^^^^^^^^^^^^^^^
 
 Adding Ecommerce item
 `````````````````````
-
-Code::
+To add ecommerce item (for example to track things in users cart) user ``addEcommerceItem`` function::
 
     _paq.push(['addEcommerceItem', productSKU, productName, productCategory, productPrice, productQuantity]);
 
@@ -147,10 +150,13 @@ Code::
 
     All string parameters should be escaped, without double quote character.
 
+Example of usage::
+
+    _paq.push(['addEcommerceItem', 'craft-311', 'Unicorn Iron on Patch', 'Crafts & Sewing', '499', '3']);
+
 Tracking Ecommerce order
 ````````````````````````
-
-Code::
+To track successful ecommerce order (on checkout page for example) use ``trackEcommerceOrder`` function::
 
     _paq.push(['trackEcommerceOrder', orderId, orderGrandTotal, orderSubTotal, orderTax, orderShipping, orderDiscount]);
 
@@ -178,10 +184,13 @@ Code::
 
     Order discount amount, written as number - not string, optional.
 
+Example of usage::
+
+    _paq.push(['trackEcommerceOrder', '3352', 499, 399, 0, 100]);
+
 Updating cart
 `````````````
-
-Code::
+To update user cart (when user adds new product or removes them from cart) use ``trackEcommerceCartUpdate`` function::
 
     _paq.push(['trackEcommerceCartUpdate', cartAmount]);
 
@@ -194,12 +203,13 @@ Code::
 
     Before tracking cart update be sure you added all products in cart by using ``addEcommerceItem`` first. (Even ones that were in cart earlier)
 
+Example of usage::
 
+        _paq.push(['trackEcommerceCartUpdate', 250]);
 
 Tracking product / category view
 ````````````````````````````````
-
-Code::
+If you want to track when user enters product site, or is browsing products category use ``setEcommerceView`` function::
 
     _paq.push(['setEcommerceView', productSKU, productName, productCategory, productPrice]);
 
@@ -223,6 +233,9 @@ Code::
 
     All string parameters should be escaped, without double quote character.
 
+Example of usage::
+
+    _paq.push(['setEcommerceView', 'craft-311', 'Unicorn Iron on Patch', 'Crafts & Sewing', '499']);
 
 
 Custom Variables
@@ -230,8 +243,7 @@ Custom Variables
 
 Adding Custom Variable
 ``````````````````````
-
-Code::
+To set custom variable that can be used later use ``setCustomVariable`` function::
 
     _paq.push(['setCustomVariable', index, name, value, scope]);
 
@@ -260,11 +272,13 @@ Code::
 
     Index is separate for each variable scope.
 
+Example of usage::
+
+    _paq.push(['setCustomVariable', 1, 'AspectRatio', '16:9', 'visit']);
 
 Removing Custom Variable
 ````````````````````````
-
-Code::
+To remove custom variable you can use ``deleteCustomVariable`` function::
 
     _paq.push(['deleteCustomVariable', index, scope]);
 
@@ -276,11 +290,13 @@ Code::
 
     Scope of the variable, "visit" or "page"
 
+Example of usage::
+
+    _paq.push(['deleteCustomVariable', 1, 'visit']);
 
 Accessing Custom Variable
 `````````````````````````
-You can access custom variables by providing function that will use ``getCustomVariable`` function.
-Code::
+You can access custom variables by providing function that will use ``getCustomVariable`` function::
 
     _paq.push([ function() {
         var customVariable = this.getCustomVariable(index, scope );
@@ -292,14 +308,19 @@ Code::
 
     :param string scope: Scope of the variable, "visit" or "page"
 
+Example of usage::
+
+    _paq.push([ function() {
+        var customVariable = this.getCustomVariable(1, 'visit' );
+        console.log(customVariable);
+    }]);
 
 Custom Dimensions
 ^^^^^^^^^^^^^^^^^
 
 Tracking Custom Dimension
 `````````````````````````
-
-Code::
+If you want to set custom dimension to use it in tracking functions use ``setCustomDimension`` function::
 
     _paq.push(['setCustomDimension', customDimensionID, customDimensionValue]);
 
@@ -315,11 +336,14 @@ Code::
 
     When you set Custom Dimension that value will be used in all tracking requests within page load.
 
+Example of usage::
+
+    _paq.push(['setCustomDimension', 3, 'loginStatus']);
+
 
 Retrieving Custom Dimension
 ```````````````````````````
-You can access custom dimension by providing function that will use ``getCustomDimension`` function.
-Code::
+You can access custom dimension by providing function that will use ``getCustomDimension`` function::
 
     _paq.push([ function() {
         var customDimension = this.getCustomDimension(index);
@@ -329,15 +353,19 @@ Code::
 
     :param number index: Index of custom dimension
 
+Example of usage::
+
+    _paq.push([ function() {
+        var customDimension = this.getCustomDimension(1);
+        console.log(customDimension);
+    }]);
 
 Content Tracking
 ^^^^^^^^^^^^^^^^
 
 Tracking all content impressions within a page
 ``````````````````````````````````````````````
-To track all content impression you can use ``trackAllContentImpressions`` function. If this function will be invoked multiple times it won't send duplicated data unless ``trackPageView`` was used between invocations.
-
-Code::
+To track all content impression you can use ``trackAllContentImpressions`` function. If this function will be invoked multiple times it won't send duplicated data unless ``trackPageView`` was used between invocations::
 
     _paq.push(['trackAllContentImpressions']);
 
@@ -362,12 +390,19 @@ Code::
 
     Both options cannot be changed after initial setup.
 
+Example of usage::
+
+    _paq.push(['trackVisibleContentImpressions', true]);
+
+
+Example of usage::
+
+        _paq.push(['trackVisibleContentImpressions', false, 500]);
+
 Tracking only content impressions for specific page part
 ````````````````````````````````````````````````````````
 
-To track impressions on part of a webpage that will be populated after page load you can use ``trackContentImpressionsWithinNode``
-
-Code::
+To track impressions on part of a webpage that will be populated after page load you can use ``trackContentImpressionsWithinNode``::
 
     _paq.push(['trackContentImpressionsWithinNode', domNode]);
 
@@ -377,11 +412,15 @@ Code::
 
 It can be used with ``trackVisibleContentImpressions`` to track only visible content impressions
 
+Example of usage::
+
+    var element = document.querySelector('#impressionContainer');
+    _paq.push(['trackContentImpressionsWithinNode', element]);
+
 Track interactions manually with auto detection
 ```````````````````````````````````````````````
 If you want to trigger an interaction manually (for example on click) you can do it using ``trackContentInteractionNode``
-Just add this function as an eventListener for action you want.
-Code::
+Just add this function as an eventListener for action you want::
 
     _paq.push(['trackContentInteractionNode', domNode, contentInteraction]);
 
@@ -396,9 +435,7 @@ Code::
 
 Track interactions and impressions manually
 ```````````````````````````````````````````
-If you want to track interactions and impressions fully manually you can use ``trackContentImpression`` and ``trackContentInteraction`` (used as a function in eventListener)
-
-Code::
+If you want to track interactions and impressions fully manually you can use ``trackContentImpression`` and ``trackContentInteraction`` (used as a function in eventListener)::
 
     _paq.push(['trackContentImpression', contentName, contentPiece, contentTarget]);
 
