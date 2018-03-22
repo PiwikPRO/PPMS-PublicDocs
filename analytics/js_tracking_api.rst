@@ -15,7 +15,8 @@ There are two ways of installing tracking code:
     3. Click on the Websites position.
     4. Choose the website for which you want to implement a tracking code.
     5. Select Installation tab
-    6. The tracking code snippet for your website is displayed under Website code for asynchronous tags or Website code for synchronous tags.
+    6. The tracking code snippet for your website is displayed under Website code for asynchronous
+     tags or Website code for synchronous tags.
 2. Manually
 
 .. code-block:: html
@@ -23,14 +24,14 @@ There are two ways of installing tracking code:
     <!-- Piwik -->
     <script type="text/javascript">
       var _paq = _paq || [];
-      _paq.push(['trackPageView']);
-      _paq.push(['enableLinkTracking']);
+      _paq.push(["trackPageView"]);
+      _paq.push(["enableLinkTracking"]);
       (function() {
         var u="//{$PIWIK_URL}/";
-        _paq.push(['setTrackerUrl', u+'piwik.php']);
-        _paq.push(['setSiteId', {$IDSITE}]);
-        var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
-        g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+        _paq.push(["setTrackerUrl", u+"piwik.php"]);
+        _paq.push(["setSiteId", {$IDSITE}]);
+        var d=document, g=d.createElement("script"), s=d.getElementsByTagName("script")[0];
+        g.type="text/javascript"; g.async=true; g.defer=true; g.src=u+"piwik.js"; s.parentNode.insertBefore(g,s);
       })();
     </script>
 
@@ -48,8 +49,8 @@ Loading snippet creates following API function:
     JavaScript API interface.
 
     :param string command: Command name.
-        :param args: Command arguments. Number of arguments and their function depend on command.
-        :returns: Depends on the command
+    :param args: Command arguments. Number of arguments and their function depend on command.
+    :returns: Depends on the command
 
 Commands
 --------
@@ -61,7 +62,7 @@ Manual event trigger
 ````````````````````
 Allows to manually trigger events that should not trigger on page load, but when user performs an action::
 
-    _paq.push(['trackEvent', category, action, name, value, dimension);
+    _paq.push(["trackEvent", category, action, name, value, dimension);
 
 .. data:: category
 
@@ -81,21 +82,23 @@ Allows to manually trigger events that should not trigger on page load, but when
 
 .. data:: dimension
 
-    Custom dimension that should be tracked with this action. Example::
+    Custom dimension that should be tracked with this action.
 
-    {
-        dimension1: 'example value'
-    }
+    Example::
+
+        {
+           dimension1: "example value"
+        }
 
 Example of usage::
 
-        _paq.push(['trackEvent', 'Exit intent', 'Click on button', 'Cancel']);
+        _paq.push(["trackEvent", "Exit intent", "Click on button", "Cancel"]);
 
 Manual goal conversion trigger
 ``````````````````````````````
 Allows to manually trigger goal coversion::
 
-    _paq.push(['trackGoal', goal_name, goal_value, dimension]);
+    _paq.push(["trackGoal", goal_name, goal_value, dimension]);
 
 .. data:: goal_name
 
@@ -107,15 +110,17 @@ Allows to manually trigger goal coversion::
 
 .. data:: dimension
 
-    Custom dimension that should be tracked with this action -optional. Example::
+    Custom dimension that should be tracked with this action -optional.
 
-    {
-        dimension1: 'example value'
-    }
+     Example::
+
+        {
+            dimension1: "example value"
+        }
 
 Example of usage::
 
-    _paq.push(['trackGoal' 1, 15]);
+    _paq.push(["trackGoal" 1, 15]);
 
 Ecommerce tracking
 ^^^^^^^^^^^^^^^^^^
@@ -124,7 +129,7 @@ Adding Ecommerce item
 `````````````````````
 To add ecommerce item (for example to track things in users cart) user ``addEcommerceItem`` function::
 
-    _paq.push(['addEcommerceItem', productSKU, productName, productCategory, productPrice, productQuantity]);
+    _paq.push(["addEcommerceItem", productSKU, productName, productCategory, productPrice, productQuantity]);
 
 .. data:: productSKU
 
@@ -152,13 +157,13 @@ To add ecommerce item (for example to track things in users cart) user ``addEcom
 
 Example of usage::
 
-    _paq.push(['addEcommerceItem', 'craft-311', 'Unicorn Iron on Patch', 'Crafts & Sewing', '499', '3']);
+    _paq.push(["addEcommerceItem", "craft-311", "Unicorn Iron on Patch", "Crafts & Sewing", "499", "3"]);
 
 Tracking Ecommerce order
 ````````````````````````
 To track successful ecommerce order (on checkout page for example) use ``trackEcommerceOrder`` function::
 
-    _paq.push(['trackEcommerceOrder', orderId, orderGrandTotal, orderSubTotal, orderTax, orderShipping, orderDiscount]);
+    _paq.push(["trackEcommerceOrder", orderId, orderGrandTotal, orderSubTotal, orderTax, orderShipping, orderDiscount]);
 
 .. data:: orderId
 
@@ -186,13 +191,13 @@ To track successful ecommerce order (on checkout page for example) use ``trackEc
 
 Example of usage::
 
-    _paq.push(['trackEcommerceOrder', '3352', 499, 399, 0, 100]);
+    _paq.push(["trackEcommerceOrder", "3352", 499, 399, 0, 100]);
 
 Updating cart
 `````````````
 To update user cart (when user adds new product or removes them from cart) use ``trackEcommerceCartUpdate`` function::
 
-    _paq.push(['trackEcommerceCartUpdate', cartAmount]);
+    _paq.push(["trackEcommerceCartUpdate", cartAmount]);
 
 .. data:: cartAmount
 
@@ -201,17 +206,18 @@ To update user cart (when user adds new product or removes them from cart) use `
 
 .. warning::
 
-    Before tracking cart update be sure you added all products in cart by using ``addEcommerceItem`` first. (Even ones that were in cart earlier)
+    Before tracking cart update be sure you added all products in cart by using ``addEcommerceItem`` first.
+    (Even ones that were in cart earlier)
 
 Example of usage::
 
-        _paq.push(['trackEcommerceCartUpdate', 250]);
+        _paq.push(["trackEcommerceCartUpdate", 250]);
 
 Tracking product / category view
 ````````````````````````````````
 If you want to track when user enters product site, or is browsing products category use ``setEcommerceView`` function::
 
-    _paq.push(['setEcommerceView', productSKU, productName, productCategory, productPrice]);
+    _paq.push(["setEcommerceView", productSKU, productName, productCategory, productPrice]);
 
 .. data:: productSKU
 
@@ -235,7 +241,7 @@ If you want to track when user enters product site, or is browsing products cate
 
 Example of usage::
 
-    _paq.push(['setEcommerceView', 'craft-311', 'Unicorn Iron on Patch', 'Crafts & Sewing', '499']);
+    _paq.push(["setEcommerceView", "craft-311", "Unicorn Iron on Patch", "Crafts & Sewing", "499"]);
 
 
 Custom Variables
@@ -245,7 +251,7 @@ Adding Custom Variable
 ``````````````````````
 To set custom variable that can be used later use ``setCustomVariable`` function::
 
-    _paq.push(['setCustomVariable', index, name, value, scope]);
+    _paq.push(["setCustomVariable", index, name, value, scope]);
 
 .. data:: index
 
@@ -266,7 +272,7 @@ To set custom variable that can be used later use ``setCustomVariable`` function
 
 .. warning::
 
-    Custom Variable with scope set on "visit" will be saved for visit, you don't need to save it every page.
+    Custom Variable with scope set on "visit" will be saved for visit, you don"t need to save it every page.
 
 .. warning::
 
@@ -274,13 +280,13 @@ To set custom variable that can be used later use ``setCustomVariable`` function
 
 Example of usage::
 
-    _paq.push(['setCustomVariable', 1, 'AspectRatio', '16:9', 'visit']);
+    _paq.push(["setCustomVariable", 1, "AspectRatio", "16:9", "visit"]);
 
 Removing Custom Variable
 ````````````````````````
 To remove custom variable you can use ``deleteCustomVariable`` function::
 
-    _paq.push(['deleteCustomVariable', index, scope]);
+    _paq.push(["deleteCustomVariable", index, scope]);
 
 .. data:: index
 
@@ -292,7 +298,7 @@ To remove custom variable you can use ``deleteCustomVariable`` function::
 
 Example of usage::
 
-    _paq.push(['deleteCustomVariable', 1, 'visit']);
+    _paq.push(["deleteCustomVariable", 1, "visit"]);
 
 Accessing Custom Variable
 `````````````````````````
@@ -311,7 +317,7 @@ You can access custom variables by providing function that will use ``getCustomV
 Example of usage::
 
     _paq.push([ function() {
-        var customVariable = this.getCustomVariable(1, 'visit' );
+        var customVariable = this.getCustomVariable(1, "visit" );
         console.log(customVariable);
     }]);
 
@@ -322,7 +328,7 @@ Tracking Custom Dimension
 `````````````````````````
 If you want to set custom dimension to use it in tracking functions use ``setCustomDimension`` function::
 
-    _paq.push(['setCustomDimension', customDimensionID, customDimensionValue]);
+    _paq.push(["setCustomDimension", customDimensionID, customDimensionValue]);
 
 .. data:: customDimensionID
 
@@ -338,7 +344,7 @@ If you want to set custom dimension to use it in tracking functions use ``setCus
 
 Example of usage::
 
-    _paq.push(['setCustomDimension', 3, 'loginStatus']);
+    _paq.push(["setCustomDimension", 3, "loginStatus"]);
 
 
 Retrieving Custom Dimension
@@ -365,9 +371,10 @@ Content Tracking
 
 Tracking all content impressions within a page
 ``````````````````````````````````````````````
-To track all content impression you can use ``trackAllContentImpressions`` function. If this function will be invoked multiple times it won't send duplicated data unless ``trackPageView`` was used between invocations::
+To track all content impression you can use ``trackAllContentImpressions`` function. If this function will be invoked
+multiple times it won't send duplicated data unless ``trackPageView`` was used between invocations::
 
-    _paq.push(['trackAllContentImpressions']);
+    _paq.push(["trackAllContentImpressions"]);
 
 Tracking all visible content impressions
 ````````````````````````````````````````
@@ -375,7 +382,7 @@ To track all visible content impressions you can use ``trackVisibleContentImpres
 
 Code::
 
-    _paq.push(['trackVisibleContentImpressions', checkOnScroll, timeIntervalInMs]);
+    _paq.push(["trackVisibleContentImpressions", checkOnScroll, timeIntervalInMs]);
 
 .. data:: checkOnScroll
 
@@ -392,19 +399,20 @@ Code::
 
 Example of usage::
 
-    _paq.push(['trackVisibleContentImpressions', true]);
+    _paq.push(["trackVisibleContentImpressions", true]);
 
 
 Example of usage::
 
-        _paq.push(['trackVisibleContentImpressions', false, 500]);
+    _paq.push(["trackVisibleContentImpressions", false, 500]);
 
 Tracking only content impressions for specific page part
 ````````````````````````````````````````````````````````
 
-To track impressions on part of a webpage that will be populated after page load you can use ``trackContentImpressionsWithinNode``::
+To track impressions on part of a webpage that will be populated after page load you
+ can use ``trackContentImpressionsWithinNode``::
 
-    _paq.push(['trackContentImpressionsWithinNode', domNode]);
+    _paq.push(["trackContentImpressionsWithinNode", domNode]);
 
 .. data:: domNode
 
@@ -414,15 +422,16 @@ It can be used with ``trackVisibleContentImpressions`` to track only visible con
 
 Example of usage::
 
-    var element = document.querySelector('#impressionContainer');
-    _paq.push(['trackContentImpressionsWithinNode', element]);
+    var element = document.querySelector("#impressionContainer");
+    _paq.push(["trackContentImpressionsWithinNode", element]);
 
 Track interactions manually with auto detection
 ```````````````````````````````````````````````
-If you want to trigger an interaction manually (for example on click) you can do it using ``trackContentInteractionNode``
+If you want to trigger an interaction manually (for example on click) you
+ can do it using ``trackContentInteractionNode``
 Just add this function as an eventListener for action you want::
 
-    _paq.push(['trackContentInteractionNode', domNode, contentInteraction]);
+    _paq.push(["trackContentInteractionNode", domNode, contentInteraction]);
 
 .. data:: domNode
 
@@ -430,14 +439,21 @@ Just add this function as an eventListener for action you want::
 
 .. data:: contentInteraction
 
-    String containing name of interaction it can be anything ('click' etc). 'Unknown' used as default.
+    String containing name of interaction it can be anything ("click" etc). "Unknown" used as default.
+
+Example of use
+
+.. code-block:: html
+
+    <button onClick = function(){_paq.push(["trackContentInteractionNode", this, "clicked"]);}>Click me!</button>
 
 
 Track interactions and impressions manually
 ```````````````````````````````````````````
-If you want to track interactions and impressions fully manually you can use ``trackContentImpression`` and ``trackContentInteraction`` (used as a function in eventListener)::
+If you want to track interactions and impressions fully manually you can use ``trackContentImpression``
+ and ``trackContentInteraction`` (used as a function in eventListener)::
 
-    _paq.push(['trackContentImpression', contentName, contentPiece, contentTarget]);
+    _paq.push(["trackContentImpression", contentName, contentPiece, contentTarget]);
 
 .. data:: contentName
 
@@ -451,13 +467,17 @@ If you want to track interactions and impressions fully manually you can use ``t
 
     String containing url of Content Impression Target
 
-Code::
+Example of use::
 
-    _paq.push(['trackContentInteraction', contentInteraction, contentName, contentPiece, contentTarget]);
+    _paq.push(["trackContentImpression", "trackingWhitepaper", "document", "http://cooltracker.tr/whitepaper]);
+
+::
+
+    _paq.push(["trackContentInteraction", contentInteraction, contentName, contentPiece, contentTarget]);
 
 .. data:: contentInteraction
 
-    String containing name of interaction it can be anything ('click' etc). 'Unknown' used as default.
+    String containing name of interaction it can be anything ("click" etc). "Unknown" used as default.
 
 .. data:: contentName
 
@@ -471,6 +491,9 @@ Code::
 
     String containing url of Content Impression Target
 
+Example of use::
+
+    _paq.push(["trackContentImpression", "clicked", "trackingWhitepaper", "document", "http://cooltracker.tr/whitepaper]);
 
 Download and Outlink Tracking
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -480,7 +503,7 @@ Tracking Outlink
 
 To enable Download & Outlink tracking run::
 
-    _paq.push(['enableLinkTracking']);
+    _paq.push(["enableLinkTracking"]);
 
 just after first ``trackPageView`` or ``trackEvent``
 
@@ -490,26 +513,33 @@ just after first ``trackPageView`` or ``trackEvent``
 
 To ignore internal outlinks use ``setDomains`` function to define internal domains and subdomains, you can use wildcard::
 
-    _paq(['setDomains', domains]);
+    _paq(["setDomains", domains]);
 
 .. data:: domains
 
     Array with domains written as strings, * are accepted.
 
+Example of usage::
+
+    _paq(["setDomains", ["*.example.com", "*.example.co.uk"]]);
+
 To track clicking a link as an outlink using css class simply add ``piwik_link`` class to link element.
 
 This class name can be changed, use ``setLinkClasses`` to define which CSS class should be tracked::
 
-    _paq.push(['setLinkClasses', className]);
+    _paq.push(["setLinkClasses", className]);
 
 .. data:: className
 
     String with css class that should be tracked instead of ``piwik_link``
 
+Example of usage::
+
+    _paq(["setLinkClasses", "track-this-link"]);
 
 If you want to use JS instead you can add ``trackLink`` function to element ``onClick`` attribute::
 
-    _paq.push(['trackLink', linkAddress, 'link', dimension]);
+    _paq.push(["trackLink", linkAddress, "link", dimension]);
 
 .. data:: linkAddress
 
@@ -517,12 +547,21 @@ If you want to use JS instead you can add ``trackLink`` function to element ``on
 
 .. data:: dimension
 
-    Custom dimension that should be tracked with this action. Example::
+    Custom dimension that should be tracked with this action.
 
-    {
-        dimension1: 'example value'
-    }
+    Example::
 
+        {
+            dimension1: "example value"
+        }
+
+Example of usage
+
+.. code-block:: html
+
+    <button onClick = function(){_paq.push(["trackLink", "http://www.example.com/example", "link"]);}>
+        Click me!
+    </button>
 
 Tracking Downloads
 ``````````````````
@@ -544,36 +583,49 @@ Following extensions are tracked as download by default:
 
 You can add extension to this list using ``addDownloadExtensions`` function::
 
-    _paq.push(['addDownloadExtensions', extensions]);
+    _paq.push(["addDownloadExtensions", extensions]);
 
 .. data:: extensions
 
-    String containing extensions separated by ``\|`` for example ``mhj\|docx"``
+    String containing extensions separated by ``|`` for example ``"mhj|docx"``
 
+
+Example of usage::
+
+    _paq.push(["addDownloadExtensions", "mhj|docx"]);
 
 This list can be rewrote using ``setDownloadExtensions`` function::
 
-    _paq.push(['setDownloadExtensions', extensions]);
+    _paq.push(["setDownloadExtensions", extensions]);
 
 .. data:: extensions
 
-    String containing extensions separated by ``\|`` for example ``"7z\|apk\|mp4"``
+    String containing extensions separated by ``|`` for example ``"7z|apk|mp4"``
 
+
+Example of usage::
+
+    _paq.push(["setDownloadExtensions", "7z|apk|mp4"]);
 
 To track clicking a link as an download using css class simply add ``piwik_download`` class to link element.
 
 This class name can be changed, use ``setDownloadClasses`` to define which CSS class should be tracked::
 
-    _paq.push(['setDownloadClasses', className]);
+    _paq.push(["setDownloadClasses", className]);
 
 
 .. data:: className
 
     String with css class that should be tracked instead of ``piwik_download``
 
+Example of usage::
+
+    _paq(["setDownloadClasses", "track-this-link-for-download"]);
+
+
 If you want to use JS instead you can add ``trackLink`` function to element ``onClick`` attribute::
 
-    _paq.push(['trackLink', linkAddress, 'download', dimension]);
+    _paq.push(["trackLink", linkAddress, "download", dimension]);
 
 .. data:: linkAddress
 
@@ -583,15 +635,24 @@ If you want to use JS instead you can add ``trackLink`` function to element ``on
 
     Custom dimension that should be tracked with this action. Example::
 
-    {
-        dimension1: 'example value'
-    }
+        {
+            dimension1: "example value"
+        }
+
+Example of usage
+
+.. code-block:: html
+
+    <button onClick = function(){_paq.push(["trackLink", "http://www.example.com/example.xrt", "download"]);}>
+        Click me!
+    </button>
 
 
-After each outbound link there is small time frame after which the file will download that will ensure there is enough time to track download.
+After each outbound link there is small time frame after which the file will download that will
+ensure there is enough time to track download.
 That time frame is set to 500ms by default. To modify it you can use ``setLinkTrackingTimer`` function::
 
-    _paq.push(['setLinkTrackingTimer' time]);
+    _paq.push(["setLinkTrackingTimer" time]);
 
 .. data:: time
 
@@ -605,7 +666,7 @@ You can disable download and outlink tracking for links using CSS classes, simpl
 
 To disable using CSS class you can use ``setIgnoreClassess`` function::
 
-    _paq.push(['setIgnoreClasses', className);
+    _paq.push(["setIgnoreClasses", className);
 
 .. data:: className
 
@@ -618,15 +679,11 @@ User ID enables merging user data that is collected between many devices and bro
 
 You must provide unique user-id for every user. To set user ID for tracked data use ``setUserId`` function::
 
-    _paq.push(['setUserId', userID]);
+    _paq.push(["setUserId", userID]);
 
 .. data:: userID
 
     Unique, non empty string preserved for each user.
-
-To reset userID after logging out use ``resetUserId`` function::
-
-    _paq.push(['resetUserId']);
 
 Tracking domains and subdomains
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -635,24 +692,24 @@ Tracking single domain
 ``````````````````````
 To track single domain name without tracking subdomains (or single subdomain) use default snippet code::
 
-    _paq.push(['setSiteId', 1]);
-    _paq.push(['setTrackerUrl', u+'piwik.php']);
-    _paq.push(['trackPageView']);
+    _paq.push(["setSiteId", 1]);
+    _paq.push(["setTrackerUrl", u+"piwik.php"]);
+    _paq.push(["trackPageView"]);
 
 Tracking domains and all subdomains of the website
 ``````````````````````````````````````````````````
 To track all data between domain and all its subdomains we must use cookies using this snippet::
 
-    _paq.push(['setSiteId', 1]);
-    _paq.push(['setTrackerUrl', u+'piwik.php']);
+    _paq.push(["setSiteId", 1]);
+    _paq.push(["setTrackerUrl", u+"piwik.php"]);
 
     // Share the tracking cookie across example.com, www.example.com, subdomain.example.com, ...
-    _paq.push(['setCookieDomain', '*.example.com']);
+    _paq.push(["setCookieDomain", "*.example.com"]);
 
-    // Tell Piwik the website domain so that clicks on these domains are not tracked as 'Outlinks'
-    _paq.push(['setDomains', '*.example.com']);
+    // Tell Piwik the website domain so that clicks on these domains are not tracked as "Outlinks"
+    _paq.push(["setDomains", "*.example.com"]);
 
-    _paq.push(['trackPageView']);
+    _paq.push(["trackPageView"]);
 
 Tracking between multiple domains
 `````````````````````````````````
@@ -673,24 +730,25 @@ Tracking subdirectories of domain in separate websites.
 ```````````````````````````````````````````````````````
 To differentiate parts of website as another site for tracker user must do::
 
-    _paq.push(['setSiteId', Q]);
-    _paq.push(['setTrackerUrl', u+'piwik.php']);
-    _paq.push(['trackPageView']);
+    _paq.push(["setSiteId", Q]);
+    _paq.push(["setTrackerUrl", u+"piwik.php"]);
+    _paq.push(["trackPageView"]);
 
 where Q is unique site id. And on part that user wants to exclude as another site::
 
-    _paq.push(['setSiteId', W]);
+    _paq.push(["setSiteId", W]);
 
-    _paq.push(['setCookiePath', '/data/something_useful']);
+    _paq.push(["setCookiePath", "/data/something_useful"]);
 
-    _paq.push(['setDomains', 'example.com/data/something_useful']);
+    _paq.push(["setDomains", "example.com/data/something_useful"]);
 
-    _paq.push(['setTrackerUrl', u+'piwik.php']);
-    _paq.push(['trackPageView']);
+    _paq.push(["setTrackerUrl", u+"piwik.php"]);
+    _paq.push(["trackPageView"]);
 
 That way all things tracked on ``/data/something_useful`` will be tracked as site ``W``
 
 If you want to track group of pages as separate site you can use wildcard in ``setDomains`` function.
+
 Miscellaneous
 ^^^^^^^^^^^^^
 
@@ -699,30 +757,36 @@ Custom page name
 
 We are using current page URL as the page title. To change this use ``setDocumentTitle`` function::
 
-    _paq.push(['setDocumentTitle', title]);
+    _paq.push(["setDocumentTitle", title]);
 
 .. data:: title
 
     String containing title to show instead of url
 
+Example of usage::
+
+    _paq.push(["setDocumentTitle", document.title]);
 
 Measuring user time spent on web page
 `````````````````````````````````````
 When user will enter single page on visit we will assume that total time spent on website was 0 ms.
-To measure that time properly you can use ``enableHeartBeatTimer`` function:
+To measure that time properly you can use ``enableHeartBeatTimer`` function::
 
-    _paq.push(['enableHeartBeatTimer', beat]);
+    _paq.push(["enableHeartBeatTimer", beat]);
 
 .. data:: beat
 
     Time in seconds, when send another request with heartbeat, default ``30``
 
+Example of usage::
+
+    _paq.push(["enableHeartBeatTimer", 50]);
 
 Tracking internal searches
 ``````````````````````````
 To track search requests on your site use ``trackSiteSearch`` function::
 
-    _paq.push(['trackSiteSearch', keyword, category, searchCount, dimension]);
+    _paq.push(["trackSiteSearch", keyword, category, searchCount, dimension]);
 
 .. data:: keyword
 
@@ -738,10 +802,15 @@ To track search requests on your site use ``trackSiteSearch`` function::
 
 .. data:: dimension
 
-    Custom dimension that should be tracked with this action. Example::
+    Custom dimension that should be tracked with this action.
 
-    {
-        dimension1: 'example value'
-    }
+    Example::
 
+        {
+            dimension1: "example value"
+        }
+
+Example of usage::
+
+    _paq.push(["trackSiteSearch", "test", false, 20]);
 

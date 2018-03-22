@@ -1,9 +1,7 @@
 Analytics
 =========
 
-TODO
-
 .. toctree::
-:maxdepth: 2
+    :maxdepth: 2
 
-      js_tracking_api
+    js_tracking_api
