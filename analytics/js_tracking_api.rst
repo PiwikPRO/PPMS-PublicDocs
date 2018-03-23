@@ -1,7 +1,7 @@
 .. highlight:: js
 .. default-domain:: js
 
-JS TRACKING API
+JS tracking API
 ===============
 JS tracking enables you to track data on anything that supports running JavaScript code.
 
@@ -124,6 +124,12 @@ Example of usage::
 
 Ecommerce tracking
 ^^^^^^^^^^^^^^^^^^
+.. todo::
+
+    Add information how to track ecommerce updates - addEcommerceItem every page view,
+    trackEcommerceCartUpdate every change in the cart (and it should be the last function), trackEcommerceOrder
+    on successful order (but add all items in the basket first via addEcommerceItem)
+
 
 Adding Ecommerce item
 `````````````````````
