@@ -4,6 +4,9 @@
 Tracker Object Functions
 ========================
 
+This document describes all functions available for Tracker object and how to create its instance.
+This enables user to track on multiple trackers at once.
+
 Accessing Tracker Object
 ------------------------
 
@@ -53,7 +56,7 @@ Tracking functions
 
     :param int/string idGoal: Id of goal.
     :param int/float customRevenue: Revenue value. Optional
-    :param mixed customData: Object that can contain dimensions. Optional. See  :ref:`Custom dimensions` for more information about custom dimensions.
+    :param mixed customData: Object that can :ref:`Custom dimensions`. Optional.
 
 .. todo:: What else can be in customData?
 
@@ -90,10 +93,10 @@ Ecommerce tracking
     Function that adds ecommerce item, can be used when adding and removing items from cart.
 
     :param string productSKU: String with product stock-keeping unit, required parameter.
-    :param string productName: String with product name, optional.
-    :param Array<string> productCategory: Product category, can be written as Array with up to 5 elements, optional.
-    :param string price: String with product price, optional.
-    :param string quantity: String with product quantity, optional.
+    :param string productName: **Optional** String with product name.
+    :param Array<string> productCategory: **Optional** Product category, can be written as Array with up to 5 elements.
+    :param string price: **Optional** String with product price.
+    :param string quantity: **Optional** String with product quantity.
 
 .. function:: trackEcommerceOrder(orderId, orderGrandTotal, orderSubTotal, orderTax, orderShipping, orderDiscount);
 
@@ -101,10 +104,10 @@ Ecommerce tracking
 
     :param string orderId: Unique order ID, required.
     :param number orderGrandTotal: Order Revenue grand total  - tax, shipping and discount included, required.
-    :param number orderSubTotal: Order sub total - without shipping, optional.
-    :param number orderTax: Order tax amount, optional.
-    :param number orderShipping: Order shipping costs, optional.
-    :param number orderDiscount: Order discount amount, optional.
+    :param number orderSubTotal: **Optional** Order sub total - without shipping.
+    :param number orderTax: **Optional** Order tax amount.
+    :param number orderShipping: **Optional** Order shipping costs.
+    :param number orderDiscount: **Optional** Order discount amount.
 
 .. function:: trackEcommerceCartUpdate(grandTotal);
 
@@ -118,9 +121,9 @@ adding cart items.
     Function to track product or category page view, must be followed by ``trackPageView`` function.
 
     :param string productSKU: String with product stock-keeping unit, required parameter.
-    :param string productName: String with product name, optional.
-    :param Array<string> productCategory: Product category, can be written as Array with up to 5 elements, optional.
-    :param string price: String with product price, optional.
+    :param string productName: **Optional** String with product name.
+    :param Array<string> productCategory: **Optional** Product category, can be written as Array with up to 5 elements.
+    :param string price: **Optional** String with product price.
 
 
 Custom variables
@@ -242,7 +245,7 @@ Download and Outlink Tracking
 
     :param string url: Address that link points to.
     :param string linkType: Type of link, if is set to ``"link"`` it will track an outlink, if it is set to ``"download"`` it will track a download.
-    :param object customData: Object containing dimensions that should be linked to tracked link. See :ref:`Custom dimensions` for more information about custom dimensions.
+    :param object customData: Object containing :ref:`Custom dimensions` that should be linked to tracked link.
     :param function callback: Function that should be triggered after tracking link.
 
 Tracking Outlink

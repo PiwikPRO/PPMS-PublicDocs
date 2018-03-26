@@ -1,23 +1,38 @@
 .. highlight:: js
 .. default-domain:: js
 
-JS tracking API
-===============
-JS tracking enables you to track data on anything that supports running JavaScript code.
+JavaScript tracking API
+=======================
+Following API enables user to:
+
+    * track visits on multiple domains and subdomains
+    * track ecommerce events (successful orders, cart changes, product and category views),
+    * track content impressions
+    * manage custom variables to use them later
+    * track outlinks and downloads
 
 Installing Tracking code
 ------------------------
 There are two ways of installing tracking code:
 
-1. Via tag manager (recommended)
-    1. Sign in to your Piwik PRO with your admin or Super User account.
-    2. Click on menu button on the top left.
-    3. Click on the Websites position.
-    4. Choose the website for which you want to implement a tracking code.
-    5. Select Installation tab
-    6. The tracking code snippet for your website is displayed under Website code for asynchronous
-     tags or Website code for synchronous tags.
-2. Manually
+Installing tracking code via Tag Manager
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+#. Sign in to your Piwik PRO with your admin or Super User account.
+#. Click on menu button on the top left.
+#. Click on the Websites position.
+#. Choose the website for which you want to implement a tracking code.
+#. Select Installation tab
+#. The tracking code snippet for your website is displayed under Website code for asynchronous tags or Website code for synchronous tags.
+
+
+Installing tracking code via code snippet.
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+To install tracking code you must paste it into html file and provide some required settings:
+
+ * ``$PIWIK_URL`` - location of the piwik.js file
+ * ``$IDSITE`` - id of website that should be tracked
+
 
 .. code-block:: html
 
@@ -35,12 +50,8 @@ There are two ways of installing tracking code:
       })();
     </script>
 
-Where:
- * ``$PIWIK_URL`` - location of the piwik.js file
- * ``IDSITE`` - id of website that should be tracked
-
-API function
-------------
+Command queue
+-------------
 
 Loading snippet creates following API function:
 
@@ -50,17 +61,19 @@ Loading snippet creates following API function:
 
     :param string command: Command name.
     :param args: Command arguments. Number of arguments and their function depend on command.
-    :returns: Depends on the command
+    :returns: Undefined
 
 Commands
 --------
 
-Trigger tracking manually
-^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Manual event trigger
+Trigger tracking on demand
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+
+Trigger custom event
 ````````````````````
-Allows to manually trigger events that should not trigger on page load, but when user performs an action::
+Trigger (custom) events bound to user actions::
 
     _paq.push(["trackEvent", category, action, name, value, dimension);
 
@@ -74,23 +87,24 @@ Allows to manually trigger events that should not trigger on page load, but when
 
 .. data:: name
 
-    String with event name (optional).
+    **Optional** String with event name.
 
 .. data:: value
 
-    Number value with event value (optional).
+    **Optional** Number value with event value.
 
 .. data:: dimension
 
-    Custom dimension that should be tracked with this action. See :ref:`Custom Dimensions` for more details on custom dimensions.
+    **Optional**  :ref:`Custom dimension<Custom Dimensions>` that should be tracked with this action. Can be multiple dimensions.
 
     Example::
 
         {
-           dimension1: "example value"
+           dimension${ID}: "example value",
+           dimension${ID}: "example value"
         }
 
-Example of usage::
+Example of usage (tracking when user clicks on cancel button on exit intent)::
 
         _paq.push(["trackEvent", "Exit intent", "Click on button", "Cancel"]);
 
@@ -106,16 +120,17 @@ Allows to manually trigger goal coversion::
 
 .. data:: goal_value
 
-    Number value with tracked conversion value - optional.
+    **Optional** Number value with tracked conversion value.
 
 .. data:: dimension
 
-    Custom dimension that should be tracked with this action -optional. See :ref:`Custom Dimensions` for more details on custom dimensions.
+    **Optional**  :ref:`Custom dimension<Custom Dimensions>` that should be tracked with this action. Can be multiple dimensions.
 
-     Example::
+    Example::
 
         {
-            dimension1: "example value"
+           dimension${ID}: "example value",
+           dimension${ID}: "example value"
         }
 
 Example of usage::
@@ -133,23 +148,23 @@ To add ecommerce item (for example to track things in users cart) user ``addEcom
 
 .. data:: productSKU
 
-    String with product stock-keeping unit, required parameter.
+    **Required** String with product stock-keeping unit.
 
 .. data:: productName
 
-    String with product name, optional.
+    **Optional** String with product name.
 
 .. data:: productCategory
 
-    Product category, can be written as Array with up to 5 elements, optional.
+    **Optional** Product category, can be written as Array with up to 5 elements.
 
 .. data:: productPrice
 
-    String with product price, optional.
+    **Optional** String with product price.
 
 .. data:: productQuantity
 
-    String with product quantity, optional.
+    **Optional** String with product quantity.
 
 .. warning::
 
@@ -171,27 +186,27 @@ To track successful ecommerce order (on checkout page for example) use ``trackEc
 
 .. data:: orderId
 
-    Unique order ID, required.
+    **Required** Unique order ID.
 
 .. data:: orderGrandTotal
 
-    Order Revenue grand total  - tax, shipping and discount included, written as number - not string, required.
+    **Required** Order Revenue grand total  - tax, shipping and discount included, written as number - not string.
 
 .. data:: orderSubTotal
 
-    Order sub total - without shipping, written as number - not string, optional.
+    **Optional** Order sub total - without shipping, written as number - not string.
 
 .. data:: orderTax
 
-    Order tax amount written as number - not string, optional.
+    **Optional** Order tax amount written as number - not string.
 
 .. data:: orderShipping
 
-    Order shipping costs, written as number - not string, optional.
+    **Optional** Order shipping costs, written as number - not string.
 
 .. data:: orderDiscount
 
-    Order discount amount, written as number - not string, optional.
+    **Optional** Order discount amount, written as number - not string.
 
 Example of usage::
 
@@ -229,15 +244,15 @@ If you want to track when user enters product site, or is browsing products cate
 
 .. data:: productName
 
-    String with product name, optional. False for tracking category.
+    **Optional** String with product name. False for tracking category.
 
 .. data:: productCategory
 
-    Product category, can be written as Array with up to 5 elements, optional.
+    **Optional** Product category, can be written as Array with up to 5 elements.
 
 .. data:: productPrice
 
-    String with product price, optional.
+    **Optional** String with product price.
 
 .. warning::
 
@@ -432,8 +447,7 @@ Example of usage::
 Track interactions manually with auto detection
 ```````````````````````````````````````````````
 If you want to trigger an interaction manually (for example on click) you
- can do it using ``trackContentInteractionNode``
-Just add this function as an eventListener for action you want::
+can do it using ``trackContentInteractionNode``, just add this function as an eventListener for action you want::
 
     _paq.push(["trackContentInteractionNode", domNode, contentInteraction]);
 
@@ -551,13 +565,15 @@ If you want to use JS instead you can add ``trackLink`` function to element ``on
 
 .. data:: dimension
 
-    Custom dimension that should be tracked with this action. See :ref:`Custom Dimensions` for more details on custom dimensions.
+    **Optional**  :ref:`Custom dimension<Custom Dimensions>` that should be tracked with this action. Can be multiple dimensions.
 
     Example::
 
         {
-            dimension1: "example value"
+           dimension${ID}: "example value",
+           dimension${ID}: "example value"
         }
+
 
 Example of usage
 
@@ -637,11 +653,15 @@ If you want to use JS instead you can add ``trackLink`` function to element ``on
 
 .. data:: dimension
 
-    Custom dimension that should be tracked with this action.  See :ref:`Custom Dimensions` for more details on custom dimensions. Example::
+    **Optional**  :ref:`Custom dimension<Custom Dimensions>` that should be tracked with this action. Can be multiple dimensions.
+
+    Example::
 
         {
-            dimension1: "example value"
+           dimension${ID}: "example value",
+           dimension${ID}: "example value"
         }
+
 
 Example of usage
 
@@ -806,13 +826,15 @@ To track search requests on your site use ``trackSiteSearch`` function::
 
 .. data:: dimension
 
-    Custom dimension that should be tracked with this action. See :ref:`Custom Dimensions` for more details on custom dimensions.
+    **Optional**  :ref:`Custom dimension<Custom Dimensions>` that should be tracked with this action. Can be multiple dimensions.
 
     Example::
 
         {
-            dimension1: "example value"
+           dimension${ID}: "example value",
+           dimension${ID}: "example value"
         }
+
 
 Example of usage::
 
