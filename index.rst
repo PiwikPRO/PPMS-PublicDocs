@@ -11,3 +11,4 @@ Welcome to Piwik PRO Developers documentation!
 
    sdk/index
    audience_manager/index
+   glossary
