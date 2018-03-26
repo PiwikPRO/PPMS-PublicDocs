@@ -518,7 +518,7 @@ paths:
           type: string
           minLength: 1
           #TODO: Specify maximal allowed length.
-          example: range
+          example: start-date
         - name: e_n
           in: formData
           description: Custom event name.
@@ -532,7 +532,7 @@ paths:
           type: number
           format: float
           minimum: 0
-          example: 201704-201711
+          example: 201704
         #TODO: Link to content tracking description.
         - name: c_n
           in: formData
