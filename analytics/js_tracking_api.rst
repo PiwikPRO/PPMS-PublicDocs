@@ -79,11 +79,11 @@ Trigger (custom) events bound to user actions::
 
 .. data:: category
 
-    String with event category.
+    **Required** String with event category.
 
 .. data:: action
 
-    String with event action.
+    **Required** String with event action.
 
 .. data:: name
 
@@ -108,15 +108,15 @@ Example of usage (tracking when user clicks on cancel button on exit intent)::
 
         _paq.push(["trackEvent", "Exit intent", "Click on button", "Cancel"]);
 
-Manual goal conversion trigger
-``````````````````````````````
-Allows to manually trigger goal coversion::
+Track goal conversion
+`````````````````````
+Allows to manually track goal conversion Used in Goals - Days to Conversion report::
 
     _paq.push(["trackGoal", goal_name, goal_value, dimension]);
 
 .. data:: goal_name
 
-    String with Goal Name
+    **Required** String with Goal Name
 
 .. data:: goal_value
 
@@ -142,7 +142,7 @@ Ecommerce tracking
 
 Adding Ecommerce item
 `````````````````````
-To add ecommerce item (for example to track things in users cart) user ``addEcommerceItem`` function::
+To add ecommerce item (for example to track changes in users cart using ``trackEcommerceCartUpdate``) user ``addEcommerceItem`` function::
 
     _paq.push(["addEcommerceItem", productSKU, productName, productCategory, productPrice, productQuantity]);
 
@@ -160,11 +160,11 @@ To add ecommerce item (for example to track things in users cart) user ``addEcom
 
 .. data:: productPrice
 
-    **Optional** String with product price.
+    **Optional** Float with product price.
 
 .. data:: productQuantity
 
-    **Optional** String with product quantity.
+    **Optional** Float with product quantity.
 
 .. warning::
 
@@ -220,7 +220,7 @@ To update user cart (when user adds new product or removes them from cart) use `
 
 .. data:: cartAmount
 
-    Cart amount, written as number, required.
+    **Required** Cart amount, written as number.
 
 
 .. warning::
@@ -240,7 +240,7 @@ If you want to track when user enters product site, or is browsing products cate
 
 .. data:: productSKU
 
-    String with product stock-keeping unit, required parameter. False for tracking category.
+    **Required** String with product stock-keeping unit. False for tracking category.
 
 .. data:: productName
 
@@ -252,7 +252,7 @@ If you want to track when user enters product site, or is browsing products cate
 
 .. data:: productPrice
 
-    **Optional** String with product price.
+    **Optional** Float with product price.
 
 .. warning::
 
@@ -274,19 +274,19 @@ To set custom variable that can be used later use ``setCustomVariable`` function
 
 .. data:: index
 
-    Number from 1 to 5 where variable is stored
+    **Required** Number from 1 to 5 where variable is stored
 
 .. data:: name
 
-    Name of the variable
+   **Required** Name of the variable
 
 .. data:: value
 
-    Value of the variable
+   **Required** Value of the variable
 
 .. data:: scope
 
-    Scope of the variable, "visit" or "page"
+   **Required** Scope of the variable, "visit" or "page"
 
 
 .. warning::
@@ -309,11 +309,11 @@ To remove custom variable you can use ``deleteCustomVariable`` function::
 
 .. data:: index
 
-    Number from 1 to 5 where variable is stored
+    **Required** Number from 1 to 5 where variable is stored
 
 .. data:: scope
 
-    Scope of the variable, "visit" or "page"
+    **Required** Scope of the variable, "visit" or "page"
 
 Example of usage::
 
@@ -329,9 +329,9 @@ You can access custom variables by providing function that will use ``getCustomV
 
 .. function:: getCustomVariable(index, scope)
 
-    :param number index: Number from 1 to 5 where variable is stored
+    :param number index: **Required** Number from 1 to 5 where variable is stored
 
-    :param string scope: Scope of the variable, "visit" or "page"
+    :param string scope: **Required** Scope of the variable, "visit" or "page"
 
 Example of usage::
 
@@ -351,11 +351,11 @@ If you want to set custom dimension to use it in tracking functions use ``setCus
 
 .. data:: customDimensionID
 
-    Id of dimension
+    **Required** Id of dimension
 
 .. data:: customDimensionValue
 
-    Value of Custom Dimension
+    **Required** Value of Custom Dimension
 
 .. warning::
 
@@ -376,7 +376,7 @@ You can access custom dimension by providing function that will use ``getCustomD
 
 .. function:: getCustomDimension(index, scope)
 
-    :param number index: Index of custom dimension
+    :param number index: **Required** Index of custom dimension
 
 Example of usage::
 
@@ -405,12 +405,12 @@ Code::
 
 .. data:: checkOnScroll
 
-    If set to true it will invoke this function to track new visible content impressions on scroll event.
+    **Required** If set to true it will invoke this function to track new visible content impressions on scroll event.
     (It won't detect content blocks placed in a scrollable element)
 
 .. data:: timeIntervalInMs
 
-    If set it will invoke this function to track new visible content impressions on every X miliseconds.
+    **Optional** If set it will invoke this function to track new visible content impressions on every X miliseconds.
 
 .. warning::
 
@@ -435,7 +435,7 @@ To track impressions on part of a webpage that will be populated after page load
 
 .. data:: domNode
 
-    DOM element that will have impression DOM elements with ``data-track-content`` attribute
+    **Required** DOM element that will have impression DOM elements with ``data-track-content`` attribute
 
 It can be used with ``trackVisibleContentImpressions`` to track only visible content impressions
 
@@ -453,11 +453,11 @@ can do it using ``trackContentInteractionNode``, just add this function as an ev
 
 .. data:: domNode
 
-    Any node in content block or the block itself - it won't be tracked if no content block will be found
+    **Required** ny node in content block or the block itself - it won't be tracked if no content block will be found
 
 .. data:: contentInteraction
 
-    String containing name of interaction it can be anything ("click" etc). "Unknown" used as default.
+    **Required** String containing name of interaction it can be anything ("click" etc). "Unknown" used as default.
 
 Example of use
 
@@ -475,15 +475,15 @@ If you want to track interactions and impressions fully manually you can use ``t
 
 .. data:: contentName
 
-    String containing name of Content Impression
+    **Required** String containing name of Content Impression
 
 .. data:: contentPiece
 
-    String containing name of Content Impression Piece
+    **Required** String containing name of Content Impression Piece
 
 .. data:: contentTarget
 
-    String containing url of Content Impression Target
+    **Required** String containing url of Content Impression Target
 
 Example of use::
 
@@ -495,19 +495,19 @@ Example of use::
 
 .. data:: contentInteraction
 
-    String containing name of interaction it can be anything ("click" etc). "Unknown" used as default.
+    **Required** String containing name of interaction it can be anything ("click" etc). "Unknown" used as default.
 
 .. data:: contentName
 
-    String containing name of Content Impression
+    **Required** String containing name of Content Impression
 
 .. data:: contentPiece
 
-    String containing name of Content Impression Piece
+    **Required** String containing name of Content Impression Piece
 
 .. data:: contentTarget
 
-    String containing url of Content Impression Target
+    **Required** String containing url of Content Impression Target
 
 Example of use::
 
@@ -535,7 +535,7 @@ To ignore internal outlinks use ``setDomains`` function to define internal domai
 
 .. data:: domains
 
-    Array with domains written as strings, * are accepted.
+    **Required** Array with domains written as strings, * are accepted.
 
 Example of usage::
 
@@ -549,7 +549,7 @@ This class name can be changed, use ``setLinkClasses`` to define which CSS class
 
 .. data:: className
 
-    String with css class that should be tracked instead of ``piwik_link``
+    **Required** String with css class that should be tracked instead of ``piwik_link``
 
 Example of usage::
 
@@ -561,7 +561,7 @@ If you want to use JS instead you can add ``trackLink`` function to element ``on
 
 .. data:: linkAddress
 
-    Address that link points to.
+    **Required** Address that link points to.
 
 .. data:: dimension
 
@@ -607,7 +607,7 @@ You can add extension to this list using ``addDownloadExtensions`` function::
 
 .. data:: extensions
 
-    String containing extensions separated by ``|`` for example ``"mhj|docx"``
+    **Required** String containing extensions separated by ``|`` for example ``"mhj|docx"``
 
 
 Example of usage::
@@ -620,7 +620,7 @@ This list can be rewrote using ``setDownloadExtensions`` function::
 
 .. data:: extensions
 
-    String containing extensions separated by ``|`` for example ``"7z|apk|mp4"``
+    **Required** String containing extensions separated by ``|`` for example ``"7z|apk|mp4"``
 
 
 Example of usage::
@@ -636,7 +636,7 @@ This class name can be changed, use ``setDownloadClasses`` to define which CSS c
 
 .. data:: className
 
-    String with css class that should be tracked instead of ``piwik_download``
+    **Required** String with css class that should be tracked instead of ``piwik_download``
 
 Example of usage::
 
@@ -649,7 +649,7 @@ If you want to use JS instead you can add ``trackLink`` function to element ``on
 
 .. data:: linkAddress
 
-    Address that link points to.
+    **Required** Address that link points to.
 
 .. data:: dimension
 
@@ -680,7 +680,7 @@ That time frame is set to 500ms by default. To modify it you can use ``setLinkTr
 
 .. data:: time
 
-    Time in ms between user interaction and downloading file.
+    **Required** Time in ms between user interaction and downloading file.
 
 
 Disabling tracking
@@ -694,7 +694,7 @@ To disable using CSS class you can use ``setIgnoreClassess`` function::
 
 .. data:: className
 
-    Css class name that will be ignored
+    **Required** Css class name that will be ignored
 
 
 User ID Management
@@ -707,7 +707,7 @@ You must provide unique user-id for every user. To set user ID for tracked data 
 
 .. data:: userID
 
-    Unique, non empty string preserved for each user.
+    **Required** Unique, non empty string preserved for each user.
 
 Tracking domains and subdomains
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -744,7 +744,7 @@ To setup tracking between multiple domains you must use multiple functions ``set
 
 .. data:: domains
 
-    Domains array, with wildcards
+    **Required** Domains array, with wildcards
 
 ::
 
@@ -785,7 +785,7 @@ We are using current page URL as the page title. To change this use ``setDocumen
 
 .. data:: title
 
-    String containing title to show instead of url
+    **Required** String containing title to show instead of url
 
 Example of usage::
 
@@ -800,7 +800,7 @@ To measure that time properly you can use ``enableHeartBeatTimer`` function::
 
 .. data:: beat
 
-    Time in seconds, when send another request with heartbeat, default ``30``
+    **Required** Time in seconds, when send another request with heartbeat, default ``30``
 
 Example of usage::
 
@@ -814,15 +814,15 @@ To track search requests on your site use ``trackSiteSearch`` function::
 
 .. data:: keyword
 
-    String containg keyword that was searched
+    **Required** String containg keyword that was searched
 
 .. data:: category
 
-    String with category seleted in search engine - you can set it to false when not used.
+    **Required** String with category seleted in search engine - you can set it to false when not used.
 
 .. data:: searchCount
 
-    Number of results on the results page - you can set it to false when not used.
+    **Required** Number of results on the results page - you can set it to false when not used.
 
 .. data:: dimension
 
