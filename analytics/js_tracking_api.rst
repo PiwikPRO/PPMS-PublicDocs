@@ -75,7 +75,7 @@ Trigger custom event
 ````````````````````
 Trigger (custom) events bound to user actions::
 
-    _paq.push(["trackEvent", category, action, name, value, dimension);
+    _paq.push(["trackEvent", category, action, name, value, dimensions);
 
 .. data:: category
 
@@ -93,15 +93,16 @@ Trigger (custom) events bound to user actions::
 
     **Optional** Number value with event value.
 
-.. data:: dimension
+.. data:: dimensions
 
     **Optional**  :ref:`Custom dimension<Custom Dimensions>` that should be tracked with this action. Can be multiple dimensions.
+    Written as object property using ``dimension{ID}`` notation.
 
     Example::
 
         {
-           dimension${ID}: "example value",
-           dimension${ID}: "example value"
+           dimension1: "example value",
+           dimension2: "example value"
         }
 
 Example of usage (tracking when user clicks on cancel button on exit intent)::
@@ -112,7 +113,7 @@ Track goal conversion
 `````````````````````
 Allows to manually track goal conversion Used in Goals - Days to Conversion report::
 
-    _paq.push(["trackGoal", goal_name, goal_value, dimension]);
+    _paq.push(["trackGoal", goal_name, goal_value, dimensions]);
 
 .. data:: goal_name
 
@@ -122,15 +123,16 @@ Allows to manually track goal conversion Used in Goals - Days to Conversion repo
 
     **Optional** Number value with tracked conversion value.
 
-.. data:: dimension
+.. data:: dimensions
 
     **Optional**  :ref:`Custom dimension<Custom Dimensions>` that should be tracked with this action. Can be multiple dimensions.
+    Written as object property using ``dimension{ID}`` notation.
 
     Example::
 
         {
-           dimension${ID}: "example value",
-           dimension${ID}: "example value"
+           dimension1: "example value",
+           dimension2: "example value"
         }
 
 Example of usage::
@@ -174,6 +176,10 @@ To add ecommerce item (for example to track changes in users cart using ``trackE
 
     You must do this each page view to maintain cart status.
 
+.. warning::
+
+    This function does not track any data to tracker. This is helper function for ``trackEcommerceOrder`` or ``trackEcommerceCartUpdate`` function to populate items to send.
+
 Example of usage::
 
     _paq.push(["addEcommerceItem", "craft-311", "Unicorn Iron on Patch", "Crafts & Sewing", "499", "3"]);
@@ -214,13 +220,17 @@ Example of usage::
 
 Updating cart
 `````````````
+.. todo::
+
+Why tracker doesn't count cartAmount by itself? Why user must do this?
+
 To update user cart (when user adds new product or removes them from cart) use ``trackEcommerceCartUpdate`` function::
 
     _paq.push(["trackEcommerceCartUpdate", cartAmount]);
 
 .. data:: cartAmount
 
-    **Required** Cart amount, written as number.
+    **Required** Cart amount (sum of products), written as number.
 
 
 .. warning::
@@ -266,9 +276,15 @@ Example of usage::
 Custom Variables
 ^^^^^^^^^^^^^^^^
 
-Adding Custom Variable
-``````````````````````
-To set custom variable that can be used later use ``setCustomVariable`` function::
+Adding / Editing Custom Variable
+````````````````````````````````
+.. todo::
+
+Is this variable set in the portal / using API first, then I can use the id slot to define it's name and value?+
+What's name used for? Can it be accessed later?
+
+
+To set custom variable that can be used later, use ``setCustomVariable`` function::
 
     _paq.push(["setCustomVariable", index, name, value, scope]);
 
@@ -291,7 +307,7 @@ To set custom variable that can be used later use ``setCustomVariable`` function
 
 .. warning::
 
-    Custom Variable with scope set on "visit" will be saved for visit, you don"t need to save it every page.
+    Custom Variable with scope set on "visit" will be saved for visit, you don't need to save it every page.
 
 .. warning::
 
@@ -557,21 +573,22 @@ Example of usage::
 
 If you want to use JS instead you can add ``trackLink`` function to element ``onClick`` attribute::
 
-    _paq.push(["trackLink", linkAddress, "link", dimension]);
+    _paq.push(["trackLink", linkAddress, "link", dimensions]);
 
 .. data:: linkAddress
 
     **Required** Address that link points to.
 
-.. data:: dimension
+.. data:: dimensions
 
     **Optional**  :ref:`Custom dimension<Custom Dimensions>` that should be tracked with this action. Can be multiple dimensions.
+    Written as object property using ``dimension{ID}`` notation.
 
     Example::
 
         {
-           dimension${ID}: "example value",
-           dimension${ID}: "example value"
+           dimension1: "example value",
+           dimension2: "example value"
         }
 
 
@@ -645,23 +662,23 @@ Example of usage::
 
 If you want to use JS instead you can add ``trackLink`` function to element ``onClick`` attribute::
 
-    _paq.push(["trackLink", linkAddress, "download", dimension]);
+    _paq.push(["trackLink", linkAddress, "download", dimensions]);
 
 .. data:: linkAddress
 
     **Required** Address that link points to.
 
-.. data:: dimension
+.. data:: dimensions
 
     **Optional**  :ref:`Custom dimension<Custom Dimensions>` that should be tracked with this action. Can be multiple dimensions.
+    Written as object property using ``dimension{ID}`` notation.
 
     Example::
 
         {
-           dimension${ID}: "example value",
-           dimension${ID}: "example value"
+           dimension1: "example value",
+           dimension2: "example value"
         }
-
 
 Example of usage
 
@@ -810,7 +827,7 @@ Tracking internal searches
 ``````````````````````````
 To track search requests on your site use ``trackSiteSearch`` function::
 
-    _paq.push(["trackSiteSearch", keyword, category, searchCount, dimension]);
+    _paq.push(["trackSiteSearch", keyword, category, searchCount, dimensions]);
 
 .. data:: keyword
 
@@ -824,17 +841,17 @@ To track search requests on your site use ``trackSiteSearch`` function::
 
     **Required** Number of results on the results page - you can set it to false when not used.
 
-.. data:: dimension
+.. data:: dimensions
 
     **Optional**  :ref:`Custom dimension<Custom Dimensions>` that should be tracked with this action. Can be multiple dimensions.
+    Written as object property using ``dimension{ID}`` notation.
 
     Example::
 
         {
-           dimension${ID}: "example value",
-           dimension${ID}: "example value"
+           dimension1: "example value",
+           dimension2: "example value"
         }
-
 
 Example of usage::
 
