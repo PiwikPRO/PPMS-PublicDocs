@@ -53,7 +53,7 @@ Tracking functions
 
     :param int/string idGoal: Id of goal.
     :param int/float customRevenue: Revenue value. Optional
-    :param mixed customData: Object that can contain dimensions. Optional.
+    :param mixed customData: Object that can contain dimensions. Optional. See  :ref:`Custom dimensions` for more information about custom dimensions.
 
 .. todo:: What else can be in customData?
 
@@ -242,7 +242,7 @@ Download and Outlink Tracking
 
     :param string url: Address that link points to.
     :param string linkType: Type of link, if is set to ``"link"`` it will track an outlink, if it is set to ``"download"`` it will track a download.
-    :param object customData: Object containing dimensions that should be linked to tracked link.
+    :param object customData: Object containing dimensions that should be linked to tracked link. See :ref:`Custom dimensions` for more information about custom dimensions.
     :param function callback: Function that should be triggered after tracking link.
 
 Tracking Outlink

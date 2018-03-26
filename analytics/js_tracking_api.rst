@@ -82,7 +82,7 @@ Allows to manually trigger events that should not trigger on page load, but when
 
 .. data:: dimension
 
-    Custom dimension that should be tracked with this action.
+    Custom dimension that should be tracked with this action. See :ref:`Custom Dimensions` for more details on custom dimensions.
 
     Example::
 
@@ -110,7 +110,7 @@ Allows to manually trigger goal coversion::
 
 .. data:: dimension
 
-    Custom dimension that should be tracked with this action -optional.
+    Custom dimension that should be tracked with this action -optional. See :ref:`Custom Dimensions` for more details on custom dimensions.
 
      Example::
 
@@ -124,12 +124,6 @@ Example of usage::
 
 Ecommerce tracking
 ^^^^^^^^^^^^^^^^^^
-.. todo::
-
-    Add information how to track ecommerce updates - addEcommerceItem every page view,
-    trackEcommerceCartUpdate every change in the cart (and it should be the last function), trackEcommerceOrder
-    on successful order (but add all items in the basket first via addEcommerceItem)
-
 
 Adding Ecommerce item
 `````````````````````
@@ -160,6 +154,10 @@ To add ecommerce item (for example to track things in users cart) user ``addEcom
 .. warning::
 
     All string parameters should be escaped, without double quote character.
+
+.. warning::
+
+    You must do this each page view to maintain cart status.
 
 Example of usage::
 
@@ -213,7 +211,7 @@ To update user cart (when user adds new product or removes them from cart) use `
 .. warning::
 
     Before tracking cart update be sure you added all products in cart by using ``addEcommerceItem`` first.
-    (Even ones that were in cart earlier)
+    (Even ones that were in cart earlier) Then use this function last.
 
 Example of usage::
 
@@ -553,7 +551,7 @@ If you want to use JS instead you can add ``trackLink`` function to element ``on
 
 .. data:: dimension
 
-    Custom dimension that should be tracked with this action.
+    Custom dimension that should be tracked with this action. See :ref:`Custom Dimensions` for more details on custom dimensions.
 
     Example::
 
@@ -639,7 +637,7 @@ If you want to use JS instead you can add ``trackLink`` function to element ``on
 
 .. data:: dimension
 
-    Custom dimension that should be tracked with this action. Example::
+    Custom dimension that should be tracked with this action.  See :ref:`Custom Dimensions` for more details on custom dimensions. Example::
 
         {
             dimension1: "example value"
@@ -808,7 +806,7 @@ To track search requests on your site use ``trackSiteSearch`` function::
 
 .. data:: dimension
 
-    Custom dimension that should be tracked with this action.
+    Custom dimension that should be tracked with this action. See :ref:`Custom Dimensions` for more details on custom dimensions.
 
     Example::
 

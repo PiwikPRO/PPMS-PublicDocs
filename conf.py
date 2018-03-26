@@ -48,7 +48,8 @@ extensions = ['sphinx.ext.autodoc',
     'sphinx.ext.intersphinx',
     'sphinx.ext.todo',
     'sphinx.ext.mathjax',
-    'sphinxcontrib.openapi']
+    'sphinxcontrib.openapi',
+   'sphinx.ext.autosectionlabel']
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -61,7 +62,7 @@ source_suffix = '.rst'
 
 # The master toctree document.
 master_doc = 'index'
-
+autosectionlabel_prefix_document = True
 # General information about the project.
 project = u'PPMS-PDFD'
 copyright = u'2017, Piwik PRO'
