@@ -32,8 +32,8 @@ Installing tracking code via code snippet.
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Installation via snippet should be done only if Tag Manager is not available or you want to track multiple domains / subdomains.
 
-This code should be added near the top of the ``<head>`` tag and before any other script or CSS tags. PPMS configuration
-additionally requires 2 changes in example code.
+This code should be added near the top of the ``<head>`` tag and before any other script or CSS tags. Additionally
+snippet has to be configured this way:
 
     * String ``XXX-XXX-XXX-XXX-XXX`` should be replaces with :term:`app ID` (e.g. ``efcd98a5-335b-48b0-ab17-bf43f1c542be``).
     * String ``ppms.example.com`` should be replaced with your PPMS domain name.
@@ -796,8 +796,8 @@ Tracking single domain
 ``````````````````````
 To track single domain name without tracking subdomains (or single subdomain) use default snippet code
 
-This code should be added near the top of the ``<head>`` tag and before any other script or CSS tags. PPMS configuration
-additionally requires 2 changes in example code.
+This code should be added near the top of the ``<head>`` tag and before any other script or CSS tags. Additionally
+snippet has to be configured this way:
 
     * String ``XXX-XXX-XXX-XXX-XXX`` should be replaces with :term:`app ID` (e.g. ``efcd98a5-335b-48b0-ab17-bf43f1c542be``).
     * String ``ppms.example.com`` should be replaced with your PPMS domain name.
