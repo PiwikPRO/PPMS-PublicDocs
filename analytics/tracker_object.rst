@@ -5,7 +5,7 @@ Tracker Object Functions
 ========================
 
 This document describes all functions available for Tracker object and how to create its instance.
-This enables user to track on multiple trackers at once.
+This enables user to track on multiple Trackers at once.
 
 Accessing Tracker Object
 ------------------------
@@ -73,7 +73,7 @@ Tracking functions
     When user will enter single page on visit we will assume that total time spent on website was 0 ms.
 This Function will enable to measure that time more accurately.
 
-    :param number delay: **Required** Time in seconds, when tracker will send another request with heartbeat, default ``30``
+    :param number delay: **Required** Time in seconds, when Tracker will send another request with heartbeat, default ``30``
 
 .. function:: enableCrossDomainLinking();
 
