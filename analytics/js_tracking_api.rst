@@ -178,7 +178,7 @@ To add ecommerce item (for example to track changes in users cart using ``trackE
 
 .. warning::
 
-    This function does not track any data to tracker. This is helper function for ``trackEcommerceOrder`` or ``trackEcommerceCartUpdate`` function to populate items to send.
+    This function does not track any data to Tracker. This is helper function for ``trackEcommerceOrder`` or ``trackEcommerceCartUpdate`` function to populate items to send.
 
 Example of usage::
 
@@ -222,7 +222,7 @@ Updating cart
 `````````````
 .. todo::
 
-Why tracker doesn't count cartAmount by itself? Why user must do this?
+Why Tracker doesn't count cartAmount by itself? Why user must do this?
 
 To update user cart (when user adds new product or removes them from cart) use ``trackEcommerceCartUpdate`` function::
 
@@ -275,7 +275,7 @@ Example of usage::
 
 Custom Variables
 ^^^^^^^^^^^^^^^^
-
+Custom variables
 Adding / Editing Custom Variable
 ````````````````````````````````
 .. todo::
@@ -298,7 +298,7 @@ To set custom variable that can be used later, use ``setCustomVariable`` functio
 
 .. data:: value
 
-   **Required** Value of the variable
+   **Required** Value of the variable limited to 200 characters.
 
 .. data:: scope
 
@@ -337,6 +337,9 @@ Example of usage::
 
 Accessing Custom Variable
 `````````````````````````
+.. todo::
+It would be nice to have some examples of returned data.
+
 You can access custom variables by providing function that will use ``getCustomVariable`` function::
 
     _paq.push([ function() {
@@ -384,6 +387,9 @@ Example of usage::
 
 Retrieving Custom Dimension
 ```````````````````````````
+.. todo::
+It would be nice to have some examples of returned data.
+
 You can access custom dimension by providing function that will use ``getCustomDimension`` function::
 
     _paq.push([ function() {
@@ -403,6 +409,12 @@ Example of usage::
 
 Content Tracking
 ^^^^^^^^^^^^^^^^
+
+Content Tracking is an useful feature when you want to measure performance of your website or app. For example you can check
+how many times your file was downloaded, or banner was seen, how many users triggered modal screen with some promotion and then
+entered products etc.
+
+To track content, it has to have ``data-track-content`` css class attached to it.
 
 Tracking all content impressions within a page
 ``````````````````````````````````````````````
@@ -426,7 +438,7 @@ Code::
 
 .. data:: timeIntervalInMs
 
-    **Optional** If set it will invoke this function to track new visible content impressions on every X miliseconds.
+    **Optional** If set it will invoke this function to track new visible content impressions on every X miliseconds. By default it is set to 750ms.
 
 .. warning::
 
@@ -469,7 +481,7 @@ can do it using ``trackContentInteractionNode``, just add this function as an ev
 
 .. data:: domNode
 
-    **Required** ny node in content block or the block itself - it won't be tracked if no content block will be found
+    **Required** Any node in content block or the block itself - it won't be tracked if no content block will be found inside or on it.
 
 .. data:: contentInteraction
 
@@ -482,10 +494,9 @@ Example of use
     <button onClick = function(){_paq.push(["trackContentInteractionNode", this, "clicked"]);}>Click me!</button>
 
 
-Track interactions and impressions manually
-```````````````````````````````````````````
-If you want to track interactions and impressions fully manually you can use ``trackContentImpression``
- and ``trackContentInteraction`` (used as a function in eventListener)::
+Track impression manually
+`````````````````````````
+If you want to trigger tracking impressions fully manually you can use ``trackContentImpression``
 
     _paq.push(["trackContentImpression", contentName, contentPiece, contentTarget]);
 
@@ -505,7 +516,13 @@ Example of use::
 
     _paq.push(["trackContentImpression", "trackingWhitepaper", "document", "http://cooltracker.tr/whitepaper]);
 
-::
+
+
+
+Track user interaction manually
+```````````````````````````````
+If you want to trigger tracking interactions fully manually you can use ``trackContentInteraction``
+Use it as a function inside listener on event::
 
     _paq.push(["trackContentInteraction", contentInteraction, contentName, contentPiece, contentTarget]);
 
@@ -529,6 +546,11 @@ Example of use::
 
     _paq.push(["trackContentImpression", "clicked", "trackingWhitepaper", "document", "http://cooltracker.tr/whitepaper]);
 
+.. warning::
+
+Use this function in conjunction with ``trackContentImpression`` as it can only be mapped with an impression by linking ``contentName``
+it's not mapping automatically as  ``trackContentInteractionNode``.
+
 Download and Outlink Tracking
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -543,9 +565,12 @@ just after first ``trackPageView`` or ``trackEvent``
 
 .. note::
 
-    All Outlinks are tracked automatically.
+    All Outlinks are tracked automatically. As ``enableLinkTracking`` is part of default snippet.
 
-To ignore internal outlinks use ``setDomains`` function to define internal domains and subdomains, you can use wildcard::
+Ignoring alias domains
+++++++++++++++++++++++
+
+To ignore internal outlinks from alias domains use ``setDomains`` function to define internal domains and subdomains, you can use wildcard::
 
     _paq(["setDomains", domains]);
 
@@ -557,7 +582,11 @@ Example of usage::
 
     _paq(["setDomains", ["*.example.com", "*.example.co.uk"]]);
 
-To track clicking a link as an outlink using css class simply add ``piwik_link`` class to link element.
+Force Tracking using CSS class
+++++++++++++++++++++++++++++++
+
+To track clicking a link as an outlink using CSS class simply add ``piwik_link`` class to link element.
+Then it will be considered as an outlink even if it points to the same domain.
 
 This class name can be changed, use ``setLinkClasses`` to define which CSS class should be tracked::
 
@@ -571,7 +600,10 @@ Example of usage::
 
     _paq(["setLinkClasses", "track-this-link"]);
 
-If you want to use JS instead you can add ``trackLink`` function to element ``onClick`` attribute::
+Force Tracking using JS function
+++++++++++++++++++++++++++++++++
+
+If you want to use JS to force outlink to be tracked you can add ``trackLink`` function to element ``onClick`` attribute::
 
     _paq.push(["trackLink", linkAddress, "link", dimensions]);
 
@@ -602,6 +634,11 @@ Example of usage
 
 Tracking Downloads
 ``````````````````
+.. todo::
+Is download only tracking links to files ending on extension? What about GET parameters?
+
+Default extensions recognized as download
++++++++++++++++++++++++++++++++++++++++++
 
 Following extensions are tracked as download by default:
 
@@ -618,7 +655,10 @@ Following extensions are tracked as download by default:
 | wma   | wmv | wpd | xls | xml  | z   | zip |     |      |     |      |     |         |     |     |
 +-------+-----+-----+-----+------+-----+-----+-----+------+-----+------+-----+---------+-----+-----+
 
-You can add extension to this list using ``addDownloadExtensions`` function::
+Adding extension to default extensions
+++++++++++++++++++++++++++++++++++++++
+
+You can add extension to default extensions list using ``addDownloadExtensions`` function::
 
     _paq.push(["addDownloadExtensions", extensions]);
 
@@ -631,7 +671,10 @@ Example of usage::
 
     _paq.push(["addDownloadExtensions", "mhj|docx"]);
 
-This list can be rewrote using ``setDownloadExtensions`` function::
+Replacing default extensions list
++++++++++++++++++++++++++++++++++
+
+Default extensions list can be overwritten using ``setDownloadExtensions`` function::
 
     _paq.push(["setDownloadExtensions", extensions]);
 
@@ -643,6 +686,9 @@ This list can be rewrote using ``setDownloadExtensions`` function::
 Example of usage::
 
     _paq.push(["setDownloadExtensions", "7z|apk|mp4"]);
+
+Force Tracking using CSS class
+++++++++++++++++++++++++++++++
 
 To track clicking a link as an download using css class simply add ``piwik_download`` class to link element.
 
@@ -659,8 +705,10 @@ Example of usage::
 
     _paq(["setDownloadClasses", "track-this-link-for-download"]);
 
+Force Tracking using JS function
+++++++++++++++++++++++++++++++++
 
-If you want to use JS instead you can add ``trackLink`` function to element ``onClick`` attribute::
+If you want to use JS to force tracking download can add ``trackLink`` function to element ``onClick`` attribute::
 
     _paq.push(["trackLink", linkAddress, "download", dimensions]);
 
@@ -688,6 +736,8 @@ Example of usage
         Click me!
     </button>
 
+Setting Download delay
+++++++++++++++++++++++
 
 After each outbound link there is small time frame after which the file will download that will
 ensure there is enough time to track download.
@@ -731,11 +781,23 @@ Tracking domains and subdomains
 
 Tracking single domain
 ``````````````````````
-To track single domain name without tracking subdomains (or single subdomain) use default snippet code::
+To track single domain name without tracking subdomains (or single subdomain) use default snippet code
 
-    _paq.push(["setSiteId", 1]);
-    _paq.push(["setTrackerUrl", u+"piwik.php"]);
-    _paq.push(["trackPageView"]);
+.. code-block:: html
+
+    <!-- Piwik -->
+    <script type="text/javascript">
+      var _paq = _paq || [];
+      _paq.push(["trackPageView"]);
+      _paq.push(["enableLinkTracking"]);
+      (function() {
+        var u="//{$PIWIK_URL}/";
+        _paq.push(["setTrackerUrl", u+"piwik.php"]);
+        _paq.push(["setSiteId", {$IDSITE}]);
+        var d=document, g=d.createElement("script"), s=d.getElementsByTagName("script")[0];
+        g.type="text/javascript"; g.async=true; g.defer=true; g.src=u+"piwik.js"; s.parentNode.insertBefore(g,s);
+      })();
+    </script>
 
 Tracking domains and all subdomains of the website
 ``````````````````````````````````````````````````
@@ -771,13 +833,13 @@ Tracking subdirectories of domain in separate websites.
 ```````````````````````````````````````````````````````
 To differentiate parts of website as another site for tracker user must do::
 
-    _paq.push(["setSiteId", Q]);
+    _paq.push(["setSiteId", "IDSITE1"]);
     _paq.push(["setTrackerUrl", u+"piwik.php"]);
     _paq.push(["trackPageView"]);
 
-where Q is unique site id. And on part that user wants to exclude as another site::
+And on part that user wants to exclude as another site::
 
-    _paq.push(["setSiteId", W]);
+    _paq.push(["setSiteId", "IDSITE2"]);
 
     _paq.push(["setCookiePath", "/data/something_useful"]);
 
@@ -786,7 +848,7 @@ where Q is unique site id. And on part that user wants to exclude as another sit
     _paq.push(["setTrackerUrl", u+"piwik.php"]);
     _paq.push(["trackPageView"]);
 
-That way all things tracked on ``/data/something_useful`` will be tracked as site ``W``
+That way all things tracked on ``/data/something_useful`` will be tracked as site ``IDSITE2``
 
 If you want to track group of pages as separate site you can use wildcard in ``setDomains`` function.
 

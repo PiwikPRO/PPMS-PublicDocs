@@ -20,7 +20,7 @@ Replace 'XXX-XXX-XXX-XXX-XXX' with your Piwik App ID (previously Website ID). Ex
 
 PPMS domain
 ```````````
-Replace 'ppms.example.com' with your PPMS tracker domain. Please note that this value is used in 2 places:
+Replace 'ppms.example.com' with your PPMS Tracker domain. Please note that this value is used in 2 places:
 
 * 'https://ppms.example.com/audiences/static/widget/audience-manager.api.min.js'
 * 'ppms.example.com'

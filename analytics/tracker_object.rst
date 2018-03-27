@@ -10,13 +10,13 @@ This enables user to track on multiple trackers at once.
 Accessing Tracker Object
 ------------------------
 
-To access tracker object instance you must use  ``Piwik.getTracker`` function
+To access Tracker object instance you must use  ``Piwik.getTracker`` function
 
 .. function:: Piwik.getTracker(trackerUrl, siteId);
 
     Getter for Analytics Tracker instance.
 
-    :param string trackerUrl: **Required** Url for tracker
+    :param string trackerUrl: **Required** Url for Tracker
     :param string siteId: **Required** Site Id that will be linked to tracked data.
     :returns: Analytics Tracker instance
 
@@ -28,7 +28,7 @@ To access internal instance of the Tracker used for asynchronous tracking you mu
 
     Getter for Analytics Tracker instance.
 
-    :param string trackerUrl: **Required** Url for tracker
+    :param string trackerUrl: **Required** Url for Tracker
     :param string siteId: **Required** Site Id that will be linked to tracked data.
     :returns: Analytics Tracker instance
 
@@ -71,9 +71,9 @@ Tracking functions
 .. function:: enableHeartBeatTimer(delay);
 
     When user will enter single page on visit we will assume that total time spent on website was 0 ms.
-Function will measure that time more accurately.
+This Function will enable to measure that time more accurately.
 
-    :param number delay: **Required** Time in seconds, when send another request with heartbeat, default ``30``
+    :param number delay: **Required** Time in seconds, when tracker will send another request with heartbeat, default ``30``
 
 .. function:: enableCrossDomainLinking();
 
@@ -229,7 +229,7 @@ Interactions
 
 .. function:: trackContentInteraction(contentInteraction, contentName, contentPiece, contentTarget);
 
-    Function that content interaction using given data.
+    Function that tracks content interaction using given data.
 
     :param string contentInteraction: **Optional** String containing name of interaction it can be anything ("click" etc). "Unknown" used as default.
     :param string contentName: **Required** String containing name of Content Impression.
