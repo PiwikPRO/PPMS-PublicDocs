@@ -221,8 +221,7 @@ Example of usage::
 Updating cart
 `````````````
 .. todo::
-
-Why Tracker doesn't count cartAmount by itself? Why user must do this?
+    Why Tracker doesn't count cartAmount by itself? Why user must do this?
 
 To update user cart (when user adds new product or removes them from cart) use ``trackEcommerceCartUpdate`` function::
 
@@ -276,15 +275,17 @@ Example of usage::
 Custom Variables
 ^^^^^^^^^^^^^^^^
 .. todo::
-What's difference between custom variables and dimensions? Maybe some sort of help.center link?
+    What's difference between custom variables and dimensions? Maybe some sort of help.center link?
 
+.. danger::
+    We strongly advise to use custom dimensions as custom variables will be deprecated.
 
 Adding / Editing Custom Variable
 ````````````````````````````````
 .. todo::
 
-Is this variable set in the portal / using API first, then I can use the id slot to define it's name and value?+
-What's name used for? Can it be accessed later?
+    Is this variable set in the portal / using API first, then I can use the id slot to define it's name and value?+
+    What's name used for? Can it be accessed later?
 
 
 To set custom variable that can be used later, use ``setCustomVariable`` function::
@@ -341,7 +342,7 @@ Example of usage::
 Accessing Custom Variable
 `````````````````````````
 .. todo::
-It would be nice to have some examples of returned data.
+    It would be nice to have some examples of returned data.
 
 You can access custom variables by providing function that will use ``getCustomVariable`` function::
 
@@ -377,7 +378,7 @@ If you want to set custom dimension to use it in tracking functions use ``setCus
 
 .. data:: customDimensionValue
 
-    **Required** Value of Custom Dimension
+    **Required** Value of Custom Dimension - limited to 255 characters.
 
 .. warning::
 
@@ -391,7 +392,7 @@ Example of usage::
 Retrieving Custom Dimension
 ```````````````````````````
 .. todo::
-It would be nice to have some examples of returned data.
+    It would be nice to have some examples of returned data.
 
 You can access custom dimension by providing function that will use ``getCustomDimension`` function::
 
@@ -550,9 +551,8 @@ Example of use::
     _paq.push(["trackContentImpression", "clicked", "trackingWhitepaper", "document", "http://cooltracker.tr/whitepaper]);
 
 .. warning::
-
-Use this function in conjunction with ``trackContentImpression`` as it can only be mapped with an impression by linking ``contentName``
-it's not mapping automatically as  ``trackContentInteractionNode``.
+    Use this function in conjunction with ``trackContentImpression`` as it can only be mapped with an impression by linking ``contentName``
+    it's not mapping automatically as  ``trackContentInteractionNode``.
 
 Download and Outlink Tracking
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -638,7 +638,7 @@ Example of usage
 Tracking Downloads
 ``````````````````
 .. todo::
-Is download only tracking links to files ending on extension? What about GET parameters?
+    Is download only tracking links to files ending on extension? What about GET parameters?
 
 Default extensions recognized as download
 +++++++++++++++++++++++++++++++++++++++++
@@ -690,8 +690,8 @@ Example of usage::
 
     _paq.push(["setDownloadExtensions", "7z|apk|mp4"]);
 
-Force Tracking using CSS class
-++++++++++++++++++++++++++++++
+Force Tracking download using CSS class
++++++++++++++++++++++++++++++++++++++++
 
 To track clicking a link as an download using css class simply add ``piwik_download`` class to link element.
 
@@ -708,8 +708,8 @@ Example of usage::
 
     _paq(["setDownloadClasses", "track-this-link-for-download"]);
 
-Force Tracking using JS function
-++++++++++++++++++++++++++++++++
+Force Tracking download using JS function
++++++++++++++++++++++++++++++++++++++++++
 
 If you want to use JS to force tracking download can add ``trackLink`` function to element ``onClick`` attribute::
 
