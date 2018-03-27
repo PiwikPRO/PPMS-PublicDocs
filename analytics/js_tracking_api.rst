@@ -32,7 +32,8 @@ Installing tracking code via code snippet.
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Installation via snippet should be done only if Tag Manager is not available or you want to track multiple domains / subdomains.
 
-This code should be added just before you want to use the API. Additionally snippet has to be configured this way:
+This code should be added near the top of the ``<head>`` tag and before any other script or CSS tags. PPMS configuration
+additionally requires 2 changes in example code.
 
     * String ``XXX-XXX-XXX-XXX-XXX`` should be replaces with :term:`app ID` (e.g. ``efcd98a5-335b-48b0-ab17-bf43f1c542be``).
     * String ``ppms.example.com`` should be replaced with your PPMS domain name.
@@ -46,7 +47,7 @@ This code should be added just before you want to use the API. Additionally snip
       _paq.push(["trackPageView"]);
       _paq.push(["enableLinkTracking"]);
       (function() {
-        var u="ppms.example.com";
+        var u="//ppms.example.com/";
         _paq.push(["setTrackerUrl", u+"piwik.php"]);
         _paq.push(["setSiteId", "XXX-XXX-XXX-XXX-XXX"]);
         var d=document, g=d.createElement("script"), s=d.getElementsByTagName("script")[0];
@@ -153,10 +154,8 @@ To add ecommerce item (for example to track changes in users cart using ``trackE
     _paq.push(["addEcommerceItem", productSKU, productName, productCategory, productPrice, productQuantity]);
 
 .. note::
-
-    This function does not send any data to the analytics (tracker, server?). It only prepares Ecommerce cart/order state to be send with :ref:trackEcommerceOrder <Tracking Ecommerce order> or :ref:trackEcommerceCartUpdate <Updating cart>.
-
-
+    This function does not send any data to the :term:`Analytics`. It only prepares Ecommerce cart/order state to be
+    send with :ref:trackEcommerceOrder <Tracking Ecommerce order> or :ref:trackEcommerceCartUpdate <Updating cart>.
 
 .. data:: productSKU
 
@@ -442,9 +441,10 @@ Code::
 
 .. data:: checkOnScroll
 
-    **Required** ``boolean`` If ``true`` it will check new visible content impressions on scroll event. Default: ``true``.
-    .. note::
-    It won't detect content blocks placed in a scrollable element.
+    **Optional** ``boolean`` If ``true`` it will check new visible content impressions on scroll event.
+    Default: ``true``.
+
+    .. note:: It won't detect content blocks placed in a scrollable element.
 
 .. data:: watchInterval
 
@@ -796,6 +796,12 @@ Tracking single domain
 ``````````````````````
 To track single domain name without tracking subdomains (or single subdomain) use default snippet code
 
+This code should be added near the top of the ``<head>`` tag and before any other script or CSS tags. PPMS configuration
+additionally requires 2 changes in example code.
+
+    * String ``XXX-XXX-XXX-XXX-XXX`` should be replaces with :term:`app ID` (e.g. ``efcd98a5-335b-48b0-ab17-bf43f1c542be``).
+    * String ``ppms.example.com`` should be replaced with your PPMS domain name.
+
 .. code-block:: html
 
     <!-- Piwik -->
@@ -804,9 +810,9 @@ To track single domain name without tracking subdomains (or single subdomain) us
       _paq.push(["trackPageView"]);
       _paq.push(["enableLinkTracking"]);
       (function() {
-        var u="//{$PIWIK_URL}/";
+        var u="//ppms.example.com/";
         _paq.push(["setTrackerUrl", u+"piwik.php"]);
-        _paq.push(["setSiteId", {$IDSITE}]);
+        _paq.push(["setSiteId", "XXX-XXX-XXX-XXX-XXX"]);
         var d=document, g=d.createElement("script"), s=d.getElementsByTagName("script")[0];
         g.type="text/javascript"; g.async=true; g.defer=true; g.src=u+"piwik.js"; s.parentNode.insertBefore(g,s);
       })();
