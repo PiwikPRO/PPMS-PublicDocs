@@ -62,7 +62,7 @@ Tracking functions
 
 .. function:: trackSiteSearch(keyword, category, resultCount);
 
-    Function that will track internal site searches.
+    Function that tracks internal site searches.
 
     :param string keyword: **Required** String containing keyword that was searched.
     :param string/boolean category: **Required** String with category selected in search engine, can set it to false when not used.
