@@ -195,7 +195,7 @@ Impressions
     Function that will scan DOM for all visible content blocks and will track these impressions.
 
     :param boolean checkOnScroll: **Required** Enables tracking content blocks that will be visible after scroll event.
-    :param number watchInterval: **Optional**  Interval, in milliseconds between checking for new visible elements/content. Periodic checks can be disabled for performance reasons by setting ``0``. Default value: ``750``.
+    :param number watchInterval: **Optional**  Interval, in milliseconds between checking for new visible content. Periodic checks can be disabled for performance reasons by setting ``0``. Default value: ``750``.
 
 .. function:: trackContentImpressionsWithinNode(domNode);
 
