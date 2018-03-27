@@ -442,8 +442,9 @@ Code::
 
 .. data:: checkOnScroll
 
-    **Required** ``boolean`` If set to true it will invoke this function to track new visible content impressions on scroll event.
-    (It won't detect content blocks placed in a scrollable element)
+    **Required** ``boolean`` If ``true`` it will check new visible content impressions on scroll event. Default: ``true``.
+    .. note::
+    It won't detect content blocks placed in a scrollable element.
 
 .. data:: watchInterval
 

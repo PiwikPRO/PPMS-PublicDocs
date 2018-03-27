@@ -62,7 +62,7 @@ source_suffix = '.rst'
 
 # The master toctree document.
 master_doc = 'index'
-autosectionlabel_prefix_document = True
+autosectionlabel_prefix_document = True;
 # General information about the project.
 project = u'PPMS-PDFD'
 copyright = u'2017, Piwik PRO'
