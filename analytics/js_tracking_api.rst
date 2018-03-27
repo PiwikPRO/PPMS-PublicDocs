@@ -30,12 +30,12 @@ This is the easiest and recommended way of tracking code installation.
 
 Installing tracking code via code snippet.
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Installation via snippet should be done only if Tag Manager is not available or you want to track on multiple domains / subdomains.
+Installation via snippet should be done only if Tag Manager is not available or you want to track multiple domains / subdomains.
 
 This code should be added just before you want to use the API. Additionally snippet has to be configured this way:
 
- * String ``//{$PIWIK_URL}/`` should be replaced with location of the piwik.js file
- * String ``$IDSITE`` should be replaced with id of website that should be tracked
+    * String ``XXX-XXX-XXX-XXX-XXX`` should be replaces with :term:`app ID` (e.g. ``efcd98a5-335b-48b0-ab17-bf43f1c542be``).
+    * String ``ppms.example.com`` should be replaced with your PPMS domain name.
 
 
 .. code-block:: html
@@ -46,9 +46,9 @@ This code should be added just before you want to use the API. Additionally snip
       _paq.push(["trackPageView"]);
       _paq.push(["enableLinkTracking"]);
       (function() {
-        var u="//{$PIWIK_URL}/";
+        var u="ppms.example.com";
         _paq.push(["setTrackerUrl", u+"piwik.php"]);
-        _paq.push(["setSiteId", {$IDSITE}]);
+        _paq.push(["setSiteId", "XXX-XXX-XXX-XXX-XXX"]);
         var d=document, g=d.createElement("script"), s=d.getElementsByTagName("script")[0];
         g.type="text/javascript"; g.async=true; g.defer=true; g.src=u+"piwik.js"; s.parentNode.insertBefore(g,s);
       })();
@@ -154,7 +154,8 @@ To add ecommerce item (for example to track changes in users cart using ``trackE
 
 .. note::
 
-    This function does not track any data to Tracker. This is helper function for :ref:`trackEcommerceOrder <Tracking Ecommerce order>`   or :ref:`trackEcommerceCartUpdate <Updating cart>` function to populate items to send.
+    This function does not send any data to the analytics (tracker, server?). It only prepares Ecommerce cart/order state to be send with :ref:trackEcommerceOrder <Tracking Ecommerce order> or :ref:trackEcommerceCartUpdate <Updating cart>.
+
 
 
 .. data:: productSKU
@@ -446,7 +447,7 @@ Code::
 
 .. data:: watchInterval
 
-    **Optional** ``number`` If set it will invoke this function to track new visible content impressions on every X miliseconds. By default it is set to 750ms.
+    **Optional** ``number`` Interval, in milliseconds between checking visible elements/content. Periodic checks can be disabled for performance reasons by setting ``0``. Default value: ``750``.
 
 .. warning::
 
@@ -787,7 +788,7 @@ Tracking domains and subdomains
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 .. note::
 
-    We highly recommend using template from Tag Manager to achieve tracking domains and subdomains.
+    We highly recommend using template from Tag Manager to set up tracking for Analytics module (including customizations).
 
 
 Tracking single domain
