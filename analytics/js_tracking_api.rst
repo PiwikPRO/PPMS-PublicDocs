@@ -275,7 +275,10 @@ Example of usage::
 
 Custom Variables
 ^^^^^^^^^^^^^^^^
-Custom variables
+.. todo::
+What's difference between custom variables and dimensions? Maybe some sort of help.center link?
+
+
 Adding / Editing Custom Variable
 ````````````````````````````````
 .. todo::
