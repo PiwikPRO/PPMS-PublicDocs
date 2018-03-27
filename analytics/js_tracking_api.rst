@@ -774,7 +774,7 @@ You must provide unique user-id for every user. To set user ID for tracked data 
 
 .. data:: userID
 
-    **Required** Unique, non empty string preserved for each user.
+    **Required** Unique, non empty permanent ID of the user in application.
 
 Tracking domains and subdomains
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
