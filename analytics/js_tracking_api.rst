@@ -6,7 +6,7 @@ JavaScript tracking API
 Following API enables user to:
 
     * track visits on multiple domains and subdomains
-    * track ecommerce events (successful orders, cart changes, product and category views),
+    * track ecommerce events (successful orders, cart changes, product and category views)
     * track content impressions
     * manage custom variables to use them later
     * track outlinks and downloads
@@ -22,7 +22,7 @@ Installing tracking code via Tag Manager
 #. Click on menu button on the top left.
 #. Click on the Websites position.
 #. Choose the website for which you want to implement a tracking code.
-#. Select Installation tab
+#. Select Installation tab.
 #. The tracking code snippet for your website is displayed under Website code for asynchronous tags or Website code for synchronous tags.
 
 
