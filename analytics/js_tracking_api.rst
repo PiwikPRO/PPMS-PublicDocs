@@ -170,7 +170,7 @@ To add ecommerce item (for example to track changes in users cart using ``trackE
 
 .. warning::
 
-    All string parameters should be escaped, without double quote character.
+    Product SKU, names and categories should be URL encoded.
 
 .. warning::
 
@@ -196,23 +196,22 @@ To track successful ecommerce order (on checkout page for example) use ``trackEc
 
 .. data:: orderGrandTotal
 
-    **Required** Order Revenue grand total  - tax, shipping and discount included, written as number - not string.
+    **Required** Order Revenue grand total  - tax, shipping and discount included, written as number.
 
 .. data:: orderSubTotal
 
-    **Optional** Order sub total - without shipping, written as number - not string.
-
+    **Optional** Order sub total - without shipping, written as number.
 .. data:: orderTax
 
-    **Optional** Order tax amount written as number - not string.
+    **Optional** Order tax amount written as number.
 
 .. data:: orderShipping
 
-    **Optional** Order shipping costs, written as number - not string.
+    **Optional** Order shipping costs, written as number.
 
 .. data:: orderDiscount
 
-    **Optional** Order discount amount, written as number - not string.
+    **Optional** Order discount amount, written as number.
 
 Example of usage::
 
@@ -265,7 +264,7 @@ If you want to track when user enters product site, or is browsing products cate
 
 .. warning::
 
-    All string parameters should be escaped, without double quote character.
+    Product SKU, names and categories should be URL encoded.
 
 Example of usage::
 
@@ -784,6 +783,10 @@ You must provide unique user-id for every user. To set user ID for tracked data 
 
 Tracking domains and subdomains
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. note::
+
+    We highly recommend using template from Tag Manager to achieve tracking domains and subdomains.
+
 
 Tracking single domain
 ``````````````````````
