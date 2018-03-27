@@ -447,7 +447,7 @@ Code::
 
 .. data:: watchInterval
 
-    **Optional** ``number`` Interval, in milliseconds between checking visible elements/content. Periodic checks can be disabled for performance reasons by setting ``0``. Default value: ``750``.
+    **Optional** ``number`` Interval, in milliseconds between checking for new visible elements/content. Periodic checks can be disabled for performance reasons by setting ``0``. Default value: ``750``.
 
 .. warning::
 
