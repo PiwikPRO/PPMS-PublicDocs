@@ -177,3 +177,12 @@ a.icon.icon-home {
 redoc .background {
 	background-color: #FFFFFF;
 }
+
+.deprecated {
+	color: red;
+}
+
+.deprecated .versionmodified {
+	font-size: 18px;
+	font-weight: bold;
+}

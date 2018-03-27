@@ -277,8 +277,8 @@ Custom Variables
 .. todo::
     What's difference between custom variables and dimensions? Maybe some sort of help.center link?
 
-.. danger::
-    We strongly advise to use custom dimensions as custom variables will be deprecated.
+.. deprecated:: 1.0.0
+    We strongly advise to use custom dimensions.
 
 Adding / Editing Custom Variable
 ````````````````````````````````
