@@ -514,7 +514,7 @@ Tracker Configuration
 
     Function that will set if attribute will conversion to the first referrer
 
-    :param boolean bool: **Required** If set to true attribute will convert to the firs referrer otherwise it will be converted to most recent referrer.
+    :param boolean bool: **Required** If set to true attribute will convert to the first referrer otherwise it will be converted to most recent referrer.
 
 
 Advanced Usage
