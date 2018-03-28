@@ -1,15 +1,14 @@
 .. highlight:: js
 .. default-domain:: js
 
-Audience Manager Form Tracker API
-=================================
+Form Tracker
+============
 Form Tracker gathers data submitted via forms on your page and sends it to the Audience Manager :term:`user` profile as
 :term:`attributes<attribute>`.
 
 .. note::
-
-    Any :term:`attribute` updated this way will be categorized as :term:`Soft Data` and will be stored in profile
-    `attributes` (separate from profile `analytics`).
+    Creates or updates :term:`user` :term:`custom attribute` for each field in the form. :term:`Attribute` name is taken
+    from ``<input>`` or ``<textarea>`` tag ``name`` attribute. Form elements without ``name`` attribute are not tracked.
 
 Supported browsers
 ------------------
@@ -35,14 +34,24 @@ Following data is never send to Audience Manager:
     guarantee success. Additionally payment forms usually contain more fields for private information (e.g. address)
     so it's recommended to ignore such forms using :ref:`AM-optional-configuration`.
 
-Loading snippet
----------------
+Installation
+------------
+
+
+Automatic
+`````````
+You can add Form Tracker using Tag Manager.
+
+TODO get access to TM on testing.piwik.pro
+
+Manual
+``````
 Add following snippet on your page to start using Form Tracker.
 
-The code should be added near the top of the ``<head>`` tag and before any other script or CSS tags. Additionally
+This code should be added near the top of the ``<head>`` tag and before any other script or CSS tags. Additionally
 snippet has to be configured this way:
 
-- String ``XXX-XXX-XXX-XXX-XXX`` should be replaces with :term:`app ID` (e.g. ``efcd98a5-335b-48b0-ab17-bf43f1c542be``).
+- String ``XXX-XXX-XXX-XXX-XXX`` should be replaced with :term:`app ID` (e.g. ``efcd98a5-335b-48b0-ab17-bf43f1c542be``).
 - String ``ppms.example.com`` should be replaced with your PPMS domain name (please note that it's used in 3 places in
   the snippet).
 

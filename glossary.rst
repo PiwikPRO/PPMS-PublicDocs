@@ -7,7 +7,7 @@ Glossary
         Website or application tracked by PPMS.
 
     App ID
-        PPMS :term:`application` identificator (previously `website ID`).
+        PPMS :term:`application` identificator (previously **website ID**, **site ID** or **idSite**).
 
     User
         Visitor on tracked :term:`application`.
@@ -17,7 +17,8 @@ Glossary
         browser cookie.
 
     User ID
-        Permanent ID assigned to :term:`user` by :term:`application` (e.g. username).
+        Permanent ID assigned to :term:`user` by :term:`application` (e.g. username). You can read more about it
+        `here <https://help.piwik.pro/tag-manager/userid/>`_.
 
     Device ID
         Device ID (device identification) is a distinctive number associated with a smartphone or similar handheld
@@ -42,13 +43,25 @@ Glossary
     PII
         Personally Identifiable Information.
 
-    Hard Data
-        Data that is generated from information provided by devices and applications. This information can be measured,
-        traced, and validated.
+    Analytics attribute
+        :term:`Attribute` generated from value provided by :term:`Analytics` (e.g. browser and device data, location
+        data, etc.). You can read more about :term:`attribute` sources
+        `here <https://help.piwik.pro/audience-manager/data-sources/>`_.
 
-    Soft Data
-        Data that has unreliable source. This information usually can't be validated. It may be gathered via voluntary
-        form submissions or statistical analysis.
+        .. note::
+            If :term:`custom attribute` will use same name - it will be represented as separate :term:`attribute`.
+
+    Custom attribute
+        :term:`Attribute` generated from value provided by source other than :term:`Analytics` (e.g.
+        :doc:`audience_manager/form-tracker`, :doc:`sdk/index`). You can read more about :term:`attribute` sources
+        `here <https://help.piwik.pro/audience-manager/data-sources/>`_.
+
+        .. warning::
+            Data using same name send from different custom sources will override value of same
+            :term:`custom attribute`.
+
+        .. note::
+            If :term:`analytics attribute` will use same name - it will be represented as separate :term:`attribute`.
 
     Analytics
         PPMS component gathering statistics about each :term:`user` of :term:`application` (previously **Piwik**).

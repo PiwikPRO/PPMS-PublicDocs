@@ -1,8 +1,8 @@
 .. highlight:: js
 .. default-domain:: js
 
-Audience Manager JavaScript API
-===============================
+JavaScript API
+==============
 
 This API provides access to information about :term:`user` such as ID of :term:`audience` he is part of and his
 :term:`attributes<attribute>`. It also allows to update his :term:`attributes<attribute>`.
@@ -13,7 +13,7 @@ Add following snippet on your page to start using this API.
 
 This code should be added just before you want to use the API. Additionally snippet has to be configured this way:
 
-- String ``XXX-XXX-XXX-XXX-XXX`` should be replaces with :term:`app ID` (e.g. ``efcd98a5-335b-48b0-ab17-bf43f1c542be``).
+- String ``XXX-XXX-XXX-XXX-XXX`` should be replaced with :term:`app ID` (e.g. ``efcd98a5-335b-48b0-ab17-bf43f1c542be``).
 - String ``ppms.example.com`` should be replaced with your PPMS domain name (please note that it's used in 2 places in
   the snippet).
 
@@ -124,19 +124,13 @@ Gets :term:`user` profile :term:`attributes<attribute>`. :term:`User` has to be 
     In order to secure the :term:`PII` data, no :term:`attribute` is returned by default. You need to put each
     :term:`attribute` you want to access on :term:`attribute whitelist` before it'll be returned by this command. In
     order to do that, go to `Audience Manager` > `Attributes` tab and `enable` :term:`attribute` for the public API
-    access. It's your responsibility to use this tool to make sure no :term:`user` :term:`PII` data will be available
-    via API.
+    access. It's your responsibility to make sure no :term:`user` :term:`PII` data will be available via API.
 
 .. todo::
     Check with Data Protection Officer what are restrictions on data provided this way. Maybe we should add here link to
     legal requirements for such API? Was "no PII" rule consulted with him? I think it's common to fetch user name for
     personalization and while that information isn't PII it can become one when combined with information from other
     attributes.
-
-.. todo::
-    We use "attribute" in 2 contexts here. We have analytics attributes and attribute attributes. It's confusing.
-    Possible solution: Change command names to "getProfile" and "updateProfile". Then we'll have profile analytics and
-    profile attributes.
 
 Code::
 
@@ -149,10 +143,14 @@ Code::
     :param Object<string,Object<string,string>> attributes: Object containing :term:`user` :term:`attributes<attribute>`
         divided by source.
 
-        - `analytics` - :term:`Hard Data` about the :term:`user` gathered by :term:`Analytics`. Example: browser name,
-          browser version, country.
-        - `attributes` - Mostly :term:`Soft Data` about the :term:`user` from complementary sources like
-          :doc:`form-tracker` or external data imported via CSV file. Example: first name, last name, email.
+        - `analytics` - ``Object<string,string>`` Contains :term:`analytics attributes<analytics attribute>` about the
+          :term:`user` (e.g. browser name, browser version, country).
+        - `attributes` - ``Object<string,string>`` Contains :term:`custom attributes<custom attribute>` about the
+          :term:`user` (e.g. first name, last name, email).
+
+        .. todo::
+            Check if we can change label of custom attributes from ``attribute`` to ``custom`` (``field_type`` in HTTPS
+            API and name of container in JS API).
 
         Example::
 
@@ -179,15 +177,7 @@ Code::
 
 Update user attributes
 ``````````````````````
-Updates :term:`user` :term:`attributes<attribute>`. Any :term:`attribute` can be updated this way:
-
-- If :term:`user` already had this :term:`attribute` - its value will be changed to the one provided.
-- If :term:`user` didn't have this :term:`attribute` - it'll be created using provided value.
-
-.. note::
-
-    Any :term:`attribute` updated this way will be categorized as :term:`Soft Data` and will be stored in profile
-    `attributes` (separate from profile `analytics`).
+Creates or updates :term:`user` :term:`custom attributes<custom attribute>`.
 
 .. note::
     Any :term:`attribute` can be updated this way whenever it is on :term:`attribute whitelist` or not.
