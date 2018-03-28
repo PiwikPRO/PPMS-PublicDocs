@@ -26,26 +26,27 @@ Following data is never send to Audience Manager:
 - Value from input with ``password`` or ``hidden`` type.
 - Credit card number (heuristic detection).
 - Credit card validation code (heuristic detection).
-- Data from ignored fields (see :ref:`AM-optional-configuration`).
+- Data from ignored fields (see :ref:`AM-FT-optional-configuration`).
 
 .. note::
 
     Heuristic detection makes best effort to automatically detect and ignore mentioned field types, but it doesn't
-    guarantee success. Additionally payment forms usually contain more fields for private information (e.g. address)
-    so it's recommended to ignore such forms using :ref:`AM-optional-configuration`.
+    guarantee success. Additionally payment forms usually contain more fields with private information (e.g. address)
+    so it's recommended to ignore such forms using :ref:`AM-FT-optional-configuration`.
 
 Installation
 ------------
+This section describes how to install Form Tracker client code on your page.
 
+Tag Manager installation
+````````````````````````
+This is recommended way to install Form Tracker using PPMS stack. Tag Manager allows access to all Form Tracker options
+using friendly UI and will make sure that it's configuration is up to date.
 
-Automatic
-`````````
-You can add Form Tracker using Tag Manager.
+.. todo:: Get access to TM on testing.piwik.pro and write instructions.
 
-TODO get access to TM on testing.piwik.pro
-
-Manual
-``````
+Manual installation
+```````````````````
 Add following snippet on your page to start using Form Tracker.
 
 This code should be added near the top of the ``<head>`` tag and before any other script or CSS tags. Additionally
@@ -68,11 +69,13 @@ snippet has to be configured this way:
 
 .. note::
     Usually it's recommended to use **HTTPS** protocol in URLs mentioned here, but if support for **legacy IE browsers**
-    (8 and 9) is required and some sites containing forms are served via **HTTP** protocol - it's necessary to use same
-    protocol in these URLs as source page. Easiest way to do that would be to remove protocol from Tracker and Static
-    URLs (e.g. ``//ppms.example.com/audiences/tracker/``).
+    (8 and 9) is required and some pages containing forms are served via **HTTP** protocol - it's necessary to use same
+    protocol in snippet URLs as the source page. Easiest way to do that would be to remove protocol from ``TrackerUrl``
+    and ``StaticUrl`` (e.g. ``//ppms.example.com/audiences/tracker/``).
 
-.. todo:: Update form tracker API to make it similar to AM JS API.
+.. todo::
+    Update form tracker API to make it similar to AM JS API and simplify setup process to 2 parameters without
+    protocol magic.
 
 This code initializes Form Tracker interface in following ways:
 
@@ -81,9 +84,10 @@ This code initializes Form Tracker interface in following ways:
        loaded.
     #. Schedules basic configuration of Form Tracker ``ppms.am.form``.
 
-When loading snippet is added on page without any further configuration, Form Tracker will gather information from all
-forms. It's possible to modify this behavior by configuring optional rules at the end of loading snippet. You can do
-that by using command queue (``ppms.am.form``) immediately after step 3 (see :ref:`AM-optional-configuration`).
+When loading snippet is added on the page without any further configuration, Form Tracker will gather information from
+all submitted forms. It's possible to modify this behavior by configuring optional rules at the end of loading snippet.
+You can do that by using command queue (``ppms.am.form``) immediately after step 3 (see
+:ref:`AM-FT-optional-configuration`).
 
 Command queue
 -------------
@@ -98,7 +102,7 @@ Loading snippet creates following global function:
     :returns: Commands are expected to be run asynchronously and return no value.
     :rtype: undefined
 
-.. _AM-optional-configuration:
+.. _AM-FT-optional-configuration:
 
 Optional configuration
 ----------------------
