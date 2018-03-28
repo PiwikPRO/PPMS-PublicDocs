@@ -56,7 +56,7 @@ Tracking functions
 
     :param int/string idGoal: **Required** Id of goal.
     :param int/float customRevenue: **Optional** Revenue value
-    :param mixed customData: **Optional** Object that can :ref:`Custom dimensions`.
+    :param mixed customData: **Optional** Object with `Custom dimensions <Custom dimensions_>`_.
 
 .. todo:: What else can be in customData?
 
@@ -71,7 +71,7 @@ Tracking functions
 .. function:: enableHeartBeatTimer(delay);
 
     When user will enter single page on visit we will assume that total time spent on website was 0 ms.
-This Function will enable to measure that time more accurately.
+    This Function will enable to measure that time more accurately.
 
     :param number delay: **Required** Time in seconds, when Tracker will send another request with heartbeat, default ``30``
 
@@ -112,7 +112,7 @@ Ecommerce tracking
 .. function:: trackEcommerceCartUpdate(grandTotal);
 
     Function that tracks shopping cart value. Use this each time there is a change in cart as the last function after
-adding cart items.
+    adding cart items.
 
     :param number grandTotal:  **Required** Order Revenue grand total  - tax, shipping and discount included.
 
@@ -194,7 +194,7 @@ Impressions
 
     Function that will scan DOM for all visible content blocks and will track these impressions.
 
-    :param boolean checkOnScroll: **Required** Enables tracking content blocks that will be visible after scroll event.
+    :param boolean checkOnScroll: **Optional** Enables tracking content blocks that will be visible after scroll event.
     :param number watchInterval: **Optional**  Interval, in milliseconds between checking for new visible content. Periodic checks can be disabled for performance reasons by setting ``0``. Default value: ``750``.
 
 .. function:: trackContentImpressionsWithinNode(domNode);
@@ -245,7 +245,7 @@ Download and Outlink Tracking
 
     :param string url: **Required** Address that link points to.
     :param string linkType: **Required** Type of link, if is set to ``"link"`` it will track an outlink, if it is set to ``"download"`` it will track a download.
-    :param object customData: **Optional** Object containing :ref:`Custom dimensions` that should be linked to tracked link.
+    :param object customData: **Optional** Object containing `Custom dimension <Custom dimensions_>`_ that should be linked to tracked link.
     :param function callback: **Optional** Function that should be triggered after tracking link.
 
 Tracking Outlink
