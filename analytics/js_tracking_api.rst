@@ -31,7 +31,7 @@ This is the easiest and recommended way of tracking code installation.
 Installing tracking code via code snippet.
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-:ref:`analytics-snippet`
+:doc:`snippet_tracking`
 
 Command queue
 -------------
@@ -479,7 +479,7 @@ Example of use
 
 .. code-block:: html
 
-    <button onClick = function(){_paq.push(["trackContentInteractionNode", this, "clicked"]);}>Click me!</button>
+    <button onClick="function(){_paq.push(['trackContentInteractionNode', this, 'clicked']);}">Click me!</button>
 
 
 Track impression manually
@@ -502,10 +502,7 @@ If you want to trigger tracking impressions fully manually you can use ``trackCo
 
 Example of use::
 
-    _paq.push(["trackContentImpression", "trackingWhitepaper", "document", "http://cooltracker.tr/whitepaper]);
-
-
-
+    _paq.push(["trackContentImpression", "trackingWhitepaper", "document", "http://cooltracker.tr/whitepaper"]);
 
 Track user interaction manually
 ```````````````````````````````
@@ -532,7 +529,7 @@ Use it as a function inside listener on event::
 
 Example of use::
 
-    _paq.push(["trackContentImpression", "clicked", "trackingWhitepaper", "document", "http://cooltracker.tr/whitepaper]);
+    _paq.push(["trackContentImpression", "clicked", "trackingWhitepaper", "document", "http://cooltracker.tr/whitepaper"]);
 
 .. warning::
     Use this function in conjunction with ``trackContentImpression`` as it can only be mapped with an impression by linking ``contentName``
@@ -561,7 +558,7 @@ To ignore internal outlinks from alias domains use ``setDomains`` function to de
 
     _paq(["setDomains", domains]);
 
-.. data:: domains
+.. describe:: domains
 
     **Required** ``array`` Domains written as strings, * are accepted.
 
@@ -615,7 +612,7 @@ Example of usage
 
 .. code-block:: html
 
-    <button onClick = function(){_paq.push(["trackLink", "http://www.example.com/example", "link"]);}>
+    <button onClick="function(){_paq.push(['trackLink', 'http://www.example.com/example', 'link']);}">
         Click me!
     </button>
 
@@ -719,7 +716,7 @@ Example of usage
 
 .. code-block:: html
 
-    <button onClick = function(){_paq.push(["trackLink", "http://www.example.com/example.xrt", "download"]);}>
+    <button onClick="function(){_paq.push(['trackLink', 'http://www.example.com/example.xrt', 'download']);}">
         Click me!
     </button>
 

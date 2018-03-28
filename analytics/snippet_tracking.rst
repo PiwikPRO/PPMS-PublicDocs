@@ -1,3 +1,5 @@
+:orphan:
+
 .. highlight:: js
 .. default-domain:: js
 .. _analytics-snippet:
@@ -88,7 +90,7 @@ To setup tracking between multiple domains you must use multiple functions ``set
 
     _paq.push(["setDomains", domains]);
 
-.. data:: domains
+.. describe:: domains
 
     **Required** ``array`` Domains array, with wildcards
 
