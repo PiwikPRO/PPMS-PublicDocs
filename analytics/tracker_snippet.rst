@@ -41,8 +41,8 @@ snippet has to be configured this way:
       })();
     </script>
 
-.. note::
-     Older installations using ``paq.push(["setTrackerUrl", u+"piwik.php"]);`` and ``g.src=u+"piwik.js";`` are still supported.
+.. deprecated:: 5.5.1
+     Older installations using ``piwik.php`` and ``piwik.js`` filenames are deprecated.
 
 This code initializes Analytics tracker in following ways:
 
@@ -74,8 +74,9 @@ To track all data between domain and all its subdomains we must use cookies conf
 
     _paq.push(["trackPageView"]);
 
-.. note::
-    Older installations using ``paq.push(["setTrackerUrl", u+"piwik.php"]);`` are still supported
+.. deprecated:: 5.5.1
+    Older installations using ``piwik.php`` and ``piwik.js`` filenames are deprecated.
+
 
 Tracking multiple domains as one site
 -------------------------------------
@@ -115,5 +116,6 @@ That way all actions tracked on ``/data/something_useful`` will be tracked for `
 
 If you want to track group of pages as separate site you can use wildcard in ``setDomains`` function.
 
-.. note::
-    Older installations using ``paq.push(["setTrackerUrl", u+"piwik.php"]);`` are still supported
+.. deprecated:: 5.5.1
+    Older installations using ``piwik.php`` and ``piwik.js`` filenames are deprecated.
+
