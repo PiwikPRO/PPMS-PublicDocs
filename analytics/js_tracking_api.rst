@@ -57,6 +57,9 @@ Trigger tracking on demand
 
 Trigger custom event
 ````````````````````
+
+.. todo:: Maybe add section about using tag template from Tag Manager.
+
 Trigger (custom) events bound to user actions::
 
     _paq.push(["trackEvent", category, action, name, value, dimensions);
@@ -95,6 +98,8 @@ Example of usage (tracking when user clicks on cancel button with exit intent)::
 
 Track goal conversion
 `````````````````````
+.. todo:: Maybe add section about using tag template from Tag Manager.
+
 Allows to manually track goal conversion. Used in `Goals` - `Days to Conversion` report. Command::
 
     _paq.push(["trackGoal", goal_name, goal_value, dimensions]);
@@ -354,6 +359,8 @@ Custom Dimensions
 
 Tracking Custom Dimension
 `````````````````````````
+.. todo:: Maybe add section about using tag template from Tag Manager.
+
 If you want to set custom dimension to use it in tracking functions use ``setCustomDimension`` function::
 
     _paq.push(["setCustomDimension", customDimensionID, customDimensionValue]);
