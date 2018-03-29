@@ -288,11 +288,11 @@ To set custom variable that can be used later, use ``setCustomVariable`` functio
 
 .. data:: value
 
-   **Required** ``string`` Value of the variable limited to 200 characters.
+   **Optional** ``string`` Value of the variable limited to 200 characters.
 
 .. data:: scope
 
-   **Required** ``string`` Scope of the variable, "visit" or "page"
+   **Optional** ``string`` Scope of the variable, "visit" or "page". Default value is ``"visit"``
 
 
     .. note::
@@ -319,7 +319,7 @@ To remove custom variable you can use ``deleteCustomVariable`` function::
 
 .. data:: scope
 
-    **Required** ``string`` Scope of the variable, "visit" or "page"
+   **Optional** ``string`` Scope of the variable, "visit" or "page". Default value is ``"visit"``
 
 Example of usage::
 
@@ -340,7 +340,7 @@ You can access custom variables by providing function that will use ``getCustomV
 
     :param number index: **Required** Number from 1 to 5 where variable is stored
 
-    :param string scope: **Required** Scope of the variable, "visit" or "page"
+    :param string scope: **Optional** Scope of the variable, "visit" or "page". Default value is ``"visit"``
 
 Example of usage::
 
@@ -369,6 +369,10 @@ If you want to set custom dimension to use it in tracking functions use ``setCus
 .. warning::
 
     When you set Custom Dimension that value will be used in all tracking requests within page load.
+
+.. warning::
+    This function does not send any data to the :term:`Analytics`. It sets Custom Dimension to be sent with Page View and similiar (ecommerce, outlink, download).
+
 
 Example of usage::
 
@@ -401,7 +405,7 @@ Content Tracking
 ^^^^^^^^^^^^^^^^
 Content Tracking tracks how many times specific elements were rendered/visible. It can be used to measure if ad placement was visible or if user have seen end of article.
 
-To track content, it has to have ``data-track-content`` css class attached to it.
+To track content, it has to have ``data-track-content`` attribute or ``piwikTrackContent`` CSS class attached to it.
 
 Tracking all content impressions within a page
 ``````````````````````````````````````````````
@@ -649,7 +653,7 @@ You can add extension to default extensions list using ``addDownloadExtensions``
 
 .. data:: extensions
 
-    **Required** ``string`` Extensions separated by ``|`` for example ``"mhj|docx"``
+    **Required** ``string/Array`` Extensions separated by ``|`` for example ``"7z|apk|mp4"`` can also be written as an Array for example: ``["7z","apk","mp4"]``
 
 
 Example of usage::
@@ -665,7 +669,7 @@ Default extensions list can be overwritten using ``setDownloadExtensions`` funct
 
 .. data:: extensions
 
-    **Required** ``string`` Extensions separated by ``|`` for example ``"7z|apk|mp4"``
+    **Required** ``string/Array`` Extensions separated by ``|`` for example ``"7z|apk|mp4"`` can also be written as an Array for example: ``["7z","apk","mp4"]``
 
 
 Example of usage::
@@ -746,7 +750,7 @@ To disable using CSS class you can use ``setIgnoreClassess`` function::
 
 .. data:: className
 
-    **Required** ``string`` Css class name that will be ignored
+    **Required** ``string/Array`` Css class name that will be ignored, can be written as Array with CSS clasess.
 
 
 User ID Management
@@ -802,15 +806,15 @@ To track search requests on your site use ``trackSiteSearch`` function::
 
 .. data:: keyword
 
-    **Required** ``string`` Keyword that was searched
+    **Optional** ``string`` Keyword that was searched
 
 .. data:: category
 
-    **Required** ``string`` Category seleted in search engine - you can set it to false when not used.
+    **Optional** ``string`` Category seleted in search engine - you can set it to false when not used.
 
 .. data:: searchCount
 
-    **Required** ``number`` Results on the results page - you can set it to false when not used.
+    **Optional** ``number`` Results on the results page - you can set it to false when not used.
 
 .. data:: dimensions
 

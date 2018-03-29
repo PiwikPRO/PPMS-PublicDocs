@@ -65,8 +65,8 @@ Tracking functions
     Function that tracks internal site searches.
 
     :param string keyword: **Required** String containing keyword that was searched.
-    :param string/boolean category: **Required** String with category selected in search engine, can set it to false when not used.
-    :param number/boolean searchCount:  **Required** Number of results on the results page, can be set to false when not used.
+    :param string/boolean category: **Optional** String with category selected in search engine, can set it to false when not used.
+    :param number/boolean searchCount:  **Optional** Number of results on the results page, can be set to false when not used.
 
 .. function:: enableHeartBeatTimer(delay);
 
@@ -277,19 +277,19 @@ Tracking Downloads
 
     Function that will set a list of file extension that will be automatically recognized as a download action.
 
-    :param array/string extensions: **Required** List of extensions to be set. Can be written as string : ``"zip"`` or an array: ``["zip", "rar"]``
+    :param array/string extensions: **Required** List of extensions to be set. Can be written as string : ``"zip|rar"`` or an array: ``["zip", "rar"]``
 
 .. function:: addDownloadExtensions(extensions);
 
     Function that will add extensions to list of known extensions to be automatically recognized as a download action.
 
-    :param array/string extensions: **Required** List of extensions to be set. Can be written as string : ``"zip"`` or an array: ``["zip", "rar"]``
+    :param array/string extensions: **Required** List of extensions to be set. Can be written as string : ``"zip|rar"`` or an array: ``["zip", "rar"]``
 
 .. function:: removeDownloadExtensions(extensions);
 
     Function that will remove extensions from list of known extensions to be automatically recognized as a download action.
 
-    :param array/string extensions: **Required** List of extensions to be set. Can be written as string : ``"zip"`` or an array: ``["zip", "rar"]``
+    :param array/string extensions: **Required** List of extensions to be set. Can be written as string : ``"zip|rar"`` or an array: ``["zip", "rar"]``
 
 .. function:: setLinkTrackingTimer(time);
 
@@ -403,7 +403,7 @@ Tracker Configuration
 
     Function that will set document tile that is being sent with tracking data.
 
-    :param string title: **Required** String that will override default ``document.title``
+    :param string title: **Optional** String that will override default ``document.title``
 
 .. function:: setDomains(domains);
 
@@ -413,7 +413,7 @@ Tracker Configuration
 
 .. function:: setCustomUrl(customUrl);
 
-    Function that will override default pages reported URL.
+    Function that will override default page's reported URL.
 
     :param string customUrl: **Required** Value that will override default URL.
 
@@ -437,11 +437,11 @@ Tracker Configuration
 
     Function that will return current url of the page. Custom URL will be returned if set.
 
-.. function:: discardHashTag(bool);
+.. function:: discardHashTag(enableFilter);
 
     Function that will toggle url hash tag recording.
 
-    :param boolean bool: **Required** If set to true hash tags won't be recorded.
+    :param boolean enableFilter: **Required** If set to true hash tags won't be recorded.
 
 .. function:: setGenerationTimeMs(generationTime);
 
@@ -455,11 +455,11 @@ Tracker Configuration
 
     :param string appendToUrl: **Required** String tht will be added to the tracking url.
 
-.. function:: setDoNotTrack(bool);
+.. function:: setDoNotTrack(enable);
 
     Function that will disable tracking users who set the Do Not Track setting.
 
-    :param boolean bool: **Required** When set to true tracking wont occur.
+    :param boolean enable: **Required** When set to true tracking wont occur.
 
 .. function:: killFrame();
 

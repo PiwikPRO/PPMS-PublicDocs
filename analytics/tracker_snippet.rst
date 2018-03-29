@@ -18,10 +18,10 @@ subdomains.
     Basic configuration will setup single domain configuration. For other options see:
     :ref:`AN-tracker-alternative-configuration`.
 
-This code should be added near the top of the ``<head>`` tag and before any other script or CSS tags. Additionally
+This code should be added just before of the ``<head>`` tag. Additionally
 snippet has to be configured this way:
 
-    * String ``XXX-XXX-XXX-XXX-XXX`` should be replaces with :term:`app ID` (e.g.
+    * String ``XXX-XXX-XXX-XXX-XXX`` should be replaced with :term:`app ID` (e.g.
       ``efcd98a5-335b-48b0-ab17-bf43f1c542be``).
     * String ``ppms.example.com`` should be replaced with your PPMS domain name.
 
@@ -34,12 +34,15 @@ snippet has to be configured this way:
       _paq.push(["enableLinkTracking"]);
       (function() {
         var u="//ppms.example.com/";
-        _paq.push(["setTrackerUrl", u+"piwik.php"]);
+        _paq.push(["setTrackerUrl", u+"ppms.php"]);
         _paq.push(["setSiteId", "XXX-XXX-XXX-XXX-XXX"]);
         var d=document, g=d.createElement("script"), s=d.getElementsByTagName("script")[0];
-        g.type="text/javascript"; g.async=true; g.defer=true; g.src=u+"piwik.js"; s.parentNode.insertBefore(g,s);
+        g.type="text/javascript"; g.async=true; g.defer=true; g.src=u+"ppms.js"; s.parentNode.insertBefore(g,s);
       })();
     </script>
+
+.. note::
+     Older installations using ``paq.push(["setTrackerUrl", u+"piwik.php"]);`` and ``g.src=u+"piwik.js";`` are still supported.
 
 This code initializes Analytics tracker in following ways:
 
@@ -60,7 +63,7 @@ Tracking domains and all subdomains
 -----------------------------------
 To track all data between domain and all its subdomains we must use cookies configured with this snippet::
 
-    _paq.push(["setTrackerUrl", u+"piwik.php"]);
+    _paq.push(["setTrackerUrl", u+"ppms.php"]);
     _paq.push(["setSiteId", "XXX-XXX-XXX-XXX-XXX"]);
 
     // Share the tracking cookie across example.com, www.example.com, subdomain.example.com, ...
@@ -70,6 +73,9 @@ To track all data between domain and all its subdomains we must use cookies conf
     _paq.push(["setDomains", "*.example.com"]);
 
     _paq.push(["trackPageView"]);
+
+.. note::
+    Older installations using ``paq.push(["setTrackerUrl", u+"piwik.php"]);`` are still supported
 
 Tracking multiple domains as one site
 -------------------------------------
@@ -91,7 +97,7 @@ Tracking subdirectories of domain as separate websites
 To differentiate parts of website as another site you must configure tracker this way::
 
     _paq.push(["setSiteId", "App1"]);
-    _paq.push(["setTrackerUrl", u+"piwik.php"]);
+    _paq.push(["setTrackerUrl", u+"ppms.php"]);
     _paq.push(["trackPageView"]);
 
 Later you can change configuration for selected paths and track them as another site::
@@ -102,9 +108,12 @@ Later you can change configuration for selected paths and track them as another 
 
     _paq.push(["setDomains", "example.com/data/something_useful"]);
 
-    _paq.push(["setTrackerUrl", u+"piwik.php"]);
+    _paq.push(["setTrackerUrl", u+"ppms.php"]);
     _paq.push(["trackPageView"]);
 
 That way all actions tracked on ``/data/something_useful`` will be tracked for ``App2`` instead of ``App1``.
 
 If you want to track group of pages as separate site you can use wildcard in ``setDomains`` function.
+
+.. note::
+    Older installations using ``paq.push(["setTrackerUrl", u+"piwik.php"]);`` are still supported
