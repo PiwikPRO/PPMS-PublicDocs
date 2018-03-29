@@ -39,7 +39,7 @@ Tracking functions
 
     Tracks a visit for page that function was run on.
 
-    :param string customPageTitle: **Required** Custom page title, for example ``document.title``
+    :param string customPageTitle: **Optional** Custom page title, for example ``document.title``
 
 .. function:: trackEvent(category, action, name, value);
 
