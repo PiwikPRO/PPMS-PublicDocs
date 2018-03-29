@@ -20,7 +20,7 @@ Installing tracking code via Tag Manager
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 This is the easiest and recommended way of tracking code installation.
 
-#. Sign in to your Piwik PRO with your admin or Super User account.
+#. Sign in to your PPMS with your admin or Super User account.
 #. Click on menu button on the top left.
 #. Click on the Websites position.
 #. Choose the website for which you want to implement a tracking code.
