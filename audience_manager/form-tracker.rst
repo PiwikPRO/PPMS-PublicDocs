@@ -19,7 +19,7 @@ All modern browsers: Chrome, Firefox, Safari, Edge. Internet Explorer from versi
 Private information
 -------------------
 Form Tracker is trying to automatically detect fields containing :term:`user` private information and ignores them.
-Following data is never send to Audience Manager:
+Following data is never sent to Audience Manager:
 
 .. todo:: Check what is legal term for ignored information's.
 
@@ -29,7 +29,6 @@ Following data is never send to Audience Manager:
 - Data from ignored fields (see :ref:`AM-FT-optional-configuration`).
 
 .. note::
-
     Heuristic detection makes best effort to automatically detect and ignore mentioned field types, but it doesn't
     guarantee success. Additionally payment forms usually contain more fields with private information (e.g. address)
     so it's recommended to ignore such forms using :ref:`AM-FT-optional-configuration`.
@@ -38,12 +37,10 @@ Installation
 ------------
 This section describes how to install Form Tracker client code on your page.
 
-Tag Manager installation
-````````````````````````
-This is recommended way to install Form Tracker using PPMS stack. Tag Manager allows access to all Form Tracker options
-using friendly UI and will make sure that it's configuration is up to date.
-
-.. todo:: Get access to TM on testing.piwik.pro and write instructions.
+Using Tag Manager
+`````````````````
+`Form Tracker tag template <https://help.piwik.pro/audience-manager/capturing-data-forms/>`_ is recommended way to
+install Form Tracker using PPMS stack.
 
 Manual installation
 ```````````````````
@@ -135,12 +132,9 @@ Code::
 
         ["street", "post-code", "city"]
 
-    .. note::
-
-        If this parameter is empty array (``[]``) no field will be ignored.
+    .. note:: If this parameter is empty array (``[]``) no field will be ignored.
 
 .. note::
-
     This configuration may be called multiple times and it's effects will be cumulative:
 
         - If calls specify different ``form_id`` - each form will be ignored accordingly.
