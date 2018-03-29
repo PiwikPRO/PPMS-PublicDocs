@@ -31,7 +31,8 @@ This is the easiest and recommended way of tracking code installation.
 Installing tracking code via code snippet.
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-:doc:`snippet_tracking`
+.. toctree::
+    tracker_snippet
 
 Command queue
 -------------
