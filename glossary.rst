@@ -1,6 +1,8 @@
 Glossary
 ========
 
+.. todo:: Compare descriptions with https://help.piwik.pro/analytics/glossary-piwik-pro-terminology/
+
 .. glossary::
 
     Application
@@ -28,7 +30,12 @@ Glossary
         Unique :term:`user` ID (e.g. :term:`analytics ID`, :term:`user ID`, :term:`device ID` or email).
 
     Visit
-        Period of continuous :term:`user` activity on :term:`application`. Its default maximal length is 30 minutes.
+        Period of continuous :term:`user` activity on :term:`application`. It ends in following situations:
+
+            - after a period of inactivity (option set to 30 minutes by default)
+            - at midnight (option enabled by default)
+            - on campaign change (option enabled by default)
+            - when HTTP referer points to different website (option disabled by default)
 
     Audience
         Named set of :term:`attribute` conditions used to define a group of :term:`users<user>` matching them.
@@ -57,8 +64,7 @@ Glossary
         `here <https://help.piwik.pro/audience-manager/data-sources/>`_.
 
         .. warning::
-            Data using same name send from different custom sources will override value of same
-            :term:`custom attribute`.
+            :term:`Custom attribute` will store only latest value provided by any custom source.
 
         .. note::
             If :term:`analytics attribute` will use same name - it will be represented as separate :term:`attribute`.

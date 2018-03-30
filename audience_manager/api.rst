@@ -30,7 +30,7 @@ This code initializes API interface in following ways:
 
     #. Creates a ``<script>`` tag that asynchronously loads Audience Manager API library.
     #. Initializes global ``ppms.am.api`` command queue that schedules commands to be run when API library is loaded.
-    #. Schedules create API command on ``ppms.am.api``.
+    #. Schedules ``create`` command on ``ppms.am.api`` to initialize API object with basic PPMS configuration.
 
 You can use the API command queue (``ppms.am.api``) immediately after step 3.
 
