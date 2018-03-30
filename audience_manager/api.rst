@@ -13,9 +13,10 @@ Add following snippet on your page to start using this API.
 
 This code should be added just before you want to use the API. Additionally snippet has to be configured this way:
 
-- String ``XXX-XXX-XXX-XXX-XXX`` should be replaced with :term:`app ID` (e.g. ``efcd98a5-335b-48b0-ab17-bf43f1c542be``).
-- String ``ppms.example.com`` should be replaced with your PPMS domain name (please note that it's used in 2 places in
-  the snippet).
+    - String ``XXX-XXX-XXX-XXX-XXX`` should be replaced with :term:`app ID` (e.g.
+      ``efcd98a5-335b-48b0-ab17-bf43f1c542be``).
+    - String ``ppms.example.com`` should be replaced with your PPMS domain name (please note that it's used in 2 places
+      in the snippet).
 
 .. code-block:: html
 

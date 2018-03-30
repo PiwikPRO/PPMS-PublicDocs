@@ -10,5 +10,6 @@ Welcome to Piwik PRO Developers documentation!
    :maxdepth: 1
 
    sdk/index
+   analytics/index
    audience_manager/index
    glossary

@@ -100,9 +100,12 @@ h4 {
 }
 
 p {
-	font-size: 18px;
+	font-size: 16px;
 }
-
+.rst-content dl:not(.docutils) dt {
+	border-top: none;
+	border-left: solid 3px #6ab0de;
+}
 .rst-versions {
 	border-top: none;
 }
@@ -173,4 +176,13 @@ a.icon.icon-home {
 
 redoc .background {
 	background-color: #FFFFFF;
+}
+
+.deprecated {
+	color: red;
+}
+
+.deprecated .versionmodified {
+	font-size: 18px;
+	font-weight: bold;
 }
