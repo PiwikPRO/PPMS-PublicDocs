@@ -62,7 +62,7 @@ source_suffix = '.rst'
 
 # The master toctree document.
 master_doc = 'index'
-
+autosectionlabel_prefix_document = True
 # General information about the project.
 project = u'PPMS-PDFD'
 copyright = u'2017, Piwik PRO'
@@ -93,7 +93,7 @@ exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store', 'README.md']
 pygments_style = 'sphinx'
 
 # If true, `todo` and `todoList` produce output, else they produce nothing.
-todo_include_todos = True
+todo_include_todos = False
 
 
 # -- Options for HTML output ----------------------------------------------

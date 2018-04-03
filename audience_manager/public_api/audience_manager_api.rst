@@ -1,6 +1,5 @@
-Audience Manager Public API
-===========================
-
+HTTP API
+========
 
 .. openapi:: ../../_static/api/audience_manager_public_api.json
 

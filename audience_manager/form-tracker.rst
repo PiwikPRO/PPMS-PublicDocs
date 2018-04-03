@@ -1,54 +1,57 @@
 .. highlight:: js
 .. default-domain:: js
 
-Audience Manager Form Tracker API
-=================================
-Form Tracker allows to gather data from all forms on your site in one place.
+Form Tracker
+============
+Form Tracker gathers data submitted via forms on your page and sends it to the Audience Manager :term:`user` profile as
+:term:`attributes<attribute>`.
+
+.. note::
+    Creates or updates :term:`user` :term:`custom attribute` for each field in the form. :term:`Attribute` name is taken
+    from ``<input>`` or ``<textarea>`` tag ``name`` attribute. Form elements without ``name`` attribute are not tracked.
 
 Supported browsers
 ------------------
-All modern browsers (Chrome, Firefox, Safari, Edge). Internet Explorer from version 8 and above.
+All modern browsers: Chrome, Firefox, Safari, Edge. Internet Explorer from version 8 and above.
+
+.. todo:: Move information about supported browsers to document about PPMS in general since it's common to whole system.
 
 Private information
 -------------------
-Form tracker is trying to automatically detect fields containing private information and exclude them. Following fields
-are always removed from tracked data:
+Form Tracker is trying to automatically detect fields containing :term:`user` private information and ignores them.
+Following data is never sent to Audience Manager:
 
-* "password" or "hidden" inputs
-* Credit card number
-* Credit card validation code
+.. todo:: Check what is legal term for ignored information's.
 
-Loading snippet
----------------
-Add following snippet on a page to start using Audience Manager Form Tracker.
+- Value from input with ``password`` or ``hidden`` type.
+- Credit card number (heuristic detection).
+- Credit card validation code (heuristic detection).
+- Data from ignored fields (see :ref:`AM-FT-optional-configuration`).
 
-The code should be added near the top of the <head> tag and before any other script or CSS tags. PPMS configuration
-additionally requires 2 changes in example code.
+.. note::
+    Heuristic detection makes best effort to automatically detect and ignore mentioned field types, but it doesn't
+    guarantee success. Additionally payment forms usually contain more fields with private information (e.g. address)
+    so it's recommended to ignore such forms using :ref:`AM-FT-optional-configuration`.
 
-Website ID
-``````````
-Replace 'XXX-XXX-XXX-XXX-XXX' with your Piwik Website ID. Example::
+Installation
+------------
+This section describes how to install Form Tracker client code on your page.
 
-    "efcd98a5-335b-48b0-ab17-bf43f1c542be"
+Using Tag Manager
+`````````````````
+`Form Tracker tag template <https://help.piwik.pro/audience-manager/capturing-data-forms/>`_ is recommended way to
+install Form Tracker using PPMS stack.
 
-PPMS domain
-```````````
-Replace 'ppms.example.com' with your PPMS tracker domain. Please note that this value is used in 3 places:
+Manual installation
+```````````````````
+Add following snippet on your page to start using Form Tracker.
 
-* 'https://ppms.example.com/audiences/static/widget/audience-manager.form.min.js'
-* 'https://ppms.example.com/audiences/tracker/'
-* 'https://ppms.example.com/audiences/static/widget/'
+This code should be added near the top of the ``<head>`` tag and before any other script or CSS tags. Additionally
+snippet has to be configured this way:
 
-.. warning::
-    Usually it's recommended to use **HTTPS** protocol in URLs mentioned here, but if support for **legacy IE browsers**
-    (8 and 9) is required and some sites containing forms are served via **HTTP** protocol - it's necessary to use same
-    protocol in these URLs as source page. Easiest way to do that would be to remove protocol from Tracker and Static
-    URLs (e.g. ``//ppms.example.com/audiences/tracker/``).
-
-Snippet
-```````
-
-Code:
+- String ``XXX-XXX-XXX-XXX-XXX`` should be replaced with :term:`app ID` (e.g. ``efcd98a5-335b-48b0-ab17-bf43f1c542be``).
+- String ``ppms.example.com`` should be replaced with your PPMS domain name (please note that it's used in 3 places in
+  the snippet).
 
 .. code-block:: html
 
@@ -56,46 +59,86 @@ Code:
         (function(a,d,g,h,b,c,e){a[b]=a[b]||{};a[b][c]=a[b][c]||{};a[b][c][e]=a[b][c][e]||function(){(a[b][c][e].q=a[b][c][e].q||[]).push(arguments)};var f=d.createElement(g);d=d.getElementsByTagName(g)[0];f.async=1;f.src=h;d.parentNode.insertBefore(f,d)})
         (window,document,"script","https://ppms.example.com/audiences/static/widget/audience-manager.form.min.js","ppms","am","form");
 
-        ppms.am.form('set', 'WebsiteID', 'XXX-XXX-XXX-XXX-XXX');
-        ppms.am.form('set', 'TrackerUrl', 'https://ppms.example.com/audiences/tracker/');
-        ppms.am.form('set', 'StaticUrl', 'https://ppms.example.com/audiences/static/widget/');
+        ppms.am.form("set", "WebsiteID", "XXX-XXX-XXX-XXX-XXX");
+        ppms.am.form("set", "TrackerUrl", "https://ppms.example.com/audiences/tracker/");
+        ppms.am.form("set", "StaticUrl", "https://ppms.example.com/audiences/static/widget/");
     </script>
 
-API function
-------------
+.. note::
+    Usually it's recommended to use **HTTPS** protocol in URLs mentioned here, but if support for **legacy IE browsers**
+    (8 and 9) is required and some pages containing forms are served via **HTTP** protocol - it's necessary to use same
+    protocol in snippet URLs as the source page. Easiest way to do that would be to remove protocol from ``TrackerUrl``
+    and ``StaticUrl`` (e.g. ``//ppms.example.com/audiences/tracker/``).
 
-Loading snippet creates following API function:
+.. todo::
+    Update form tracker API to make it similar to AM JS API and simplify setup process to 2 parameters without
+    protocol magic.
+
+This code initializes Form Tracker interface in following ways:
+
+    #. Creates a ``<script>`` tag that asynchronously loads Audience Manager Form Tracker library.
+    #. Initializes global ``ppms.am.form`` command queue that schedules commands to be run when Form Tracker library is
+       loaded.
+    #. Schedules basic configuration of Form Tracker ``ppms.am.form``.
+
+When loading snippet is added on the page without any further configuration, Form Tracker will gather information from
+all submitted forms. It's possible to modify this behavior by configuring optional rules at the end of loading snippet.
+You can do that by using command queue (``ppms.am.form``) immediately after step 3 (see
+:ref:`AM-FT-optional-configuration`).
+
+Command queue
+-------------
+Loading snippet creates following global function:
 
 .. function:: ppms.am.form(command, ...args)
 
-    JavaScript API interface.
+    Audience Manager Form Tracker command queue.
 
     :param string command: Command name.
     :param args: Command arguments. Number of arguments and their function depend on command.
-    :returns: Nothing. All commands are prepared to be run asynchronously.
+    :returns: Commands are expected to be run asynchronously and return no value.
+    :rtype: undefined
 
+.. _AM-FT-optional-configuration:
 
 Optional configuration
 ----------------------
-When loading snippet is added on page without any optional configuration form tracker will gather information from all
-forms. It's possible to modify this behavior by adding optional rules at the end of loading snippet.
+These commands allow to limit scope of forms watched by the Form Tracker.
 
 Ignore form
 ```````````
-You can remove selected form from tracking by adding ignore rule. Form tracker won't gather any data from form using
-specified ``id`` attribute. You can ignore multiple forms add new ignore rule for each one.
+You can force Form Tracker to ignore selected form as a whole or specific fields in it. Form Tracker won't gather any
+data from fields of a form specified this way. You can ignore multiple forms by configuring ignore rule multiple times
+(for each form).
 
 Code::
 
-    ppms.am.form('ignore', 'ignored_form_id');
+    ppms.am.form("ignore", form_id, field_names);
 
-Ignore form fields
-``````````````````
-You can remove selected form fields from tracking by adding ignore field rule. Form tracker won't gather any data from
-fields which are part of form using specified ``id`` attribute and input's ``name`` attribute match any name in
-specified array. You can ignore multiple fields in one form by adding new name to the array. You can ignore fields from
-multiple forms add new ignore fields rule for each one.
+.. data:: form_id
 
-Code::
+    ``id`` attribute of ignored ``<form>`` tag.
 
-    ppms.am.form('ignore', 'selectively_ignored_form_id', ['field_name']);
+    Example::
+
+        "payment-form"
+
+.. data:: field_names
+
+    **Optional** Array of ``name`` attributes of ignored ``<input>`` or ``<textarea>`` tags in the form. If this
+    parameter isn't provided, all fields in the form will be ignored.
+
+    Example::
+
+        ["street", "post-code", "city"]
+
+    .. note:: If this parameter is empty array (``[]``) no field will be ignored.
+
+.. note::
+    This configuration may be called multiple times and it's effects will be cumulative:
+
+        - If calls specify different ``form_id`` - each form will be ignored accordingly.
+        - If multiple calls specify same ``form_id``:
+
+            - If any of the calls ommit ``field_names`` parameter - whole form will be ignored.
+            - If all calls specify ``field_names`` - all fields specified accross all calls will be ignored.
