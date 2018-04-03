@@ -1,8 +1,0 @@
-/audiences/public/api/profiles/{analytics_visitor_id}/audiences/:
-  $ref: ./audiences/audience_get.yaml
-/audiences/public/api/profiles/{analytics_visitor_id}/audiences/check/:
-  $ref: ./audiences/audience_membership_check.yaml
-/audiences/tracker/attributes/:
-  $ref: ./attributes/attributes_post.yaml
-/audiences/public/api/profiles/{analytics_visitor_id}/attributes/:
-  $ref: ./attributes/attributes_get.yaml

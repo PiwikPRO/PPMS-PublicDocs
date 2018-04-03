@@ -30,7 +30,7 @@ properties:
       type: object
       properties:
         name:
-          type: object
+          type: string
           description: Name of the event attribute.
         value:
           type: string

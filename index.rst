@@ -4,7 +4,7 @@
    contain the root `toctree` directive.
 
 Welcome to Piwik PRO Developers documentation!
-=====================================
+==============================================
 
 .. toctree::
    :maxdepth: 1
