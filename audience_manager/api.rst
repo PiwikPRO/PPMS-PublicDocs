@@ -65,7 +65,7 @@ Code::
 
     Function executed on success.
 
-    :param Array<string> audience_list: Array of :term:`audience` IDs :term:`user` belongs to.
+    :param Array<string> audience_list: **Required** Array of :term:`audience` IDs :term:`user` belongs to.
 
         Example::
 
@@ -75,7 +75,7 @@ Code::
 
     Function executed on error.
 
-    :param string error_code: Error code.
+    :param string error_code: **Required** Error code.
 
         Example::
 
@@ -101,7 +101,8 @@ Code::
 
     Function executed on success.
 
-    :param boolean in_audience: *True* when :term:`user` is part of the :term:`audience`, *false* otherwise.
+    :param boolean in_audience: **Required** *True* when :term:`user` is part of the :term:`audience`, *false*
+        otherwise.
 
         Example::
 
@@ -111,7 +112,7 @@ Code::
 
     Function executed on error.
 
-    :param string error_code: Error code.
+    :param string error_code: **Required** Error code.
 
         Example::
 
@@ -141,8 +142,8 @@ Code::
 
     Function executed on success.
 
-    :param Object<string,Object<string,string>> attributes: Object containing :term:`user` :term:`attributes<attribute>`
-        divided by source.
+    :param Object<string,Object<string,string>> attributes: **Required** Object containing :term:`user`
+        :term:`attributes<attribute>` divided by source.
 
         - `analytics` - ``Object<string,string>`` Contains :term:`analytics attributes<analytics attribute>` about the
           :term:`user` (e.g. browser name, browser version, country).
@@ -170,7 +171,7 @@ Code::
 
     Function executed on error.
 
-    :param string error_code: Error code.
+    :param string error_code: **Required** Error code.
 
         Example::
 
@@ -248,7 +249,7 @@ Code::
 
         Function executed on error.
 
-        :param string error_code: Error code.
+        :param string error_code: **Required** Error code.
 
             Example::
 

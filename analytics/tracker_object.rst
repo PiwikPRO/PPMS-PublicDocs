@@ -35,13 +35,13 @@ To access internal instance of the Tracker used for asynchronous tracking you mu
 Tracking functions
 ------------------
 
-.. function:: trackPageView(customPageTitle)
+.. function:: trackPageView([customPageTitle])
 
     Tracks a visit for page that function was run on.
 
     :param string customPageTitle: **Optional** Custom page title, for example ``document.title``
 
-.. function:: trackEvent(category, action, name, value)
+.. function:: trackEvent(category, action[, name, value])
 
     Tracks events that should not trigger on page load, but when user performs an action
 
@@ -50,7 +50,7 @@ Tracking functions
     :param string name: **Optional** Event name, for example ``"Cancel button"``.
     :param string value: **Optional** Event value.
 
-.. function:: trackGoal(idGoal, customRevenue, customData)
+.. function:: trackGoal(idGoal[, customRevenue, customData])
 
     Manualy tracks goal (conversion).
 
@@ -60,7 +60,7 @@ Tracking functions
 
 .. todo:: What else can be in customData?
 
-.. function:: trackSiteSearch(keyword, category, resultCount)
+.. function:: trackSiteSearch(keyword[, category, resultCount])
 
     Function that tracks internal site searches.
 
@@ -88,7 +88,7 @@ Tracking functions
 Ecommerce tracking
 ------------------
 
-.. function:: addEcommerceItem(productSKU, productName, productCategory, price, quantity)
+.. function:: addEcommerceItem(productSKU[, productName, productCategory, price, quantity])
 
     Function that adds ecommerce item, can be used when adding and removing items from cart.
 
@@ -98,7 +98,7 @@ Ecommerce tracking
     :param string price: **Optional** String with product price.
     :param string quantity: **Optional** String with product quantity.
 
-.. function:: trackEcommerceOrder(orderId, orderGrandTotal, orderSubTotal, orderTax, orderShipping, orderDiscount)
+.. function:: trackEcommerceOrder(orderId, orderGrandTotal[, orderSubTotal, orderTax, orderShipping, orderDiscount])
 
     Function that tracks Ecommerce order, also tracks all items previously added.
 
@@ -116,7 +116,7 @@ Ecommerce tracking
 
     :param number grandTotal:  **Required** Order Revenue grand total  - tax, shipping and discount included.
 
-.. function:: setEcommerceView(productSKU, productName, categoryName, productPrice)
+.. function:: setEcommerceView(productSKU[, productName, categoryName, productPrice])
 
     Function to track product or category page view, must be followed by ``trackPageView`` function.
 
@@ -190,7 +190,7 @@ Impressions
 
     Function that will scan DOM for content blocks and tracks impressions after all page will load.
 
-.. function:: trackVisibleContentImpressions(checkOnScroll, watchInterval)
+.. function:: trackVisibleContentImpressions([checkOnScroll, watchInterval])
 
     Function that will scan DOM for all visible content blocks and will track these impressions.
 
@@ -213,23 +213,25 @@ Impressions
 
 .. function:: logAllContentBlocksOnPage()
 
-Function that will print all content blocks in the console for debugging purposes.
+    Function that will print all content blocks in the console for debugging purposes.
 
 
 
 Interactions
 ^^^^^^^^^^^^
 
-.. function:: trackContentInteractionNode(domNode, contentInteraction)
+.. function:: trackContentInteractionNode(domNode[, contentInteraction])
 
     Function that tracks interaction within domNode. Can be used as a function inside onClick attribute.
 
     :param domNode domNode: **Required** Any node in content block or the block itself - it won't be tracked if no content block will be found
     :param string contentInteraction: **Optional** String containing name of interaction it can be anything ("click" etc). "Unknown" used as default.
 
-.. function:: trackContentInteraction(contentInteraction, contentName, contentPiece, contentTarget)
+.. function:: trackContentInteraction([contentInteraction, ]contentName, contentPiece, contentTarget)
 
     Function that tracks content interaction using given data.
+
+    .. todo:: Check if "contentInteraction" is really optional.
 
     :param string contentInteraction: **Optional** String containing name of interaction it can be anything ("click" etc). "Unknown" used as default.
     :param string contentName: **Required** String containing name of Content Impression.
@@ -239,7 +241,7 @@ Interactions
 Download and Outlink Tracking
 -----------------------------
 
-.. function:: trackLink(url, linkType, customData, callback)
+.. function:: trackLink(url, linkType[, customData, callback])
 
     Function that will manually track download or outlink depending on type.
 
@@ -399,7 +401,7 @@ Cookies that are used by analytics are first party cookies.
 Tracker Configuration
 ---------------------
 
-.. function:: setDocumentTitle(title)
+.. function:: setDocumentTitle([title])
 
     Function that will set document tile that is being sent with tracking data.
 
@@ -502,7 +504,7 @@ Tracker Configuration
 
     Function that will set campaign name parameters.
 
-    :param string name: Campaign name.
+    :param string name: **Required** Campaign name.
 
 .. function:: setCampaignKeywordKey(keyword)
 
@@ -530,11 +532,21 @@ Advanced Usage
 
     Function that will set the request method.
 
+    .. todo:: Check if parameter is really required (it has default value in it's description).
+    .. todo:: Check if it's needed to mention same domain or CORS setup for "POST".
+
     :param string method: **Required** Method that will be used in requests. ``"GET"`` or ``"POST"`` are supported. The default is ``"GET"``
 
 .. function:: setCustomRequestProcessing(function)
 
     Function that will process the request content.  The function will be called once the request (query parameters string) has been prepared, and before the request content is sent.
+
+    .. todo::
+        Change description to be more clear. I can't tell how passed function is used and what are it's parameters.
+        It's mentioned in https://help.piwik.pro/account-basics/javascript-tracking-client/ but that description is also
+        vague.
+
+    .. todo:: Add parameter description.
 
 .. function:: setRequestContentType(contentType)
 
