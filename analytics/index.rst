@@ -7,3 +7,4 @@ Analytics
     js_tracking_api
     tracker_object
     http_api
+    reporting_api
