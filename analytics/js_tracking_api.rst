@@ -660,7 +660,7 @@ You can add extension to default extensions list using ``addDownloadExtensions``
 
 .. describe:: extensions
 
-    **Required** ``string/Array`` Extensions separated by ``|`` for example ``"7z|apk|mp4"`` can also be written as an Array for example: ``["7z","apk","mp4"]``
+    **Required** ``string|Array<string>`` Extensions separated by ``|`` for example ``"7z|apk|mp4"`` can also be written as an Array for example: ``["7z","apk","mp4"]``
 
 
 Example of usage::
@@ -676,7 +676,7 @@ Default extensions list can be overwritten using ``setDownloadExtensions`` funct
 
 .. describe:: extensions
 
-    **Required** ``string/Array`` Extensions separated by ``|`` for example ``"7z|apk|mp4"`` can also be written as an Array for example: ``["7z","apk","mp4"]``
+    **Required** ``string|Array<string>`` Extensions separated by ``|`` for example ``"7z|apk|mp4"`` can also be written as an Array for example: ``["7z","apk","mp4"]``
 
 
 Example of usage::
@@ -757,7 +757,7 @@ To disable using CSS class you can use ``setIgnoreClassess`` function::
 
 .. describe:: className
 
-    **Required** ``string/Array`` Css class name that will be ignored, can be written as Array with CSS clasess.
+    **Required** ``string|Array<string>`` Css class name that will be ignored, can be written as Array with CSS classes.
 
 
 User ID Management

@@ -91,7 +91,7 @@ Code::
 
 .. describe:: audience_id
 
-    ID of checked :term:`audience`.
+    **Required** ``string`` ID of checked :term:`audience`.
 
     Example::
 
@@ -189,7 +189,10 @@ Code::
 
 .. describe:: attributes
 
-    Object containing :term:`attributes<attribute>` to update. Its keys and values should be a ``string`` type.
+    **Required** ``Object<string,string>`` Object containing :term:`attributes<attribute>` to update:
+
+        - key - :term:`attribute` name
+        - value - :term:`attribute` value
 
     Example::
 
@@ -200,7 +203,8 @@ Code::
 
 .. describe:: options
 
-    **Optional** Object that can specify additional :term:`user` :term:`identifiers<identifier>` and callback functions.
+    **Optional** ``object`` Object that can specify additional :term:`user` :term:`identifiers<identifier>` and callback
+    functions.
 
      Example::
 
@@ -214,9 +218,9 @@ Code::
 
     .. attribute:: user_id
 
-        If :term:`application` lets :term:`user` to sign in - it's possible to pass unique permanent :term:`user ID`
-        using this option. This will let Audience Manager better identify :term:`user` across devices (laptop, phone)
-        and sessions.
+        **Optional** ``string`` If :term:`application` lets :term:`user` to sign in - it's possible to pass unique
+        permanent :term:`user ID` using this option. This will let Audience Manager better identify :term:`user` across
+        devices (laptop, phone) and sessions.
 
         Example::
 
@@ -224,8 +228,8 @@ Code::
 
     .. attribute:: device_id
 
-        If :term:`application` has access to :term:`device ID` - it's possible to pass this value using this option.
-        This will let Audience Manager better identify :term:`user` across sessions.
+        **Optional** ``string`` If :term:`application` has access to :term:`device ID` - it's possible to pass this
+        value using this option. This will let Audience Manager better identify :term:`user` across sessions.
 
         Example::
 
@@ -233,8 +237,9 @@ Code::
 
     .. attribute:: email
 
-        If :term:`application` identifies :term:`user` via his email - it's possible to pass this value using this
-        option. This will let Audience Manager better identify :term:`user` across devices (laptop, phone) and sessions.
+        **Optional** ``string`` If :term:`application` identifies :term:`user` via his email - it's possible to pass
+        this value using this option. This will let Audience Manager better identify :term:`user` across devices
+        (laptop, phone) and sessions.
 
         Example::
 
@@ -242,11 +247,11 @@ Code::
 
     .. function:: onFulfilled()
 
-        Function executed on success.
+        **Optional** Function executed on success.
 
     .. function:: onRejected(error_code)
 
-        Function executed on error.
+        **Optional** Function executed on error.
 
         :param string error_code: Error code.
 
