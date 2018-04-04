@@ -24,7 +24,7 @@ paths:
         - name: idsite
           in: query
           #TODO: Make sure we're already using new name in docs.
-          description: **Mandatory to track** Application ID (previously Website ID).
+          description: Application ID (previously Website ID).
           required: true
           type: string
           format: UUID
@@ -33,7 +33,7 @@ paths:
           example: 892d04bd-6e2b-4914-bfb4-bac721b37235
         - name: rec
           in: query
-          description: **Mandatory to track** Consent to tracking (value "1" allows it).
+          description: Consent to tracking (value "1" allows it).
           required: true
           type: integer
           #TODO: Confirm that those are only valid options.
@@ -42,8 +42,7 @@ paths:
           example: 1
         - name: url
           in: query
-          description: |
-            URL of action.
+          description: URL of action.
           required: true
           type: string
           format: URL
