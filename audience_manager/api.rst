@@ -89,7 +89,7 @@ Code::
 
     ppms.am.api("checkAudience", audience_id, onFulfilled, onRejected);
 
-.. data:: audience_id
+.. describe:: audience_id
 
     ID of checked :term:`audience`.
 
@@ -187,7 +187,7 @@ Code::
 
     ppms.am.api("updateAttributes", attributes, options);
 
-.. data:: attributes
+.. describe:: attributes
 
     Object containing :term:`attributes<attribute>` to update. Its keys and values should be a ``string`` type.
 
@@ -198,7 +198,7 @@ Code::
             "drink": "Martini"
         }
 
-.. data:: options
+.. describe:: options
 
     **Optional** Object that can specify additional :term:`user` :term:`identifiers<identifier>` and callback functions.
 

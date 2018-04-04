@@ -115,7 +115,7 @@ Code::
 
     ppms.am.form("ignore", form_id, field_names);
 
-.. data:: form_id
+.. describe:: form_id
 
     ``id`` attribute of ignored ``<form>`` tag.
 
@@ -123,7 +123,7 @@ Code::
 
         "payment-form"
 
-.. data:: field_names
+.. describe:: field_names
 
     **Optional** Array of ``name`` attributes of ignored ``<input>`` or ``<textarea>`` tags in the form. If this
     parameter isn't provided, all fields in the form will be ignored.
