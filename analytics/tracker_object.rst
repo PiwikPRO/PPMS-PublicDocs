@@ -231,10 +231,7 @@ Interactions
 
     Function that tracks content interaction using given data.
 
-    .. todo:: Check if "contentInteraction" is really optional.
-
-    :param string contentInteraction: **Optional** String containing name of interaction it can be anything ("click" etc). "Unknown" used as default.
-    :param string contentName: **Required** String containing name of Content Impression.
+    :param string contentInteraction: **Required** String containing name of interaction it can be anything ("click" etc).
     :param string contentPiece: **Required** String containing name of Content Impression Piece.
     :param string contentTarget: **Required** String containing url of Content Impression Target.
 

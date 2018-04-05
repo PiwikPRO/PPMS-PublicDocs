@@ -486,7 +486,7 @@ can do it using ``trackContentInteractionNode``, just add this function as an ev
 
 .. data:: contentInteraction
 
-    **Required** ``string`` Name of interaction it can be anything ("click" etc). "Unknown" used as default.
+    **Optional** ``string`` Name of interaction it can be anything ("click" etc). "Unknown" used as default.
 
 Example of use
 
