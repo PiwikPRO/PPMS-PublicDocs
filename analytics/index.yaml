@@ -235,14 +235,11 @@ paths:
           example: en-US,en;q=0.9,pl;q=0.8
         - name: uid
           in: query
-          #TODO: Check if Piwik passes this information to AM.
-          #TODO: Looks like this functionality is trying to implement basic user profile. Should it be depricated in favor of AM?
-          #TODO: Previous documentation is unclear and dispersed. We should link to a page describing how uid is used in detail.
           description: |
             User ID.
 
             Can be used to identify Visitor by external application (e.g. login name, email address or internal
-            user ID).
+            user ID). See: [Recognizing Visitors](https://help.piwik.pro/analytics/recognizing-visitors/).
 
             It allows merging visits accross different devices (e.g. laptop, tablet and smartphone).
           type: string
