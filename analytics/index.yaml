@@ -5,7 +5,7 @@ info:
   title: Tracking API
   description: |
     **No authentication.**
-  version: '1.0.0'
+  version: 'auto'
 host: ppms.example.com
 basePath: /
 schemes:
@@ -84,6 +84,7 @@ paths:
           example: 1521232150
         - name: apiv
           in: query
+          #TODO: This value doesn't match current version of PPMS. It's 5, not 1.
           description: |
             **Recommended** API (major) version number used by request.
           type: integer
