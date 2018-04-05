@@ -9,19 +9,31 @@ properties:
     example: '0fdd8cc2-93b1-428c-8373-97a452f5b10c'
   user_id:
     type: string
-    description: User identifier of the visitor on the website.
-    example: xman
+    description: |
+      User ID.
+
+      It will let Audience Manager identify user across devices (laptop, phone) and sessions.
+    example: jdoe
   device_id:
     type: string
-    description: ID of the device.
+    description: |
+      Device ID.
+
+      It will let Audience Manager identify user across sessions.
     example: 39d96a38018f490c
   email:
     type: string
-    description: Email address of the profile.
+    description: |
+      User email.
+
+      It will let Audience Manager identify user across devices (laptop, phone) and sessions.
     example: john@doe.com
   analytics_visitor_id:
     type: string
-    description: Piwik ID of the visitor.
+    description: |
+      Analytics Visitor ID of the user (previously Piwik Visitor ID).
+
+      It will let Audience Manager identify user during session.
     example: 39d96a38018f490c
   attributes:
     type: array
@@ -31,8 +43,10 @@ properties:
       properties:
         name:
           type: string
-          description: Name of the event attribute.
+          description: Name of the attribute.
         value:
           type: string
-          description: Value of the attribute with specified name.
-      example: {'name': 'occupation', 'value': 'unicorn'}
+          description: Value of the attribute.
+      example:
+        name: occupation
+        value: unicorn

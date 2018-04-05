@@ -2,9 +2,12 @@ get:
   tags:
   - audiences
   summary:
-    Get profile audiences
+    Get audiences user belongs to
   description: |
-    <p>Returns a list of audiences which the profile belongs to. The only ID that can be used to identify the profile is <code>analytics_visitor_id</code>. In the response, you get only audiences IDs, names are not returned for security reasons.</p>
+    Returns list of audience IDs user belongs to.
+
+    Audience ID can be found in `Audience Manager` > `Audiences` tab. Then select an audience. It's ID is displayed in
+    audience details (below the name).
   parameters:
   - $ref: '#/parameters/WebsiteId'
   - $ref: '#/parameters/AnalyticsVisitorId'
