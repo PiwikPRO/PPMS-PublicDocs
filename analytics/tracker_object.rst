@@ -224,16 +224,17 @@ Interactions
 
     Function that tracks interaction within domNode. Can be used as a function inside onClick attribute.
 
-    :param domNode domNode: **Required** Any node in content block or the block itself - it won't be tracked if no content block will be found
-    :param string contentInteraction: **Optional** String containing name of interaction it can be anything ("click" etc). "Unknown" used as default.
+    :param domNode domNode: **Required** Node marked as content block or containing content blocks. If no content block
+        will be found - nothing will be tracked.
+    :param string contentInteraction: **Optional** Name of interaction (e.g. ``"click"``). Default value: ``"Unknown"``.
 
-.. function:: trackContentInteraction([contentInteraction, ]contentPiece, contentTarget)
+.. function:: trackContentInteraction(contentInteraction, contentPiece, contentTarget)
 
     Function that tracks content interaction using given data.
 
-    :param string contentInteraction: **Required** String containing name of interaction it can be anything ("click" etc).
-    :param string contentPiece: **Required** String containing name of Content Impression Piece.
-    :param string contentTarget: **Required** String containing url of Content Impression Target.
+    :param string contentInteraction: **Required** Name of interaction (e.g. ``"click"``).
+    :param string contentPiece: **Required** Name of Content Impression Piece.
+    :param string contentTarget: **Required** Url of Content Impression Target.
 
 Download and Outlink Tracking
 -----------------------------

@@ -482,11 +482,12 @@ can do it using ``trackContentInteractionNode``, just add this function as an ev
 
 .. data:: domNode
 
-    **Required** ``domNode`` Any node in content block or the block itself - it won't be tracked if no content block will be found inside or on it.
+    **Required** ``domNode`` Node marked as content block or containing content blocks. If no content block will be
+    found - nothing will be tracked.
 
 .. data:: contentInteraction
 
-    **Optional** ``string`` Name of interaction it can be anything ("click" etc). "Unknown" used as default.
+    **Optional** ``string`` Name of interaction (e.g. ``"click"``). Default value: ``"Unknown"``.
 
 Example of use
 
@@ -522,15 +523,11 @@ Track user interaction manually
 If you want to trigger tracking interactions fully manually you can use ``trackContentInteraction``
 Use it as a function inside listener on event::
 
-    _paq.push(["trackContentInteraction", contentInteraction, contentName, contentPiece, contentTarget]);
+    _paq.push(["trackContentInteraction", contentInteraction, contentPiece, contentTarget]);
 
 .. data:: contentInteraction
 
-    **Required** ``string`` Name of interaction it can be anything ("click" etc). "Unknown" used as default.
-
-.. data:: contentName
-
-    **Required** ``string`` Name of Content Impression
+    **Required** ``string`` Name of interaction (e.g. ``"click"``).
 
 .. data:: contentPiece
 
@@ -542,7 +539,7 @@ Use it as a function inside listener on event::
 
 Example of use::
 
-    _paq.push(["trackContentImpression", "clicked", "trackingWhitepaper", "document", "http://cooltracker.tr/whitepaper"]);
+    _paq.push(["trackContentImpression", "clicked", "document", "http://cooltracker.tr/whitepaper"]);
 
 .. warning::
     Use this function in conjunction with ``trackContentImpression`` as it can only be mapped with an impression by linking ``contentName``
