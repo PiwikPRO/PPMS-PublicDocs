@@ -64,23 +64,23 @@ Trigger (custom) events bound to user actions::
 
     _paq.push(["trackEvent", category, action, name, value, dimensions);
 
-.. data:: category
+.. describe:: category
 
     **Required** ``string`` Event category.
 
-.. data:: action
+.. describe:: action
 
     **Required** ``string`` Event action.
 
-.. data:: name
+.. describe:: name
 
     **Optional** ``string`` Event name.
 
-.. data:: value
+.. describe:: value
 
     **Optional** ``number`` Event value.
 
-.. data:: dimensions
+.. describe:: dimensions
 
     **Optional**  `Custom dimension <Custom Dimensions_>`_ that should be tracked with this action. Can be multiple dimensions.
     Written as object property using ``dimension{ID}`` notation.
@@ -104,15 +104,15 @@ Allows to manually track goal conversion. Used in `Goals` - `Days to Conversion`
 
     _paq.push(["trackGoal", goal_name, goal_value, dimensions]);
 
-.. data:: goal_name
+.. describe:: goal_name
 
     **Required** ``string`` Goal Name
 
-.. data:: goal_value
+.. describe:: goal_value
 
     **Optional** ``number`` Tracked conversion value.
 
-.. data:: dimensions
+.. describe:: dimensions
 
     **Optional** ``object``  `Custom dimension <Custom Dimensions_>`_ that should be tracked with this action. Can be multiple dimensions.
     Written as object property using ``dimension{ID}`` notation.
@@ -142,23 +142,23 @@ To add ecommerce item (for example to track changes in users cart using ``trackE
     This function does not send any data to the :term:`Analytics`. It only prepares Ecommerce cart/order state to be
     send with `trackEcommerceOrder <Tracking Ecommerce order_>`_ or `trackEcommerceCartUpdate <Updating cart_>`_.
 
-.. data:: productSKU
+.. describe:: productSKU
 
     **Required** ``string`` Product stock-keeping unit.
 
-.. data:: productName
+.. describe:: productName
 
     **Optional** ``string`` Product name.
 
-.. data:: productCategory
+.. describe:: productCategory
 
     **Optional** ``array/string`` Product category, can be written as Array with up to 5 elements.
 
-.. data:: productPrice
+.. describe:: productPrice
 
     **Optional** ``number`` with product price.
 
-.. data:: productQuantity
+.. describe:: productQuantity
 
     **Optional** ``number`` with product quantity.
 
@@ -180,26 +180,26 @@ To track successful ecommerce order (on checkout page for example) use ``trackEc
 
     _paq.push(["trackEcommerceOrder", orderId, orderGrandTotal, orderSubTotal, orderTax, orderShipping, orderDiscount]);
 
-.. data:: orderId
+.. describe:: orderId
 
     **Required** ``string`` Unique order ID.
 
-.. data:: orderGrandTotal
+.. describe:: orderGrandTotal
 
     **Required** ``number`` Order Revenue grand total  - tax, shipping and discount included.
 
-.. data:: orderSubTotal
+.. describe:: orderSubTotal
 
     **Optional** ``number`` Order sub total - without shipping.
-.. data:: orderTax
+.. describe:: orderTax
 
     **Optional** ``number`` Order tax amount.
 
-.. data:: orderShipping
+.. describe:: orderShipping
 
     **Optional** ``number`` Order shipping costs.
 
-.. data:: orderDiscount
+.. describe:: orderDiscount
 
     **Optional** ``number`` Order discount amount.
 
@@ -216,7 +216,7 @@ To update user cart (when user adds new product or removes them from cart) use `
 
     _paq.push(["trackEcommerceCartUpdate", cartAmount]);
 
-.. data:: cartAmount
+.. describe:: cartAmount
 
     **Required** ``number`` Cart amount (sum of products).
 
@@ -236,19 +236,19 @@ If you want to track when user enters product site, or is browsing products cate
 
     _paq.push(["setEcommerceView", productSKU, productName, productCategory, productPrice]);
 
-.. data:: productSKU
+.. describe:: productSKU
 
     **Required** ``string/boolean`` Product stock-keeping unit. False for tracking category.
 
-.. data:: productName
+.. describe:: productName
 
     **Optional** ``string/boolean`` Product name. False for tracking category.
 
-.. data:: productCategory
+.. describe:: productCategory
 
     **Optional** ``array/string`` Product category, can be written as Array with up to 5 elements.
 
-.. data:: productPrice
+.. describe:: productPrice
 
     **Optional** ``number`` Product price.
 
@@ -284,19 +284,19 @@ To set custom variable that can be used later, use ``setCustomVariable`` functio
 
     _paq.push(["setCustomVariable", index, name, value, scope]);
 
-.. data:: index
+.. describe:: index
 
     **Required** ``number`` Index from 1 to 5 where variable is stored
 
-.. data:: name
+.. describe:: name
 
    **Required** ``string`` Name of the variable
 
-.. data:: value
+.. describe:: value
 
    **Optional** ``string`` Value of the variable limited to 200 characters.
 
-.. data:: scope
+.. describe:: scope
 
    **Optional** ``string`` Scope of the variable, "visit" or "page". Default value is ``"visit"``
 
@@ -319,11 +319,11 @@ To remove custom variable you can use ``deleteCustomVariable`` function::
 
     _paq.push(["deleteCustomVariable", index, scope]);
 
-.. data:: index
+.. describe:: index
 
     **Required** ``number`` Index from 1 to 5 where variable is stored
 
-.. data:: scope
+.. describe:: scope
 
    **Optional** ``string`` Scope of the variable, "visit" or "page". Default value is ``"visit"``
 
@@ -366,11 +366,11 @@ If you want to set custom dimension to use it in tracking functions use ``setCus
 
     _paq.push(["setCustomDimension", customDimensionID, customDimensionValue]);
 
-.. data:: customDimensionID
+.. describe:: customDimensionID
 
     **Required** ``number`` Id of dimension
 
-.. data:: customDimensionValue
+.. describe:: customDimensionValue
 
     **Required** ``string`` Value of Custom Dimension - limited to 255 characters.
 
@@ -430,14 +430,14 @@ Code::
 
     _paq.push(["trackVisibleContentImpressions", checkOnScroll, watchInterval]);
 
-.. data:: checkOnScroll
+.. describe:: checkOnScroll
 
     **Optional** ``boolean`` If ``true`` it will check new visible content impressions on scroll event.
     Default: ``true``.
 
     .. note:: It won't detect content blocks placed in a scrollable element.
 
-.. data:: watchInterval
+.. describe:: watchInterval
 
     **Optional** ``number`` Interval, in milliseconds between checking for new visible content. Periodic checks can be disabled for performance reasons by setting ``0``. Default value: ``750``.
 
@@ -462,7 +462,7 @@ To track impressions on part of a webpage that will be populated after page load
 
     _paq.push(["trackContentImpressionsWithinNode", domNode]);
 
-.. data:: domNode
+.. describe:: domNode
 
     **Required** ``domNode`` DOM element that will have impression DOM elements with ``data-track-content`` attribute
 
@@ -480,12 +480,12 @@ can do it using ``trackContentInteractionNode``, just add this function as an ev
 
     _paq.push(["trackContentInteractionNode", domNode, contentInteraction]);
 
-.. data:: domNode
+.. describe:: domNode
 
     **Required** ``domNode`` Node marked as content block or containing content blocks. If no content block will be
     found - nothing will be tracked.
 
-.. data:: contentInteraction
+.. describe:: contentInteraction
 
     **Optional** ``string`` Name of interaction (e.g. ``"click"``). Default value: ``"Unknown"``.
 
@@ -502,15 +502,15 @@ If you want to trigger tracking impressions fully manually you can use ``trackCo
 
     _paq.push(["trackContentImpression", contentName, contentPiece, contentTarget]);
 
-.. data:: contentName
+.. describe:: contentName
 
     **Required** ``string`` Name of Content Impression
 
-.. data:: contentPiece
+.. describe:: contentPiece
 
     **Required** ``string`` Name of Content Impression Piece
 
-.. data:: contentTarget
+.. describe:: contentTarget
 
     **Required** ``string`` Url of Content Impression Target
 
@@ -525,15 +525,15 @@ Use it as a function inside listener on event::
 
     _paq.push(["trackContentInteraction", contentInteraction, contentPiece, contentTarget]);
 
-.. data:: contentInteraction
+.. describe:: contentInteraction
 
     **Required** ``string`` Name of interaction (e.g. ``"click"``).
 
-.. data:: contentPiece
+.. describe:: contentPiece
 
     **Required** ``string`` Name of Content Impression Piece
 
-.. data:: contentTarget
+.. describe:: contentTarget
 
     **Required** ``string`` Url of Content Impression Target
 
@@ -586,7 +586,7 @@ This class name can be changed, use ``setLinkClasses`` to define which CSS class
 
     _paq.push(["setLinkClasses", className]);
 
-.. data:: className
+.. describe:: className
 
     **Required** ``string`` CSS class that should be tracked instead of ``piwik_link``
 
@@ -601,11 +601,11 @@ If you want to use JS to force outlink to be tracked you can add ``trackLink`` f
 
     _paq.push(["trackLink", linkAddress, "link", dimensions]);
 
-.. data:: linkAddress
+.. describe:: linkAddress
 
     **Required** ``string`` Address that link points to.
 
-.. data:: dimensions
+.. describe:: dimensions
 
     **Optional** ``object`` `Custom dimension <Custom Dimensions_>`_  that should be tracked with this action. Can be multiple dimensions.
     Written as object property using ``dimension{ID}`` notation.
@@ -656,9 +656,9 @@ You can add extension to default extensions list using ``addDownloadExtensions``
 
     _paq.push(["addDownloadExtensions", extensions]);
 
-.. data:: extensions
+.. describe:: extensions
 
-    **Required** ``string/Array`` Extensions separated by ``|`` for example ``"7z|apk|mp4"`` can also be written as an Array for example: ``["7z","apk","mp4"]``
+    **Required** ``string|Array<string>`` Extensions separated by ``|`` for example ``"7z|apk|mp4"`` can also be written as an Array for example: ``["7z","apk","mp4"]``
 
 
 Example of usage::
@@ -672,9 +672,9 @@ Default extensions list can be overwritten using ``setDownloadExtensions`` funct
 
     _paq.push(["setDownloadExtensions", extensions]);
 
-.. data:: extensions
+.. describe:: extensions
 
-    **Required** ``string/Array`` Extensions separated by ``|`` for example ``"7z|apk|mp4"`` can also be written as an Array for example: ``["7z","apk","mp4"]``
+    **Required** ``string|Array<string>`` Extensions separated by ``|`` for example ``"7z|apk|mp4"`` can also be written as an Array for example: ``["7z","apk","mp4"]``
 
 
 Example of usage::
@@ -691,7 +691,7 @@ This class name can be changed, use ``setDownloadClasses`` to define which CSS c
     _paq.push(["setDownloadClasses", className]);
 
 
-.. data:: className
+.. describe:: className
 
     **Required** ``string`` CSS class that should be tracked instead of ``piwik_download``
 
@@ -706,11 +706,11 @@ If you want to use JS to force tracking download can add ``trackLink`` function 
 
     _paq.push(["trackLink", linkAddress, "download", dimensions]);
 
-.. data:: linkAddress
+.. describe:: linkAddress
 
     **Required** ``string`` Address that link points to.
 
-.. data:: dimensions
+.. describe:: dimensions
 
     **Optional**  ``object`` `Custom dimension <Custom Dimensions_>`_ that should be tracked with this action. Can be multiple dimensions.
     Written as object property using ``dimension{ID}`` notation.
@@ -739,7 +739,7 @@ That time frame is set to 500ms by default. To modify it you can use ``setLinkTr
 
     _paq.push(["setLinkTrackingTimer" time]);
 
-.. data:: time
+.. describe:: time
 
     **Required** ``number`` Time in ms between user interaction and downloading file.
 
@@ -753,9 +753,9 @@ To disable using CSS class you can use ``setIgnoreClassess`` function::
 
     _paq.push(["setIgnoreClasses", className);
 
-.. data:: className
+.. describe:: className
 
-    **Required** ``string/Array`` Css class name that will be ignored, can be written as Array with CSS clasess.
+    **Required** ``string|Array<string>`` Css class name that will be ignored, can be written as Array with CSS classes.
 
 
 User ID Management
@@ -766,7 +766,7 @@ You must provide unique user-id for every user. To set user ID for tracked data 
 
     _paq.push(["setUserId", userID]);
 
-.. data:: userID
+.. describe:: userID
 
     **Required** ``string``  Unique, non empty permanent ID of the user in application.
 
@@ -780,7 +780,7 @@ We are using current page URL as the page title. To change this use ``setDocumen
 
     _paq.push(["setDocumentTitle", title]);
 
-.. data:: title
+.. describe:: title
 
     **Required** ``string`` Title to show instead of url
 
@@ -795,7 +795,7 @@ To measure that time properly you can use ``enableHeartBeatTimer`` function::
 
     _paq.push(["enableHeartBeatTimer", beat]);
 
-.. data:: beat
+.. describe:: beat
 
     **Required** ``number`` Time in seconds, when send another request with heartbeat, default ``30``
 
@@ -809,19 +809,19 @@ To track search requests on your site use ``trackSiteSearch`` function::
 
     _paq.push(["trackSiteSearch", keyword, category, searchCount, dimensions]);
 
-.. data:: keyword
+.. describe:: keyword
 
     **Optional** ``string`` Keyword that was searched
 
-.. data:: category
+.. describe:: category
 
     **Optional** ``string`` Category seleted in search engine - you can set it to false when not used.
 
-.. data:: searchCount
+.. describe:: searchCount
 
     **Optional** ``number`` Results on the results page - you can set it to false when not used.
 
-.. data:: dimensions
+.. describe:: dimensions
 
     **Optional**  ``object`` `Custom dimension <Custom Dimensions_>`_ that should be tracked with this action. Can be multiple dimensions.
     Written as object property using ``dimension{ID}`` notation.
