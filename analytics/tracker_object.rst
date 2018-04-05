@@ -227,7 +227,7 @@ Interactions
     :param domNode domNode: **Required** Any node in content block or the block itself - it won't be tracked if no content block will be found
     :param string contentInteraction: **Optional** String containing name of interaction it can be anything ("click" etc). "Unknown" used as default.
 
-.. function:: trackContentInteraction([contentInteraction, ]contentName, contentPiece, contentTarget)
+.. function:: trackContentInteraction([contentInteraction, ]contentPiece, contentTarget)
 
     Function that tracks content interaction using given data.
 
