@@ -2,7 +2,7 @@ swagger: '2.0'
 info:
   title: Audience Manager API
   description: |
-    <p><b>No authentication.</b></p>
+    **No authentication.**
   version: 'auto'
 host: ppms.example.com
 basePath: /
@@ -26,7 +26,7 @@ parameters:
     in: query
     type: string
     format: uuid
-    description: ID of the website.
+    description: App ID (previously Website ID).
     required: true
     example: '0fdd8cc2-93b1-428c-8373-97a452f5b10'
   AnalyticsVisitorId:
@@ -34,7 +34,7 @@ parameters:
     in: path
     type: string
     format: string
-    description: Piwik ID of the profile.
+    description: Analytics Visitor ID (previously Piwik Visitor ID).
     required: true
     example: '3a0133748b3e524c'
 paths:

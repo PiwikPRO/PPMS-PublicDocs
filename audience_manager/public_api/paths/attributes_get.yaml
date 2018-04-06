@@ -2,10 +2,14 @@ get:
   tags:
   - attributes
   summary:
-    Get profile attributes
+    Get user profile attributes
   description: |
-    <p>Returns a list of attributes for a given profile.</p>
-    <p>In order to secure the PII data, no attributes are returned by default. You need to put on the whitelist attributes which you'd like to get in the response. In order to do that, go to Audience Manager, Attributes tab and enable attribute for the public API access. Please use it carefully and wisely, we recommend to not whitelist any attributes which contain PII data.<p>
+    Returns a list of user profile attributes.
+
+    In order to secure the PII data, no attribute is returned by default. You need to put each attribute you want to
+    access on attribute whitelist before it’ll be returned by this endpoint. In order to do that, go to
+    `Audience Manager` > `Attributes` tab and `enable` attribute for the public API access. It’s your responsibility to
+    make sure no user PII data will be available via API.
   parameters:
   - $ref: '#/parameters/WebsiteId'
   - $ref: '#/parameters/AnalyticsVisitorId'

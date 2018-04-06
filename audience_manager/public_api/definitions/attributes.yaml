@@ -3,16 +3,20 @@ items:
   type: object
   properties:
     name:
-      type: object
-      description: Name of the event attribute.
+      type: string
+      description: Name of the attribute.
       example: 'name'
     value:
       type: string
-      description: Value of the attribute with specified name.
+      description: Value of the attribute.
       example: 'Amelia'
     field_type:
       type: string
-      description: Type of the field.
+      description: |
+        Type of the attribute:
+
+          - ``analytics`` - Analytics attributes about the user (e.g. browser name, browser version, country)
+          - ``attributes`` - Custom attributes about the user (e.g. first name, last name, email)
       enum:
         - attributes
         - analytics
