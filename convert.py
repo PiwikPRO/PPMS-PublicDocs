@@ -27,8 +27,13 @@ def resolve(content, dir):
     return content
 
 
-def write_open_api_json(path, file_handler):
-    file_handler.write(json.dumps(load(os.path.realpath(path))))
+def write_open_api_json(path, file_handler, version=None):
+    specs = load(os.path.realpath(path))
+
+    if version is not None:
+        specs['info']['version'] = version
+
+    file_handler.write(json.dumps(specs))
 
 
 if __name__ == '__main__':

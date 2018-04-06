@@ -3,7 +3,7 @@ info:
   title: Audience Manager API
   description: |
     **No authentication.**
-  version: '1.0.0'
+  version: 'auto'
 host: ppms.example.com
 basePath: /
 schemes:

@@ -5,7 +5,7 @@ info:
   title: Tracking API
   description: |
     **No authentication.**
-  version: '1.0.0'
+  version: 'auto'
 host: ppms.example.com
 basePath: /
 schemes:
@@ -82,6 +82,7 @@ paths:
           example: 1521232150
         - name: apiv
           in: query
+          #TODO: This value doesn't match current version of PPMS. It's 5, not 1.
           description: |
             **Recommended** API (major) version number used by request.
           type: integer
@@ -230,14 +231,11 @@ paths:
           example: en-US,en;q=0.9,pl;q=0.8
         - name: uid
           in: query
-          #TODO: Check if Piwik passes this information to AM.
-          #TODO: Looks like this functionality is trying to implement basic user profile. Should it be depricated in favor of AM?
-          #TODO: Previous documentation is unclear and dispersed. We should link to a page describing how uid is used in detail.
           description: |
             User ID.
 
             Can be used to identify Visitor by external application (e.g. login name, email address or internal
-            user ID).
+            user ID). See: [Recognizing Visitors](https://help.piwik.pro/analytics/recognizing-visitors/).
 
             It allows merging visits accross different devices (e.g. laptop, tablet and smartphone).
           type: string
