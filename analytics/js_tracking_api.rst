@@ -39,12 +39,12 @@ Command queue
 
 Loading snippet creates following API function:
 
-.. function:: _paq.push([command, ...args])
+.. function:: _paq.push(command)
 
     JavaScript API interface.
 
-    :param string command: Command name.
-    :param args: Command arguments. Number of arguments and their function depend on command.
+    :param Array<string> command: Array containing command `name` followed by it's arguments. Number of arguments and
+        their function depend on command.
     :rtype: undefined
 
 Commands
@@ -133,7 +133,8 @@ Ecommerce tracking
 
 Adding Ecommerce item
 `````````````````````
-To add ecommerce item (for example to track changes in users cart using ``trackEcommerceCartUpdate``) use ``addEcommerceItem`` function::
+To add ecommerce item (for example to track changes in users cart using ``trackEcommerceCartUpdate``) use
+``addEcommerceItem`` function::
 
     _paq.push(["addEcommerceItem", productSKU, productName, productCategory, productPrice, productQuantity]);
 
@@ -338,7 +339,7 @@ You can access custom variables by providing function that will use ``getCustomV
         var customVariable = this.getCustomVariable(index, scope );
     }]);
 
-.. function:: getCustomVariable(index, scope)
+.. function:: getCustomVariable(index[, scope])
 
     :param number index: **Required** Number from 1 to 5 where variable is stored
 
@@ -394,7 +395,7 @@ You can access custom dimension by providing function that will use ``getCustomD
         var customDimension = this.getCustomDimension(index);
     }]);
 
-.. function:: getCustomDimension(index, scope)
+.. function:: getCustomDimension(index)
 
     :param number index: **Required** Index of custom dimension
 
@@ -478,11 +479,12 @@ can do it using ``trackContentInteractionNode``, just add this function as an ev
 
 .. describe:: domNode
 
-    **Required** ``domNode`` Any node in content block or the block itself - it won't be tracked if no content block will be found inside or on it.
+    **Required** ``domNode`` Node marked as content block or containing content blocks. If no content block will be
+    found - nothing will be tracked.
 
 .. describe:: contentInteraction
 
-    **Required** ``string`` Name of interaction it can be anything ("click" etc). "Unknown" used as default.
+    **Optional** ``string`` Name of interaction (e.g. ``"click"``). Default value: ``"Unknown"``.
 
 Example of use
 
@@ -522,7 +524,7 @@ Use it as a function inside listener on event::
 
 .. describe:: contentInteraction
 
-    **Required** ``string`` Name of interaction it can be anything ("click" etc). "Unknown" used as default.
+    **Required** ``string`` Name of interaction (e.g. ``"click"``).
 
 .. describe:: contentName
 
