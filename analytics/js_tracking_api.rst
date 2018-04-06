@@ -265,10 +265,7 @@ Custom Variables
 .. todo::
     What's difference between custom variables and dimensions? Maybe some sort of help.center link?
 
-.. todo::
-    Set proper version for deprecated
-
-.. deprecated:: 1.0.0
+.. deprecated:: 5.5
     We strongly advise to use custom dimensions.
 
 Adding / Editing Custom Variable
