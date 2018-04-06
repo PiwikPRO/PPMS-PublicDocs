@@ -228,11 +228,12 @@ Interactions
         will be found - nothing will be tracked.
     :param string contentInteraction: **Optional** Name of interaction (e.g. ``"click"``). Default value: ``"Unknown"``.
 
-.. function:: trackContentInteraction(contentInteraction, contentPiece, contentTarget)
+.. function:: trackContentInteraction(contentInteraction, contentName, contentPiece, contentTarget)
 
     Function that tracks content interaction using given data.
 
     :param string contentInteraction: **Required** Name of interaction (e.g. ``"click"``).
+    :param string contentName: **Required** String containing name of Content Impression.
     :param string contentPiece: **Required** Name of Content Impression Piece.
     :param string contentTarget: **Required** Url of Content Impression Target.
 

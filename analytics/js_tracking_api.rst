@@ -523,11 +523,15 @@ Track user interaction manually
 If you want to trigger tracking interactions fully manually you can use ``trackContentInteraction``
 Use it as a function inside listener on event::
 
-    _paq.push(["trackContentInteraction", contentInteraction, contentPiece, contentTarget]);
+    _paq.push(["trackContentInteraction", contentInteraction, contentName, contentPiece, contentTarget]);
 
 .. describe:: contentInteraction
 
     **Required** ``string`` Name of interaction (e.g. ``"click"``).
+
+.. describe:: contentName
+
+    **Required** ``string`` Name of Content Impression
 
 .. describe:: contentPiece
 
@@ -539,7 +543,7 @@ Use it as a function inside listener on event::
 
 Example of use::
 
-    _paq.push(["trackContentImpression", "clicked", "document", "http://cooltracker.tr/whitepaper"]);
+    _paq.push(["trackContentImpression", "clicked", "trackingWhitepaper", "document", "http://cooltracker.tr/whitepaper"]);
 
 .. warning::
     Use this function in conjunction with ``trackContentImpression`` as it can only be mapped with an impression by linking ``contentName``
