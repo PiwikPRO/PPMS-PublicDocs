@@ -80,15 +80,6 @@ paths:
             the Visitor is behind some kind of caching proxy.
           type: string
           example: 1521232150
-        - name: apiv
-          in: query
-          #TODO: This value doesn't match current version of PPMS. It's 5, not 1.
-          description: |
-            **Recommended** API (major) version number used by request.
-          type: integer
-          enum:
-            - 1
-          example: 1
         - name: urlref
           in: query
           #TODO: Check what spelling we're using: referrer vs referer.
