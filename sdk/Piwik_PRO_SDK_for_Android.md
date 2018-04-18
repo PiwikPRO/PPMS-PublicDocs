@@ -10,7 +10,7 @@ Piwik PRO SDK for Android
 
 ### Client
 #### Including the library
-Add this to your app modules `build.gradle` file, e.g. `~/git/MyApp/app/build.gradle`
+Add `build.gradle` to an app modules file, e.g. `~/git/MyApplication/app/build.gradle`
 
 ```groovy
 dependencies {
@@ -20,6 +20,7 @@ dependencies {
     compile 'pro.piwik.sdk:piwik-sdk:VERSION'
 }
 ```
+
 Replace `VERSION` with the latest release name, e.g. ``1.0.0``.
 
 
@@ -27,7 +28,7 @@ Replace `VERSION` with the latest release name, e.g. ``1.0.0``.
 
 In order to setup Piwik PRO tracker you have two options:
 
-1) You can simply have your Android ``Application`` class extend ``PiwikApplication`` class. You will be forced to implement one abstract method. This approach is used in our demo app:
+1\. Extend ``PiwikApplication`` class with your Android ``Application`` class. It forces implementation of one abstract method. That approach is used in the [Piwik PRO SDK demo app](https://github.com/PiwikPRO/piwik-pro-sdk-demo-android) as below:
 
 ```java
 public class YourApplication extends PiwikApplication{
@@ -38,7 +39,7 @@ public class YourApplication extends PiwikApplication{
 }
 ```
 
-2) You can also manage the ``Tracker`` yourself. To configure the `Tracker` you will need server address and website ID (you can find it in "Settings > Websites"):
+2\. Manage the ``Tracker`` on your own. To configure the `Tracker` you will need server address and website ID (you can find it in "Settings > Websites"):
 
 ```java
 public class YourApplication extends Application {
@@ -50,13 +51,14 @@ public class YourApplication extends Application {
 }
 ```
 
-To ensure that the metrics are not over-counted, it is highly recommended that the tracker is created and managed in the Application class (i.e. not created twice). The `Tracker` itself is thread-safe and can be shared throughout your application. It's not recommended to create multiple `Tracker` instances for the same target.
+It is not recommended to create multiple `Tracker` instances for the same target as it may lead to over-count of metrics. It is highly recommended to create and manage the tracker in the Application class that is not created twice. The `Tracker` is thread-safe and can be shared across the application.
+
 
 ```java
 Tracker tracker = ((PiwikApplication) getApplication()).getTracker();
 ```
 
-The application is ready to use Piwik PRO.
+The application is ready to use Piwik PRO SDK.
 
 
 ## Using Piwik PRO SDK
