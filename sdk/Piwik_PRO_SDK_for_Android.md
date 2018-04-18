@@ -63,16 +63,16 @@ The application is ready to use Piwik PRO SDK.
 
 ## Using Piwik PRO SDK
 
-The recommended way to use the library is by using the ``TrackHelper`` class. It has methods for all common actions which can be chained in a way that facilities the correct order and use. Just by using autocompletion on ``TrackHelper.`` you can probably get pretty far.
+It is recommended to use ``TrackerHelper`` class that has methods for all common actions which can be chained in a way that facilities the correct order and use. Combined with autocompletion using the SDK will be more convenient.
 
 For tracking each event with ``TrackHelper`` you will need to pass ``Tracker`` instance. The way of getting correct ``Tracker`` instance depends on configuration option (see section above):
 
-1) Your Android ``Application`` class extend ``PiwikApplication`` class
+1\. Your Android ``Application`` class extend ``PiwikApplication`` class
 ```java
 Tracker tracker = ((PiwikApplication) getApplication()).getTracker();
 ```
 
-2) You manage the ``Tracker`` yourself
+2\. You manage the ``Tracker`` yourself
 ```java
 Tracker tracker = ((YourApplication) getApplication()).getTracker();
 ```
@@ -118,7 +118,7 @@ TrackHelper.track().screens(getApplication()).with(tracker);
 ### Tracking events
 *Requires Analytics*
 
-To collect data about user's interaction with interactive components of your app, like button presses or the use of a particular item in a game use ``event`` method. More about [events](https://helpcenter-piwik-pro.intercom.help/user-guides/action-reports/actions-reports-events) and [ultimate guide to event tracking](https://piwik.pro/blog/event-tracking-ultimate-guide/).
+To collect data about user's interaction with interactive components of your app, like button presses or the use of a particular item in a game use ``event`` method.
 
 ```java
 TrackHelper.track().event("category", "action").path("/main/actionScreen").name("label").value(1000f).with(tracker);
@@ -135,6 +135,9 @@ The ``track`` method allows to specify next parameters:
 
 * A path (optional) – the path under which this event occurred.
 
+For more resources, please visit:
+* [Actions Reports - Events](https://helpcenter-piwik-pro.intercom.help/user-guides/action-reports/actions-reports-events)
+* [Ultimate guide to event tracking](https://piwik.pro/blog/event-tracking-ultimate-guide/).
 
 ### Tracking exceptions
 *Requires Analytics*
