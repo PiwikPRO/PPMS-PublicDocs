@@ -498,36 +498,40 @@ tracker.startNewSession();
 
 ### Dispatching
 
-The tracker, by default, will dispatch any pending events every 30 seconds. If 0 is used, any event will be dispatched immediately. If a negative value is used the dispatch timer will never run, a manual dispatch must be used:
+Tracked events are stored on the queue and in case there are any pending events they will be dispatched every 30 seconds. This behavior can be changed with following options:
+* ``setDispatchInterval(0)`` - events will be dispatched immediately;
+* ``setDispatchInterval(-1)`` - disable the automatic timer - it will never run and dispatch has to be done manually as on the example below.
 
 ```java
-    Tracker tracker = ((YourApplication) getApplication()).getTracker();
+    Tracker tracker = ((MyApplication) getApplication()).getTracker();
     tracker.setDispatchInterval(-1);
-    // Track exception
+    // Catch and track exception
     try {
-        revenue = getRevenue();
+        cartItems = getCartItems();
     } catch (Exception e) {
         tracker.trackException(e, e.getMessage(), false);
         tracker.dispatch();
-        revenue = 0;
+        cartItems = null;
     }
 ```
 
-When there is more than one event in the queue, dispatch is done using a POST request with JSON data (Bulktracking). JSON data may be gzipped before being dispatched. This may be set at app init time as follows:
+In case of more events than one in the queue, data is sent in a bulk by using POST method with JSON in payload. It is possible to compress the data before dispatching by using ``setDispatchGzipped`` mehod during the app initialization. See the example below for details:
 
 ```java
     private void initPiwik() {
       ...
 
-        //set dispatcher to json gzip
+        //configure dispatcher to compress JSON with gzip
         getTracker().setDispatchGzipped(true);
 
       ...
     }
 ```
 
-This feature must also be set on server-side using mod_deflate/APACHE or lua_zlib/NGINX
-([lua_zlib](https://github.com/brimworks/lua-zlib) - [lua-nginx-module](https://github.com/openresty/lua-nginx-module/) - [inflate.lua samples](https://gist.github.com/davidcaste/05b2f9461ebe4a3bb3fc) - [inflate.lua simplified Piwik sample](https://github.com/piwik/piwik-sdk-android/pull/123)).
+It requires also server-side configuration by using mod_deflate/APACHE or lua_zlib/NGINX for Apache or Nginx respectively. Helpful resources:
+* [lua_zlib](https://github.com/brimworks/lua-zlib)
+* [lua-nginx-module](https://github.com/openresty/lua-nginx-module/)
+* [inflate.lua samples](https://gist.github.com/davidcaste/05b2f9461ebe4a3bb3fc)
 
 
 ### Custom queries
