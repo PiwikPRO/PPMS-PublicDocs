@@ -267,7 +267,10 @@ Create, view or manage goals is available on Analytics tab, "Goals" left menu, "
 ### Tracking ecommerce transactions
 *Requires Analytics*
 
-For detailed measurement of product sales you can use ecommerce analytics (see :ref:`Ecommerce tracking` for reference). It gives abilities like tracking cart items, cart abandonment and orders. If you want to track orders, use ``order`` method:
+If your organization depends on online sales, you need detailed analysis to transform raw e-commerce stats into actionable insights. Revenue, orders, conversion rates, and a host of other product statistics can be analyzed by integrating Piwik with your e-commerce solution.
+
+SDK provides ``order`` method that can be used for tracking orders including detailed items data.
+Sample usage:
 
 ```java
 Tracker tracker = ((YourApplication) getApplication()).getTracker();
