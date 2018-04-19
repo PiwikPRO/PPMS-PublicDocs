@@ -10,7 +10,7 @@ Piwik PRO SDK for Android
 
 ### Client
 #### Including the library
-Add this to your app modules `build.gradle` file, e.g. `~/git/MyApp/app/build.gradle`
+Add `build.gradle` to an app modules file, e.g. `~/git/MyApplication/app/build.gradle`
 
 ```groovy
 dependencies {
@@ -20,6 +20,7 @@ dependencies {
     compile 'pro.piwik.sdk:piwik-sdk:VERSION'
 }
 ```
+
 Replace `VERSION` with the latest release name, e.g. ``1.0.0``.
 
 
@@ -27,7 +28,7 @@ Replace `VERSION` with the latest release name, e.g. ``1.0.0``.
 
 In order to setup Piwik PRO tracker you have two options:
 
-1) You can simply have your Android ``Application`` class extend ``PiwikApplication`` class. You will be forced to implement one abstract method. This approach is used in our demo app:
+1\. Extend ``PiwikApplication`` class with your Android ``Application`` class. It forces implementation of one abstract method. That approach is used in the [Piwik PRO SDK demo app](https://github.com/PiwikPRO/piwik-pro-sdk-demo-android) as below:
 
 ```java
 public class YourApplication extends PiwikApplication{
@@ -38,7 +39,7 @@ public class YourApplication extends PiwikApplication{
 }
 ```
 
-2) You can also manage the ``Tracker`` yourself. To configure the `Tracker` you will need server address and website ID (you can find it in "Settings > Websites"):
+2\. Manage the ``Tracker`` on your own. To configure the `Tracker` you will need server address and website ID (you can find it in "Settings > Websites"):
 
 ```java
 public class YourApplication extends Application {
@@ -50,27 +51,28 @@ public class YourApplication extends Application {
 }
 ```
 
-To ensure that the metrics are not over-counted, it is highly recommended that the tracker is created and managed in the Application class (i.e. not created twice). The `Tracker` itself is thread-safe and can be shared throughout your application. It's not recommended to create multiple `Tracker` instances for the same target.
+It is not recommended to create multiple `Tracker` instances for the same target as it may lead to over-count of metrics. It is highly recommended to create and manage the tracker in the Application class that is not created twice. The `Tracker` is thread-safe and can be shared across the application.
+
 
 ```java
 Tracker tracker = ((PiwikApplication) getApplication()).getTracker();
 ```
 
-The application is ready to use Piwik PRO.
+The application is ready to use Piwik PRO SDK.
 
 
 ## Using Piwik PRO SDK
 
-The recommended way to use the library is by using the ``TrackHelper`` class. It has methods for all common actions which can be chained in a way that facilities the correct order and use. Just by using autocompletion on ``TrackHelper.`` you can probably get pretty far.
+It is recommended to use ``TrackerHelper`` class that has methods for all common actions which can be chained in a way that facilities the correct order and use. Combined with autocompletion using the SDK will be more convenient.
 
 For tracking each event with ``TrackHelper`` you will need to pass ``Tracker`` instance. The way of getting correct ``Tracker`` instance depends on configuration option (see section above):
 
-1) Your Android ``Application`` class extend ``PiwikApplication`` class
+1\. Your Android ``Application`` class extend ``PiwikApplication`` class
 ```java
 Tracker tracker = ((PiwikApplication) getApplication()).getTracker();
 ```
 
-2) You manage the ``Tracker`` yourself
+2\. You manage the ``Tracker`` yourself
 ```java
 Tracker tracker = ((YourApplication) getApplication()).getTracker();
 ```
@@ -116,7 +118,7 @@ TrackHelper.track().screens(getApplication()).with(tracker);
 ### Tracking events
 *Requires Analytics*
 
-To collect data about user's interaction with interactive components of your app, like button presses or the use of a particular item in a game use ``event`` method. More about [events](https://helpcenter-piwik-pro.intercom.help/user-guides/action-reports/actions-reports-events) and [ultimate guide to event tracking](https://piwik.pro/blog/event-tracking-ultimate-guide/).
+To collect data about user's interaction with interactive components of your app, like button presses or the use of a particular item in a game use ``event`` method.
 
 ```java
 TrackHelper.track().event("category", "action").path("/main/actionScreen").name("label").value(1000f).with(tracker);
@@ -133,6 +135,9 @@ The ``track`` method allows to specify next parameters:
 
 * A path (optional) – the path under which this event occurred.
 
+For more resources, please visit:
+* [Actions Reports - Events](https://helpcenter-piwik-pro.intercom.help/user-guides/action-reports/actions-reports-events)
+* [Ultimate guide to event tracking](https://piwik.pro/blog/event-tracking-ultimate-guide/).
 
 ### Tracking exceptions
 *Requires Analytics*
@@ -143,7 +148,7 @@ Measure a caught exception by setting the exception field values on the tracker 
 
 ```java
 try {
-   // preform action
+   // perform action
 } catch(Exception ex) {
    TrackHelper.track().exception(ex).description("Content download error").fatal(true).with(tracker);
 }
@@ -262,15 +267,19 @@ Create, view or manage goals is available on Analytics tab, "Goals" left menu, "
 ### Tracking ecommerce transactions
 *Requires Analytics*
 
-Piwik provides [ecommerce analytics](https://piwik.org/docs/ecommerce-analytics/) that let you measure items added to carts, and learn detailed metrics about abandoned carts and purchased orders. To track an Ecommerce order use ``order`` method:
+If your organization depends on online sales, you need detailed analysis to transform raw e-commerce stats into actionable insights. Revenue, orders, conversion rates, and a host of other product statistics can be analyzed by integrating Piwik with your e-commerce solution.
+
+SDK provides ``order`` method that can be used for tracking orders including detailed items data.
+Sample usage:
 
 ```java
 Tracker tracker = ((YourApplication) getApplication()).getTracker();
 EcommerceItems items = new EcommerceItems();
-items.addItem(new EcommerceItems.Item("sku").name("product").category("category").price(200).quantity(2));
-items.addItem(new EcommerceItems.Item("sku").name("product2").category("category2").price(400).quantity(3));
+// EcommerceItems.Item("<sku>").name("<product>").category("<category>").price(<cents>).quantity(<number>)
+items.addItem(new EcommerceItems.Item("0123456789012").name("Polo T-shirt").category("Men's T-shirts").price(3000).quantity(2));
+items.addItem(new EcommerceItems.Item("0129876543210").name("Leather shoes").category("Shoes").price(40000).quantity(1));
 
-TrackHelper.track().order("orderId",10000).subTotal(7000).tax(2000).shipping(1000).discount(0).items(items).with(tracker);
+TrackHelper.track().order("orderId",124144).subTotal(33110).tax(9890).shipping(1000).discount(0).items(items).with(tracker);
 ```
 * An orderId (required) – a unique string identifying the order
 
@@ -498,36 +507,40 @@ tracker.startNewSession();
 
 ### Dispatching
 
-The tracker, by default, will dispatch any pending events every 30 seconds. If 0 is used, any event will be dispatched immediately. If a negative value is used the dispatch timer will never run, a manual dispatch must be used:
+Tracked events are stored on the queue and in case there are any pending events they will be dispatched every 30 seconds. This behavior can be changed with following options:
+* ``setDispatchInterval(0)`` - events will be dispatched immediately;
+* ``setDispatchInterval(-1)`` - disable the automatic timer - it will never run and dispatch has to be done manually as on the example below.
 
 ```java
-    Tracker tracker = ((YourApplication) getApplication()).getTracker();
+    Tracker tracker = ((MyApplication) getApplication()).getTracker();
     tracker.setDispatchInterval(-1);
-    // Track exception
+    // Catch and track exception
     try {
-        revenue = getRevenue();
+        cartItems = getCartItems();
     } catch (Exception e) {
         tracker.trackException(e, e.getMessage(), false);
         tracker.dispatch();
-        revenue = 0;
+        cartItems = null;
     }
 ```
 
-When there is more than one event in the queue, dispatch is done using a POST request with JSON data (Bulktracking). JSON data may be gzipped before being dispatched. This may be set at app init time as follows:
+In case of more events than one in the queue, data is sent in a bulk by using POST method with JSON in payload. It is possible to compress the data before dispatching by using ``setDispatchGzipped`` mehod during the app initialization. See the example below for details:
 
 ```java
     private void initPiwik() {
       ...
 
-        //set dispatcher to json gzip
+        //configure dispatcher to compress JSON with gzip
         getTracker().setDispatchGzipped(true);
 
       ...
     }
 ```
 
-This feature must also be set on server-side using mod_deflate/APACHE or lua_zlib/NGINX
-([lua_zlib](https://github.com/brimworks/lua-zlib) - [lua-nginx-module](https://github.com/openresty/lua-nginx-module/) - [inflate.lua samples](https://gist.github.com/davidcaste/05b2f9461ebe4a3bb3fc) - [inflate.lua simplified Piwik sample](https://github.com/piwik/piwik-sdk-android/pull/123)).
+It requires also server-side configuration by using mod_deflate/APACHE or lua_zlib/NGINX for Apache or Nginx respectively. Helpful resources:
+* [lua_zlib](https://github.com/brimworks/lua-zlib)
+* [lua-nginx-module](https://github.com/openresty/lua-nginx-module/)
+* [inflate.lua samples](https://gist.github.com/davidcaste/05b2f9461ebe4a3bb3fc)
 
 
 ### Custom queries
