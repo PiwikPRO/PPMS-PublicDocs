@@ -148,7 +148,7 @@ Measure a caught exception by setting the exception field values on the tracker 
 
 ```java
 try {
-   // preform action
+   // perform action
 } catch(Exception ex) {
    TrackHelper.track().exception(ex).description("Content download error").fatal(true).with(tracker);
 }
@@ -267,15 +267,16 @@ Create, view or manage goals is available on Analytics tab, "Goals" left menu, "
 ### Tracking ecommerce transactions
 *Requires Analytics*
 
-Piwik provides [ecommerce analytics](https://piwik.org/docs/ecommerce-analytics/) that let you measure items added to carts, and learn detailed metrics about abandoned carts and purchased orders. To track an Ecommerce order use ``order`` method:
+For detailed measurement of product sales you can use ecommerce analytics (see :ref:`Ecommerce tracking` for reference). It gives abilities like tracking cart items, cart abandonment and orders. If you want to track orders, use ``order`` method:
 
 ```java
 Tracker tracker = ((YourApplication) getApplication()).getTracker();
 EcommerceItems items = new EcommerceItems();
-items.addItem(new EcommerceItems.Item("sku").name("product").category("category").price(200).quantity(2));
-items.addItem(new EcommerceItems.Item("sku").name("product2").category("category2").price(400).quantity(3));
+// EcommerceItems.Item("<sku>").name("<product>").category("<category>").price(<cents>).quantity(<number>)
+items.addItem(new EcommerceItems.Item("0123456789012").name("Polo T-shirt").category("Men's T-shirts").price(3000).quantity(2));
+items.addItem(new EcommerceItems.Item("0129876543210").name("Leather shoes").category("Shoes").price(40000).quantity(1));
 
-TrackHelper.track().order("orderId",10000).subTotal(7000).tax(2000).shipping(1000).discount(0).items(items).with(tracker);
+TrackHelper.track().order("orderId",124144).subTotal(33110).tax(9890).shipping(1000).discount(0).items(items).with(tracker);
 ```
 * An orderId (required) – a unique string identifying the order
 
