@@ -4,7 +4,7 @@ Piwik PRO SDK for Android
 ## SDK configuration
 
 ### Server
-* You need a Piwik PRO account on cloud or on-premises setup which your mobile app will communicate with. For details visit [Piwik PRO website](https://piwik.pro)
+* You need a Piwik PRO account on the cloud or an on-premises setup which your mobile app will communicate with. For details, please visit the [Piwik PRO website](https://piwik.pro).
 * Create a new website (or app) in the Piwik PRO web interface.
 * Copy and note the Website ID from "Settings > Websites" and your server address.
 
@@ -25,7 +25,7 @@ Replace `VERSION` with the latest release name, e.g. ``1.0.0``.
 
 #### Configuration
 
-In order to setup Piwik PRO tracker you have two options:
+In order to set up the Piwik PRO tracker, you have two options:
 
 1) You can simply have your Android ``Application`` class extend ``PiwikApplication`` class. You will be forced to implement one abstract method. This approach is used in our demo app:
 
@@ -38,7 +38,7 @@ public class YourApplication extends PiwikApplication{
 }
 ```
 
-2) You can also manage the ``Tracker`` yourself. To configure the `Tracker` you will need server address and website ID (you can find it in "Settings > Websites"):
+2) You can also manage the ``Tracker`` yourself. To configure the `Tracker` you will need a server address and website ID (you can find it in "Settings > Websites"):
 
 ```java
 public class YourApplication extends Application {
@@ -50,7 +50,7 @@ public class YourApplication extends Application {
 }
 ```
 
-To ensure that the metrics are not over-counted, it is highly recommended that the tracker is created and managed in the Application class (i.e. not created twice). The `Tracker` itself is thread-safe and can be shared throughout your application. It's not recommended to create multiple `Tracker` instances for the same target.
+To ensure that the metrics are not overcounted, it is highly recommended that the tracker is created and managed in the Application class (i.e. not created twice). The `Tracker` itself is thread-safe and can be shared throughout your application. It is not recommended to create multiple `Tracker` instances for the same target.
 
 ```java
 Tracker tracker = ((PiwikApplication) getApplication()).getTracker();
@@ -61,9 +61,9 @@ The application is ready to use Piwik PRO.
 
 ## Using Piwik PRO SDK
 
-The recommended way to use the library is by using the ``TrackHelper`` class. It has methods for all common actions which can be chained in a way that facilities the correct order and use. Just by using autocompletion on ``TrackHelper.`` you can probably get pretty far.
+The recommended way to use the library is by using the ``TrackHelper`` class. It has methods for all common actions, which can be chained in a way that facilitates the correct order and use. By simply using autocompletion on ``TrackHelper``, you can go very far.
 
-For tracking each event with ``TrackHelper`` you will need to pass ``Tracker`` instance. The way of getting correct ``Tracker`` instance depends on configuration option (see section above):
+For tracking each event with ``TrackHelper``, you will need to pass ``Tracker`` instance. The way of getting the correct ``Tracker`` instance depends on the configuration option (see section above):
 
 1) Your Android ``Application`` class extend ``PiwikApplication`` class
 ```java
@@ -80,7 +80,7 @@ In further examples we will assume usage of the first option.
 ### Tracking screen views
 *Requires Analytics*
 
-During a valid tracking session, you can track screen views which represent content the user is viewing in the application. To send a visit on the screen, set the screen path and title on the tracker. This path is internally translated by the SDK to an HTTP URL as Piwik PRO server uses URLs for tracking views. Additionally, Piwik PRO SDK uses prefixes which are inserted in generated URL for various type of actions. For tracking screen views it will use prefix _screen_ by default however automatic prefixing can be disabled with ``tracker.setPrefixing(false)`` option.
+During a valid tracking session, you can track screen views which represent the content the user is viewing in the application. To send a visit on the screen, set the screen path and title on the tracker. This path is internally translated by the SDK to an HTTP URL as the Piwik PRO server uses URLs for tracking views. Additionally, Piwik PRO SDK uses prefixes which are inserted in a generated URL for various types of action(s). For tracking screen views it will use a prefix _screen_ by default, however, automatic prefixing can be disabled with the ``tracker.setPrefixing(false)`` option.
 
 ```java
 public class YourActivity extends Activity {
@@ -93,11 +93,11 @@ public class YourActivity extends Activity {
 }
 
 ```
-* A path (required) – each screen should be mapped to URL path
+* A path (required) – each screen should be mapped to the URL path
 
-* A title (optional) – title of the action being tracked. It is possible to use slashes / to set one or several categories for this action.
+* A title (optional) – the title of the action being tracked. It is possible to use slashes (`/`) to set one or several categories for this action.
 
-To automatically use the activity-stack as path and activity title as name use overloaded screen method:
+To automatically use the activity-stack as a path and activity title as a name, use the overloaded screen method:
 ```java
 public class YourActivity extends Activity {
    ...
@@ -107,7 +107,7 @@ public class YourActivity extends Activity {
 ```
 * An activity (required) – current instance of android ``Activity`` class.
 
-In order to bind tracker to your applications use ``screens`` method. This method will automatically track all open application activities(views) keeping activity-stack as path and activity title as name:
+In order to bind the tracker to your applications, use the ``screens`` method. This method will automatically track all open application activities(views) keeping the activity-stack as a path and activity title as the name:
 
 ```java
 TrackHelper.track().screens(getApplication()).with(tracker);
@@ -116,20 +116,20 @@ TrackHelper.track().screens(getApplication()).with(tracker);
 ### Tracking events
 *Requires Analytics*
 
-To collect data about user's interaction with interactive components of your app, like button presses or the use of a particular item in a game use ``event`` method. More about [events](https://helpcenter-piwik-pro.intercom.help/user-guides/action-reports/actions-reports-events) and [ultimate guide to event tracking](https://piwik.pro/blog/event-tracking-ultimate-guide/).
+To collect data about the user's interaction with the interactive components of your app, like button presses or the use of a particular item in a game use ``event`` method. More about [events](https://helpcenter-piwik-pro.intercom.help/user-guides/action-reports/actions-reports-events) and [ultimate guide to event tracking](https://piwik.pro/blog/event-tracking-ultimate-guide/).
 
 ```java
 TrackHelper.track().event("category", "action").path("/main/actionScreen").name("label").value(1000f).with(tracker);
 ```
-The ``track`` method allows to specify next parameters:
+The ``track`` method allows the specification of the following parameters:
 
-* A category (required) – this String defines the event category. You might define event categories based on the class of user actions, like clicks or gestures or voice commands, or you might define them based upon the features available in your application (play, pause, fast forward, etc.).
+* A category (required) – this String defines the event category. You might define event categories based on the class of user actions such as clicks or gestures or voice commands, or you may define them based on the features available in your application (play, pause, fast forward, etc.).
 
-* An action (required) – this String defines the specific event action within the category specified. In the example, we are basically saying that the category of the event is user clicks, and the action is a button click.
+* An action (required) – this String defines the specific event action within the category specified. In the example, we are effectively saying that the category of the event is user clicks, and the action is a button click.
 
-* A name (optional) – this String defines a label associated with the event. For example, if you have multiple Button controls on a screen, you might use the label to specify the specific View control identifier that was clicked.
+* A name (optional) – this String defines a label associated with the event. For example, if you have multiple button controls on a screen, you may use the label to specify the specific view control identifier that was clicked.
 
-* A value (optional) – this Float defines a numeric value associated with the event. For example, if you were tracking "Buy" button clicks, you might log the number of items being purchased, or their total cost.
+* A value (optional) – this Float defines a numerical value associated with the event. For example, if you were tracking "Buy" button clicks, you may log the number of items being purchased or their total cost.
 
 * A path (optional) – the path under which this event occurred.
 
@@ -137,9 +137,9 @@ The ``track`` method allows to specify next parameters:
 ### Tracking exceptions
 *Requires Analytics*
 
-Caught exceptions are errors in your app for which you've defined exception handling code, such as the occasional timeout of a network connection during a request for data. Exceptions are tracked on the server in a similar way as screen views however action internally generated for exceptions always use _fatal_ or _caught_ prefix, and additionally _exception_ prefix if ``tracker.isPrefixing()`` option is enabled(true). The URL corresponds to exception stack trace, including package name, activity path, method name and line number where crash occurred. Keep in mind Piwik is not a crash tracker, use this sparingly.
+Caught exceptions are errors in your app for which you've defined an exception handling code, such as the occasional timeout of a network connection during a request for data. Exceptions are tracked on the server in a similar way as screen views, however, action internally generated for exceptions always use the _fatal_ or _caught_ prefix, and additionally the _exception_ prefix if ``tracker.isPrefixing()`` this particular option is enabled(true). The URL corresponds to exception stack trace, including the package name, activity path, method name and line number where crash occurred. Bear in mind that Piwik is not a crash tracker therefore use this sparingly.
 
-Measure a caught exception by setting the exception field values on the tracker and sending the hit, as in this example:
+Measure a caught exception by setting the exception field values on the tracker and sending the hit, as with this example:
 
 ```java
 try {
@@ -158,7 +158,7 @@ try {
 ### Tracking social interactions
 *Requires Analytics*
 
-Social interactions such as likes, shares and comments in various social networks can be tracked as below. This again is tracked in a similar way as screen views but _social_ prefix is used when default ``tracker.isPrefixing()`` option is enabled.
+Social interactions such as likes, shares and comments in various social networks can be tracked as below. This, again, is tracked in a similar way as with screen views but the _social_ prefix is used when the default ``tracker.isPrefixing()`` option is enabled.
 
 ```java
  TrackHelper.track().socialInteraction("Like", "Facebook").target("Game").with(tracker);
@@ -169,19 +169,19 @@ Social interactions such as likes, shares and comments in various social network
 
 * A target (optional) – the target for which this interaction occurred, e.g. "My Piwik PRO app".
 
-The URL corresponds to String, which includes network, interaction and target parameters separated by slash.
+The URL corresponds to String, which includes the network, interaction and target parameters separated by slash.
 
 ### Tracking downloads and app installs
 *Requires Analytics*
 
-You can track installations and downloads initiated by your application. This only triggers an event once per app version unless you force it. It is recommended to track application install in Android ``Application`` class:
+You can track the installations and downloads initiated by your application. This only triggers an event once per app version unless you force it. It is recommended to track application install in the Android ``Application`` class:
 
 ```java
     TrackHelper.track().download().identifier(new DownloadTracker.Extra.ApkChecksum(this)).with(getTracker());
 ```
-That will use package name, version and MD5 app checksum as identifier, e.g. ``com.piwikpro.demo:12/7B3DF8ED277BABEA6126C44E9AECEFEA``.
+That will use the package name, version and MD5 app checksum as an identifier, e.g. ``com.piwikpro.demo:12/7B3DF8ED277BABEA6126C44E9AECEFEA``.
 
-In case, if you need to specify more parameters create instance of ``DownloadTracker`` class explicitly:
+In case you need to specify more parameters, create the instance of the ``DownloadTracker`` class explicitly:
 
 ```java
         DownloadTracker downloadTracker = new DownloadTracker(getTracker());
@@ -203,24 +203,24 @@ In case, if you need to specify more parameters create instance of ``DownloadTra
 
 * isIntensiveWork() - return true if this should be run async and on a separate thread.
 
-* buildExtraIdentifier() - return a string that will be used as extra identifier or null.
+* buildExtraIdentifier() - return a String that will be used as extra identifier or null.
 
-On analytics panel all downloads can be viewed in corresponding section.
+On the analytics panel, all downloads can be viewed in the corresponding section.
 
 ### Tracking outlinks
 *Requires Analytics*
 
-For tracking outlinks to external websites or other apps opened from your application use ``outlink`` method:
+For tracking outlinks to external websites or other apps opened from your application use the ``outlink`` method:
 
 ```java
 TrackHelper.track().outlink(new URL("https://www.google.com")).with(getTracker());
 ```
-* An url (required) – defines the outlink target. HTTPS, HTTP and FTPare are valid.
+* A URL (required) – defines the outlink target. HTTPS, HTTP and FTPare are valid.
 
 ### Tracking search operations
 *Requires Analytics*
 
-Tracking search operations allow to measure popular keywords used for various search operations performed inside your application. It can be done via ``search`` method:
+Tracking search operations allow the measurement of popular keywords used for various search operations performed inside your application. It can be done via the ``search`` method:
 
 ```java
 TrackHelper.track().search("Space").category("Movies").count(3).with(getTracker());
@@ -234,35 +234,35 @@ TrackHelper.track().search("Space").category("Movies").count(3).with(getTracker(
 ### Tracking content impressions and interactions
 *Requires Analytics*
 
-You can track an impression of an ad in your application as below.
+You can track the pereceptions of an ad in your application as below.
 ```java
 TrackHelper.track().impression("Android content impression").piece("banner").target("https://www.dn.se/").with(getTracker());
 ```
 
 * A contentName (required) – the name of the content, e.g. "Ad Foo Bar".
 
-* A piece (optional) – the actual content. For instance the path to an image, video, audio, any text.
+* A piece (optional) – the actual content. For instance, the path to an image, video, audio or any text.
 
 * A target (optional) – the target of the content. For instance the URL of a landing page.
 
 ### Tracking goals
 *Requires Analytics*
 
-By default, Goals are defined as "matching" parts of the screen path or screen title. If you want to trigger a conversion manually or track some user interaction call the method ``goal``. Read more about what is a [Goal in Piwik PRO](https://helpcenter-piwik-pro.intercom.help/analytics/reports-and-data-analysis/goal-tracking).
+By default, goals are defined as "matching" parts of the screen path or screen title. If you want to trigger a conversion manually or track some user interaction, call the method ``goal``. Read further about what a goal is in [Goal in Piwik PRO](https://helpcenter-piwik-pro.intercom.help/analytics/reports-and-data-analysis/goal-tracking).
 
 ```java
 TrackHelper.track().goal(1).revenue(revenue).with(tracker)
 ```
-* A goal (required) – tracking request will trigger a conversion for the goal of the website being tracked with this ID.
+* A goal (required) – a tracking request will trigger a conversion for the goal of the website being tracked with this ID.
 
-* A revenue (optional) – a monetary value that was generated as revenue by this goal conversion.
+* Revenue (optional) – a monetary value that has been generated as revenue by goal conversion.
 
-Create, view or manage goals is available on Analytics tab, "Goals" left menu, "Manage goals" section.
+Create, view or manage goals is available in the Analytics tab, "Goals" left menu, "Manage goals" section.
 
 ### Tracking ecommerce transactions
 *Requires Analytics*
 
-Piwik provides [ecommerce analytics](https://piwik.org/docs/ecommerce-analytics/) that let you measure items added to carts, and learn detailed metrics about abandoned carts and purchased orders. To track an Ecommerce order use ``order`` method:
+Piwik provides [e-commerce analytics](https://piwik.org/docs/ecommerce-analytics/) that let you measure items added to carts, and learn detailed metrics about abandoned carts and purchased orders. To track an e-commerce order, use the ``order`` method:
 
 ```java
 Tracker tracker = ((YourApplication) getApplication()).getTracker();
@@ -272,40 +272,40 @@ items.addItem(new EcommerceItems.Item("sku").name("product2").category("category
 
 TrackHelper.track().order("orderId",10000).subTotal(7000).tax(2000).shipping(1000).discount(0).items(items).with(tracker);
 ```
-* An orderId (required) – a unique string identifying the order
+* An Order ID (required) – a unique String identifying the order
 
-* A grandTotal (required) –  Total amount of the order, in cents
+* A Grand Total (required) –  Total amount of the order, in cents
 
-* A subTotal (optional) –  the subTotal (net price) for the order, in cents
+* A Subtotal (optional) –  the subTotal (net price) for the order, in cents
 
-* A tax (optional) –  the tax for the order, in cents
+* Tax (optional) –  the tax for the order, in cents
 
-* A shipping (optional) –  the shipping for the order, in cents
+* Shipping (optional) –  the shipping for the order, in cents
 
-* A discount (optional) –  the discount for the order, in cents
+* Discount (optional) –  the discount for the order, in cents
 
-* Items (optional) –  the items included in the order, use ``EcommerceItems`` class to instantiate items
+* Items (optional) –  the items included in the order, use the ``EcommerceItems`` class to instantiate items
 
 
 ### Tracking campaigns
 *Requires Analytics*
 
-Tracking [campaigns](https://helpcenter-piwik-pro.intercom.help/user-guides/referrers-reports/referrers-reports-campaigns) urls configured with online *Campaign URL Builder tool* allow you to measure how different campaigns (for example with Facebook ads or direct emails) bring traffic to your application. You can track those urls from application via ``campaign`` method:
+Tracking [campaigns](https://helpcenter-piwik-pro.intercom.help/user-guides/referrers-reports/referrers-reports-campaigns) URLs configured with the online *Campaign URL Builder tool*, allow you to measure how different campaigns (for example with Facebook ads or direct emails) bring traffic to your application. You can track these URLs from the application via the ``campaign`` method:
 
 ```java
 TrackHelper.track().campaign(new URL("http://example.org/offer.html?_rcn=Email-SummerDeals&_rck=LearnMore")).with(getTracker());
 ```
 
-* An URL (required) – the campaign URL. HTTPS, HTTP and FTP are valid, URL must contain campaign name and keyword parameters.
+* A URL (required) – the campaign URL. HTTPS, HTTP and FTP are valid, however, the URL must contain campaign name and keyword parameters.
 
 ### Tracking custom variables
 *Requires Analytics*
 
-A [custom variable](https://helpcenter-piwik-pro.intercom.help/user-guides/visitors-reports/visitors-reports-custom-variables) is a custom name-value pair that you can assign to your users or screen views, and then visualize the reports of how many visits, conversions, etc. for each custom variable. A custom variable is defined by a name — for example, "User status" — and a value – for example, "LoggedIn" or "Anonymous". It’s required for names and values to be encoded in UTF-8.
+A [custom variable](https://helpcenter-piwik-pro.intercom.help/user-guides/visitors-reports/visitors-reports-custom-variables) is a custom name-value pair that you can assign to your users or screen views, and then visualize the reports of how many visits, conversions, etc. for each custom variable. A custom variable is defined by a name — for example, "User status" — and a value – for example, "LoggedIn" or "Anonymous". It is required for names and values to be encoded in UTF-8.
 
-Each custom variable has a scope. There are two types of custom variables scope - _visit scope_ and _screen scope_. Visit scope can be used for any tracking action, and screen scope can be applied only for tracking screen views.
+Each custom variable has a scope. There are two types of custom variables scope - _visit scope_ and _screen scope_. The visit scope can be used for any tracking action, and the screen scope can only be applied to tracking screen views.
 
-To set custom variable of screen scope use ``variable`` method in tracking chain:
+To set the custom variable of the screen scope, use the ``variable`` method in the tracking chain:
 
 ```java
 TrackHelper.track()
@@ -315,7 +315,7 @@ TrackHelper.track()
        .variable(2, "language", "en")
        .with(getTracker());
 ```
-To use custom variable of visit scope use ``visitVariables`` method in tracking chain:
+To use the custom variable of the visit scope, use the ``visitVariables`` method in the tracking chain:
 
 ```java
 TrackHelper.track()
@@ -324,20 +324,20 @@ TrackHelper.track()
        .event("category", "action")
        .with(tracker);
 ```
-Please note, that [Default custom variables](#default-custom-variables) option use custom variables of visit scope with indexes 1-3.
+Please note that for the [Default custom variables](#default-custom-variables) option, use the custom variables of the visit scope with indexes 1-3.
 
 Custom variable is defined by three parameters:
 
-* An index (required) – a given custom variable name must always be stored in the same "index" per session. For example, if you choose to store the variable name = "Gender" in index = 1 and you record another custom variable in index = 1, then the "Gender" variable will be deleted and replaced with the new custom variable stored in index 1.
+* An index (required) – a given custom variable name must always be stored in the same "index" per session. For example, if you choose to store the variable name = "Gender" in index = 1 and you record another custom variable in index = 1, then the "Gender" variable will be deleted and replaced with a new custom variable stored in index 1.
 
-* A name (required) – this String defines the name of a specific Custom Variable such as "User type". Limited to 200 characters.
+* A name (required) – this String defines the name of a specific Custom Variable such as "User type" (Limited to 200 characters).
 
-* A value (required) – this String defines the value of a specific Custom Variable such as "Customer". Limited to 200 characters.
+* A value (required) – this String defines the value of a specific Custom Variable such as "Customer" (Limited to 200 characters).
 
 ### Tracking custom dimensions
 *Requires Analytics*
 
-To track a custom name-value pair assigned to your users or screen views use [Custom Dimensions](https://helpcenter-piwik-pro.intercom.help/analytics/custom-dimensions). Note that the custom value data is not sent by itself, but only with other tracking actions such as screen views, events or other tracking action:
+To track a custom name-value pair assigned to your users or screen views, use [Custom Dimensions](https://helpcenter-piwik-pro.intercom.help/analytics/custom-dimensions). Note that the custom value data is not sent by itself, but only with other tracking actions such as screen views, events or other tracking action:
 
 ```java
 TrackHelper.track()
@@ -347,7 +347,7 @@ TrackHelper.track()
        .with(tracker);
 ```
 
-``1`` and ``2`` are our dimension slots and ``visit``, ``dashboard`` are the dimension values for tracked screen view.
+``1`` and ``2`` are our dimension slots and ``visit``, ``dashboard`` are the dimension values for the tracked screen view.
 
 ```java
 TrackHelper.track()
@@ -356,12 +356,12 @@ TrackHelper.track()
        .event("category", "action")
        .with(tracker);
 ```
-``1`` and ``2`` are our dimension slots and ``visit``, ``billing`` are the dimension values for tracked event.
+``1`` and ``2`` are our dimension slots and ``visit``, ``billing`` are the dimension values for the tracked event.
 
 ### Tracking user profile attributes
 *Requires Audience Manager*
 
-Audience Manager stores visitors profiles which have the data from variety of sources. One of them can be a mobile application. It is possible to enrich profiles with more attributes by passing any key-value pair like gender-male, favourite_food-italian etc. It is recommended to set additional user identifiers like [email](#user-email-address) or [User ID](#user-id). That will allow enriching existing profiles or merging profiles rather than creating a new profile. For example if the user visited the website, did some actions, filled in a form with his email (his data was tracked and profile created in Audience Manager) and afterward started using a mobile application, the existing profile will be enriched only if the email was set. Otherwise the new profile will be created.
+The Audience Manager stores visitors profiles which have data from a variety of sources. One of them can be a mobile application. It is possible to enrich the profiles with more attributes by passing any key-value pair e.g. gender: male, favourite food: Italian, etc. It is recommended to set additional user identifiers such as [email](#user-email-address) or [User ID](#user-id) which will allow the enrichment of existing profiles or merging of profiles rather than creating a new profile. For example, if the user visited the website, performed some actions, filled in a form with his email (his data was tracked and profile created in Audience Manager) and afterwards started using a mobile application, the existing profile will be enriched only if the email was set. Otherwise, a new profile will be created.
 
 For sending profile attributes use ``audienceManagerSetProfileAttribute`` method:
 
@@ -371,33 +371,33 @@ getTracker().setUserMail("john@doe.com");
 TrackHelper.track().audienceManagerSetProfileAttribute("food", "pizza").add("color", "green").with(getTracker());
 ```
 
-* A name (required) – defines profile attribute name (non-null string).
+* A name (required) – defines the profile attribute name (non-null string).
 
-* A value (required) – defines profile attribute value (non null string).
+* A value (required) – defines the profile attribute value (non null string).
 
 * An ``add`` (chain method) – used to specify more attributes to the user within the same event.
 
-Besides attributes, each event also sends parameters, that are retrieved from tracker instance:
+Aside from attributes, each event also sends parameters which are retrieved from the tracker instance:
 * WEBSITE_ID - always sent,
-* USER_ID - if it's set. [Read more](#user-id) about the User ID,
-* EMAIL - if it's set. [Read more](#user-email-address) about the email,
+* USER_ID - if it is set. [Read more](#user-id) about the User ID,
+* EMAIL - if it is set. [Read more](#user-email-address) about the email,
 * VISITOR_ID - always sent, ID of the mobile application user, generated by SDK
-* DEVICE_ID - an [Advertising ID](https://support.google.com/googleplay/android-developer/answer/6048248?hl=en) that by default is fetched automatically when tracker instance is created.
-To turn off automatic fetch, use ``setTrackDeviceId(boolean isTracked)`` method:
+* DEVICE_ID - an [Advertising ID](https://support.google.com/googleplay/android-developer/answer/6048248?hl=en) that, by default, is fetched automatically when the tracker instance is created.
+To turn off automatic fetch, use the ``setTrackDeviceId(boolean isTracked)`` method:
 
 ```java
 getTracker().setTrackDeviceId(false);
 ```
 
-Profile attributes for the user that are tracked will be shown on Audience Manager - Profile Browser tab.
+Profile attributes for the user that are tracked will be shown on the Audience Manager - Profile Browser tab.
 
-Audience manager events are dispatched together with analytics events. So settings that are set in the tracker for analytics events processing (dispatch interval, cache size and age, etc.) will be same for audience manager events. Once the audience manager event is dispatched, it is not stored locally anymore.
+Audience manager events are dispatched together with analytics events. Therefore, settings set in the tracker for analytics events processing (dispatch interval, cache size and age, etc.) will be same for audience manager events. Once the audience manager event is dispatched, it is no longer stored locally.
 
 
 ### Reading user profile attributes
 *Requires Audience Manager*
 
-It is possible to read attributes of a given profile, with some limitations though. Because of security reasons to avoid personal data leakage, it is possible to read only attributes that were enabled for API access (whitelisted) in Attributes section in Audience Manager. To get user profile attributes use ``audienceManagerGetProfileAttributes`` method:
+It is possible to read the attributes of a given profile, however, with some limitations. Due to security reasons (to avoid personal data leakage), it is possible to read only attributes that were enabled for API access (whitelisted) in the Attributes section in Audience Manager. To get user profile attributes use the ``audienceManagerGetProfileAttributes`` method:
 
 ```java
         getTracker().audienceManagerGetProfileAttributes(new Tracker.OnGetProfileAttributes() {
@@ -416,14 +416,14 @@ It is possible to read attributes of a given profile, with some limitations thou
 
 * An OnGetProfileAttributes (required) – callback to handle request result (call is asynchronous), has two methods ``void onAttributesReceived(Map<String, String> attributes)`` and ``void onError(String errorData)``.
 
-* An attributes (output) – dictionary of key-value pairs, where each pair represent attribute name(key) and value.
+* An attributes (output) – dictionary of key-value pairs, where each pair represents the attribute name (key) and value.
 
-* An errorData (output) – in case of error only this method will be called. The method passes the error string.
+* An errorData (output) – in case of error, only this method will be called. The method passes the error string.
 
 ### Checking audience membership
 *Requires Audience Manager*
 
-Audiences allow to check if user belongs to a specific group of users defined in the data manger panel based on analytics data and audience manager profile attributes. You can check if user belongs to a given audience for example to display him some special offer. To check it use ``checkAudienceMembership`` method:
+Audiences are allowed to check whether or not the user belongs to a specific group of users defined in the data manger panel based on analytics data and audience manager profile attributes. You can check if the user belongs to a given audience, for example, to show a special offer. To check it, use the ``checkAudienceMembership`` method:
 
 ```java
 getTracker().checkAudienceMembership(audienceId, new Tracker.OnCheckAudienceMembership() {
@@ -442,44 +442,44 @@ getTracker().checkAudienceMembership(audienceId, new Tracker.OnCheckAudienceMemb
 
 * An OnCheckAudienceMembership (required) – callback to handle request result (call is asynchronous), has two methods ``void onChecked(boolean isMember)`` and ``void onError(String errorData)``
 
-* An isMember (output) – boolean value that indicates if user belongs to audience with given ID
+* An isMember (output) – a boolean value that indicates if user belongs to audience with given ID
 
-* An errorData (output) – in case of error only this method will be called. The method passes the error string.
+* An errorData (output) – in case of error, only this method will be called. The method passes the error string.
 
 
 ## Advanced usage
 
 ### User ID
 
-UserID will allow associating events from various sources to the same user. Each time a new visitor enters your page, Piwik PRO assigns a cookie to him containing a random string of characters. The purpose of this cookie is for Piwik PRO to be able to recognize the same visitor whenever he visits your website again. However, instead of a random string, you can set your visitors with your own human-friendly name (ex. visitor email). More about [UserID](https://helpcenter-piwik-pro.intercom.help/tag-manager/manage-and-configure-tag-manager/userid). In order to set UserId use ``setUserId`` method:
+UserID will allow the association of events from various sources to the same user. Each time a new visitor enters your page, Piwik PRO assigns a cookie containing a random string of characters. The purpose of this cookie is for Piwik PRO to be able to recognize the same visitor whenever the website is visited again. However, instead of a random string, you can assign your visitors with your own human-friendly name (ex. visitor email). More about [UserID](https://helpcenter-piwik-pro.intercom.help/tag-manager/manage-and-configure-tag-manager/userid). In order to set UserID, use the ``setUserId`` method:
 
 ```java
 getTracker().setUserId("John Doe");
 ```
-* A userId (required) – any non-empty unique string identifying the user. Passing null will delete the current userID
+* A UserID (required) – any non-empty unique string identifying the user. Passing null will delete the current UserID
 
 ### User email address
 *Used only by Audience Manager*
 
-The user email address is an optional parameter for user identification. Similarly to userID, it allows associating events from various sources to the same user. To set user email use ``setUserMail`` method:
+The user email address is an optional parameter for user identification. Similar to UserID, it allows the association of events from various sources to the same user. To set user email use the ``setUserMail`` method:
 
 ```java
 getTracker().setUserMail("john@doe.com");
 ```
 * A userMail (required) – any non-null string representing email address
 
-Setting an email helps Audience Manager to enrich existing profiles or merge profiles with those comming from other sources (if they also have an email). Check [Tracking user profile attributes](#tracking-user-profile-attributes) for more information.
+Setting up an email helps the Audience Manager to enrich existing profiles or merge profiles with which come from other sources (if they also have an email). Check [Tracking user profile attributes](#tracking-user-profile-attributes) for more information.
 
 ### Visitor ID
 
-To track user sessions on difference source VisitorID parameter is used. VisitorID is randomly generated when tracker instance is created, and stored between application launches. Also, it is possible to reset VisitorID manually:
+To track user sessions on difference sources, the VisitorID parameter is used. VisitorID is randomly generated when the tracker instance is created, and stored between application launches. It is also possible to reset the VisitorID manually:
 
 ```java
 tracker.setVisitorId("0123456789abcdef");
 ```
-* A visitorID (required) – unique visitor ID, must be 16 characters hexadecimal string.
+* A VisitorID (required) – unique visitor ID, must be 16 characters hexadecimal string.
 
-Every unique visitor must be assigned a different ID and this ID must not change after it is assigned. We recommend using userID instead of VisitorID.
+Every unique visitor must be assigned a different ID and this ID must not change after it is assigned. We recommend using UserID instead of VisitorID.
 
 ### Sessions
 
@@ -498,7 +498,7 @@ tracker.startNewSession();
 
 ### Dispatching
 
-The tracker, by default, will dispatch any pending events every 30 seconds. If 0 is used, any event will be dispatched immediately. If a negative value is used the dispatch timer will never run, a manual dispatch must be used:
+The tracker, by default, will dispatch any pending events every 30 seconds. If a 0 is used, any event will be dispatched immediately. If a negative value is used, the dispatch timer will never run and a manual dispatch must be used:
 
 ```java
     Tracker tracker = ((YourApplication) getApplication()).getTracker();
@@ -513,7 +513,7 @@ The tracker, by default, will dispatch any pending events every 30 seconds. If 0
     }
 ```
 
-When there is more than one event in the queue, dispatch is done using a POST request with JSON data (Bulktracking). JSON data may be gzipped before being dispatched. This may be set at app init time as follows:
+When there is more than one event in the queue, the dispatch is done using a POST request with JSON data (Bulktracking). JSON data may be gzipped before being dispatched. This may be set at an app init time as follows:
 
 ```java
     private void initPiwik() {
@@ -526,7 +526,7 @@ When there is more than one event in the queue, dispatch is done using a POST re
     }
 ```
 
-This feature must also be set on server-side using mod_deflate/APACHE or lua_zlib/NGINX
+This feature must also be set on the server-side using mod_deflate/APACHE or lua_zlib/NGINX
 ([lua_zlib](https://github.com/brimworks/lua-zlib) - [lua-nginx-module](https://github.com/openresty/lua-nginx-module/) - [inflate.lua samples](https://gist.github.com/davidcaste/05b2f9461ebe4a3bb3fc) - [inflate.lua simplified Piwik sample](https://github.com/piwik/piwik-sdk-android/pull/123)).
 
 
@@ -534,7 +534,7 @@ This feature must also be set on server-side using mod_deflate/APACHE or lua_zli
 
 You should be able to use all common actions through the TrackHelper utility, but in some instances, you may want full control over what is sent to the server.
 
-The base method for any event is ``track``.You can create your own `TrackMe` objects, set the parameters and then send it:
+The base method for any event is ``track``. You can create your own `TrackMe` objects, set the parameters and then send it:
 
 ```java
 TrackMe trackMe = new TrackMe()
@@ -547,36 +547,36 @@ tracker.track(trackMe);
 ### Default custom variables
 
 SDK can automatically add information about the platform version, OS version and app version in custom variables with indexes 1-3. By default, this option is turned on.
-These behaviour can be changed via ``setIncludeDefaultCustomVars`` method:
+This can be changed via the ``setIncludeDefaultCustomVars`` method:
 
 ```java
 getTracker().setIncludeDefaultCustomVars(false);
 ```
-In case if you need to configure custom variables separately turn of this option and see section above about tracking custom variables.
+In case you need to configure custom variables separately, turn of this option and see the section above regarding tracking custom variables.
 
 ### Local storage limits
 
 You can set limits for storing events related to maximum size and time for which events are saved in local storage as below. Events older than the set limit will be discarded on the next dispatch attempt. The Piwik backend accepts backdated events for up to 24 hours by default.
 
-To change offline cache age use ``setOfflineCacheAge`` method:
+To change offline cache age use the ``setOfflineCacheAge`` method:
 
 ```java
 tracker.setOfflineCacheAge(80085);
 ```
 * A limit (required) – time in ms after which events are deleted, 0 = unlimited, -1 = disabled offline cache.
-By default limit is set to 24 * 60 * 60 * 1000 ms = 24 hours.
+By default, the limit is set to 24 * 60 * 60 * 1000 ms = 24 hours.
 
-You can also specify how large the offline cache may be. If the limit is reached the oldest files will be deleted first. To change offline cache size use ``setOfflineCacheSize`` method:
+You can also specify how large the offline cache may be. If the limit is reached, the oldest files will be deleted first. To change offline cache size use the ``setOfflineCacheSize`` method:
 
 ```java
 tracker.setOfflineCacheSize(16 * 1000 * 1000);
 ```
 * A limit (required) – size in bytes after which events are deleted, 0 = unlimited.
-By default limit is set to 4 * 1024 * 1024 bytes = 4 Mb.
+By default, the limit is set to 4 * 1024 * 1024 bytes = 4 Mb.
 
 ### Opt out
 
-You can enable an app-level opt-out flag that will disable Piwik PRO tracking across the entire app. Note that this flag must be set each time the app starts up and will default to false. To set the app-level opt-out, use:
+You can enable an app-level opt-out flag that will disable Piwik PRO tracking across the entire app. Note that this flag must be set each time the app starts up and will default to ``false``. To set the app-level opt-out, use:
 
 ```java
 getTracker().setOptOut(true);
@@ -584,7 +584,7 @@ getTracker().setOptOut(true);
 
 ### Dry run
 
-The SDK provides a dryRun flag that when set, prevents any data from being sent to Piwik. The dryRun flag should be set whenever you are testing or debugging an implementation and do not want test data to appear in your Piwik reports. To set the dry run flag, use:
+The SDK provides a dryRun flag that, when set, prevents any data from being sent to Piwik. The dryRun flag should be set whenever you are testing or debugging an implementation and do not want test data to appear in your Piwik reports. To set the dry run flag, use:
 
 ```java
 getTracker().setDryRunTarget(Collections.synchronizedList(new ArrayList<Packet>()));
