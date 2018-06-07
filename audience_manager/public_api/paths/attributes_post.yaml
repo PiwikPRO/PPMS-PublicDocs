@@ -5,7 +5,7 @@ post:
   description: |
     Creates or updates user custom attributes.
 
-    Any attribute can be updated this way whenever it is on attribute whitelist or not.
+    Any attribute can be updated this way whether it is on the attribute whitelist or not.
 
     You can send data in batches - multiple profiles in one request and multiple attributes in the profile. All of the
     data in one batch request should be related to websites that belong to the same organization.

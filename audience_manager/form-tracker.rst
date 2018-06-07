@@ -7,8 +7,8 @@ Form Tracker gathers data submitted via forms on your page and sends it to the A
 :term:`attributes<attribute>`.
 
 .. note::
-    Creates or updates :term:`user` :term:`custom attribute` for each field in the form. :term:`Attribute` name is taken
-    from ``<input>`` or ``<textarea>`` tag ``name`` attribute. Form elements without ``name`` attribute are not tracked.
+    Creates or updates :term:`user` :term:`custom attributes<custom attribute>` for each field in the form.
+    The :term:`attribute` name is generated from input tag (``name`` attribute). Inputs without a name are not tracked.
 
 Supported browsers
 ------------------
@@ -18,8 +18,8 @@ All modern browsers: Chrome, Firefox, Safari, Edge. Internet Explorer from versi
 
 Private information
 -------------------
-Form Tracker is trying to automatically detect fields containing :term:`user` private information and ignores them.
-Following data is never sent to Audience Manager:
+Form Tracker is trying to automatically detect fields containing :term:`user's<user>` private information and ignores them.
+The following data is never sent to the Audience Manager:
 
 .. todo:: Check what is legal term for ignored information's.
 
@@ -29,25 +29,25 @@ Following data is never sent to Audience Manager:
 - Data from ignored fields (see :ref:`AM-FT-optional-configuration`).
 
 .. note::
-    Heuristic detection makes best effort to automatically detect and ignore mentioned field types, but it doesn't
-    guarantee success. Additionally payment forms usually contain more fields with private information (e.g. address)
-    so it's recommended to ignore such forms using :ref:`AM-FT-optional-configuration`.
+    Heuristic detection makes best effort to automatically detect and ignore the aforementioned fields, but it does not
+    guarantee success. Additionally, payment forms usually contain more fields with private information (e.g. address)
+    so it is recommended to ignore such forms using the :ref:`AM-FT-optional-configuration`.
 
 Installation
 ------------
-This section describes how to install Form Tracker client code on your page.
+This section describes how to install the Form Tracker client code on your page.
 
 Using Tag Manager
 `````````````````
-`Form Tracker tag template <https://help.piwik.pro/audience-manager/capturing-data-forms/>`_ is recommended way to
+`The Form Tracker tag template <https://help.piwik.pro/audience-manager/capturing-data-forms/>`_ is the recommended way to
 install Form Tracker using PPMS stack.
 
 Manual installation
 ```````````````````
-Add following snippet on your page to start using Form Tracker.
+Add the following snippet on your page to start using Form Tracker.
 
 This code should be added near the top of the ``<head>`` tag and before any other script or CSS tags. Additionally
-snippet has to be configured this way:
+the snippet has to be configured this way:
 
 - String ``XXX-XXX-XXX-XXX-XXX`` should be replaced with :term:`app ID` (e.g. ``efcd98a5-335b-48b0-ab17-bf43f1c542be``).
 - String ``ppms.example.com`` should be replaced with your PPMS domain name (please note that it's used in 3 places in
@@ -65,37 +65,37 @@ snippet has to be configured this way:
     </script>
 
 .. note::
-    Usually it's recommended to use **HTTPS** protocol in URLs mentioned here, but if support for **legacy IE browsers**
-    (8 and 9) is required and some pages containing forms are served via **HTTP** protocol - it's necessary to use same
-    protocol in snippet URLs as the source page. Easiest way to do that would be to remove protocol from ``TrackerUrl``
+    Usually it is recommended to use the **HTTPS** protocol in the URLs mentioned here, but if support for **legacy IE browsers**
+    (8 and 9) is required and some pages containing forms are served via **HTTP** protocol - it is necessary to use the same
+    protocol in snippet URLs as the source page. The easiest way to do that would be to remove the protocol from ``TrackerUrl``
     and ``StaticUrl`` (e.g. ``//ppms.example.com/audiences/tracker/``).
 
 .. todo::
     Update form tracker API to make it similar to AM JS API and simplify setup process to 2 parameters without
     protocol magic.
 
-This code initializes Form Tracker interface in following ways:
+This code initializes the Form Tracker interface in the following ways:
 
     #. Creates a ``<script>`` tag that asynchronously loads Audience Manager Form Tracker library.
     #. Initializes global ``ppms.am.form`` command queue that schedules commands to be run when Form Tracker library is
        loaded.
     #. Schedules basic configuration of Form Tracker ``ppms.am.form``.
 
-When loading snippet is added on the page without any further configuration, Form Tracker will gather information from
-all submitted forms. It's possible to modify this behavior by configuring optional rules at the end of loading snippet.
-You can do that by using command queue (``ppms.am.form``) immediately after step 3 (see
+When the loading snippet is added on the page without any :ref:`AM-FT-optional-configuration`, the Form Tracker will gather information from
+all forms submitted on the page. It is possible to modify this behavior by configuring optional rules at the end of the snippet.
+You can do that by using the command queue (``ppms.am.form``) immediately after step 3 (see
 :ref:`AM-FT-optional-configuration`).
 
 Command queue
 -------------
-Loading snippet creates following global function:
+The loading snippet creates the following global function:
 
 .. function:: ppms.am.form(command, ...args)
 
     Audience Manager Form Tracker command queue.
 
     :param string command: Command name.
-    :param args: Command arguments. Number of arguments and their function depend on command.
+    :param args: Command arguments. The number of arguments and their function depend on command.
     :returns: Commands are expected to be run asynchronously and return no value.
     :rtype: undefined
 
@@ -103,13 +103,13 @@ Loading snippet creates following global function:
 
 Optional configuration
 ----------------------
-These commands allow to limit scope of forms watched by the Form Tracker.
+These commands allow you to limit the scope of forms watched by the Form Tracker.
 
 Ignore form
 ```````````
-You can force Form Tracker to ignore selected form as a whole or specific fields in it. Form Tracker won't gather any
-data from fields of a form specified this way. You can ignore multiple forms by configuring ignore rule multiple times
-(for each form).
+You can force the Form Tracker to ignore the selected form as a whole or specific fields in it. The Form Tracker will not gather any
+data from fields of a form specified in this way. You can ignore multiple forms by configuring the ignore rule multiple times
+(separately for each form).
 
 Code::
 
@@ -126,7 +126,7 @@ Code::
 .. describe:: field_names
 
     **Optional** ``Array<string>`` List of ``name`` attributes of ignored ``<input>`` or ``<textarea>`` tags in the
-    ignored form. If this parameter isn't provided, all fields in the form will be ignored.
+    ignored form. If this parameter is not provided, all fields in the form will be ignored.
 
     Example::
 
@@ -135,10 +135,10 @@ Code::
     .. note:: If this parameter is empty array (``[]``) no field will be ignored.
 
 .. note::
-    This configuration may be called multiple times and it's effects will be cumulative:
+    This configuration may be called multiple times and its effects will be cumulative:
 
         - If calls specify different ``form_id`` - each form will be ignored accordingly.
         - If multiple calls specify same ``form_id``:
 
-            - If any of the calls ommit ``field_names`` parameter - whole form will be ignored.
-            - If all calls specify ``field_names`` - all fields specified accross all calls will be ignored.
+            - If any of the calls omit the ``field_names`` parameter - the whole form will be ignored.
+            - If all calls specify the ``field_names`` - all fields specified across all calls will be ignored.

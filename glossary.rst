@@ -15,7 +15,7 @@ Glossary
         Visitor on tracked :term:`application`.
 
     Analytics ID
-        ID assigned to :term:`user` by :term:`Analytics` for the duration of :term:`Analytics` session. It's stored in
+        ID assigned to :term:`user` by :term:`Analytics` for the duration of :term:`Analytics` session. It is stored in
         browser cookie.
 
     User ID
@@ -30,12 +30,12 @@ Glossary
         Unique :term:`user` ID (e.g. :term:`analytics ID`, :term:`user ID`, :term:`device ID` or email).
 
     Visit
-        Period of continuous :term:`user` activity on :term:`application`. It ends in following situations:
+        Period of continuous :term:`user` activity on :term:`application`. It ends in thr following situations:
 
             - after a period of inactivity (option set to 30 minutes by default)
             - at midnight (option enabled by default)
             - on campaign change (option enabled by default)
-            - when HTTP referer points to different website (option disabled by default)
+            - when HTTP referrer points to different website (option disabled by default)
 
     Audience
         Named set of :term:`attribute` conditions used to define a group of :term:`users<user>` matching them.
@@ -44,8 +44,10 @@ Glossary
         Named value assigned to :term:`user` profile.
 
     Attribute whitelist
-        List of :term:`user` :term:`attributes<attribute>` that are publicly available via Audience Manager get
-        :term:`attribute` API. To access these information's it's necessary to provide :term:`analytics ID`.
+        List of :term:`user` :term:`attributes<attribute>` that are publicly available via Audience Manager API.
+
+        .. note::
+            It is still necessary to identify the :term:`user` with his :term:`analytics ID` to access this information.
 
     PII
         Personally Identifiable Information.
@@ -56,7 +58,7 @@ Glossary
         `here <https://help.piwik.pro/audience-manager/data-sources/>`_.
 
         .. note::
-            If :term:`custom attribute` will use same name - it will be represented as separate :term:`attribute`.
+            If :term:`custom attribute` uses the same name - it will be represented as a separate :term:`attribute`.
 
     Custom attribute
         :term:`Attribute` generated from value provided by source other than :term:`Analytics` (e.g.
@@ -67,7 +69,7 @@ Glossary
             :term:`Custom attribute` will store only latest value provided by any custom source.
 
         .. note::
-            If :term:`analytics attribute` will use same name - it will be represented as separate :term:`attribute`.
+            If :term:`analytics attribute` uses the same name - it will be represented as a separate :term:`attribute`.
 
     Analytics
-        PPMS component gathering statistics about each :term:`user` of :term:`application` (previously **Piwik**).
+        PPMS component gathering statistics about each :term:`user` of the :term:`application` (previously **Piwik**).

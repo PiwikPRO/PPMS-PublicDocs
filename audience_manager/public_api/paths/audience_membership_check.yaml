@@ -4,9 +4,9 @@ get:
   summary:
     Check that user belongs to specific audience
   description: |
-    Checks if user belongs to specific audience.
+    Checks if the user belongs to specific audience.
 
-    Audience ID can be found in `Audience Manager` > `Audiences` tab. Then select an audience. It's ID is displayed in
+    Audience ID can be found in `Audience Manager` > `Audiences` tab. Then select an audience. Its ID is displayed in
     audience details (below the name).
   parameters:
   - $ref: '#/parameters/WebsiteId'

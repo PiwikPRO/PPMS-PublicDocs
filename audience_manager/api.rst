@@ -4,19 +4,21 @@
 JavaScript API
 ==============
 
-This API provides access to information about :term:`user` such as ID of :term:`audience` he is part of and his
-:term:`attributes<attribute>`. It also allows to update his :term:`attributes<attribute>`.
+This API provides access to information about :term:`users<user>` such as ID of :term:`audience` they are part of and their
+:term:`attributes<attribute>`. It also allows you to update their :term:`attributes<attribute>`.
 
 Loading snippet
 ---------------
-Add following snippet on your page to start using this API.
+Add the following snippet on your page to start using this API. It should be added just before the first API usage.
 
-This code should be added just before you want to use the API. Additionally snippet has to be configured this way:
+Configuration:
 
     - String ``XXX-XXX-XXX-XXX-XXX`` should be replaced with :term:`app ID` (e.g.
       ``efcd98a5-335b-48b0-ab17-bf43f1c542be``).
     - String ``ppms.example.com`` should be replaced with your PPMS domain name (please note that it's used in 2 places
       in the snippet).
+
+Code:
 
 .. code-block:: html
 
@@ -27,35 +29,35 @@ This code should be added just before you want to use the API. Additionally snip
         ppms.am.api("create", "XXX-XXX-XXX-XXX-XXX", "ppms.example.com");
     </script>
 
-This code initializes API interface in following ways:
+This code initializes the API interface in the following ways:
 
-    #. Creates a ``<script>`` tag that asynchronously loads Audience Manager API library.
-    #. Initializes global ``ppms.am.api`` command queue that schedules commands to be run when API library is loaded.
-    #. Schedules ``create`` command on ``ppms.am.api`` to initialize API object with basic PPMS configuration.
+    #. Creates a ``<script>`` tag that asynchronously loads the Audience Manager API library.
+    #. Initializes the global ``ppms.am.api`` command queue that schedules commands to be run when the API library is loaded.
+    #. Schedules ``create`` command on ``ppms.am.api`` to initialize the API object with a basic PPMS configuration.
 
 You can use the API command queue (``ppms.am.api``) immediately after step 3.
 
 Command queue
 -------------
-Loading snippet creates following global function:
+Executing the snippet creates the following global function:
 
 .. function:: ppms.am.api(command, ...args)
 
     Audience Manager API command queue.
 
     :param string command: Command name.
-    :param args: Command arguments. Number of arguments and their function depend on command.
+    :param args: Command arguments. The number of arguments and their function depend on command.
     :returns: Commands are expected to be run asynchronously and return no value.
     :rtype: undefined
 
 Commands
 --------
-All commands work in context of current :term:`user`. Additionally they require communication with PPMS server and are
-asynchronous. Callback functions are used to provide response value or information about error.
+All commands work in context of the current :term:`user`. Additionally they require communication with a PPMS server and are
+asynchronous. Callback functions are used to provide response value or information about errors.
 
 Get list of audiences user belongs to
 `````````````````````````````````````
-Gets list of :term:`audience` IDs :term:`user` belongs to.
+Fetches a list of :term:`audience` IDs the :term:`user` belongs to.
 
 Code::
 
@@ -63,9 +65,9 @@ Code::
 
 .. function:: onFulfilled(audience_list)
 
-    Function executed on success.
+    The fulfilment handler callback (called with result).
 
-    :param Array<string> audience_list: **Required** Array of :term:`audience` IDs :term:`user` belongs to.
+    :param Array<string> audience_list: **Required** Array of :term:`audience` IDs the :term:`user` belongs to.
 
         Example::
 
@@ -73,7 +75,7 @@ Code::
 
 .. function:: onRejected(error_code)
 
-    Function executed on error.
+    The rejection handler callback (called with error code).
 
     :param string error_code: **Required** Error code.
 
@@ -83,7 +85,7 @@ Code::
 
 Check user membership in the audience
 `````````````````````````````````````
-Checks if :term:`user` belongs to specific :term:`audience`.
+Checks if the :term:`user` belongs to the :term:`audience`.
 
 Code::
 
@@ -91,7 +93,7 @@ Code::
 
 .. describe:: audience_id
 
-    **Required** ``string`` ID of checked :term:`audience`.
+    **Required** ``string`` ID of the checked :term:`audience`.
 
     Example::
 
@@ -99,7 +101,7 @@ Code::
 
 .. function:: onFulfilled(in_audience)
 
-    Function executed on success.
+    The fulfilment handler callback (called with result).
 
     :param boolean in_audience: **Required** *True* when :term:`user` is part of the :term:`audience`, *false*
         otherwise.
@@ -110,7 +112,7 @@ Code::
 
 .. function:: onRejected(error_code)
 
-    Function executed on error.
+    The rejection handler callback (called with error code).
 
     :param string error_code: **Required** Error code.
 
@@ -120,13 +122,13 @@ Code::
 
 Get user attributes
 ```````````````````
-Gets :term:`user` profile :term:`attributes<attribute>`. :term:`User` has to be identified by :term:`analytics ID`.
+Fetches the :term:`user` profile :term:`attributes<attribute>`. The :term:`user` have to be identified by :term:`analytics ID`.
 
 .. note::
     In order to secure the :term:`PII` data, no :term:`attribute` is returned by default. You need to put each
-    :term:`attribute` you want to access on :term:`attribute whitelist` before it'll be returned by this command. In
+    :term:`attribute` you want to access on :term:`attribute whitelist` before it is returned by this command. In
     order to do that, go to `Audience Manager` > `Attributes` tab and `enable` :term:`attribute` for the public API
-    access. It's your responsibility to make sure no :term:`user` :term:`PII` data will be available via API.
+    access. It is your responsibility to make sure no :term:`user` :term:`PII` data will be available via API.
 
 .. todo::
     Check with Data Protection Officer what are restrictions on data provided this way. Maybe we should add here link to
@@ -140,7 +142,7 @@ Code::
 
 .. function:: onFulfilled(attributes)
 
-    Function executed on success.
+    The fulfilment handler callback (called with result).
 
     :param Object<string,Object<string,string>> attributes: **Required** Object containing :term:`user`
         :term:`attributes<attribute>` divided by source.
@@ -169,7 +171,7 @@ Code::
 
 .. function:: onRejected(error_code)
 
-    Function executed on error.
+    The rejection handler callback (called with error code).
 
     :param string error_code: **Required** Error code.
 
@@ -182,7 +184,7 @@ Update user attributes
 Creates or updates :term:`user` :term:`custom attributes<custom attribute>`.
 
 .. note::
-    Any :term:`attribute` can be updated this way whenever it is on :term:`attribute whitelist` or not.
+    Any :term:`attribute` can be updated this way whether it is on the :term:`attribute whitelist` or not.
 
 Code::
 
@@ -219,8 +221,8 @@ Code::
 
     .. attribute:: user_id
 
-        **Optional** ``string`` If :term:`application` lets :term:`user` to sign in - it's possible to pass unique
-        permanent :term:`user ID` using this option. This will let Audience Manager better identify :term:`user` across
+        **Optional** ``string`` If the :term:`application` lets :term:`user` sign in - it is possible to pass a unique
+        permanent :term:`user ID` using this option. This will let the Audience Manager better identify :term:`users<user>` across
         devices (laptop, phone) and sessions.
 
         Example::
@@ -229,8 +231,8 @@ Code::
 
     .. attribute:: device_id
 
-        **Optional** ``string`` If :term:`application` has access to :term:`device ID` - it's possible to pass this
-        value using this option. This will let Audience Manager better identify :term:`user` across sessions.
+        **Optional** ``string`` If the :term:`application` has access to :term:`device ID` - it is possible to pass this
+        value using this option. This will let the Audience Manager better identify :term:`users<user>` across sessions.
 
         Example::
 
@@ -238,8 +240,8 @@ Code::
 
     .. attribute:: email
 
-        **Optional** ``string`` If :term:`application` identifies :term:`user` via his email - it's possible to pass
-        this value using this option. This will let Audience Manager better identify :term:`user` across devices
+        **Optional** ``string`` If the :term:`application` identifies :term:`user` via his email - it is possible to pass
+        this value using this option. This will let the Audience Manager better identify :term:`users<user>` across devices
         (laptop, phone) and sessions.
 
         Example::
@@ -248,11 +250,11 @@ Code::
 
     .. function:: onFulfilled()
 
-        **Optional** Function executed on success.
+        **Optional** The fulfilment handler callback (called with result).
 
     .. function:: onRejected(error_code)
 
-        **Optional** Function executed on error.
+        **Optional** The rejection handler callback (called with error code).
 
         :param string error_code: **Required** Error code.
 
