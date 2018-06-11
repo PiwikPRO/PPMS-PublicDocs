@@ -54,7 +54,7 @@ paths:
           description: |
             **Recommended** Name of action.
 
-            It is possible to categorize actions by preceding with one or more category names separated by a slash
+            It is possible to categorize actions by preceding them with one or more category names separated by a slash
             character (``/``).
           type: string
           example: help/delivery/shipping
@@ -75,7 +75,7 @@ paths:
           description: |
             **Recommended** Cache buster.
 
-            Its value should be unique for every request to make sure that request sent to servers instead of
+            Its value should be unique for every request to make sure that request is sent to server and not
             read from a cache. Value can be random or sequential (e.g. UNIX timestamp). It is especially useful if
             the visitor is behind some kind of caching proxy.
           type: string
@@ -86,7 +86,7 @@ paths:
           description: |
             HTTP referer.
 
-            The URL of a previous page that linked to current one.
+            The URL of the previous page that linked to current one.
           type: string
           format: URL
           example: http://example.com/path/to/previous/page.html
@@ -132,8 +132,8 @@ paths:
           description: |
             Visit counter.
 
-            It sets the visit number of the visitor. It requires that external application and tracks how many times the visitor
-            has already used it.
+            It sets the visit number of the visitor. It should be used when the application already tracks how many times the visitor
+            visited it and you want to override default visit counter.
 
             Used in `Visitors` > `Engagement` > `Visits by visit number` report.
           type: integer
@@ -178,7 +178,7 @@ paths:
           example: promotion
         - name: res
           in: query
-          description: Resolution of visitor's device in pixels.
+          description: Resolution of the visitor's device in pixels.
           type: string
           format: '{height}x{width}'
           example: 1920x1080
@@ -237,7 +237,7 @@ paths:
           description: |
             Configuration ID.
 
-            Semi-unique hash generated for visitor's browser (based on configuration and installed plugins).
+            Semi-unique hash generated for the visitor's browser (based on configuration and installed plugins).
             This parameter overwrites visitor's `config_id`. For further explanation please read the following article:
             [Recognizing Visitors](https://help.piwik.pro/analytics/recognizing-visitors/) - the `Fingerprint` section.
           type: string
@@ -307,8 +307,8 @@ paths:
           description: |
             Unique page view ID generated when the page is loaded.
 
-            This is used to identify further actions performed on that page (e.g. downloads, image views) as part of
-            initial page view.
+            This is used to identify further actions performed during that page view (e.g. events) as part of
+            single page view.
           type: string
           format: hexadecimal
           minimum: 6
@@ -603,7 +603,7 @@ paths:
           in: query
           #TODO: Link to page describing how to force re-processing of a report.
           description: |
-            Override request time. This is used for log imports.
+            Override request time. This can be used during import of archival HTTP logs.
 
             If time set this way is from the future, override will be ignored and the current time will be used instead.
 

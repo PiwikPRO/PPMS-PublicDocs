@@ -426,17 +426,17 @@ Tracker Configuration
 
 .. function:: setApiUrl(url)
 
-    The function that will set the Analytics HTTP API URL endpoint. Usually the root directory of analytics.
+    The function that will set the Analytic's HTTP API URL endpoint. Usually the root directory of analytics.
 
-    :param string url: **Required** Path to Analytics HTTP API URL
+    :param string url: **Required** Path to Analytic's HTTP API URL
 
 .. function:: getPiwikUrl()
 
-    The function that will return the Analytics server URL.
+    The function that will return the Analytic's server URL.
 
 .. function:: getCurrentUrl()
 
-    This function that will return the current URL of the page. The custom URL will be returned if set.
+    The function that will return the current URL of the page. The custom URL will be returned if set.
 
 .. function:: discardHashTag(enableFilter)
 
