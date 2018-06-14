@@ -1,0 +1,36 @@
+swagger: '2.0'
+info:
+  title: Public Audience Manager API
+  description: |
+    **Authentication required.**
+  version: 'auto'
+host: ppms.example.com
+basePath: /
+schemes:
+  - https
+  - http
+consumes:
+  - application/json
+produces:
+  - application/json
+definitions:
+  Audience:
+    $ref: ./definitions/audience.yaml
+  ExportData:
+    $ref: ./definitions/export_data.yaml
+  ExportAttribute:
+    $ref: ./definitions/export_attribute.yaml
+parameters:
+  WebsiteId:
+    name: website_id
+    in: query
+    type: string
+    format: uuid
+    description: App ID (previously Website ID).
+    required: true
+    example: '0fdd8cc2-93b1-428c-8373-97a452f5b10'
+paths:
+  /api/audiences/v1/audiences/:
+    $ref: ./paths/audiences_list.yaml
+  /api/audiences/v1/profiles/:
+    $ref: ./paths/profiles_export.yaml

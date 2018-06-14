@@ -28,6 +28,7 @@ API_PATH = os.path.join(os.path.dirname(__file__), '_static/api')
 api_definitions = {
     'analytics_tracking_api.json': 'analytics/index.yaml',
     'audience_manager_public_api.json': 'audience_manager/public_api/index.yaml',
+    'audience_manager_authorized_api.json': 'audience_manager/authorized_api/index.yaml',
 }
 
 
