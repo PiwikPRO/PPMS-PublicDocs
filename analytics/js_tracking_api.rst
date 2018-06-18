@@ -18,14 +18,15 @@ There are two ways of installing a tracking code:
 
 Installing tracking code via Tag Manager
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-This is the easiest and recommended way of tracking code installation.
+This is the easiest and recommended way of tracking code installation. When Tag Manager is added to the site - it automatically publishes tracking code (using "Piwik PRO Analytics template").
 
+If you do not have Tag Manager on your website yet, follow this procedure to install it:
 #. Sign in to your PPMS with your admin or Super User account.
 #. Click on the menu button on the top left.
 #. Click on the "Websites" position.
 #. Choose the website for which you want to implement a tracking code.
 #. Select the "Installation" tab.
-#. The tracking code snippet for your website is displayed under the "Website code for asynchronous tags" or "Website code for synchronous tags".
+#. The Tag Manager code snippet for your website is displayed under the "Website code for asynchronous tags" or "Website code for synchronous tags".
 
 
 Installing tracking code via code snippet.

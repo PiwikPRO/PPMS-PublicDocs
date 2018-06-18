@@ -353,7 +353,7 @@ Cookies that are used by analytics are first party cookies.
 
 .. function:: hasCookies()
 
-    The function that will return if cookies are enabled in this browser.
+    The function that will return ``true`` if cookies are enabled in this browser.
 
 .. function:: setCookieNamePrefix(prefix)
 
@@ -414,7 +414,7 @@ Tracker Configuration
 
 .. function:: setCustomUrl(customUrl)
 
-    The function that will override a default page's reported URL.
+    The function that will override tracked page URL. Tracker will use current page URL if custom URL was not set.
 
     :param string customUrl: **Required** Value that will override default URL.
 

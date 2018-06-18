@@ -3,16 +3,11 @@
 
 Installing tracking code via code snippet
 =========================================
-Installation via snippet should only be carried out if the Tag Manager is not available or you wish to track multiple domains /
-subdomains.
+Installation via snippet should only be carried out if the Tag Manager is not available or when options of "Piwik PRO Analytics template" do not let you configure your use case.
 
 .. note::
     We highly recommend using the template from the Tag Manager to set up tracking for the Analytics module (including
     customizations).
-
-.. todo::
-    Check if Tag Manager allows custom settings for domains and subdomains or not. Sentences in previous paragraph
-    and note contradict each other.
 
 .. note::
     Basic configuration will setup a single domain configuration. For other options, see:
