@@ -222,7 +222,7 @@ Code::
     .. attribute:: user_id
 
         **Optional** ``string`` If the :term:`application` lets :term:`user` sign in - it is possible to pass a unique
-        permanent :term:`user ID` using this option. This will let the Audience Manager better identify :term:`users<user>` across
+        permanent :term:`user ID` using this parameter. This will let the Audience Manager better identify :term:`users<user>` across
         devices (laptop, phone) and sessions.
 
         Example::
@@ -232,7 +232,7 @@ Code::
     .. attribute:: device_id
 
         **Optional** ``string`` If the :term:`application` has access to :term:`device ID` - it is possible to pass this
-        value using this option. This will let the Audience Manager better identify :term:`users<user>` across sessions.
+        value using this parameter. This will let the Audience Manager better identify :term:`users<user>` across sessions.
 
         Example::
 
@@ -241,7 +241,7 @@ Code::
     .. attribute:: email
 
         **Optional** ``string`` If the :term:`application` identifies :term:`user` via his email - it is possible to pass
-        this value using this option. This will let the Audience Manager better identify :term:`users<user>` across devices
+        this value using this parameter. This will let the Audience Manager better identify :term:`users<user>` across devices
         (laptop, phone) and sessions.
 
         Example::

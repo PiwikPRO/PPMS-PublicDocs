@@ -125,7 +125,7 @@ TrackHelper.track().event("category", "action").path("/main/actionScreen").name(
 ```
 The ``track`` method allows the specification of the following parameters:
 
-* A category (required) – this String defines the event category. You might define event categories based on the class of user actions such as clicks or gestures or voice commands, or you may define them based on the features available in your application (play, pause, fast forward, etc.).
+* A category (required) – this String defines the event category. You may define event categories based on the class of user actions (e.g. clicks, gestures, voice commands), or you may define them based on the features available in your application (e.g. play, pause, fast forward, etc.).
 
 * An action (required) – this String defines the specific event action within the category specified. In the example, we are effectively saying that the category of the event is user clicks, and the action is a button click.
 
@@ -220,7 +220,7 @@ For tracking outlinks to external websites or other apps opened from your applic
 ```java
 TrackHelper.track().outlink(new URL("https://www.google.com")).with(getTracker());
 ```
-* A URL (required) – defines the outlink target. HTTPS, HTTP and FTPare are valid.
+* A URL (required) – defines the outlink target. HTTPS, HTTP and FTP are are valid.
 
 ### Tracking search operations
 *Requires Analytics*
@@ -239,7 +239,7 @@ TrackHelper.track().search("Space").category("Movies").count(3).with(getTracker(
 ### Tracking content impressions and interactions
 *Requires Analytics*
 
-You can track the pereceptions of an ad in your application as below.
+You can track an impression of an ad in your application as below.
 ```java
 TrackHelper.track().impression("Android content impression").piece("banner").target("https://www.dn.se/").with(getTracker());
 ```
@@ -281,19 +281,19 @@ items.addItem(new EcommerceItems.Item("0129876543210").name("Leather shoes").cat
 
 TrackHelper.track().order("orderId",124144).subTotal(33110).tax(9890).shipping(1000).discount(0).items(items).with(tracker);
 ```
-* An Order ID (required) – a unique String identifying the order
+* `orderId` (required) – a unique String identifying the order
 
-* A Grand Total (required) –  Total amount of the order, in cents
+* `grandTotal` (required) –  Total amount of the order, in cents
 
-* A Subtotal (optional) –  the subTotal (net price) for the order, in cents
+* `subTotal` (optional) –  the subTotal (net price) for the order, in cents
 
-* Tax (optional) –  the tax for the order, in cents
+* `tax` (optional) –  the tax for the order, in cents
 
-* Shipping (optional) –  the shipping for the order, in cents
+* `shipping` (optional) –  the shipping for the order, in cents
 
-* Discount (optional) –  the discount for the order, in cents
+* `discount` (optional) –  the discount for the order, in cents
 
-* Items (optional) –  the items included in the order, use the ``EcommerceItems`` class to instantiate items
+* `items` (optional) –  the items included in the order, use the ``EcommerceItems`` class to instantiate items
 
 
 ### Tracking campaigns
@@ -477,7 +477,7 @@ getTracker().setUserMail("john@doe.com");
 ```
 * A userMail (required) – any non-null string representing email address
 
-Setting up an email helps the Audience Manager to enrich existing profiles or merge profiles with which come from other sources (if they also have an email). Check [Tracking user profile attributes](#tracking-user-profile-attributes) for more information.
+Setting up an email helps the Audience Manager to enrich existing profiles or merge profiles which come from other sources (if they also have an email). Check [Tracking user profile attributes](#tracking-user-profile-attributes) for more information.
 
 ### Visitor ID
 
@@ -524,7 +524,7 @@ Tracked events are stored temporarily on the queue and dispatched in batches eve
     }
 ```
 
-In case when more than one event in the queue, data is sent in bulk (using POST method with JSON payload). It is possible to compress the data before dispatch by using ``setDispatchGzipped`` method during the app initialization. See the example below for details:
+In case when more than one event is in the queue, data is sent in bulk (using POST method with JSON payload). It is possible to compress the data before dispatch by using ``setDispatchGzipped`` method during the app initialization. See the example below for details:
 
 ```java
     private void initPiwik() {

@@ -22,10 +22,10 @@ This is the easiest and recommended way of tracking code installation.
 
 #. Sign in to your PPMS with your admin or Super User account.
 #. Click on the menu button on the top left.
-#. Click on the Websites position.
+#. Click on the "Websites" position.
 #. Choose the website for which you want to implement a tracking code.
-#. Select the Installation tab.
-#. The tracking code snippet for your website is displayed under the Website code for asynchronous tags or Website code for synchronous tags.
+#. Select the "Installation" tab.
+#. The tracking code snippet for your website is displayed under the "Website code for asynchronous tags" or "Website code for synchronous tags".
 
 
 Installing tracking code via code snippet.
@@ -82,8 +82,9 @@ Trigger (custom) events bound to user actions::
 
 .. describe:: dimensions
 
-    **Optional** ``object`` `Custom dimension <Custom Dimensions_>`_ which should be tracked using this action. It can be multiple dimensions.
-    Written as object property using the ``dimension{ID}`` notation.
+    **Optional** ``object`` `Custom dimensions <Custom Dimensions_>`_ which should be tracked using
+    this action. It can set multiple dimensions at once. Dimensions are defined as object properties
+    using the ``dimension{ID}`` notation.
 
     Example::
 
@@ -114,8 +115,8 @@ Allows the manual tracking of goal conversion. Used in `Goals` - `Days to Conver
 
 .. describe:: dimensions
 
-    **Optional** ``object``  `Custom dimension <Custom Dimensions_>`_ which should be tracked using this action. It can be multiple dimensions.
-    Written as object property using the ``dimension{ID}`` notation.
+    **Optional** ``object``  `Custom dimensions <Custom Dimensions_>`_ which should be tracked using
+    this action. Dimensions are defined as object properties using the ``dimension{ID}`` notation.
 
     Example::
 
@@ -376,7 +377,7 @@ If you wish to set a custom dimension to use it in tracking functions, use the `
     When you set a Custom Dimension, that value will be used in all tracking requests within a page load.
 
 .. warning::
-    This function does not send any data to the :term:`Analytics`. It sets a Custom Dimension to be sent with Page View and similar (ecommerce, outlink, download).
+    This function does not send any data to the :term:`Analytics`. It sets a Custom Dimension to be sent with following events (e.g. page view, ecommerce events, outlink or download events).
 
 
 Example of usage::
@@ -471,8 +472,8 @@ Example of usage::
 
 Track interactions manually with auto detection
 ```````````````````````````````````````````````
-If you wish to trigger an interaction manually (for example by click), you
-can do it using ``trackContentInteractionNode``, just add this function as an eventListener for the action you want::
+If you wish to trigger an interaction manually (for example on click event), you
+can do it using ``trackContentInteractionNode``, just add this code in the action you want to track::
 
     _paq.push(["trackContentInteractionNode", domNode, contentInteraction]);
 
@@ -597,7 +598,7 @@ Example of usage::
 Force Tracking using JS function
 ++++++++++++++++++++++++++++++++
 
-If you wish to use JS to force the outlink to be tracked, you can add the ``trackLink`` function to element ``onClick`` attribute::
+If you wish to use JS to force the outlink to be tracked, you can add the ``trackLink`` function on element ``onClick`` attribute::
 
     _paq.push(["trackLink", linkAddress, "link", dimensions]);
 
@@ -684,7 +685,7 @@ Example of usage::
 Force Tracking download using CSS class
 +++++++++++++++++++++++++++++++++++++++
 
-To track clicking a link as a download using css class simply add ``piwik_download`` class to link element.
+To track clicking a link as a download using css class simply add the ``piwik_download`` class to link element.
 
 This class name can be changed, use ``setDownloadClasses`` to define which CSS class should be tracked::
 
@@ -702,7 +703,7 @@ Example of usage::
 Force Tracking download using JS function
 +++++++++++++++++++++++++++++++++++++++++
 
-If you wish to use JS to force tracking download, you can add ``trackLink`` function to element ``onClick`` attribute::
+If you wish to use JS to force tracking download, you can add ``trackLink`` function on element ``onClick`` attribute::
 
     _paq.push(["trackLink", linkAddress, "download", dimensions]);
 
@@ -790,14 +791,14 @@ Example of usage::
 
 Measuring user time spent on web page
 `````````````````````````````````````
-When the user will enter a single page for a visit we will assume that the total time spent on the website was 0 ms.
-To measure that time properly you can use the ``enableHeartBeatTimer`` function::
+When the user will enter a single page during a visit, we will assume that his total time spent on the website was 0 ms.
+To measure that time more accurately you can use the ``enableHeartBeatTimer`` function::
 
     _paq.push(["enableHeartBeatTimer", beat]);
 
 .. describe:: beat
 
-    **Required** ``number`` Time in seconds, when sending another request with heartbeat, default ``30``
+    **Required** ``number`` Time in seconds between cyclical heartbeat requests, default ``30``
 
 Example of usage::
 

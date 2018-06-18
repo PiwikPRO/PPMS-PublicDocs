@@ -4,20 +4,19 @@ Piwik PRO SDK for iOS
 ## SDK configuration
 
 ### Server
-* You need a Piwik PRO account on the cloud or an on-premises setup which your mobile app will communicate with. For details, visit the [Piwik PRO website](https://piwik.pro)
+* You need a Piwik PRO account on the cloud or an on-premises setup which your mobile app will communicate with. For details, please visit the [Piwik PRO website](https://piwik.pro).
 * Create a new website (or app) in the Piwik PRO web interface.
 * Copy and note the Website ID from "Settings > Websites" and your server address.
 
 ### Client
 #### Including the library
-
 Use the following in your Podfile:
 
 ```
 pod 'PiwikPROSDK', '~> VERSION'
 ```
 
-Replace ``VERSION`` with the latest release name, e.g. ``'~> 1.0.0'``.
+Replace `VERSION` with the latest release name, e.g. ``'~> 1.0.0'``.
 
 Then run ``pod install``. In every file you wish to use the PiwikPROSDK, don't forget to import it.
 
@@ -71,7 +70,7 @@ Events can be used to track the user's interaction with various custom component
 
 The ``sendEventWithCategory`` method allows to specify next parameters:
 
-* A category (required) – this String defines the event category. You may define event categories based on the class of user actions, like clicks or gestures or voice commands, or you may define them based upon the features available in your application (play, pause, fast forward, etc.).
+* A category (required) – this String defines the event category. You may define event categories based on the class of user actions ( e.g. clicks, gestures, voice commands), or you may define them based upon the features available in your application (e.g. play, pause, fast forward, etc.).
 
 * An action (required) – this String defines the specific event action within the category specified. In the example, we are essentially saying that the category of the event is user clicks, and the action is a button click.
 
@@ -156,11 +155,11 @@ Tracking search operations allow the measurement of popular keywords used for va
 ```
 [[PiwikTracker sharedInstance] sendSearchWithKeyword:@"Space" category:@"Movies" numberOfHits:@42];
 ```
-* A keyword (required) – the searched query that was used in the app.
+* `keyword` (required) – the searched query that was used in the app.
 
-* A category (optional) – specify a search category.
+* `category` (optional) – specify a search category.
 
-* A number of hits (optional) – we recommend setting the search count to the number of search results displayed on the results page. When keywords are tracked with a count of 0, they will appear in the "No Result Search Keyword" report.
+* `numberOfHits` (optional) – we recommend setting the search count to the number of search results displayed on the results page. When keywords are tracked with a count of 0, they will appear in the "No Result Search Keyword" report.
 
 
 ### Tracking content impressions and interactions
@@ -192,13 +191,13 @@ Goaltracking is used to measure and improve your business objectives. To track g
 ```
 * A goal (required) – tracking request will trigger a conversion for the goal of the website being tracked with this ID.
 
-* Revenue (optional) – a monetary value that was generated as revenue by this goal conversion.
+* `revenue` (optional) – a monetary value that was generated as revenue by this goal conversion.
 
 
 ### Tracking ecommerce transactions
 *Requires Analytics*
 
-Ecommerce transactions (in-app purchases) can be tracked to help you improve your business strategy. To track a transaction you must provide two required values - the transaction identifier and grandTotal. Optionally, you can also provide values for subtotal, tax, shipping cost, discount and list of purchased items as in the example below. You can read more about ecommerce transactions [here](https://piwik.org/docs/ecommerce-analytics/):
+Ecommerce transactions (in-app purchases) can be tracked to help you improve your business strategy. To track a transaction you must provide two required values - the transaction identifier and `grandTotal`. Optionally, you can also provide values for `subTotal`, `tax`, `shippingCost`, `discount` and list of purchased items as in the example below. You can read more about e-commerce transactions [here](https://piwik.org/docs/ecommerce-analytics/):
 ```
 [[PiwikTracker sharedInstance] sendTransaction:[PiwikTransaction transactionWithBlock:^(PiwikTransactionBuilder *builder) {
     builder.identifier = @"transactionID";
@@ -213,15 +212,15 @@ Ecommerce transactions (in-app purchases) can be tracked to help you improve you
 ```
 * An identifier (required) – a unique string identifying the order
 
-* A grand total (required) –  The total amount of the order, in cents
+* `grandTotal` (required) –  The total amount of the order, in cents
 
-* A subtotal (optional) –  the subtotal (net price) for the order, in cents
+* `subTotal` (optional) –  the subtotal (net price) for the order, in cents
 
-* Tax (optional) –  the tax for the order, in cents
+* `tax` (optional) –  the tax for the order, in cents
 
-* Shipping (optional) –  the shipping for the order, in cents
+* `shipping` (optional) –  the shipping for the order, in cents
 
-* Discount (optional) –  the discount for the order, in cents
+* `discount` (optional) –  the discount for the order, in cents
 
 * Items (optional) –  the items included in the order, use the ``addItemWithSku`` method to instantiate items
 
@@ -232,9 +231,9 @@ Ecommerce transactions (in-app purchases) can be tracked to help you improve you
 Tracking campaign URLs created with the online [Campaign URL Builder tool](https://piwik.org/docs/tracking-campaigns-url-builder/) allow you to measure how different campaigns (for example with Facebook ads or direct emails) bring traffic to your application. You can register a custom URL schema in your project settings to launch your application when users tap on the campaign link. You can track these URLs from the application delegate as below. The campaign information will be sent to the server together with the next analytics event. More details about campaigns can be found in the [documentation](https://helpcenter-piwik-pro.intercom.help/user-guides/referrers-reports/referrers-reports-campaigns).
 
 ```
-- (BOOL)application:(UIApplication *)app openURL:(NSURL *)URL options:(NSDictionary *)options
+- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary *)options
 {
-    return [[PiwikTracker sharedInstance] sendCampaign:URL.absoluteString];
+    return [[PiwikTracker sharedInstance] sendCampaign:url.absoluteString];
 }
 ```
 * A URL (required) – the campaign URL. HTTPS, HTTP and FTP are valid - the URL must contain a campaign name and keyword parameters.
@@ -305,30 +304,30 @@ It is possible to read the attributes of a given profile, however, with some lim
 }];
 ```
 
-* An completion block (required) – callback to handle request result (call is asynchronous)
+* `completionBlock` (required) – callback to handle request result (call is asynchronous)
 
-* Profile Attributes (output) – dictionary of key-value pairs, where each pair represent attribute name (key) and value.
+* `profileAttributes` (output) – dictionary of key-value pairs, where each pair represent attribute name (key) and value.
 
-* Error Data (output) – in case of error only, this method will be called. This method passes the error string.
+* `errorData` (output) – in case of error only, this method will be called. This method passes the error string.
 
 
 ### Checking audience membership
 *Requires Audience Manager*
 
-Audiences allows one to check if the user belongs to a specific group of users defined in the audience manger panel based on analytics data and audience manager profile attributes. You can check if the user belongs to a given audience, for example, to display him/her some type special offer like in the example below:
+Audience check allows one to check if the user belongs to a specific group of users defined in the audience manger panel based on analytics data and audience manager profile attributes. You can check if the user belongs to a given audience, for example, to display him/her some type of special offer like in the example below:
 
 ```
 [[PiwikTracker sharedInstance] checkMembershipWithAudienceID:@"12345678-90ab-cdef-1234-567890abcdef" completionBlock:^(BOOL isMember, NSError * _Nullable error) {
     // do something if is member or handle error
 }];
 ```
-* An audience ID (required) – ID of the audience (Audience Manager -> Audiences tab)
+* `audienceId` (required) – ID of the audience (Audience Manager -> Audiences tab)
 
-* A completion block (required) – callback to handle request result (call is asynchronous)
+* `completionBlock` (required) – callback to handle request result (call is asynchronous)
 
-* An isMember (output) – a boolean value that indicates if the user belongs to an audience with a given ID
+* `isMember` (output) – a boolean value that indicates if the user belongs to an audience with a given ID
 
-* An error (output) – in case of error only, this method will be called. Method pass the error string.
+* `error` (output) – in case of error only, this method will be called. Method pass the error string.
 
 
 ## Advanced usage
@@ -340,7 +339,7 @@ The user ID is an additional, optional non-empty unique string identifying the u
 ```
 [PiwikTracker sharedInstance].userID = @"User Name";
 ```
-* A user ID (required) – any non-empty unique string identifying the user. Passing null will delete the current user ID
+* `userID` (required) – any non-empty unique string identifying the user. Passing null will delete the current user ID
 
 ### User email address
 
@@ -401,9 +400,9 @@ You can set limits for storing events related to maximum size and time for which
 [PiwikTracker sharedInstance].maxAgeOfQueuedEvents = 60 * 60 * 24;
 ```
 
-* A max. number of queued events (required) – the maximum number of events after which events in the queue are deleted. By default, the limit is set to 500.
+* `maxNumberOfQueuedEvents` (required) – the maximum number of events after which events in the queue are deleted. By default, the limit is set to 500.
 
-* A max. age of queued events (required) – time in ms after which events are deleted. By default, the limit is set to 7 * 24 * 60 * 60 * 1000 ms = 7 days.
+* `maxAgeOfQueuedEvents` (required) – time in ms after which events are deleted. By default, the limit is set to 7 * 24 * 60 * 60 * 1000 ms = 7 days.
 
 
 ### Opt-out

@@ -8,7 +8,7 @@ Form Tracker gathers data submitted via forms on your page and sends it to the A
 
 .. note::
     Creates or updates :term:`user` :term:`custom attributes<custom attribute>` for each field in the form.
-    The :term:`attribute` name is generated from input tag (``name`` attribute). Inputs without a name are not tracked.
+    The :term:`attribute` name is generated from input tag (HTML tag's ``name`` attribute). Inputs without a name are ignored.
 
 Supported browsers
 ------------------

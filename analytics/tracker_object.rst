@@ -37,7 +37,7 @@ Tracking functions
 
 .. function:: trackPageView([customPageTitle])
 
-    Tracks a visit to page that the function was run on.
+    Tracks a visit on the page that the function was run on.
 
     :param string customPageTitle: **Optional** Custom page title, for example ``document.title``
 
@@ -70,10 +70,10 @@ Tracking functions
 
 .. function:: enableHeartBeatTimer(delay)
 
-    When the user will enter a single page for a visit we will assume that the total time spent on the website was 0 ms.
-    The function will enable us to measure that time more accurately.
+    When the user will enter a single page during a visit, we will assume that his total time spent on the website was 0 ms.
+    To measure that time more accurately you can use the ``enableHeartBeatTimer`` function::
 
-    :param number delay: **Required** Time in seconds, when Tracker will send another request with heartbeat, default ``30``
+    :param number delay: **Required** Time in seconds between cyclical heartbeat requests, default ``30``
 
 .. function:: enableCrossDomainLinking()
 
@@ -147,7 +147,7 @@ Custom variables
 
 .. function:: getCustomVariable(index, scope)
 
-    The function that will return the value of custom variables.
+    The function that will return the value of custom variable.
 
     :param string index: **Required** Number from 1 to 5 where variable is stored.
     :param string scope: **Required** Scope of the variable, ``"visit"`` or ``"page"``.
@@ -176,7 +176,7 @@ Custom dimensions
 
 .. function:: getCustomDimension(customDimensionId)
 
-    The function that will return the value of custom dimensions.
+    The function that will return the value of custom dimension.
 
     :param string customDimensionId: **Required** Id of custom dimension.
 
@@ -420,9 +420,9 @@ Tracker Configuration
 
 .. function:: setReferrerUrl(url)
 
-    The function that will override the detected HttpReferer.
+    The function that will override the detected HTTP referrer.
 
-    :param string url: **Required** Value that will override HttpReferer.
+    :param string url: **Required** Value that will override HTTP referrer.
 
 .. function:: setApiUrl(url)
 
@@ -481,7 +481,7 @@ Tracker Configuration
 
 .. function:: getAttributionInfo()
 
-    The function that will return visitor attribution array (Referer and Campaign data).
+    The function that will return visitor attribution array (Referrer and Campaign data).
 
 .. function:: getAttributionCampaignName()
 
@@ -497,7 +497,7 @@ Tracker Configuration
 
 .. function:: getAttributionReferrerUrl()
 
-    The function that will return the Attribution Referer URL.
+    The function that will return the Attribution Referrer URL.
 
 .. function:: setCampaignNameKey(name)
 
@@ -549,6 +549,6 @@ Advanced Usage
 
 .. function:: setRequestContentType(contentType)
 
-    The function that will set to request the Content-Type header. Used when the ``"POST"`` method is set in ``setRequestMethod``
+    The function that will set tracking requests ``Content-Type`` header. Used when tracking uses the ``"POST"`` method (set by ``setRequestMethod``).
 
     :param string contentType: **Required** Content-Type value to be set.

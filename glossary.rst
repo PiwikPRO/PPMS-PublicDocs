@@ -30,7 +30,7 @@ Glossary
         Unique :term:`user` ID (e.g. :term:`analytics ID`, :term:`user ID`, :term:`device ID` or email).
 
     Visit
-        Period of continuous :term:`user` activity on :term:`application`. It ends in thr following situations:
+        Period of continuous :term:`user` activity on :term:`application`. It ends in the following situations:
 
             - after a period of inactivity (option set to 30 minutes by default)
             - at midnight (option enabled by default)
