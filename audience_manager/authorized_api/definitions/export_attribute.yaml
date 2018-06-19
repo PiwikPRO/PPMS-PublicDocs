@@ -8,7 +8,7 @@ properties:
     type: string
     description: Type of the audience filter.
     enum:
-    - profile
-    - attributes
-    - analytics
+      - profile
+      - attributes
+      - analytics
     example: 'analytics'

@@ -3,10 +3,12 @@ post:
   - profiles
   summary:
     Stream profiles
-  description: >
+  description: |
     Streams profiles belonging to selected audience as a file with selected columns and format.
-    There is a limit of 1,000,000 profiles over which this endpoint will
-    return error 400. Response will be streamed and gzipped.
+    Response will be streamed and gzipped.
+
+    There is a limit of 1,000,000 profiles returned in one request. If result count will exceed
+    that, endpoint will return error 400.
   parameters:
   - name: body
     in: body

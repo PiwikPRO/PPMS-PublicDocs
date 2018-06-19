@@ -9,7 +9,7 @@ get:
   - name: website_id
     in: query
     type: string
-    description: ID of the website.
+    description: App ID (previously Website ID).
     required: True
   - name: limit
     type: integer
@@ -25,19 +25,22 @@ get:
   - name: name
     type: string
     in: query
-    description: Filter results by a fragment of its name (case insensitive).
+    description: Searched name - matches names containing this string (case insensitive).
   - name: order_by
     type: string
     in: query
     description: >
-      Sorting order for the results. Include <code>-</code> prefix in value
-      to get a descending order.
+      Sorting order for the results. Values with `-` prefix return results in descending order.
     default: name
     enum:
     - name
+    - -name
     - count
+    - -count
     - created_at
+    - -created_at
     - updated_at
+    - -updated_at
   responses:
     200:
       description: OK

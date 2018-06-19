@@ -2,7 +2,9 @@ type: object
 properties:
   type:
     type: string
-    description: JSONAPI `type` member, for this enpoint it's always `Audience`
+    enum:
+      - Audience
+    description: Type of object (it's always `"Audience"`).
     example: 'Audience'
   id:
     type: string

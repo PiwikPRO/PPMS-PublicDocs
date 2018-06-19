@@ -6,7 +6,7 @@ required:
 properties:
   website_id:
     type: string
-    description: ID of the website.
+    description: App ID (previously Website ID).
     example: '0fdd8cc2-93b1-428c-8373-97a452f5b10c'
   audience_id:
     type: string
@@ -15,10 +15,10 @@ properties:
     example: '9d7ade4d-7c90-4ba9-8c1a-a47d169dc6db'
   format:
     type: string
-    description: Desired output format of export procedure.
+    description: Desired output format of response.
     enum:
-    - csv
-    - json
+      - csv
+      - json
   columns:
     type: array
     description: List of columns selected to be exported to the CSV file. If the list is empty, then export all available attributes.
