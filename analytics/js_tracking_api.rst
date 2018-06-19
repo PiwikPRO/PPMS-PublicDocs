@@ -735,15 +735,15 @@ Example of usage
 Setting link tracking delay
 +++++++++++++++++++++++++++
 
-After each outbound/download link click there is introduced a small delay after which the browser
-will navigate to new URL. This ensures there is enough time to track link interactions.
-That time frame is set by default to 500ms. To modify it you can use the ``setLinkTrackingTimer`` function::
+After each outbound/download link click, there is a small delay introduced, after which the browser
+navigates to the new URL. This ensures there is enough time to track link interactions.
+That delay is set by default to 500ms. To modify it you can use the ``setLinkTrackingTimer`` function::
 
     _paq.push(["setLinkTrackingTimer", time]);
 
 .. describe:: time
 
-    **Required** ``number`` Time in ms between user action (click) and changing a page / downloading a file.
+    **Required** ``number`` Time in ms between user action (click) and changing a website (for outlink) or downloading a file.
 
 
 Disabling tracking
