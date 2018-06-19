@@ -336,7 +336,15 @@ Visitor ID
 
 .. function:: getVisitorInfo()
 
-    The function that will return visitor cookie contents outputted in array.
+    The function that will return visitor information in an array:
+
+    * new visitor flag indicating new (``1``) or returning (``0``) visitor
+    * visitor ID (UUID)
+    * first visit timestamp (Unix epoch time)
+    * previous visit count (``0`` for first visit)
+    * current visit timestamp (Unix epoch time)
+    * last visit timestamp (Unix epoch time or ``''`` if N/A)
+    * last e-commerce order timestamp (Unix epoch time or ``''`` if N/A)
 
 Tracking cookies management
 ---------------------------
@@ -408,7 +416,7 @@ Tracker Configuration
 
 .. function:: setDomains(domains)
 
-    The function that will set an array of domains to be treated as local. Wildcards, dots are supported for subdomains.
+    The function that will set an array of domains to be treated as local. Sub-domain wildcards are supported (e.g. ``*.example.com``).
 
     :param array<string> domains: **Required** Array of hostnames written as strings.
 
@@ -440,9 +448,10 @@ Tracker Configuration
 
 .. function:: discardHashTag(enableFilter)
 
-    The function that will toggle URL hash tag recordings.
+    The function that will set tracker to include or remove
+    `URL fragment identifier<https://en.wikipedia.org/wiki/Fragment_identifier>`_ from tracked URLs.
 
-    :param boolean enableFilter: **Required** If set to true hash tags will not be recorded.
+    :param boolean enableFilter: **Required** If set to true, URL fragment identifier will be removed from tracked URLs.
 
 .. function:: setGenerationTimeMs(generationTime)
 
