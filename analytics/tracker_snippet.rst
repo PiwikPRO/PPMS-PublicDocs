@@ -3,23 +3,18 @@
 
 Installing tracking code via code snippet
 =========================================
-Installation via snippet should be done only if Tag Manager is not available or you want to track multiple domains /
-subdomains.
+Installation via snippet should only be carried out if the Tag Manager is not available or when options of "Piwik PRO Analytics template" do not let you configure your use case.
 
 .. note::
-    We highly recommend using template from Tag Manager to set up tracking for Analytics module (including
+    We highly recommend using the template from the Tag Manager to set up tracking for the Analytics module (including
     customizations).
 
-.. todo::
-    Check if Tag Manager allows custom settings for domains and subdomains or not. Sentences in previous paragraph
-    and note contradict each other.
-
 .. note::
-    Basic configuration will setup single domain configuration. For other options see:
+    Basic configuration will setup a single domain configuration. For other options, see:
     :ref:`AN-tracker-alternative-configuration`.
 
-This code should be added just before of the ``<head>`` tag. Additionally
-snippet has to be configured this way:
+This code should be added just before of the ``<head>`` tag. Additionally, the
+snippet must be configured in the following way:
 
     * String ``XXX-XXX-XXX-XXX-XXX`` should be replaced with :term:`app ID` (e.g.
       ``efcd98a5-335b-48b0-ab17-bf43f1c542be``).
@@ -44,14 +39,14 @@ snippet has to be configured this way:
 .. deprecated:: 5.5.1
      Older installations using ``piwik.php`` and ``piwik.js`` filenames are deprecated.
 
-This code initializes Analytics tracker in following ways:
+This code initializes the Analytics tracker in following ways:
 
-    #. Initializes global ``_paq.push`` command queue that schedules commands to be run when Analytics tracker library
+    #. Initializes the global ``_paq.push`` command queue that schedules commands to be run when the Analytics tracker library
        is loaded.
     #. Schedules basic configuration of Analytics tracker using ``_paq.push``.
-    #. Creates a ``<script>`` tag that asynchronously loads Analytics tracker library.
+    #. Creates a ``<script>`` tag that asynchronously loads the Analytics tracker library.
 
-When loading snippet is added on the page, Analytics tracker will start tracking :term:`user` actions starting with page
+When loading, the snippet is added on the page. The Analytics tracker will start tracking :term:`user` actions starting with page
 view.
 
 .. _AN-tracker-alternative-configuration:
@@ -61,7 +56,7 @@ Alternative multi-domain configurations
 
 Tracking domains and all subdomains
 -----------------------------------
-To track all data between domain and all its subdomains we must use cookies configured with this snippet::
+To track all data between domain and all its subdomains, we must use cookies configured with the following snippet::
 
     _paq.push(["setTrackerUrl", u+"ppms.php"]);
     _paq.push(["setSiteId", "XXX-XXX-XXX-XXX-XXX"]);
@@ -80,7 +75,7 @@ To track all data between domain and all its subdomains we must use cookies conf
 
 Tracking multiple domains as one site
 -------------------------------------
-To setup tracking between multiple domains you must use multiple functions ``setDomains`` to set a list of domains and
+To set up tracking between multiple domains, you must use multiple functions ``setDomains`` to set a list of domains and
 ``enableCrossDomainLinking`` to enable cross domain linking::
 
     _paq.push(["setDomains", domains]);
@@ -95,13 +90,13 @@ To setup tracking between multiple domains you must use multiple functions ``set
 
 Tracking subdirectories of domain as separate websites
 ------------------------------------------------------
-To differentiate parts of website as another site you must configure tracker this way::
+To differentiate parts of a website as another site, you must configure tracker this way::
 
     _paq.push(["setSiteId", "App1"]);
     _paq.push(["setTrackerUrl", u+"ppms.php"]);
     _paq.push(["trackPageView"]);
 
-Later you can change configuration for selected paths and track them as another site::
+Afterwards, you can change configuration for selected paths and track them as another site::
 
     _paq.push(["setSiteId", "App2"]);
 
@@ -112,9 +107,9 @@ Later you can change configuration for selected paths and track them as another 
     _paq.push(["setTrackerUrl", u+"ppms.php"]);
     _paq.push(["trackPageView"]);
 
-That way all actions tracked on ``/data/something_useful`` will be tracked for ``App2`` instead of ``App1``.
+In this way, all actions tracked on ``/data/something_useful`` will be tracked for ``App2`` instead of ``App1``.
 
-If you want to track group of pages as separate site you can use wildcard in ``setDomains`` function.
+If you wish to track a group of pages as separate site, you can use the wildcard in the ``setDomains`` function.
 
 .. deprecated:: 5.5.1
     Older installations using ``piwik.php`` and ``piwik.js`` filenames are deprecated.
