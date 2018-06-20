@@ -732,18 +732,18 @@ Example of usage
         Click me!
     </button>
 
-Setting Download delay
-++++++++++++++++++++++
+Setting link tracking delay
++++++++++++++++++++++++++++
 
-After each outbound link there is a small time frame after which the file will download that will
-ensure there is enough time to track downloads.
-That time frame is set by default to 500ms. To modify it you can use ``setLinkTrackingTimer`` function::
+After each outbound/download link click, there is a small delay introduced, after which the browser
+navigates to the new URL. This ensures there is enough time to track link interactions.
+That delay is set by default to 500ms. To modify it you can use the ``setLinkTrackingTimer`` function::
 
     _paq.push(["setLinkTrackingTimer", time]);
 
 .. describe:: time
 
-    **Required** ``number`` Time in ms between user interaction and downloading file.
+    **Required** ``number`` Time in ms between user action (click) and changing a website (for outlink) or downloading a file.
 
 
 Disabling tracking
