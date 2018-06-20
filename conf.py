@@ -18,6 +18,7 @@
 #
 import os
 import sys
+import datetime
 
 sys.path.insert(0, os.path.abspath('.'))
 
@@ -61,7 +62,7 @@ master_doc = 'index'
 autosectionlabel_prefix_document = True
 # General information about the project.
 project = u'PPMS-PDFD'
-copyright = u'2017, Piwik PRO'
+copyright = u'{year}, Piwik PRO'.format(year=datetime.date.today().year)
 author = u'Piwik PRO'
 
 # The version info for the project you're documenting, acts as replacement for
