@@ -218,6 +218,7 @@ html_theme_options = {
 }
 
 def setup(app):
+    app.add_javascript('js/tag-manager.js')
     app.add_stylesheet('css/custom.css')
     app.add_javascript('js/custom.js')
     app.add_javascript('js/redoc.min.js')
