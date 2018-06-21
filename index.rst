@@ -13,3 +13,5 @@ Welcome to the Piwik PRO documentation for developers!
    analytics/index
    audience_manager/index
    glossary
+
+`Changelog <https://piwik.pro/changelog/>`_
