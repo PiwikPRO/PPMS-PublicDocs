@@ -6,6 +6,11 @@
 Welcome to the Piwik PRO documentation for developers!
 ======================================================
 
+*PPMS version: 6.0 (see* |changelog|_\ *)*
+
+.. |changelog| replace:: *changelog*
+.. _changelog: https://piwik.pro/changelog/version-6/6-0-0-release/
+
 .. toctree::
    :maxdepth: 1
 
