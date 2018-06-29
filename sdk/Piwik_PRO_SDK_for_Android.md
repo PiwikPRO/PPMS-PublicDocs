@@ -10,7 +10,7 @@ Piwik PRO SDK for Android
 
 ### Client
 #### Including the library
-Add `build.gradle` to an app modules file, e.g. `~/git/MyApplication/app/build.gradle`
+Add dependencies to your app module `build.gradle` file (e.g. `~/git/MyApplication/app/build.gradle`):
 
 ```groovy
 dependencies {
@@ -565,7 +565,7 @@ This can be changed via the ``setIncludeDefaultCustomVars`` method:
 ```java
 getTracker().setIncludeDefaultCustomVars(false);
 ```
-In case you need to configure custom variables separately, turn of this option and see the section above regarding tracking custom variables.
+In case you need to configure custom variables separately, turn off this option and see the section above regarding tracking custom variables.
 
 ### Local storage limits
 
