@@ -2,7 +2,7 @@
   "swagger": "2.0",
   "info": {
     "title": "Apps Api",
-    "version": "2.0"
+    "version": "auto"
   },
   "tags": [
     {
@@ -22,7 +22,7 @@
         "type": "string"
       },
       "example": [
-        "example.piwik.pro"
+        "example.com"
       ]
     },
     "App_Timezone": {
@@ -43,7 +43,7 @@
     "JsonApi_Id": {
       "type": "string",
       "format": "uuid",
-      "description": "UUIDv4 string",
+      "description": "Resource ID",
       "example": "985ed9d7-b652-47b8-b9cf-c17d62735261"
     },
     "JsonApi_Type": {
@@ -430,8 +430,8 @@
             "type": "string"
           },
           "example": [
-            "123.43.32.10",
-            "8.8.8.8"
+            "192.168.0.0",
+            "172.16.0.0"
           ]
         },
         "excludedUrlParams": {
@@ -472,8 +472,8 @@
             "type": "string"
           },
           "example": [
-            "*.piwik.pro",
-            "careers.piwik.pro"
+            "*.example.com",
+            "example.com"
           ]
         }
       },

@@ -2,7 +2,7 @@
   "swagger": "2.0",
   "info": {
     "title": "Users Api",
-    "version": "2.0"
+    "version": "auto"
   },
   "tags": [
     {
@@ -37,7 +37,7 @@
     "JsonApi_Id": {
       "type": "string",
       "format": "uuid",
-      "description": "UUIDv4 string",
+      "description": "Resource ID",
       "example": "985ed9d7-b652-47b8-b9cf-c17d62735261"
     },
     "JsonApi_Type": {
@@ -267,10 +267,10 @@
         }
       }
     },
-    "/api/users/v2/{uuid}": {
+    "/api/users/v2/{userId}": {
       "parameters": [
         {
-          "name": "uuid",
+          "name": "userId",
           "in": "path",
           "type": "string",
           "format": "uuid",
@@ -317,10 +317,10 @@
         }
       }
     },
-    "/api/users/v2/{uuid}/change-role": {
+    "/api/users/v2/{userId}/change-role": {
       "parameters": [
         {
-          "name": "uuid",
+          "name": "userId",
           "in": "path",
           "type": "string",
           "format": "uuid",
