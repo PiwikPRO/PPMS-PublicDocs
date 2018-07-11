@@ -3,13 +3,13 @@ Public API guide
 
 This page describes how to access Piwik PRO API which uses 
 [client credentials](https://www.oauth.com/oauth2-servers/access-tokens/client-credentials/)
-Oauth grant type for obtaining user token. 
+OAuth grant type for obtaining user token. 
 All data is sent and received as JSON and it uses [JSON API](http://jsonapi.org/) specification.
 
 ## Obtaining token
 
 If you want to access API for the first time you need to generate your 
-API Credentials which then allows you to request for a token that is used for authentication during communication with public API.
+API credentials which then allows you to request for a token that is used for authentication during communication with public API.
 
 ### Generate API Credentials
 
@@ -47,7 +47,7 @@ Piwik PRO API tokens use [jwt](https://jwt.io/) format.
 
 Now, you can use obtained `access_token` for communication with Piwik PRO API.
 Field `expires_in` stands for time (in seconds) for token TTL.
-As token is a Bearer type, it must be **included in all api calls** within header.
+As token is a Bearer type, it must be **included in all API calls** within header.
 
 ```
 Authorization: Bearer your-token-here
