@@ -9,10 +9,23 @@ import sys
 
 import yaml
 
+parsers = {
+    '.yaml': yaml.safe_load,
+    '.json': json.loads,
+}
+
+
+
 
 def load(path):
+    _, extension = os.path.splitext(path)
+    parse = parsers.get(extension)
+
+    if parse is None:
+        raise NotImplementedError('No parser specified for this file type', path)
+
     with open(path) as f:
-        return resolve(yaml.safe_load(f.read()), os.path.dirname(path))
+        return resolve(parse(f.read()), os.path.dirname(path))
 
 
 def resolve(content, dir):
