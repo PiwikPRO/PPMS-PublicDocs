@@ -157,25 +157,6 @@ paths:
           type: integer
           format: UNIX timestamp
           example: 1521232150
-        - name: _rcn
-          in: query
-          description: |
-            Referrer campaign name (used to attribute visit to marketing campaign). Can be set only by the first action
-            of a visit.
-
-            Used in `Referrers` > `Campaigns` report.
-          type: string
-          example: Email-2018-03
-        - name: _rck
-          in: query
-          description: |
-            Referrer campaign keyword (used to attribute visit to marketing campaign). Can be set only by the first
-            action of a visit.
-
-            Used in `Referrers` > `Campaigns` report.
-          type: string
-          #TODO: Is it possible to set multiple keywords to the campaign?
-          example: promotion
         - name: res
           in: query
           description: Resolution of the visitor's device in pixels.
