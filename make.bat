@@ -9,7 +9,7 @@ if "%SPHINXBUILD%" == "" (
 )
 set SOURCEDIR=.
 set BUILDDIR=_build
-set SPHINXPROJ=PPMS-PDFD
+set SPHINXPROJ="Piwik PRO"
 
 if "%1" == "" goto help
 
