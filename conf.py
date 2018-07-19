@@ -158,7 +158,7 @@ latex_elements = {
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
     (master_doc, 'PPMS-PDFD.tex', u'Piwik PRO Marketing Suite Documentation',
-     u'Piwik PRO Marketing Suite', 'manual'),
+     u'Piwik PRO', 'manual'),
 ]
 
 
@@ -167,7 +167,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'Piwik PRO Marketing Suite', u'Piwik PRO Marketing Suite Documentation',
+    (master_doc, 'Piwik PRO', u'Piwik PRO Marketing Suite Documentation',
      [author], 1)
 ]
 
@@ -179,7 +179,7 @@ man_pages = [
 #  dir menu entry, description, category)
 texinfo_documents = [
     (master_doc, 'Piwik PRO Marketing Suite', u'Piwik PRO Marketing Suite Documentation',
-     author, 'Piwik PRO Marketing Suite', 'One line description of project.',
+     author, 'Piwik PRO', 'One line description of project.',
      'Miscellaneous'),
 ]
 
