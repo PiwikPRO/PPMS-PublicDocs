@@ -64,8 +64,8 @@ source_suffix = '.rst'
 master_doc = 'index'
 autosectionlabel_prefix_document = True
 # General information about the project.
-project = u'PPMS-PDFD'
-copyright = u'{year}, Piwik PRO'.format(year=datetime.date.today().year)
+project = u'Piwik PRO Marketing Suite'
+copyright = u'{year}, Piwik.pro - Enterprise Analytics and Tag Management Platform'.format(year=datetime.date.today().year)
 author = u'Piwik PRO'
 
 # The version info for the project you're documenting, acts as replacement for
@@ -73,7 +73,7 @@ author = u'Piwik PRO'
 # built documents.
 #
 # The short X.Y version.
-version = u'6.2'
+version = u'7.0'
 # The full version, including alpha/beta/rc tags.
 release = version
 
@@ -157,7 +157,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, 'PPMS-PDFD.tex', u'PPMS-PDFD Documentation',
+    (master_doc, 'PPMS-PDFD.tex', u'Piwik PRO Marketing Suite Documentation',
      u'Piwik PRO', 'manual'),
 ]
 
@@ -167,7 +167,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'ppms-pdfd', u'PPMS-PDFD Documentation',
+    (master_doc, 'Piwik PRO', u'Piwik PRO Marketing Suite Documentation',
      [author], 1)
 ]
 
@@ -178,8 +178,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    (master_doc, 'PPMS-PDFD', u'PPMS-PDFD Documentation',
-     author, 'PPMS-PDFD', 'One line description of project.',
+    (master_doc, 'Piwik PRO Marketing Suite', u'Piwik PRO Marketing Suite Documentation',
+     author, 'Piwik PRO', 'One line description of project.',
      'Miscellaneous'),
 ]
 
