@@ -65,8 +65,8 @@ master_doc = 'index'
 autosectionlabel_prefix_document = True
 # General information about the project.
 project = u'Piwik PRO Marketing Suite'
-copyright = u'{year}, Piwik PRO Marketing Suite'.format(year=datetime.date.today().year)
-author = u'Piwik PRO Marketing Suite'
+copyright = u'{year}, Piwik.pro - Enterprise Analytics and Tag Management Platform'.format(year=datetime.date.today().year)
+author = u'Piwik PRO'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
