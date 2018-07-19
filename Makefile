@@ -4,7 +4,7 @@
 # You can set these variables from the command line.
 SPHINXOPTS    =
 SPHINXBUILD   = sphinx-build
-SPHINXPROJ    = PPMS-PDFD
+SPHINXPROJ    = "Piwik PRO Marketing Suite"
 SOURCEDIR     = .
 BUILDDIR      = _build
 
