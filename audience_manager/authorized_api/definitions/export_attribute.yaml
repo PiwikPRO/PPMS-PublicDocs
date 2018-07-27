@@ -1,0 +1,14 @@
+type: object
+properties:
+  name:
+    type: string
+    description: Name of the attribute.
+    example: 'browser_config'
+  field_type:
+    type: string
+    description: Type of the audience filter.
+    enum:
+    - profile
+    - attributes
+    - analytics
+    example: 'analytics'
