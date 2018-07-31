@@ -327,10 +327,20 @@
           "type": "boolean",
           "example": true
         },
+        "gdprUserModeEnabled": {
+          "description": "Gdpr User Mode enabled or disabled for an app",
+          "type": "boolean",
+          "example": false
+        },
         "privacyCookieDomainsEnabled": {
           "description": "Privacy cookie domains enabled or disabled for an app",
           "type": "boolean",
           "example": true
+        },
+        "privacyCookieExpirationPeriod": {
+          "description": "Privacy cookie expiration period (in seconds)",
+          "type": "integer",
+          "example": 31536000
         },
         "privacyCookieDomains": {
           "description": "List of privacy cookie domains for an app (works if enabled)",
