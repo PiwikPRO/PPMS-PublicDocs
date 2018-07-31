@@ -1,0 +1,23 @@
+post:
+  tags:
+  - profiles
+  summary:
+    Stream profiles
+  description: >
+    Streams profiles belonging to selected audience as a file with selected columns and format.
+    There is a limit of 1,000,000 profiles over which this endpoint will
+    return error 400. Response will be streamed. We strongly recommend using `Accept-Encoding: gzip` header on the client,
+    as the responses can be huge depending on amount of profiles and exported fields.
+  parameters:
+  - name: body
+    in: body
+    type: object
+    schema:
+      $ref: '#/definitions/ExportData'
+  responses:
+    200:
+      description: OK
+    400:
+      description: Bad Request
+    403:
+      description: Forbidden
