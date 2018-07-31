@@ -22,7 +22,7 @@
         "type": "string"
       },
       "example": [
-        "example.com"
+        "http://example.com"
       ]
     },
     "App_Timezone": {
@@ -38,7 +38,8 @@
     "App_AddedAt": {
       "description": "When app was added",
       "type": "string",
-      "example": 1506570461
+      "format": "date-time",
+      "example": "2018-07-10T08:50:41+00:00"
     },
     "JsonApi_Id": {
       "type": "string",
@@ -54,11 +55,11 @@
     "JsonApi_Resource_Object": {
       "type": "object",
       "properties": {
-        "id": {
-          "$ref": "#/definitions/JsonApi_Id"
-        },
         "type": {
           "$ref": "#/definitions/JsonApi_Type"
+        },
+        "id": {
+          "$ref": "#/definitions/JsonApi_Id"
         },
         "attributes": {
           "type": "object"
@@ -76,30 +77,7 @@
               "example": "ppms/app"
             },
             "attributes": {
-              "$ref": "#/definitions/Apps"
-            }
-          }
-        }
-      }
-    },
-    "App_LastAppCantBeDeleted_JsonApi": {
-      "type": "object",
-      "properties": {
-        "errors": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "properties": {
-              "status": {
-                "type": "integer",
-                "description": "Http status",
-                "example": 400
-              },
-              "title": {
-                "type": "string",
-                "description": "Error message",
-                "example": "It is not possible to delete last app"
-              }
+              "$ref": "#/definitions/App_Editable_Attributes"
             }
           }
         }
@@ -134,68 +112,7 @@
                 },
                 "currency": {
                   "$ref": "#/definitions/App_Currency"
-                },
-                "id": {
-                  "description": "UUID for an app",
-                  "type": "string"
                 }
-              }
-            }
-          }
-        }
-      },
-      "example": {
-        "data": {
-          "type": "ppms/app",
-          "attributes": {
-            "name": "appName",
-            "urls": [
-              "www.piwikpro.example"
-            ]
-          }
-        }
-      }
-    },
-    "App_UserNotPermitted_JsonApi": {
-      "type": "object",
-      "properties": {
-        "errors": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "properties": {
-              "status": {
-                "type": "integer",
-                "description": "Http status",
-                "example": 404
-              },
-              "title": {
-                "type": "string",
-                "description": "Error message",
-                "example": ""
-              }
-            }
-          }
-        }
-      }
-    },
-    "App_InvalidUuid_JsonApi": {
-      "type": "object",
-      "properties": {
-        "errors": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "properties": {
-              "status": {
-                "type": "integer",
-                "description": "Http status",
-                "example": 400
-              },
-              "title": {
-                "type": "string",
-                "description": "Error message",
-                "example": "Invalid UUID string: invalid-string-that-was-sent"
               }
             }
           }
@@ -249,92 +166,44 @@
         }
       }
     },
-    "App_InvalidForm_JsonApi": {
-      "type": "object",
-      "properties": {
-        "errors": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "properties": {
-              "status": {
-                "type": "integer",
-                "description": "Http status",
-                "example": 400
-              },
-              "title": {
-                "type": "string",
-                "description": "Error message",
-                "example": "Invalid form"
-              },
-              "details": {
-                "type": "string",
-                "description": "Error details",
-                "example": "This value is not valid."
-              },
-              "source": {
-                "type": "object",
-                "properties": {
-                  "pointer": {
-                    "type": "string",
-                    "description": "Pointer of error",
-                    "example": "/data/attributes/currency"
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "App_NotFound_JsonApi": {
-      "type": "object",
-      "properties": {
-        "errors": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "properties": {
-              "status": {
-                "type": "integer",
-                "description": "Http status",
-                "example": 404
-              },
-              "title": {
-                "type": "string",
-                "description": "Error message",
-                "example": "App with id: '32513021-5f38-48f6-9c09-f458d8b25927' does not exist"
-              }
-            }
-          }
-        }
-      }
-    },
     "App_List_JsonApi": {
       "type": "object",
       "properties": {
-        "data": {
+        "meta": {
           "type": "object",
-          "allOf": [
-            {
-              "$ref": "#/definitions/JsonApi_Resource_Object"
-            },
-            {
-              "properties": {
-                "attributes": {
-                  "type": "object",
-                  "properties": {
-                    "name": {
-                      "$ref": "#/definitions/App_Name"
-                    },
-                    "addedAt": {
-                      "$ref": "#/definitions/App_AddedAt"
+          "properties": {
+            "total": {
+              "type": "integer",
+              "description": "Total count of objects",
+              "example": 14
+            }
+          }
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "allOf": [
+              {
+                "$ref": "#/definitions/JsonApi_Resource_Object"
+              },
+              {
+                "properties": {
+                  "attributes": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "$ref": "#/definitions/App_Name"
+                      },
+                      "addedAt": {
+                        "$ref": "#/definitions/App_AddedAt"
+                      }
                     }
                   }
                 }
               }
-            }
-          ]
+            ]
+          }
         }
       }
     },
@@ -350,7 +219,7 @@
             {
               "properties": {
                 "attributes": {
-                  "$ref": "#/definitions/Apps"
+                  "$ref": "#/definitions/App"
                 }
               }
             }
@@ -358,13 +227,11 @@
         }
       }
     },
-    "Apps": {
+    "App_Editable_Attributes": {
+      "type": "object",
       "properties": {
         "name": {
           "$ref": "#/definitions/App_Name"
-        },
-        "addedAt": {
-          "$ref": "#/definitions/App_AddedAt"
         },
         "urls": {
           "$ref": "#/definitions/App_Urls"
@@ -460,10 +327,20 @@
           "type": "boolean",
           "example": true
         },
+        "gdprUserModeEnabled": {
+          "description": "Gdpr User Mode enabled or disabled for an app",
+          "type": "boolean",
+          "example": false
+        },
         "privacyCookieDomainsEnabled": {
           "description": "Privacy cookie domains enabled or disabled for an app",
           "type": "boolean",
           "example": true
+        },
+        "privacyCookieExpirationPeriod": {
+          "description": "Privacy cookie expiration period (in seconds)",
+          "type": "integer",
+          "example": 31536000
         },
         "privacyCookieDomains": {
           "description": "List of privacy cookie domains for an app (works if enabled)",
@@ -476,8 +353,21 @@
             "example.com"
           ]
         }
-      },
-      "type": "object"
+      }
+    },
+    "App": {
+      "allOf": [
+        {
+          "properties": {
+            "addedAt": {
+              "$ref": "#/definitions/App_AddedAt"
+            }
+          }
+        },
+        {
+          "$ref": "#/definitions/App_Editable_Attributes"
+        }
+      ]
     }
   },
   "parameters": {
@@ -552,7 +442,7 @@
     }
   },
   "paths": {
-    "/api/apps/v2": {
+    "/api/v2": {
       "get": {
         "tags": [
           "Apps v2"
@@ -590,6 +480,9 @@
         "summary": "App add",
         "description": "It adds app",
         "operationId": "api_app_add_v2",
+        "consumes": [
+          "application/vnd.api+json"
+        ],
         "produces": [
           "application/vnd.api+json"
         ],
@@ -605,18 +498,18 @@
         ],
         "responses": {
           "201": {
-            "description": "App was added",
+            "description": "Created",
             "schema": {
               "$ref": "#/definitions/App_JsonApi"
             }
           },
           "400": {
-            "description": "Bad request"
+            "description": "Bad Request"
           }
         }
       }
     },
-    "/api/apps/v2/{appId}": {
+    "/api/v2/{appId}": {
       "get": {
         "tags": [
           "Apps v2"
@@ -634,13 +527,13 @@
         ],
         "responses": {
           "200": {
-            "description": "App details",
+            "description": "OK",
             "schema": {
               "$ref": "#/definitions/App_JsonApi"
             }
           },
           "404": {
-            "description": "App with given UUID not found"
+            "description": "Not Found"
           }
         }
       },
@@ -661,10 +554,10 @@
         ],
         "responses": {
           "204": {
-            "description": "App deleted"
+            "description": "No Content"
           },
           "400": {
-            "description": "Last app cannot be deleted"
+            "description": "Bad Request"
           }
         }
       },
@@ -675,6 +568,9 @@
         "summary": "App edit",
         "description": "It edits app",
         "operationId": "api_app_edit_v2",
+        "consumes": [
+          "application/vnd.api+json"
+        ],
         "produces": [
           "application/vnd.api+json"
         ],
@@ -694,15 +590,15 @@
         ],
         "responses": {
           "204": {
-            "description": "App edited"
+            "description": "No Content"
           },
           "400": {
-            "description": "Invalid Form"
+            "description": "Bad Request"
           }
         }
       }
     },
-    "/api/apps/v2/{appId}/permissions": {
+    "/api/v2/{appId}/permissions": {
       "get": {
         "tags": [
           "Apps v2"
@@ -732,10 +628,10 @@
             }
           },
           "400": {
-            "description": "Given UUID is invalid"
+            "description": "Bad Request"
           },
           "404": {
-            "description": "Given user is not permitted to manage app"
+            "description": "Not Found"
           }
         }
       }
