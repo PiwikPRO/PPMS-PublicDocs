@@ -4,7 +4,7 @@ Platform
 .. toctree::
   :maxdepth: 3
 
-  public_api_guide
-  public_api/users/users_api
-  public_api/apps/apps_api
-  public_api/access_control/access_control_api
+  authorized_api_guide
+  authorized_api/users/users_api
+  authorized_api/apps/apps_api
+  authorized_api/access_control/access_control_api
