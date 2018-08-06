@@ -1,4 +1,4 @@
-Public API guide
+Authorized API guide
 ========================
 
 This page describes how to access Piwik PRO API which uses 
