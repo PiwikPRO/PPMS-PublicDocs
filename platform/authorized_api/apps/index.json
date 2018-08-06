@@ -16,8 +16,8 @@
       "example": "AppName"
     },
     "App_Urls": {
-      "description": "Urls of an app",
       "type": "array",
+      "description": "Urls of an app",
       "items": {
         "type": "string"
       },
@@ -26,26 +26,26 @@
       ]
     },
     "App_Timezone": {
-      "description": "Timezone for an app",
       "type": "string",
+      "description": "Timezone for an app",
       "example": "UTC"
     },
     "App_Currency": {
-      "description": "Currency for an app",
       "type": "string",
+      "description": "Currency for an app",
       "example": "USD"
     },
     "App_AddedAt": {
-      "description": "When app was added",
       "type": "string",
-      "format": "date-time",
-      "example": "2018-07-10T08:50:41+00:00"
+      "description": "When app was added",
+      "example": "2018-07-10T08:50:41+00:00",
+      "format": "date-time"
     },
     "JsonApi_Id": {
       "type": "string",
-      "format": "uuid",
       "description": "Resource ID",
-      "example": "985ed9d7-b652-47b8-b9cf-c17d62735261"
+      "example": "985ed9d7-b652-47b8-b9cf-c17d62735261",
+      "format": "uuid"
     },
     "JsonApi_Type": {
       "type": "string",
@@ -175,7 +175,7 @@
             "total": {
               "type": "integer",
               "description": "Total count of objects",
-              "example": 14
+              "example": 1
             }
           }
         },
@@ -219,7 +219,7 @@
             {
               "properties": {
                 "attributes": {
-                  "$ref": "#/definitions/App"
+                  "$ref": "#/definitions/App_Attributes"
                 }
               }
             }
@@ -243,28 +243,28 @@
           "$ref": "#/definitions/App_Currency"
         },
         "excludeUnknownUrls": {
-          "description": "Exclude unknown urls for an app",
           "type": "boolean",
+          "description": "Exclude unknown urls for an app",
           "example": true
         },
         "keepUrlFragment": {
-          "description": "Keep url fragment for an app",
           "type": "boolean",
+          "description": "Keep url fragment for an app",
           "example": false
         },
         "eCommerceTracking": {
-          "description": "eCommerceTracking for an app",
           "type": "boolean",
+          "description": "eCommerceTracking for an app",
           "example": true
         },
         "siteSearchTracking": {
-          "description": "Site search tracking for an app",
           "type": "boolean",
+          "description": "Site search tracking for an app",
           "example": true
         },
         "siteSearchQueryParams": {
-          "description": "Site search query params for an app",
           "type": "array",
+          "description": "Site search query params for an app",
           "items": {
             "type": "string"
           },
@@ -278,21 +278,21 @@
           ]
         },
         "siteSearchCategoryParams": {
-          "description": "Site search category params for an app",
           "type": "array",
+          "description": "Site search category params for an app",
           "items": {
             "type": "string"
           },
           "example": []
         },
         "delay": {
-          "description": "Delay for an app",
           "type": "integer",
+          "description": "Delay for an app",
           "example": 500
         },
         "excludedIps": {
-          "description": "Excluded ips for an app",
           "type": "array",
+          "description": "Excluded ips for an app",
           "items": {
             "type": "string"
           },
@@ -302,29 +302,30 @@
           ]
         },
         "excludedUrlParams": {
-          "description": "Excluded url params for an app",
           "type": "array",
+          "description": "Excluded url params for an app",
           "items": {
             "type": "string"
           },
           "example": [
-            "querdie",
-            "qq"
+            "pl_medium",
+            "pk_source"
           ]
         },
         "excludedUserAgents": {
-          "description": "Excluded user agents for an app",
           "type": "array",
+          "description": "Excluded user agents for an app",
           "items": {
             "type": "string"
           },
           "example": [
-            "robots"
+            "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0",
+            "Opera/9.80 (Windows NT 6.2; Win64; x64) Presto/2.12 Version/12.16"
           ]
         },
         "gdpr": {
-          "description": "Gdpr enabled or disabled for an app",
           "type": "boolean",
+          "description": "Gdpr enabled or disabled for an app",
           "example": true
         },
         "gdprUserModeEnabled": {
@@ -333,8 +334,8 @@
           "example": false
         },
         "privacyCookieDomainsEnabled": {
-          "description": "Privacy cookie domains enabled or disabled for an app",
           "type": "boolean",
+          "description": "Privacy cookie domains enabled or disabled for an app",
           "example": true
         },
         "privacyCookieExpirationPeriod": {
@@ -343,8 +344,8 @@
           "example": 31536000
         },
         "privacyCookieDomains": {
-          "description": "List of privacy cookie domains for an app (works if enabled)",
           "type": "array",
+          "description": "List of privacy cookie domains for an app (works if enabled)",
           "items": {
             "type": "string"
           },
@@ -355,7 +356,8 @@
         }
       }
     },
-    "App": {
+    "App_Attributes": {
+      "type": "object",
       "allOf": [
         {
           "properties": {
@@ -400,44 +402,6 @@
       "in": "path",
       "description": "App UUIDv4",
       "required": true,
-      "type": "string"
-    },
-    "appName": {
-      "name": "name",
-      "in": "formData",
-      "description": "App name",
-      "required": true,
-      "type": "string"
-    },
-    "appUrls": {
-      "name": "urls",
-      "in": "formData",
-      "description": "App urls",
-      "required": true,
-      "type": "array",
-      "items": {
-        "type": "string"
-      }
-    },
-    "appTimezone": {
-      "name": "timezone",
-      "in": "formData",
-      "description": "App timezone",
-      "required": false,
-      "type": "string"
-    },
-    "appCurrency": {
-      "name": "currency",
-      "in": "formData",
-      "description": "App currency",
-      "required": false,
-      "type": "string"
-    },
-    "appFormDataId": {
-      "name": "id",
-      "in": "formData",
-      "description": "App UUIDv4",
-      "required": false,
       "type": "string"
     }
   },
