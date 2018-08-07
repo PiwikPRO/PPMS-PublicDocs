@@ -41,6 +41,16 @@
       "example": "2018-07-10T08:50:41+00:00",
       "format": "date-time"
     },
+    "App_Type": {
+      "type": "string",
+      "description": "App type",
+      "example": "web",
+      "enum": [
+        "web",
+        "sharepoint"
+      ],
+      "default": "web"
+    },
     "JsonApi_Id": {
       "type": "string",
       "description": "Resource ID",
@@ -112,6 +122,9 @@
                 },
                 "currency": {
                   "$ref": "#/definitions/App_Currency"
+                },
+                "appType": {
+                  "$ref": "#/definitions/App_Type"
                 }
               }
             }
@@ -361,6 +374,9 @@
       "allOf": [
         {
           "properties": {
+            "appType": {
+              "$ref": "#/definitions/App_Type"
+            },
             "addedAt": {
               "$ref": "#/definitions/App_AddedAt"
             }
