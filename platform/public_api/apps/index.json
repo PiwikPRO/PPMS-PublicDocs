@@ -51,15 +51,6 @@
       ],
       "default": "web"
     },
-    "Pagination": {
-      "type": "object",
-      "properties": {
-        "total": {
-          "type": "integer",
-          "example": 1
-        }
-      }
-    },
     "JsonApi_Id": {
       "type": "string",
       "description": "Resource ID",
@@ -421,14 +412,6 @@
       "required": false,
       "type": "string",
       "default": ""
-    },
-    "organization": {
-      "name": "organization",
-      "in": "query",
-      "description": "Organization name for apps (empty stands for any organization)",
-      "required": false,
-      "type": "string",
-      "default": "(empty)"
     },
     "appId": {
       "name": "appId",
