@@ -329,8 +329,8 @@
           "example": true
         },
         "gdprUserModeEnabled": {
-          "description": "Gdpr User Mode enabled or disabled for an app",
           "type": "boolean",
+          "description": "Gdpr User Mode enabled or disabled for an app",
           "example": false
         },
         "privacyCookieDomainsEnabled": {
@@ -339,8 +339,8 @@
           "example": true
         },
         "privacyCookieExpirationPeriod": {
-          "description": "Privacy cookie expiration period (in seconds)",
           "type": "integer",
+          "description": "Privacy cookie expiration period (in seconds)",
           "example": 31536000
         },
         "privacyCookieDomains": {
