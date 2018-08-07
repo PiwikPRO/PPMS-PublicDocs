@@ -10,11 +10,6 @@
     }
   ],
   "definitions": {
-    "App_Id": {
-      "type": "string",
-      "description": "App UUIDv4",
-      "example": "985ed9d7-b652-47b8-b9cf-c17d62735261"
-    },
     "App_Name": {
       "type": "string",
       "description": "Name of an app",
@@ -382,21 +377,6 @@
           ]
         }
       }
-    },
-    "App": {
-      "type": "object",
-      "allOf": [
-        {
-          "properties": {
-            "id": {
-              "$ref": "#/definitions/App_Id"
-            }
-          }
-        },
-        {
-          "$ref": "#/definitions/App_Attributes"
-        }
-      ]
     },
     "App_Attributes": {
       "type": "object",
