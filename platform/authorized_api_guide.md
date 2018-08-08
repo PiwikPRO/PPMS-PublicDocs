@@ -9,7 +9,7 @@ All data is sent and received as JSON and it uses [JSON API](http://jsonapi.org/
 ## Obtaining token
 
 If you want to access API for the first time you need to generate your 
-API credentials which then allows you to request for a token that is used for authentication during communication with public API.
+API credentials which then allows you to request for a token that is used for authentication during communication with authorized API.
 
 ### Generate API Credentials
 
