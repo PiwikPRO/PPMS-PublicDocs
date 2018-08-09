@@ -73,8 +73,10 @@
           "type": "object",
           "properties": {
             "type": {
-              "type": "string",
-              "example": "ppms/app"
+              "$ref": "#/definitions/JsonApi_Type"
+            },
+            "id": {
+              "$ref": "#/definitions/JsonApi_Id"
             },
             "attributes": {
               "$ref": "#/definitions/App_Editable_Attributes"
@@ -406,7 +408,7 @@
     }
   },
   "paths": {
-    "/api/v2": {
+    "/api/apps/v2": {
       "get": {
         "tags": [
           "Apps v2"
@@ -473,7 +475,7 @@
         }
       }
     },
-    "/api/v2/{appId}": {
+    "/api/apps/v2/{appId}": {
       "get": {
         "tags": [
           "Apps v2"
@@ -562,7 +564,7 @@
         }
       }
     },
-    "/api/v2/{appId}/permissions": {
+    "/api/apps/v2/{appId}/permissions": {
       "get": {
         "tags": [
           "Apps v2"
