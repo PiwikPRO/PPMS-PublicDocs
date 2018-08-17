@@ -12,12 +12,12 @@
   "definitions": {
     "App_Name": {
       "type": "string",
-      "description": "Name of an app",
+      "description": "App name",
       "example": "AppName"
     },
     "App_Urls": {
       "type": "array",
-      "description": "Urls of an app",
+      "description": "List of URL's under which the app is available (each URL needs to start with ``http://`` or ``https://``)",
       "items": {
         "type": "string"
       },
@@ -27,12 +27,12 @@
     },
     "App_Timezone": {
       "type": "string",
-      "description": "Timezone for an app",
+      "description": "It allows to specify the timezone for your app (using IANA format), and tracked data will show date & time of this time zone. Please note that changing the timezone will not affect previous logs in reports.",
       "example": "UTC"
     },
     "App_Currency": {
       "type": "string",
-      "description": "Currency for an app",
+      "description": "App currency. It specifies the default currency for Goal revenues shown in Analytics. By default, Analytics reports display revenue in US dollars.",
       "example": "USD"
     },
     "App_AddedAt": {
@@ -40,6 +40,11 @@
       "description": "When app was added",
       "example": "2018-07-10T08:50:41+00:00",
       "format": "date-time"
+    },
+    "App_Organization": {
+      "type": "string",
+      "description": "Organization to which an app belongs to",
+      "example": "default"
     },
     "App_Type": {
       "type": "string",
@@ -259,27 +264,39 @@
         },
         "excludeUnknownUrls": {
           "type": "boolean",
-          "description": "Exclude unknown urls for an app",
-          "example": true
+          "description": "Track only visits and actions when URL starts with one of `urls`",
+          "default": false,
+          "example": false
         },
         "keepUrlFragment": {
           "type": "boolean",
-          "description": "Keep url fragment for an app",
-          "example": false
+          "description": "Disable this setting to exclude Page URL fragments (everything after #, e.g. ``example.org/index.html#first_section`` will be tracked as ``example.org.index.html``)",
+          "default": true,
+          "example": true
         },
         "eCommerceTracking": {
           "type": "boolean",
-          "description": "eCommerceTracking for an app",
-          "example": true
+          "description": "Enables e-commerce reports, additional tab is shown in Analytics module with e-commerce logs. Sales can be easily tracked using this setting.",
+          "default": false,
+          "example": false
         },
         "siteSearchTracking": {
           "type": "boolean",
-          "description": "Site search tracking for an app",
+          "description": "Track and report what users are searching in your apps internal search engine",
+          "default": true,
           "example": true
         },
         "siteSearchQueryParams": {
           "type": "array",
           "description": "Site search query params for an app",
+          "default": [
+            "q",
+            "query",
+            "s",
+            "search",
+            "searchword",
+            "keyword"
+          ],
           "items": {
             "type": "string"
           },
@@ -295,6 +312,7 @@
         "siteSearchCategoryParams": {
           "type": "array",
           "description": "Site search category params for an app",
+          "default": [],
           "items": {
             "type": "string"
           },
@@ -302,34 +320,41 @@
         },
         "delay": {
           "type": "integer",
-          "description": "Delay for an app",
+          "description": "Delay (in ms) is used to slow down actions (e.g. redirect) when waiting for tags to be resolved",
+          "default": 500,
           "example": 500
         },
         "excludedIps": {
           "type": "array",
-          "description": "Excluded ips for an app",
+          "description": "List of IPs to blacklist from tracking. You can use wildcards, e.g. ``1.2.3.*`` or ``1.2.*.*``",
+          "default": [],
           "items": {
             "type": "string"
           },
           "example": [
             "192.168.0.0",
-            "172.16.0.0"
+            "172.16.0.0",
+            "1.2.*.*"
           ]
         },
         "excludedUrlParams": {
           "type": "array",
-          "description": "Excluded url params for an app",
+          "description": "URL query parameters excluded by default from tracking: ``gclid``, ``fb_xd_fragment``, ``fb_comment_id``, ``phpsessid``, ``jsessid``, ``aspsessid``, ``doing_wp_cron``, ``sid`` and ``pk_vid``. Regular expressions such as ``/^sess.*|.*[dD]ate$/`` are supported",
+          "default": [],
           "items": {
             "type": "string"
           },
           "example": [
             "pl_medium",
-            "pk_source"
+            "pk_source",
+            "fb_comment_id",
+            "/^sess.*|.*[dD]ate$/"
           ]
         },
         "excludedUserAgents": {
           "type": "array",
-          "description": "Excluded user agents for an app",
+          "description": "If the visitor's user agent string contains any of the strings you specify, the visitor will be excluded from tracking",
+          "default": [],
           "items": {
             "type": "string"
           },
@@ -340,7 +365,7 @@
         },
         "gdpr": {
           "type": "boolean",
-          "description": "Gdpr enabled or disabled for an app",
+          "description": "Enable collection of privacy consent for full GDPR compliance. The compliance form will be triggered if you serve your users tags that require consent",
           "example": true
         },
         "gdprUserModeEnabled": {
@@ -351,7 +376,8 @@
         "privacyCookieDomainsEnabled": {
           "type": "boolean",
           "description": "Privacy cookie domains enabled or disabled for an app",
-          "example": true
+          "default": false,
+          "example": false
         },
         "privacyCookieExpirationPeriod": {
           "type": "integer",
@@ -360,7 +386,8 @@
         },
         "privacyCookieDomains": {
           "type": "array",
-          "description": "List of privacy cookie domains for an app (works if enabled)",
+          "description": "List of privacy cookie domains for an app (works if `privacyCookieDomainsEnabled` is true), you can also use wildcards like ``*.example.com``",
+          "default": [],
           "items": {
             "type": "string"
           },
@@ -376,6 +403,9 @@
       "allOf": [
         {
           "properties": {
+            "organization": {
+              "$ref": "#/definitions/App_Organization"
+            },
             "appType": {
               "$ref": "#/definitions/App_Type"
             },
