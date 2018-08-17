@@ -353,11 +353,13 @@
         "gdpr": {
           "type": "boolean",
           "description": "Enable collection of privacy consent for full GDPR compliance. The compliance form will be triggered if you serve your users tags that require consent",
+          "default": true,
           "example": true
         },
         "gdprUserModeEnabled": {
           "type": "boolean",
           "description": "Gdpr User Mode enabled or disabled for an app",
+          "default": false,
           "example": false
         },
         "privacyCookieDomainsEnabled": {
@@ -368,7 +370,8 @@
         },
         "privacyCookieExpirationPeriod": {
           "type": "integer",
-          "description": "Privacy cookie expiration period (in seconds)",
+          "description": "Privacy cookie expiration period (in seconds, default is one year)",
+          "default": 31536000,
           "example": 31536000
         },
         "privacyCookieDomains": {
