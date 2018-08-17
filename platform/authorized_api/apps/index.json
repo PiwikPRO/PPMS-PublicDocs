@@ -353,6 +353,7 @@
         "gdpr": {
           "type": "boolean",
           "description": "Enable collection of privacy consent for full GDPR compliance. The compliance form will be triggered if you serve your users tags that require consent",
+          "default": true,
           "example": true
         },
         "privacyCookieDomainsEnabled": {
