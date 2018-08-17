@@ -17,7 +17,7 @@
     },
     "App_Urls": {
       "type": "array",
-      "description": "List of URL's under which the app is available (each URL needs to start with http:// or https://)",
+      "description": "List of URL's under which the app is available (each URL needs to start with ``http://`` or ``https://``)",
       "items": {
         "type": "string"
       },
@@ -251,27 +251,39 @@
         },
         "excludeUnknownUrls": {
           "type": "boolean",
-          "description": "Track only visits and actions when URL starts with one of 'urls'",
-          "example": true
+          "description": "Track only visits and actions when URL starts with one of `urls`",
+          "default": false,
+          "example": false
         },
         "keepUrlFragment": {
           "type": "boolean",
-          "description": "Disable this setting to exclude Page URL fragments (everything after #, e.g. example.org/index.html#first_section will be tracked as example.org.index.html)",
-          "example": false
+          "description": "Disable this setting to exclude Page URL fragments (everything after #, e.g. ``example.org/index.html#first_section`` will be tracked as ``example.org.index.html``)",
+          "default": true,
+          "example": true
         },
         "eCommerceTracking": {
           "type": "boolean",
           "description": "Enables e-commerce reports, additional tab is shown in Analytics module with e-commerce logs. Sales can be easily tracked using this setting.",
-          "example": true
+          "default": false,
+          "example": false
         },
         "siteSearchTracking": {
           "type": "boolean",
           "description": "Track and report what users are searching in your apps internal search engine",
+          "default": true,
           "example": true
         },
         "siteSearchQueryParams": {
           "type": "array",
           "description": "Site search query params for an app",
+          "default": [
+            "q",
+            "query",
+            "s",
+            "search",
+            "searchword",
+            "keyword"
+          ],
           "items": {
             "type": "string"
           },
@@ -287,6 +299,7 @@
         "siteSearchCategoryParams": {
           "type": "array",
           "description": "Site search category params for an app",
+          "default": [],
           "items": {
             "type": "string"
           },
@@ -295,11 +308,13 @@
         "delay": {
           "type": "integer",
           "description": "Delay (in ms) is used to slow down actions (e.g. redirect) when waiting for tags to be resolved",
+          "default": 500,
           "example": 500
         },
         "excludedIps": {
           "type": "array",
-          "description": "List of IPs to blacklist from tracking. You can use wildcards, e.g. 1.2.3.* or 1.2.*.*",
+          "description": "List of IPs to blacklist from tracking. You can use wildcards, e.g. ``1.2.3.*`` or ``1.2.*.*``",
+          "default": [],
           "items": {
             "type": "string"
           },
@@ -311,7 +326,8 @@
         },
         "excludedUrlParams": {
           "type": "array",
-          "description": "URL query parameters excluded by default from tracking: gclid, fb_xd_fragment, fb_comment_id, phpsessid, jsessid, aspsessid, doing_wp_cron, sid and pk_vid. Regular expressions such as /^sess.*|.*[dD]ate$/ are supported",
+          "description": "URL query parameters excluded by default from tracking: ``gclid``, ``fb_xd_fragment``, ``fb_comment_id``, ``phpsessid``, ``jsessid``, ``aspsessid``, ``doing_wp_cron``, ``sid`` and ``pk_vid``. Regular expressions such as ``/^sess.*|.*[dD]ate$/`` are supported",
+          "default": [],
           "items": {
             "type": "string"
           },
@@ -325,6 +341,7 @@
         "excludedUserAgents": {
           "type": "array",
           "description": "If the visitor's user agent string contains any of the strings you specify, the visitor will be excluded from tracking",
+          "default": [],
           "items": {
             "type": "string"
           },
@@ -341,11 +358,13 @@
         "privacyCookieDomainsEnabled": {
           "type": "boolean",
           "description": "Privacy cookie domains enabled or disabled for an app",
-          "example": true
+          "default": false,
+          "example": false
         },
         "privacyCookieDomains": {
           "type": "array",
-          "description": "List of privacy cookie domains for an app (works if enabled), you can also use wildcards like *.example.com",
+          "description": "List of privacy cookie domains for an app (works if `privacyCookieDomainsEnabled` is true), you can also use wildcards like ``*.example.com``",
+          "default": [],
           "items": {
             "type": "string"
           },
