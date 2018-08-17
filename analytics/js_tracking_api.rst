@@ -839,3 +839,19 @@ Example of usage::
 
     _paq.push(["trackSiteSearch", "test", false, 20]);
 
+
+
+Tracking user anonymously
+``````````````````````````
+To track visitor anonymously (without consent) use the ``setUserIsAnonymous`` function::
+
+    _paq.push(["setUserIsAnonymous", isAnonymous]);
+
+.. describe:: isAnonymous
+
+    **Required** ``boolean`` Flag that sets anonymous tracking on and off
+
+Example of usage::
+
+    _paq.push(["setUserIsAnonymous", true]);
+
