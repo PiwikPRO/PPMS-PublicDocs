@@ -302,7 +302,7 @@ TrackHelper.track().order("orderId",124144).subTotal(33110).tax(9890).shipping(1
 Tracking [campaigns](https://helpcenter-piwik-pro.intercom.help/user-guides/referrers-reports/referrers-reports-campaigns) URLs configured with the online *Campaign URL Builder tool*, allow you to measure how different campaigns (for example with Facebook ads or direct emails) bring traffic to your application. You can track these URLs from the application via the ``campaign`` method:
 
 ```java
-TrackHelper.track().campaign(new URL("http://example.org/offer.html?_rcn=Email-SummerDeals&_rck=LearnMore")).with(getTracker());
+TrackHelper.track().campaign(new URL("http://example.org/offer.html?pk_campaign=Email-SummerDeals&pk_keyword=LearnMore")).with(getTracker());
 ```
 
 * A URL (required) – the campaign URL. HTTPS, HTTP and FTP are valid, however, the URL must contain campaign name and keyword parameters.
