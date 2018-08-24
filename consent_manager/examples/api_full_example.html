@@ -274,6 +274,12 @@
       }, function(e) {});
     },
 
+    sendStatsForFirstPopupView: function() {
+        ppms.cm.api('getNewComplianceTypes', function(types) {
+            ppms.cm.api('sendInitialStats', types, function() {}, function() {});
+        }, function(e) {});
+    },
+
     sendConsents: function(all) {
         var queryElements = {
           consents: {},
@@ -303,6 +309,8 @@
         overflowY: 'auto',
         display: 'block',
       });
+
+      this.sendStatsForFirstPopupView();
     },
 
     replaceTemplate: function(props) {

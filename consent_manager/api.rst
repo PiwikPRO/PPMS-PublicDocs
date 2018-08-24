@@ -252,6 +252,35 @@ Code::
 
     :param string|object error: **Required** Error code or exception.
 
+Send initial stats
+`````````````````````````````````````
+Command send initial stats (no decision) to Consent Manager collector.
+
+Code::
+
+    ppms.cm.api('sendInitialStats', consentTypes, onFulfilled, onRejected);
+    dataLayer.push({'event': 'ppms.cm:sendInitialStats', parameters: [consentTypes, onFulfilled, onRejected]});
+
+`dataLayer.push` interface is only for backward compatibility and you can read more about this particular case below. We recommend ```ppms.cm.api```.
+
+.. object:: consentTypes
+
+    **required** The types of consents.
+
+        Example::
+
+            ["remarketing", "analytics"]
+
+.. function:: onFulfilled()
+
+    **required** The fulfilment handler callback.
+
+.. function:: onRejected(error)
+
+    The rejection handler callback (called with error code). If not specified, exception will be thrown in main stacktrace.
+
+    :param string|object error: **Required** Error code or exception.
+
 Example usage
 -------------
 Based on above listed commands there are many possibilities to implement custom consent gathering. Below is listed a simple implementation using jQuery library.
