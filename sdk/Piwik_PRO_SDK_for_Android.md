@@ -115,7 +115,7 @@ In order to bind the tracker to your applications, use the ``screens`` method. T
 TrackHelper.track().screens(getApplication()).with(tracker);
 ```
 
-### Tracking events
+### Tracking custom events
 *Requires Analytics*
 
 To collect data about the user's interaction with the interactive components of the application, like a button presses or the use of a particular item in the game - use ``event`` method.
@@ -136,7 +136,7 @@ The ``track`` method allows the specification of the following parameters:
 * A path (optional) – the path under which this event occurred.
 
 For more resources, please visit:
-* [Actions Reports - Events](https://helpcenter-piwik-pro.intercom.help/user-guides/action-reports/actions-reports-events)
+* [Custom Events Overview](https://help.piwik.pro/analytics/custom-events-overview/)
 * [Ultimate guide to event tracking](https://piwik.pro/blog/event-tracking-ultimate-guide/).
 
 ### Tracking exceptions
@@ -253,7 +253,7 @@ TrackHelper.track().impression("Android content impression").piece("banner").tar
 ### Tracking goals
 *Requires Analytics*
 
-By default, goals are defined as "matching" parts of the screen path or screen title. If you want to trigger a conversion manually or track some user interaction, call the method ``goal``. Read further about what a goal is in [Goal in Piwik PRO](https://helpcenter-piwik-pro.intercom.help/analytics/reports-and-data-analysis/goal-tracking).
+By default, goals are defined as "matching" parts of the screen path or screen title. If you want to trigger a conversion manually or track some user interaction, call the method ``goal``. Read further about what a goal is in [Goal in Piwik PRO](https://help.piwik.pro/analytics/creating-managing-goals/).
 
 ```java
 TrackHelper.track().goal(1).revenue(revenue).with(tracker)
@@ -299,7 +299,7 @@ TrackHelper.track().order("orderId",124144).subTotal(33110).tax(9890).shipping(1
 ### Tracking campaigns
 *Requires Analytics*
 
-Tracking [campaigns](https://helpcenter-piwik-pro.intercom.help/user-guides/referrers-reports/referrers-reports-campaigns) URLs configured with the online *Campaign URL Builder tool*, allow you to measure how different campaigns (for example with Facebook ads or direct emails) bring traffic to your application. You can track these URLs from the application via the ``campaign`` method:
+Tracking [campaigns](https://help.piwik.pro/analytics/campaigns-report/) URLs configured with the online *Campaign URL Builder tool*, allow you to measure how different campaigns (for example with Facebook ads or direct emails) bring traffic to your application. You can track these URLs from the application via the ``campaign`` method:
 
 ```java
 TrackHelper.track().campaign(new URL("http://example.org/offer.html?pk_campaign=Email-SummerDeals&pk_keyword=LearnMore")).with(getTracker());
@@ -310,7 +310,7 @@ TrackHelper.track().campaign(new URL("http://example.org/offer.html?pk_campaign=
 ### Tracking custom variables
 *Requires Analytics*
 
-A [custom variable](https://helpcenter-piwik-pro.intercom.help/user-guides/visitors-reports/visitors-reports-custom-variables) is a custom name-value pair that you can assign to your users or screen views, and then visualize the reports of how many visits, conversions, etc. for each custom variable. A custom variable is defined by a name — for example, "User status" — and a value – for example, "LoggedIn" or "Anonymous". It is required for names and values to be encoded in UTF-8.
+A [custom variable](https://help.piwik.pro/analytics/custom-variables/) is a custom name-value pair that you can assign to your users or screen views, and then visualize the reports of how many visits, conversions, etc. for each custom variable. A custom variable is defined by a name — for example, "User status" — and a value – for example, "LoggedIn" or "Anonymous". It is required for names and values to be encoded in UTF-8.
 
 Each custom variable has a scope. There are two types of custom variables scope - _visit scope_ and _screen scope_. The visit scope can be used for any tracking action, and the screen scope can only be applied to tracking screen views.
 
@@ -346,7 +346,7 @@ Custom variable is defined by three parameters:
 ### Tracking custom dimensions
 *Requires Analytics*
 
-To track a custom name-value pair assigned to your users or screen views, use [Custom Dimensions](https://helpcenter-piwik-pro.intercom.help/analytics/custom-dimensions). Note that the custom value data is not sent by itself, but only with other tracking actions such as screen views, events or other tracking action:
+To track a custom name-value pair assigned to your users or screen views, use [Custom Dimensions](https://help.piwik.pro/analytics/custom-dimensions/). Note that the custom value data is not sent by itself, but only with other tracking actions such as screen views, events or other tracking action:
 
 ```java
 TrackHelper.track()
@@ -460,7 +460,7 @@ getTracker().checkAudienceMembership(audienceId, new Tracker.OnCheckAudienceMemb
 
 ### User ID
 
-UserID will allow the association of events from various sources to the same user. Each time a new visitor enters your page, Piwik PRO assigns a cookie containing a random string of characters. The purpose of this cookie is for Piwik PRO to be able to recognize the same visitor whenever the website is visited again. However, instead of a random string, you can assign your visitors with your own human-friendly name (ex. visitor email). More about [UserID](https://helpcenter-piwik-pro.intercom.help/tag-manager/manage-and-configure-tag-manager/userid). In order to set UserID, use the ``setUserId`` method:
+UserID will allow the association of events from various sources to the same user. Each time a new visitor enters your page, Piwik PRO assigns a cookie containing a random string of characters. The purpose of this cookie is for Piwik PRO to be able to recognize the same visitor whenever the website is visited again. However, instead of a random string, you can assign your visitors with your own human-friendly name (ex. visitor email). More about [UserID](https://help.piwik.pro/tag-manager/userid/). In order to set UserID, use the ``setUserId`` method:
 
 ```java
 getTracker().setUserId("John Doe");
@@ -607,4 +607,35 @@ getTracker().setDryRunTarget(Collections.synchronizedList(new ArrayList<Packet>(
 
 ## License
 
-Piwik PRO Android SDK is released under the BSD-3 Clause license, see [LICENSE](https://github.com/PiwikPRO/piwik-pro-sdk-android/blob/master/LICENSE).
+_Piwik PRO Android SDK is released under the BSD-3 Clause license._
+
+Copyright 2018 Piwik PRO team
+
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are
+met:
+
+* Redistributions of source code must retain the above copyright
+  notice, this list of conditions and the following disclaimer.
+
+* Redistributions in binary form must reproduce the above copyright
+  notice, this list of conditions and the following disclaimer in the
+  documentation and/or other materials provided with the distribution.
+
+* Neither the name of Piwik team nor the names of its contributors
+  may be used to endorse or promote products derived from this
+  software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
