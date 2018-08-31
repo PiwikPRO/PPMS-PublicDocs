@@ -59,10 +59,10 @@ The basic functionality of the SDK is the tracking screen views which represent 
 * A screen name (required) – title of the action being tracked. The appropriate screen path will be generated for this action.
 
 
-### Tracking events
+### Tracking custom events
 *Requires Analytics*
 
-Events can be used to track the user's interaction with various custom components and features of your application, such as playing a song or a video. Category and action parameters are required while the name and value are optional. You can read more about events in the Piwik PRO [documentation](https://helpcenter-piwik-pro.intercom.help/user-guides/action-reports/actions-reports-events) and [ultimate guide to event tracking](https://piwik.pro/blog/event-tracking-ultimate-guide/).
+Custm events can be used to track the user's interaction with various custom components and features of your application, such as playing a song or a video. Category and action parameters are required while the name and value are optional. You can read more about events in the Piwik PRO [documentation](https://help.piwik.pro/analytics/custom-events-overview/) and [ultimate guide to event tracking](https://piwik.pro/blog/event-tracking-ultimate-guide/).
 
 ```
 [[PiwikTracker sharedInstance] sendEventWithCategory:@"Video" action:@"Play" name:@"Pirates" value:@185];
@@ -184,7 +184,7 @@ When the user interacts with the ad by tapping on it, you can also track it with
 ### Tracking goals
 *Requires Analytics*
 
-Goaltracking is used to measure and improve your business objectives. To track goals, you first need to configure them on the server in your web panel. Goals such as, for example, subscribing to a newsletter can be tracked as below with the goal ID that you will see on the server after configuring the goal and optional revenue. The currency for the revenue can be set in the Piwik PRO Analytics settings. You can read more about goals [here](https://helpcenter-piwik-pro.intercom.help/analytics/reports-and-data-analysis/goal-tracking).
+Goaltracking is used to measure and improve your business objectives. To track goals, you first need to configure them on the server in your web panel. Goals such as, for example, subscribing to a newsletter can be tracked as below with the goal ID that you will see on the server after configuring the goal and optional revenue. The currency for the revenue can be set in the Piwik PRO Analytics settings. You can read more about goals [here](https://help.piwik.pro/analytics/creating-managing-goals/).
 
 ```
 [[PiwikTracker sharedInstance] sendGoalWithID:2 revenue:@30];
@@ -197,7 +197,7 @@ Goaltracking is used to measure and improve your business objectives. To track g
 ### Tracking ecommerce transactions
 *Requires Analytics*
 
-Ecommerce transactions (in-app purchases) can be tracked to help you improve your business strategy. To track a transaction you must provide two required values - the transaction identifier and `grandTotal`. Optionally, you can also provide values for `subTotal`, `tax`, `shippingCost`, `discount` and list of purchased items as in the example below. You can read more about e-commerce transactions [here](https://piwik.org/docs/ecommerce-analytics/):
+Ecommerce transactions (in-app purchases) can be tracked to help you improve your business strategy. To track a transaction you must provide two required values - the transaction identifier and `grandTotal`. Optionally, you can also provide values for `subTotal`, `tax`, `shippingCost`, `discount` and list of purchased items as in the example below.
 ```
 [[PiwikTracker sharedInstance] sendTransaction:[PiwikTransaction transactionWithBlock:^(PiwikTransactionBuilder *builder) {
     builder.identifier = @"transactionID";
@@ -228,7 +228,7 @@ Ecommerce transactions (in-app purchases) can be tracked to help you improve you
 ### Tracking campaigns
 *Requires Analytics*
 
-Tracking campaign URLs created with the online [Campaign URL Builder tool](https://piwik.org/docs/tracking-campaigns-url-builder/) allow you to measure how different campaigns (for example with Facebook ads or direct emails) bring traffic to your application. You can register a custom URL schema in your project settings to launch your application when users tap on the campaign link. You can track these URLs from the application delegate as below. The campaign information will be sent to the server together with the next analytics event. More details about campaigns can be found in the [documentation](https://helpcenter-piwik-pro.intercom.help/user-guides/referrers-reports/referrers-reports-campaigns).
+Tracking campaign URLs created with the online [Campaign URL Builder tool](https://piwik.pro/url-builder-tool/) allow you to measure how different campaigns (for example with Facebook ads or direct emails) bring traffic to your application. You can register a custom URL schema in your project settings to launch your application when users tap on the campaign link. You can track these URLs from the application delegate as below. The campaign information will be sent to the server together with the next analytics event. More details about campaigns can be found in the [documentation](https://help.piwik.pro/analytics/campaigns-report/).
 
 ```
 - (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary *)options
@@ -241,14 +241,14 @@ Tracking campaign URLs created with the online [Campaign URL Builder tool](https
 ### Tracking with custom variables
 *Requires Analytics*
 
-To track custom name-value pairs assigned to your users or screen views, you can use custom variables. A custom variable can have a visit scope, which means that they are assigned to the whole visit of the user or action scope meaning that they are assigned only to the next tracked action such as screen view. You can find more information about custom variables [here](https://helpcenter-piwik-pro.intercom.help/user-guides/visitors-reports/visitors-reports-custom-variables):
+To track custom name-value pairs assigned to your users or screen views, you can use custom variables. A custom variable can have a visit scope, which means that they are assigned to the whole visit of the user or action scope meaning that they are assigned only to the next tracked action such as screen view. You can find more information about custom variables [here](https://help.piwik.pro/analytics/custom-variables/):
 
 It is required for names and values to be encoded in UTF-8.
 
 ```
 [[PiwikTracker sharedInstance] setCustomVariableForIndex:1 name:@"filter" value:@"lcd" scope:CustomVariableScopeAction];
 ```
-* An index (required) – a given custom variable name must always be stored in the same "index" per session. For example, if you choose to store the variable name = "Gender" in index = 1 and you record another custom variable in index = 1, then the "Gender" variable will be deleted and replaced with new custom variable stored in index 1. Please note that some of the indexes are already reserved. See [Default Custom Variables](https://github.com/PiwikPRO/ppms-sdk-docs/wiki/Piwik-PRO-SDK-for-iOS#default-custom-variables) section for details.
+* An index (required) – a given custom variable name must always be stored in the same "index" per session. For example, if you choose to store the variable name = "Gender" in index = 1 and you record another custom variable in index = 1, then the "Gender" variable will be deleted and replaced with new custom variable stored in index 1. Please note that some of the indexes are already reserved. See [Default custom variables](#default-custom-variables) section for details.
 
 * A name (required) – this String defines the name of a specific Custom Variable such as "User type". Limited to 200 characters.
 
@@ -259,7 +259,7 @@ It is required for names and values to be encoded in UTF-8.
 ### Tracking with custom dimensions
 *Requires Analytics*
 
-You can also use custom dimensions to track custom values as below. Custom dimensions can also can have a visit or action scope but first have to be defined on the server in your web panel. More details about custom dimensions can be found in the [documentation](https://helpcenter-piwik-pro.intercom.help/user-guides/visitors-reports/visitors-reports-custom-variables):
+You can also use custom dimensions to track custom values as below. Custom dimensions can also can have a visit or action scope but first have to be defined on the server in your web panel. More details about custom dimensions can be found in the [documentation](https://help.piwik.pro/analytics/custom-dimensions/):
 ```
 [[PiwikTracker sharedInstance] setCustomDimensionForIndex:1 value:@"english" scope:CustomDimensionScopeVisit];
 ```
@@ -334,7 +334,7 @@ Audience check allows one to check if the user belongs to a specific group of us
 
 ### User ID
 
-The user ID is an additional, optional non-empty unique string identifying the user (not set by default). It can be, for example, a unique username or user's email address. If the provided user ID is sent to the analytics part together with the visitor ID (which is always automatically generated by the SDK), it allows the association of events from various platforms (for example iOS and Android) to the same user provided that the same user ID is used on all platforms. More about [UserID](https://helpcenter-piwik-pro.intercom.help/tag-manager/manage-and-configure-tag-manager/userid). In order to set User ID use ``userID`` field:
+The user ID is an additional, optional non-empty unique string identifying the user (not set by default). It can be, for example, a unique username or user's email address. If the provided user ID is sent to the analytics part together with the visitor ID (which is always automatically generated by the SDK), it allows the association of events from various platforms (for example iOS and Android) to the same user provided that the same user ID is used on all platforms. More about [UserID](https://help.piwik.pro/tag-manager/userid/). In order to set User ID use ``userID`` field:
 
 ```
 [PiwikTracker sharedInstance].userID = @"User Name";
@@ -414,4 +414,14 @@ You can disable all tracking in the application by using the opt-out feature. No
 
 ## License
 
-Piwik PRO iOS SDK is available under the MIT license, see [LICENSE](https://github.com/PiwikPRO/piwik-pro-sdk-ios/blob/master/LICENSE.md).
+_Piwik PRO iOS SDK is available under the MIT license._
+
+Copyright 2018 Piwik PRO team
+
+All rights reserved.
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
