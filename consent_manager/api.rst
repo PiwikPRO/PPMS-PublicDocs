@@ -254,7 +254,7 @@ Code::
 
 Send initial stats
 `````````````````````````````````````
-Command send initial stats (no decision) to Consent Manager collector.
+Command sends initial stats (no decision) to Consent Manager stats collector.
 
 Code::
 
