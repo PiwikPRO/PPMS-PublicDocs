@@ -138,8 +138,8 @@ the snippet has to be configured this way:
         **Optional** ``"whitelist"|"blacklist"`` Defines what is default strategy of form configuration. Default value:
         ``"whitelist"``.
 
-        * ``"whitelist"`` - All form IDs that are not set in ``form_config`` are ignored by the tracker.
-        * ``"blacklist"`` - All form IDs that are set in ``form_config`` and use ``true`` value are ignored by the
+        * ``"whitelist"`` - All form IDs that are not set in ``forms_config`` are ignored by the tracker.
+        * ``"blacklist"`` - All form IDs that are set in ``forms_config`` and use ``true`` value are ignored by the
           tracker. Forms defining filtered fields are tracked according to specified fields filter. All other forms are
           tracked as a whole.
 
