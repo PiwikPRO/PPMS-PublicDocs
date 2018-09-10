@@ -229,11 +229,11 @@
     consentBottomSelector: '#consent-bottom',
     consentLinkMoreSelector: '#consent-link-more',
     consentItemFooterSelector: '#consent-items-footer',
-    switcherSelector: '.consent-checkbox',
+    switcherSelector: '.consent-items-container .consent-checkbox',
     optInButton: '.consent-orange',
     sendConsentButtonSelector: '.consent-blue',
     itemsSelector: '.consent-items-container',
-    consentTemplate: $('div[data-template="consentitem"]').text().split(/\$\{(.+?)\}/g),
+    consentTemplate: $('div[data-template="consentitem"]').html().split(/\$\{(.+?)\}/g),
     switcherElement: null,
 
     init: function() {
