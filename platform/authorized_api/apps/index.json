@@ -4,6 +4,8 @@
     "title": "Apps Api",
     "version": "auto"
   },
+  "host": "example.piwik.pro",
+  "schemes": ["https"],
   "tags": [
     {
       "name": "Apps v2"
@@ -544,6 +546,9 @@
         "description": "It deletes app with given ID",
         "operationId": "api_app_delete_v2",
         "produces": [
+          "application/vnd.api+json"
+        ],
+        "consumes": [
           "application/vnd.api+json"
         ],
         "parameters": [
