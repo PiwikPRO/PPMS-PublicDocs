@@ -42,20 +42,21 @@ go to to `My profile` and click `Delete` button on selected API credentials.
 
 ## API usage example
 
-### API usage example with curl
-
 Whatever API call you choose, first remember that you must generate 
 [API credentials](#generate-api-credentials) for obtaining client id and secret.
 
-For sake of this examples, `https://<domain>` is a URL of your PPMS instance (e.g. `https://example.piwik.pro`) and your goal
-is to perform [CRUD](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete) opeartions on an app. We will as follow:
+### API usage example with curl
+
+For sake of this examples, `https://<domain>` is a URL of your PPMS instance (e.g. `https://example.piwik.pro`) and our goal
+is to perform CRUD operations on an app. We will as follow:
 * create an app
 * read created app
 * update some fields
 * in the end, we will remove given app
 
 
-First step is needed only once, for generating of access token. Then, you can use it as long as you wish.
+First step is needed only once, for generating of access token.
+
 #### Generate your access token
 
 Request example:
@@ -261,13 +262,15 @@ This request changed app name from `AppName` to `NewAppName`. Notice three thing
 * you have to specify also `data/id` - it's a [jsonapi]((http://jsonapi.org/)) requirement
 * also `data/type` is important. For example, when you want to work with app resource, specify it's type as `ppms/app` 
 
+There is no response example. API will return `204 No Content` status code.
+
 
 #### Delete an app
 
 Sometimes, resources are not needed anymore so lets look an example on how to delete them.
 
 ```
-DELETE /api/apps/v2/b30e538d-4b05-4a75-ae25-7eb565901f38
+DELETE /api/apps/v2/{appId}
 ```
 
 Request example:
@@ -280,7 +283,7 @@ There is no response example. API will return `204 No Content` status code.
 ### API usage example with Postman
 
 [Postman](https://www.getpostman.com/) is a multiplatform GUI application for creating API calls.
-PPMS allows you to export swagger documentation into Postman and easily import it in Postman.
+PPMS allows you to export swagger documentation and easily import it to Postman.
 Depending of what you want to work with, you can import given swagger docs:
 * [Apps](https://raw.githubusercontent.com/PiwikPRO/PPMS-PublicDocs/master/platform/authorized_api/apps/index.json)
 * [Users](https://raw.githubusercontent.com/PiwikPRO/PPMS-PublicDocs/master/platform/authorized_api/users/index.json)
@@ -290,7 +293,7 @@ Simply click in Postman: `import -> Import From Link`. Then, all of your paths a
 You have to override two things:
 * replace your domain in url
 * add token. Click on `Authorization` tab on chosen API call and then use Bearer Token type. 
-  Paste your token and now, you can call API using `SEND` button.
+  Paste your token, and now, you can call API using `SEND` button.
 
 ## FAQ
 
