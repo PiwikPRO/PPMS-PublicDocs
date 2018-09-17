@@ -4,6 +4,10 @@
     "title": "Users Api",
     "version": "auto"
   },
+  "host": "example.piwik.pro",
+  "schemes": [
+    "https"
+  ],
   "tags": [
     {
       "name": "Users v2"
@@ -277,6 +281,9 @@
         ],
         "summary": "Get users list",
         "operationId": "api_users_list_v2",
+        "consumes": [
+          "application/vnd.api+json"
+        ],
         "produces": [
           "application/vnd.api+json"
         ],
@@ -314,6 +321,9 @@
         ],
         "summary": "Get details of an user",
         "operationId": "api_users_user_details_v2",
+        "consumes": [
+          "application/vnd.api+json"
+        ],
         "produces": [
           "application/vnd.api+json"
         ],
@@ -332,7 +342,7 @@
         "tags": [
           "Users v2"
         ],
-        "produces": [
+        "consumes": [
           "application/vnd.api+json"
         ],
         "responses": {
@@ -367,9 +377,6 @@
         "consumes": [
           "application/vnd.api+json"
         ],
-        "produces": [
-          "application/vnd.api+json"
-        ],
         "parameters": [
           {
             "name": "User with role",
@@ -401,9 +408,6 @@
         "summary": "Change my password",
         "operationId": "api_me_change_password_v2",
         "consumes": [
-          "application/vnd.api+json"
-        ],
-        "produces": [
           "application/vnd.api+json"
         ],
         "parameters": [
