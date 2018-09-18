@@ -63,7 +63,7 @@ is to perform basic operations on an app. We will:
 * update its some fields
 * in the end, we will remove given app
 
-Once you generated an access token, you can use it as long as it is valid.
+Once you generated an access token, you can use it during its lifetime (24 hours by default)
 
 #### Generate your access token
 
@@ -83,7 +83,11 @@ curl 'https://<domain>/auth/token' -H "Content-Type: application/json" --data '{
 
 Response example:
 ```
-{"token_type":"Bearer","expires_in":86400,"access_token":"<your_access_token>"}
+{
+    "token_type":"Bearer",
+    "expires_in":86400,
+    "access_token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJwcG1zIiwiYXVkIjoiaHR0cHM6XC9cL3Rlc3RpbmcucGl3aWsucHJvXC9zZXR5LCJzdWIiOiJkNmNkZGMxMS1iZDA1L0aW5ncyIsImlhdCI6MTUzNzI3MDQ1OSwiZXhwIjoxNTM3MzU2ODUTRhYmUtYWIyZC02YjlhNjIxZmU0ZDciLCJvcmciOiJkZWZhdWx0In0.Nec2mYFRv6manzXjq0sHQxINZvu-fbDYT8AedVHBKYvu1F9hYKaFReY8rNgfsMANw2OX8-IKpTrQb1DyRkG4nxpIEbob528_lPd7roho5mtKlE8sfS9WZE1piYOwaNDySDEUwUowgj2xBiJqSODjxBI6qVhLkynGEEeNBVh-lrUmlcjpYqUc3saHvX72L-rqbIHa_1dzGarR-dcPyns-RpKjZEILzUSYOHdM09KDti-xsG-nbKHGdP8fVEEJPyupnAfJPOLHQg_j1c5IvJSvTKVF3j4_zo6Zw5g8YkaheT9Iwph5BGHFRneXatcmbwKI8JzSDFi6CinzI-okYKRPbg"
+}
 ```
 
 Field `access_token` contains your token which then will be used for all API calls.
@@ -180,13 +184,12 @@ Request example:
 GET /api/apps/v2/<appId>
 ```
 
-Request example:
 ```
 curl 'https://testing.piwik.pro/api/apps/v2/b30e538d-4b05-4a75-ae25-7eb565901f38' -H "Authorization: Bearer <your_access_token>" -H "Content-Type: application/vnd.api+json"
 ```
 
-Notice:
-* URL contains `b30e538d-4b05-4a75-ae25-7eb565901f38`. What is it? It is unique ID of an app. 
+
+>Notice: URL contains `b30e538d-4b05-4a75-ae25-7eb565901f38`. What is it? It is unique ID of an app. 
 If you want to update given resource you must specify which one. How to obtain this ID?
 You can obtain ID from response's 'data/id' field when you added an app
 
@@ -265,10 +268,11 @@ curl -X PATCH 'https://<domain>/api/apps/v2/b30e538d-4b05-4a75-ae25-7eb565901f38
 }'
 ```
 
-This request changed app name from `AppName` to `NewAppName`. Notice three things:
-* `-X PATCH` before URL. It means that this request is available using `HTTP PATCH method`
-* you have to specify also `data/id` - it's a [JSON API](http://jsonapi.org/) requirement
-* also `data/type` is important. For example, when you want to work with app resource, specify it's type as `ppms/app` 
+This request changed app name from `AppName` to `NewAppName`. 
+> Notice three things:
+> * `-X PATCH` before URL. It means that this request is available using `HTTP PATCH method`
+> * you have to specify also `data/id` - it's a [JSON API](http://jsonapi.org/) requirement
+> * also `data/type` is important. For example, when you want to work with app resource, specify it's type as `ppms/app` 
 
 API will return `204 No Content` status code with an empty response
 
@@ -276,11 +280,12 @@ API will return `204 No Content` status code with an empty response
 
 Sometimes resources are not needed anymore, so let's have a look at example on how to delete them.
 
+Request example:
+
 ```
 DELETE /api/apps/v2/<appId>
 ```
 
-Request example:
 ```
 curl -X DELETE 'https://<domain>/api/apps/v2/b30e538d-4b05-4a75-ae25-7eb565901f38' -H "Authorization: Bearer <your_access_token>" -H "Content-Type: application/vnd.api+json"
 ```
