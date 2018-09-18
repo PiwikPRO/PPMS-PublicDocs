@@ -23,22 +23,31 @@ API credentials which then allows you to request for a token that is used for au
 
 #### Create access token
 
-Having generated your API Credentials, now you are ready for creating access token that will be used in communication with API.
+Having generated your API Credentials, now you are ready for creating access token that will be used in 
+communication with API.
 
-Piwik PRO API tokens use [jwt](https://jwt.io/) format.
+Piwik PRO API tokens use [JWT](https://jwt.io/) format.
 
-Now, you can use obtained `access_token` for communication with Piwik PRO API.
-Field `expires_in` stands for time (in seconds) for token TTL.
-As token is a Bearer type, it must be **included in all API calls** within header.
+Make POST call to `https://<domain>/auth/token` with header `Content-Type: application/json` and payload: 
+`{ grant_type: 'client credentials', client_id: '<clientId>', client_secret: '<clientSecret>' }`.
+
+Response example:
+```
+{"token_type":"Bearer","expires_in":86400,"access_token":"<your_access_token>"}
+```
+
+Now, you can use obtained `<access_token>` for communication with Piwik PRO API.
+Field `expires_in` stands for time (in seconds) for token expiration (TTL).
+As token is a Bearer type, it must be **included in every API call** within header.
 
 ```
-Authorization: Bearer your-token-here
+Authorization: Bearer <your-token-here>
 ```
   
 ### Deleting API Credentials
 
 Once you want to revoke the possibility of generating API token using given `CLIENT ID` and `CLIENT SECRET`,
-go to to `My profile` and click `Delete` button on selected API credentials.
+go to `My profile` and click `Delete` button on selected API credentials.
 
 ## API usage example
 
@@ -48,14 +57,13 @@ Whatever API call you choose, first remember that you must generate
 ### API usage example with curl
 
 For sake of this examples, `https://<domain>` is a URL of your PPMS instance (e.g. `https://example.piwik.pro`) and our goal
-is to perform CRUD operations on an app. We will as follow:
+is to perform basic operations on an app. We will:
 * create an app
-* read created app
-* update some fields
+* get created app
+* update its some fields
 * in the end, we will remove given app
 
-
-First step is needed only once, for generating of access token.
+Once you generated an access token, you can use it as long as it is valid.
 
 #### Generate your access token
 
@@ -75,7 +83,7 @@ curl 'https://<domain>/auth/token' -H "Content-Type: application/json" --data '{
 
 Response example:
 ```
-{"token_type":"Bearer","expires_in":86400,"access_token":"your_access_token"}
+{"token_type":"Bearer","expires_in":86400,"access_token":"<your_access_token>"}
 ```
 
 Field `access_token` contains your token which then will be used for all API calls.
@@ -89,7 +97,7 @@ POST /api/apps/v2
 ```
 
 ```
-curl 'https://<domain>/api/apps/v2'  -H "Authorization: Bearer <your_access_token>" -H "Content-Type: application/vnd.api+json" --data '{
+curl 'https://<domain>/api/apps/v2' -H "Authorization: Bearer <your_access_token>" -H "Content-Type: application/vnd.api+json" --data '{
   "data": {
     "attributes": {
       "timezone": "UTC",
@@ -163,24 +171,24 @@ Response example:
 }
 
 ```
-#### Read an app
+#### Get an app
 
-Now, when app is added, it is possible to read it.
-
-Request example:
-```
-GET /api/apps/v2/{appId}
-```
+Now, when app is added, it is possible to get it.
 
 Request example:
 ```
-curl 'https://testing.piwik.pro/api/apps/v2/b30e538d-4b05-4a75-ae25-7eb565901f38'  -H "Authorization: Bearer <your_access_token>" -H "Content-Type: application/vnd.api+json"
+GET /api/apps/v2/<appId>
+```
+
+Request example:
+```
+curl 'https://testing.piwik.pro/api/apps/v2/b30e538d-4b05-4a75-ae25-7eb565901f38' -H "Authorization: Bearer <your_access_token>" -H "Content-Type: application/vnd.api+json"
 ```
 
 Notice:
 * URL contains `b30e538d-4b05-4a75-ae25-7eb565901f38`. What is it? It is unique ID of an app. 
 If you want to update given resource you must specify which one. How to obtain this ID?
-When you added an app, you were given its ID in `data/id` field.
+You can obtain ID from response's 'data/id' field when you added an app
 
 Response example:
 ```
@@ -242,11 +250,11 @@ Consider you added app, but afterwards you want to change its name.
 
 Request example:
 ```
-PATCH /api/apps/v2/{appId}
+PATCH /api/apps/v2/<appId>
 ```
 
 ```
-curl -X PATCH 'https://<domain>/api/apps/v2/b30e538d-4b05-4a75-ae25-7eb565901f38' -H "Authorization: Bearer " -H "Content-Type: application/vnd.api+json" -v --data '{
+curl -X PATCH 'https://<domain>/api/apps/v2/b30e538d-4b05-4a75-ae25-7eb565901f38' -H "Authorization: Bearer <your_access_token>" -H "Content-Type: application/vnd.api+json" -v --data '{
   "data": {
     "attributes": {
       "name": "NewAppName"
@@ -259,23 +267,22 @@ curl -X PATCH 'https://<domain>/api/apps/v2/b30e538d-4b05-4a75-ae25-7eb565901f38
 
 This request changed app name from `AppName` to `NewAppName`. Notice three things:
 * `-X PATCH` before URL. It means that this request is available using `HTTP PATCH method`
-* you have to specify also `data/id` - it's a [jsonapi]((http://jsonapi.org/)) requirement
+* you have to specify also `data/id` - it's a [JSON API](http://jsonapi.org/) requirement
 * also `data/type` is important. For example, when you want to work with app resource, specify it's type as `ppms/app` 
 
-There is no response example. API will return `204 No Content` status code.
-
+API will return `204 No Content` status code with an empty response
 
 #### Delete an app
 
-Sometimes, resources are not needed anymore so lets look an example on how to delete them.
+Sometimes resources are not needed anymore, so let's have a look at example on how to delete them.
 
 ```
-DELETE /api/apps/v2/{appId}
+DELETE /api/apps/v2/<appId>
 ```
 
 Request example:
 ```
-curl -X DELETE 'https://<domain>/api/apps/v2/b30e538d-4b05-4a75-ae25-7eb565901f38'  -H "Authorization: Bearer <your_access_token>" -H "Content-Type: application/vnd.api+json"
+curl -X DELETE 'https://<domain>/api/apps/v2/b30e538d-4b05-4a75-ae25-7eb565901f38' -H "Authorization: Bearer <your_access_token>" -H "Content-Type: application/vnd.api+json"
 ```
 
 There is no response example. API will return `204 No Content` status code.
@@ -287,19 +294,19 @@ PPMS allows you to export swagger documentation and easily import it to Postman.
 Depending of what you want to work with, you can import given swagger docs:
 * [Apps](https://raw.githubusercontent.com/PiwikPRO/PPMS-PublicDocs/master/platform/authorized_api/apps/index.json)
 * [Users](https://raw.githubusercontent.com/PiwikPRO/PPMS-PublicDocs/master/platform/authorized_api/users/index.json)
-* [Access control](https://github.com/PiwikPRO/PPMS-PublicDocs/blob/master/platform/authorized_api/access_control/index.json)
+* [Access control](https://raw.githubusercontent.com/PiwikPRO/PPMS-PublicDocs/master/platform/authorized_api/access_control/index.json)
 
-Simply click in Postman: `import -> Import From Link`. Then, all of your paths are imported!
+Simply click in Postman: `import -> Import From Link`. Then all of your paths are imported!
 You have to override two things:
 * replace your domain in url
 * add token. Click on `Authorization` tab on chosen API call and then use Bearer Token type. 
-  Paste your token, and now, you can call API using `SEND` button.
+  Paste your token and now you can call API using `SEND` button.
 
 ## FAQ
 
 Here you can find most common issues during work with API.
 
-### API returns `"application/json" is not a valid JsonApi Content-Type header, use "application/vnd.api+json" instead"`
+### API returns `"application/json" is not a valid JSON API Content-Type header, use "application/vnd.api+json" instead"`
 
 Remember, all API calls needs to be created with `Content-Type: application/vnd.api+json` header. 
 If you use `curl` you need to use `-H "Content-Type: application/json"` flag. 
@@ -317,3 +324,7 @@ Remember to keeping this token secure as it allows access to sensitive data!
 Every token that you generated is specified by TTL - time to live. By default it's 24h.
 After token is expired, you need to [generate your access token](#generate-your-access-token)
 
+### API returns `access token not authorized`
+
+This message means, that you sent access token within proper `Authorization: Bearer` field, although it is invalid.
+Make sure 
