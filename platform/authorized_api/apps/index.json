@@ -405,7 +405,7 @@
         },
         "gdprLocationRecognition": {
           "type": "boolean",
-          "description": "Use geoIP to detect UE visitors and present consent forms only to them",
+          "description": "Use geolocation to detect UE visitors and present consent forms only to them",
           "default": false,
           "example": false
         }

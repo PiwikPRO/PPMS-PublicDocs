@@ -21,6 +21,8 @@ API credentials which then allows you to request for a token that is used for au
   Name must contains at least 3 characters.
 * Copy your newly generated `CLIENT ID` and `CLIENT SECRET` because they **won't be available for you after dismissing this window.**
 
+This credentials will be valid as long as you revoke them in your profile.
+
 #### Create access token
 
 Having generated your API Credentials, now you are ready for creating access token that will be used in 
@@ -29,19 +31,19 @@ communication with API.
 Piwik PRO API tokens use [JWT](https://jwt.io/) format.
 
 Make POST call to `https://<domain>/auth/token` with header `Content-Type: application/json` and payload: 
-`{ grant_type: 'client credentials', client_id: '<clientId>', client_secret: '<clientSecret>' }`.
+`{ grant_type: 'client credentials', client_id: '<client_id>', client_secret: '<client_secret>' }`.
 
 Response example:
 ```
 {"token_type":"Bearer","expires_in":86400,"access_token":"<your_access_token>"}
 ```
 
-Now, you can use obtained `<access_token>` for communication with Piwik PRO API.
+Now, you can use obtained `<your_access_token>` for communication with Piwik PRO API.
 Field `expires_in` stands for time (in seconds) for token expiration (TTL).
 As token is a Bearer type, it must be **included in every API call** within header.
 
 ```
-Authorization: Bearer <your-token-here>
+Authorization: Bearer <your_access_token>
 ```
   
 ### Deleting API Credentials
@@ -63,8 +65,6 @@ is to perform basic operations on an app. We will:
 * update its some fields
 * in the end, we will remove given app
 
-Once you generated an access token, you can use it during its lifetime (24 hours by default)
-
 #### Generate your access token
 
 Request example:
@@ -74,7 +74,7 @@ POST /auth/token
 ```
 
 ```
-curl 'https://<domain>/auth/token' -H "Content-Type: application/json" --data '{
+curl -X POST 'https://<domain>/auth/token' -H "Content-Type: application/json" --data '{
     "grant_type": "client_credentials",
     "client_id": "your_generated_client_id",
     "client_secret": "your_generated_client_secret"
@@ -91,6 +91,7 @@ Response example:
 ```
 
 Field `access_token` contains your token which then will be used for all API calls.
+Once you generated an access token, you can use it during its lifetime (24 hours by default)
 
 #### Create an app
 
@@ -101,7 +102,7 @@ POST /api/apps/v2
 ```
 
 ```
-curl 'https://<domain>/api/apps/v2' -H "Authorization: Bearer <your_access_token>" -H "Content-Type: application/vnd.api+json" --data '{
+curl -X POST 'https://<domain>/api/apps/v2' -H "Authorization: Bearer <your_access_token>" -H "Content-Type: application/vnd.api+json" --data '{
   "data": {
     "attributes": {
       "timezone": "UTC",
@@ -181,7 +182,7 @@ Now, when app is added, it is possible to get it.
 
 Request example:
 ```
-GET /api/apps/v2/<appId>
+GET /api/apps/v2/<app_id>
 ```
 
 ```
@@ -253,7 +254,7 @@ Consider you added app, but afterwards you want to change its name.
 
 Request example:
 ```
-PATCH /api/apps/v2/<appId>
+PATCH /api/apps/v2/<app_id>
 ```
 
 ```
@@ -272,9 +273,10 @@ This request changed app name from `AppName` to `NewAppName`.
 > Notice three things:
 > * `-X PATCH` before URL. It means that this request is available using `HTTP PATCH method`
 > * you have to specify also `data/id` - it's a [JSON API](http://jsonapi.org/) requirement
-> * also `data/type` is important. For example, when you want to work with app resource, specify it's type as `ppms/app` 
+> * also `data/type` is required. For example, when you want to work with app resource, specify it's type as `ppms/app` 
+> * you can set only parameters you want to update. For more apps attributes go to [App edit reference](https://developers.piwik.pro/en/latest/platform/authorized_api/apps/apps_api.html#operation/api_app_edit_v2)
 
-API will return `204 No Content` status code with an empty response
+API will return `204 No Content` status code with an empty response.
 
 #### Delete an app
 
@@ -283,7 +285,7 @@ Sometimes resources are not needed anymore, so let's have a look at example on h
 Request example:
 
 ```
-DELETE /api/apps/v2/<appId>
+DELETE /api/apps/v2/<app_id>
 ```
 
 ```
@@ -319,10 +321,10 @@ Postman allows configuring headers with `Header` tab.
 
 ### API returns `JWT not found`
 
-Remember, you need to always use your API token. You need to send it all the time within `Authorization: Bearer <token>` header.
-If you use `curl` you need to use `-H "Authorization: Bearer <token>"` flag.
-Postman allows configuring tokens in authorization tab. Choose type `Bearer Token` and paste it here. 
-Remember to keeping this token secure as it allows access to sensitive data!
+Remember, you need to always use your API token. You need to send it all the time within `Authorization: Bearer <your_access_token>` header.
+If you use `curl` you need to use `-H "Authorization: Bearer <your_access_token>"` flag.
+Postman allows configuring tokens in authorization tab. Choose type `Bearer Token` and paste it there. 
+Remember to keep this token secure as it allows access to sensitive data!
 
 ### API returns `Expired JWT Token`
 
@@ -332,4 +334,4 @@ After token is expired, you need to [generate your access token](#generate-your-
 ### API returns `access token not authorized`
 
 This message means, that you sent access token within proper `Authorization: Bearer` field, although it is invalid.
-Make sure 
+Make sure you set proper token.
