@@ -13,6 +13,9 @@
       "name": "Users v2"
     }
   ],
+  "consumes": [
+    "application/vnd.api+json"
+  ],
   "definitions": {
     "User_Role": {
       "type": "string",
@@ -247,9 +250,6 @@
         ],
         "summary": "Create user",
         "operationId": "api_user_add_v2",
-        "consumes": [
-          "application/vnd.api+json"
-        ],
         "produces": [
           "application/vnd.api+json"
         ],
@@ -281,9 +281,6 @@
         ],
         "summary": "Get users list",
         "operationId": "api_users_list_v2",
-        "consumes": [
-          "application/vnd.api+json"
-        ],
         "produces": [
           "application/vnd.api+json"
         ],
@@ -321,9 +318,6 @@
         ],
         "summary": "Get details of an user",
         "operationId": "api_users_user_details_v2",
-        "consumes": [
-          "application/vnd.api+json"
-        ],
         "produces": [
           "application/vnd.api+json"
         ],
@@ -341,9 +335,6 @@
         "operationId": "api_user_delete_v2",
         "tags": [
           "Users v2"
-        ],
-        "consumes": [
-          "application/vnd.api+json"
         ],
         "responses": {
           "204": {
@@ -374,9 +365,6 @@
         ],
         "summary": "Change user role",
         "operationId": "api_users_change_role_v2",
-        "consumes": [
-          "application/vnd.api+json"
-        ],
         "parameters": [
           {
             "name": "User with role",
@@ -407,9 +395,6 @@
         ],
         "summary": "Change my password",
         "operationId": "api_me_change_password_v2",
-        "consumes": [
-          "application/vnd.api+json"
-        ],
         "parameters": [
           {
             "name": "User with new password",
@@ -440,9 +425,6 @@
         ],
         "summary": "Current user details",
         "operationId": "api_user_details_v2",
-        "consumes": [
-          "application/vnd.api+json"
-        ],
         "produces": [
           "application/vnd.api+json"
         ],

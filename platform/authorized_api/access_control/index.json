@@ -34,6 +34,9 @@
       "name": "AccessControl v2"
     }
   ],
+  "consumes": [
+    "application/vnd.api+json"
+  ],
   "definitions": {
     "JsonApi_Id": {
       "type": "string",
@@ -308,9 +311,6 @@
         "summary": "Entity actions",
         "description": "Returns granted permissions (actions) to given entity for current user.",
         "operationId": "get_entity_actions_v2",
-        "consumes": [
-          "application/vnd.api+json"
-        ],
         "produces": [
           "application/vnd.api+json"
         ],
@@ -343,9 +343,6 @@
         "summary": "Entity actions for users",
         "description": "Returns users with granted permissions (actions) to given entity.",
         "operationId": "get_entities_with_action_v2",
-        "consumes": [
-          "application/vnd.api+json"
-        ],
         "produces": [
           "application/vnd.api+json"
         ],
@@ -385,9 +382,6 @@
         "summary": "Permission groups",
         "description": "Returns permission groups that have masks which are a subset of permission mask for entries of given type.",
         "operationId": "get_permission_groups_v2",
-        "consumes": [
-          "application/vnd.api+json"
-        ],
         "produces": [
           "application/vnd.api+json"
         ],
@@ -423,9 +417,6 @@
         "summary": "Permission group set",
         "description": "It sets permission group for given entity (user or app).",
         "operationId": "set_permission_group_v2",
-        "consumes": [
-          "application/vnd.api+json"
-        ],
         "parameters": [
           {
             "name": "permission group request",
@@ -463,9 +454,6 @@
         "summary": "Global actions",
         "description": "It gets actions without specific entity context for given user.",
         "operationId": "get_global_actions_v2",
-        "consumes": [
-          "application/vnd.api+json"
-        ],
         "produces": [
           "application/vnd.api+json"
         ],

@@ -13,6 +13,9 @@
       "name": "Apps v2"
     }
   ],
+  "consumes": [
+    "application/vnd.api+json"
+  ],
   "definitions": {
     "App_Name": {
       "type": "string",
@@ -475,9 +478,6 @@
         "summary": "Apps list",
         "description": "Get list of apps",
         "operationId": "api_app_list_v2",
-        "consumes": [
-          "application/vnd.api+json"
-        ],
         "produces": [
           "application/vnd.api+json"
         ],
@@ -508,9 +508,6 @@
         "summary": "App add",
         "description": "It adds app",
         "operationId": "api_app_add_v2",
-        "consumes": [
-          "application/vnd.api+json"
-        ],
         "produces": [
           "application/vnd.api+json"
         ],
@@ -545,9 +542,6 @@
         "summary": "App details",
         "description": "It gets app details",
         "operationId": "api_apps_details_v2",
-        "consumes": [
-          "application/vnd.api+json"
-        ],
         "produces": [
           "application/vnd.api+json"
         ],
@@ -575,9 +569,6 @@
         "summary": "App delete",
         "description": "It deletes app with given ID",
         "operationId": "api_app_delete_v2",
-        "consumes": [
-          "application/vnd.api+json"
-        ],
         "parameters": [
           {
             "$ref": "#/parameters/appId"
@@ -599,9 +590,6 @@
         "summary": "App edit",
         "description": "It edits app",
         "operationId": "api_app_edit_v2",
-        "consumes": [
-          "application/vnd.api+json"
-        ],
         "parameters": [
           {
             "$ref": "#/parameters/appId"
@@ -634,9 +622,6 @@
         "summary": "App permissions",
         "description": "Get app permissions",
         "operationId": "api_apps_permissions_v2",
-        "consumes": [
-          "application/vnd.api+json"
-        ],
         "produces": [
           "application/vnd.api+json"
         ],
