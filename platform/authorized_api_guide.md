@@ -21,7 +21,7 @@ API credentials which then allows you to request for a token that is used for au
   Name must contains at least 3 characters.
 * Copy your newly generated `CLIENT ID` and `CLIENT SECRET` because they **won't be available for you after dismissing this window.**
 
-This credentials will be valid as long as you revoke them in your profile.
+Those credentials will be valid as long as you will not revoke them in your profile.
 
 #### Create access token
 
@@ -40,7 +40,7 @@ Response example:
 
 Now, you can use obtained `<your_access_token>` for communication with Piwik PRO API.
 Field `expires_in` stands for time (in seconds) for token expiration (TTL).
-As token is a Bearer type, it must be **included in every API call** within header.
+Since token is a Bearer type, it must be **included in every API call** within header.
 
 ```
 Authorization: Bearer <your_access_token>
@@ -62,8 +62,8 @@ For sake of this examples, `https://<domain>` is a URL of your PPMS instance (e.
 is to perform basic operations on an app. We will:
 * create an app
 * get created app
-* update its some fields
-* in the end, we will remove given app
+* update its attributes
+* remove the app
 
 #### Generate your access token
 
@@ -126,13 +126,13 @@ Response example:
 ```
 {
    "data":{
-      "type":"ppms\/app",
+      "type":"ppms/app",
       "id":"b30e538d-4b05-4a75-ae25-7eb565901f38",
       "attributes":{
          "name":"AppName",
          "addedAt":"2018-09-13T12:16:30+00:00",
          "urls":[
-            "http:\/\/example.com"
+            "http://example.com"
          ],
          "timezone":"UTC",
          "currency":"USD",
@@ -198,13 +198,13 @@ Response example:
 ```
 {
    "data":{
-      "type":"ppms\/app",
+      "type":"ppms/app",
       "id":"b30e538d-4b05-4a75-ae25-7eb565901f38",
       "attributes":{
          "name":"AppName",
          "addedAt":"2018-09-13T12:16:30+00:00",
          "urls":[
-            "http:\/\/example.com"
+            "http://example.com"
          ],
          "timezone":"UTC",
          "currency":"USD",
@@ -311,7 +311,7 @@ You have to override two things:
 
 ## FAQ
 
-Here you can find most common issues during work with API.
+Here you can find the most common issues encountered during work with the API
 
 ### API returns `"application/json" is not a valid JSON API Content-Type header, use "application/vnd.api+json" instead"`
 
