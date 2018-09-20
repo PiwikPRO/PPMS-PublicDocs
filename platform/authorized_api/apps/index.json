@@ -4,10 +4,17 @@
     "title": "Apps Api",
     "version": "auto"
   },
+  "host": "example.piwik.pro",
+  "schemes": [
+    "https"
+  ],
   "tags": [
     {
       "name": "Apps v2"
     }
+  ],
+  "consumes": [
+    "application/vnd.api+json"
   ],
   "definitions": {
     "App_Name": {
@@ -398,6 +405,12 @@
             "*.example.com",
             "example.com"
           ]
+        },
+        "gdprLocationRecognition": {
+          "type": "boolean",
+          "description": "Use geolocation to detect UE visitors and present consent forms only to them",
+          "default": false,
+          "example": false
         }
       }
     },
@@ -495,9 +508,6 @@
         "summary": "App add",
         "description": "It adds app",
         "operationId": "api_app_add_v2",
-        "consumes": [
-          "application/vnd.api+json"
-        ],
         "produces": [
           "application/vnd.api+json"
         ],
@@ -559,9 +569,6 @@
         "summary": "App delete",
         "description": "It deletes app with given ID",
         "operationId": "api_app_delete_v2",
-        "produces": [
-          "application/vnd.api+json"
-        ],
         "parameters": [
           {
             "$ref": "#/parameters/appId"
@@ -583,12 +590,6 @@
         "summary": "App edit",
         "description": "It edits app",
         "operationId": "api_app_edit_v2",
-        "consumes": [
-          "application/vnd.api+json"
-        ],
-        "produces": [
-          "application/vnd.api+json"
-        ],
         "parameters": [
           {
             "$ref": "#/parameters/appId"

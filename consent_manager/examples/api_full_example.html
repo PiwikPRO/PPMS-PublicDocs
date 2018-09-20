@@ -182,7 +182,7 @@
       </div>
     </div>
   </div>
-</script>
+</div>
 
 <script>
   var availableConsents = [
@@ -220,7 +220,7 @@
       key: 'custom_consent',
       name: 'Custom consent',
       description: 'Adjust this copy to your needs.'
-    },
+    }
   ];
 
   var customConsentSolution = {
@@ -229,11 +229,11 @@
     consentBottomSelector: '#consent-bottom',
     consentLinkMoreSelector: '#consent-link-more',
     consentItemFooterSelector: '#consent-items-footer',
-    switcherSelector: '.consent-checkbox',
+    switcherSelector: '.consent-items-container .consent-checkbox',
     optInButton: '.consent-orange',
     sendConsentButtonSelector: '.consent-blue',
     itemsSelector: '.consent-items-container',
-    consentTemplate: $('div[data-template="consentitem"]').text().split(/\$\{(.+?)\}/g),
+    consentTemplate: $('div[data-template="consentitem"]').html().split(/\$\{(.+?)\}/g),
     switcherElement: null,
 
     init: function() {
@@ -252,7 +252,7 @@
     },
 
     loadConsentList: function() {
-      ppms.cm.api('getNewComplianceTypes', function(types) {
+      function success(types) {
         self = customConsentSolution;
 
         if (types.length > 0) {
@@ -261,36 +261,58 @@
 
         $(self.itemsSelector).append(
           availableConsents
-            .filter(function(element) {
+            .filter(function (element) {
               return types.join(',').indexOf(element.key) !== -1;
             })
             .map(function (item) {
               return self.consentTemplate.map(self.replaceTemplate(item)).join('');
             })
-        ).ready(function() {
+        ).ready(function () {
           self.switcherElement = $(self.switcherSelector).switcher();
         });
+      }
 
+      ppms.cm.api('getNewComplianceTypes', function(types) {
+        if (types.length) {
+          success(types);
+          return;
+        }
+
+        ppms.cm.api('getComplianceSettings', function (result) {
+          var types = [];
+
+          Object.keys(result.consents).forEach(function (key) {
+            if (result.consents[key].status === -1) {
+              types.push(key);
+            }
+        });
+
+          success(types);
+        }, function(e) {});
+      }, function(e) {});
+    },
+
+    setInitialConsents: function() {
+      ppms.cm.api('getNewComplianceTypes', function(types) {
+        ppms.cm.api('setInitialComplianceSettings', types, function() {}, function(e) {});
       }, function(e) {});
     },
 
     sendConsents: function(all) {
-        var queryElements = {
-          consents: {},
+      var queryElements = {
+        consents: {}
+      };
+
+      $.each(this.switcherElement, function(index, value) {
+        queryElements.consents[$(value).val()] = {
+          status: all ? 1 : +$(value).prop('checked')
         };
+      });
 
-        $.each(this.switcherElement, function(index, value) {
-          queryElements.consents[$(value).val()] = {
-            status: all ? 1 : +$(value).prop('checked'),
-          };
-        });
-
-        ppms.cm.api('setComplianceSettings', queryElements, function() {
-          self = customConsentSolution;
-          self.hide();
-        }, function() {
-
-        });
+      ppms.cm.api('setComplianceSettings', queryElements, function() {
+        self = customConsentSolution;
+        self.hide();
+      }, function (e) {});
     },
 
     showDetails: function() {
@@ -301,13 +323,15 @@
       $(this.consentBottomSelector).css({
         maxHeight: baseScrollHeight + detailsScrollHeight + consentItemFooterHeight + "px",
         overflowY: 'auto',
-        display: 'block',
+        display: 'block'
       });
+
+      this.setInitialConsents();
     },
 
     replaceTemplate: function(props) {
-        return function(token, i) { return (i % 2) ? props[token] : token; };
-    },
+      return function(token, i) { return (i % 2) ? props[token] : token; };
+    }
   };
 
   $(document).ready(customConsentSolution.init.bind(customConsentSolution));
