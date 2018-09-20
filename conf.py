@@ -74,7 +74,7 @@ author = u'Piwik PRO'
 # built documents.
 #
 # The short X.Y version.
-version = u'6.2'
+version = u'6.3'
 # The full version, including alpha/beta/rc tags.
 release = version
 
