@@ -150,11 +150,50 @@ Code::
     :param string|object error: **Required** Error code or exception.
 
 
+Set initial compliance settings
+`````````````````````````````````````
+Sets initial compliance settings.
+This API command might be useful to note that user has seen a popup with consents but didn't make a decision (popup was closed).
+After successful, Consent Manager internally sends only to stats endpoint an information that user has seen consents.
+Result from getNewComplianceTypes method can be passed directly.
+
+Code::
+
+    ppms.cm.api('setInitialComplianceSettings', settings, onFulfilled, onRejected);
+    dataLayer.push({'event': 'ppms.cm:setInitialComplianceSettings', parameters: [settings, onFulfilled, onRejected]});
+
+`dataLayer.push` interface is only for backward compatibility and you can read more about this particular case below. We recommend ```ppms.cm.api```.
+
+.. object:: settings
+
+    **required** The consent settings object.
+
+        Example::
+
+            {consents: ['analytics']}
+
+        or
+
+        Example::
+
+            ['analytics']
+
+.. function:: onFulfilled()
+
+     **required** The fulfilment handler callback. This function is **required**.
+
+.. function:: onRejected(error)
+
+    The rejection handler callback (called with error code). If not specified, exception will be thrown in main stacktrace.
+
+    :param string|object error: **Required** Error code or exception.
+
 Set compliance settings
 `````````````````````````````````````
 Set compliance settings base on user decision.
 This API command might be useful when user interact with custom, extended UI that reacts on user approve/reject action.
 After successful, Consent Manager internally send consent settings to tracking server and force page view on tags.
+Additionally information to statistics is sent about user decisions.
 
 Code::
 
@@ -173,7 +212,6 @@ Code::
 
     Where `consent.analytics` is consent type and status indicate:
 
-    * `-1` - user does not interact, e.q. close consent popup without any decision
     * `0` - user has rejected the consent
     * `1` - user has approved the consent
 
@@ -241,6 +279,35 @@ Code::
         Example::
 
             {content: '', email: '', type: 'change_data|view_data|delete_data'}
+
+.. function:: onFulfilled()
+
+    **required** The fulfilment handler callback.
+
+.. function:: onRejected(error)
+
+    The rejection handler callback (called with error code). If not specified, exception will be thrown in main stacktrace.
+
+    :param string|object error: **Required** Error code or exception.
+
+Send initial stats
+`````````````````````````````````````
+Command sends initial stats (no decision) to Consent Manager stats collector.
+
+Code::
+
+    ppms.cm.api('sendInitialStats', consentTypes, onFulfilled, onRejected);
+    dataLayer.push({'event': 'ppms.cm:sendInitialStats', parameters: [consentTypes, onFulfilled, onRejected]});
+
+`dataLayer.push` interface is only for backward compatibility and you can read more about this particular case below. We recommend ```ppms.cm.api```.
+
+.. object:: consentTypes
+
+    **required** The types of consents.
+
+        Example::
+
+            ["remarketing", "analytics"]
 
 .. function:: onFulfilled()
 
