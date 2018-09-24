@@ -186,7 +186,7 @@ GET /api/apps/v2/<app_id>
 ```
 
 ```
-curl 'https://testing.piwik.pro/api/apps/v2/b30e538d-4b05-4a75-ae25-7eb565901f38' -H "Authorization: Bearer <your_access_token>" -H "Content-Type: application/vnd.api+json"
+curl 'https://<domain>/api/apps/v2/b30e538d-4b05-4a75-ae25-7eb565901f38' -H "Authorization: Bearer <your_access_token>" -H "Content-Type: application/vnd.api+json"
 ```
 
 
@@ -316,7 +316,7 @@ Here you can find the most common issues encountered during work with the API
 ### API returns `"application/json" is not a valid JSON API Content-Type header, use "application/vnd.api+json" instead"`
 
 Remember, all API calls needs to be created with `Content-Type: application/vnd.api+json` header. 
-If you use `curl` you need to use `-H "Content-Type: application/json"` flag. 
+If you use `curl` you need to use `-H "Content-Type: application/vnd.api+json"` flag. 
 Postman allows configuring headers with `Header` tab.
 
 ### API returns `JWT not found`
