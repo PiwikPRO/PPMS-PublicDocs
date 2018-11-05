@@ -855,3 +855,7 @@ Example of usage::
 
     _paq.push(["setUserIsAnonymous", true]);
 
+To disable tracking user anonymously (after visitor gave consent) use ``deanonymizeUser`` function::
+
+    _paq.push(["deanonymizeUser"]);
+
