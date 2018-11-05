@@ -500,6 +500,18 @@ Tracker Configuration
 
     :param array<string> keyword: **Required** Keyword parameters.
 
+Anonymization
+-------------
+
+.. function:: setUserIsAnonymous(isAnonymous)
+
+    The function that will set user anonymous tracking.
+
+    :param boolean isAnonymous: **Required** Flag that sets anonymous tracking on and off.
+
+.. function:: deanonymizeUser()
+
+    The function that will disable user anonymous tracking and send deanonymization request.
 
 Advanced Usage
 --------------
