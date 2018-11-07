@@ -9,6 +9,9 @@ post:
     <p>You can use the <strong>View API call definition</strong> option
        available in Custom Reports application in each report to get more
        usage examples based on your existing reports.</p>
+    <p>When requesting large amount of data, make sure to include
+       a <strong>Accept-Encoding: gzip</strong> header to enable
+       compression.</p>
   parameters:
   - name: body
     in: body
