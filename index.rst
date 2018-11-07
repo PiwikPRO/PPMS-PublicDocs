@@ -16,6 +16,7 @@ Welcome to the Piwik PRO documentation for developers!
 
    sdk/index
    analytics/index
+   custom_reports/index
    audience_manager/index
    consent_manager/index
    platform/index

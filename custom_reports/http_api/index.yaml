@@ -1,0 +1,28 @@
+swagger: '2.0'
+info:
+  title: Custom Reports HTTP API
+  description: |
+    <p>
+      <strong>Authentication is required</strong> to access any of the
+      following endpoints. Please see <a href="../../platform/authorized_api_guide.html">Authorization</a>
+      documentation for more details.
+    </p>
+    <p>
+      Available columns and transformations are listed in the
+      <a href="../columns.html">Columns</a> documentation.
+    </p>
+  version: 'auto'
+host: ppms.example.com
+basePath: /
+schemes:
+  - https
+consumes:
+  - application/json
+produces:
+  - application/json
+paths:
+  /api/custom-reports/v1/query/:
+    $ref: ./paths/query.yaml
+definitions:
+  QueryRequest:
+    $ref: ./definitions/query_request.yaml
