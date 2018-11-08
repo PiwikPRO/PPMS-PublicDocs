@@ -350,8 +350,9 @@ The table below lists all available dimensions that may be used in queries.
     |Timestamp                             |timestamp                          |datetime|
     +--------------------------------------+-----------------------------------+--------+
 
-Please note that the number of available custom slots depends on your
-organisation's configuration.
+.. note::
+    Please note that the number of available custom slots (dimensions,
+    variables) depends on your organisation's configuration.
 
 Transformations
 ---------------

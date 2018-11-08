@@ -73,16 +73,16 @@ properties:
                 operator:
                   type: string
                   description: |
-                    <p>Filtering operator. Available choices depend on
-                    the specified column's type.</p>
-                    <p>String operators: <code>eq</code>, <code>neq</code>,
-                    <code>contains</code>, <code>not_contains</code>,
-                    <code>starts_with</code>, <code>ends_with</code></p>
-                    <p>Numeric operators: <code>eq</code>,
-                    <code>neq</code>, <code>gt</code>, <code>gte</code>,
-                    <code>lt</code>, <code>lte</code>.</p>
-                    <p>Boolean and enum operators: <code>eq</code>,
-                    <code>neq</code>.</p>
+                    Filtering operator. Available choices depend on
+                    the specified column's type.
+
+                    String operators: ``eq``, ``neq``, ``contains``,
+                    ``not_contains``, ``starts_with``, ``ends_with``.
+
+                    Numeric operators: ``eq``, ``neq``, ``gt``, ``gte``,
+                    ``lt``, ``lte``.
+
+                    Boolean and enum operators: ``eq``, ``neq``.
                 value:
                   description: |
                     Value that should be matched by filter. Value type must

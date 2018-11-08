@@ -4,14 +4,16 @@ post:
   summary:
     Execute query
   description: |
-    <p>API that allows querying the database directly. Please note that each
-       request must be authenticated.</p>
-    <p>You can use the <strong>View API call definition</strong> option
-       available in Custom Reports application in each report to get more
-       usage examples based on your existing reports.</p>
-    <p>When requesting large amount of data, make sure to include
-       a <strong>Accept-Encoding: gzip</strong> header to enable
-       compression.</p>
+    API that allows querying the database directly. Please note that each
+    request must be authenticated.
+
+    You can use the **View API call definition** option
+    available in Custom Reports application in each report to get more
+    usage examples based on your existing reports.
+
+    When requesting large amount of data, make sure to include
+    an **Accept-Encoding: gzip** header to enable
+    compression.
   parameters:
   - name: body
     in: body
@@ -61,6 +63,7 @@ post:
                   properties:
                     parameter:
                       type: string
+                      description: Path to the parameter that caused the error.
         example: {"errors": [{"status": "400", "detail": "Dimension \"example\" does not exist.", "source": {"parameter": "columns.column_id"}}]}
     401:
       description: Unauthorized

@@ -2,15 +2,12 @@ swagger: '2.0'
 info:
   title: Custom Reports HTTP API
   description: |
-    <p>
-      <strong>Authentication is required</strong> to access any of the
-      following endpoints. Please see <a href="../../platform/authorized_api_guide.html">Authorization</a>
-      documentation for more details.
-    </p>
-    <p>
-      Available columns and transformations are listed in the
-      <a href="../columns.html">Columns</a> documentation.
-    </p>
+    **Authentication is required** to access any of the
+    following endpoints. Please see [Authorization](../../platform/authorized_api_guide.html)
+    documentation for more details.
+
+    Available columns and transformations are listed in the
+    [Columns](../columns.html) documentation.
   version: 'auto'
 host: ppms.example.com
 basePath: /
