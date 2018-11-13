@@ -19,14 +19,16 @@
   "definitions": {
     "User_Role": {
       "type": "string",
+      "description": "User role",
+      "example": "USER",
       "enum": [
         "OWNER",
         "USER"
-      ],
-      "example": "USER"
+      ]
     },
     "User_Email": {
       "type": "string",
+      "description": "Valid user email",
       "format": "email",
       "example": "john@doe.com"
     },
@@ -44,6 +46,12 @@
       "format": "date-time",
       "description": "Datetime with time zone in ISO-8601 format",
       "example": "2018-06-25T07:28:52+01:00"
+    },
+    "Language": {
+      "type": "string",
+      "format": "IETF-language-tag",
+      "description": "User Interface language with IETF language tag format",
+      "example": "en"
     },
     "JsonApi_Id": {
       "type": "string",
@@ -105,6 +113,9 @@
                 },
                 "addedAt": {
                   "$ref": "#/definitions/Date"
+                },
+                "language": {
+                  "$ref": "#/definitions/Language"
                 }
               }
             }
@@ -147,8 +158,18 @@
                   "$ref": "#/definitions/User_Password"
                 },
                 "email": {
-                  "type": "string",
-                  "format": "email"
+                  "$ref": "#/definitions/User_Email"
+                },
+                "role": {
+                  "allOf": [
+                    {
+                      "$ref": "#/definitions/User_Role"
+                    }
+                  ],
+                  "default": "USER"
+                },
+                "language": {
+                  "$ref": "#/definitions/Language"
                 }
               },
               "required": [
@@ -157,6 +178,44 @@
               ]
             }
           }
+        }
+      }
+    },
+    "JsonApi_Edit_User": {
+      "type": "object",
+      "required": [
+        "data"
+      ],
+      "properties": {
+        "data": {
+          "type": "object",
+          "allOf": [
+            {
+              "$ref": "#/definitions/JsonApi_Resource_Object"
+            },
+            {
+              "properties": {
+                "type": {
+                  "allOf": [
+                    {
+                      "$ref": "#/definitions/JsonApi_User_Type"
+                    }
+                  ]
+                },
+                "attributes": {
+                  "type": "object",
+                  "properties": {
+                    "role": {
+                      "$ref": "#/definitions/User_Role"
+                    },
+                    "language": {
+                      "$ref": "#/definitions/Language"
+                    }
+                  }
+                }
+              }
+            }
+          ]
         }
       }
     },
@@ -187,7 +246,10 @@
                     "role": {
                       "$ref": "#/definitions/User_Role"
                     }
-                  }
+                  },
+                  "required": [
+                    "role"
+                  ]
                 }
               }
             }
@@ -219,6 +281,16 @@
                 "attributes": {
                   "type": "object",
                   "properties": {
+                    "currentPassword": {
+                      "allOf": [
+                        {
+                          "description": "Current password of given user"
+                        },
+                        {
+                          "$ref": "#/definitions/User_Password"
+                        }
+                      ]
+                    },
                     "newPassword": {
                       "$ref": "#/definitions/User_Password"
                     }
@@ -347,6 +419,37 @@
             "$ref": "#/responses/Not_Found"
           }
         }
+      },
+      "patch": {
+        "summary": "Edit user",
+        "operationId": "api_user_edit_v2",
+        "tags": [
+          "Users v2"
+        ],
+        "consumes": [
+          "application/vnd.api+json"
+        ],
+        "parameters": [
+          {
+            "name": "User with values to edit",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/JsonApi_Edit_User"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "$ref": "#/responses/No_Content"
+          },
+          "400": {
+            "$ref": "#/responses/Bad_Request"
+          },
+          "404": {
+            "$ref": "#/responses/Not_Found"
+          }
+        }
       }
     },
     "/api/users/v2/{userId}/change-role": {
@@ -420,12 +523,17 @@
     },
     "/api/users/v2/me/details": {
       "get": {
+        "deprecated": true,
+        "description": "Use GET /api/v2/me",
         "tags": [
           "Users v2"
         ],
         "summary": "Current user details",
         "operationId": "api_user_details_v2",
         "produces": [
+          "application/vnd.api+json"
+        ],
+        "consumes": [
           "application/vnd.api+json"
         ],
         "responses": {
@@ -439,6 +547,65 @@
                 }
               }
             }
+          }
+        }
+      }
+    },
+    "/api/users/v2/me": {
+      "get": {
+        "tags": [
+          "Users v2"
+        ],
+        "summary": "Current user details",
+        "operationId": "api_user_details_v2",
+        "produces": [
+          "application/vnd.api+json"
+        ],
+        "consumes": [
+          "application/vnd.api+json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "$ref": "#/definitions/JsonApi_User"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "summary": "Edit own account",
+        "operationId": "api_me_edit_v2",
+        "tags": [
+          "Users v2"
+        ],
+        "consumes": [
+          "application/vnd.api+json"
+        ],
+        "parameters": [
+          {
+            "name": "User with values to edit",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/JsonApi_Edit_User"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "$ref": "#/responses/No_Content"
+          },
+          "400": {
+            "$ref": "#/responses/Bad_Request"
+          },
+          "404": {
+            "$ref": "#/responses/Not_Found"
           }
         }
       }
