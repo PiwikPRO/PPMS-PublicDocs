@@ -40,7 +40,7 @@ post:
               count:
                 type: integer
                 description: Total number of results available for this query.
-        example: {"data": [{"event_title": "Test Page", "revenue__sum": 1000}], "meta": {"count": 42}}
+        example: {"data": [[["EU", "Europe"], "Blink", 529437, 128334], [["NA", "North America"], "Blink", 199355, 47171], [["AS", "Asia"], "Blink", 153385, 37308]], "meta": {"count": 42}}
     400:
       description: Bad Request
       schema:

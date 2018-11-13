@@ -86,7 +86,8 @@ properties:
                 value:
                   description: |
                     Value that should be matched by filter. Value type must
-                    match the type of the specified column.
+                    match the type of the specified column. For enumerated
+                    fields, you must use the ID value.
               required:
                 - operator
                 - value
