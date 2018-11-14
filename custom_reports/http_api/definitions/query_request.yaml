@@ -114,8 +114,6 @@ properties:
       By default sorts descending by the first metric in query.
     items:
       type: array
-      items:
-        type: object
     example: [[1, "desc"], [2, "asc"]]
 required:
   - website_id
