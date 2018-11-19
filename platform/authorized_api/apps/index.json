@@ -411,6 +411,12 @@
           "description": "Use geolocation to detect UE visitors and present consent forms only to them",
           "default": false,
           "example": false
+        },
+        "gdprDataAnonymization": {
+          "type": "boolean",
+          "description": "Track only a minimal amount of users data, for which we don't need to gather their consent. Any data points considered as personally identifiable information will not be tracked unless the consent is provided",
+          "default": true,
+          "example": true
         }
       }
     },
