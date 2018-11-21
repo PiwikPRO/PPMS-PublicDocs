@@ -11,6 +11,8 @@ post:
     available in Custom Reports application in each report to get more
     usage examples based on your existing reports.
 
+    ![View API call definition](../../_static/images/copy-api-call.png)
+
     When requesting large amount of data, make sure to include
     an **Accept-Encoding: gzip** header to enable
     compression.
