@@ -19,14 +19,16 @@
   "definitions": {
     "User_Role": {
       "type": "string",
+      "description": "User role",
+      "example": "USER",
       "enum": [
         "OWNER",
         "USER"
-      ],
-      "example": "USER"
+      ]
     },
     "User_Email": {
       "type": "string",
+      "description": "Valid user email",
       "format": "email",
       "example": "john@doe.com"
     },
