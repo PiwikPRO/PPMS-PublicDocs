@@ -76,13 +76,17 @@ properties:
                     Filtering operator. Available choices depend on
                     the specified column's type.
 
-                    String operators: ``eq``, ``neq``, ``contains``,
-                    ``not_contains``, ``starts_with``, ``ends_with``.
+                    String operators: ``eq``, ``neq``,
+                    ``contains``, ``not_contains``,
+                    ``icontains``, ``not_icontains``,
+                    ``starts_with``, ``ends_with``.
 
                     Numeric operators: ``eq``, ``neq``, ``gt``, ``gte``,
                     ``lt``, ``lte``.
 
-                    Boolean and enum operators: ``eq``, ``neq``.
+                    Boolean operators: ``eq``, ``neq``.
+
+                    Enum operators: ``eq``, ``neq``, ``empty``, ``not_empty``.
                 value:
                   description: |
                     Value that should be matched by filter. Value type must
