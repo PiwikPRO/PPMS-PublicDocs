@@ -488,26 +488,6 @@ Tracker Configuration
     :param number minimumVisitLength: **Required** Minimum visit length in seconds.
     :param number heartBeatDelay: **Required** Update sever time threshold.
 
-.. function:: getAttributionInfo()
-
-    The function that will return visitor attribution array (Referrer and Campaign data).
-
-.. function:: getAttributionCampaignName()
-
-    The function that will return the Attribution Campaign name.
-
-.. function:: getAttributionCampaignKeyword()
-
-    The function that will return the Attribution Campaign keywords.
-
-.. function:: getAttributionReferrerTimestamp()
-
-    The function that will return the Attribution Referrer timestamp.
-
-.. function:: getAttributionReferrerUrl()
-
-    The function that will return the Attribution Referrer URL.
-
 .. function:: setCampaignNameKey(name)
 
     The function that will set campaign name parameters.
@@ -520,12 +500,18 @@ Tracker Configuration
 
     :param array<string> keyword: **Required** Keyword parameters.
 
-.. function:: setConversionAttributionFirstReferrer(bool)
+Anonymization
+-------------
 
-    The function that will set if an attribute will convert to the first referrer
+.. function:: setUserIsAnonymous(isAnonymous)
 
-    :param boolean bool: **Required** If set to true attribute will convert to the first referrer otherwise it will be converted to most recent referrer.
+    The function that will set user anonymous tracking.
 
+    :param boolean isAnonymous: **Required** Flag that sets anonymous tracking on and off.
+
+.. function:: deanonymizeUser()
+
+    The function that will disable user anonymous tracking and send deanonymization request.
 
 Advanced Usage
 --------------
