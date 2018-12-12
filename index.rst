@@ -6,16 +6,17 @@
 Welcome to the Piwik PRO documentation for developers!
 ======================================================
 
-*PPMS version: 6.5 (see* |changelog|_\ *)*
+*PPMS version: 7.0 (see* |changelog|_\ *)*
 
 .. |changelog| replace:: *changelog*
-.. _changelog: https://changelog.piwik.pro/version-6/6-5-0-release/
+.. _changelog: https://changelog.piwik.pro/version-7/7-0-0-release/
 
 .. toctree::
    :maxdepth: 1
 
    sdk/index
    analytics/index
+   custom_reports/index
    audience_manager/index
    consent_manager/index
    platform/index
