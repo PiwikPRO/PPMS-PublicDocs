@@ -192,16 +192,30 @@ Code::
 
 .. describe:: attributes
 
-    **Required** ``Object<string,string>`` Object containing :term:`attributes<attribute>` to update:
+    **Required** ``Object<string,(string|number|{action: string, value: (string|number)})>`` Object containing
+    :term:`attributes<attribute>` to update:
 
-        - key - :term:`attribute` name
-        - value - :term:`attribute` value
+        - key (``string``) - :term:`attribute` name
+        - value (``string|number|{action: string, value: (string|number)}``) - it can use one of following forms:
+
+            - direct value (``string`` or ``number``) - sets it as the :term:`attribute` value
+            - modification action (``{action: string, value: (string|number)}``). It allows to manipulate
+              :term:`attribute` values using following actions:
+
+                - ``"add"`` - adds `value` to current attribute value (works only on numeric
+                  :term:`attributes<attribute>`). If `value` is not given - default value will be used instead (``1``).
+                - ``"set"`` - sets `value` as the :term:`attribute` value
 
     Example::
 
         {
             "favourite_color": "black",
-            "drink": "Martini"
+            "drink": "Martini",
+            "code_number": 7,
+            "kill_count": {
+                "action": "add",
+                "value": 3,
+            }
         }
 
 .. describe:: options
@@ -209,7 +223,7 @@ Code::
     **Optional** ``object`` Object that can specify additional :term:`user` :term:`identifiers<identifier>` and callback
     functions.
 
-     Example::
+    Example::
 
         {
             "user_id": user_id,
