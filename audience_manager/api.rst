@@ -208,7 +208,8 @@ Code::
               .. note:: If the :term:`attribute` was not used before - creates new ``numeric`` :term:`attribute`.
 
             - ``object`` - ``ModificationAction`` using following format: ``{action: string, value: (string|number)}``.
-              It allows to manipulate :term:`attribute` value using one of the following actions:
+              It allows to manipulate :term:`attribute` value using one of the following ``ModificationAction``
+              ``action`` values:
 
                 - ``"set"`` - overwrite :term:`attribute` value using the ``ModificationAction`` ``value``.
 
