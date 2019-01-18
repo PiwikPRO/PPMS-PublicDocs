@@ -60,7 +60,7 @@ properties:
           default: set
           description: |
             Action to perform:
-            * `set` – override the existing value with the new value,
+            * `set` – overwrite the existing value with the new value,
             * `add` – add the new value (or 1, if not specified) to the existing value.
       example:
         name: occupation
