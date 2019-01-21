@@ -192,16 +192,50 @@ Code::
 
 .. describe:: attributes
 
-    **Required** ``Object<string,string>`` Object containing :term:`attributes<attribute>` to update:
+    **Required** ``Object<string,(string|number|object)>`` Object containing
+    :term:`attributes<attribute>` to update:
 
-        - key - :term:`attribute` name
-        - value - :term:`attribute` value
+        - key (``string``) - :term:`attribute` name
+        - value (``string|number|object``) - Value of the :term:`attribute`. System will process it differently
+          depending on its type:
+
+            - ``string`` - overwrite the :term:`attribute` value with the new value.
+
+              .. note:: If the :term:`attribute` was not used before - creates new ``text`` :term:`attribute`.
+
+            - ``number`` - overwrite the :term:`attribute` value with the new value.
+
+              .. note:: If the :term:`attribute` was not used before - creates new ``numeric`` :term:`attribute`.
+
+            - ``object`` - ``ModificationAction`` using following format: ``{action: string, value: (string|number)}``.
+              It allows to manipulate :term:`attribute` value using one of the following ``ModificationAction``
+              ``action`` values:
+
+                - ``"set"`` - overwrite :term:`attribute` value using the ``ModificationAction`` ``value``.
+
+                  .. note:: Works identical to the shorter versions using ``string`` or ``number`` types.
+
+                - ``"add"`` - add the ``ModificationAction`` ``value`` (or ``1``, if not specified) to the
+                  :term:`attribute` value.
+
+                    .. note::
+                        * ``ModificationAction`` ``value`` can be any ``number`` (including negative and fractional
+                          numbers).
+                        * If the :term:`attribute` was not used before - creates new ``numeric`` :term:`attribute` and
+                          sets its value to ``0`` before performing action.
+
+                    .. warning:: Only works on ``numeric`` :term:`attributes<attribute>`.
 
     Example::
 
         {
             "favourite_color": "black",
-            "drink": "Martini"
+            "drink": "Martini",
+            "code_number": 7,
+            "kill_count": {
+                "action": "add",
+                "value": 3,
+            }
         }
 
 .. describe:: options
@@ -209,7 +243,7 @@ Code::
     **Optional** ``object`` Object that can specify additional :term:`user` :term:`identifiers<identifier>` and callback
     functions.
 
-     Example::
+    Example::
 
         {
             "user_id": user_id,
