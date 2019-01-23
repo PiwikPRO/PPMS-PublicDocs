@@ -152,10 +152,6 @@ Code::
         - `attributes` - ``Object<string,string>`` Contains :term:`custom attributes<custom attribute>` about the
           :term:`user` (e.g. first name, last name, email).
 
-        .. todo::
-            Check if we can change label of custom attributes from ``attribute`` to ``custom`` (``field_type`` in HTTPS
-            API and name of container in JS API).
-
         Example::
 
             {
