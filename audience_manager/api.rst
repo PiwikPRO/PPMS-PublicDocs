@@ -195,32 +195,29 @@ Code::
         - value (``string|number|object``) - Value of the :term:`attribute`. System will process it differently
           depending on its type:
 
-            - ``string`` - overwrite the :term:`attribute` value with the new value.
+            - ``string`` - overwrite the :term:`attribute` value with the new value. If the :term:`attribute` was not
+              used before - creates new ``text`` :term:`attribute`.
 
-              .. note:: If the :term:`attribute` was not used before - creates new ``text`` :term:`attribute`.
-
-            - ``number`` - overwrite the :term:`attribute` value with the new value.
-
-              .. note:: If the :term:`attribute` was not used before - creates new ``numeric`` :term:`attribute`.
+            - ``number`` - overwrite the :term:`attribute` value with the new value. If the :term:`attribute` was not
+              used before - creates new ``numeric`` :term:`attribute`.
 
             - ``object`` - ``ModificationAction`` using following format: ``{action: string, value: (string|number)}``.
               It allows to manipulate :term:`attribute` value using one of the following ``ModificationAction``
               ``action`` values:
 
-                - ``"set"`` - overwrite :term:`attribute` value using the ``ModificationAction`` ``value``.
-
-                  .. note:: Works identical to the shorter versions using ``string`` or ``number`` types.
+                - ``"set"`` - overwrite :term:`attribute` value using the ``ModificationAction`` ``value``. Works
+                  identically to the shorter versions using ``string`` or ``number`` types.
 
                 - ``"add"`` - add the ``ModificationAction`` ``value`` (or ``1``, if not specified) to the
                   :term:`attribute` value.
 
                     .. note::
+                        * Works only on ``numeric`` :term:`attributes<attribute>`.
                         * ``ModificationAction`` ``value`` can be any ``number`` (including negative and fractional
                           numbers).
                         * If the :term:`attribute` was not used before - creates new ``numeric`` :term:`attribute` and
                           sets its value to ``0`` before performing action.
 
-                    .. warning:: Only works on ``numeric`` :term:`attributes<attribute>`.
 
     Example::
 
