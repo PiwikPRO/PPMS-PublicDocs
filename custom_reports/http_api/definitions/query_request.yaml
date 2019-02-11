@@ -37,9 +37,8 @@ properties:
   filters:
     type: object
     description: |
-      Data filters for the query. Please note that filtering is only available
-      on dimensions at this point. The top-level object must specify AND/OR
-      clause, but any nested objects may either specify another AND/OR
+      Dimension filters for the query.  The top-level object must specify
+      AND/OR clause, but any nested objects may either specify another AND/OR
       clause or a single filter.
     properties:
       operator:
@@ -96,6 +95,69 @@ properties:
                 - operator
                 - value
           example: {"column_id":"event_title","condition":{"operator":"contains","value":"test"}}
+    required:
+      - operator
+      - conditions
+  metric_filters:
+    type: object
+    description: |
+      Metric filters for the query. The top-level object must specify AND/OR
+      clause, but any nested objects may either specify another AND/OR
+      clause or a single filter.
+    properties:
+      operator:
+        type: string
+        description: Logical operator (AND/OR) for the clause.
+        enum:
+          - and
+          - or
+      conditions:
+        type: array
+        description: List of filters or recursively nested clauses.
+        items:
+          type: object
+          required:
+            - column_id
+            - condition
+          properties:
+            column_id:
+              type: string
+              description: |
+                ID of the column (must be a metric, or a dimension converted
+                to a metric).
+            transformation_id:
+              type: string
+              description: |
+                Optional ID of the transformation. Must be supported by
+                the column that was specified and must convert the column
+                into a metric.
+            goal_id:
+              type: integer
+              description: |
+                Specify a goal ID to calculate the metric using data limited
+                to that goal only. Supported only by goal-related metrics.
+            condition:
+              type: object
+              description: Definition of a the condition for this column.
+              properties:
+                operator:
+                  type: string
+                  description: Filtering operator.
+                  enum:
+                    - eq
+                    - neq
+                    - gt
+                    - gte
+                    - lt
+                    - lte
+                value:
+                  description: Value that should be matched by filter.
+                  type: float
+                  example: 42.5
+              required:
+                - operator
+                - value
+          example: {"column_id":"page_views","condition":{"operator":"eq","value":42}}
     required:
       - operator
       - conditions
