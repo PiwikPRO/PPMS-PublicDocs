@@ -381,7 +381,7 @@ dimensions to metrics or different dimensions.
     +-------------------+-----------------+----------------+-----------+
     |Max                |max              |int, float      |(as source)|
     +-------------------+-----------------+----------------+-----------+
-    |Average            |average          |int, float, bool|(as source)|
+    |Average            |average          |int, float, bool|float      |
     +-------------------+-----------------+----------------+-----------+
     |Median             |median           |int, float      |(as source)|
     +-------------------+-----------------+----------------+-----------+
