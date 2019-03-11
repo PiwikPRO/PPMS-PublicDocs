@@ -6,13 +6,13 @@ data just like the internal analytics data.
 
 .. note::
     You must configure the Google Search Console integration before any data
-    will become available. This can be done in the **Settings / Integrations**
+    from it will become available. This can be done in the **Settings / Integrations**
     application's section.
 
 Metrics
 -------
 
-The table below lists new metrics available for the Google Search Console data.
+The table below lists metrics provided by Google Search Console integration.
 
 .. table:: Google Search Console Metrics
 
@@ -31,8 +31,7 @@ The table below lists new metrics available for the Google Search Console data.
 Dimensions
 ----------
 
-The table below lists new dimensions available for the Google Search Console
-data.
+The table below lists dimensions provided by Google Search Console integration.
 
 .. table:: Google Search Console Dimensions
 
@@ -61,11 +60,10 @@ data.
 Mixed Queries
 -------------
 
-It is also possible to request both internal analytics and Google Search
+It is possible to request both internal analytics and Google Search
 Console metrics in a single query (for example: "Sessions" and "Clicks (search
-engine)").
-
-However, **only the common dimensions listed below** may be used in such queries.
+engine)"), however **only the common dimensions listed below** may be used in
+such queries.
 
 .. table:: Common Dimensions
 

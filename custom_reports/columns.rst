@@ -1,14 +1,14 @@
 Columns
 =======
 
-This article documents columns available in the :ref:`custom-reports-http-api`
-by default. Additional columns may become available through
+This article documents core columns available in the :ref:`custom-reports-http-api`.
+Additional columns may become available through
 :ref:`custom-reports-integrations`.
 
 Metrics
 -------
 
-The table below lists base metrics that may be used in queries by default.
+The table below lists core metrics that may be used in queries.
 Additional metrics may be created using dimension transformations.
 
 .. table:: Base Metrics
@@ -88,7 +88,7 @@ Additional metrics may be created using dimension transformations.
 Dimensions
 ----------
 
-The table below lists dimensions that may be used in queries by default.
+The table below lists core dimensions that may be used in queries.
 
 .. table:: Base Dimensions
 
