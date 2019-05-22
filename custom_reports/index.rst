@@ -1,4 +1,4 @@
-Custom Reports
+Analytics
 ==============
 
 .. toctree::
