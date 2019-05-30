@@ -113,3 +113,20 @@ If you wish to track a group of pages as separate site, you can use the wildcard
 
 .. deprecated:: 5.5.1
     Older installations using ``piwik.php`` and ``piwik.js`` filenames are deprecated.
+
+
+
+Navigation timing page performance metrics
+-------------------------------------
+To set up page performance metrics gathering use the
+``setTimingDataSamplingOnPageLoad`` function::
+
+    _paq.push(["setTimingDataSamplingOnPageLoad", updateTimingDataOnPageLoadSampling]);
+
+.. describe:: updateTimingDataOnPageLoadSampling
+
+    **Required** ``integer`` Value between 1 and 100 describing the percentage for data sampling
+
+::
+
+    _paq.push(["setTimingDataSamplingOnPageLoad", 33]);

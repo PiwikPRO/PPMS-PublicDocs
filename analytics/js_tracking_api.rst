@@ -859,3 +859,32 @@ To disable tracking user anonymously (after visitor gave consent) use ``deanonym
 
     _paq.push(["deanonymizeUser"]);
 
+
+
+Gethering navigation timing page performance metrics
+``````````````````````````
+To set up page performance metrics gathering use the ``setTimingDataSamplingOnPageLoad`` function::
+
+    _paq.push(["setTimingDataSamplingOnPageLoad", updateTimingDataOnPageLoadSampling]);
+
+.. describe:: updateTimingDataOnPageLoadSampling
+
+    **Required** ``integer`` Value between 1 and 100 describing the percentage for data sampling
+
+IT sets another request triggered onLoad, after trackPageView setting timing data.
+Normally we try to use trackPageView as soon as possible, not to lose any actions
+but since it's usually before the full page was loaded then we don't have complete data about timing.
+You may either trigger trackPageView after onLoad event or enable this option so the followup request
+containing all timing values is sent after onLoad.
+
+Argument to this function represents data sampling percentage (with possible integer values between 0 and 100).
+
+Example of usage::
+
+    _paq.push(["setTimingDataSamplingOnPageLoad", 0]); // disables timing data collection
+    _paq.push(["setTimingDataSamplingOnPageLoad", 30]); // enables 30% data sampling (only around 30% of all tracked actions will collect timing data if possible)
+    _paq.push(["setTimingDataSamplingOnPageLoad", 100]); // enables 100% data sampling (which means that all tracked actions will collect timing data if possible)
+
+IMPORTANT: by default this feature is disabled and no timing data is collected at any chance
+IMPORTANT: if enabled, timing data is collected only when page view lasted longer than the time it takse the page to load no partial information is stored, all metrics or nothing
+
