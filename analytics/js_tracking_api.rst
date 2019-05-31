@@ -861,7 +861,7 @@ To disable tracking user anonymously (after visitor gave consent) use ``deanonym
 
 
 
-Gethering navigation timing page performance metrics
+Gathering navigation timing page performance metrics
 ``````````````````````````
 To set up page performance metrics gathering use the ``setTimingDataSamplingOnPageLoad`` function::
 
@@ -871,7 +871,7 @@ To set up page performance metrics gathering use the ``setTimingDataSamplingOnPa
 
     **Required** ``integer`` Value between 1 and 100 describing the percentage for data sampling
 
-IT sets another request triggered onLoad, after trackPageView setting timing data.
+It sets another request triggered onLoad, after trackPageView setting timing data.
 Normally we try to use trackPageView as soon as possible, not to lose any actions
 but since it's usually before the full page was loaded then we don't have complete data about timing.
 You may either trigger trackPageView after onLoad event or enable this option so the followup request
@@ -882,9 +882,11 @@ Argument to this function represents data sampling percentage (with possible int
 Example of usage::
 
     _paq.push(["setTimingDataSamplingOnPageLoad", 0]); // disables timing data collection
+    _paq.push(["setTimingDataSamplingOnPageLoad", 5]); // this is the default setting, uses 5% data sampling
     _paq.push(["setTimingDataSamplingOnPageLoad", 30]); // enables 30% data sampling (only around 30% of all tracked actions will collect timing data if possible)
     _paq.push(["setTimingDataSamplingOnPageLoad", 100]); // enables 100% data sampling (which means that all tracked actions will collect timing data if possible)
 
-IMPORTANT: by default this feature is disabled and no timing data is collected at any chance
-IMPORTANT: if enabled, timing data is collected only when page view lasted longer than the time it takse the page to load no partial information is stored, all metrics or nothing
+IMPORTANT: in order for this setting to make effect `setTimingDataSamplingOnPageLoad()` should be used before the `trackPageView()` function
+
+IMPORTANT: if enabled, timing data is collected only when page view lasted longer than the time it takes the page to load no partial information is stored, all metrics or nothing
 
