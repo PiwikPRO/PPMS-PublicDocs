@@ -1,4 +1,4 @@
-Analytics (old version)
+Analytics
 =========
 
 .. toctree::

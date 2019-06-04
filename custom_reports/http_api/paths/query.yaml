@@ -10,7 +10,7 @@ post:
     #### Copy definition
 
     You can use the **View API call definition** option
-    available in Custom Reports application in each report to get more
+    available in Analytics (new) module in each report to get more
     usage examples based on your existing reports.
 
     ![View API call definition](../../_static/images/copy-api-call.png)
@@ -39,7 +39,7 @@ post:
             description: Rows with results for the query.
             items:
               type: object
-              description: 
+              description:
           meta:
             type: object
             description: Additional results metadata for the query.

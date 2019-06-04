@@ -1,6 +1,6 @@
 swagger: '2.0'
 info:
-  title: Custom Reports HTTP API
+  title: Analytics (new) HTTP API
   description: |
     **Authentication is required** to access any of the
     following endpoints. Please see [Authorization](../../platform/authorized_api_guide.html)
@@ -18,7 +18,7 @@ consumes:
 produces:
   - application/json
 paths:
-  /api/custom-reports/v1/query/:
+  /api/analytics/v1/query/:
     $ref: ./paths/query.yaml
 definitions:
   QueryRequest:
