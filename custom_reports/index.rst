@@ -1,5 +1,5 @@
-Custom Reports
-==============
+Analytics (new)
+===============
 
 .. toctree::
   :maxdepth: 2
