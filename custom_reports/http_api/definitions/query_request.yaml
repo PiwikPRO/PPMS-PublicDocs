@@ -185,6 +185,7 @@ properties:
     type: string
     enum:
       - json
+      - json-kv
       - csv
       - xml
     default: json

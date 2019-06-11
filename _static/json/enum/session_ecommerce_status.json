@@ -1,0 +1,18 @@
+[
+    [
+        0,
+        "No shopping activity"
+    ],
+    [
+        1,
+        "Ordered"
+    ],
+    [
+        2,
+        "Abandoned cart"
+    ],
+    [
+        3,
+        "Ordered and abandoned cart"
+    ]
+]
