@@ -1,0 +1,542 @@
+swagger: '2.0'
+
+info:
+  title: User Groups API
+  version: auto
+
+host: example.piwik.pro
+
+schemes: [https]
+
+paths:
+  /api/user-groups/v1:
+    post:
+      summary: User Group add
+      description: Adds user group with unique name
+      operationId: add_user_group_v1
+      produces:
+        - application/vnd.api+json
+      parameters:
+        - name: Add user group
+          in: body
+          description: Request data to add new user group
+          required: true
+          schema:
+            type: object
+            required:
+              - data
+            properties:
+              data:
+                $ref: '#/definitions/UserGroupEditable'
+      responses:
+        201:
+          description: Created
+        400:
+          description: Bad Request
+        401:
+          description: Unauthorized
+        403:
+          description: Forbidden
+    get:
+      summary: User Group list
+      description: Lists user groups
+      operationId: list_user_group_v1
+      produces:
+        - application/vnd.api+json
+      parameters:
+        - in: query
+          name: search
+          description: Search phrase - search for user group name and user group id
+          type: string
+          required: false
+        - in: query
+          name: sort
+          description: Sort type - can be reversed by adding dash before type e.g (-name)
+          type: string
+          default: name
+          required: false
+          enum:
+            - name
+            - created_at
+            - updated_at
+        - in: query
+          name: limit
+          description: Limits the number of returned user groups in response
+          default: 10000
+          type: string
+          required: false
+        - in: query
+          name: offset
+          description: Sets offset for list of user groups in response
+          default: 0
+          type: string
+          required: false
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/UserGroupList'
+        400:
+          description: Bad Request
+        401:
+          description: Unauthorized
+        403:
+          description: Forbidden
+  /api/user-groups/v1/{user_group_id}:
+    get:
+      summary: User Group get
+      description: Gets specific user group details
+      operationId: UserGroupDetails_v1
+      parameters:
+        - $ref: '#/parameters/UserGroupId'
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/UserGroupDetailsView'
+        400:
+          description: Bad Request
+        401:
+          description: Unauthorized
+        403:
+          description: Forbidden
+    delete:
+      summary: User Group delete
+      description: Deletes user group
+      operationId: delete_user_group_v1
+      parameters:
+        - $ref: '#/parameters/UserGroupId'
+      responses:
+        204:
+          description: No Content
+        400:
+          description: Bad Request
+        401:
+          description: Unauthorized
+        403:
+          description: Forbidden
+    patch:
+      summary: User Group edit
+      description: Updates user group details
+      operationId: edit_user_group_v1
+      consumes:
+        - application/vnd.api+json
+      parameters:
+        - $ref: '#/parameters/UserGroupId'
+        - name: Edit user group
+          in: body
+          description: Editable properties of user group
+          required: true
+          schema:
+              type: object
+              required:
+                - data
+              properties:
+                data:
+                  allOf:
+                    - properties:
+                        id:
+                          $ref: '#/definitions/Id'
+                    - $ref: '#/definitions/UserGroupEditable'
+
+      responses:
+        204:
+          description: No Content
+        400:
+          description: Bad Request
+        401:
+          description: Unauthorized
+        403:
+          description: Forbidden
+  /api/user-groups/v1/{user_group_id}/relationships/users:
+    post:
+      summary: Add users to user group
+      description: Adds users to user group
+      operationId: add_users_to_group_v1
+      consumes:
+        - application/vnd.api+json
+      parameters:
+        - $ref: '#/parameters/UserGroupId'
+        - name: Add users to user group
+          in: body
+          description: Request data to add users to user group
+          required: true
+          schema:
+            $ref: '#/definitions/UserGroupMembers'
+      responses:
+        204:
+          description: No Content
+        400:
+          description: Bad Request
+        401:
+          description: Unauthorized
+        403:
+          description: Forbidden
+    delete:
+      summary: Remove users from user group
+      description: Remove users from user group
+      operationId: remove_users_from_group_v1
+      consumes:
+        - application/vnd.api+json
+      parameters:
+        - $ref: '#/parameters/UserGroupId'
+        - name: Remove users from user group
+          in: body
+          description: Request data to remove users from user group
+          required: true
+          schema:
+            $ref: '#/definitions/UserGroupMembers'
+      responses:
+        204:
+          description: No Content
+        400:
+          description: Bad Request
+        401:
+          description: Unauthorized
+        403:
+          description: Forbidden
+  /api/user-groups/v1/{user_group_id}/users:
+    get:
+      summary: Get user group members
+      description: Gets user group members
+      operationId: list_user_group_users_v1
+      produces:
+        - application/vnd.api+json
+      parameters:
+        - $ref: '#/parameters/UserGroupId'
+        - $ref: '#/parameters/UsersSearch'
+        - $ref: '#/parameters/UsersSort'
+        - $ref: '#/parameters/UsersLimit'
+        - $ref: '#/parameters/UsersOffset'
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/UsersList'
+        400:
+          description: Bad Request
+        401:
+          description: Unauthorized
+        403:
+          description: Forbidden
+  /api/user-groups/v1/{user_group_id}/users/excluded:
+    get:
+      summary: Get users excluded from group
+      description: Gets users excluded from given user group
+      operationId: list_user_group_users_excluded_v1
+      produces:
+        - application/vnd.api+json
+      parameters:
+        - $ref: '#/parameters/UserGroupId'
+        - $ref: '#/parameters/UsersSearch'
+        - $ref: '#/parameters/UsersSort'
+        - $ref: '#/parameters/UsersLimit'
+        - $ref: '#/parameters/UsersOffset'
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/UsersList'
+        400:
+          description: Bad Request
+        401:
+          description: Unauthorized
+        403:
+          description: Forbidden
+  /api/user-groups/v1/{user_group_id}/permissions:
+    post:
+      summary: Permission group set
+      description: Sets permission group to entity for user group
+      operationId: set_permission_group_for_user_group_v1
+      produces:
+        - application/vnd.api+json
+      parameters:
+        - $ref: '#/parameters/UserGroupId'
+        - name: Set permission group
+          in: body
+          description: Request data to set permission group for user group
+          required: true
+          schema:
+              $ref: '#/definitions/SetPermissionGroup'
+      responses:
+        204:
+          description: No Content
+        400:
+          description: Bad Request
+        401:
+          description: Unauthorized
+        403:
+          description: Forbidden
+
+definitions:
+  Id:
+    type: string
+    format: uuid
+    description: UUIDv4 identifier of an object
+    example: 6edb1e3c-4c43-4760-ab76-682ad83146be
+
+  PermissionGroup:
+    type: string
+    description: Permission group (for example `edit-publish` contains permissions `view`, `edit` and `publish`)
+    enum:
+      - no-access
+      - view
+      - edit
+      - edit-publish
+      - manage
+
+  UserGroupDetails:
+    type: object
+    properties:
+      name:
+        type: string
+        description: Name of user group
+      created_at:
+        type: string
+        description: Date when user group was created
+      updated_at:
+        type: string
+        description: Date of user group last update
+    example:
+      name: User group name
+      created_at: '2019-04-09T11:30:43+00:00'
+      updated_at: '2019-04-09T11:30:43+00:00'
+
+  UserDetails:
+    type: object
+    properties:
+      email:
+        $ref: '#/definitions/Email'
+
+  UserGroupDetailsView:
+    type: object
+    properties:
+      data:
+        type: array
+        items:
+          allOf:
+            - $ref: '#/definitions/JsonApiResourceObject'
+            - properties:
+                attributes:
+                  allOf:
+                    - $ref: '#/definitions/UserGroupDetails'
+    example:
+      data:
+        - type: ppms/user-group
+          id: 77c450a2-e1b1-4eb9-a4dc-29bf854f13d8
+          attributes:
+            name: User group name
+            created_at: '2019-04-09T11:30:43+00:00'
+            updated_at: '2019-04-09T11:30:43+00:00'
+
+  UserGroupEditable:
+    type: object
+    required:
+      - type
+      - attributes
+    properties:
+      type:
+        type: string
+        enum: [ppms/user-group]
+      attributes:
+        type: object
+        required:
+          - name
+        properties:
+          name:
+            description: User Group name
+            type: string
+            example: User Group name
+
+  UserGroupList:
+    type: object
+    properties:
+      meta:
+        type: object
+        description: Meta information
+        properties:
+          total:
+            type: integer
+            description: Total number of users found
+      data:
+        type: array
+        items:
+          allOf:
+            - $ref: '#/definitions/JsonApiResourceObject'
+            - properties:
+                attributes:
+                  allOf:
+                    - $ref: '#/definitions/UserGroupDetails'
+    example:
+      meta:
+        total: 2
+      data:
+      -
+        type: ppms/user-group
+        id: 77c450a2-e1b1-4eb9-a4dc-29bf854f13d8
+        attributes:
+          name: User Group Name 1
+          created_at: '2019-04-09T11:30:43+00:00'
+          updated_at: '2019-04-09T11:30:43+00:00'
+      -
+        type: ppms/user-group
+        id: 5dde378d-9a9f-483f-864a-85c38bee0b1e
+        attributes:
+          name: User Group Name 2
+          created_at: '2019-04-09T09:59:37+00:00'
+          updated_at: '2019-04-09T09:59:37+00:00'
+
+  UsersList:
+    type: object
+    properties:
+      meta:
+        type: object
+        description: Meta information
+        properties:
+          total:
+            type: integer
+            description: Total number of records found
+      data:
+        type: array
+        items:
+          allOf:
+            -   $ref: '#/definitions/JsonApiResourceObject'
+            -   properties:
+                  attributes:
+                    allOf:
+                      -   $ref: '#/definitions/UserDetails'
+    example:
+      meta:
+        total: 2
+      data:
+        -   type: ppms/user
+            id: 77c450a2-e1b1-4eb9-a4dc-29bf854f13d8
+            attributes:
+              email: example@example.com
+        -   type: ppms/user
+            id: 5dde378d-9a9f-483f-864a-85c38bee0b1e
+            attributes:
+              name: example2@example.com
+
+  UserGroupMembers:
+    type: object
+    properties:
+      data:
+        type: object
+        allOf:
+          - $ref: '#/definitions/UserResourceType'
+    example:
+      data:
+        -
+          type: ppms/user
+          id: 77c450a2-e1b1-4eb9-a4dc-29bf854f13d8
+        -
+          type: ppms/user
+          id: 5dde378d-9a9f-483f-864a-85c38bee0b1e
+
+  UserResourceType:
+    type: object
+    properties:
+      type:
+        description: Resource type, unique across whole PPMS
+        type: string
+        enum:
+          - ppms/user
+        example: ppms/user
+      id:
+        $ref: '#/definitions/JsonApiId'
+
+  SetPermissionGroup:
+    type: object
+    required:
+      - data
+    properties:
+      data:
+        type: object
+        required:
+          - type
+          - attributes
+        properties:
+          type:
+            description: Resource type, unique across whole PPMS
+            type: string
+            enum: [ppms/permissions/group]
+          attributes:
+            type: object
+            required:
+              - entity_id
+              - group
+            properties:
+              entity_id:
+                $ref: '#/definitions/Id'
+              group:
+                $ref: '#/definitions/PermissionGroup'
+
+  JsonApiId:
+    type: string
+    format: uuid
+    description: Resource ID
+    example: 985ed9d7-b652-47b8-b9cf-c17d62735261
+
+  JsonApiType:
+    type: string
+    description: Resource type, unique across whole PPMS
+    example: ppms/user
+
+  JsonApiResourceObject:
+    type: object
+    properties:
+      id:
+        $ref: '#/definitions/JsonApiId'
+      type:
+        $ref: '#/definitions/JsonApiType'
+      attributes:
+        type: object
+
+  Email:
+    type: string
+    description: User email
+    example:
+      email: example@example.com
+
+parameters:
+  UserGroupId:
+    in: path
+    name: user_group_id
+    type: string
+    format: uuid
+    required: true
+    description: UUIDv4 identifier of given user group
+
+  UsersSearch:
+    in: query
+    name: search
+    description: Search phrase for searching for users by email or user id
+    type: string
+    required: false
+
+  UsersSort:
+    in: query
+    name: sort
+    description: Sort type that can be reversed by adding dash before type e.g (-email)
+    type: string
+    default: email
+    required: false
+    enum:
+      - email
+
+  UsersLimit:
+    in: query
+    name: limit
+    description: Limits the number of returned users
+    default: 10
+    type: string
+    required: false
+
+  UsersOffset:
+    in: query
+    name: offset
+    description: Sets offset for list of users
+    default: 0
+    type: string
+    required: false
