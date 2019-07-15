@@ -6,18 +6,18 @@
 Welcome to the Piwik PRO documentation for developers!
 ======================================================
 
-*PPMS version: 8.4 (see* |changelog|_\ *)*
+*PPMS version: 9.0 (see* |changelog|_\ *)*
 
 .. |changelog| replace:: *changelog*
-.. _changelog: https://changelog.piwik.pro/version-8/8-4-0-release/
+.. _changelog: https://changelog.piwik.pro/version-9/9-0-0-release/
 
 .. toctree::
    :maxdepth: 1
 
-   sdk/index
-   analytics/index
    custom_reports/index
+   analytics/index
    audience_manager/index
    consent_manager/index
    platform/index
+   sdk/index
    glossary

@@ -181,6 +181,16 @@ properties:
     items:
       type: array
     example: [[1, "desc"], [2, "asc"]]
+  format:
+    type: string
+    enum:
+      - json
+      - json-kv
+      - csv
+      - xml
+    default: json
+    description: |
+      Data format of a successful response (error responses are always in json).
 required:
   - website_id
   - columns
