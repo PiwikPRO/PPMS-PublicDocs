@@ -11,7 +11,7 @@ Code::
     ppms.cm.api('getComplianceTypes', onFulfilled, onRejected);
     dataLayer.push({'event': 'ppms.cm:getComplianceTypes', parameters: [onFulfilled, onRejected]});
 
-`dataLayer.push` interface is only for backward compatibility and you can read more about this particular case below. We recommend ```ppms.cm.api```.
+`dataLayer.push` interface is only for backward compatibility and you can read more about this particular case below. We recommend ``ppms.cm.api``.
 
 .. function:: onFulfilled(types)
 
@@ -38,7 +38,7 @@ Code::
     ppms.cm.api('getNewComplianceTypes', onFulfilled, onRejected);
     dataLayer.push({'event': 'ppms.cm:getNewComplianceTypes', parameters: [onFulfilled, onRejected]});
 
-`dataLayer.push` interface is only for backward compatibility and you can read more about this particular case below. We recommend ```ppms.cm.api```.
+`dataLayer.push` interface is only for backward compatibility and you can read more about this particular case below. We recommend ``ppms.cm.api``.
 
 .. function:: onFulfilled(types)
 
@@ -69,7 +69,7 @@ Code::
     ppms.cm.api('setInitialComplianceSettings', settings, onFulfilled, onRejected);
     dataLayer.push({'event': 'ppms.cm:setInitialComplianceSettings', parameters: [settings, onFulfilled, onRejected]});
 
-`dataLayer.push` interface is only for backward compatibility and you can read more about this particular case below. We recommend ```ppms.cm.api```.
+`dataLayer.push` interface is only for backward compatibility and you can read more about this particular case below. We recommend ``ppms.cm.api``.
 
 .. object:: settings
 
@@ -107,7 +107,7 @@ Code::
     ppms.cm.api('setComplianceSettings', settings, onFulfilled, onRejected);
     dataLayer.push({'event': 'ppms.cm:setComplianceSettings', parameters: [settings, onFulfilled, onRejected]});
 
-`dataLayer.push` interface is only for backward compatibility and you can read more about this particular case below. We recommend ```ppms.cm.api```.
+`dataLayer.push` interface is only for backward compatibility and you can read more about this particular case below. We recommend ``ppms.cm.api``.
 
 .. object:: settings
 
@@ -142,7 +142,7 @@ Code::
     ppms.cm.api('getComplianceSettings', onFulfilled, onRejected);
     dataLayer.push({'event': 'ppms.cm:getComplianceSettings', parameters: [onFulfilled, onRejected]});
 
-`dataLayer.push` interface is only for backward compatibility and you can read more about this particular case below. We recommend ```ppms.cm.api```.
+`dataLayer.push` interface is only for backward compatibility and you can read more about this particular case below. We recommend ``ppms.cm.api``.
 
 .. object:: settings
 
@@ -177,7 +177,7 @@ Code::
     ppms.cm.api('sendDataRequest', request, onFulfilled, onRejected);
     dataLayer.push({'event': 'ppms.cm:sendDataRequest', parameters: [request, onFulfilled, onRejected]});
 
-`dataLayer.push` interface is only for backward compatibility and you can read more about this particular case below. We recommend ```ppms.cm.api```.
+`dataLayer.push` interface is only for backward compatibility and you can read more about this particular case below. We recommend ``ppms.cm.api``.
 
 .. object:: request
 

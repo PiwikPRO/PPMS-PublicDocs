@@ -18,7 +18,7 @@ To turn off default consent form follow steps:
         .. image:: /_static/images/cm_js_api/custom-consent-form.png
             :alt: GDPR compliance settings with custom consent form check box
 
-Here is basic flow description to achieve similar result to default consent form:
+Here is basic flow description to achieve a result similar to default consent form:
 
     - get compliance settings (if you want to know if user is visiting site for the first time)
     - get new compliance types
