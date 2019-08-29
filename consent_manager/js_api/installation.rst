@@ -31,8 +31,8 @@ The one thing that should be considered before using API is where you call comma
     </html>
 
 When you need to execute API in such manner, you should take care about Tag Manager snippet version.
-Because `ppms.cm.api` global object is initialized in snippet and/or in Tag Manager container, if you are using old version of Tag Manager snippet (PPMS version < 6.2), `ppms.cm.api` might be undefined until container will be loaded.
-If you want to use your own scripts outside Tag Manager, you need to update the snippet to use `ppms.cm.api`, or use `dataLayer` interface if replacing snippet is not possible:
+Because :func:`ppms.cm.api` global object is initialized in snippet and/or in Tag Manager container, if you are using old version of Tag Manager snippet (PPMS version < 6.2), :func:`ppms.cm.api` might be undefined until container will be loaded.
+If you want to use your own scripts outside Tag Manager, you need to update the snippet to use :func:`ppms.cm.api`, or use :func:`dataLayer.push` interface if replacing snippet is not possible:
 
 .. code-block:: html
 
