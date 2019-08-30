@@ -6,11 +6,14 @@ Custom data layer name
 
 Introduction
 ------------
-The purpose of this article is to describe the steps that need to be performed to set up custom data layer name. The default value for the data layer name is `dataLayer`. Since PPMS version 10.0.0, there is a possibility to change that value.
+The data layer is a global JavaScript object, that can be used to pass information form the website to PPMS container. The default value for the data layer name is `dataLayer`.
+
+    .. versionadded:: 10.0
+        The name of the object is customizable. The purpose of this article is to describe the steps that need to be performed to set up custom data layer name.
 
 Renaming the data layer
 -----------------------
-If you wish to do so, you should follow the instructions below:
+If you wish to rename your data layer, you should follow the instructions below:
 
 1. Log into your PPMS instance.
 #. Head to `Menu` > `Administration`.
@@ -38,19 +41,19 @@ If you wish to do so, you should follow the instructions below:
 Additional snippet migration steps
 ---------------
 
-Once you replace your original snippet and want to use the new data layer name, there is one more step that needs to be taken care of. If you are using direct data layer pushes in your code (e.g. to set a `Data layer` variable), you need to make sure to replace all references to `dataLayer` with the newly selected name, e.g (assuming the new name of `customDataLayer`):
+Once you replace your original snippet and want to use the new data layer name, there is one more step that needs to be taken care of. If you are using direct data layer pushes in your code (e.g. to set a `Data layer` variable), you need to make sure to replace all references to `dataLayer` with the newly selected name, e.g (assuming the new name of `customDataLayer`)::
 
-    .. function:: dataLayer.push({event: "test-event"})
+    dataLayer.push({event: "test-event"});
 
-will become:
+will become::
 
-    .. function:: customDataLayer.push({event: "test-event"})
+    customDataLayer.push({event: "test-event"});
 
 Data layer name guidelines
 --------------------------
 
-To avoid conflicts with your existing code, that could cause unwanted behavior, you need to make sure that the name selected for the data layer object is unique. To ensure that it is not already used by someone, we suggest you run the following command in the console on your website:
+To avoid conflicts with your existing code, that could cause unwanted behavior, you need to make sure that the name selected for the data layer object is unique. To ensure that it is not already used by someone, we suggest you run the following command in the console on your website:::
 
-    .. function:: !Object.keys(window).includes("dataLayer")
+    !Object.keys(window).includes("dataLayer")
 
 where `dataLayer` is your chosen name. If this operation returns `true` into the console, then you can safely use this value as the name of your data layer.
