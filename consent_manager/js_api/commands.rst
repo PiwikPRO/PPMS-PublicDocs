@@ -1,9 +1,9 @@
 Commands
 --------
-All commands work in context of the current visitor and website. Additionally they sometimes require communication with a PPMS server and are asynchronous. Callback functions are used to provide response value or information about errors. `onSuccess(...args)` callback is always required. `onFailure(exception)` callback is optional and if is specified, any error object occurred will be passed as a argument. If not specified, error is reported directly on console output.
+All commands work in context of the current visitor and website. Additionally they sometimes require communication with a PPMS server and are asynchronous. Callback functions are used to provide response value or information about errors. ``onSuccess(...args)`` callback is always required. ``onFailure(exception)`` callback is optional and if is specified, any error object occurred will be passed as a argument. If not specified, error is reported directly on console output.
 
 Get compliance types
-`````````````````
+````````````````````
 Fetches a list of consent types.
 
 Code::
@@ -11,7 +11,7 @@ Code::
     ppms.cm.api('getComplianceTypes', onFulfilled, onRejected);
     dataLayer.push({'event': 'ppms.cm:getComplianceTypes', parameters: [onFulfilled, onRejected]});
 
-`dataLayer.push` interface is only for backward compatibility and you can read more about this particular case below. We recommend ``ppms.cm.api``.
+:func:`dataLayer.push` interface is only for backward compatibility and you can read more about this particular case below. We recommend :func:`ppms.cm.api`.
 
 .. function:: onFulfilled(types)
 
@@ -30,7 +30,7 @@ Code::
     :param string|object error: **Required** Error code or exception.
 
 Get new compliance types
-`````````````````````
+````````````````````````
 Fetches a list of new consent types which were appearing after given consents.
 
 Code::
@@ -38,7 +38,7 @@ Code::
     ppms.cm.api('getNewComplianceTypes', onFulfilled, onRejected);
     dataLayer.push({'event': 'ppms.cm:getNewComplianceTypes', parameters: [onFulfilled, onRejected]});
 
-`dataLayer.push` interface is only for backward compatibility and you can read more about this particular case below. We recommend ``ppms.cm.api``.
+:func:`dataLayer.push` interface is only for backward compatibility and you can read more about this particular case below. We recommend :func:`ppms.cm.api`.
 
 .. function:: onFulfilled(types)
 
@@ -69,7 +69,7 @@ Code::
     ppms.cm.api('setInitialComplianceSettings', settings, onFulfilled, onRejected);
     dataLayer.push({'event': 'ppms.cm:setInitialComplianceSettings', parameters: [settings, onFulfilled, onRejected]});
 
-`dataLayer.push` interface is only for backward compatibility and you can read more about this particular case below. We recommend ``ppms.cm.api``.
+:func:`dataLayer.push` interface is only for backward compatibility and you can read more about this particular case below. We recommend :func:`ppms.cm.api`.
 
 .. object:: settings
 
@@ -107,7 +107,7 @@ Code::
     ppms.cm.api('setComplianceSettings', settings, onFulfilled, onRejected);
     dataLayer.push({'event': 'ppms.cm:setComplianceSettings', parameters: [settings, onFulfilled, onRejected]});
 
-`dataLayer.push` interface is only for backward compatibility and you can read more about this particular case below. We recommend ``ppms.cm.api``.
+:func:`dataLayer.push` interface is only for backward compatibility and you can read more about this particular case below. We recommend :func:`ppms.cm.api`.
 
 .. object:: settings
 
@@ -117,10 +117,10 @@ Code::
 
             {consents: {analytics: {status: 1}}}
 
-    Where `consent.analytics` is consent type and status indicate:
+    Where ``consent.analytics`` is consent type and status indicate:
 
-    * `0` - user has rejected the consent
-    * `1` - user has approved the consent
+    * ``0`` - user has rejected the consent
+    * ``1`` - user has approved the consent
 
 .. function:: onFulfilled()
 
@@ -142,7 +142,7 @@ Code::
     ppms.cm.api('getComplianceSettings', onFulfilled, onRejected);
     dataLayer.push({'event': 'ppms.cm:getComplianceSettings', parameters: [onFulfilled, onRejected]});
 
-`dataLayer.push` interface is only for backward compatibility and you can read more about this particular case below. We recommend ``ppms.cm.api``.
+:func:`dataLayer.push` interface is only for backward compatibility and you can read more about this particular case below. We recommend :func:`ppms.cm.api`.
 
 .. object:: settings
 
@@ -152,11 +152,11 @@ Code::
 
             {consents: {analytics: {status: -1, updatedAt: '2018-07-03T12:18:19.957Z'}}}
 
-    Where `consent.analytics` is consent type and status indicate:
+    Where ``consent.analytics`` is consent type and status indicate:
 
-    * `-1` - user has not interacted, e.g. has closed a consent popup without any decision
-    * `0` - user reject consent
-    * `1` - user approve consent
+    * ``-1`` - user has not interacted, e.g. has closed a consent popup without any decision
+    * ``0`` - user reject consent
+    * ``1`` - user approve consent
 
 .. function:: onFulfilled(settings)
 
@@ -177,7 +177,7 @@ Code::
     ppms.cm.api('sendDataRequest', request, onFulfilled, onRejected);
     dataLayer.push({'event': 'ppms.cm:sendDataRequest', parameters: [request, onFulfilled, onRejected]});
 
-`dataLayer.push` interface is only for backward compatibility and you can read more about this particular case below. We recommend ``ppms.cm.api``.
+:func:`dataLayer.push` interface is only for backward compatibility and you can read more about this particular case below. We recommend :func:`ppms.cm.api`.
 
 .. object:: request
 

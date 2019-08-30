@@ -3,4 +3,4 @@
 JavaScript API
 ==============
 
-moved `here`_
+This page was moved `here`_.
