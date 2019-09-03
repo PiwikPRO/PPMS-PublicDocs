@@ -10,4 +10,6 @@ RUN python -m pip install --requirement requirements.local.txt && \
     rm requirements.local.txt && \
     rm requirements.txt
 
-CMD ["sphinx-autobuild", "--host", "0.0.0.0", "--port", "8080", "/app", "/home/python/docs/_build/html"]
+# Ignored files should be the auto generated json files in  _static/api directory,
+# but it doesn't look like sphinx-autobuild allows such fine grained control over what is ignored.
+CMD ["sphinx-autobuild", "--host", "0.0.0.0", "--port", "8080", "--ignore", "*.json", "/app", "/home/python/docs/_build/html"]

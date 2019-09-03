@@ -2,8 +2,8 @@
 
 ## Choosing the right version
 
-When working on this repository, ensure that you are on the right version. There
-are tags corresponding with PPMS major-minor version, so you can simply
+When working on this repository, ensure that you start from the right version. There
+are branches corresponding with each released PPMS major-minor version, so you can simply
 ```shell script
 git checkout X.Y
 ```
@@ -13,13 +13,13 @@ git checkout 8.2
 ```
 will result in checking out docs for PPMS 8.2.x.
 
-## Running with Docker
+## Running docker container
 
-To quickly start with PublicDocs you need Docker and docker-compose (optional).
+To quickly view generated PublicDocs you need Docker and docker-compose (optional).
 Check out examples below. Feel free to adjust port numbers and volume paths to
 your needs.
 
-### Plain Docker
+### Run with `docker`
 
 Run following commands:
 
@@ -33,20 +33,10 @@ docker run \
     ppms-publicdocs
 ```
 
-### Using `docker-compose`
+### Run with `docker-compose`
 
-Example `docker-compose.yml`:
+You can run it with `docker-compose up`. It uses `docker-compose.yaml` file.
 
-```
-version: '3'
-
-services:
-    ppms_public_docs:
-        build: .
-        volumes:
-            - .:/app
-        ports:
-            - 9009:8080
-```
-
-You can run it with `docker-compose up`.
+### Serving generated files
+Build files are served by default at http://127.0.0.1:9009/
+Documentation is live (browser updates view each time any file changes).
