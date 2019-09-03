@@ -1,0 +1,9 @@
+version: '3'
+
+services:
+    ppms_public_docs:
+        build: .
+        volumes:
+            - .:/app
+        ports:
+            - 9009:8080
