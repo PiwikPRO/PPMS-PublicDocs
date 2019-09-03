@@ -2,6 +2,4 @@ Consent Manager
 ================
 
 .. toctree::
-  :maxdepth: 2
-
-  api
+  js_api/index
