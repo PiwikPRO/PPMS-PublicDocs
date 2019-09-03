@@ -185,7 +185,13 @@ Code::
 
         Example::
 
-            {content: '', email: '', type: 'change_data|view_data|delete_data'}
+            {content: 'user input', email: 'example@example.org', type: 'delete_data'}
+
+    Where ``type`` is request type, and can be one of:
+
+    * ``change_data`` for data alteration request
+    * ``view_data`` for view data request
+    * ``delete_data`` for delete data request
 
 .. function:: onFulfilled()
 
