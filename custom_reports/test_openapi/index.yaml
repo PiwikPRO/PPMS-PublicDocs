@@ -1,257 +1,106 @@
-openapi: 3.0.2
+openapi: "3.0.0"
 info:
-  title: ''
-  version: TODO
+  version: 1.0.0
+  title: Vehicles
+  description: Polymorphism example
 paths:
-  /api/entry/:
+  /vehicles:
     get:
-      operationId: ListEntrys
-      parameters:
-        - name: page[number]
-          required: false
-          in: query
-          description: A page number within the paginated result set.asdasdasdas
-          schema:
-            type: integer
-        - name: page[size]
-          required: false
-          in: query
-          description: Number of results to return per page.
-          schema:
-            type: integer
-        - name: ordering
-          required: false
-          in: query
-          description: Which field to use when ordering the results.
-          schema:
-            type: string
+      summary: List all vehicles
+      tags:
+        - vehicles
       responses:
         '200':
+          description: An paged array of vehicles
           content:
             application/json:
               schema:
-                required:
-                  - text
-                properties:
-                  id:
-                    type: string
-                    format: uuid
-                    readOnly: true
-                  text:
-                    type: string
-                  created_at:
-                    type: string
-                    format: date-time
-                    readOnly: true
-                  updated_at:
-                    type: string
-                    format: date-time
-                    readOnly: true
-    post:
-      operationId: createEntry
-      parameters: []
-      requestBody:
-        content:
-          application/json:
-            schema:
-              required:
-                - text
-              properties:
-                text:
-                  type: string
-      responses:
-        '200':
+                $ref: "#/components/schemas/Vehicle"
+        default:
+          description: unexpected error
           content:
             application/json:
               schema:
-                required:
-                  - text
-                properties:
-                  id:
-                    type: string
-                    format: uuid
-                    readOnly: true
-                  text:
-                    type: string
-                  created_at:
-                    type: string
-                    format: date-time
-                    readOnly: true
-                  updated_at:
-                    type: string
-                    format: date-time
-                    readOnly: true
-  /api/entry/{id}/:
+                $ref: "#/components/schemas/Error"
+  /vehicles/{id}:
     get:
-      operationId: retrieveEntry
+      summary: Info for a specific vehicle
+      tags:
+        - vehicles
       parameters:
         - name: id
           in: path
           required: true
-          description: A UUID string identifying this entry.
-          schema:
-            type: string
-        - name: ordering
-          required: false
-          in: query
-          description: Which field to use when ordering the results.
+          description: The id of vehicle to retrieve
           schema:
             type: string
       responses:
         '200':
+          description: Expected response to a valid request
           content:
             application/json:
               schema:
-                required:
-                  - text
-                properties:
-                  id:
-                    type: string
-                    format: uuid
-                    readOnly: true
-                  text:
-                    type: string
-                  created_at:
-                    type: string
-                    format: date-time
-                    readOnly: true
-                  updated_at:
-                    type: string
-                    format: date-time
-                    readOnly: true
-    put:
-      operationId: updateEntry
-      parameters:
-        - name: id
-          in: path
-          required: true
-          description: A UUID string identifying this entry.
-          schema:
-            type: string
-        - name: ordering
-          required: false
-          in: query
-          description: Which field to use when ordering the results.
-          schema:
-            type: string
-      requestBody:
-        content:
-          application/json:
-            schema:
-              required:
-                - text
-              properties:
-                text:
-                  type: string
-      responses:
-        '200':
+                oneOf:
+                  - $ref: "#/components/schemas/Car"
+                  - $ref: "#/components/schemas/Plane"
+                discriminator:
+                  propertyName: type
+        default:
+          description: unexpected error
           content:
             application/json:
               schema:
-                required:
-                  - text
-                properties:
-                  id:
-                    type: string
-                    format: uuid
-                    readOnly: true
-                  text:
-                    type: string
-                  created_at:
-                    type: string
-                    format: date-time
-                    readOnly: true
-                  updated_at:
-                    type: string
-                    format: date-time
-                    readOnly: true
-    patch:
-      operationId: partial_updateEntry
-      parameters:
-        - name: id
-          in: path
-          required: true
-          description: A UUID string identifying this entry.
-          schema:
-            type: string
-        - name: ordering
-          required: false
-          in: query
-          description: Which field to use when ordering the results.
-          schema:
-            type: string
-      requestBody:
-        content:
-          application/json:
-            schema:
-              properties:
-                text:
-                  type: string
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                required:
-                  - text
-                properties:
-                  id:
-                    type: string
-                    format: uuid
-                    readOnly: true
-                  text:
-                    type: string
-                  created_at:
-                    type: string
-                    format: date-time
-                    readOnly: true
-                  updated_at:
-                    type: string
-                    format: date-time
-                    readOnly: true
-    delete:
-      operationId: destroyEntry
-      parameters:
-        - name: id
-          in: path
-          required: true
-          description: A UUID string identifying this entry.
-          schema:
-            type: string
-        - name: ordering
-          required: false
-          in: query
-          description: Which field to use when ordering the results.
-          schema:
-            type: string
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                required:
-                  - text
-                properties:
-                  id:
-                    type: string
-                    format: uuid
-                    readOnly: true
-                  text:
-                    type: string
-                  created_at:
-                    type: string
-                    format: date-time
-                    readOnly: true
-                  updated_at:
-                    type: string
-                    format: date-time
-                    readOnly: true
-  /api-token-auth/:
-    post:
-      operationId: CreateObtainAuthToken
-      parameters: []
-      responses:
-        '200':
-          content:
-            application/json:
-              schema: {}
+                $ref: "#/components/schemas/Error"
+components:
+  schemas:
+    Vehicle:
+      type: object
+      required:
+        - id
+        - type
+      properties:
+        id:
+          type: integer
+        type:
+          type: string
+        model:
+          type: string
+        name:
+          type: string
+      discriminator:
+        propertyName: type
+
+    Car:
+      allOf:
+        - $ref: "#/components/schemas/Vehicle"
+        - type: object
+          properties:
+            type:
+              enum:
+                - car
+            has_4_wheel_drive:
+              type: boolean
+
+    Plane:
+      allOf:
+        - $ref: "#/components/schemas/Vehicle"
+        - type: object
+          properties:
+            type:
+              enum:
+                - plane
+            has_reactor:
+              type: boolean
+            nb_passengers:
+              type: integer
+
+    Error:
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string

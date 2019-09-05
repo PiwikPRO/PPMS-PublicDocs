@@ -2,7 +2,6 @@ TESTw
 =====
 
 
-.. openapi:: ../../_static/api/test2.json
 
 .. raw:: html
 
