@@ -213,3 +213,7 @@ input.search-input {
  ul.react-tabs__tab-list {
 	 display: none;
  }
+
+ .injected dl:nth-child(2){
+	 display: none !important;
+ }
