@@ -1,4 +1,4 @@
-@font-face {
+ @font-face {
 	font-family: 'Museo Sans 300';
 	src: url('../font/MuseoSans-300Italic.woff2') format('woff2'),
 	url('../font/MuseoSans-300Italic.woff') format('woff');
@@ -186,3 +186,30 @@ redoc .background {
 	font-size: 18px;
 	font-weight: bold;
 }
+
+input.search-input {
+ padding: 5px 10px 5px 20px !important;
+}
+
+.redoc-wrap .search-icon {
+	left: 25px !important;
+}
+
+ .redoc-wrap {
+	 max-height: 600px;
+	 overflow: auto;
+	 margin-bottom: 20px;
+ }
+
+ .menu-content {
+	 height: 600px !important;
+ }
+
+ .api-content {
+	 overflow: visible !important;
+	 contain: inherit !important;
+ }
+
+ ul.react-tabs__tab-list {
+	 display: none;
+ }

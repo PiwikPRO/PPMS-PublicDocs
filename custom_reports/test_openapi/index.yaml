@@ -1,0 +1,257 @@
+openapi: 3.0.2
+info:
+  title: ''
+  version: TODO
+paths:
+  /api/entry/:
+    get:
+      operationId: ListEntrys
+      parameters:
+        - name: page[number]
+          required: false
+          in: query
+          description: A page number within the paginated result set.asdasdasdas
+          schema:
+            type: integer
+        - name: page[size]
+          required: false
+          in: query
+          description: Number of results to return per page.
+          schema:
+            type: integer
+        - name: ordering
+          required: false
+          in: query
+          description: Which field to use when ordering the results.
+          schema:
+            type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                required:
+                  - text
+                properties:
+                  id:
+                    type: string
+                    format: uuid
+                    readOnly: true
+                  text:
+                    type: string
+                  created_at:
+                    type: string
+                    format: date-time
+                    readOnly: true
+                  updated_at:
+                    type: string
+                    format: date-time
+                    readOnly: true
+    post:
+      operationId: createEntry
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              required:
+                - text
+              properties:
+                text:
+                  type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                required:
+                  - text
+                properties:
+                  id:
+                    type: string
+                    format: uuid
+                    readOnly: true
+                  text:
+                    type: string
+                  created_at:
+                    type: string
+                    format: date-time
+                    readOnly: true
+                  updated_at:
+                    type: string
+                    format: date-time
+                    readOnly: true
+  /api/entry/{id}/:
+    get:
+      operationId: retrieveEntry
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: A UUID string identifying this entry.
+          schema:
+            type: string
+        - name: ordering
+          required: false
+          in: query
+          description: Which field to use when ordering the results.
+          schema:
+            type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                required:
+                  - text
+                properties:
+                  id:
+                    type: string
+                    format: uuid
+                    readOnly: true
+                  text:
+                    type: string
+                  created_at:
+                    type: string
+                    format: date-time
+                    readOnly: true
+                  updated_at:
+                    type: string
+                    format: date-time
+                    readOnly: true
+    put:
+      operationId: updateEntry
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: A UUID string identifying this entry.
+          schema:
+            type: string
+        - name: ordering
+          required: false
+          in: query
+          description: Which field to use when ordering the results.
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              required:
+                - text
+              properties:
+                text:
+                  type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                required:
+                  - text
+                properties:
+                  id:
+                    type: string
+                    format: uuid
+                    readOnly: true
+                  text:
+                    type: string
+                  created_at:
+                    type: string
+                    format: date-time
+                    readOnly: true
+                  updated_at:
+                    type: string
+                    format: date-time
+                    readOnly: true
+    patch:
+      operationId: partial_updateEntry
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: A UUID string identifying this entry.
+          schema:
+            type: string
+        - name: ordering
+          required: false
+          in: query
+          description: Which field to use when ordering the results.
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                text:
+                  type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                required:
+                  - text
+                properties:
+                  id:
+                    type: string
+                    format: uuid
+                    readOnly: true
+                  text:
+                    type: string
+                  created_at:
+                    type: string
+                    format: date-time
+                    readOnly: true
+                  updated_at:
+                    type: string
+                    format: date-time
+                    readOnly: true
+    delete:
+      operationId: destroyEntry
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: A UUID string identifying this entry.
+          schema:
+            type: string
+        - name: ordering
+          required: false
+          in: query
+          description: Which field to use when ordering the results.
+          schema:
+            type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                required:
+                  - text
+                properties:
+                  id:
+                    type: string
+                    format: uuid
+                    readOnly: true
+                  text:
+                    type: string
+                  created_at:
+                    type: string
+                    format: date-time
+                    readOnly: true
+                  updated_at:
+                    type: string
+                    format: date-time
+                    readOnly: true
+  /api-token-auth/:
+    post:
+      operationId: CreateObtainAuthToken
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema: {}

@@ -35,6 +35,7 @@ api_definitions = {
     'platform_user_groups_authorized_api.json': 'platform/authorized_api/user_groups/v1.yaml',
     'audience_manager_authorized_api.json': 'audience_manager/authorized_api/index.yaml',
     'custom_reports_http_api.json': 'custom_reports/http_api/index.yaml',
+    'test2.json': 'custom_reports/test_openapi/index.yaml'
 }
 
 
@@ -226,7 +227,7 @@ html_theme_options = {
 def setup(app):
     app.add_css_file('css/custom.css')
     app.add_js_file('js/custom.js')
-    app.add_js_file('js/redoc.min.js')
+    app.add_js_file('js/redoc.standalone.js')
 
 # Example configuration for intersphinx: refer to the Python standard library.
 intersphinx_mapping = {'https://docs.python.org/': None}
