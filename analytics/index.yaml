@@ -319,34 +319,33 @@ paths:
           example: order-123-customer-321
         - name: ec_items
           in: query
-          #TODO: Confirm format in example is valid.
-          #TODO: Confirm that all attributes of item are required.
           #TODO: Add limits to the item attributes (e.g. string max length).
           description: |
             Ecommerce order item list.
 
-            Each item on the list must contain:
+            Each item on the list can contain:
 
-              - sku: `string` Stock keeping unit.
-              - name: `string` Name of item.
-              - category: `string` Category of item.
-              - price: `number` Price of item.
+              - sku: `string` (required) Stock keeping unit.
+              - name: `string` (optional) Name of an item.
+              - category: `string` (optional) Category of an item.
+              - price: `number` (optional) Price of an item.
                 Currency of this value does not matter, but only one should be used by the application (e.g. USD).
-              - quantity: `integer` Quantity of item.
+              - quantity: `integer` (optional, default to 1) Quantity of an item.
           type: string
-          #TODO: See JSON comment.
-          format: JSON
+          format: Array
           example:
-            - sku: "craft-311"
-              name: "Unicorn Iron on Patch"
-              category: "Crafts & Sewing"
-              price: 4.99
-              quantity: 3
-            - sku: "craft-312"
-              name: "Unicorn Lamp"
-              category: "Crafts & Sewing"
-              price: 13.25
-              quantity: 1
+            -
+              - "craft-311"
+              - "Unicorn Iron on Patch"
+              - "Crafts & Sewing"
+              - 4.99
+              - 3
+            -
+              - "craft-312"
+              - "Unicorn Lamp"
+              - "Crafts & Sewing"
+              - 13.25
+              - 1
         - name: ec_st
           in: query
           description: |
