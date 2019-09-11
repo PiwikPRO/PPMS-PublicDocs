@@ -492,7 +492,7 @@ Every unique visitor must be assigned a different ID and this ID must not change
 
 ### Sessions
 
-A session represents a single period of user interaction with your app. By default, Piwik will group hits that are received within 30 minutes of one another into the same session. You can configure Piwik to automatically start new sessions when users have placed your app in the background for a period of time. This session timeout period is defined by the ``setSessionTimeout`` method.
+A session represents a set of user's interactions with your app. By default, Analytics is closing the session after 30 minutes of inactivity, counting from the last recorded event in session and when the user will open up the app again the new session is started. You can configure the tracker to automatically close the session when users have placed your app in the background for a period of time. That period is defined by the ``setSessionTimeout`` method.
 
 ```java
 tracker.setSessionTimeout(30 * 60 * 1000);
