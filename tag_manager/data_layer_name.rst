@@ -54,6 +54,6 @@ Data layer name guidelines
 To avoid conflicts with your existing code, that could cause unwanted behavior, you need to make sure that the name selected for the data layer object is unique. To ensure that it is not already used by someone, we suggest you run the following command in the console on your website:::
 
     var dataLayerName = "customDataLayer";
-    !window.hasOwnProperty('dataLayer');
+    !window.hasOwnProperty(dataLayerName);
 
 where the value of the ``dataLayerName`` variable is your chosen name (``customDataLayer`` in this case). If this operation returns `true` into the console, then you can safely use this value as the name of your data layer.
