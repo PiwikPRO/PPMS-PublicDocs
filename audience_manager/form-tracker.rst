@@ -80,7 +80,7 @@ the snippet has to be configured this way:
 .. code-block:: html
 
     <script>
-    (function(a,d,g,h,b,c,e){a[b]=a[b]||{};a[b][c]=a[b][c]||{};if(!a[b][c][e]){a[b][c][e]=function(){(a[b][c][e].q=a[b][c][e].q||[]).push(arguments)};var f=d.createElement(g);d=d.getElementsByTagName(g)[0];f.async=1;f.src=h;d.parentNode.insertBefore(f,d)}})
+        (function(a,d,g,h,b,c,e){a[b]=a[b]||{};a[b][c]=a[b][c]||{};if(!a[b][c][e]){a[b][c][e]=function(){(a[b][c][e].q=a[b][c][e].q||[]).push(arguments)};var f=d.createElement(g);d=d.getElementsByTagName(g)[0];f.async=1;f.src=h;d.parentNode.insertBefore(f,d)}})
         (window,document,"script","https://ppms.example.com/audiences/static/widget/audience-manager.form.min.js","ppms","am","form");
         ppms.am.form("create", "XXX-XXX-XXX-XXX-XXX", "ppms.example.com", forms_config, options);
     </script>
