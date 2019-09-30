@@ -327,6 +327,10 @@ User ID
 
     :param string userId: **Required** Unique, non-empty string preserved for each user.
 
+.. function:: regetUserId()
+
+    The function that will reset user ID value.
+
 Visitor ID
 ^^^^^^^^^^
 
