@@ -17,14 +17,14 @@ If you wish to rename your data layer, you should follow the instructions below:
 1. Log into your PPMS instance.
 #. Head to `Menu` > `Administration`.
 #. Select the website that you want to set the new data layer name for and then go to the `Installation` page.
-#. From here you should copy the code of the snippet, that you want to use - asynchronous or synchronous - and make the following change:
+#. From here you should copy the code of the snippet, that you want to use - asynchronous or synchronous - and change the `dataLayer` value highlighted on the screens below:
 
-    a. for the asynchronous snippet, you need to change the `dataLayer` value highlighted on a screen below
+    a. for the asynchronous snippet
 
         .. image:: ../_static/images/async-container.png
             :alt: Container code for asynchronous tags
 
-    #. for the synchronous snippet, you need to input your desired name into the highlighted variable
+    #. for the synchronous snippet
 
         .. image:: ../_static/images/sync-container.png
             :alt: Container code for synchronous tags
