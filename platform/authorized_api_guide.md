@@ -299,9 +299,9 @@ There is no response example. API will return `204 No Content` status code.
 [Postman](https://www.getpostman.com/) is a multiplatform GUI application for creating API calls.
 PPMS allows you to export swagger documentation and easily import it to Postman.
 Depending of what you want to work with, you can import given swagger docs:
-* [Apps](https://raw.githubusercontent.com/PiwikPRO/PPMS-PublicDocs/9.0/platform/authorized_api/apps/public_v2.yaml)
-* [Users](https://raw.githubusercontent.com/PiwikPRO/PPMS-PublicDocs/9.0/platform/authorized_api/users/index.json)
-* [Access control](https://raw.githubusercontent.com/PiwikPRO/PPMS-PublicDocs/9.0/platform/authorized_api/access_control/public_v2.yaml)
+* [Apps](/_static/api/platform_apps_authorized_api.json)
+* [Users](/_static/api/platform_users_authorized_api.json)
+* [Access control](/_static/api/platform_access_control_authorized_api.json)
 
 Simply click in Postman: `import -> Import From Link`. Then all of your paths are imported!
 You have to override two things:
