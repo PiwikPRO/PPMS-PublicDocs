@@ -20,3 +20,8 @@ properties:
         type: integer
         description: Number of profiles in this audience (refreshed periodically).
         example: 9147
+      history_count:
+        type: array
+        description: List of audience counts for the last 30 days.
+        items:
+          $ref: '#/definitions/AudienceCount'
