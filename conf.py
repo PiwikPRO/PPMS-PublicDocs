@@ -226,7 +226,7 @@ html_theme_options = {
 def setup(app):
     app.add_css_file('css/custom.css')
     app.add_js_file('js/custom.js')
-    app.add_js_file('js/redoc.min.js')
+    app.add_js_file('js/redoc_1.22.3.min.js')
 
 # Example configuration for intersphinx: refer to the Python standard library.
 intersphinx_mapping = {'https://docs.python.org/': None}

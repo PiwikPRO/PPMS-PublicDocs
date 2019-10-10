@@ -63,7 +63,7 @@ Trigger custom event
 
 Trigger (custom) events bound to user actions::
 
-    _paq.push(["trackEvent", category, action, name, value, dimensions);
+    _paq.push(["trackEvent", category, action, name, value, dimensions]);
 
 .. describe:: category
 

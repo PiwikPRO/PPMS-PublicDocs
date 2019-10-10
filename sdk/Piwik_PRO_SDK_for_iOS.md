@@ -356,6 +356,14 @@ It is recommended to set the user email to track audience manager profile attrib
 
 SDK uses various IDs for tracking the user. The main one is visitor ID, which is internally randomly generated once by the SDK on the first usage and is then stored locally on the device. The visitor ID will never change unless the user removes the application from the device so that all events sent from his device will always be assigned to the same user in the Piwik PRO web panel. We recommend using userID instead of VisitorID.
 
+### Sessions
+
+A session represents a set of user's interactions with your app. By default, Analytics is closing the session after 30 minutes of inactivity, counting from the last recorded event in session and when the user will open up the app again the new session is started. You can configure the tracker to automatically close the session when users have placed your app in the background for a period of time. That period is defined by the ``sessionTimeout``:
+
+```
+[PiwikTracker sharedInstance].sessionTimeout = 1800
+```
+* sessionTimeout (required) – session timeout time in seconds. Default: 1800 seconds (30 minutes).
 
 ### Device ID
 
