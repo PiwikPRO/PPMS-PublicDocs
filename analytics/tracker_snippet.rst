@@ -13,8 +13,8 @@ Installation via snippet should only be carried out if the Tag Manager is not av
     Basic configuration will setup a single domain configuration. For other options, see:
     :ref:`AN-tracker-alternative-configuration`.
 
-This code should be added just before of the ``<head>`` tag. Additionally, the
-snippet must be configured in the following way:
+This code should be added in the head section of the page just before the closing ``</head>`` tag.
+Additionally, the snippet must be configured in the following way:
 
     * String ``XXX-XXX-XXX-XXX-XXX`` should be replaced with :term:`app ID` (e.g.
       ``efcd98a5-335b-48b0-ab17-bf43f1c542be``).
