@@ -50,25 +50,24 @@ This code should be added near the top of the ``<head>`` tag and before any othe
 the snippet has to be configured this way:
 
 - String ``XXX-XXX-XXX-XXX-XXX`` should be replaced with :term:`app ID` (e.g. ``efcd98a5-335b-48b0-ab17-bf43f1c542be``).
-- String ``ppms.example.com`` should be replaced with your PPMS domain name (please note that it's used in 3 places in
-  the snippet).
+- String ``https://your-instance-name.piwik.pro/`` should be replaced with your PPMS instance address (please note that it's used in 3 places in the snippet).
 
 .. code-block:: html
 
     <script>
         (function(a,d,g,h,b,c,e){a[b]=a[b]||{};a[b][c]=a[b][c]||{};a[b][c][e]=a[b][c][e]||function(){(a[b][c][e].q=a[b][c][e].q||[]).push(arguments)};var f=d.createElement(g);d=d.getElementsByTagName(g)[0];f.async=1;f.src=h;d.parentNode.insertBefore(f,d)})
-        (window,document,"script","https://ppms.example.com/audiences/static/widget/audience-manager.form.min.js","ppms","am","form");
+        (window,document,"script","https://your-instance-name.piwik.pro/audiences/static/widget/audience-manager.form.min.js","ppms","am","form");
 
         ppms.am.form("set", "WebsiteID", "XXX-XXX-XXX-XXX-XXX");
-        ppms.am.form("set", "TrackerUrl", "https://ppms.example.com/audiences/tracker/");
-        ppms.am.form("set", "StaticUrl", "https://ppms.example.com/audiences/static/widget/");
+        ppms.am.form("set", "TrackerUrl", "https://your-instance-name.piwik.pro/audiences/tracker/");
+        ppms.am.form("set", "StaticUrl", "https://your-instance-name.piwik.pro/audiences/static/widget/");
     </script>
 
 .. note::
     Usually it is recommended to use the **HTTPS** protocol in the URLs mentioned here, but if support for **legacy IE browsers**
     (8 and 9) is required and some pages containing forms are served via **HTTP** protocol - it is necessary to use the same
     protocol in snippet URLs as the source page. The easiest way to do that would be to remove the protocol from ``TrackerUrl``
-    and ``StaticUrl`` (e.g. ``//ppms.example.com/audiences/tracker/``).
+    and ``StaticUrl`` (e.g. ``//your-instance-name.piwik.pro/audiences/tracker/``).
 
 .. todo::
     Update form tracker API to make it similar to AM JS API and simplify setup process to 2 parameters without
