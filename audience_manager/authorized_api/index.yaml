@@ -21,6 +21,10 @@ definitions:
     $ref: ./definitions/export_data.yaml
   ExportAttribute:
     $ref: ./definitions/export_attribute.yaml
+  ProfileDetails:
+    $ref: ./definitions/profile_details.yaml
+  ProfileList:
+    $ref: ./definitions/profile_list.yaml
 parameters:
   WebsiteId:
     name: website_id
@@ -35,3 +39,5 @@ paths:
     $ref: ./paths/audiences_list.yaml
   /api/audiences/v1/profiles/:
     $ref: ./paths/profiles_export.yaml
+  /api/audiences/v1/profiles/get:
+    $ref: ./paths/profiles_get.yaml
