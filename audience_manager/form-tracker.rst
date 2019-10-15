@@ -19,7 +19,7 @@ All modern browsers: Chrome, Firefox, Safari, Edge. Internet Explorer from versi
 
 Privacy by design
 -----------------
-PPMS follows "Privacy by design" approach to system engineering.
+PPAS follows "Privacy by design" approach to system engineering.
 
 .. warning::
     Form tracker is trying to send its requests using secure **HTTPS** protocol, but **legacy IE browsers** (version 8
