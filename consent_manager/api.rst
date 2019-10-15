@@ -61,7 +61,7 @@ Only one thing should be considered before using API is where you call commands.
     </html>
 
 When you need execute API in such manner, you should take care about Tag Manager snippet version.
-Because `ppms.cm.api` global object is initialized in snippet and/or in Tag Manager container, if you are using old version of Tag Manager snippet (PPMS version > 6.2), `ppms.cm.api` might be undefined until container will be loaded.
+Because `ppms.cm.api` global object is initialized in snippet and/or in Tag Manager container, if you are using old version of Tag Manager snippet (PPAS version > 6.2), `ppms.cm.api` might be undefined until container will be loaded.
 So if you want use own scripts outside Tag Manager, you need update snippet to use `ppms.cm.api`, or use `dataLayer` interface if replacing snippet is not possible:
 
 .. code-block:: html
