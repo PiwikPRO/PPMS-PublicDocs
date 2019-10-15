@@ -31,7 +31,7 @@ communication with API.
 Piwik PRO API tokens use [JWT](https://jwt.io/) format.
 
 Make POST call to `https://<domain>/auth/token` with header `Content-Type: application/json` and payload: 
-`{ grant_type: 'client_credentials', client_id: '<client_id>', client_secret: '<client_secret>' }`.
+`{ "grant_type": "client_credentials", "client_id": "<client_id>", "client_secret": "<client_secret>" }`.
 
 Response example:
 ```
