@@ -15,7 +15,7 @@ Configuration:
 
     - String ``XXX-XXX-XXX-XXX-XXX`` should be replaced with :term:`app ID` (e.g.
       ``efcd98a5-335b-48b0-ab17-bf43f1c542be``).
-    - String ``ppms.example.com`` should be replaced with your PPMS domain name (please note that it's used in 2 places
+    - String ``https://your-instance-name.piwik.pro/`` should be replaced with your PPAS instance address. (please note that it's used in 2 places
       in the snippet).
 
 Code:
@@ -24,16 +24,16 @@ Code:
 
     <script>
         (function(a,d,g,h,b,c,e){a[b]=a[b]||{};a[b][c]=a[b][c]||{};a[b][c][e]=a[b][c][e]||function(){(a[b][c][e].q=a[b][c][e].q||[]).push(arguments)};var f=d.createElement(g);d=d.getElementsByTagName(g)[0];f.async=1;f.src=h;d.parentNode.insertBefore(f,d)})
-        (window,document,"script","https://ppms.example.com/audiences/static/widget/audience-manager.api.min.js","ppms","am","api");
+        (window,document,"script","https://your-instance-name.piwik.pro/audiences/static/widget/audience-manager.api.min.js","ppms","am","api");
 
-        ppms.am.api("create", "XXX-XXX-XXX-XXX-XXX", "ppms.example.com");
+        ppms.am.api("create", "XXX-XXX-XXX-XXX-XXX", "your-instance-name.piwik.pro");
     </script>
 
 This code initializes the API interface in the following ways:
 
     #. Creates a ``<script>`` tag that asynchronously loads the Audience Manager API library.
     #. Initializes the global ``ppms.am.api`` command queue that schedules commands to be run when the API library is loaded.
-    #. Schedules ``create`` command on ``ppms.am.api`` to initialize the API object with a basic PPMS configuration.
+    #. Schedules ``create`` command on ``ppms.am.api`` to initialize the API object with a basic PPAS configuration.
 
 You can use the API command queue (``ppms.am.api``) immediately after step 3.
 
@@ -52,7 +52,7 @@ Executing the snippet creates the following global function:
 
 Commands
 --------
-All commands work in context of the current :term:`user`. Additionally they require communication with a PPMS server and are
+All commands work in context of the current :term:`user`. Additionally they require communication with a PPAS server and are
 asynchronous. Callback functions are used to provide response value or information about errors.
 
 Get list of audiences user belongs to

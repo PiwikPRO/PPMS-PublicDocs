@@ -6,10 +6,10 @@ Glossary
 .. glossary::
 
     Application
-        Website or application tracked by PPMS.
+        Website or application tracked by PPAS.
 
     App ID
-        PPMS :term:`application` identificator (previously **website ID**, **site ID** or **idSite**).
+        PPAS :term:`application` identificator (previously **website ID**, **site ID** or **idSite**).
 
     User
         Visitor on tracked :term:`application`.
@@ -72,4 +72,4 @@ Glossary
             If :term:`analytics attribute` uses the same name - it will be represented as a separate :term:`attribute`.
 
     Analytics
-        PPMS component gathering statistics about each :term:`user` of the :term:`application` (previously **Piwik**).
+        PPAS component gathering statistics about each :term:`user` of the :term:`application` (previously **Piwik**).
