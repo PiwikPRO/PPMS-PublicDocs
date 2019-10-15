@@ -40,13 +40,28 @@ properties:
     description: Attributes of the occurred event.
     items:
       type: object
+      required:
+        - name
+        - value
       properties:
         name:
           type: string
           description: Name of the attribute.
         value:
+          type: string or float
+          description: |
+            Value of the attribute. Value type must match attribute type
+            configured in Audience Manager.
+        action:
           type: string
-          description: Value of the attribute.
+          enum:
+            - set
+            - add
+          default: set
+          description: |
+            Action to perform:
+            * `set` – overwrite the existing value with the new value,
+            * `add` – add the new value (or 1, if not specified) to the existing value.
       example:
         name: occupation
         value: unicorn
