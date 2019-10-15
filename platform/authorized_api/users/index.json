@@ -63,7 +63,7 @@
       "enum": [
         "ppms/user"
       ],
-      "description": "PPMS user resource type"
+      "description": "PPAS user resource type"
     },
     "JsonApi_Resource_Object": {
       "type": "object",
