@@ -18,7 +18,7 @@ Additionally, the snippet must be configured in the following way:
 
     * String ``XXX-XXX-XXX-XXX-XXX`` should be replaced with :term:`app ID` (e.g.
       ``efcd98a5-335b-48b0-ab17-bf43f1c542be``).
-    * String ``https://your-instance-name.piwik.pro/`` should be replaced with your PPMS instance address.
+    * String ``https://your-instance-name.piwik.pro/`` should be replaced with your PPAS instance address.
 
 .. code-block:: html
 
