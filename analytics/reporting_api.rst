@@ -4,7 +4,7 @@ This API gives access to your analytics reports.
 
 A short description of all available reports is available in :term:`Analytics`. Follow these instructions to access it:
 
-#. Login into your PPMS instance
+#. Login into your PPAS instance
 #. Go to `Menu` > `Analytics settings`.
 
     .. image:: ../_static/images/menu.png
