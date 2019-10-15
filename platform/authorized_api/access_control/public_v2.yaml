@@ -282,7 +282,7 @@ definitions:
 
   JsonApiType:
     type: string
-    description: Resource type, unique across whole PPMS
+    description: Resource type, unique across whole PPAS
     example: ppms/user
 
   JsonApiResourceObject:

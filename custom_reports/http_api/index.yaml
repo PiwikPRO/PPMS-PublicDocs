@@ -9,7 +9,7 @@ info:
     Available columns and transformations are listed in the
     [Columns](../columns.html) documentation.
   version: 'auto'
-host: ppms.example.com
+host: your-instance-name.piwik.pro
 basePath: /
 schemes:
   - https
