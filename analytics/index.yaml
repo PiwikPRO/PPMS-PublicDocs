@@ -157,25 +157,6 @@ paths:
           type: integer
           format: UNIX timestamp
           example: 1521232150
-        - name: _rcn
-          in: query
-          description: |
-            Referrer campaign name (used to attribute visit to marketing campaign). Can be set only by the first action
-            of a visit.
-
-            Used in `Referrers` > `Campaigns` report.
-          type: string
-          example: Email-2018-03
-        - name: _rck
-          in: query
-          description: |
-            Referrer campaign keyword (used to attribute visit to marketing campaign). Can be set only by the first
-            action of a visit.
-
-            Used in `Referrers` > `Campaigns` report.
-          type: string
-          #TODO: Is it possible to set multiple keywords to the campaign?
-          example: promotion
         - name: res
           in: query
           description: Resolution of the visitor's device in pixels.
@@ -671,6 +652,17 @@ paths:
           minimium: -180
           maximum: 180
           example: -74.0023705
+        - name: uia
+          in: query
+          description: |
+            Allows to track user anonymously.
+
+            - ``1`` - all IP bytes will be masked (0.0.0.0), no GeoIP data will be stored and visits won't be matched by the fingerprinting process
+            - ``0`` - all available visitor data will be enriched if anonymized previously
+          type: integer
+          minimium: 0
+          maximum: 1
+          example: 1
       responses:
         200:
           description: OK

@@ -1,0 +1,122 @@
+type: object
+properties:
+  website_id:
+    type: string
+    format: uuid
+    description: ID of the website.
+    example: 70236925-724f-404e-b634-7b5633bc0bcc
+  columns:
+    type: array
+    description: Column definitions for the query.
+    items:
+      type: object
+      properties:
+        column_id:
+          type: string
+          description: ID of the column (either a dimension or a metric).
+        transformation_id:
+          type: string
+          description: |
+            Optional ID of the transformation. Must be supported by the
+            column that was specified.
+        goal_id:
+          type: integer
+          description: |
+            Optional ID of a goal. Available only for metrics related to goals.
+      required:
+        - column_id
+    example: [{"column_id":"device_type"},{"column_id":"revenue","transformation_id":"sum"}]
+  date_from:
+    type: string
+    format: date
+    description: Start date for the query (inclusive).
+  date_to:
+    type: string
+    format: date
+    description: End date for the query (inclusive).
+  filters:
+    type: object
+    description: |
+      Data filters for the query. Please note that filtering is only available
+      on dimensions at this point. The top-level object must specify AND/OR
+      clause, but any nested objects may either specify another AND/OR
+      clause or a single filter.
+    properties:
+      operator:
+        type: string
+        description: Logical operator (AND/OR) for the clause.
+        enum:
+          - and
+          - or
+      conditions:
+        type: array
+        description: List of filters or recursively nested clauses.
+        items:
+          type: object
+          required:
+            - column_id
+            - condition
+          properties:
+            column_id:
+              type: string
+              description: ID of the column (must be a dimension).
+            transformation_id:
+              type: string
+              description: |
+                Optional ID of the transformation. Must be supported by
+                the column that was specified and must convert the column
+                into another dimension (and not a metric).
+            condition:
+              type: object
+              description: Definition of a the condition for this column.
+              properties:
+                operator:
+                  type: string
+                  description: |
+                    Filtering operator. Available choices depend on
+                    the specified column's type.
+
+                    String operators: ``eq``, ``neq``, ``contains``,
+                    ``not_contains``, ``starts_with``, ``ends_with``.
+
+                    Numeric operators: ``eq``, ``neq``, ``gt``, ``gte``,
+                    ``lt``, ``lte``.
+
+                    Boolean and enum operators: ``eq``, ``neq``.
+                value:
+                  description: |
+                    Value that should be matched by filter. Value type must
+                    match the type of the specified column. For enumerated
+                    fields, you must use the ID value.
+              required:
+                - operator
+                - value
+          example: {"column_id":"event_title","condition":{"operator":"contains","value":"test"}}
+    required:
+      - operator
+      - conditions
+  offset:
+    type: integer
+    default: 0
+    minimum: 0
+    description: Number of rows to skip before beginning to return rows.
+  limit:
+    type: integer
+    default: 100
+    minimum: 1
+    maximum: 100000
+    description: Number of rows to return.
+  order_by:
+    type: array
+    description: |
+      Array of sorting directives. Each directive is a 2-element array with
+      0-based colum index and direction). You can sort on more than one column.
+      By default sorts descending by the first metric in query.
+    items:
+      type: array
+    example: [[1, "desc"], [2, "asc"]]
+required:
+  - website_id
+  - columns
+  - date_from
+  - date_to

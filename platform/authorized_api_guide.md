@@ -35,7 +35,7 @@ Make POST call to `https://<domain>/auth/token` with header `Content-Type: appli
 
 Response example:
 ```
-{"token_type":"Bearer","expires_in":86400,"access_token":"<your_access_token>"}
+{"token_type":"Bearer","expires_in":1800,"access_token":"<your_access_token>"}
 ```
 
 Now, you can use obtained `<your_access_token>` for communication with Piwik PRO API.
@@ -85,13 +85,13 @@ Response example:
 ```
 {
     "token_type":"Bearer",
-    "expires_in":86400,
+    "expires_in":1800,
     "access_token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJwcG1zIiwiYXVkIjoiaHR0cHM6XC9cL3Rlc3RpbmcucGl3aWsucHJvXC9zZXR5LCJzdWIiOiJkNmNkZGMxMS1iZDA1L0aW5ncyIsImlhdCI6MTUzNzI3MDQ1OSwiZXhwIjoxNTM3MzU2ODUTRhYmUtYWIyZC02YjlhNjIxZmU0ZDciLCJvcmciOiJkZWZhdWx0In0.Nec2mYFRv6manzXjq0sHQxINZvu-fbDYT8AedVHBKYvu1F9hYKaFReY8rNgfsMANw2OX8-IKpTrQb1DyRkG4nxpIEbob528_lPd7roho5mtKlE8sfS9WZE1piYOwaNDySDEUwUowgj2xBiJqSODjxBI6qVhLkynGEEeNBVh-lrUmlcjpYqUc3saHvX72L-rqbIHa_1dzGarR-dcPyns-RpKjZEILzUSYOHdM09KDti-xsG-nbKHGdP8fVEEJPyupnAfJPOLHQg_j1c5IvJSvTKVF3j4_zo6Zw5g8YkaheT9Iwph5BGHFRneXatcmbwKI8JzSDFi6CinzI-okYKRPbg"
 }
 ```
 
 Field `access_token` contains your token which then will be used for all API calls.
-Once you generated an access token, you can use it during its lifetime (24 hours by default)
+Once you generated an access token, you can use it during its lifetime (30 minutes by default)
 
 #### Create an app
 
@@ -328,7 +328,7 @@ Remember to keep this token secure as it allows access to sensitive data!
 
 ### API returns `Expired JWT Token`
 
-Every token that you generated is specified by TTL - time to live. By default it's 24h.
+Every token that you generated is specified by TTL - time to live. By default it's 30 minutes.
 After token is expired, you need to [generate your access token](#generate-your-access-token)
 
 ### API returns `access token not authorized`

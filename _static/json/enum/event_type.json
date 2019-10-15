@@ -1,0 +1,42 @@
+[
+    [
+        1,
+        "Page View"
+    ],
+    [
+        2,
+        "Outlink"
+    ],
+    [
+        3,
+        "Download"
+    ],
+    [
+        4,
+        "Search"
+    ],
+    [
+        5,
+        "Custom"
+    ],
+    [
+        6,
+        "Content Impression"
+    ],
+    [
+        7,
+        "Content Interaction"
+    ],
+    [
+        8,
+        "Goal Conversion"
+    ],
+    [
+        9,
+        "Ecommerce Conversion"
+    ],
+    [
+        10,
+        "Abandoned Cart"
+    ]
+]
