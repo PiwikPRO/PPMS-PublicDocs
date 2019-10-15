@@ -19,7 +19,7 @@ All modern browsers: Chrome, Firefox, Safari, Edge. Internet Explorer from versi
 
 Privacy by design
 -----------------
-PPMS follows "Privacy by design" approach to system engineering.
+PPAS follows "Privacy by design" approach to system engineering.
 
 .. warning::
     Form tracker is trying to send its requests using secure **HTTPS** protocol, but **legacy IE browsers** (version 8
@@ -59,7 +59,7 @@ This section describes how to install the Form Tracker client code on your page.
 Using Tag Manager
 `````````````````
 `The Form Tracker tag template <https://help.piwik.pro/audience-manager/capturing-data-forms/>`_ is the recommended way to
-install Form Tracker using PPMS stack.
+install Form Tracker using PPAS stack.
 
 Manual installation
 ```````````````````
@@ -69,16 +69,15 @@ This code should be added near the top of the ``<head>`` tag and before any othe
 the snippet has to be configured this way:
 
 - String ``XXX-XXX-XXX-XXX-XXX`` should be replaced with :term:`app ID` (e.g. ``efcd98a5-335b-48b0-ab17-bf43f1c542be``).
-- String ``ppms.example.com`` should be replaced with your PPMS domain name (please note that it's used in 3 places in
-  the snippet).
+- String ``https://your-instance-name.piwik.pro/`` should be replaced with your PPAS instance address (please note that it's used in 3 places in the snippet).
 
 .. versionchanged:: 6.3
 .. code-block:: html
 
     <script>
         (function(a,d,g,h,b,c,e){a[b]=a[b]||{};a[b][c]=a[b][c]||{};a[b][c][e]=a[b][c][e]||function(){(a[b][c][e].q=a[b][c][e].q||[]).push(arguments)};var f=d.createElement(g);d=d.getElementsByTagName(g)[0];f.async=1;f.src=h;d.parentNode.insertBefore(f,d)})
-        (window,document,"script","https://ppms.example.com/audiences/static/widget/audience-manager.form.min.js","ppms","am","form");
-        ppms.am.form("create", "XXX-XXX-XXX-XXX-XXX", "ppms.example.com", forms_config, options);
+        (window,document,"script","https://your-instance-name.piwik.pro/audiences/static/widget/audience-manager.form.min.js","ppms","am","form");
+        ppms.am.form("create", "XXX-XXX-XXX-XXX-XXX", "your-instance-name.piwik.pro", forms_config, options);
     </script>
 
 .. versionadded:: 6.3
