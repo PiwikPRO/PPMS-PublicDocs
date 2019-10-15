@@ -4,7 +4,7 @@ Custom consent form
 API enables you to build custom consent form in place of default one.
 To turn off default consent form follow steps:
 
-    #. Login to your PPMS instance
+    #. Login to your PPAS instance
     #. Go to **Menu** > **Administration**
         .. image:: /_static/images/cm_js_api/menu-administration.png
             :alt: Menu with Administration setting

@@ -1,6 +1,6 @@
 Commands
 --------
-All commands work in context of the current visitor and website. Additionally they sometimes require communication with a PPMS server and are asynchronous. Callback functions are used to provide response value or information about errors. ``onSuccess(...args)`` callback is always required. ``onFailure(exception)`` callback is optional and if is specified, any error object occurred will be passed as a argument. If not specified, error is reported directly on console output.
+All commands work in context of the current visitor and website. Additionally they sometimes require communication with a PPAS server and are asynchronous. Callback functions are used to provide response value or information about errors. ``onSuccess(...args)`` callback is always required. ``onFailure(exception)`` callback is optional and if is specified, any error object occurred will be passed as a argument. If not specified, error is reported directly on console output.
 
 Get compliance types
 ````````````````````

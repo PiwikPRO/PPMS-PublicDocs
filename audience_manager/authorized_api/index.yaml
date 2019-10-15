@@ -5,7 +5,7 @@ info:
     In order to acces those endpoints, you need to **authenticate**.
     <a href="../../platform/authorized_api_guide.html">Here is a guide on how to do it.</a>
   version: 'auto'
-host: ppms.example.com
+host: your-instance-name.piwik.pro/
 basePath: /
 schemes:
   - https

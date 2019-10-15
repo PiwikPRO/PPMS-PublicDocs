@@ -8,13 +8,13 @@ Custom data layer name
 
 Introduction
 ------------
-The data layer is a global JavaScript object, that can be used to pass information form the website to PPMS container. The default value for the data layer name is `dataLayer`, but the value can be customized. The purpose of this article is to describe the steps that need to be performed to set up custom data layer name.
+The data layer is a global JavaScript object, that can be used to pass information form the website to PPAS container. The default value for the data layer name is `dataLayer`, but the value can be customized. The purpose of this article is to describe the steps that need to be performed to set up custom data layer name.
 
 Renaming the data layer
 -----------------------
 If you wish to rename your data layer, you should follow the instructions below:
 
-1. Log into your PPMS instance.
+1. Log into your PPAS instance.
 #. Head to `Menu` > `Administration`.
 #. Select the website that you want to set the new data layer name for and then go to the `Installation` page.
 #. From here you should copy the code of the snippet, that you want to use - asynchronous or synchronous - and change the `dataLayer` value highlighted on the screens below:
@@ -32,9 +32,9 @@ If you wish to rename your data layer, you should follow the instructions below:
 #. At this point, you can embed the snippet on your website. If you are replacing an existing snippet, make sure to take a look at the `Snippet migration`_ section for instructions on how to ensure full compatibility.
 
 .. note::
-    - The snippet code was changed compared to PPMS versions pre 10.0, to accommodate for the possibility of changing the data layer name. The new snippet, released alongside version 10.0 is backward compatible, however, to use the functionality described in this document, whole snippet code needs to be replaced on your website.
+    - The snippet code was changed compared to PPAS versions pre 10.0, to accommodate for the possibility of changing the data layer name. The new snippet, released alongside version 10.0 is backward compatible, however, to use the functionality described in this document, whole snippet code needs to be replaced on your website.
     - If you are using both synchronous and asynchronous snippets, it is recommended to use the same data layer name in both. Nonadherence to this rule may cause unexpected and unwanted behavior.
-    - We strongly advise making sure that the chosen name is not used in any other external software present on your website as well as inside your own website's code. Data layer name should be unique and reserved only for use inside the PPMS container. For additional guidelines regarding the data layer naming process, please refer to `Data layer name guidelines`_.
+    - We strongly advise making sure that the chosen name is not used in any other external software present on your website as well as inside your own website's code. Data layer name should be unique and reserved only for use inside the PPAS container. For additional guidelines regarding the data layer naming process, please refer to `Data layer name guidelines`_.
 
 
 Snippet migration
