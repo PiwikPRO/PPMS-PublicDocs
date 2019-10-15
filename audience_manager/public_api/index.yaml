@@ -4,7 +4,7 @@ info:
   description: |
     **No authentication.**
   version: 'auto'
-host: ppms.example.com
+host: your-instance-name.piwik.pro
 basePath: /
 schemes:
   - https

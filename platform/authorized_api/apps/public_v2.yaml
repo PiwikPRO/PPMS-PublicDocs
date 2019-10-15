@@ -62,7 +62,7 @@ definitions:
 
   JsonApi_Type:
     type: string
-    description: Resource type, unique across whole PPMS
+    description: Resource type, unique across whole PPAS
     example: ppms/app
 
   JsonApi_Resource_Object:
@@ -127,7 +127,7 @@ definitions:
             properties:
               type:
                 type: string
-                description: Resource type, unique across whole PPMS
+                description: Resource type, unique across whole PPAS
                 example: ppms/app_permissions_for_user
               id:
                 $ref: '#/definitions/JsonApi_Id'
@@ -158,7 +158,7 @@ definitions:
         properties:
           type:
             type: string
-            description: Resource type, unique across whole PPMS
+            description: Resource type, unique across whole PPAS
             example: ppms/app_permissions_for_user_group
           id:
             $ref: '#/definitions/JsonApi_Id'

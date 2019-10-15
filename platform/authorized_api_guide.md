@@ -58,7 +58,7 @@ Whatever API call you choose, first remember that you must generate
 
 ### API usage example with curl
 
-For sake of this examples, `https://<domain>` is a URL of your PPMS instance (e.g. `https://example.piwik.pro`) and our goal
+For sake of this examples, `https://<domain>` is a URL of your PPAS instance (e.g. `https://example.piwik.pro`) and our goal
 is to perform basic operations on an app. We will:
 * create an app
 * get created app
@@ -119,7 +119,7 @@ curl -X POST 'https://<domain>/api/apps/v2' -H "Authorization: Bearer <your_acce
 ```
 
 Note, that you have to replace: 
-* `<domain>` with your PPMS instance URL,
+* `<domain>` with your PPAS instance URL,
 * `<your_access_token>` with your generated access token 
 
 Response example:
@@ -297,7 +297,7 @@ There is no response example. API will return `204 No Content` status code.
 ### API usage example with Postman
 
 [Postman](https://www.getpostman.com/) is a multiplatform GUI application for creating API calls.
-PPMS allows you to export swagger documentation and easily import it to Postman.
+PPAS allows you to export swagger documentation and easily import it to Postman.
 Depending of what you want to work with, you can import given swagger docs:
 * <a href="../_static/api/platform_apps_authorized_api.json" target="_blank">Apps</a>
 * <a href="../_static/api/platform_users_authorized_api.json" target="_blank">Users</a>
