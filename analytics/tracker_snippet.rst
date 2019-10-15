@@ -18,7 +18,7 @@ Additionally, the snippet must be configured in the following way:
 
     * String ``XXX-XXX-XXX-XXX-XXX`` should be replaced with :term:`app ID` (e.g.
       ``efcd98a5-335b-48b0-ab17-bf43f1c542be``).
-    * String ``ppms.example.com`` should be replaced with your PPMS domain name.
+    * String ``https://your-instance-name.piwik.pro/`` should be replaced with your PPAS instance address.
 
 .. code-block:: html
 
@@ -28,7 +28,7 @@ Additionally, the snippet must be configured in the following way:
       _paq.push(["trackPageView"]);
       _paq.push(["enableLinkTracking"]);
       (function() {
-        var u="//ppms.example.com/";
+        var u="https://your-instance-name.piwik.pro/";
         _paq.push(["setTrackerUrl", u+"ppms.php"]);
         _paq.push(["setSiteId", "XXX-XXX-XXX-XXX-XXX"]);
         var d=document, g=d.createElement("script"), s=d.getElementsByTagName("script")[0];
