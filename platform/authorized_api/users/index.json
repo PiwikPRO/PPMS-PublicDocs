@@ -44,7 +44,7 @@
     },
     "JsonApi_Type": {
       "type": "string",
-      "description": "Resource type, unique across whole PPMS",
+      "description": "Resource type, unique across whole PPAS",
       "example": "ppms/user"
     },
     "JsonApi_Resource_Object": {
@@ -113,7 +113,7 @@
               "enum": [
                 "ppms/user"
               ],
-              "description": "Resource type, unique across whole PPMS"
+              "description": "Resource type, unique across whole PPAS"
             },
             "attributes": {
               "type": "object",
