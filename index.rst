@@ -6,10 +6,10 @@
 Welcome to the Piwik PRO documentation for developers!
 ======================================================
 
-*PPAS version: 8.0 (see* |changelog|_\ *)*
+*PPAS version: 8.2 (see* |changelog|_\ *)*
 
 .. |changelog| replace:: *changelog*
-.. _changelog: https://changelog.piwik.pro/version-8/release-8-0-0-planned-for-5th-6th-and-7th-march/
+.. _changelog: https://changelog.piwik.pro/version-8/8-2-0-release/
 
 .. toctree::
    :maxdepth: 1
