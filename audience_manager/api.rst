@@ -15,7 +15,7 @@ Configuration:
 
     - String ``XXX-XXX-XXX-XXX-XXX`` should be replaced with :term:`app ID` (e.g.
       ``efcd98a5-335b-48b0-ab17-bf43f1c542be``).
-    - String ``https://your-instance-name.piwik.pro/`` should be replaced with your PPMS instance address. (please note that it's used in 2 places
+    - String ``https://your-instance-name.piwik.pro/`` should be replaced with your PPAS instance address. (please note that it's used in 2 places
       in the snippet).
 
 Code:
@@ -33,7 +33,7 @@ This code initializes the API interface in the following ways:
 
     #. Creates a ``<script>`` tag that asynchronously loads the Audience Manager API library.
     #. Initializes the global ``ppms.am.api`` command queue that schedules commands to be run when the API library is loaded.
-    #. Schedules ``create`` command on ``ppms.am.api`` to initialize the API object with a basic PPMS configuration.
+    #. Schedules ``create`` command on ``ppms.am.api`` to initialize the API object with a basic PPAS configuration.
 
 You can use the API command queue (``ppms.am.api``) immediately after step 3.
 
@@ -52,7 +52,7 @@ Executing the snippet creates the following global function:
 
 Commands
 --------
-All commands work in context of the current :term:`user`. Additionally they require communication with a PPMS server and are
+All commands work in context of the current :term:`user`. Additionally they require communication with a PPAS server and are
 asynchronous. Callback functions are used to provide response value or information about errors.
 
 Get list of audiences user belongs to
