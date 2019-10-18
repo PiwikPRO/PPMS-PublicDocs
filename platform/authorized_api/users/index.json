@@ -4,10 +4,17 @@
     "title": "Users Api",
     "version": "auto"
   },
+  "host": "example.piwik.pro",
+  "schemes": [
+    "https"
+  ],
   "tags": [
     {
       "name": "Users v2"
     }
+  ],
+  "consumes": [
+    "application/vnd.api+json"
   ],
   "definitions": {
     "User_Role": {
@@ -24,6 +31,10 @@
       "description": "Valid user email",
       "format": "email",
       "example": "john@doe.com"
+    },
+    "User_Organization": {
+      "type": "string",
+      "example": "organization_name"
     },
     "User_Password": {
       "type": "string",
@@ -47,6 +58,13 @@
       "description": "Resource type, unique across whole PPAS",
       "example": "ppms/user"
     },
+    "JsonApi_User_Type": {
+      "type": "string",
+      "enum": [
+        "ppms/user"
+      ],
+      "description": "PPMS user resource type"
+    },
     "JsonApi_Resource_Object": {
       "type": "object",
       "properties": {
@@ -62,24 +80,33 @@
       }
     },
     "JsonApi_User": {
-      "type": "object",
       "allOf": [
         {
           "$ref": "#/definitions/JsonApi_Resource_Object"
         },
         {
           "properties": {
+            "type": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/JsonApi_User_Type"
+                }
+              ]
+            },
             "attributes": {
               "type": "object",
               "properties": {
-                "addedAt": {
-                  "$ref": "#/definitions/Date"
+                "email": {
+                  "$ref": "#/definitions/User_Email"
                 },
                 "role": {
                   "$ref": "#/definitions/User_Role"
                 },
-                "email": {
-                  "$ref": "#/definitions/User_Email"
+                "organization": {
+                  "$ref": "#/definitions/User_Organization"
+                },
+                "addedAt": {
+                  "$ref": "#/definitions/Date"
                 }
               }
             }
@@ -136,66 +163,74 @@
       }
     },
     "JsonApi_Change_Role": {
-      "allOf": [
-        {
-          "$ref": "#/definitions/JsonApi_Resource_Object"
-        },
-        {
-          "properties": {
-            "type": {
-              "allOf": [
-                {
-                  "$ref": "#/definitions/JsonApi_Type"
-                },
-                {
-                  "enum": [
-                    "ppms/user"
-                  ]
-                }
-              ]
+      "type": "object",
+      "required": [
+        "data"
+      ],
+      "properties": {
+        "data": {
+          "type": "object",
+          "allOf": [
+            {
+              "$ref": "#/definitions/JsonApi_Resource_Object"
             },
-            "attributes": {
-              "type": "object",
+            {
               "properties": {
-                "role": {
-                  "$ref": "#/definitions/User_Role"
+                "type": {
+                  "allOf": [
+                    {
+                      "$ref": "#/definitions/JsonApi_User_Type"
+                    }
+                  ]
+                },
+                "attributes": {
+                  "type": "object",
+                  "properties": {
+                    "role": {
+                      "$ref": "#/definitions/User_Role"
+                    }
+                  }
                 }
               }
             }
-          }
+          ]
         }
-      ]
+      }
     },
     "JsonApi_Change_Password": {
-      "allOf": [
-        {
-          "$ref": "#/definitions/JsonApi_Resource_Object"
-        },
-        {
-          "properties": {
-            "type": {
-              "allOf": [
-                {
-                  "$ref": "#/definitions/JsonApi_Type"
-                },
-                {
-                  "enum": [
-                    "ppms/user"
-                  ]
-                }
-              ]
+      "type": "object",
+      "required": [
+        "data"
+      ],
+      "properties": {
+        "data": {
+          "type": "object",
+          "allOf": [
+            {
+              "$ref": "#/definitions/JsonApi_Resource_Object"
             },
-            "attributes": {
-              "type": "object",
+            {
               "properties": {
-                "newPassword": {
-                  "$ref": "#/definitions/User_Role"
+                "type": {
+                  "allOf": [
+                    {
+                      "$ref": "#/definitions/JsonApi_User_Type"
+                    }
+                  ]
+                },
+                "attributes": {
+                  "type": "object",
+                  "properties": {
+                    "newPassword": {
+                      "$ref": "#/definitions/User_Password"
+                    }
+                  }
                 }
               }
             }
-          }
+          ]
         }
-      ]
+      }
     }
   },
   "responses": {
@@ -204,6 +239,9 @@
     },
     "Not_Found": {
       "description": "Not Found"
+    },
+    "No_Content": {
+      "description": "No content"
     }
   },
   "paths": {
@@ -214,9 +252,6 @@
         ],
         "summary": "Create user",
         "operationId": "api_user_add_v2",
-        "consumes": [
-          "application/vnd.api+json"
-        ],
         "produces": [
           "application/vnd.api+json"
         ],
@@ -290,7 +325,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Details of an user",
+            "description": "OK",
             "schema": {
               "$ref": "#/definitions/JsonApi_User_Object"
             }
@@ -303,12 +338,9 @@
         "tags": [
           "Users v2"
         ],
-        "produces": [
-          "application/vnd.api+json"
-        ],
         "responses": {
           "204": {
-            "description": "Successful deletion of an user"
+            "$ref": "#/responses/No_Content"
           },
           "400": {
             "$ref": "#/responses/Bad_Request"
@@ -335,12 +367,6 @@
         ],
         "summary": "Change user role",
         "operationId": "api_users_change_role_v2",
-        "consumes": [
-          "application/vnd.api+json"
-        ],
-        "produces": [
-          "application/vnd.api+json"
-        ],
         "parameters": [
           {
             "name": "User with role",
@@ -353,7 +379,7 @@
         ],
         "responses": {
           "204": {
-            "description": "Successful change of a role"
+            "$ref": "#/responses/No_Content"
           },
           "400": {
             "$ref": "#/responses/Bad_Request"
@@ -371,12 +397,6 @@
         ],
         "summary": "Change my password",
         "operationId": "api_me_change_password_v2",
-        "consumes": [
-          "application/vnd.api+json"
-        ],
-        "produces": [
-          "application/vnd.api+json"
-        ],
         "parameters": [
           {
             "name": "User with new password",
@@ -389,13 +409,38 @@
         ],
         "responses": {
           "204": {
-            "description": "Successful change of a password"
+            "$ref": "#/responses/No_Content"
           },
           "400": {
             "$ref": "#/responses/Bad_Request"
           },
           "404": {
             "$ref": "#/responses/Not_Found"
+          }
+        }
+      }
+    },
+    "/api/users/v2/me/details": {
+      "get": {
+        "tags": [
+          "Users v2"
+        ],
+        "summary": "Current user details",
+        "operationId": "api_user_details_v2",
+        "produces": [
+          "application/vnd.api+json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "$ref": "#/definitions/JsonApi_User"
+                }
+              }
+            }
           }
         }
       }

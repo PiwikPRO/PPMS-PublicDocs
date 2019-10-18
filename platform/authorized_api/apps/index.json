@@ -4,10 +4,17 @@
     "title": "Apps Api",
     "version": "auto"
   },
+  "host": "example.piwik.pro",
+  "schemes": [
+    "https"
+  ],
   "tags": [
     {
       "name": "Apps v2"
     }
+  ],
+  "consumes": [
+    "application/vnd.api+json"
   ],
   "definitions": {
     "App_Name": {
@@ -45,6 +52,16 @@
       "type": "string",
       "description": "Organization to which an app belongs to",
       "example": "default"
+    },
+    "App_Type": {
+      "type": "string",
+      "description": "App type",
+      "example": "web",
+      "enum": [
+        "web",
+        "sharepoint"
+      ],
+      "default": "web"
     },
     "JsonApi_Id": {
       "type": "string",
@@ -119,6 +136,9 @@
                 },
                 "currency": {
                   "$ref": "#/definitions/App_Currency"
+                },
+                "appType": {
+                  "$ref": "#/definitions/App_Type"
                 }
               }
             }
@@ -385,6 +405,12 @@
             "*.example.com",
             "example.com"
           ]
+        },
+        "gdprLocationRecognition": {
+          "type": "boolean",
+          "description": "Use geolocation to detect UE visitors and present consent forms only to them",
+          "default": false,
+          "example": false
         }
       }
     },
@@ -395,6 +421,9 @@
           "properties": {
             "organization": {
               "$ref": "#/definitions/App_Organization"
+            },
+            "appType": {
+              "$ref": "#/definitions/App_Type"
             },
             "addedAt": {
               "$ref": "#/definitions/App_AddedAt"
@@ -479,9 +508,6 @@
         "summary": "App add",
         "description": "It adds app",
         "operationId": "api_app_add_v2",
-        "consumes": [
-          "application/vnd.api+json"
-        ],
         "produces": [
           "application/vnd.api+json"
         ],
@@ -543,9 +569,6 @@
         "summary": "App delete",
         "description": "It deletes app with given ID",
         "operationId": "api_app_delete_v2",
-        "produces": [
-          "application/vnd.api+json"
-        ],
         "parameters": [
           {
             "$ref": "#/parameters/appId"
@@ -567,12 +590,6 @@
         "summary": "App edit",
         "description": "It edits app",
         "operationId": "api_app_edit_v2",
-        "consumes": [
-          "application/vnd.api+json"
-        ],
-        "produces": [
-          "application/vnd.api+json"
-        ],
         "parameters": [
           {
             "$ref": "#/parameters/appId"

@@ -4,6 +4,10 @@
     "title": "Access Control Api",
     "version": "auto"
   },
+  "host": "example.piwik.pro",
+  "schemes": [
+    "https"
+  ],
   "parameters": {
     "Entity_Id": {
       "in": "path",
@@ -29,6 +33,9 @@
     {
       "name": "AccessControl v2"
     }
+  ],
+  "consumes": [
+    "application/vnd.api+json"
   ],
   "definitions": {
     "JsonApi_Id": {
