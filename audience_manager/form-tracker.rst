@@ -19,7 +19,7 @@ All modern browsers: Chrome, Firefox, Safari, Edge. Internet Explorer from versi
 
 Privacy by design
 -----------------
-PPMS follows "Privacy by design" approach to system engineering.
+PPAS follows "Privacy by design" approach to system engineering.
 
 .. warning::
     Form tracker is trying to send its requests using secure **HTTPS** protocol, but **legacy IE browsers** (version 8
@@ -76,8 +76,8 @@ the snippet has to be configured this way:
 
     <script>
         (function(a,d,g,h,b,c,e){a[b]=a[b]||{};a[b][c]=a[b][c]||{};a[b][c][e]=a[b][c][e]||function(){(a[b][c][e].q=a[b][c][e].q||[]).push(arguments)};var f=d.createElement(g);d=d.getElementsByTagName(g)[0];f.async=1;f.src=h;d.parentNode.insertBefore(f,d)})
-        (window,document,"script","https://ppms.example.com/audiences/static/widget/audience-manager.form.min.js","ppms","am","form");
-        ppms.am.form("create", "XXX-XXX-XXX-XXX-XXX", "ppms.example.com", forms_config, options);
+        (window,document,"script","https://your-instance-name.piwik.pro//audiences/static/widget/audience-manager.form.min.js","ppms","am","form");
+        ppms.am.form("create", "XXX-XXX-XXX-XXX-XXX", "your-instance-name.piwik.pro/", forms_config, options);
     </script>
 
 .. versionadded:: 6.3
