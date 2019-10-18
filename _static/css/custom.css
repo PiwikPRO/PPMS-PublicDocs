@@ -220,3 +220,17 @@ ul.react-tabs__tab-list {
 .injected dl:nth-child(2) {
     display: none !important;
 }
+
+
+redoc .params-wrap {
+	table-layout: fixed;
+}
+
+redoc .param-info {
+	word-break: break-all;
+}
+
+redoc .param-name {
+	word-break: break-all;
+	white-space: normal !important;
+}
