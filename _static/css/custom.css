@@ -186,3 +186,16 @@ redoc .background {
 	font-size: 18px;
 	font-weight: bold;
 }
+
+redoc .params-wrap {
+	table-layout: fixed;
+}
+
+redoc .param-info {
+	word-break: break-all;
+}
+
+redoc .param-name {
+	word-break: break-all;
+	white-space: normal !important;
+}
