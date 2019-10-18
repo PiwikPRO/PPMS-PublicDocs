@@ -6,7 +6,7 @@
 Welcome to the Piwik PRO documentation for developers!
 ======================================================
 
-*PPMS version: 6.4 (see* |changelog|_\ *)*
+*PPAS version: 6.4 (see* |changelog|_\ *)*
 
 .. |changelog| replace:: *changelog*
 .. _changelog: https://changelog.piwik.pro/version-6/6-4-0-release/
