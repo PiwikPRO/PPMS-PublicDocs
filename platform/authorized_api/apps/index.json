@@ -356,11 +356,23 @@
           "default": true,
           "example": true
         },
+        "gdprUserModeEnabled": {
+          "type": "boolean",
+          "description": "Gdpr User Mode enabled or disabled for an app",
+          "default": false,
+          "example": false
+        },
         "privacyCookieDomainsEnabled": {
           "type": "boolean",
           "description": "Privacy cookie domains enabled or disabled for an app",
           "default": false,
           "example": false
+        },
+        "privacyCookieExpirationPeriod": {
+          "type": "integer",
+          "description": "Privacy cookie expiration period (in seconds, default is one year)",
+          "default": 31536000,
+          "example": 31536000
         },
         "privacyCookieDomains": {
           "type": "array",
