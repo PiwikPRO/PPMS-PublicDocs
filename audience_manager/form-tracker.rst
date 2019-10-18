@@ -59,7 +59,7 @@ This section describes how to install the Form Tracker client code on your page.
 Using Tag Manager
 `````````````````
 `The Form Tracker tag template <https://help.piwik.pro/audience-manager/capturing-data-forms/>`_ is the recommended way to
-install Form Tracker using PPMS stack.
+install Form Tracker using PPAS stack.
 
 Manual installation
 ```````````````````
@@ -69,8 +69,7 @@ This code should be added near the top of the ``<head>`` tag and before any othe
 the snippet has to be configured this way:
 
 - String ``XXX-XXX-XXX-XXX-XXX`` should be replaced with :term:`app ID` (e.g. ``efcd98a5-335b-48b0-ab17-bf43f1c542be``).
-- String ``ppms.example.com`` should be replaced with your PPMS domain name (please note that it's used in 3 places in
-  the snippet).
+- String ``https://your-instance-name.piwik.pro/`` should be replaced with your PPAS instance address (please note that it's used in 3 places in the snippet).
 
 .. versionchanged:: 6.3
 .. code-block:: html
