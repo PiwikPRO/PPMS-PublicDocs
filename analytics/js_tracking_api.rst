@@ -764,6 +764,9 @@ User ID Management
 ^^^^^^^^^^^^^^^^^^
 User ID enables merging user data that is collected between many devices and browsers.
 
+Setting UserId
+``````````````
+
 You must provide unique user-id for every user. To set user ID for tracked data use ``setUserId`` function::
 
     _paq.push(["setUserId", userID]);
@@ -771,6 +774,14 @@ You must provide unique user-id for every user. To set user ID for tracked data 
 .. describe:: userID
 
     **Required** ``string``  Unique, non-empty permanent ID of the user in application.
+
+Reset UserId
+````````````
+
+When UserId becames unavailable anymore (eg. user logged out) you may clean the value out with ``resetUserId`` function::
+
+    _paq.push(["resetUserId"]);
+
 
 Miscellaneous
 ^^^^^^^^^^^^^

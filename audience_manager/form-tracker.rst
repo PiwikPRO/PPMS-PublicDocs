@@ -45,6 +45,10 @@ them regardless of the configuration. The following data is never sent to the Au
 
 Configuration
 `````````````
+.. versionchanged:: 10.0
+    Loading snippet changed to allow multiple initializations. Tracker will now try to merge configuration of tracked
+    forms as long as ``options`` will allow it (will be identical).
+
 .. versionchanged:: 6.3
 
     Tracked forms are configured using whitelist approach. All forms that should be tracked have to be added to the
@@ -69,13 +73,13 @@ This code should be added near the top of the ``<head>`` tag and before any othe
 the snippet has to be configured this way:
 
 - String ``XXX-XXX-XXX-XXX-XXX`` should be replaced with :term:`app ID` (e.g. ``efcd98a5-335b-48b0-ab17-bf43f1c542be``).
-- String ``https://your-instance-name.piwik.pro/`` should be replaced with your PPAS instance address (please note that it's used in 3 places in the snippet).
+- String ``https://your-instance-name.piwik.pro//`` should be replaced with your PPAS instance address (please note that it's used in 3 places in the snippet).
 
-.. versionchanged:: 6.3
+.. versionchanged:: 10.0
 .. code-block:: html
 
     <script>
-        (function(a,d,g,h,b,c,e){a[b]=a[b]||{};a[b][c]=a[b][c]||{};a[b][c][e]=a[b][c][e]||function(){(a[b][c][e].q=a[b][c][e].q||[]).push(arguments)};var f=d.createElement(g);d=d.getElementsByTagName(g)[0];f.async=1;f.src=h;d.parentNode.insertBefore(f,d)})
+        (function(a,d,g,h,b,c,e){a[b]=a[b]||{};a[b][c]=a[b][c]||{};if(!a[b][c][e]){a[b][c][e]=function(){(a[b][c][e].q=a[b][c][e].q||[]).push(arguments)};var f=d.createElement(g);d=d.getElementsByTagName(g)[0];f.async=1;f.src=h;d.parentNode.insertBefore(f,d)}})
         (window,document,"script","https://your-instance-name.piwik.pro/audiences/static/widget/audience-manager.form.min.js","ppms","am","form");
         ppms.am.form("create", "XXX-XXX-XXX-XXX-XXX", "your-instance-name.piwik.pro", forms_config, options);
     </script>
