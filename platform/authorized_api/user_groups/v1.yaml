@@ -17,10 +17,10 @@ paths:
       produces:
         - application/vnd.api+json
       parameters:
-        -   $ref: '#/parameters/UserGroupsSearch'
-        -   $ref: '#/parameters/UserGroupsSort'
-        -   $ref: '#/parameters/UserGroupsLimit'
-        -   $ref: '#/parameters/UserGroupsOffset'
+        - $ref: '#/parameters/UserGroupsSearch'
+        - $ref: '#/parameters/UserGroupsSort'
+        - $ref: '#/parameters/UserGroupsLimit'
+        - $ref: '#/parameters/UserGroupsOffset'
       responses:
         200:
           description: OK
@@ -47,17 +47,17 @@ paths:
       produces:
         - application/vnd.api+json
       parameters:
-        -   name: Add user group
-            in: body
-            description: Request data to add new user group
-            required: true
-            schema:
-              type: object
-              required:
-                - data
-              properties:
-                data:
-                  $ref: '#/definitions/UserGroup'
+        - name: Add user group
+          in: body
+          description: Request data to add new user group
+          required: true
+          schema:
+            type: object
+            required:
+              - data
+            properties:
+              data:
+                $ref: '#/definitions/UserGroup'
       responses:
         201:
           description: Created
@@ -80,7 +80,7 @@ paths:
       description: Gets specific user group details
       operationId: UserGroupDetails_v1
       parameters:
-        -   $ref: '#/parameters/UserGroupId'
+        - $ref: '#/parameters/UserGroupId'
       responses:
         200:
           description: OK
@@ -103,25 +103,25 @@ paths:
       consumes:
         - application/vnd.api+json
       parameters:
-        -   $ref: '#/parameters/UserGroupId'
-        -   name: Edit user group
-            in: body
-            required: true
-            schema:
-              type: object
-              required:
-                - data
-              properties:
-                data:
-                  allOf:
-                    -   $ref: '#/definitions/UserGroup'
-                    -   type: object
-                        properties:
-                          id:
-                            type: string
-                            format: uuid
-                            description: UUID of edited user group (must match `user_group_id` parameter)
-                            example: 9a67f188-734c-4ba3-8769-912a7e59f3ff
+        - $ref: '#/parameters/UserGroupId'
+        - name: Edit user group
+          in: body
+          required: true
+          schema:
+            type: object
+            required:
+              - data
+            properties:
+              data:
+                allOf:
+                  - $ref: '#/definitions/UserGroup'
+                  - type: object
+                    properties:
+                      id:
+                        type: string
+                        format: uuid
+                        description: UUID of edited user group (must match `user_group_id` parameter)
+                        example: 9a67f188-734c-4ba3-8769-912a7e59f3ff
       responses:
         204:
           description: No Content
@@ -137,7 +137,7 @@ paths:
       description: Deletes user group
       operationId: delete_user_group_v1
       parameters:
-        -   $ref: '#/parameters/UserGroupId'
+        - $ref: '#/parameters/UserGroupId'
       responses:
         204:
           description: No Content
@@ -156,11 +156,11 @@ paths:
       produces:
         - application/vnd.api+json
       parameters:
-        -   $ref: '#/parameters/UserGroupId'
-        -   $ref: '#/parameters/UsersSearch'
-        -   $ref: '#/parameters/UsersSort'
-        -   $ref: '#/parameters/Limit'
-        -   $ref: '#/parameters/Offset'
+        - $ref: '#/parameters/UserGroupId'
+        - $ref: '#/parameters/UsersSearch'
+        - $ref: '#/parameters/UsersSort'
+        - $ref: '#/parameters/Limit'
+        - $ref: '#/parameters/Offset'
       responses:
         200:
           description: OK
@@ -181,11 +181,11 @@ paths:
       produces:
         - application/vnd.api+json
       parameters:
-        -   $ref: '#/parameters/UserGroupId'
-        -   $ref: '#/parameters/UsersSearch'
-        -   $ref: '#/parameters/UsersSort'
-        -   $ref: '#/parameters/Limit'
-        -   $ref: '#/parameters/Offset'
+        - $ref: '#/parameters/UserGroupId'
+        - $ref: '#/parameters/UsersSearch'
+        - $ref: '#/parameters/UsersSort'
+        - $ref: '#/parameters/Limit'
+        - $ref: '#/parameters/Offset'
       responses:
         200:
           description: OK
@@ -206,13 +206,13 @@ paths:
       consumes:
         - application/vnd.api+json
       parameters:
-        -   $ref: '#/parameters/UserGroupId'
-        -   name: Add users to user group
-            in: body
-            description: Request data to add users to user group
-            required: true
-            schema:
-              $ref: '#/definitions/UserIdentifiersList'
+        - $ref: '#/parameters/UserGroupId'
+        - name: Add users to user group
+          in: body
+          description: Request data to add users to user group
+          required: true
+          schema:
+            $ref: '#/definitions/UserIdentifiersList'
       responses:
         204:
           description: No Content
@@ -230,13 +230,13 @@ paths:
       consumes:
         - application/vnd.api+json
       parameters:
-        -   $ref: '#/parameters/UserGroupId'
-        -   name: Remove users from user group
-            in: body
-            description: Request data to remove users from user group
-            required: true
-            schema:
-              $ref: '#/definitions/UserIdentifiersList'
+        - $ref: '#/parameters/UserGroupId'
+        - name: Remove users from user group
+          in: body
+          description: Request data to remove users from user group
+          required: true
+          schema:
+            $ref: '#/definitions/UserIdentifiersList'
       responses:
         204:
           description: No Content
@@ -249,19 +249,20 @@ paths:
 
   /api/user-groups/v1/{user_group_id}/permissions:
     post:
+      deprecated: true
       summary: Set permission group
       description: Sets permission group to entity for user group
       operationId: set_permission_group_for_user_group_v1
       produces:
         - application/vnd.api+json
       parameters:
-        -   $ref: '#/parameters/UserGroupId'
-        -   name: Set permission group
-            in: body
-            description: Request data to set permission group for user group
-            required: true
-            schema:
-              $ref: '#/definitions/SetPermissionGroup'
+        - $ref: '#/parameters/UserGroupId'
+        - name: Set permission group
+          in: body
+          description: Request data to set permission group for user group
+          required: true
+          schema:
+            $ref: '#/definitions/SetPermissionGroup'
       responses:
         204:
           description: No Content
@@ -324,8 +325,8 @@ definitions:
         enum: [ppms/user-group]
       id:
         allOf:
-          -   $ref: '#/definitions/Id'
-          -   readOnly: true
+          - $ref: '#/definitions/Id'
+          - readOnly: true
       attributes:
         type: object
         required:
@@ -338,9 +339,13 @@ definitions:
             type: string
             example: Managers
           created_at:
-            $ref: '#/definitions/CreatedAt'
+            allOf:
+              - $ref: '#/definitions/CreatedAt'
+              - readOnly: true
           updated_at:
-            $ref: '#/definitions/UpdatedAt'
+            allOf:
+              - $ref: '#/definitions/UpdatedAt'
+              - readOnly: true
 
   UsersList:
     type: object
@@ -459,7 +464,7 @@ parameters:
     in: query
     name: limit
     description: Limits the number of returned user groups in response
-    default: 10000
+    default: 10
     type: string
     required: false
 

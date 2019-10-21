@@ -183,16 +183,20 @@ definitions:
         type: array
         items:
           type: object
-          allOf:
-            - $ref: '#/definitions/JsonApi_Resource_Object'
-            - properties:
-                attributes:
-                  type: object
-                  properties:
-                    name:
-                      $ref: '#/definitions/App_Name'
-                    addedAt:
-                      $ref: '#/definitions/App_AddedAt'
+          properties:
+            type:
+              description: Resource type
+              enum: [ppms/app]
+              type: string
+            id:
+              $ref: '#/definitions/JsonApi_Id'
+            attributes:
+              type: object
+              properties:
+                name:
+                  $ref: '#/definitions/App_Name'
+                addedAt:
+                  $ref: '#/definitions/App_AddedAt'
   App_JsonApi:
     type: object
     properties:
@@ -378,7 +382,7 @@ parameters:
     default: ''
 
   app_id:
-    name: appId
+    name: app_id
     in: path
     description: App UUIDv4
     required: true
@@ -431,7 +435,13 @@ paths:
       tags:
         - Apps v2
       summary: Apps list
-      description: Get list of apps
+      description: |
+        Get list of apps<br><br>
+        Full example:
+        ```
+        /api/apps/v2?offset=100&limit=10&search_query=nifty+marketing
+        ```
+        this will list 10 apps starting on 101th matching search query "nifty marketing".
       operationId: api_app_list_v2
       produces:
         - application/vnd.api+json
@@ -467,7 +477,7 @@ paths:
         400:
           description: Bad Request
 
-  /api/apps/v2/{appId}:
+  /api/apps/v2/{app_id}:
     get:
       tags:
         - Apps v2
@@ -520,7 +530,7 @@ paths:
         400:
           description: Bad Request
 
-  /api/apps/v2/{appId}/permissions:
+  /api/apps/v2/{app_id}/permissions:
     get:
       deprecated: true
       tags:
