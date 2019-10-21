@@ -222,12 +222,13 @@ ul.react-tabs__tab-list {
 }
 
 
-redoc .params-wrap {
+redoc table {
 	table-layout: fixed;
 }
 
-redoc .param-info {
+redoc td {
 	word-break: break-all;
+    white-space: normal !important;
 }
 
 redoc .param-name {
