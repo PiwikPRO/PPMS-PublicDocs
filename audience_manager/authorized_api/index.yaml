@@ -21,6 +21,8 @@ definitions:
     $ref: ./definitions/export_data.yaml
   ExportAttribute:
     $ref: ./definitions/export_attribute.yaml
+  AudienceCount:
+    $ref: ./definitions/audience_count.yaml
   ProfileDetails:
     $ref: ./definitions/profile_details.yaml
   ProfileList:
