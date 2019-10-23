@@ -148,13 +148,14 @@ Code::
 
     The fulfilment handler callback (called with result).
 
-    :param Object<string,Object<string,string>> attributes: **Required** Object containing :term:`user`
-        :term:`attributes<attribute>` divided by source.
+    :param Object<string,Object<string,(string|number|Array<string>)>> attributes: **Required** Object containing
+        :term:`user` :term:`attributes<attribute>` divided by source.
 
         - `analytics` - ``Object<string,string>`` Contains :term:`analytics attributes<analytics attribute>` about the
           :term:`user` (e.g. browser name, browser version, country).
-        - `attributes` - ``Object<string,string>`` Contains :term:`custom attributes<custom attribute>` about the
-          :term:`user` (e.g. first name, last name, email).
+        - `attributes` - ``Object<string,(string|number|Array<string>)>``
+          Contains :term:`custom attributes<custom attribute>` about the :term:`user`
+          (e.g. first name, last name, email).
 
         Example::
 
@@ -164,6 +165,8 @@ Code::
                     "country": "us"
                 },
                 "attributes": {
+                    "favourite_brands": ["Alfa Romeo", "Aston Martin"],
+                    "age": 32,
                     "first_name": "James",
                     "last_name": "Bond"
                 }
@@ -192,12 +195,12 @@ Code::
 
 .. describe:: attributes
 
-    **Required** ``Object<string,(string|number|object)>`` Object containing
+    **Required** ``Object<string,(string|number|Array<string>|object)>`` Object containing
     :term:`attributes<attribute>` to update:
 
         - key (``string``) - :term:`attribute` name
-        - value (``string|number|object``) - Value of the :term:`attribute`. System will process it differently
-          depending on its type:
+        - value (``string|number|Array<string>|object``) - Value of the :term:`attribute`. System will process it
+          differently depending on its type:
 
             - ``string`` - overwrite the :term:`attribute` value with the new value. If the :term:`attribute` was not
               used before - creates new ``text`` :term:`attribute`.
@@ -205,12 +208,14 @@ Code::
             - ``number`` - overwrite the :term:`attribute` value with the new value. If the :term:`attribute` was not
               used before - creates new ``numeric`` :term:`attribute`.
 
+            - ``Array<string>`` - overwrite the :term:`attribute` value with the new set of values. If the
+              :term:`attribute` was not used before - creates new ``text`` :term:`attribute` with a list of values.
             - ``object`` - ``ModificationAction`` using following format: ``{action: string, value: (string|number)}``.
               It allows to manipulate :term:`attribute` value using one of the following ``ModificationAction``
               ``action`` values:
 
                 - ``"set"`` - overwrite :term:`attribute` value using the ``ModificationAction`` ``value``. Works
-                  identically to the shorter versions using ``string`` or ``number`` types.
+                  identically to the shorter versions using ``string``, ``number`` or ``Array<string>`` types.
 
                 - ``"add"`` - add the ``ModificationAction`` ``value`` (or ``1``, if not specified) to the
                   :term:`attribute` value.
@@ -222,6 +227,21 @@ Code::
                         * If the :term:`attribute` was not used before - creates new ``numeric`` :term:`attribute` and
                           sets its value to ``0`` before performing action.
 
+                - ``"list-add"`` - add the ``ModificationAction`` ``value`` to the list of :term:`attribute` values or
+                  extend single value :term:`attribute` to a list of values. New value will be a list containing
+                  previous value(s) in addition to the added value.
+
+                    .. note::
+                        * Only string values are allowed on the list or can be extended to a list.
+                        * List values are unique. Adding value that already was on the list will not modify the list.
+
+                - ``"list-remove"`` - remove the ``ModificationAction`` ``value`` from the list of :term:`attribute`
+                  values or delete single value :term:`attribute`. New value will be a list containing previous value(s)
+                  without the removed value.
+
+                    .. note::
+                        * Only string values are allowed on the list.
+
 
     Example::
 
@@ -229,10 +249,19 @@ Code::
             "favourite_color": "black",
             "drink": "Martini",
             "code_number": 7,
+            "aliases": ["Peter", "Conrad", "Patrick", "Bill"],
             "kill_count": {
                 "action": "add",
                 "value": 3,
-            }
+            },
+            "favourite_brands": {
+                "action": "list-add",
+                "value": "Land Rover",
+            },
+            "current_missions": {
+                "action": "list-remove",
+                "value": "Casino Royale",
+            },
         }
 
 .. describe:: options
