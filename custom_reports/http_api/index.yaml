@@ -20,6 +20,12 @@ produces:
 paths:
   /api/analytics/v1/query/:
     $ref: ./paths/query.yaml
+  /api/analytics/v1/sessions/:
+    $ref: ./paths/sessions.yaml
+  /api/analytics/v1/events/:
+    $ref: ./paths/events.yaml
 definitions:
   QueryRequest:
     $ref: ./definitions/query_request.yaml
+  RawDataRequest:
+    $ref: ./definitions/raw_data_request.yaml
