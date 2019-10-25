@@ -1,20 +1,12 @@
 post:
   tags:
-  - Queries
+  - Raw data
   summary:
-    Execute query
+    Fetch sessions
   description: |
-    API that allows querying the database directly. Please note that each
-    request must be authenticated.
-
-    #### Copy definition
-
-    You can use the **View API call definition** option
-    available in Analytics (new) module in each report to get more
-    usage examples based on your existing reports.
-
-    ![View API call definition](../../_static/images/copy-api-call.png)
-
+    API that allows fetching raw sessions from the database (event-level data
+    is not available in this API). Please note that each request must be
+    authenticated.
 
     #### Compression
 
@@ -27,7 +19,7 @@ post:
     type: object
     required: true
     schema:
-      $ref: '#/definitions/QueryRequest'
+      $ref: '#/definitions/RawDataRequest'
   responses:
     200:
       description: OK
@@ -44,10 +36,15 @@ post:
             type: object
             description: Additional results metadata for the query.
             properties:
+              columns:
+                type: array
+                description: List of column IDs returned.
+                items:
+                  type: str
               count:
                 type: integer
                 description: Total number of results available for this query.
-        example: {"data": [[["EU", "Europe"], "Blink", 529437, 128334], [["NA", "North America"], "Blink", 199355, 47171], [["AS", "Asia"], "Blink", 153385, 37308]], "meta": {"count": 42}}
+        example: {"data":[["2132601","2ecf33167d400648","2018-12-03T00:21:03","375x667",[1,"Smartphone"]]],"meta":{"columns":["session_id","visitor_id","timestamp","resolution","device_type"],"count":1999}}
     400:
       description: Bad Request
       schema:
