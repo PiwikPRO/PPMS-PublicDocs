@@ -17,7 +17,7 @@ allOf:
       goals:
         type: object
         description: Tracked goal conversions. Keys of this object are goal ids.
-        example: {5: {'conversion_count':2, 'last_conversion':'2018-01-18T09:01:49'}}
+        example: {5: {'conversion_count':2, 'last_conversion':'2018-01-18T09:01:49', 'revenue': 1, 'last_revenue': 1}}
       ecommerce:
         type: object
         description: Tracked ecommerce conversions. If no conversions are tracked, this object is empty.
@@ -39,6 +39,10 @@ allOf:
             type: float
             description: Total amount of transactions tracked by audience manager.
             example: 13.37
+      generic:
+        type: object
+        description: Generic key-value attributes of the profile.
+        example: {'total_revenue': 1}
       updated_at:
         type: string
         format: date-time
