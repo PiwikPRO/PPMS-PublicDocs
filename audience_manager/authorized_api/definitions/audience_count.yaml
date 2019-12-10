@@ -1,0 +1,10 @@
+type: object
+properties:
+  date:
+    type: string
+    description: Date.
+    example: '2019-10-07'
+  count:
+    type: integer
+    description: Audience count.
+    example: 42

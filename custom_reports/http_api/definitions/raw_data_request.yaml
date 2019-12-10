@@ -7,25 +7,24 @@ properties:
     example: 70236925-724f-404e-b634-7b5633bc0bcc
   columns:
     type: array
-    description: Column definitions for the query.
+    description: |
+      Definitions of additional columns that should be returned (timestamp and
+      identifiers will be returned by default).
     items:
       type: object
       properties:
         column_id:
           type: string
-          description: ID of the column (either a dimension or a metric).
+          description: ID of the dimension column.
         transformation_id:
           type: string
           description: |
-            Optional ID of the transformation. Must be supported by the
-            column that was specified.
-        goal_id:
-          type: integer
-          description: |
-            Optional ID of a goal. Available only for metrics related to goals.
+            Optional ID of the transformation. Must be supported by
+            the column that was specified and must convert the column
+            into another dimension (and not a metric).
       required:
         - column_id
-    example: [{"column_id":"device_type"},{"column_id":"revenue","transformation_id":"sum"}]
+    example: [{"column_id":"resolution"},{"column_id":"device_type"}]
   date_from:
     type: string
     format: date
@@ -51,7 +50,7 @@ properties:
   filters:
     type: object
     description: |
-      Dimension filters for the query.  The top-level object must specify
+      Dimension filters for the query. The top-level object must specify
       AND/OR clause, but any nested objects may either specify another AND/OR
       clause or a single filter.
     properties:
@@ -72,7 +71,7 @@ properties:
           properties:
             column_id:
               type: string
-              description: ID of the column (must be a dimension).
+              description: ID of the dimension column.
             transformation_id:
               type: string
               description: |
@@ -108,70 +107,7 @@ properties:
               required:
                 - operator
                 - value
-          example: {"column_id":"event_title","condition":{"operator":"contains","value":"test"}}
-    required:
-      - operator
-      - conditions
-  metric_filters:
-    type: object
-    description: |
-      Metric filters for the query. The top-level object must specify AND/OR
-      clause, but any nested objects may either specify another AND/OR
-      clause or a single filter.
-    properties:
-      operator:
-        type: string
-        description: Logical operator (AND/OR) for the clause.
-        enum:
-          - and
-          - or
-      conditions:
-        type: array
-        description: List of filters or recursively nested clauses.
-        items:
-          type: object
-          required:
-            - column_id
-            - condition
-          properties:
-            column_id:
-              type: string
-              description: |
-                ID of the column (must be a metric, or a dimension converted
-                to a metric).
-            transformation_id:
-              type: string
-              description: |
-                Optional ID of the transformation. Must be supported by
-                the column that was specified and must convert the column
-                into a metric.
-            goal_id:
-              type: integer
-              description: |
-                Specify a goal ID to calculate the metric using data limited
-                to that goal only. Supported only by goal-related metrics.
-            condition:
-              type: object
-              description: Definition of a the condition for this column.
-              properties:
-                operator:
-                  type: string
-                  description: Filtering operator.
-                  enum:
-                    - eq
-                    - neq
-                    - gt
-                    - gte
-                    - lt
-                    - lte
-                value:
-                  description: Value that should be matched by filter.
-                  type: float
-                  example: 42.5
-              required:
-                - operator
-                - value
-          example: {"column_id":"page_views","condition":{"operator":"eq","value":42}}
+          example: {"column_id":"browser_name","condition":{"operator":"eq","value":"FF"}}
     required:
       - operator
       - conditions
@@ -186,22 +122,12 @@ properties:
     minimum: 1
     maximum: 100000
     description: Number of rows to return.
-  order_by:
-    type: array
-    description: |
-      Array of sorting directives. Each directive is a 2-element array with
-      0-based colum index and direction). You can sort on more than one column.
-      By default sorts descending by the first metric in query.
-    items:
-      type: array
-    example: [[1, "desc"], [2, "asc"]]
   format:
     type: string
     enum:
       - json
       - json-kv
       - csv
-      - xml
     default: json
     description: |
       Data format of a successful response (error responses are always in json).

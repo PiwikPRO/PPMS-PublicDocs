@@ -29,9 +29,10 @@ API_PATH = os.path.join(os.path.dirname(__file__), '_static/api')
 api_definitions = {
     'analytics_tracking_api.json': 'analytics/index.yaml',
     'audience_manager_public_api.json': 'audience_manager/public_api/index.yaml',
-    'platform_users_authorized_api.json': 'platform/authorized_api/users/index.json',
-    'platform_apps_authorized_api.json': 'platform/authorized_api/apps/public_v2.yaml',
     'platform_access_control_authorized_api.json': 'platform/authorized_api/access_control/public_v2.yaml',
+    'platform_apps_authorized_api.json': 'platform/authorized_api/apps/public_v2.yaml',
+    'platform_meta_sites_authorized_api.json': 'platform/authorized_api/meta_sites/public_v1.yaml',
+    'platform_users_authorized_api.json': 'platform/authorized_api/users/public_v2.yaml',
     'platform_user_groups_authorized_api.json': 'platform/authorized_api/user_groups/v1.yaml',
     'audience_manager_authorized_api.json': 'audience_manager/authorized_api/index.yaml',
     'custom_reports_http_api.json': 'custom_reports/http_api/index.yaml'
@@ -75,7 +76,7 @@ author = u'Piwik PRO'
 # built documents.
 #
 # The short X.Y version.
-version = u'9.0'
+version = u'10.1'
 # The full version, including alpha/beta/rc tags.
 release = version
 

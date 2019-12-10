@@ -1,8 +1,5 @@
 swagger: '2.0'
 
-tags:
-  - name: Apps v2
-
 info:
   title: Apps Api
   version: auto
@@ -40,6 +37,12 @@ definitions:
     type: string
     description: When app was added
     example: '2018-07-10T08:50:41+00:00'
+    format: 'date-time'
+
+  App_UpdatedAt:
+    type: string
+    description: When app was edited
+    example: '2018-09-01T10:25:11+00:00'
     format: 'date-time'
 
   App_Organization:
@@ -183,16 +186,22 @@ definitions:
         type: array
         items:
           type: object
-          allOf:
-            - $ref: '#/definitions/JsonApi_Resource_Object'
-            - properties:
-                attributes:
-                  type: object
-                  properties:
-                    name:
-                      $ref: '#/definitions/App_Name'
-                    addedAt:
-                      $ref: '#/definitions/App_AddedAt'
+          properties:
+            type:
+              description: Resource type
+              enum: [ppms/app]
+              type: string
+            id:
+              $ref: '#/definitions/JsonApi_Id'
+            attributes:
+              type: object
+              properties:
+                name:
+                  $ref: '#/definitions/App_Name'
+                addedAt:
+                  $ref: '#/definitions/App_AddedAt'
+                updatedAt:
+                  $ref: '#/definitions/App_UpdatedAt'
   App_JsonApi:
     type: object
     properties:
@@ -369,16 +378,39 @@ parameters:
     type: integer
     default: 10000
 
-  search_query:
-    name: search_query
+  search:
+    name: search
     in: query
     description: App search query
     required: false
     type: string
     default: ''
 
+  search_query:
+    name: search_query
+    in: query
+    description: (deprecated) Use `search` param instead
+    type: string
+    required: false
+    default: ''
+
+  sort:
+    in: query
+    name: sort
+    description: Sort field - can be reversed by adding dash before field name e.g (-name)
+    type: string
+    default: -addedAt
+    required: false
+    enum:
+      - name
+      - addedAt
+      - updatedAt
+      - -name
+      - -addedAt
+      - -updatedAt
+
   app_id:
-    name: appId
+    name: app_id
     in: path
     description: App UUIDv4
     required: true
@@ -408,6 +440,7 @@ parameters:
     required: false
     enum:
       - name
+      - -name
 
   UserGroup_AppPermissionsLimit:
     in: query
@@ -428,10 +461,14 @@ parameters:
 paths:
   /api/apps/v2:
     get:
-      tags:
-        - Apps v2
       summary: Apps list
-      description: Get list of apps
+      description: |
+        Get list of apps<br><br>
+        Full example:
+        ```
+        /api/apps/v2?offset=100&limit=10&sort=name&search=nifty+marketing
+        ```
+        this will list 10 apps ordered ascending by `name` starting on 101th matching search query "nifty marketing".
       operationId: api_app_list_v2
       produces:
         - application/vnd.api+json
@@ -439,6 +476,8 @@ paths:
         - $ref: '#/parameters/offset'
         - $ref: '#/parameters/limit'
         - $ref: '#/parameters/search_query'
+        - $ref: '#/parameters/sort'
+        - $ref: '#/parameters/search'
       responses:
         200:
           description: OK
@@ -446,8 +485,6 @@ paths:
             $ref: '#/definitions/App_List_JsonApi'
 
     post:
-      tags:
-        - Apps v2
       summary: App add
       description: It adds app
       operationId: api_app_add_v2
@@ -467,10 +504,8 @@ paths:
         400:
           description: Bad Request
 
-  /api/apps/v2/{appId}:
+  /api/apps/v2/{app_id}:
     get:
-      tags:
-        - Apps v2
       summary: App details
       description: It gets app details
       operationId: api_apps_details_v2
@@ -487,8 +522,6 @@ paths:
           description: Not Found
 
     delete:
-      tags:
-        - Apps v2
       summary: App delete
       description: It deletes app with given ID
       operationId: api_app_delete_v2
@@ -501,8 +534,6 @@ paths:
           description: Bad Request
 
     patch:
-      tags:
-        - Apps v2
       summary: App edit
       description: It edits app
       operationId: api_app_edit_v2
@@ -520,11 +551,9 @@ paths:
         400:
           description: Bad Request
 
-  /api/apps/v2/{appId}/permissions:
+  /api/apps/v2/{app_id}/permissions:
     get:
       deprecated: true
-      tags:
-        - Apps v2
       summary: App permissions
       description: Get app permissions
       operationId: api_apps_permissions_v2
@@ -546,8 +575,6 @@ paths:
 
   /api/apps/v2/user-group/{user_group_id}/permissions:
     get:
-      tags:
-        - Apps v2
       summary: Apps permission for user group
       description: Get apps permission for user group
       operationId: api_apps_user_group_permissions_v2
