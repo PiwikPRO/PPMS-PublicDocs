@@ -152,7 +152,7 @@ paths:
   /api/users/v2/me/details:
     get:
       deprecated: true
-      description: Use GET /api/v2/me
+      description: Use GET /api/users/v2/me
       summary: Current user details
       operationId: _legacy_api_user_details_v2
       produces:
