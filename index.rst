@@ -11,6 +11,9 @@ Welcome to the Piwik PRO documentation for developers!
 .. |changelog| replace:: *changelog*
 .. _changelog: https://changelog.piwik.pro/version-10/10-0-0-release/
 
+.. meta::
+	:google-site-verification: MbvqEqLW68SvZYkp04VIPXk85GYi1xlMmZimeIePJv8
+
 .. toctree::
    :maxdepth: 1
 
