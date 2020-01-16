@@ -1,6 +1,6 @@
 Commands
 --------
-All commands work in context of the current visitor and website. Additionally they sometimes require communication with a PPAS server and are asynchronous. Callback functions are used to provide response value or information about errors. ``onSuccess(...args)`` callback is always required. ``onFailure(exception)`` callback is optional and if is specified, any error object occurred will be passed as a argument. If not specified, error is reported directly on console output.
+All commands work in context of the current visitor and website. Additionally they sometimes require communication with a PPAS server and are asynchronous. Callback functions are used to provide response value or information about errors. ``onSuccess(...args)`` callback is required, with the exception of ``openConsentForm`` command where it is optional. ``onFailure(exception)`` callback is optional and if is specified, any error object occurred will be passed as a argument. If not specified, error is reported directly on console output.
 
 Get compliance types
 ````````````````````
@@ -196,6 +196,47 @@ Code::
 .. function:: onFulfilled()
 
     **required** The fulfilment handler callback.
+
+.. function:: onRejected(error)
+
+    The rejection handler callback (called with error code). If not specified, exception will be thrown in main stacktrace.
+
+    :param string|object error: **Required** Error code or exception.
+
+Open consent form
+`````````````````````````
+.. versionadded:: 11.1
+Command used to open consent form.
+
+Code::
+
+    ppms.cm.api('openConsentForm', onFulfilled, onRejected);
+    dataLayer.push({'event': 'ppms.cm:openConsentForm', parameters: [onFulfilled, onRejected]});
+
+:func:`dataLayer.push` interface is only for backward compatibility and you can read more about this particular case below. We recommend :func:`ppms.cm.api`.
+
+.. function:: onFulfilled(popupId, consentTypes, consents)
+
+    The fulfilment handler callback.
+
+    :param string popupId: Id of the consent popup.
+
+        Example::
+
+            "ppms_cm_consent_popup_30a851b6-6bf4-45f9-9a53-583401bb5d60"
+
+    :param array<string> consentTypes: Array of consent types.
+
+
+        Example::
+
+            ["analytics", "conversion_tracking", "remarketing"]
+
+    :param array<string> consents: Array list of all given consents.
+
+        Example::
+
+            ["analytics", "remarketing"]
 
 .. function:: onRejected(error)
 
