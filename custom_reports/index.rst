@@ -6,3 +6,4 @@ Custom Reports
 
   columns
   http_api/http_api
+  metrics_mapping
