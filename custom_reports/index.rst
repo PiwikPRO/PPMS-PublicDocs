@@ -7,3 +7,4 @@ Analytics (new)
   columns
   integrations/index.rst
   http_api/http_api
+  metrics_mapping
