@@ -94,7 +94,7 @@
     width: 100%;
     box-sizing: border-box;
     height: 36px;
-  	border: 1px solid #999999;
+    border: 1px solid #999999;
     background-color: #FFFFFF;
     color: #999999;
     font-size: 14px;
@@ -124,5 +124,12 @@
 
   .ppms-popup-button:hover {
     background-color: #338dee;
+  }
+
+  @media (max-height: 360px) {
+    .ppms-popup-box {
+      padding: 20px;
+      min-height: unset;
+    }
   }
 </style>

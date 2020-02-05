@@ -145,4 +145,34 @@
   .ppms-popup-button:hover {
     background-color: #aaa;
   }
+
+  @media (max-width: 560px) {
+    .ppms-popup-image {
+      display: none;
+    }
+
+    .ppms-popup-box {
+      display: flex;
+      align-items: center;
+    }
+
+    .ppms-popup-button {
+      padding: 0 25px;
+      width: auto;
+    }
+  }
+
+  @media (max-height: 490px) {
+    .ppms-popup-image {
+      display: none;
+    }
+
+    .ppms-popup-box {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      min-height: unset;
+      padding: 20px;
+    }
+  }
 </style>
