@@ -1,0 +1,135 @@
+<div class="ppms-popup-overlay">
+  <div class="ppms-popup-box">
+    <span class="ppms-popup-close-button"> <!-- classname must stay as it is, otherwise close button will not work -->
+      <svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+        <g>
+            <path d="M11.125,3 L13,4.875 L9.874,7.999 L13,11.125 L11.125,13 L7.999,9.874 L4.875,13 L3,11.125 L6.125,7.999 L3,4.87L4.875,3 L7.999,6.125 L11.125,3 Z" />
+        </g>
+      </svg>
+    </span>
+    <div class="ppms-popup-content">
+      <h1 class="ppms-popup-header">E-mail only deal!</h1>
+      <h2 class="ppms-popup-subheader">30% discount with our newsletter</h2>
+      <p class="ppms-popup-paragraph">
+        Read the latest industry news and get tips for improving your marketing skills.
+        You'll also want to stay in the know about industry innovations, trends, regulations.
+      </p>
+      <input class="ppms-popup-input" type="email" placeholder="Your e-mail address">
+      <button class="ppms-popup-button">Subscribe now</button>
+    </div>
+  </div>
+</div>
+
+
+<style type="text/css">
+  .ppms-popup-overlay {
+    z-index: 10000;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .ppms-popup-box {
+    max-width: 500px;
+    min-height: 350px;
+    box-sizing: border-box;
+    position: relative;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 28px 32px 32px 32px;
+  }
+
+  .ppms-popup-close-button {
+    z-index: 1000;
+    right: 16px;
+    top: 16px;
+    position: absolute;
+    cursor: pointer;
+    box-sizing: content-box;
+    fill: #000;
+  }
+
+  .ppms-popup-close-button:hover {
+    fill: #999;
+  }
+
+  .ppms-popup-content {
+    font-family: "BlinkMacSystemFont", -apple-system, "Roboto", "Oxygen-Sans", "Ubuntu", "Cantarell", "Helvetica Neue", sans-serif;
+  }
+
+  .ppms-popup-header {
+    text-align: center;
+    font-style: italic;
+    font-size: 48px;
+    line-height: 58px;
+    color: #131313;
+    font-weight: 700;
+    margin: 0;
+  }
+
+  .ppms-popup-subheader {
+    color: #131313;
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 29px;
+    text-align: center;
+    margin-top: 16px;
+  }
+
+  .ppms-popup-paragraph {
+    color: #999999;
+    font-size: 14px;
+    line-height: 18px;
+    margin-top: 24px;
+  }
+
+  .ppms-popup-input {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    height: 36px;
+    border: 1px solid #999999;
+    background-color: #FFFFFF;
+    color: #999999;
+    font-size: 14px;
+    line-height: 16px;
+    margin-top: 24px;
+    padding: 0 10px;
+  }
+
+  .ppms-popup-input::placeholder {
+    color: #999999;
+  }
+
+  .ppms-popup-button {
+    height: 36px;
+    background-color: #107ef1;
+    color: #ffffff;
+    width: 100%;
+    text-transform: uppercase;
+    border: none;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 16px;
+    text-align: center;
+    margin-top: 16px;
+    cursor: pointer;
+  }
+
+  .ppms-popup-button:hover {
+    background-color: #338dee;
+  }
+
+  @media (max-height: 360px) {
+    .ppms-popup-box {
+      padding: 20px;
+      min-height: unset;
+    }
+  }
+</style>
