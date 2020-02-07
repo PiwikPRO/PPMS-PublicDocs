@@ -194,5 +194,3 @@ properties:
 required:
   - website_id
   - columns
-  - date_from
-  - date_to
