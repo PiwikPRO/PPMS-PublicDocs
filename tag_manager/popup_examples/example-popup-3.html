@@ -1,0 +1,166 @@
+<div class="ppms-popup-overlay">
+  <div class="ppms-popup-box">
+    <span class="ppms-popup-close-button"> <!-- classname must stay as it is, otherwise close button will not work -->
+      <svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink">
+        <g>
+          <path d="M11.125,3 L13,4.875 L9.874,7.999 L13,11.125 L11.125,13 L7.999,9.874 L4.875,13 L3,11.125 L6.125,7.999 L3,4.87L4.875,3 L7.999,6.125 L11.125,3 Z" />
+        </g>
+      </svg>
+    </span>
+    <div class="ppms-popup-content">
+      <div class="ppms-popup-image">
+        <svg width="64px" height="56px" viewBox="0 0 64 56" version="1.1" xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink">
+          <g transform="translate(-869.000000, -538.000000)">
+            <g transform="translate(48.000000, 538.000000)">
+              <path d="M871.25,18.25 C870.083328,19.416672 868.666672,20 867,20 C865.333328,20 863.916672,19.416672
+                862.75,18.25 C861.583328,17.083328 861,15.666672 861,14 C861,12.333328 861.583328,10.916672 862.75,9.75
+                C863.916672,8.583328 865.333328,8 867,8 C868.666672,8 870.083328,8.583328 871.25,9.75 C872.416672,
+                10.916672 873,12.333328 873,14 C873,15.666672 872.416672,17.083328 871.25,18.25 Z M881,0 C882.142866,0
+                883.095232,0.388882667 883.857143,1.16666667 C884.619054,1.94445067 885,2.91665733 885,4.08333333 L885,
+                51.9166667 C885,53.0833389 884.619054,54.0555521 883.857143,54.8333333 C883.095232,55.611115 882.142866,
+                56 881,56 L825,56 C823.857137,56 822.904765,55.611115 822.142857,54.8333333 C821.380949,54.0555521 821,
+                53.0833389 821,51.9166667 L821,4.08333333 C821,2.91665733 821.380949,1.94445067 822.142857,1.16666667
+                C822.904765,0.388882667 823.857137,0 825,0 L881,0 Z M866.5625,28.4117647 L881,44 L881,5.76470588 C881,
+                4.58822588 880.368059,4 879.104167,4 L826.895833,4 C825.826384,4 825.194445,4.58822588 825,5.76470588
+                L825,44 L843.375,21.6470588 C844.152784,20.8627388 844.979167,20.4705882 845.854167,20.4705882
+                C846.923617,20.4705882 847.75,20.8137224 848.333333,21.5 L856.208333,30.1764706 L856.791667,30.7647059
+                C857.375,31.1568659 857.909716,31.3529412 858.395833,31.3529412 C858.881951,31.3529412 859.465275,
+                31.1078494 860.145833,30.6176471 L862.770833,28.2647059 C863.451392,27.7745035 864.083333,27.5294118
+                864.666667,27.5294118 C865.444451,27.5294118 866.076383,27.8235294 866.5625,28.4117647 Z" />
+            </g>
+          </g>
+        </svg>
+      </div>
+      <h1 class="ppms-popup-header">Let us help you</h1>
+      <p class="ppms-popup-paragraph">
+        It seems you can't find the product you want. We think that we can help you with that. Our employees are always
+        here ready to help you. We'll do our best to find a perfect product for you.The more you know, the more you put
+        yourself in your prospects' shoes.
+      </p>
+      <div class="ppms-popup-button-wrapper">
+        <button class="ppms-popup-button ppms-popup-button-accept">Sure, let's talk!</button>
+        <button class="ppms-popup-button ppms-popup-button-reject">Nah, I'm fine</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<style type="text/css">
+  .ppms-popup-overlay {
+    z-index: 10000;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .ppms-popup-box {
+    width: 550px;
+    min-height: 474px;
+    box-sizing: border-box;
+    position: relative;
+    background-color: #fff;
+    padding: 32px;
+  }
+
+  .ppms-popup-close-button {
+    z-index: 1000;
+    right: 8px;
+    top: 8px;
+    position: absolute;
+    cursor: pointer;
+    box-sizing: content-box;
+    fill: #999;
+  }
+
+  .ppms-popup-close-button:hover {
+    fill: #666;
+  }
+
+  .ppms-popup-content {
+    font-family: "BlinkMacSystemFont", -apple-system, "Roboto", "Oxygen-Sans", "Ubuntu", "Cantarell", "Helvetica Neue", sans-serif;
+  }
+
+  .ppms-popup-image {
+    width: 100%;
+    height: 180px;
+    background-color: #e6f7ff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    fill: #107EF1;
+  }
+
+  .ppms-popup-header {
+    text-align: left;
+    color: #000;
+    font-size: 46px;
+    font-weight: bold;
+    margin: 16px 0;
+  }
+
+  .ppms-popup-paragraph {
+    color: #999;
+    font-size: 14px;
+    line-height: 18px;
+    margin-bottom: 32px;
+  }
+
+  .ppms-popup-button-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    margin: -8px;
+  }
+
+  .ppms-popup-button {
+    height: 36px;
+    flex: 1 1 235px;
+    font-size: 15px;
+    font-weight: bold;
+    line-height: 18px;
+    text-align: center;
+    padding: 0px;
+    margin: 8px;
+    cursor: pointer;
+  }
+
+  .ppms-popup-button-accept {
+    background-color: #1c80eb;
+    color: #fff;
+    border: none;
+  }
+
+  .ppms-popup-button-accept:hover {
+    background-color: #338dee;
+  }
+
+  .ppms-popup-button-reject {
+    background-color: #fff;
+    color: #666;
+    border: 1px solid #999;
+  }
+
+  .ppms-popup-button-reject:hover {
+    background-color: #eee;
+  }
+
+  @media (max-width: 560px), (max-height: 480px) {
+    .ppms-popup-image {
+      display: none;
+    }
+
+    .ppms-popup-box {
+      display: flex;
+      align-items: center;
+      min-height: unset;
+    }
+  }
+</style>
