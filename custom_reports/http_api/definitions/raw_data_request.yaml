@@ -134,3 +134,20 @@ properties:
 required:
   - website_id
   - columns
+example:
+  website_id: 70236925-724f-404e-b634-7b5633bc0bcc
+  columns:
+    - column_id: resolution
+    - column_id: device_type
+  date_from: '2020-02-10'
+  date_to: '2020-02-10'
+  filters:
+    operator: and
+    conditions:
+      - column_id: browser_name
+        condition:
+          operator: eq
+          value: FF
+  offset: 0
+  limit: 100
+  format: json

@@ -208,3 +208,33 @@ properties:
 required:
   - website_id
   - columns
+example:
+  website_id: 70236925-724f-404e-b634-7b5633bc0bcc
+  columns:
+    - column_id: device_type
+    - column_id: revenue
+      transformation_id: sum
+  date_from: '2020-02-10'
+  date_to: '2020-02-10'
+  filters:
+    operator: and
+    conditions:
+      - column_id: event_title
+        condition:
+          operator: contains
+          value: test
+  metric_filters:
+    operator: and
+    conditions:
+      - column_id: page_views
+        condition:
+          operator: eq
+          value: 42
+  offset: 0
+  limit: 100
+  order_by:
+    - - 1
+      - desc
+    - - 2
+      - asc
+  format: json
