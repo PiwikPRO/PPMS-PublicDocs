@@ -205,7 +205,7 @@ Code::
 
 Open consent form
 `````````````````````````
-.. versionadded:: 11.1
+.. versionadded:: 12.0
 Command used to open consent form.
 
 Code::
