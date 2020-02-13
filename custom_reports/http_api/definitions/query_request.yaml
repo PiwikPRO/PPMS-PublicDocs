@@ -29,11 +29,25 @@ properties:
   date_from:
     type: string
     format: date
-    description: Start date for the query (inclusive).
+    description: Start date for the query (inclusive). Cannot be used with relative_date field at
+      the same time. Mandatory if ``relative_date`` is not used.
   date_to:
     type: string
     format: date
-    description: End date for the query (inclusive).
+    description: End date for the query (inclusive). Cannot be used with ``relative_date`` field at
+      the same time. Mandatory if ``relative_date`` is not used.
+  relative_date:
+    type: string
+    enum:
+      - today
+      - yesterday
+      - last_week
+      - last_month
+      - last_year
+      - last_X_days
+    description: Use relative date in query. Cannot be used with absolute date fields at
+      the same time. ``X`` in ``last_X_days`` must be in range 1 <= ``X`` <= 365. Mandatory if
+      absolute date fields are not used.
   filters:
     type: object
     description: |
@@ -194,5 +208,33 @@ properties:
 required:
   - website_id
   - columns
-  - date_from
-  - date_to
+example:
+  website_id: 70236925-724f-404e-b634-7b5633bc0bcc
+  columns:
+    - column_id: device_type
+    - column_id: revenue
+      transformation_id: sum
+  date_from: '2020-02-10'
+  date_to: '2020-02-10'
+  filters:
+    operator: and
+    conditions:
+      - column_id: event_title
+        condition:
+          operator: contains
+          value: test
+  metric_filters:
+    operator: and
+    conditions:
+      - column_id: page_views
+        condition:
+          operator: eq
+          value: 42
+  offset: 0
+  limit: 100
+  order_by:
+    - - 1
+      - desc
+    - - 2
+      - asc
+  format: json
