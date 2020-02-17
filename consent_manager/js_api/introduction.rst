@@ -9,6 +9,7 @@ Consent Manager provides JavaScript API that allows the user to:
     * Set compliance settings
     * Get compliance settings
     * Send data subject request
+    * .. versionadded:: 12.0 Open consent form
 
 JavaScript API is implemented by providing global JavaScript objects queue responsible for executing command:
 
