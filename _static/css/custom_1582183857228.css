@@ -238,15 +238,15 @@ body {
     overflow-x: initial !important;
 }
 
-.rst-content code {
+redoc .redoc-json code {
     border: none !important;
     background: none !important;
 }
 
-.rst-content .token.punctuation {
+redoc .redoc-json .token.punctuation {
     color: white !important;
 }
 
-.rst-content .collapser {
+redoc .redoc-json .collapser {
     color: white !important;
 }
