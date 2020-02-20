@@ -199,8 +199,6 @@ input.search-input {
 }
 
 .redoc-wrap {
-    max-height: 600px;
-    overflow: auto;
     margin-bottom: 20px;
 }
 
@@ -234,4 +232,8 @@ redoc td {
 redoc .param-name {
 	word-break: break-all;
 	white-space: normal !important;
+}
+
+body {
+    overflow-x: initial !important;
 }
