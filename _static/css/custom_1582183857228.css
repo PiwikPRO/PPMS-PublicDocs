@@ -237,3 +237,16 @@ redoc .param-name {
 body {
     overflow-x: initial !important;
 }
+
+.rst-content code {
+    border: none !important;
+    background: none !important;
+}
+
+.rst-content .token.punctuation {
+    color: white !important;
+}
+
+.rst-content .collapser {
+    color: white !important;
+}
