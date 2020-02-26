@@ -1,7 +1,7 @@
 Metrics Mapping
 ===============
 
-Names of metrics used in API are different in Analytics classic and Analytics new. If you’re migrating to the Analytics new API then below metrics mapping table will be handfull to you. You can find there a list of metrics used in Analytics classic and their corresponding names in the Analytics new.
+Names of metrics used in API are different in Analytics classic and Analytics new. If you’re migrating to the Analytics new API then below metrics mapping table will be helpful to you. You can find there a list of metrics used in Analytics classic and their corresponding names in the Analytics new.
 
 Simple Metrics
 --------------
