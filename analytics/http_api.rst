@@ -1,3 +1,5 @@
+.. _tracking-api-http:
+
 HTTP API
 ========
 Tracking HTTP API allows sending to analytics information about Visitors page views, events and visits.
