@@ -265,7 +265,7 @@ definitions:
         example: 500
       excludedIps:
         type: array
-        description: List of IPs to blacklist from tracking. You can use wildcards, e.g. ``1.2.3.*`` or ``1.2.*.*``
+        description: List of IPs (IPv4 and IPv6) to blacklist from tracking, e.g ``192.168.0.0`` or ``2607:f0d0:1002:51::4``. You can use wildcards, e.g. ``1.2.3.*``, ``1.2.*.*`` or ``::7:*``
         default: []
         items:
           type: string
@@ -273,6 +273,8 @@ definitions:
           - 192.168.0.0
           - 172.16.0.0
           - 1.2.*.*
+          - 2607:f0d0:1002:51::4
+          - ::7:*
       excludedUrlParams:
         type: array
         description: 'URL query parameters excluded by default from tracking: ``gclid``, ``fb_xd_fragment``, ``fb_comment_id``, ``phpsessid``, ``jsessid``, ``aspsessid``, ``doing_wp_cron``, ``sid`` and ``pk_vid``. Regular expressions such as ``/^sess.*|.*[dD]ate$/`` are supported'
@@ -354,15 +356,26 @@ definitions:
         example: 1
 
 parameters:
-  offset:
-    name: offset
+  Limit:
     in: query
-    description: Offset for pagination
-    required: false
+    name: limit
+    description: Limits the number of returned items
+    default: 10
     type: integer
-    default: 0
+    minimum: 0
+    maximum: 1000
+    required: false
 
-  limit:
+  Offset:
+    in: query
+    name: offset
+    description: Sets offset for list of items
+    default: 0
+    type: integer
+    minimum: 0
+    required: false
+
+  limit_list_apps:
     name: limit
     in: query
     description: Limit for pagination
@@ -442,22 +455,6 @@ parameters:
       - name
       - -name
 
-  UserGroup_AppPermissionsLimit:
-    in: query
-    name: limit
-    description: Limits number of returned items
-    default: 10
-    type: string
-    required: false
-
-  UserGroup_AppPermissionsOffset:
-    in: query
-    name: offset
-    description: Sets offset for list of apps
-    default: 0
-    type: string
-    required: false
-
 paths:
   /api/apps/v2:
     get:
@@ -473,8 +470,8 @@ paths:
       produces:
         - application/vnd.api+json
       parameters:
-        - $ref: '#/parameters/offset'
-        - $ref: '#/parameters/limit'
+        - $ref: '#/parameters/Offset'
+        - $ref: '#/parameters/limit_list_apps'
         - $ref: '#/parameters/search_query'
         - $ref: '#/parameters/sort'
         - $ref: '#/parameters/search'
@@ -562,7 +559,7 @@ paths:
       parameters:
         - $ref: '#/parameters/app_id'
         - $ref: '#/parameters/permissions_limit'
-        - $ref: '#/parameters/offset'
+        - $ref: '#/parameters/Offset'
       responses:
         200:
           description: OK
@@ -584,8 +581,8 @@ paths:
         - $ref: '#/parameters/UserGroup_Id'
         - $ref: '#/parameters/UserGroup_AppPermissionsSearch'
         - $ref: '#/parameters/UserGroup_AppPermissionsSort'
-        - $ref: '#/parameters/UserGroup_AppPermissionsLimit'
-        - $ref: '#/parameters/UserGroup_AppPermissionsOffset'
+        - $ref: '#/parameters/Limit'
+        - $ref: '#/parameters/Offset'
       responses:
         200:
           description: OK
