@@ -242,6 +242,8 @@ paths:
 
             ``ID`` in the parameter name should be replaced with its integer value (e.g. `dimension1`, `dimension2`,
             `dimension999`).
+            
+            It is possible to override action custom dimension by sending ping request with changed value right after tracking request with updated action was sent.
           type: string
           example: blue
         - name: link
