@@ -6,7 +6,7 @@
 Welcome to the Piwik PRO documentation for developers!
 ======================================================
 
-*PPAS version: 11.0 (see* |changelog|_\ *)*
+*PPAS version: 11.1 (see* |changelog|_\ *)*
 
 .. |changelog| replace:: *changelog*
 .. _changelog: https://changelog.piwik.pro/version-11/11-0-0-release/
