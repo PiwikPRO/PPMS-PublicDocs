@@ -1,3 +1,4 @@
+
 swagger: '2.0'
 info:
   title: Users Api
@@ -33,6 +34,12 @@ paths:
     get:
       summary: Get users list
       operationId: api_users_list_v2
+      parameters:
+        - $ref: '#/parameters/Offset'
+        - $ref: '#/parameters/Limit'
+        - $ref: '#/parameters/search_query'
+        - $ref: '#/parameters/sort'
+        - $ref: '#/parameters/search'
       produces:
         - application/vnd.api+json
       responses:
@@ -41,6 +48,8 @@ paths:
           schema:
             type: object
             properties:
+              meta:
+                $ref: '#/definitions/ListMetadata'
               data:
                 type: array
                 items:
@@ -192,6 +201,57 @@ paths:
           $ref: '#/responses/Bad_Request'
         404:
           $ref: '#/responses/Not_Found'
+
+parameters:
+  Offset:
+    in: query
+    name: offset
+    description: Sets offset for list of items
+    default: 0
+    type: integer
+    minimum: 0
+    required: false
+
+  Limit:
+    in: query
+    name: limit
+    description: Limits the number of returned items
+    type: integer
+    default: 10
+    minimum: 0
+    maximum: 1000
+    required: false
+
+  search:
+    name: search
+    in: query
+    description: User search query
+    required: false
+    type: string
+    default: ''
+
+  search_query:
+    name: search_query
+    in: query
+    description: (deprecated) Use `search` param instead
+    type: string
+    required: false
+    default: ''
+
+  sort:
+    in: query
+    name: sort
+    description: Sort field - can be reversed by adding dash before field name e.g (-email)
+    type: string
+    default: -addedAt
+    required: false
+    enum:
+      - email
+      - addedAt
+      - role
+      - -email
+      - -addedAt
+      - -role
 
 definitions:
   User_Role:
@@ -377,6 +437,17 @@ definitions:
                       - $ref: '#/definitions/User_Password'
                   newPassword:
                     $ref: '#/definitions/User_Password'
+
+  ListMetadata:
+    type: object
+    description: Metadata of a listing
+    required:
+      - total
+    properties:
+      total:
+        type: integer
+        description: Total number of items
+        example: 1
 
 responses:
   Bad_Request:
