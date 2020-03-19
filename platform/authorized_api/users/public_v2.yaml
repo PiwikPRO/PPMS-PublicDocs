@@ -33,17 +33,6 @@ paths:
     get:
       summary: Get users list
       operationId: api_users_list_v2
-      parameters:
-        - in: query
-          name: email
-          type: string
-          required: false
-          description: List users by email
-        - in: query
-          name: uuid
-          type: string
-          required: false
-          description: List users by UUID
       produces:
         - application/vnd.api+json
       responses:
