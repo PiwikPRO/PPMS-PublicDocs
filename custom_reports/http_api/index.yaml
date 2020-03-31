@@ -24,8 +24,17 @@ paths:
     $ref: ./paths/sessions.yaml
   /api/analytics/v1/events/:
     $ref: ./paths/events.yaml
+  /api/analytics/v1/goals/:
+    $ref: ./paths/goals.yaml
+  /api/analytics/v1/goals/{id}/:
+    $ref: ./paths/goals_detail.yaml
 definitions:
   QueryRequest:
     $ref: ./definitions/query_request.yaml
   RawDataRequest:
     $ref: ./definitions/raw_data_request.yaml
+  Goal:
+    $ref: ./definitions/goal.yaml
+  GoalDetails:
+    $ref: ./definitions/goal_details.yaml
+

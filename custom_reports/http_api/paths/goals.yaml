@@ -1,0 +1,46 @@
+post:
+  tags:
+    - Goals
+  summary: Create goal
+  description: |
+    Create a new goal.
+    Please note that each request must be authenticated.
+  parameters:
+    - name: body
+      in: body
+      type: object
+      required: true
+      schema:
+        $ref: '#/definitions/Goal'
+  responses:
+    '200':
+      description: OK
+      schema:
+        $ref: '#/definitions/Goal'
+    '400':
+      description: Bad Request
+    '403':
+      description: Forbidden
+get:
+  tags:
+    - Goals
+  summary: List goals
+  description: |
+    Returns a list all goals available for a website.
+    Please note that each request must be authenticated.
+  parameters:
+    - name: website_id
+      in: query
+      description: ID of the website.
+      required: true
+      schema:
+        type: string
+  responses:
+    '200':
+      description: OK
+      schema:
+        type: array
+        items:
+          $ref: '#/definitions/Goal'
+    '403':
+      description: Forbidden

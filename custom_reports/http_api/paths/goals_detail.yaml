@@ -1,0 +1,89 @@
+get:
+  tags:
+    - Goals
+  summary: Get goal
+  description: |
+    Returns a definition of a specific goal.
+    Please note that each request must be authenticated.
+  parameters:
+    - name: website_id
+      in: query
+      description: ID of the website.
+      required: true
+      schema:
+        type: string
+    - name: id
+      in: path
+      required: true
+      description: ID of the goal.
+      schema:
+        type: string
+        format: uuid
+        example: 62c1dc78-35a4-4b54-acd1-6156f814b44c
+  responses:
+    '200':
+      description: OK
+      schema:
+        $ref: '#/definitions/Goal'
+    '403':
+      description: Forbidden
+put:
+  tags:
+    - Goals
+  summary: Update goal
+  description: |
+    Update an existing goal.
+    Please note that each request must be authenticated.
+  parameters:
+    - name: id
+      in: path
+      required: true
+      description: ID of the goal.
+      schema:
+        type: string
+        format: uuid
+        example: 62c1dc78-35a4-4b54-acd1-6156f814b44c
+    - name: body
+      in: body
+      type: object
+      schema:
+        $ref: '#/definitions/Goal'
+      required: true
+  responses:
+    '200':
+      description: OK
+      schema:
+        $ref: '#/definitions/Goal'
+    '400':
+      description: Bad Request
+    '403':
+      description: Forbidden
+delete:
+  tags:
+    - Goals
+  summary: Delete goal
+  description: |
+    Delete the specified goal.
+    Please note that each request must be authenticated.
+  parameters:
+    - name: id
+      in: path
+      required: true
+      description: ID of the goal.
+      schema:
+        type: string
+        format: uuid
+        example: 62c1dc78-35a4-4b54-acd1-6156f814b44c
+    - name: website_id
+      in: query
+      description: ID of the website.
+      required: true
+      schema:
+        type: string
+  responses:
+    '204':
+      description: No Content
+    '403':
+      description: Forbidden
+    '404':
+      description: Not Found

@@ -1,0 +1,12 @@
+type: object
+allOf:
+  - type: object
+    required:
+      - website_id
+    properties:
+      website_id:
+        type: string
+        format: uuid
+        description: ID of the website.
+        example: dde2dc68-b6bb-45ee-9ac2-868b6181e33f
+  - $ref: '#/definitions/GoalDetails'
