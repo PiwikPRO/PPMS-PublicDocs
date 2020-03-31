@@ -1,0 +1,30 @@
+swagger: '2.0'
+info:
+  title: Object managemet HTTP API for Analytics (new).
+  description: |
+    **Authentication is required** to access any of the
+    following endpoints. Please see [Authorization](../../platform/authorized_api_guide.html)
+    documentation for more details.
+
+  version: 'auto'
+host: your-instance-name.piwik.pro
+basePath: /
+schemes:
+  - https
+consumes:
+  - application/json
+  - application/vnd.api+json
+produces:
+  - application/vnd.api+json
+paths:
+  /api/analytics/v1/goals/:
+    $ref: ./paths/goals.yaml
+  /api/analytics/v1/goals/{id}/:
+    $ref: ./paths/goals_detail.yaml
+definitions:
+  Goal:
+    $ref: ./definitions/goal.yaml
+  GoalDetails:
+    $ref: ./definitions/goal_details.yaml
+
+

@@ -36,7 +36,8 @@ api_definitions = {
     'platform_users_authorized_api.json': 'platform/authorized_api/users/public_v2.yaml',
     'platform_user_groups_authorized_api.json': 'platform/authorized_api/user_groups/public_v1.yaml',
     'audience_manager_authorized_api.json': 'audience_manager/authorized_api/index.yaml',
-    'custom_reports_http_api.json': 'custom_reports/http_api/index.yaml'
+    'custom_reports_http_api.json': 'custom_reports/http_api/index.yaml',
+    'custom_reports_object_management_api.json': 'custom_reports/object_management_api/index.yaml',
 }
 
 
