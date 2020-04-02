@@ -85,6 +85,19 @@ Tracking functions
 
     :param number timeout: **Required** Time in seconds in which two visits across domains will be linked. Default is ``180``.
 
+.. function:: getCrossDomainLinkingUrlParameter()
+
+    Returns the query parameter that can be appended to link URLs so cross domain visits can be detected. If your application
+    creates links dynamically, then you'll have to add this query parameter manually to those links (since the JavaScript tracker
+    cannot detect when those links are added).
+
+    Eg:
+
+    ``var url = 'http://myotherdomain.com/?' + piwikTracker.getCrossDomainLinkingUrlParameter(); $element.append('<a href="' + url + '"/>');``
+
+
+
+
 Ecommerce tracking
 ------------------
 

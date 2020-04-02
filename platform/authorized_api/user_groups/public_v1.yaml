@@ -20,7 +20,7 @@ paths:
         - $ref: '#/parameters/UserGroupsSearch'
         - $ref: '#/parameters/UserGroupsSort'
         - $ref: '#/parameters/UserGroupsLimit'
-        - $ref: '#/parameters/UserGroupsOffset'
+        - $ref: '#/parameters/Offset'
       responses:
         200:
           description: OK
@@ -465,15 +465,8 @@ parameters:
     name: limit
     description: Limits the number of returned user groups in response
     default: 10
-    type: string
-    required: false
-
-  UserGroupsOffset:
-    in: query
-    name: offset
-    description: Sets offset for list of user groups in response
-    default: 0
-    type: string
+    type: integer
+    maximum: 1000
     required: false
 
   UsersSearch:
@@ -507,5 +500,6 @@ parameters:
     name: offset
     description: Sets offset for list of items
     default: 0
-    type: string
+    type: integer
+    minimum: 0
     required: false

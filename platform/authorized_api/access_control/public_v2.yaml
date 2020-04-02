@@ -228,8 +228,8 @@ paths:
         - application/vnd.api+json
       parameters:
         - $ref: '#/parameters/AppId'
-        - $ref: '#/parameters/UserGroupsLimit'
-        - $ref: '#/parameters/UserGroupsOffset'
+        - $ref: '#/parameters/Limit'
+        - $ref: '#/parameters/Offset'
         - $ref: '#/parameters/UserGroupsSearch'
         - in: query
           name: sort
@@ -421,7 +421,7 @@ paths:
       produces:
         - application/vnd.api+json
       parameters:
-        - $ref: '#/parameters/Limit'
+        - $ref: '#/parameters/LimitListAppPermissions'
         - $ref: '#/parameters/Offset'
         - $ref: '#/parameters/EntityId'
         - $ref: '#/parameters/UserSearch'
@@ -1090,20 +1090,6 @@ parameters:
     description: Search phrase - search for user group name and user group id
     type: string
     required: false
-  UserGroupsLimit:
-    in: query
-    name: limit
-    description: Limits the number of returned user groups in response
-    default: 10
-    type: string
-    required: false
-  UserGroupsOffset:
-    in: query
-    name: offset
-    description: Sets offset for list of user groups in response
-    default: 0
-    type: string
-    required: false
   EntityId:
     in: path
     name: entity_id
@@ -1116,14 +1102,24 @@ parameters:
     name: limit
     description: Limits the number of returned items
     default: 10
-    type: string
+    type: integer
+    minimum: 0
+    maximum: 1000
+    required: false
+  LimitListAppPermissions:
+    in: query
+    name: limit
+    description: Limits the number of returned items
+    default: 10
+    type: integer
     required: false
   Offset:
     in: query
     name: offset
     description: Sets offset for list of items
     default: 0
-    type: string
+    type: integer
+    minimum: 0
     required: false
   UserGroupSort:
     in: query
