@@ -3,6 +3,13 @@ Metrics Mapping
 
 Names of metrics used in API are different in Analytics classic and Analytics new. If you’re migrating to the Analytics new API then below metrics mapping table will be helpful to you. You can find there a list of metrics used in Analytics classic and their corresponding names in the Analytics new.
 
+.. note::
+    Event dimensions can only be used with metrics calculated for an event dimension. |docs_link|
+
+.. |docs_link| raw:: html
+
+   <a href="https://help.piwik.pro/support/questions/why-cant-i-combine-some-dimensions-and-metrics" target="_blank">Read more.</a>
+
 Simple Metrics
 --------------
 
