@@ -32,7 +32,7 @@ properties:
         description: Specifies if custom dimension is case sensitive or not.
       slot:
         type: integer
-        description: Slot number for custom dimension
+        description: Slot number for custom dimension.
         minimum: 1
         readOnly: true
       extractions:
