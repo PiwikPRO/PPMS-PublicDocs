@@ -10,5 +10,5 @@ Tracking HTTP API allows sending to analytics information about Visitors page vi
 
 .. raw:: html
 
-    <redoc spec-url="../_static/api/analytics_tracking_api.json" expand-responses="" sticky-sidebar="">
+    <redoc spec-url="../_static/api/tracker_tracking_api.json" expand-responses="" sticky-sidebar="">
     </redoc>
