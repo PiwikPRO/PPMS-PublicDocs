@@ -27,7 +27,7 @@ from convert import write_open_api_json
 API_PATH = os.path.join(os.path.dirname(__file__), '_static/api')
 
 api_definitions = {
-    'analytics_tracking_api.json': 'analytics/index.yaml',
+    'tracker_tracking_api.json': 'tracker/index.yaml',
     'audience_manager_public_api.json': 'audience_manager/public_api/index.yaml',
     'platform_access_control_authorized_api.json': 'platform/authorized_api/access_control/public_v2.yaml',
     'platform_apps_authorized_api.json': 'platform/authorized_api/apps/public_v2.yaml',
