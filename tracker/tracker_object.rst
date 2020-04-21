@@ -1,6 +1,8 @@
 .. highlight:: js
 .. default-domain:: js
 
+.. _tracker-tracker-object-functions:
+
 Tracker Object Functions
 ========================
 
