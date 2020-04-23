@@ -1,0 +1,9 @@
+type: object
+description: Describes number of used/available/left slots in a context of session or event.
+properties:
+  available:
+    type: integer
+  used:
+    type: integer
+  left:
+    type: integer
