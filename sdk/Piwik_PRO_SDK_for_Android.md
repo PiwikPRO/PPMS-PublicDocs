@@ -6,7 +6,7 @@ Piwik PRO SDK for Android
 ### Server
 * You need a Piwik PRO account on the cloud or an on-premises setup which your mobile app will communicate with. For details, please visit the [Piwik PRO website](https://piwik.pro).
 * Create a new website (or app) in the Piwik PRO web interface.
-* Copy and note the Website ID from "Settings > Websites" and your server address.
+* Copy and note the Website ID from "Administration > Websites & apps" and your server address.
 
 ### Client
 #### Including the library
@@ -39,7 +39,7 @@ public class YourApplication extends PiwikApplication{
 }
 ```
 
-2\. Manage the ``Tracker`` on your own. To configure the `Tracker` you will need a server address and website ID (you can find it in "Settings > Websites"):
+2\. Manage the ``Tracker`` on your own. To configure the `Tracker` you will need a server address and website ID (you can find it in "Administration > Websites & apps"):
 
 ```java
 public class YourApplication extends Application {

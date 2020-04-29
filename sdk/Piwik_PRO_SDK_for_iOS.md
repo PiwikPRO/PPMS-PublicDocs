@@ -6,7 +6,7 @@ Piwik PRO SDK for iOS
 ### Server
 * You need a Piwik PRO account on the cloud or an on-premises setup which your mobile app will communicate with. For details, please visit the [Piwik PRO website](https://piwik.pro).
 * Create a new website (or app) in the Piwik PRO web interface.
-* Copy and note the Website ID from "Settings > Websites" and your server address.
+* Copy and note the Website ID from "Administration > Websites & apps" and your server address.
 
 ### Client
 #### Including the library
@@ -22,7 +22,7 @@ Then run ``pod install``. In every file you wish to use the PiwikPROSDK, don't f
 
 #### Configuration
 
-To configure the tracker you will need the URL address of your tracking server and website ID (you can find it in *Settings > Websites* on the web interface).
+To configure the tracker you will need the URL address of your tracking server and website ID (you can find it in *Administration > Websites & apps* on the web interface).
 
 Open the *AppDelegate.m* file and add sdk import:
 ```
