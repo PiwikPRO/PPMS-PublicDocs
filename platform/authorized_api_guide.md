@@ -1,21 +1,21 @@
 Authorized API guide
 ========================
 
-## Introduction 
-This page describes how to access Piwik PRO API which uses 
+## Introduction
+This page describes how to access Piwik PRO API which uses
 [client credentials](https://www.oauth.com/oauth2-servers/access-tokens/client-credentials/)
-OAuth grant type for obtaining user token. 
+OAuth grant type for obtaining user token.
 All data is sent and received as JSON and is compliant with [JSON API](http://jsonapi.org/) specification.
 
 ### Obtaining token
 
-If you want to access API for the first time you need to generate your 
+If you want to access API for the first time you need to generate your
 API credentials which then allows you to request for a token that is used for authentication during communication with authorized API.
 
 #### Generate API Credentials
 
 * Login to your account using your email and password.
-* Go to your profile (`Menu` then `My profile`).
+* Go to your profile (`Menu` then `User panel`).
 * On this page click on `API Credentials` tab. This page allows you to manage all your API credentials.
 * Click `Generate new credentials` which will result in new popup. Fill in your custom `credentials name`.
   Name must contains at least 3 characters.
@@ -25,12 +25,12 @@ Those credentials will be valid as long as you will not revoke them in your prof
 
 #### Create access token
 
-Having generated your API Credentials, now you are ready for creating access token that will be used in 
+Having generated your API Credentials, now you are ready for creating access token that will be used in
 communication with API.
 
 Piwik PRO API tokens use [JWT](https://jwt.io/) format.
 
-Make POST call to `https://<domain>/auth/token` with header `Content-Type: application/json` and payload: 
+Make POST call to `https://<domain>/auth/token` with header `Content-Type: application/json` and payload:
 `{ "grant_type": "client_credentials", "client_id": "<client_id>", "client_secret": "<client_secret>" }`.
 
 Response example:
@@ -45,15 +45,15 @@ Since token is a Bearer type, it must be **included in every API call** within h
 ```
 Authorization: Bearer <your_access_token>
 ```
-  
+
 ### Deleting API Credentials
 
 Once you want to revoke the possibility of generating API token using given `CLIENT ID` and `CLIENT SECRET`,
-go to `My profile` and click `Delete` button on selected API credentials.
+go to `User panel` and click `Delete` button on selected API credentials.
 
 ## API usage example
 
-Whatever API call you choose, first remember that you must generate 
+Whatever API call you choose, first remember that you must generate
 [API credentials](#generate-api-credentials) for obtaining client id and secret.
 
 ### API usage example with curl
@@ -78,7 +78,7 @@ curl -X POST 'https://<domain>/auth/token' -H "Content-Type: application/json" -
     "grant_type": "client_credentials",
     "client_id": "your_generated_client_id",
     "client_secret": "your_generated_client_secret"
-}' 
+}'
 ```
 
 Response example:
@@ -118,9 +118,9 @@ curl -X POST 'https://<domain>/api/apps/v2' -H "Authorization: Bearer <your_acce
 
 ```
 
-Note, that you have to replace: 
+Note, that you have to replace:
 * `<domain>` with your PPAS instance URL,
-* `<your_access_token>` with your generated access token 
+* `<your_access_token>` with your generated access token
 
 Response example:
 ```
@@ -190,7 +190,7 @@ curl 'https://<domain>/api/apps/v2/b30e538d-4b05-4a75-ae25-7eb565901f38' -H "Aut
 ```
 
 
->Notice: URL contains `b30e538d-4b05-4a75-ae25-7eb565901f38`. What is it? It is unique ID of an app. 
+>Notice: URL contains `b30e538d-4b05-4a75-ae25-7eb565901f38`. What is it? It is unique ID of an app.
 If you want to update given resource you must specify which one. How to obtain this ID?
 You can obtain ID from response's 'data/id' field when you added an app
 
@@ -247,7 +247,7 @@ Response example:
    }
 }
 ```
- 
+
 #### Update app
 
 Consider you added app, but afterwards you want to change its name.
@@ -269,11 +269,11 @@ curl -X PATCH 'https://<domain>/api/apps/v2/b30e538d-4b05-4a75-ae25-7eb565901f38
 }'
 ```
 
-This request changed app name from `AppName` to `NewAppName`. 
+This request changed app name from `AppName` to `NewAppName`.
 > Notice three things:
 > * `-X PATCH` before URL. It means that this request is available using `HTTP PATCH method`
 > * you have to specify also `data/id` - it's a [JSON API](http://jsonapi.org/) requirement
-> * also `data/type` is required. For example, when you want to work with app resource, specify it's type as `ppms/app` 
+> * also `data/type` is required. For example, when you want to work with app resource, specify it's type as `ppms/app`
 > * you can set only parameters you want to update. For more apps attributes go to [App edit reference](https://developers.piwik.pro/en/latest/platform/authorized_api/apps/apps_api.html#operation/api_app_edit_v2)
 
 API will return `204 No Content` status code with an empty response.
@@ -306,7 +306,7 @@ Depending of what you want to work with, you can import given swagger docs:
 Simply click in Postman: `import -> Import From Link`. Then all of your paths are imported!
 You have to override two things:
 * replace your domain in url
-* add token. Click on `Authorization` tab on chosen API call and then use Bearer Token type. 
+* add token. Click on `Authorization` tab on chosen API call and then use Bearer Token type.
   Paste your token and now you can call API using `SEND` button.
 
 ## FAQ
@@ -315,15 +315,15 @@ Here you can find the most common issues encountered during work with the API
 
 ### API returns `"application/json" is not a valid JSON API Content-Type header, use "application/vnd.api+json" instead"`
 
-Remember, all API calls needs to be created with `Content-Type: application/vnd.api+json` header. 
-If you use `curl` you need to use `-H "Content-Type: application/vnd.api+json"` flag. 
+Remember, all API calls needs to be created with `Content-Type: application/vnd.api+json` header.
+If you use `curl` you need to use `-H "Content-Type: application/vnd.api+json"` flag.
 Postman allows configuring headers with `Header` tab.
 
 ### API returns `JWT not found`
 
 Remember, you need to always use your API token. You need to send it all the time within `Authorization: Bearer <your_access_token>` header.
 If you use `curl` you need to use `-H "Authorization: Bearer <your_access_token>"` flag.
-Postman allows configuring tokens in authorization tab. Choose type `Bearer Token` and paste it there. 
+Postman allows configuring tokens in authorization tab. Choose type `Bearer Token` and paste it there.
 Remember to keep this token secure as it allows access to sensitive data!
 
 ### API returns `Expired JWT Token`
