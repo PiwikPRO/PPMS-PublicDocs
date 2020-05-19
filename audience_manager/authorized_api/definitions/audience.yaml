@@ -25,3 +25,7 @@ properties:
         description: List of audience counts for the last 30 days.
         items:
           $ref: '#/definitions/AudienceCount'
+      is_deleted:
+        type: boolean
+        description: Determines if audience is deleted.
+        example: false
