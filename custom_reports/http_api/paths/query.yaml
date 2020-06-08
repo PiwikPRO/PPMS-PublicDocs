@@ -21,6 +21,12 @@ post:
     When requesting large amount of data, make sure to include
     an **Accept-Encoding: gzip** header to enable
     compression.
+
+
+    #### Cache
+
+    Please note that all query results are cached for 10 minutes.
+
   parameters:
   - name: body
     in: body
