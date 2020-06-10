@@ -77,7 +77,7 @@ author = u'Piwik PRO'
 # built documents.
 #
 # The short X.Y version.
-version = u'12.0'
+version = u'12.1'
 # The full version, including alpha/beta/rc tags.
 release = version
 
@@ -226,6 +226,7 @@ html_theme_options = {
 
 def setup(app):
     app.add_css_file('css/custom_1582183857228.css')
+    app.add_js_file('js/unicornDetector.js')
     app.add_js_file('js/custom.js')
     app.add_js_file('js/redoc.2.0.0-rc.23.min.js')
 
