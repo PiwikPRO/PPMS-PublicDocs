@@ -17,7 +17,7 @@
     var detectedUnicorn = function () {
         let element = document.createElement('div');
         element.className = 'unicorn-found';
-        element.textContent = 'Your browser is using an ad blocker that affects the UI of this website. Turn it off or add this website to the whitelist';
+        element.textContent = 'Your browser is using an ad blocker that affects the UI of this website. Turn it off or add this website to the whitelist.';
         let injectTo = document.querySelectorAll('.wy-nav-content');
         if(injectTo.length === 1) {
             injectTo[0].parentElement.insertBefore(element, injectTo[0]);
