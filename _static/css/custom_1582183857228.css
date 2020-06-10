@@ -168,7 +168,7 @@ dl.post, dl.patch, dl.delete, dl.get, dl.put {
 a.icon.icon-home {
     display: inline-block;
     width: 150px;
-    background: url('../images/pp-logo_white.svgz') no-repeat;
+    background: url('../images/pp-logo_white.svg') no-repeat;
     background-size: contain;
     text-indent: -9999px;
 }
@@ -249,4 +249,12 @@ redoc .redoc-json .token.punctuation {
 
 redoc .redoc-json .collapser {
     color: white !important;
+}
+
+.wy-nav-content-wrap .unicorn-found {
+    background: #FFD000;
+    text-align: center;
+    padding: 8px;
+    font-size: 12px;
+    box-shadow: inset 0 1px 0 0 #ccc, inset 0 -1px 0 0 #ccc;
 }

@@ -226,6 +226,7 @@ html_theme_options = {
 
 def setup(app):
     app.add_css_file('css/custom_1582183857228.css')
+    app.add_js_file('js/unicornDetector.js')
     app.add_js_file('js/custom.js')
     app.add_js_file('js/redoc.2.0.0-rc.23.min.js')
 
