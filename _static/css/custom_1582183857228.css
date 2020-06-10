@@ -168,7 +168,7 @@ dl.post, dl.patch, dl.delete, dl.get, dl.put {
 a.icon.icon-home {
     display: inline-block;
     width: 150px;
-    background: url('../images/pp-logo_white.svgz') no-repeat;
+    background: url('../images/pp-logo_white.svg') no-repeat;
     background-size: contain;
     text-indent: -9999px;
 }
