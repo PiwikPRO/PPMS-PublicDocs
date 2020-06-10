@@ -9,4 +9,5 @@ third-party integrations.
 .. toctree::
   :maxdepth: 2
 
+  google_ads
   google_search_console
