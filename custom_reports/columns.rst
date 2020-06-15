@@ -422,6 +422,7 @@ The table below lists core dimensions that may be used in queries.
     +--------------------------------------+-----------------------------------+-------+----------+--------+--------------------------------------------------------------------------------------------------+
     |Website Name                          |website_name                       |session|[str, str]|false   |website UUID                                                                                      |
     +--------------------------------------+-----------------------------------+-------+----------+--------+--------------------------------------------------------------------------------------------------+
+
 .. note::
     Please note that the number of available custom slots (dimensions,
     variables) depends on your organisation's configuration.
