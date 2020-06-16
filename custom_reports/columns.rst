@@ -69,8 +69,6 @@ Additional metrics may be created using dimension transformations.
     +---------------------------+---------------------------+-------+-----+
     |Unique content interactions|unique_content_interactions|session|int  |
     +---------------------------+---------------------------+-------+-----+
-    |Total revenue              |total_revenue              |session|float|
-    +---------------------------+---------------------------+-------+-----+
     |Goal conversions           |goal_conversions           |session|int  |
     +---------------------------+---------------------------+-------+-----+
     |Ecommerce conversions      |ecommerce_conversions      |session|int  |
