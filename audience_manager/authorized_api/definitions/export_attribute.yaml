@@ -15,4 +15,3 @@ properties:
     - profile
     - attributes
     - analytics
-  example: {"field_type": "profile", "name": "analytics_visitor_id", "field_type": "analytics", "name": "browser_name"}

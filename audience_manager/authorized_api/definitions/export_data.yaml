@@ -24,3 +24,4 @@ properties:
     description: List of columns selected to be exported to the CSV file. If the list is empty, then export all available custom attributes.
     items:
       $ref: '#/definitions/ExportAttribute'
+    example: [{"field_type": "profile", "name": "analytics_visitor_id", "field_type": "analytics", "name": "browser_name"}]
