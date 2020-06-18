@@ -21,6 +21,6 @@ properties:
     - json
   columns:
     type: array
-    description: List of columns selected to be exported to the CSV file. If the list is empty, then export all available attributes.
+    description: List of columns selected to be exported to the CSV file. If the list is empty, then export all available custom attributes.
     items:
       $ref: '#/definitions/ExportAttribute'
