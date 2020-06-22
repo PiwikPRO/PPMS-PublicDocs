@@ -179,6 +179,52 @@ Example of usage::
 
     _paq.push(["addEcommerceItem", "craft-311", "Unicorn Iron on Patch", "Crafts & Sewing", "499", "3"]);
 
+Remove Ecommerce item
+`````````````````````
+To remove an e-commerce item (for example to track changes in the user's cart using ``trackEcommerceCartUpdate``), use
+the ``removeEcommerceItem`` function::
+
+    _paq.push(["removeEcommerceItem", productSKU]);
+
+.. note::
+    This function does not send any data to the :term:`Analytics`. It only prepares E-commerce cart/order state to be
+    sent with `trackEcommerceOrder <Tracking Ecommerce order_>`_ or `trackEcommerceCartUpdate <Updating cart_>`_.
+
+.. describe:: productSKU
+
+    **Required** ``string`` Product stock-keeping unit.
+
+.. warning::
+
+    Product SKU, names and categories should be URL encoded.
+
+.. warning::
+
+    The state of the cart is not maintained across the visit. You must add all products after each page view.
+
+Example of usage::
+
+    _paq.push(["removeEcommerceItem", "craft-311"]);
+
+Clear Ecommerce items
+`````````````````````
+To clear all e-commerce items (for example to track changes in the user's cart using ``trackEcommerceCartUpdate``), use
+the ``clearEcommerceCart`` function::
+
+    _paq.push(["clearEcommerceCart"]);
+
+.. note::
+    This function does not send any data to the :term:`Analytics`. It only prepares E-commerce cart/order state to be
+    sent with `trackEcommerceOrder <Tracking Ecommerce order_>`_ or `trackEcommerceCartUpdate <Updating cart_>`_.
+
+.. warning::
+
+    The state of the cart is not maintained across the visit. You must add all products after each page view.
+
+Example of usage::
+
+    _paq.push(["clearEcommerceCart"]);
+
 Tracking Ecommerce order
 ````````````````````````
 To successfully track the e-commerce order(s) (on the checkout page, for example) use the ``trackEcommerceOrder`` function::
