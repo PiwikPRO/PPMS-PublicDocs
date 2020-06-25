@@ -38,6 +38,11 @@ get:
     - count
     - created_at
     - updated_at
+  - name: include_deleted
+    type: boolean
+    in: query
+    description: Specified if deleted audiences should be included in response.
+    default: false
   responses:
     200:
       description: OK

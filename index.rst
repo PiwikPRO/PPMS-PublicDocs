@@ -6,7 +6,7 @@
 Welcome to the Piwik PRO documentation for developers!
 ======================================================
 
-*PPAS version: 12.0 (see* |changelog|_\ *)*
+*PPAS version: 12.1 (see* |changelog|_\ *)*
 
 .. |changelog| replace:: *changelog*
 .. _changelog: https://changelog.piwik.pro/version-12/12-0-0-release/
@@ -19,6 +19,7 @@ Welcome to the Piwik PRO documentation for developers!
 
    custom_reports/index
    analytics/index
+   tracker/index
    audience_manager/index
    consent_manager/index
    tag_manager/index

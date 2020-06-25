@@ -1,0 +1,34 @@
+[
+    [
+        "CONTENT",
+        "Content"
+    ],
+    [
+        "MIXED",
+        "Mixed"
+    ],
+    [
+        "SEARCH",
+        "Search"
+    ],
+    [
+        "SEARCH_PARTNERS",
+        "Search Partners"
+    ],
+    [
+        "UNKNOWN",
+        "Unknown"
+    ],
+    [
+        "UNSPECIFIED",
+        "Unspecified"
+    ],
+    [
+        "YOUTUBE_SEARCH",
+        "YouTube Search"
+    ],
+    [
+        "YOUTUBE_WATCH",
+        "YouTube Watch"
+    ]
+]
