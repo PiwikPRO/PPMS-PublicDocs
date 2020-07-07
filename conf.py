@@ -33,6 +33,7 @@ api_definitions = {
     'platform_apps_authorized_api.json': 'platform/authorized_api/apps/public_v2.yaml',
     'platform_meta_sites_authorized_api.json': 'platform/authorized_api/meta_sites/public_v1.yaml',
     'platform_modules_authorized_api.json': 'platform/authorized_api/modules/public_v1.yaml',
+    'platform_tracker_settings_authorized_api.json': 'platform/authorized_api/tracker_settings/public_v1.yaml',
     'platform_users_authorized_api.json': 'platform/authorized_api/users/public_v2.yaml',
     'platform_user_groups_authorized_api.json': 'platform/authorized_api/user_groups/public_v1.yaml',
     'audience_manager_authorized_api.json': 'audience_manager/authorized_api/index.yaml',
@@ -77,7 +78,7 @@ author = u'Piwik PRO'
 # built documents.
 #
 # The short X.Y version.
-version = u'12.1'
+version = u'13.0'
 # The full version, including alpha/beta/rc tags.
 release = version
 
