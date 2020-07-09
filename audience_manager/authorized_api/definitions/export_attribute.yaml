@@ -3,17 +3,15 @@ properties:
   name:
     type: string
     description: Name of the attribute.
-    example: 'browser_config'
   field_type:
     type: string
     description: |
       Type of the attribute:
 
-        - ``profile`` - Profile identifiers of the user (e.g. analytics visitor id, email, device id, user id)
-        - ``analytics`` - Analytics attributes about the user (e.g. browser name, browser version, country)
-        - ``attributes`` - Custom attributes about the user (e.g. first name, last name, email)
+        - ``profile`` - Profile identifiers of the user, choices: <code>analytics_visitor_id</code>, <code>analytics_visitor_ids</code>, <code>email</code>, <code>user_id</code>, <code>device_ids</code>
+        - ``analytics`` - Analytics attributes about the user, e.g. <code>browser_name</code>, <code>device_type</code>, <code>country</code>
+        - ``attributes`` - Custom attributes about the user
     enum:
     - profile
     - attributes
     - analytics
-    example: 'analytics'

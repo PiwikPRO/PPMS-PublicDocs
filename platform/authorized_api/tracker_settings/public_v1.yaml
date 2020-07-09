@@ -1,0 +1,184 @@
+openapi: 3.0.2
+info:
+  title: Tracker settings API
+  version: auto
+paths:
+  /api/tracker/v1/settings/app/global:
+    get:
+      summary: Get global, tracker related settings of apps
+      responses:
+        200:
+          description: OK
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/TrackerGlobalAppSettings'
+    patch:
+      summary: Edit global, tracker related settings of apps
+      requestBody:
+        required: true
+        content:
+          application/vnd.api+json:
+            schema:
+              $ref: '#/components/schemas/TrackerGlobalAppSettings'
+      responses:
+        204:
+          description: No Content
+        400:
+          description: Bad Request
+          content:
+            'application/vnd.api+json':
+              schema:
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/FormErrorObject'
+                example:
+                  errors:
+                    - status: '400'
+                      code: error.default
+                      title: Invalid form
+                      detail: "Invalid anonymization level '13.5', available are: [0, 1, 2, 3]"
+                      source:
+                        pointer: /data/attributes/anonymize_visitor_ip_level
+                    - status: '400'
+                      code: error.not-blank
+                      title: Invalid form
+                      detail: This value should not be blank.
+                      source:
+                        pointer: /data/type
+components:
+  schemas:
+    UpdatedAt:
+      type: string
+      format: 'date-time'
+      description: Timestamp of object's last modification
+      readOnly: true
+    TrackerGlobalAppSettings:
+      type: object
+      required: [data]
+      properties:
+        data:
+          type: object
+          required: [type, id, attributes]
+          properties:
+            type:
+              type: string
+              enum: [tracker/settings/app/global]
+            id:
+              type: string
+              enum: [global]
+            attributes:
+              type: object
+              properties:
+                updated_at:
+                  $ref: '#/components/schemas/UpdatedAt'
+                anonymize_visitor_ip_level:
+                  enum: [0, 1, 2, 3]
+                  description: Anonymize 'n' octets of Visitors IP addresses
+                  default: 0
+                  example: 2
+                excluded_ips:
+                  type: array
+                  description: List of IPs to blacklist from tracking. You can use wildcards, e.g. ``1.2.3.*`` or ``1.2.*.*``
+                  default: []
+                  items:
+                    type: string
+                  example:
+                    - 192.168.0.0
+                    - 172.16.0.0
+                    - 1.2.*.*
+                excluded_url_params:
+                  type: array
+                  description: |
+                    URL query parameters excluded by default from tracking: ``gclid``, ``fb_xd_fragment``, ``fb_comment_id``,
+                    ``phpsessid``, ``jsessid``, ``aspsessid``, ``doing_wp_cron``, ``sid`` and ``pk_vid``.
+                    Regular expressions such as ``/^sess.*|.*[dD]ate$/`` are supported'
+                  default: []
+                  items:
+                    type: string
+                  example:
+                    - pl_medium
+                    - pk_source
+                    - fb_comment_id
+                    - /^sess.*|.*[dD]ate$/
+                excluded_user_agents:
+                  type: array
+                  description: If the visitor's user agent string contains any of the strings you specify, the visitor will be excluded from tracking
+                  default: []
+                  items:
+                    type: string
+                  example:
+                    - Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0
+                    - Opera/9.80 (Windows NT 6.2; Win64; x64) Presto/2.12 Version/12.16
+                site_search_query_params:
+                  type: array
+                  description: Site search query params for an app
+                  default: [q,query,s,search,searchword,keyword]
+                  items:
+                    type: string
+                site_search_category_params:
+                  type: array
+                  description: Site search category params for an app
+                  default: []
+                  items:
+                    type: string
+                visitor_geolocation_based_on_anonymized_ip:
+                  type: boolean
+                  description: When set visitor geolocation calculation is based on anonymized IP instead of real one
+                  default: false
+    FormErrorObject:
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/ErrorObject'
+        - required:
+            - status
+            - title
+            - code
+            - source
+            - detail
+          properties:
+            detail:
+              type: string
+              description: >
+                a human-readable explanation specific to this occurrence of the problem.
+                Like `title`, this field’s value can be localized
+              example: This field is invalid
+            source:
+              type: object
+              description: >
+                an object containing references to the source of the error, optionally including any of the
+                following members: [pointer, parameter]
+              properties:
+                pointer:
+                  type: string
+                  example: /data/attributes/name
+                  description: >
+                    a JSON Pointer [RFC6901] to the associated entity in the request document
+                    [e.g. '/data' for a primary data object, or '/data/attributes/name' for a specific attribute]
+                parameter:
+                  type: string
+                  example: offset
+                  description: a string indicating which URI query parameter caused the error
+    ErrorObject:
+      type: object
+      required:
+        - status
+        - title
+        - code
+      properties:
+        status:
+          type: string
+          description: the HTTP status code applicable to this problem, expressed as a string value
+          example: '400'
+        code:
+          type: string
+          description: an application-specific error code, expressed as a string value
+          example: error.default
+        title:
+          type: string
+          description: >
+            a short, human-readable summary of the problem that SHOULD NOT change from occurrence
+            to occurrence of the problem, except for purposes of localization
+          example: Invalid form

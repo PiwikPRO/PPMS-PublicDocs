@@ -113,6 +113,26 @@ Ecommerce tracking
     :param string price: **Optional** String with product price.
     :param string quantity: **Optional** String with product quantity.
 
+.. function:: removeEcommerceItem(productSKU)
+
+    The function that removes ecommerce item, can be used when removing items from cart.
+
+    :param string productSKU: **Required** String with product stock-keeping unit.
+
+.. function:: clearEcommerceCart()
+
+    The function that clears all ecommerce items, can be used when cart is deleted.
+
+.. function:: getEcommerceItems()
+
+    The function that returns all ecommerce items, can be used to check state of tracked cart.
+
+    Response example:
+
+        {"craft-311":["craft-311","Unicorn Iron on Patch","Crafts & Sewing","499","3"]}
+
+    :returns: Object containing all tracked items (format: ``Object<productSKU, Array[productSKU, productName, productCategory, price, quantity]>``).
+
 .. function:: trackEcommerceOrder(orderId, orderGrandTotal[, orderSubTotal, orderTax, orderShipping, orderDiscount])
 
     The function that tracks Ecommerce order, also tracks all items previously added.

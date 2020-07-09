@@ -1,0 +1,22 @@
+[
+    [
+        "BROAD",
+        "Broad"
+    ],
+    [
+        "EXACT",
+        "Exact"
+    ],
+    [
+        "PHRASE",
+        "Phrase"
+    ],
+    [
+        "UNKNOWN",
+        "Unknown"
+    ],
+    [
+        "UNSPECIFIED",
+        "Unspecified"
+    ]
+]
