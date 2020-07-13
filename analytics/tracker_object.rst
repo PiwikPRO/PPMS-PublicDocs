@@ -327,7 +327,7 @@ User ID
 
     :param string userId: **Required** Unique, non-empty string preserved for each user.
 
-.. function:: regetUserId()
+.. function:: resetUserId()
 
     The function that will reset user ID value.
 
