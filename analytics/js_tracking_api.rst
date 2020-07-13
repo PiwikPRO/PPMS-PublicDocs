@@ -886,7 +886,8 @@ Example of usage::
     _paq.push(["setTimingDataSamplingOnPageLoad", 30]); // enables 30% data sampling (only around 30% of all tracked actions will collect timing data if possible)
     _paq.push(["setTimingDataSamplingOnPageLoad", 100]); // enables 100% data sampling (which means that all tracked actions will collect timing data if possible)
 
-IMPORTANT: in order for this setting to make effect `setTimingDataSamplingOnPageLoad()` should be used before the `trackPageView()` function
+.. note::
+    In order for this setting to make effect `setTimingDataSamplingOnPageLoad()` should be used before the `trackPageView()` function
 
-IMPORTANT: if enabled, timing data is collected only when page view lasted longer than the time it takes the page to load no partial information is stored, all metrics or nothing
-
+.. note::
+    If enabled, timing data is collected only when page view lasted longer than the time it takes the page to load no partial information is stored, all metrics or nothing
