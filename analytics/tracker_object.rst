@@ -502,26 +502,6 @@ Tracker Configuration
 
     :param string url: **Required** URL that should be loaded.
 
-.. function:: getAttributionInfo()
-
-    The function that will return visitor attribution array (Referrer and Campaign data).
-
-.. function:: getAttributionCampaignName()
-
-    The function that will return the Attribution Campaign name.
-
-.. function:: getAttributionCampaignKeyword()
-
-    The function that will return the Attribution Campaign keywords.
-
-.. function:: getAttributionReferrerTimestamp()
-
-    The function that will return the Attribution Referrer timestamp.
-
-.. function:: getAttributionReferrerUrl()
-
-    The function that will return the Attribution Referrer URL.
-
 .. function:: setCampaignNameKey(name)
 
     The function that will set campaign name parameters.
