@@ -71,9 +71,9 @@ Tracking functions
 .. function:: enableHeartBeatTimer(delay)
 
     When the user will enter a single page during a visit, we will assume that his total time spent on the website was 0 ms.
-    To measure that time more accurately you can use the ``enableHeartBeatTimer`` function::
+    To measure that time more accurately you can use the ``enableHeartBeatTimer`` function
 
-    :param number delay: **Required** Time in seconds between cyclical heartbeat requests, default ``30``
+    :param number delay: **Required** Time in seconds between cyclical heartbeat requests, default ``15``
 
 .. function:: enableCrossDomainLinking()
 
@@ -94,7 +94,7 @@ Ecommerce tracking
 
     :param string productSKU: **Required** String with product stock-keeping unit.
     :param string productName: **Optional** String with product name.
-    :param Array<string> productCategory: **Optional** Product category, can be written as Array with up to 5 elements.
+    :param Array<string>|string productCategory: **Optional** Product category, can be written as Array with up to 5 elements.
     :param string price: **Optional** String with product price.
     :param string quantity: **Optional** String with product quantity.
 
@@ -116,18 +116,21 @@ Ecommerce tracking
 
     :param number grandTotal:  **Required** Order Revenue grand total  - tax, shipping and discount included.
 
-.. function:: setEcommerceView(productSKU[, productName, categoryName, productPrice])
+.. function:: setEcommerceView(productSKU[, productName, productCategory, productPrice])
 
     The function to track product or category page view, must be followed by the ``trackPageView`` function.
 
     :param string productSKU: **Required** String with product stock-keeping unit.
     :param string productName: **Optional** String with product name.
-    :param Array<string> productCategory: **Optional** Product category, can be written as Array with up to 5 elements.
+    :param Array<string>|string productCategory: **Optional** Product category, can be written as Array with up to 5 elements.
     :param string price: **Optional** String with product price.
 
 
 Custom variables
 ----------------
+
+.. deprecated:: 5.5
+    We strongly advise using custom dimensions instead.
 
 .. function:: setCustomVariable(index, name, value, scope)
 
@@ -267,6 +270,24 @@ Tracking Outlink
 
 Tracking Downloads
 ^^^^^^^^^^^^^^^^^^
+
+Default extensions recognized as download
++++++++++++++++++++++++++++++++++++++++++
+
+The following extensions are tracked as download by default:
+
+
++-------+-----+-----+-----+------+-----+-----+-----+------+-----+------+-----+---------+-----+-----+
+| 7z    | aac | arc | arj | apk  | asf | asx | avi | bin  | bz  | bz2  | csv | deb     | dmg | doc |
++-------+-----+-----+-----+------+-----+-----+-----+------+-----+------+-----+---------+-----+-----+
+| exe   | flv | gif | gz  | gzip | hqx | jar | jpg | jpeg | js  | mp2  | mp3 | mp4     | mpg | mov |
++-------+-----+-----+-----+------+-----+-----+-----+------+-----+------+-----+---------+-----+-----+
+| movie | msi | msp | odb | odf  | odg | odp | ods | odt  | ogg | ogv  | pdf | phps    | png | ppt |
++-------+-----+-----+-----+------+-----+-----+-----+------+-----+------+-----+---------+-----+-----+
+| qt    | qtm | ra  | ram | rar  | rpm | sea | sit | tar  | tbz | tbz2 | tgz | torrent | txt | wav |
++-------+-----+-----+-----+------+-----+-----+-----+------+-----+------+-----+---------+-----+-----+
+| wma   | wmv | wpd | xls | xml  | z   | zip |     |      |     |      |     |         |     |     |
++-------+-----+-----+-----+------+-----+-----+-----+------+-----+------+-----+---------+-----+-----+
 
 .. function:: setDownloadClasses(classes)
 
@@ -449,7 +470,7 @@ Tracker Configuration
 .. function:: discardHashTag(enableFilter)
 
     The function that will set tracker to include or remove
-    `URL fragment identifier<https://en.wikipedia.org/wiki/Fragment_identifier>`_ from tracked URLs.
+    `URL fragment identifier <https://en.wikipedia.org/wiki/Fragment_identifier>`_ from tracked URLs.
 
     :param boolean enableFilter: **Required** If set to true, URL fragment identifier will be removed from tracked URLs.
 
@@ -480,13 +501,6 @@ Tracker Configuration
     The function that will force the browser to load URL if the tracked web page was saved as a file.
 
     :param string url: **Required** URL that should be loaded.
-
-.. function:: setHeartBeatTimer(minimumVisitLength, heartBeatDelay)
-
-    The function that sets how long the page has been viewed for if the minimumVisitLength is attained.
-
-    :param number minimumVisitLength: **Required** Minimum visit length in seconds.
-    :param number heartBeatDelay: **Required** Update sever time threshold.
 
 .. function:: getAttributionInfo()
 
