@@ -154,7 +154,7 @@ To add an e-commerce item (for example to track changes in the user's cart using
 
 .. describe:: productCategory
 
-    **Optional** ``array/string`` Product category, can be written as Array with up to 5 elements.
+    **Optional** ``Array<string>|string`` Product category, can be written as Array with up to 5 elements.
 
 .. describe:: productPrice
 
@@ -248,7 +248,7 @@ If you wish to track when the user enters the product site or is browsing produc
 
 .. describe:: productCategory
 
-    **Optional** ``array/string`` Product category, can be written as Array with up to 5 elements.
+    **Optional** ``Array<string>|string`` Product category, can be written as Array with up to 5 elements.
 
 .. describe:: productPrice
 
@@ -269,7 +269,7 @@ Custom Variables
     What's difference between custom variables and dimensions? Maybe some sort of help.center link?
 
 .. deprecated:: 5.5
-    We strongly advise using custom dimensions.
+    We strongly advise using custom dimensions instead.
 
 Adding / Editing Custom Variable
 ````````````````````````````````
@@ -496,7 +496,7 @@ Example of use
 
 Track impression manually
 `````````````````````````
-If you wish to trigger tracking impressions entirely manually, you can use the ``trackContentImpression``
+If you wish to trigger tracking impressions entirely manually, you can use the ``trackContentImpression``::
 
     _paq.push(["trackContentImpression", contentName, contentPiece, contentTarget]);
 
@@ -810,7 +810,7 @@ To measure that time more accurately you can use the ``enableHeartBeatTimer`` fu
 
 .. describe:: beat
 
-    **Required** ``number`` Time in seconds between cyclical heartbeat requests, default ``30``
+    **Required** ``number`` Time in seconds between cyclical heartbeat requests, default ``15``
 
 Example of usage::
 
@@ -897,7 +897,8 @@ Example of usage::
     _paq.push(["setTimingDataSamplingOnPageLoad", 30]); // enables 30% data sampling (only around 30% of all tracked actions will collect timing data if possible)
     _paq.push(["setTimingDataSamplingOnPageLoad", 100]); // enables 100% data sampling (which means that all tracked actions will collect timing data if possible)
 
-IMPORTANT: in order for this setting to make effect `setTimingDataSamplingOnPageLoad()` should be used before the `trackPageView()` function
+.. note::
+    In order for this setting to make effect `setTimingDataSamplingOnPageLoad()` should be used before the `trackPageView()` function
 
-IMPORTANT: if enabled, timing data is collected only when page view lasted longer than the time it takes the page to load no partial information is stored, all metrics or nothing
-
+.. note::
+    If enabled, timing data is collected only when page view lasted longer than the time it takes the page to load no partial information is stored, all metrics or nothing
