@@ -600,3 +600,56 @@ Advanced Usage
     The function that will set tracking requests ``Content-Type`` header. Used when tracking uses the ``"POST"`` method (set by ``setRequestMethod``).
 
     :param string contentType: **Required** Content-Type value to be set.
+
+.. function:: customCrossDomainLinkDecorator(urlDecorator)
+
+    The function that set custom cross domain decorator used on links to pass visitor ID via URL (used by
+    :js:func:`enableCrossDomainLinking`). It will be later parsed by :js:func:`customCrossDomainLinkVisitorIdGetter`.
+
+    :param function urlDecorator: function that will decorate URL with visitor ID passed by URL
+
+    .. function:: urlDecorator(url, value, name)
+
+        Decorator function accepts link URL and visitor ID value and parameter name and returns URL containing
+        visitor ID data.
+
+        :param string url: **Required** Link URL
+        :param string value: **Required** Value of visitor ID that should be passed via URL
+        :param string name: **Required** Name of visitor ID parameter used by tracker (can be set)
+        :return: Decorated URL or ``null`` (no change in URL)
+        :rtype: string|null
+
+    .. note:: Usage example: value send via URL query parameter (equivalent of default implementation).
+
+        .. code-block:: js
+
+            _paq.push(['customCrossDomainLinkDecorator', function(url, value, name) {
+                var parsedUrl = new URL(url);
+                parsedUrl.searchParams.append(name, value);
+                return parsedUrl.href;
+            }]);
+
+.. function:: customCrossDomainLinkVisitorIdGetter(urlParser)
+
+    The function that set custom cross domain URL parser (decorated by function set via
+    :js:func:`customCrossDomainLinkDecorator`). It returns value of visitor ID parsed from page URL (used by
+    :js:func:`enableCrossDomainLinking`).
+
+    :param function urlParser: function that will parse URL and return value of visitor ID passed through it.
+
+    .. function:: urlParser(url, name)
+
+        Parser function that accepts page URL and visitor ID parameter name and returns visitor ID value.
+
+        :param string url: **Required** page URL
+        :param string name: **Required** name of visitor ID param used by tracker (can be set)
+        :return: Visitor ID value (parsed from URL)
+        :rtype: string
+
+    .. note:: Usage example: value send via URL query parameter (equivalent of default implementation).
+
+        .. code-block:: js
+
+            _paq.push(['customCrossDomainLinkVisitorIdGetter', function(url, name) {
+                return (new URL(url)).searchParams.get(name) || '';
+            }]);
