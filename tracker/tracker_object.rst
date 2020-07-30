@@ -619,6 +619,16 @@ Advanced Usage
         :return: Decorated URL or ``null`` (no change in URL)
         :rtype: string|null
 
+    .. note:: Usage example: value send via URL query parameter (equivalent of default implementation).
+
+        .. code-block:: js
+
+            _paq.push(['customCrossDomainLinkDecorator', function(url, value, name) {
+                var parsedUrl = new URL(url);
+                parsedUrl.searchParams.append(name, value);
+                return parsedUrl.href;
+            }]);
+
 .. function:: customCrossDomainLinkVisitorIdGetter(urlParser)
 
     The function that set custom cross domain URL parser (decorated by function set via
@@ -635,3 +645,11 @@ Advanced Usage
         :param string name: **Required** name of visitor ID param used by tracker (can be set)
         :return: Visitor ID value (parsed from URL)
         :rtype: string
+
+    .. note:: Usage example: value send via URL query parameter (equivalent of default implementation).
+
+        .. code-block:: js
+
+            _paq.push(['customCrossDomainLinkVisitorIdGetter', function(url, name) {
+                return (new URL(url)).searchParams.get(name) || '';
+            }]);
