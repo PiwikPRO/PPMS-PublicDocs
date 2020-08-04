@@ -209,7 +209,6 @@ paths:
             Can be used to identify Visitor by the application (e.g. login name, email address or internal
             user ID). See: [Recognizing Visitors](https://help.piwik.pro/analytics/recognizing-visitors/).
 
-            It allows merging visits across different devices (e.g. laptop, tablet and smartphone).
           type: string
           minLength: 1
           example: PhilipFry
@@ -219,8 +218,9 @@ paths:
             Configuration ID.
 
             Semi-unique hash generated for the visitor's browser (based on configuration and installed plugins).
-            This parameter overwrites visitor's `config_id`. For further explanation please read the following article:
-            [Recognizing Visitors](https://help.piwik.pro/analytics/recognizing-visitors/) - the `Fingerprint` section.
+            This parameter overwrites visitor's `visitor_id` sent with `_id` parameter. For further explanation
+            please read the following article:
+            [Recognizing Visitors](https://help.piwik.pro/analytics/recognizing-visitors/) - the `VisitorID` section.
           type: string
           format: hexadecimal
           minLength: 16
@@ -242,7 +242,7 @@ paths:
 
             ``ID`` in the parameter name should be replaced with its integer value (e.g. `dimension1`, `dimension2`,
             `dimension999`).
-            
+
             It is possible to override action custom dimension by sending ping request with changed value right after tracking request with updated action was sent.
           type: string
           example: blue
