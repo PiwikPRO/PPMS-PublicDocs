@@ -83,13 +83,11 @@ definitions:
     properties:
       data:
         type: object
-        properties:
-          type:
-            $ref: '#/definitions/JsonApi_Type'
-          id:
-            $ref: '#/definitions/JsonApi_Id'
-          attributes:
-            $ref: '#/definitions/App_Editable_Attributes'
+        allOf:
+          - $ref: '#/definitions/JsonApi_Resource_Object'
+          - properties:
+              attributes:
+                $ref: '#/definitions/App_Editable_Attributes'
 
   App_NewApp_JsonApi:
     type: object
@@ -98,25 +96,17 @@ definitions:
         type: object
         properties:
           type:
-            type: string
-            description: Resource type
-            example: ppms/app
+            $ref: '#/definitions/JsonApi_Type'
           attributes:
             type: object
             required:
               - name
               - urls
-            properties:
-              name:
-                $ref: '#/definitions/App_Name'
-              urls:
-                $ref: '#/definitions/App_Urls'
-              timezone:
-                $ref: '#/definitions/App_Timezone'
-              currency:
-                $ref: '#/definitions/App_Currency'
-              appType:
-                $ref: '#/definitions/App_Type'
+            allOf:
+              - properties:
+                  appType:
+                    $ref: '#/definitions/App_Type'
+              - $ref: '#/definitions/App_Editable_Attributes'
 
   App_Permissions_JsonApi:
     type: object
