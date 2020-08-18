@@ -11,3 +11,4 @@ third-party integrations.
 
   google_ads
   google_search_console
+  sharepoint

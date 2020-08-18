@@ -1,46 +1,50 @@
 [
     [
         1,
-        "Page view"
+        "Like"
     ],
     [
         2,
-        "Outlink"
+        "Share"
     ],
     [
         3,
-        "Download"
+        "Comment"
     ],
     [
         4,
-        "Search"
+        "Promote"
     ],
     [
         5,
-        "Custom event"
+        "Create"
     ],
     [
         6,
-        "Content impression"
+        "Edit"
     ],
     [
         7,
-        "Content interaction"
+        "Delete"
     ],
     [
         8,
-        "Goal conversion"
+        "Open"
     ],
     [
         9,
-        "Ecommerce conversion"
+        "Upload"
     ],
     [
         10,
-        "Abandoned cart"
+        "Item view"
     ],
     [
         11,
-        "SharePoint"
+        "Item attachment view"
+    ],
+    [
+        12,
+        "Item share"
     ]
 ]
