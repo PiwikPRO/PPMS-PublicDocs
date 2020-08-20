@@ -324,6 +324,11 @@ definitions:
         description: Track only a minimal amount of users data, for which we don't need to gather their consent. Any data points considered as personally identifiable information will not be tracked unless the consent is provided
         default: true
         example: true
+      sharepointIntegration:
+        type: boolean
+        description: Enable sharepoint integration
+        default: false
+        example: false
 
   App_Attributes:
     type: object
