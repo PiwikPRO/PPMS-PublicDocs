@@ -1,0 +1,19 @@
+type: object
+properties:
+  name:
+    type: string
+    description: Name of the attribute.
+    example: 'browser_config'
+  field_type:
+    type: string
+    description: |
+      Type of the attribute:
+
+        - ``profile`` - Profile identifiers of the user (e.g. analytics visitor id, email, device id, user id)
+        - ``analytics`` - Analytics attributes about the user (e.g. browser name, browser version, country)
+        - ``attributes`` - Custom attributes about the user (e.g. first name, last name, email)
+    enum:
+    - profile
+    - attributes
+    - analytics
+    example: 'analytics'

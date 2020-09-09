@@ -1,0 +1,470 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Access Control Api",
+    "version": "auto"
+  },
+  "parameters": {
+    "Entity_Id": {
+      "in": "path",
+      "name": "entityId",
+      "type": "string",
+      "format": "uuid",
+      "required": true,
+      "description": "UUIDv4 identifier of given entity"
+    },
+    "Entity": {
+      "in": "path",
+      "name": "entity",
+      "description": "entity",
+      "type": "string",
+      "required": true,
+      "enum": [
+        "ppms/app",
+        "ppms/user"
+      ]
+    }
+  },
+  "tags": [
+    {
+      "name": "AccessControl v2"
+    }
+  ],
+  "definitions": {
+    "JsonApi_Id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Resource ID",
+      "example": "985ed9d7-b652-47b8-b9cf-c17d62735261"
+    },
+    "JsonApi_Type": {
+      "type": "string",
+      "description": "Resource type, unique across whole PPAS",
+      "example": "ppms/user"
+    },
+    "JsonApi_Resource_Object": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "$ref": "#/definitions/JsonApi_Type"
+        },
+        "id": {
+          "$ref": "#/definitions/JsonApi_Id"
+        },
+        "attributes": {
+          "type": "object"
+        }
+      }
+    },
+    "Entity_Actions_Get_Response": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "allOf": [
+            {
+              "$ref": "#/definitions/JsonApi_Resource_Object"
+            },
+            {
+              "properties": {
+                "attributes": {
+                  "type": "object",
+                  "properties": {
+                    "actions": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      },
+                      "description": "List of available actions for given entity"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      "example": {
+        "data": {
+          "type": "ppms/permission/entity/actions",
+          "id": "50fca71a-e4a7-4480-a612-a9ffbdf0935f",
+          "attributes": {
+            "actions": [
+              "view",
+              "edit",
+              "publish",
+              "delete",
+              "manage"
+            ]
+          }
+        }
+      }
+    },
+    "Entity_Actions_Get_Users_Response": {
+      "type": "object",
+      "properties": {
+        "meta": {
+          "type": "object",
+          "description": "Meta information",
+          "properties": {
+            "total": {
+              "type": "integer",
+              "description": "Number of records found"
+            }
+          }
+        },
+        "data": {
+          "type": "object",
+          "allOf": [
+            {
+              "$ref": "#/definitions/JsonApi_Resource_Object"
+            },
+            {
+              "properties": {
+                "attributes": {
+                  "type": "object",
+                  "properties": {
+                    "actions": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      },
+                      "description": "List of available actions for given entity"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      "example": {
+        "meta": {
+          "total": 2
+        },
+        "data": [
+          {
+            "id": "e0180272-d1f5-4bb5-a7d3-0f1a138eacd5",
+            "type": "ppms/permission/entity",
+            "attributes": {
+              "entityType": "ppms/app"
+            }
+          },
+          {
+            "id": "ccc9c3a4-fd65-4755-900f-2590460aff44",
+            "type": "ppms/permission/entity",
+            "attributes": {
+              "entityType": "ppms/app"
+            }
+          }
+        ]
+      }
+    },
+    "Permission_Group_Get_Response": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "allOf": [
+            {
+              "$ref": "#/definitions/JsonApi_Resource_Object"
+            },
+            {
+              "properties": {
+                "attributes": {
+                  "type": "object",
+                  "properties": {
+                    "permissions": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      },
+                      "description": "List of available actions for given entity"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      "example": {
+        "data": [
+          {
+            "type": "ppms/permissions/user",
+            "id": "8275cf58-93db-4cda-9d11-7262376c2c72",
+            "attributes": {
+              "permissions": [
+                "no-access"
+              ]
+            }
+          }
+        ]
+      }
+    },
+    "Permission_Group_Set_Request": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "ppms/permissions/group"
+          ]
+        },
+        "attributes": {
+          "type": "object",
+          "properties": {
+            "entity": {
+              "type": "string",
+              "enum": [
+                "ppms/app"
+              ]
+            },
+            "entityId": {
+              "type": "string",
+              "format": "uuid",
+              "description": "UUIDv4 identifier of given entity",
+              "example": "94445dcb-4da3-4e24-9f7b-c685aacc5a2a"
+            },
+            "group": {
+              "type": "string",
+              "enum": [
+                "no_access",
+                "view",
+                "edit",
+                "publish",
+                "delete",
+                "manage"
+              ]
+            },
+            "targetUserId": {
+              "type": "string",
+              "format": "uuid",
+              "description": "UUIDv4 identifier of user which will recieve permissions",
+              "example": "94445dcb-4da3-4e24-9f7b-c685aacc5a2a"
+            }
+          }
+        }
+      },
+      "example": {
+        "type": "ppms/permissions/group",
+        "attributes": {
+          "entity": "ppms/app",
+          "entityId": "50fca71a-e4a7-4480-a612-a9ffbdf0935f",
+          "group": "manage",
+          "targetUserId": "8275cf58-93db-4cda-9d11-7262376c2c72"
+        }
+      }
+    },
+    "Global_Actions_Get_Response": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "allOf": [
+            {
+              "$ref": "#/definitions/JsonApi_Resource_Object"
+            },
+            {
+              "properties": {
+                "attributes": {
+                  "type": "object",
+                  "properties": {
+                    "permissions": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      },
+                      "description": "List of global permissions for authorized user"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      "example": {
+        "data": {
+          "id": "ppms/user",
+          "type": "ppms/permissions/global",
+          "attributes": {
+            "permissions": [
+              "delete",
+              "edit"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "paths": {
+    "/api/access-control/v2/entry/{entityId}": {
+      "get": {
+        "tags": [
+          "AccessControl v2"
+        ],
+        "summary": "Entity actions",
+        "description": "Returns granted permissions (actions) to given entity for current user.",
+        "operationId": "get_entity_actions_v2",
+        "produces": [
+          "application/vnd.api+json"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/parameters/Entity_Id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Entity_Actions_Get_Response"
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        }
+      }
+    },
+    "/api/access-control/v2/entry/{entity}/action/{action}": {
+      "get": {
+        "tags": [
+          "AccessControl v2"
+        ],
+        "summary": "Entity actions for users",
+        "description": "Returns users with granted permissions (actions) to given entity.",
+        "operationId": "get_entities_with_action_v2",
+        "produces": [
+          "application/vnd.api+json"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/parameters/Entity"
+          },
+          {
+            "name": "action",
+            "in": "path",
+            "description": "Action of the entity",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Entity_Actions_Get_Users_Response"
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        }
+      }
+    },
+    "/api/access-control/v2/entry/groups/{entity}/{entityId}": {
+      "get": {
+        "tags": [
+          "AccessControl v2"
+        ],
+        "summary": "Permission groups",
+        "description": "Returns permission groups that have masks which are a subset of permission mask for entries of given type.",
+        "operationId": "get_permission_groups_v2",
+        "produces": [
+          "application/vnd.api+json"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/parameters/Entity"
+          },
+          {
+            "$ref": "#/parameters/Entity_Id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Permission_Group_Get_Response"
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        }
+      }
+    },
+    "/api/access-control/v2/entry/group": {
+      "post": {
+        "tags": [
+          "AccessControl v2"
+        ],
+        "summary": "Permission group set",
+        "description": "It sets permission group for given entity (user or app).",
+        "operationId": "set_permission_group_v2",
+        "parameters": [
+          {
+            "name": "permission group request",
+            "in": "body",
+            "description": "set permission group",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "$ref": "#/definitions/Permission_Group_Set_Request"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        }
+      }
+    },
+    "/api/access-control/v2/global/actions": {
+      "get": {
+        "tags": [
+          "AccessControl v2"
+        ],
+        "summary": "Global actions",
+        "description": "It gets actions without specific entity context for given user.",
+        "operationId": "get_global_actions_v2",
+        "produces": [
+          "application/vnd.api+json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Global_Actions_Get_Response"
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        }
+      }
+    }
+  }
+}

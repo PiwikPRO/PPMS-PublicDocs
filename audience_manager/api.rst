@@ -33,7 +33,7 @@ This code initializes the API interface in the following ways:
 
     #. Creates a ``<script>`` tag that asynchronously loads the Audience Manager API library.
     #. Initializes the global ``ppms.am.api`` command queue that schedules commands to be run when the API library is loaded.
-    #. Schedules ``create`` command on ``ppms.am.api`` to initialize the API object with a basic PPMS configuration.
+    #. Schedules ``create`` command on ``ppms.am.api`` to initialize the API object with a basic PPAS configuration.
 
 You can use the API command queue (``ppms.am.api``) immediately after step 3.
 
@@ -151,10 +151,6 @@ Code::
           :term:`user` (e.g. browser name, browser version, country).
         - `attributes` - ``Object<string,string>`` Contains :term:`custom attributes<custom attribute>` about the
           :term:`user` (e.g. first name, last name, email).
-
-        .. todo::
-            Check if we can change label of custom attributes from ``attribute`` to ``custom`` (``field_type`` in HTTPS
-            API and name of container in JS API).
 
         Example::
 

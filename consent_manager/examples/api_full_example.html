@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+  <title>Piwik Pro Tag Manager Custom Consent Implementation</title>
+
+  <!-- Start Piwik PRO Tag Manager custom consent css code -->
+  <link rel="stylesheet" href="https://rawgit.com/djanix/jquery.switcher/master/dist/switcher.css"/>
+  <style>
+    * {
+      font-family: BlinkMacSystemFont, -apple-system, Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+    }
+
+    .consent-container {
+      background: white;
+      display: none;
+      bottom: 0;
+      position: fixed;
+      width: 100%;
+      border-top: 1px solid #e0e0e0;
+      z-index: 10000;
+      color: rgba(0, 0, 0, 0.7);
+      box-sizing: border-box;
+    }
+
+    .consent-content {
+      display: inline-flex;
+      width: 100%;
+    }
+
+    .consent-left {
+      flex: 1 0 0;
+      flex-direction: column;
+      border-right: 1px solid #e0e0e0;
+      font-size: 14px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 0 30px;
+    }
+
+    .consent-right {
+      flex: 3 0 0;
+      box-sizing: border-box;
+      display: flex;
+      opacity: 0.9;
+      padding: 30px;
+      background-color: #f5f5f5;
+      line-height: 16px;
+    }
+
+    .consent-opt-in-button {
+      border-color: rgba(197, 103, 57, 1);
+      background-color: rgba(252, 131, 72, 1);
+      color: #fff;
+      min-width: 120px;
+      font-weight: 600;
+      font-size: 16px;
+      line-height: 17px;
+      text-align: center;
+      border: 1px solid;
+      border-radius: 2px;
+      outline: 0;
+      cursor: pointer;
+      padding: 9px 16px 9px 16px;
+    }
+
+    .consent-link-more {
+      color: #107EF1;
+      font-size: 14px;
+      line-height: 16px;
+      margin-top: 7px;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .consent-bottom {
+      max-height: 0;
+      transition: max-height 0.5s;
+    }
+
+    .consent-items {
+      box-sizing: border-box;
+      position: relative;
+    }
+
+    .consent-items-container {
+      display: flex;
+      flex-direction: column;
+
+    }
+
+    .consent-items-text {
+      margin-left: 10px;
+    }
+
+    .consent-item {
+      display: flex;
+      height: 50px;
+    }
+
+    .consent-item-left {
+      width: 25%;
+      border-right: 1px solid #e0e0e0;
+      box-sizing: border-box;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .consent-item-right {
+      width: 75%;
+      display: flex;
+      align-items: center;
+    }
+
+    .consent-item-right-text {
+      font-size: 14px;
+      margin: 0 30px;
+    }
+
+    .consent-items-description {
+      padding: 20px 0;
+      max-height: 54px;
+      display: inline-flex;
+      width: 100%;
+      border-top: 1px solid #e0e0e0;
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    .consent-items-footer {
+      padding: 20px 0;
+      max-height: 54px;
+      width: 100%;
+      border-top: 1px solid #e0e0e0;
+    }
+
+    label {
+      width: 100%;
+      padding: 0 30px;
+      box-sizing: border-box;
+      font-weight: 500;
+      line-height: 55px;
+      cursor: pointer;
+      margin: 0;
+    }
+
+    .consent-switcher {
+      margin: 10px 10px 10px 0;
+    }
+
+    .consent-blue {
+      background: #107EF1;
+      border: 1px solid #107EF1;
+    }
+  </style>
+  <!-- End Piwik PRO Tag Manager custom consent css code -->
+</head>
+<body>
+
+<!-- PUT HERE CONTAINER JS CODE -->
+
+<!-- Start Piwik PRO Tag Manager custom consent javascript code -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+<script src="https://rawgit.com/djanix/jquery.switcher/master/dist/switcher.js"></script>
+
+<div style="display: none; visibility: hidden;" data-template="consentitem">
+  <div class="consent-item">
+    <div class="consent-item-left">
+      <div>
+        <label>${name}</label>
+      </div>
+      <div class="consent-switcher">
+          <input class="consent-checkbox" type="checkbox" name="consentValues" value="${key}" />
+      </div>
+    </div>
+    <div class="consent-item-right">
+      <div class="consent-item-right-text">
+        ${description}
+      </div>
+    </div>
+  </div>
+</script>
+
+<script>
+  var availableConsents = [
+    {
+      key: 'analytics',
+      name: 'Analytics',
+      description: 'We will store data in an aggregated form about visitors and their experiences on our website. We use this data to fix bugs and improve the experience for all visitors.'
+    },
+    {
+      key: 'ab_testing_and_personalization',
+      name: 'AB Testing',
+      description: 'We will create a cookie in your browser to ensure consistency of our A/B tests. A/B tests are small changes displayed to different groups of visitors. We use the data to create a better experience for all visitors. We will also use this cookie to personalize content for you.'
+    },
+    {
+      key: 'conversion_tracking',
+      name: 'Conversion Tracking',
+      description: 'We will store data about when you complete certain actions on our website to understand better how you use it. We use this data to improve your experience with our site.'
+    },
+    {
+      key: 'marketing_automation',
+      name: 'Marketing Automation',
+      description: 'We will store data to create marketing campaigns for certain groups of visitors.'
+    },
+    {
+      key: 'remarketing',
+      name: 'Remarketing',
+      description: 'We will store data to show you our advertisements (only ours) on other websites relevant to your interests.'
+    },
+    {
+      key: 'user_feedback',
+      name: 'User Feedback',
+      description: 'We will store data in an aggregated form to analyze the performance of our website\'s user interface. We use this data to improve the site for all visitors.'
+    },
+    {
+      key: 'custom_consent',
+      name: 'Custom consent',
+      description: 'Adjust this copy to your needs.'
+    },
+  ];
+
+  var customConsentSolution = {
+    isDetailsOpen: false,
+    containerSelector: '#consent-container',
+    consentBottomSelector: '#consent-bottom',
+    consentLinkMoreSelector: '#consent-link-more',
+    consentItemFooterSelector: '#consent-items-footer',
+    switcherSelector: '.consent-checkbox',
+    optInButton: '.consent-orange',
+    sendConsentButtonSelector: '.consent-blue',
+    itemsSelector: '.consent-items-container',
+    consentTemplate: $('div[data-template="consentitem"]').text().split(/\$\{(.+?)\}/g),
+    switcherElement: null,
+
+    init: function() {
+      $(this.consentLinkMoreSelector).click(this.showDetails.bind(this));
+      $(this.sendConsentButtonSelector).click(this.sendConsents.bind(this, false));
+      $(this.optInButton).click(this.sendConsents.bind(this, true));
+      this.loadConsentList();
+    },
+
+    show: function() {
+      $(self.containerSelector).slideDown(100);
+    },
+
+    hide: function() {
+      $(self.containerSelector).slideUp(100);
+    },
+
+    loadConsentList: function() {
+      ppms.cm.api('getNewComplianceTypes', function(types) {
+        self = customConsentSolution;
+
+        if (types.length > 0) {
+          self.show();
+        }
+
+        $(self.itemsSelector).append(
+          availableConsents
+            .filter(function(element) {
+              return types.join(',').indexOf(element.key) !== -1;
+            })
+            .map(function (item) {
+              return self.consentTemplate.map(self.replaceTemplate(item)).join('');
+            })
+        ).ready(function() {
+          self.switcherElement = $(self.switcherSelector).switcher();
+        });
+
+      }, function(e) {});
+    },
+
+    sendConsents: function(all) {
+        var queryElements = {
+          consents: {},
+        };
+
+        $.each(this.switcherElement, function(index, value) {
+          queryElements.consents[$(value).val()] = {
+            status: all ? 1 : +$(value).prop('checked'),
+          };
+        });
+
+        ppms.cm.api('setComplianceSettings', queryElements, function() {
+          self = customConsentSolution;
+          self.hide();
+        }, function() {
+
+        });
+    },
+
+    showDetails: function() {
+      var detailsScrollHeight = $(this.consentBottomSelector).prop('scrollHeight');
+      var baseScrollHeight = $(this.containerSelector).prop('scrollHeight');
+      var consentItemFooterHeight = $(this.consentItemFooterSelector).prop('scrollHeight');
+
+      $(this.consentBottomSelector).css({
+        maxHeight: baseScrollHeight + detailsScrollHeight + consentItemFooterHeight + "px",
+        overflowY: 'auto',
+        display: 'block',
+      });
+    },
+
+    replaceTemplate: function(props) {
+        return function(token, i) { return (i % 2) ? props[token] : token; };
+    },
+  };
+
+  $(document).ready(customConsentSolution.init.bind(customConsentSolution));
+</script>
+<!-- End Piwik PRO Tag Manager custom consent javascript code -->
+
+
+<!-- Start Piwik PRO Tag Manager custom consent html code -->
+<div class="consent-container" id="consent-container">
+  <div class="consent-content">
+    <div class="consent-left">
+      <button class="consent-opt-in-button consent-orange">Opt-in and let’s go!</button>
+    </div>
+    <div class="consent-right">
+      <div>
+        <h1>[IMPORTANT] You're invited!...</h1>
+        <a class="consent-link-more" id="consent-link-more" href="#">Show more</a>
+      </div>
+    </div>
+  </div>
+  <div class="consent-bottom" id="consent-bottom">
+    <div class="consent-items">
+        <div class="consent-items-description">
+          <div class="consent-items-text">
+            ...to tell us how you want us to handle your data.
+            We'll only use your data for purposes you consent to.
+            Change your mind whenever, we'll adapt to your consent preferences and data requests.
+          </div>
+        </div>
+        <div class="consent-items-container"></div>
+        <div class="consent-items-footer" id="consent-items-footer">
+          <div class="consent-items-text">
+            <button class="consent-opt-in-button consent-blue">Save choices</button>
+          </div>
+        </div>
+    </div>
+  </div>
+</div>
+<!-- End Piwik PRO Tag Manager custom consent code -->
+
+</body>
+</html>
