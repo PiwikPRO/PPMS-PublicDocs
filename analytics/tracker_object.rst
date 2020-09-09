@@ -104,7 +104,7 @@ Ecommerce tracking
 
     :param string orderId: **Required** Unique order ID.
     :param number orderGrandTotal: **Required** Order Revenue grand total  - tax, shipping and discount included.
-    :param number orderSubTotal: **Optional** Order sub total - without shipping.
+    :param number orderSubTotal: **Optional** Order subtotal - without shipping.
     :param number orderTax: **Optional** Order tax amount.
     :param number orderShipping: **Optional** Order shipping costs.
     :param number orderDiscount: **Optional** Order discount amount.
