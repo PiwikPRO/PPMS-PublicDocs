@@ -176,7 +176,7 @@ To add an e-commerce item (for example to track changes in the user's cart using
 
 Example of usage::
 
-    _paq.push(["addEcommerceItem", "craft-311", "Unicorn Iron on Patch", "Crafts & Sewing", "499", "3"]);
+    _paq.push(["addEcommerceItem", "craft-311", "Unicorn Iron on Patch", "Crafts & Sewing", 499, 3]);
 
 Remove Ecommerce item
 `````````````````````
@@ -240,7 +240,7 @@ To successfully track the e-commerce order(s) (on the checkout page, for example
 
 .. describe:: orderSubTotal
 
-    **Optional** ``number`` Order sub total - without shipping.
+    **Optional** ``number`` Order subtotal - without shipping.
 .. describe:: orderTax
 
     **Optional** ``number`` Order tax amount.
@@ -308,7 +308,7 @@ If you wish to track when the user enters the product site or is browsing produc
 
 Example of usage::
 
-    _paq.push(["setEcommerceView", "craft-311", "Unicorn Iron on Patch", "Crafts & Sewing", "499"]);
+    _paq.push(["setEcommerceView", "craft-311", "Unicorn Iron on Patch", "Crafts & Sewing", 499]);
 
 
 Custom Variables
