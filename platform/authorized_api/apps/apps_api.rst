@@ -1,7 +1,6 @@
 Apps API
 ==========
 
-.. openapi:: ../../../_static/api/platform_apps_authorized_api.json
 
 .. raw:: html
 

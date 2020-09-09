@@ -1,7 +1,6 @@
 Users API
 ==========
 
-.. openapi:: ../../../_static/api/platform_users_authorized_api.json
 
 .. raw:: html
 
