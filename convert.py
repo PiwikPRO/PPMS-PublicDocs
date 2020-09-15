@@ -46,7 +46,7 @@ def write_open_api_json(path, file_handler, version=None):
     if version is not None:
         specs['info']['version'] = version
 
-    file_handler.write(json.dumps(specs))
+    file_handler.write(json.dumps(specs, default=str))
 
 
 if __name__ == '__main__':
