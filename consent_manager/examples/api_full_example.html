@@ -241,6 +241,7 @@
       $(this.sendConsentButtonSelector).click(this.sendConsents.bind(this, false));
       $(this.optInButton).click(this.sendConsents.bind(this, true));
       this.loadConsentList();
+      this.setInitialConsents();
     },
 
     show: function() {
@@ -325,8 +326,6 @@
         overflowY: 'auto',
         display: 'block'
       });
-
-      this.setInitialConsents();
     },
 
     replaceTemplate: function(props) {
