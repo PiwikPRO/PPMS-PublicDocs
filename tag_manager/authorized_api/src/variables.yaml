@@ -1,0 +1,164 @@
+openapi: '3.0.0'
+info:
+    title: Tag Manager API
+    description: In order to access those endpoints, you need to **authenticate**. <a href="../../platform/authorized_api_guide.html">Here is a guide on how to do it.</a>
+    version: '1.0'
+
+servers:
+    - url: https://example.piwik.pro
+
+paths:
+    /api/tag/v1/{app_id}/variables:
+        parameters:
+            - $ref: 'common/api/common_request_parameters.json#/components/parameters/app_id'
+
+        get:
+            summary: List of variables
+            parameters:
+                - $ref: 'common/api/common_request_parameters.json#/components/parameters/page[limit]'
+                - $ref: 'common/api/common_request_parameters.json#/components/parameters/page[offset]'
+                - $ref: 'variables/api/variables_request_parameters.json#/components/parameters/filter[name]'
+                - $ref: 'variables/api/variables_request_parameters.json#/components/parameters/filter[variable_type]'
+                - $ref: 'variables/api/variables_request_parameters.json#/components/parameters/filter[builtin]'
+                - $ref: 'variables/api/variables_request_parameters.json#/components/parameters/sort'
+            responses:
+                '200':
+                    description: List of variables
+                    content:
+                        application/vnd.api+json:
+                            schema:
+                                $ref: 'variables/schema/list/variables_list_response_schema.json'
+                            example:
+                                $ref: 'variables/example/list/variables_list_response_example.json'
+                '400':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/bad_request_uri_parameter'
+                '401':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/unauthorized'
+                '404':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/not_found'
+                '500':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/internal_server_error'
+
+        post:
+            summary: Create variable
+            responses:
+                '201':
+                    description: Variable data
+                    content:
+                        application/vnd.api+json:
+                            schema:
+                                $ref: 'variables/schema/create/variables_create_response_schema.json'
+                            example:
+                                $ref: 'variables/example/create/variables_create_response_example.json'
+                '400':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/bad_request'
+                '401':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/unauthorized'
+                '404':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/not_found'
+                '500':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/internal_server_error'
+            requestBody:
+                required: true
+                content:
+                    application/vnd.api+json:
+                        schema:
+                            $ref: 'variables/schema/create/variables_create_request_schema.json'
+                        example:
+                            $ref: 'variables/example/create/variables_create_request_example.json'
+
+    /api/tag/v1/{app_id}/variables/{variable_id}:
+        parameters:
+            - $ref: 'common/api/common_request_parameters.json#/components/parameters/app_id'
+            - $ref: 'variables/api/variables_request_parameters.json#/components/parameters/variable_id'
+
+        get:
+            summary: Get variable
+            responses:
+                '200':
+                    description: Variable data
+                    content:
+                        application/vnd.api+json:
+                            schema:
+                                $ref: 'variables/schema/get/variables_get_response_schema.json'
+                            example:
+                                $ref: 'variables/example/get/variables_get_response_example.json'
+                '400':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/bad_request_uri_parameter'
+                '401':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/unauthorized'
+                '404':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/not_found'
+                '500':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/internal_server_error'
+
+        patch:
+            summary: Edit variable
+            description: It is possible to edit variable's type. Just make a request with a new type and all required attributes from its schema.
+            responses:
+                '204':
+                    description: No content
+                '400':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/bad_request'
+                '401':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/unauthorized'
+                '404':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/not_found'
+                '500':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/internal_server_error'
+            requestBody:
+                required: true
+                content:
+                    application/vnd.api+json:
+                        schema:
+                            $ref: 'variables/schema/edit/variables_edit_request_schema.json'
+                        example:
+                            $ref: 'variables/example/edit/variables_edit_request_example.json'
+
+        delete:
+            summary: Delete variable
+            responses:
+                '204':
+                    description: No content
+                '400':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/bad_request_uri_parameter'
+                '401':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/unauthorized'
+                '404':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/not_found'
+                '500':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/internal_server_error'
+
+    /api/tag/v1/{app_id}/variables/{variable_id}/copy:
+        parameters:
+            - $ref: 'common/api/common_request_parameters.json#/components/parameters/app_id'
+            - $ref: 'variables/api/variables_request_parameters.json#/components/parameters/variable_id'
+
+        post:
+            summary: Copy variable
+            responses:
+                '202':
+                    description: Operation data with new (copied) variable identifier
+                    content:
+                        application/vnd.api+json:
+                            schema:
+                                $ref: 'variables/schema/copy/variables_copy_response_schema.json'
+                            example:
+                                $ref: 'variables/example/copy/variables_copy_response_example.json'
+                '400':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/bad_request'
+                '401':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/unauthorized'
+                '404':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/not_found'
+                '500':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/internal_server_error'
+            requestBody:
+                required: true
+                content:
+                    application/vnd.api+json:
+                        schema:
+                            $ref: 'variables/schema/copy/variables_copy_request_schema.json'
+                        example:
+                            $ref: 'variables/example/copy/variables_copy_request_example.json'
+

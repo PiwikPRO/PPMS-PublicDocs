@@ -1,0 +1,15 @@
+{
+    "definitions": {
+        "changelog_resource_type": {
+            "type": "string",
+            "enum": [
+                "changelog"
+            ],
+            "description": "Changelog resource type"
+        },
+        "changelog_identifier": {
+            "$ref": "../../common/schema/common_types.json#/definitions/uuid",
+            "description": "Changelog identifier"
+        }
+    }
+}

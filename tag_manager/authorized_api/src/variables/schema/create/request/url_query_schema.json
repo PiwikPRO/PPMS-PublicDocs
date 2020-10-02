@@ -1,0 +1,32 @@
+{
+    "type": "object",
+    "properties": {
+        "data": {
+            "title": "JSON:API 1.0 request data",
+            "type": "object",
+            "properties": {
+                "id": {"$ref": "../../variable_types.json#/definitions/variable_identifier"},
+                "type": {"$ref": "../../variable_types.json#/definitions/variable_resource_type"},
+                "attributes": {
+                    "description": "Variable attributes",
+                    "type": "object",
+                    "properties": {
+                        "name": {"$ref": "../../variable_attributes.json#/definitions/variable_name_attribute"},
+                        "value": {
+                            "type": "string",
+                            "enum": ["query"]
+                        },
+                        "variable_type": {"$ref": "../../variable_type_attributes.json#/definitions/url_variable_type_attribute"},
+                        "options": {"$ref": "../../variable_attributes.json#/definitions/variable_empty_options_attribute"}
+                    },
+                    "required": ["name", "variable_type", "value"],
+                    "additionalProperties": false
+                }
+            },
+            "required": ["type", "attributes"],
+            "additionalProperties": false
+        }
+    },
+    "required": ["data"],
+    "additionalProperties": false
+}

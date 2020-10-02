@@ -1,0 +1,38 @@
+{
+    "components": {
+        "parameters": {
+            "app_id": {
+                "in": "path",
+                "name": "app_id",
+                "required": true,
+                "description": "Application identifier",
+                "schema": {
+                    "$ref" : "../schema/common_types.json#/definitions/uuid"
+                },
+                "example": "1f74dda5-b598-41d6-a9e4-f501ef4379e1"
+            },
+            "page[offset]": {
+                "in": "query",
+                "name": "page[offset]",
+                "required": false,
+                "description": "Sets offset for list of items",
+                "schema": {
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "example": 20
+            },
+            "page[limit]": {
+                "in": "query",
+                "name": "page[limit]",
+                "required": false,
+                "description": "Limits the number of returned items",
+                "schema": {
+                    "type": "integer",
+                    "minimum": 1
+                },
+                "example": 10
+            }
+        }
+    }
+}

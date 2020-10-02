@@ -1,0 +1,14 @@
+{
+    "data": {
+        "id": "dad7f9c5-67cb-417a-b66f-a97f355379d3",
+        "type": "export_file",
+        "relationships": {
+            "operation": {
+                "data": {
+                    "id": "bf7ed591-a71d-4530-a25a-dd92a18090d6",
+                    "type": "operation"
+                }
+            }
+        }
+    }
+}

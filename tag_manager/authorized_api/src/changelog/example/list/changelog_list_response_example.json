@@ -1,0 +1,119 @@
+{
+    "data": [
+        {
+            "id": "677423b3-e529-4e03-88fd-d3b9dcacf2cf",
+            "type": "changelog",
+            "attributes": {
+                "created_at": "2020-03-30T16:48:25+00:00",
+                "author": "john@doe.com",
+                "change_type": "add",
+                "resource_id": "de226ea5-5612-4fa7-a8b8-bb75e45ac2c6",
+                "resource_name": "test tag",
+                "resource_type": "tag",
+                "before_content": {},
+                "after_content": {
+                    "name": "test tag",
+                    "triggers": [
+                        {
+                            "trigger_id": "92ebf4df-ce00-4717-a693-502f4c25b4bf",
+                            "name": "All page views"
+                        }
+                    ],
+                    "document_write": true,
+                    "disable_in_debug_mode": false,
+                    "is_active": true,
+                    "template": "custom_tag",
+                    "template_options": {},
+                    "tag_type": "async",
+                    "respect_visitors_privacy": true,
+                    "code": "<script>console.log('test');</script>",
+                    "priority": 0,
+                    "scheduler": {
+                        "date_ranges": [],
+                        "times_of_day": []
+                    },
+                    "consent_type": "not_require_consent"
+                }
+            }
+        },
+        {
+            "id": "118151e9-e0f8-4aeb-adb6-c1c659e5472f",
+            "type": "changelog",
+            "attributes": {
+                "version_id": "1ff0fd82-beac-4798-bede-13c6e7433fae",
+                "created_at": "2020-04-10T09:39:32+00:00",
+                "author": "john@doe.com",
+                "change_type": "edit",
+                "resource_id": "87535d58-5429-4a8b-88d6-b99d17eae4f3",
+                "resource_name": "trigger from api",
+                "resource_type": "trigger",
+                "before_content": {
+                    "name": "old trigger from api",
+                    "trigger_type": "page_view",
+                    "conditions": [
+                        {
+                            "condition_type": "equals",
+                            "value": "default",
+                            "condition_id": "21060d2a-de8f-4141-be86-fa649f04d536",
+                            "variable": {
+                                "variable_id": "a3f51ab7-ea76-4adc-a839-a32d392df37c",
+                                "name": "Contact page query",
+                                "variable_type": "url",
+                                "value": "query",
+                                "options": []
+                            }
+                        }
+                    ]
+                },
+                "after_content": {
+                    "name": "trigger from api",
+                    "trigger_type": "page_view",
+                    "conditions": [
+                        {
+                            "condition_type": "does_not_contain",
+                            "value": "test",
+                            "condition_id": "79d73918-6b96-4bf5-bf1c-68c7a76dbe6f",
+                            "variable": {
+                                "variable_id": "67ed6060-eace-4370-8ede-a083f7c909f1",
+                                "name": "Page Path",
+                                "variable_type": "url",
+                                "value": "parameter",
+                                "options": {
+                                    "parameter_name": "param1"
+                                }
+                            }
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "id": "a351a4b1-6568-4309-bbc2-29e1f317efa1",
+            "type": "changelog",
+            "attributes": {
+                "version_id": "1ff0fd82-beac-4798-bede-13c6e7433fae",
+                "created_at": "2020-03-31T08:47:01+00:00",
+                "author": "john@doe.com",
+                "change_type": "delete",
+                "resource_id": "5e7a01b6-379c-4272-88c6-7cb3a1293997",
+                "resource_name": "test var",
+                "resource_type": "variable",
+                "before_content": {
+                    "name": "test var",
+                    "variable_type": "custom_javascript",
+                    "options": [],
+                    "variable_id": "171b2f68-12ca-4782-b109-a645a7851f8c"
+                },
+                "after_content": {}
+            }
+        }
+    ],
+    "meta": {
+        "total": 25
+    },
+    "links": {
+        "prev": "/api/tag/v1/1f74dda5-b598-41d6-a9e4-f501ef4379e1/variables?page[offset]=0&page[limit]=10",
+        "self": "/api/tag/v1/1f74dda5-b598-41d6-a9e4-f501ef4379e1/variables?page[offset]=10&page[limit]=10",
+        "next": "/api/tag/v1/1f74dda5-b598-41d6-a9e4-f501ef4379e1/variables?page[offset]=20&page[limit]=10"
+    }
+}

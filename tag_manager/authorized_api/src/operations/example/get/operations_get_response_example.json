@@ -1,0 +1,59 @@
+{
+    "data": {
+        "id": "7f767738-069b-41b2-b270-d801fc05e028",
+        "type": "operation",
+        "attributes": {
+            "operation_type": "import/version",
+            "state": "completed",
+            "parameters": {
+                "target_app_id": "7b7beca9-eebf-42e0-8923-d16d4e2a8307",
+                "source_version_id": "731e930b-5002-43ce-930e-52388123a56d"
+            },
+            "summary": {
+                "tags": [
+                    {
+                        "source_id": "166d3863-69c3-4c8d-90f8-bb9da0654296",
+                        "source_tag_id": "7ee802ae-ee13-4365-8892-cbb1b2ab4968",
+                        "source_name": "Piwik PRO",
+                        "target_tag_id": "c7b3e0af-67ed-4fbe-aefc-a1648021914e",
+                        "target_name": "Piwik PRO",
+                        "is_renamed": false
+                    },
+                    {
+                        "source_id": "36a2e74e-d12f-4a6b-85f7-a896fdb9ece8",
+                        "source_tag_id": "8a745cc1-4ee7-4236-b9d2-ccb236264755",
+                        "source_name": "Tag name",
+                        "target_tag_id": "d191fac5-c91b-46d4-826f-6dcf14fb117c",
+                        "target_name": "Tag name",
+                        "is_renamed": false
+                    }
+                ],
+                "triggers": [
+                    {
+                        "source_id": "fc04d2cc-9f3d-4857-a1ee-e851aff2e1a1",
+                        "source_trigger_id": "81dde686-86f3-432a-a08f-bfcf796d36fb",
+                        "target_trigger_id": "11c32a79-5409-4427-9809-7ce1937fd401",
+                        "source_name": "Trigger name",
+                        "target_name": "Trigger name - copy",
+                        "is_renamed": true
+                    }
+                ],
+                "variables": [
+                    {
+                        "source_id": "6ce3da2b-bb1c-4fff-9561-4b19d1b360d6",
+                        "source_variable_id": "eb8c90a2-2b80-4acb-96e0-b5c6c28cf041",
+                        "target_variable_id": "3c55cf00-e282-4126-b06c-0ccb8b77d094",
+                        "source_name": "Page URL",
+                        "target_name": "Page URL",
+                        "is_renamed": false
+                    }
+                ]
+            },
+            "created_at": "2020-04-06T09:06:46+00:00",
+            "started_at": "2020-04-06T09:06:50+00:00",
+            "completed_at": "2020-04-06T09:07:20+00:00",
+            "failed_at": null,
+            "updated_at": "2020-04-06T09:06:46+00:00"
+        }
+    }
+}

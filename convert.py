@@ -6,15 +6,13 @@ import argparse
 import json
 import os.path
 import sys
-
+import re
 import yaml
 
 parsers = {
     '.yaml': yaml.safe_load,
     '.json': json.loads,
 }
-
-
 
 
 def load(path):
@@ -28,15 +26,65 @@ def load(path):
         return resolve(parse(f.read()), os.path.dirname(path))
 
 
+def load_content(path):
+    _, extension = os.path.splitext(path)
+    parse = parsers.get(extension)
+
+    if parse is None:
+        raise NotImplementedError('No parser specified for this file type', path)
+
+    with open(path) as f:
+        return parse(f.read()), os.path.dirname(path)
+
+
+def search(content, ref):
+    path = ref.lstrip('/').split('/')
+
+    while len(path):
+        key = path.pop(0)
+        content = content[key]
+
+    return content
+
+
+def resolve_local(content, src=None):
+    if src is None:
+        src = content
+
+    if isinstance(content, dict):
+        if '$ref' in content and content['$ref'].find('#') == 0:
+            path, ref = re.sub('^\./', '', content['$ref']).split('#')
+            content.update(search(src, ref))
+            del content['$ref']
+        else:
+            for value in content.values():
+                resolve_local(value, src)
+    elif isinstance(content, list):
+        for value in content:
+            resolve_local(value, src)
+
+    return content
+
+
 def resolve(content, dir):
     if isinstance(content, dict):
-        if '$ref' in content and not content['$ref'].startswith('#'):
-            path = content['$ref']
+        if '$ref' in content and not '#' in content['$ref']:
+            path = re.sub('^\./', '', content['$ref'])
             del content['$ref']
-            content.update(load(os.path.join(dir, path)))
+            content.update(load(os.path.realpath(os.path.join(dir, path))))
+        elif '$ref' in content and content['$ref'].find('#') > 0:
+            path, ref = re.sub('^\./', '', content['$ref']).split('#')
+            file_path = os.path.realpath(os.path.join(dir, path))
+            tmp = load_content(file_path)
+            content.update(resolve(search(resolve_local(tmp[0]), ref), os.path.dirname(file_path)))
+            del content['$ref']
         else:
             for value in content.values():
                 resolve(value, dir)
+    elif isinstance(content, list):
+        for value in content:
+            resolve(value, dir)
+
     return content
 
 

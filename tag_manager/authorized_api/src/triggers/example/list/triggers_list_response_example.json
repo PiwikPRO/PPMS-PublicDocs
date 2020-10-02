@@ -1,0 +1,36 @@
+{
+    "meta": {
+        "total": 2
+    },
+    "links": {
+        "self": "/api/tag/v1/triggers/?sort=name&page[offset]=0&page[limit]=10",
+        "first": "/api/tag/v1/triggers/?sort=name&page[offset]=0&page[limit]=10",
+        "last": "/api/tag/v1/triggers/?sort=name&page[offset]=0&page[limit]=10",
+        "prev": null,
+        "next": null
+    },
+    "data": [
+        {
+            "type": "trigger",
+            "id": "252eebdd-99a6-4942-9805-7a94c717d2fa",
+            "attributes": {
+                "name": "Trigger Page view",
+                "trigger_type": "page_view",
+                "is_published": true,
+                "created_at": "2019-11-30T09:17:17+00:00",
+                "updated_at": "2020-05-05T07:47:08+00:00"
+            }
+        },
+        {
+            "type": "trigger",
+            "id": "57a653c9-07c0-4f9a-85f6-1cda14eb5e3e",
+            "attributes": {
+                "name": "Trigger page view for custom campaign",
+                "trigger_type": "page_view",
+                "is_published": false,
+                "created_at": "2020-03-09T12:17:57+00:00",
+                "updated_at": "2020-05-05T07:47:08+00:00"
+            }
+        }
+    ]
+}

@@ -1,0 +1,28 @@
+{
+    "definitions": {
+        "variable_name_attribute": {
+            "description": "Variable name",
+            "$ref": "../../common/schema/common_types.json#/definitions/name"
+        },
+        "variable_value_attribute": {
+            "type": "string",
+            "description": "Variable value"
+        },
+        "variable_builtin_attribute": {
+            "type": "boolean",
+            "description": "Flag indicating whether variable is custom or builtin"
+        },
+        "variable_is_published_attribute": {
+            "type": "boolean",
+            "description": "Flag describing whether variable is published (true) or not published (false)"
+        },
+        "variable_empty_options_attribute": {
+            "description": "Variable options (empty)",
+            "type": "object"
+        },
+        "variable_empty_value_attribute": {
+            "description": "Variable value (empty)",
+            "$ref": "../../common/schema/common_types.json#/definitions/nullable"
+        }
+    }
+}

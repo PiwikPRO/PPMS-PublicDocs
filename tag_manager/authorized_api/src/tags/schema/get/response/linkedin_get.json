@@ -1,0 +1,118 @@
+{
+    "title": "LinkedIn tag",
+    "description": "LinkedIn tag response",
+    "type": "object",
+    "properties": {
+        "data": {
+            "title": "JSON:API 1.0 response data",
+            "type": "object",
+            "properties": {
+                "id": {
+                    "$ref": "../../tag_types.json#/definitions/tag_identifier"
+                },
+                "type": {
+                    "$ref": "../../tag_types.json#/definitions/tag_resource_type"
+                },
+                "attributes": {
+                    "description": "LinkedIn tag attributes",
+                    "type": "object",
+                    "properties": {
+                        "code": {
+                            "$ref": "../../tag_attributes.json#/definitions/code"
+                        },
+                        "disable_in_debug_mode": {
+                            "$ref": "../../tag_attributes.json#/definitions/disable_in_debug_mode"
+                        },
+                        "document_write": {
+                            "$ref": "../../tag_attributes.json#/definitions/document_write_false"
+                        },
+                        "is_active": {
+                            "$ref": "../../tag_attributes.json#/definitions/is_active"
+                        },
+                        "is_published": {
+                            "$ref": "../../tag_attributes.json#/definitions/is_published"
+                        },
+                        "priority": {
+                            "$ref": "../../tag_attributes.json#/definitions/priority"
+                        },
+                        "tag_type": {
+                            "$ref": "../../tag_attributes.json#/definitions/tag_type_async"
+                        },
+                        "name": {
+                            "$ref": "../../tag_attributes.json#/definitions/name"
+                        },
+                        "respect_visitors_privacy": {
+                            "$ref": "../../tag_attributes.json#/definitions/respect_visitors_privacy"
+                        },
+                        "scheduler": {
+                            "$ref": "../../tag_attributes.json#/definitions/scheduler"
+                        },
+                        "consent_type": {
+                            "$ref": "../../tag_attributes.json#/definitions/consent_type"
+                        },
+                        "template": {
+                            "$ref": "../../tag_templates/linkedin_attributes.json#/definitions/template"
+                        },
+                        "template_options": {
+                            "$ref": "../../tag_templates/linkedin_attributes.json#/definitions/template_options"
+                        },
+                        "created_at": {
+                            "$ref": "../../../../common/schema/common_types.json#/definitions/datetime"
+                        },
+                        "updated_at": {
+                            "$ref": "../../../../common/schema/common_types.json#/definitions/datetime"
+                        }
+                    },
+                    "additionalProperties": false,
+                    "required": [
+                        "code",
+                        "disable_in_debug_mode",
+                        "document_write",
+                        "is_active",
+                        "is_published",
+                        "priority",
+                        "tag_type",
+                        "name",
+                        "respect_visitors_privacy",
+                        "scheduler",
+                        "consent_type",
+                        "template",
+                        "template_options",
+                        "created_at",
+                        "updated_at"
+                    ]
+                },
+                "relationships": {
+                    "allOf": [
+                        {
+                            "$ref": "../../tag_types.json#/definitions/relationships_description"
+                        },
+                        {
+                            "type": "object",
+                            "properties": {
+                                "triggers": {
+                                    "$ref": "../../tag_types.json#/definitions/trigger_relationship"
+                                }
+                            },
+                            "additionalProperties": false,
+                            "required": [
+                                "triggers"
+                            ]
+                        }
+                    ]
+                }
+            },
+            "additionalProperties": false,
+            "required": [
+                "id",
+                "type",
+                "attributes",
+                "relationships"
+            ]
+        }
+    },
+    "additionalProperties": false,
+    "required": [
+        "data"
+    ]
+}

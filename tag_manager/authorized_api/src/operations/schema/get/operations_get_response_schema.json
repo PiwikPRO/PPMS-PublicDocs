@@ -1,0 +1,312 @@
+{
+    "description": "Operations get response",
+    "type": "object",
+    "properties": {
+        "data": {
+            "title": "JSON:API 1.0 response data",
+            "type": "object",
+            "properties": {
+                "id": {"$ref": "../operation_types.json#/definitions/operation_identifier"},
+                "type": {"$ref": "../operation_types.json#/definitions/operation_resource_type"},
+                "attributes": {
+                    "title": "Operation",
+                    "description": "Operation attributes",
+                    "oneOf": [
+                        {
+                            "title": "copy/tag",
+                            "type": "object",
+                            "properties": {
+                                "operation_type": {"$ref": "../operation_attributes.json#/definitions/copy_tag_operation_type_attribute"},
+                                "state": {"$ref": "../operation_attributes.json#/definitions/operation_state_attribute"},
+                                "parameters": {"$ref": "../operation_parameters_attributes.json#/definitions/copy_tag_parameters_attribute"},
+                                "summary": {"$ref": "../operation_summary_attributes.json#/definitions/copy_tag_summary_attribute"},
+                                "created_at": {"$ref": "../../../common/schema/common_types.json#/definitions/datetime"},
+                                "updated_at": {"$ref": "../../../common/schema/common_types.json#/definitions/datetime"},
+                                "started_at": {
+                                    "oneOf": [
+                                        {"$ref": "../../../common/schema/common_types.json#/definitions/datetime"},
+                                        {"$ref": "../../../common/schema/common_types.json#/definitions/nullable"}
+                                    ]
+                                },
+                                "completed_at": {
+                                    "oneOf": [
+                                        {"$ref": "../../../common/schema/common_types.json#/definitions/datetime"},
+                                        {"$ref": "../../../common/schema/common_types.json#/definitions/nullable"}
+                                    ]
+                                },
+                                "failed_at": {
+                                    "oneOf": [
+                                        {"$ref": "../../../common/schema/common_types.json#/definitions/datetime"},
+                                        {"$ref": "../../../common/schema/common_types.json#/definitions/nullable"}
+                                    ]
+                                }
+                            },
+                            "required": ["operation_type", "state", "parameters", "summary", "created_at", "updated_at", "started_at", "completed_at", "failed_at"],
+                            "additionalProperties": false
+                        },
+                        {
+                            "title": "copy/trigger",
+                            "type": "object",
+                            "properties": {
+                                "operation_type": {"$ref": "../operation_attributes.json#/definitions/copy_trigger_operation_type_attribute"},
+                                "state": {"$ref": "../operation_attributes.json#/definitions/operation_state_attribute"},
+                                "parameters": {"$ref": "../operation_parameters_attributes.json#/definitions/copy_trigger_parameters_attribute"},
+                                "summary": {"$ref": "../operation_summary_attributes.json#/definitions/copy_trigger_summary_attribute"},
+                                "created_at": {"$ref": "../../../common/schema/common_types.json#/definitions/datetime"},
+                                "updated_at": {"$ref": "../../../common/schema/common_types.json#/definitions/datetime"},
+                                "started_at": {
+                                    "oneOf": [
+                                        {"$ref": "../../../common/schema/common_types.json#/definitions/datetime"},
+                                        {"$ref": "../../../common/schema/common_types.json#/definitions/nullable"}
+                                    ]
+                                },
+                                "completed_at": {
+                                    "oneOf": [
+                                        {"$ref": "../../../common/schema/common_types.json#/definitions/datetime"},
+                                        {"$ref": "../../../common/schema/common_types.json#/definitions/nullable"}
+                                    ]
+                                },
+                                "failed_at": {
+                                    "oneOf": [
+                                        {"$ref": "../../../common/schema/common_types.json#/definitions/datetime"},
+                                        {"$ref": "../../../common/schema/common_types.json#/definitions/nullable"}
+                                    ]
+                                }
+                            },
+                            "required": ["operation_type", "state", "parameters", "summary", "created_at", "updated_at", "started_at", "completed_at", "failed_at"],
+                            "additionalProperties": false
+                        },
+                        {
+                            "title": "copy/variable",
+                            "type": "object",
+                            "properties": {
+                                "operation_type": {"$ref": "../operation_attributes.json#/definitions/copy_variable_operation_type_attribute"},
+                                "state": {"$ref": "../operation_attributes.json#/definitions/operation_state_attribute"},
+                                "parameters": {"$ref": "../operation_parameters_attributes.json#/definitions/copy_variable_parameters_attribute"},
+                                "summary": {"$ref": "../operation_summary_attributes.json#/definitions/copy_variable_summary_attribute"},
+                                "created_at": {"$ref": "../../../common/schema/common_types.json#/definitions/datetime"},
+                                "updated_at": {"$ref": "../../../common/schema/common_types.json#/definitions/datetime"},
+                                "started_at": {
+                                    "oneOf": [
+                                        {"$ref": "../../../common/schema/common_types.json#/definitions/datetime"},
+                                        {"$ref": "../../../common/schema/common_types.json#/definitions/nullable"}
+                                    ]
+                                },
+                                "completed_at": {
+                                    "oneOf": [
+                                        {"$ref": "../../../common/schema/common_types.json#/definitions/datetime"},
+                                        {"$ref": "../../../common/schema/common_types.json#/definitions/nullable"}
+                                    ]
+                                },
+                                "failed_at": {
+                                    "oneOf": [
+                                        {"$ref": "../../../common/schema/common_types.json#/definitions/datetime"},
+                                        {"$ref": "../../../common/schema/common_types.json#/definitions/nullable"}
+                                    ]
+                                }
+                            },
+                            "required": ["operation_type", "state", "parameters", "summary", "created_at", "updated_at", "started_at", "completed_at", "failed_at"],
+                            "additionalProperties": false
+                        },
+                        {
+                            "title": "export/version",
+                            "type": "object",
+                            "properties": {
+                                "operation_type": {"$ref": "../operation_attributes.json#/definitions/export_version_operation_type_attribute"},
+                                "state": {"$ref": "../operation_attributes.json#/definitions/operation_state_attribute"},
+                                "parameters": {"$ref": "../operation_parameters_attributes.json#/definitions/export_version_parameters_attribute"},
+                                "summary": {"$ref": "../operation_summary_attributes.json#/definitions/export_version_summary_attribute"},
+                                "created_at": {"$ref": "../../../common/schema/common_types.json#/definitions/datetime"},
+                                "updated_at": {"$ref": "../../../common/schema/common_types.json#/definitions/datetime"},
+                                "started_at": {
+                                    "oneOf": [
+                                        {"$ref": "../../../common/schema/common_types.json#/definitions/datetime"},
+                                        {"$ref": "../../../common/schema/common_types.json#/definitions/nullable"}
+                                    ]
+                                },
+                                "completed_at": {
+                                    "oneOf": [
+                                        {"$ref": "../../../common/schema/common_types.json#/definitions/datetime"},
+                                        {"$ref": "../../../common/schema/common_types.json#/definitions/nullable"}
+                                    ]
+                                },
+                                "failed_at": {
+                                    "oneOf": [
+                                        {"$ref": "../../../common/schema/common_types.json#/definitions/datetime"},
+                                        {"$ref": "../../../common/schema/common_types.json#/definitions/nullable"}
+                                    ]
+                                }
+                            },
+                            "required": ["operation_type", "state", "parameters", "summary", "created_at", "updated_at", "started_at", "completed_at", "failed_at"],
+                            "additionalProperties": false
+                        },
+                        {
+                            "title": "import/version",
+                            "type": "object",
+                            "properties": {
+                                "operation_type": {"$ref": "../operation_attributes.json#/definitions/import_version_operation_type_attribute"},
+                                "state": {"$ref": "../operation_attributes.json#/definitions/operation_state_attribute"},
+                                "parameters": {"$ref": "../operation_parameters_attributes.json#/definitions/import_version_parameters_attribute"},
+                                "summary": {"$ref": "../operation_summary_attributes.json#/definitions/import_version_summary_attribute"},
+                                "created_at": {"$ref": "../../../common/schema/common_types.json#/definitions/datetime"},
+                                "updated_at": {"$ref": "../../../common/schema/common_types.json#/definitions/datetime"},
+                                "started_at": {
+                                    "oneOf": [
+                                        {"$ref": "../../../common/schema/common_types.json#/definitions/datetime"},
+                                        {"$ref": "../../../common/schema/common_types.json#/definitions/nullable"}
+                                    ]
+                                },
+                                "completed_at": {
+                                    "oneOf": [
+                                        {"$ref": "../../../common/schema/common_types.json#/definitions/datetime"},
+                                        {"$ref": "../../../common/schema/common_types.json#/definitions/nullable"}
+                                    ]
+                                },
+                                "failed_at": {
+                                    "oneOf": [
+                                        {"$ref": "../../../common/schema/common_types.json#/definitions/datetime"},
+                                        {"$ref": "../../../common/schema/common_types.json#/definitions/nullable"}
+                                    ]
+                                }
+                            },
+                            "required": ["operation_type", "state", "parameters", "summary", "created_at", "updated_at", "started_at", "completed_at", "failed_at"],
+                            "additionalProperties": false
+                        },
+                        {
+                            "title": "import/file",
+                            "type": "object",
+                            "properties": {
+                                "operation_type": {"$ref": "../operation_attributes.json#/definitions/import_file_operation_type_attribute"},
+                                "state": {"$ref": "../operation_attributes.json#/definitions/operation_state_attribute"},
+                                "parameters": {"$ref": "../operation_parameters_attributes.json#/definitions/import_file_parameters_attribute"},
+                                "summary": {"$ref": "../operation_summary_attributes.json#/definitions/import_file_summary_attribute"},
+                                "created_at": {"$ref": "../../../common/schema/common_types.json#/definitions/datetime"},
+                                "updated_at": {"$ref": "../../../common/schema/common_types.json#/definitions/datetime"},
+                                "started_at": {
+                                    "oneOf": [
+                                        {"$ref": "../../../common/schema/common_types.json#/definitions/datetime"},
+                                        {"$ref": "../../../common/schema/common_types.json#/definitions/nullable"}
+                                    ]
+                                },
+                                "completed_at": {
+                                    "oneOf": [
+                                        {"$ref": "../../../common/schema/common_types.json#/definitions/datetime"},
+                                        {"$ref": "../../../common/schema/common_types.json#/definitions/nullable"}
+                                    ]
+                                },
+                                "failed_at": {
+                                    "oneOf": [
+                                        {"$ref": "../../../common/schema/common_types.json#/definitions/datetime"},
+                                        {"$ref": "../../../common/schema/common_types.json#/definitions/nullable"}
+                                    ]
+                                }
+                            },
+                            "required": ["operation_type", "state", "parameters", "summary", "created_at", "updated_at", "started_at", "completed_at", "failed_at"],
+                            "additionalProperties": false
+                        },
+                        {
+                            "title": "restore/version",
+                            "type": "object",
+                            "properties": {
+                                "operation_type": {"$ref": "../operation_attributes.json#/definitions/restore_version_operation_type_attribute"},
+                                "state": {"$ref": "../operation_attributes.json#/definitions/operation_state_attribute"},
+                                "parameters": {"$ref": "../operation_parameters_attributes.json#/definitions/restore_version_parameters_attribute"},
+                                "summary": {"$ref": "../operation_summary_attributes.json#/definitions/restore_version_summary_attribute"},
+                                "created_at": {"$ref": "../../../common/schema/common_types.json#/definitions/datetime"},
+                                "updated_at": {"$ref": "../../../common/schema/common_types.json#/definitions/datetime"},
+                                "started_at": {
+                                    "oneOf": [
+                                        {"$ref": "../../../common/schema/common_types.json#/definitions/datetime"},
+                                        {"$ref": "../../../common/schema/common_types.json#/definitions/nullable"}
+                                    ]
+                                },
+                                "completed_at": {
+                                    "oneOf": [
+                                        {"$ref": "../../../common/schema/common_types.json#/definitions/datetime"},
+                                        {"$ref": "../../../common/schema/common_types.json#/definitions/nullable"}
+                                    ]
+                                },
+                                "failed_at": {
+                                    "oneOf": [
+                                        {"$ref": "../../../common/schema/common_types.json#/definitions/datetime"},
+                                        {"$ref": "../../../common/schema/common_types.json#/definitions/nullable"}
+                                    ]
+                                }
+                            },
+                            "required": ["operation_type", "state", "parameters", "summary", "created_at", "updated_at", "started_at", "completed_at", "failed_at"],
+                            "additionalProperties": false
+                        },
+                        {
+                            "title": "publish/version",
+                            "type": "object",
+                            "properties": {
+                                "operation_type": {"$ref": "../operation_attributes.json#/definitions/publish_version_operation_type_attribute"},
+                                "state": {"$ref": "../operation_attributes.json#/definitions/operation_state_attribute"},
+                                "parameters": {"$ref": "../operation_parameters_attributes.json#/definitions/publish_version_parameters_attribute"},
+                                "summary": {"$ref": "../operation_summary_attributes.json#/definitions/publish_version_summary_attribute"},
+                                "created_at": {"$ref": "../../../common/schema/common_types.json#/definitions/datetime"},
+                                "updated_at": {"$ref": "../../../common/schema/common_types.json#/definitions/datetime"},
+                                "started_at": {
+                                    "oneOf": [
+                                        {"$ref": "../../../common/schema/common_types.json#/definitions/datetime"},
+                                        {"$ref": "../../../common/schema/common_types.json#/definitions/nullable"}
+                                    ]
+                                },
+                                "completed_at": {
+                                    "oneOf": [
+                                        {"$ref": "../../../common/schema/common_types.json#/definitions/datetime"},
+                                        {"$ref": "../../../common/schema/common_types.json#/definitions/nullable"}
+                                    ]
+                                },
+                                "failed_at": {
+                                    "oneOf": [
+                                        {"$ref": "../../../common/schema/common_types.json#/definitions/datetime"},
+                                        {"$ref": "../../../common/schema/common_types.json#/definitions/nullable"}
+                                    ]
+                                }
+                            },
+                            "required": ["operation_type", "state", "parameters", "summary", "created_at", "updated_at", "started_at", "completed_at", "failed_at"],
+                            "additionalProperties": false
+                        },
+                        {
+                            "title": "snapshot/version",
+                            "type": "object",
+                            "properties": {
+                                "operation_type": {"$ref": "../operation_attributes.json#/definitions/snapshot_version_operation_type_attribute"},
+                                "state": {"$ref": "../operation_attributes.json#/definitions/operation_state_attribute"},
+                                "parameters": {"$ref": "../operation_parameters_attributes.json#/definitions/snapshot_version_parameters_attribute"},
+                                "summary": {"$ref": "../operation_summary_attributes.json#/definitions/snapshot_version_summary_attribute"},
+                                "created_at": {"$ref": "../../../common/schema/common_types.json#/definitions/datetime"},
+                                "updated_at": {"$ref": "../../../common/schema/common_types.json#/definitions/datetime"},
+                                "started_at": {
+                                    "oneOf": [
+                                        {"$ref": "../../../common/schema/common_types.json#/definitions/datetime"},
+                                        {"$ref": "../../../common/schema/common_types.json#/definitions/nullable"}
+                                    ]
+                                },
+                                "completed_at": {
+                                    "oneOf": [
+                                        {"$ref": "../../../common/schema/common_types.json#/definitions/datetime"},
+                                        {"$ref": "../../../common/schema/common_types.json#/definitions/nullable"}
+                                    ]
+                                },
+                                "failed_at": {
+                                    "oneOf": [
+                                        {"$ref": "../../../common/schema/common_types.json#/definitions/datetime"},
+                                        {"$ref": "../../../common/schema/common_types.json#/definitions/nullable"}
+                                    ]
+                                }
+                            },
+                            "required": ["operation_type", "state", "parameters", "summary", "created_at", "updated_at", "started_at", "completed_at", "failed_at"],
+                            "additionalProperties": false
+                        }
+                    ]
+                }
+            },
+            "required": ["id", "type", "attributes"],
+            "additionalProperties": false
+        }
+    },
+    "additionalProperties": false,
+    "required": ["data"]
+}

@@ -1,0 +1,82 @@
+{
+    "description": "Copy tag request",
+    "type": "object",
+    "properties": {
+        "data": {
+            "title": "JSON:API 1.0 request data",
+            "type": "object",
+            "properties": {
+                "id": {
+                    "$ref": "../tag_types.json#/definitions/tag_new_identifier"
+                },
+                "type": {
+                    "$ref": "../tag_types.json#/definitions/tag_resource_type"
+                },
+                "attributes": {
+                    "description": "Copy tag attributes",
+                    "type": "object",
+                    "properties": {
+                        "name": {
+                            "$ref": "../tag_types.json#/definitions/tag_new_name"
+                        },
+                        "with_triggers": {
+                            "$ref": "../tag_types.json#/definitions/with_triggers"
+                        }
+                    },
+                    "additionalProperties": false,
+                    "required": [
+                        "with_triggers"
+                    ]
+                },
+                "relationships": {
+                    "description": "Copy tag relationships",
+                    "type": "object",
+                    "properties": {
+                        "target_app": {
+                            "description": "Target application",
+                            "type": "object",
+                            "properties": {
+                                "data": {
+                                    "title": "JSON:API 1.0 relationship data",
+                                    "description": "Target application data",
+                                    "type": "object",
+                                    "properties": {
+                                        "id": {
+                                            "$ref": "../../../common/schema/common_types.json#/definitions/app_identifier"
+                                        },
+                                        "type": {
+                                            "$ref": "../../../common/schema/common_types.json#/definitions/app_resource_type"
+                                        }
+                                    },
+                                    "additionalProperties": false,
+                                    "required": [
+                                        "id",
+                                        "type"
+                                    ]
+                                }
+                            },
+                            "additionalProperties": false,
+                            "required": [
+                                "data"
+                            ]
+                        }
+                    },
+                    "additionalProperties": false,
+                    "required": [
+                        "target_app"
+                    ]
+                }
+            },
+            "additionalProperties": false,
+            "required": [
+                "type",
+                "attributes",
+                "relationships"
+            ]
+        }
+    },
+    "additionalProperties": false,
+    "required": [
+        "data"
+    ]
+}

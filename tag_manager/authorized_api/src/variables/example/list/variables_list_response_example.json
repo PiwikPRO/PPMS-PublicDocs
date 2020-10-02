@@ -1,0 +1,24 @@
+{
+    "data": [
+        {
+            "id": "677423b3-e529-4e03-88fd-d3b9dcacf2cf",
+            "type": "variable",
+            "attributes": {
+                "name": "New variable",
+                "variable_type": "custom_javascript",
+                "builtin": false,
+                "is_published": false,
+                "created_at": "2020-01-29T13:43:57+00:00",
+                "updated_at": "2020-01-29T13:43:57+00:00"
+            }
+        }
+    ],
+    "meta": {
+        "total": 25
+    },
+    "links": {
+        "prev": "http://client.piwik.pro/api/tag/v1/1f74dda5-b598-41d6-a9e4-f501ef4379e1/variables?page[offset]=0&page[limit]=10",
+        "self": "http://client.piwik.pro/api/tag/v1/1f74dda5-b598-41d6-a9e4-f501ef4379e1/variables?page[offset]=10&page[limit]=10",
+        "next": "http://client.piwik.pro/api/tag/v1/1f74dda5-b598-41d6-a9e4-f501ef4379e1/variables?page[offset]=20&page[limit]=10"
+    }
+}

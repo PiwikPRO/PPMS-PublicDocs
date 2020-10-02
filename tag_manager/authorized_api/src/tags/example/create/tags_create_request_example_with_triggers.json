@@ -1,0 +1,23 @@
+{
+    "data": {
+        "type": "tag",
+        "attributes": {
+            "code": "<script>console.log('test');</script>",
+            "document_write": false,
+            "consent_type": "not_require_consent",
+            "tag_type": "async",
+            "name": "test",
+            "template": "custom_tag"
+        },
+        "relationships": {
+            "triggers": {
+                "data": [
+                    {
+                        "id": "0206f27a-80c8-44e7-8614-aaf99de71c3f",
+                        "type": "trigger"
+                    }
+                ]
+            }
+        }
+    }
+}

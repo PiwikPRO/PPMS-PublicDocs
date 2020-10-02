@@ -1,0 +1,51 @@
+{
+    "components": {
+        "parameters": {
+            "trigger_id": {
+                "in": "path",
+                "name": "trigger_id",
+                "required": true,
+                "description": "Trigger identifier",
+                "schema": {
+                    "$ref" : "../../common/schema/common_types.json#/definitions/uuid"
+                },
+                "example": "4a83785a-eb7d-437b-ab65-ac7fa7de1d1a"
+            },
+            "sort": {
+                "in": "query",
+                "name": "sort",
+                "required": false,
+                "description": "Comma-separated sort list with given attributes: name, created_at, updated_at",
+                "schema": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "enum": ["name", "-name", "created_at", "-created_at", "updated_at", "-updated_at"]
+                    },
+                    "minItems": 1
+                },
+                "example": ["name", "-created_at", "updated_at"]
+            },
+            "filter[name]": {
+                "in": "query",
+                "name": "filter[name]",
+                "required": false,
+                "description": "Filter triggers by name",
+                "schema": {
+                    "$ref": "../../common/schema/common_types.json#/definitions/name"
+                },
+                "example": "All page views"
+            },
+            "filter[trigger_type]": {
+                "in": "query",
+                "name": "filter[trigger_type]",
+                "required": false,
+                "description": "Filter triggers by type",
+                "schema": {
+                    "$ref": "../schema/trigger_attributes.json#/definitions/trigger_type_attribute"
+                },
+                "example": "url"
+            }
+        }
+    }
+}

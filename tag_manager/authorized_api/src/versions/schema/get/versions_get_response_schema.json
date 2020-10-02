@@ -1,0 +1,36 @@
+{
+    "description": "Version get response",
+    "type": "object",
+    "properties": {
+        "data": {
+            "title": "JSON:API 1.0 response data",
+            "type": "object",
+            "properties": {
+                "id": {"$ref": "../version_types.json#/definitions/version_identifier"},
+                "type": {"$ref": "../version_types.json#/definitions/version_resource_type"},
+                "attributes": {
+                    "description": "Version attributes",
+                    "type": "object",
+                    "properties": {
+                        "version_type": {"$ref": "../version_attributes.json#/definitions/version_type_attribute"},
+                        "has_changes": {"$ref": "../version_attributes.json#/definitions/version_has_changes_attribute"},
+                        "version_major": {"$ref": "../version_attributes.json#/definitions/version_major_attribute"},
+                        "version_minor": {"$ref": "../version_attributes.json#/definitions/version_minor_attribute"},
+                        "author": {"$ref": "../version_attributes.json#/definitions/version_author_nullable_attribute"},
+                        "publisher": {"$ref": "../version_attributes.json#/definitions/version_publisher_nullable_attribute"},
+                        "published_at": {"$ref": "../version_attributes.json#/definitions/version_published_at_nullable_attribute"},
+                        "parent_id": {"$ref": "../version_attributes.json#/definitions/version_parent_id_attribute"},
+                        "created_at": {"$ref": "../../../common/schema/common_types.json#/definitions/datetime"},
+                        "updated_at": {"$ref": "../../../common/schema/common_types.json#/definitions/datetime"}
+                    },
+                    "required": ["version_type", "has_changes", "version_major", "version_minor", "author", "created_at", "updated_at"],
+                    "additionalProperties": false
+                }
+            },
+            "required": ["id", "type", "attributes"],
+            "additionalProperties": false
+        }
+    },
+    "required": ["data"],
+    "additionalProperties": false
+}

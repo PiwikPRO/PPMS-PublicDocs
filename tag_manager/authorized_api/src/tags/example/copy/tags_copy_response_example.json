@@ -1,0 +1,14 @@
+{
+    "data": {
+        "id": "fd6d2ebf-5944-4f2d-bda8-7e74f1585c1a",
+        "type": "tag",
+        "relationships": {
+            "operation": {
+                "data": {
+                    "id": "bb8f1843-165e-462c-86f5-05a0391f82c1",
+                    "type": "operation"
+                }
+            }
+        }
+    }
+}

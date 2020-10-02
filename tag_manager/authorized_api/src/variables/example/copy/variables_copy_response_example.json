@@ -1,0 +1,17 @@
+{
+    "data": {
+        "id": "21b27740-6cef-438f-860d-a2f9adb9e4a8",
+        "type": "variable",
+        "attributes": {
+            "name": "New variable - copy"
+        },
+        "relationships": {
+            "operation": {
+                "data": {
+                    "id": "fedbc70e-2390-4b89-8cc4-60a2f6df7b98",
+                    "type": "operation"
+                }
+            }
+        }
+    }
+}

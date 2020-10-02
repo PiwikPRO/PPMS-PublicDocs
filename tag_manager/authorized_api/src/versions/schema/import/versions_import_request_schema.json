@@ -1,0 +1,18 @@
+{
+    "description": "Version import request",
+    "type": "object",
+    "properties": {
+        "data": {
+            "title": "JSON:API 1.0 request data",
+            "type": "object",
+            "properties": {
+                "id": {"$ref": "../version_types.json#/definitions/source_version_identifier"},
+                "type": {"$ref": "../version_types.json#/definitions/version_resource_type"}
+            },
+            "required": ["id", "type"],
+            "additionalProperties": false
+        }
+    },
+    "required": ["data"],
+    "additionalProperties": false
+}

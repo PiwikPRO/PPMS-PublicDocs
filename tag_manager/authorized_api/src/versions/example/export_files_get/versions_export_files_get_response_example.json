@@ -1,0 +1,13 @@
+{
+    "data":{
+        "id":"2172fd9e-3e95-46f0-9901-94d4e8714a61",
+        "type":"export_file",
+        "attributes":{
+            "content":"{\"version\":\"9.0.0\",\"checksum\":\"47fa3dd948254dc850e926485094ca4f\",\"app\":{\"type\":\"web\"},\"tags\":[],\"triggers\":[],\"variables\":[]}",
+            "created_at":"2020-08-31T11:18:42+00:00"
+        }
+    },
+    "meta":{
+        "file_name":"2020-08-31 11-18-44 - Website clearcode.cc (5815c9f1-5157-4f1b-b05c-4eb03283f5c6).json"
+    }
+}

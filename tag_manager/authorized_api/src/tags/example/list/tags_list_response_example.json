@@ -1,0 +1,44 @@
+{
+    "meta": {
+        "total": 2
+    },
+    "links": {
+        "self": "/api/tag/v1/tags/?sort=name&page[offset]=0&page[limit]=10",
+        "first": "/api/tag/v1/tags/?sort=name&page[offset]=0&page[limit]=10",
+        "last": "/api/tag/v1/tags/?sort=name&page[offset]=0&page[limit]=10",
+        "prev": null,
+        "next": null
+    },
+    "data": [
+        {
+            "type": "tag",
+            "id": "7533cd95-537a-495f-9b10-450b413a3a75",
+            "attributes": {
+                "is_active": false,
+                "is_published": true,
+                "priority": 15,
+                "tag_type": "async",
+                "name": "Piwik PRO",
+                "consent_type": "analytics",
+                "template": "piwik",
+                "created_at": "2020-05-27T10:23:01+00:00",
+                "updated_at": "2020-05-27T20:09:24+00:00"
+            }
+        },
+        {
+            "type": "tag",
+            "id": "82afe8a0-2b77-4552-9372-ca8642b6b9d3",
+            "attributes": {
+                "is_active": true,
+                "is_published": false,
+                "priority": 0,
+                "tag_type": "async",
+                "name": "Google Analytics",
+                "consent_type": "analytics",
+                "template": "google_analytics",
+                "created_at": "2020-05-27T11:25:19+00:00",
+                "updated_at": "2020-05-27T11:25:19+00:00"
+            }
+        }
+    ]
+}
