@@ -1,0 +1,824 @@
+{
+    "definitions": {
+        "copy_tag_summary_attribute": {
+            "type": "object",
+            "description": "Operation summary",
+            "properties": {
+                "tags": {
+                    "description": "List of copied tags",
+                    "type": "array",
+                    "items": {
+                        "oneOf": [
+                            {
+                                "title": "Successfully copied tags",
+                                "type": "object",
+                                "properties": {
+                                    "source_tag_id": {
+                                        "$ref": "./operation_attributes.json#/definitions/source_tag_id_attribute"
+                                    },
+                                    "target_tag_id": {
+                                        "$ref": "./operation_attributes.json#/definitions/target_tag_id_attribute"
+                                    },
+                                    "source_id": {
+                                        "$ref": "./operation_attributes.json#/definitions/source_id_attribute"
+                                    },
+                                    "source_name": {
+                                        "$ref": "./operation_attributes.json#/definitions/source_name_attribute"
+                                    },
+                                    "target_name": {
+                                        "$ref": "./operation_attributes.json#/definitions/target_name_attribute"
+                                    },
+                                    "is_renamed": {
+                                        "$ref": "./operation_attributes.json#/definitions/is_renamed_attribute"
+                                    }
+                                },
+                                "required": [
+                                    "source_id",
+                                    "source_tag_id",
+                                    "source_name",
+                                    "target_tag_id",
+                                    "target_name",
+                                    "is_renamed"
+                                ],
+                                "additionalProperties": false
+                            },
+                            {
+                                "title": "Not copied tags",
+                                "type": "object",
+                                "properties": {
+                                    "source_tag_id": {
+                                        "$ref": "./operation_attributes.json#/definitions/source_tag_id_attribute"
+                                    },
+                                    "source_id": {
+                                        "$ref": "./operation_attributes.json#/definitions/source_id_attribute"
+                                    },
+                                    "source_name": {
+                                        "$ref": "./operation_attributes.json#/definitions/source_name_attribute"
+                                    },
+                                    "errors": {
+                                        "$ref": "./operation_attributes.json#/definitions/summary_tag_error_attributes"
+                                    }
+                                },
+                                "required": [
+                                    "source_id",
+                                    "source_tag_id",
+                                    "source_name",
+                                    "errors"
+                                ],
+                                "additionalProperties": false
+                            }
+                        ]
+                    }
+                },
+                "triggers": {
+                    "description": "List of copied triggers",
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "source_trigger_id": {
+                                "$ref": "./operation_attributes.json#/definitions/source_trigger_id_attribute"
+                            },
+                            "target_trigger_id": {
+                                "$ref": "./operation_attributes.json#/definitions/target_trigger_id_attribute"
+                            },
+                            "source_id": {
+                                "$ref": "./operation_attributes.json#/definitions/source_id_attribute"
+                            },
+                            "source_name": {
+                                "$ref": "./operation_attributes.json#/definitions/source_name_attribute"
+                            },
+                            "target_name": {
+                                "$ref": "./operation_attributes.json#/definitions/target_name_attribute"
+                            },
+                            "is_renamed": {
+                                "$ref": "./operation_attributes.json#/definitions/is_renamed_attribute"
+                            }
+                        },
+                        "required": [
+                            "source_id",
+                            "source_trigger_id",
+                            "source_name",
+                            "target_trigger_id",
+                            "target_name",
+                            "is_renamed"
+                        ],
+                        "additionalProperties": false
+                    }
+                },
+                "variables": {
+                    "description": "List of copied variables",
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "source_variable_id": {
+                                "$ref": "./operation_attributes.json#/definitions/source_variable_id_attribute"
+                            },
+                            "target_variable_id": {
+                                "$ref": "./operation_attributes.json#/definitions/target_variable_id_attribute"
+                            },
+                            "source_id": {
+                                "$ref": "./operation_attributes.json#/definitions/source_id_attribute"
+                            },
+                            "source_name": {
+                                "$ref": "./operation_attributes.json#/definitions/source_name_attribute"
+                            },
+                            "target_name": {
+                                "$ref": "./operation_attributes.json#/definitions/target_name_attribute"
+                            },
+                            "is_renamed": {
+                                "$ref": "./operation_attributes.json#/definitions/is_renamed_attribute"
+                            }
+                        },
+                        "required": [
+                            "source_id",
+                            "source_variable_id",
+                            "source_name",
+                            "target_variable_id",
+                            "target_name",
+                            "is_renamed"
+                        ],
+                        "additionalProperties": false
+                    }
+                }
+            },
+            "required": [
+                "tags"
+            ],
+            "additionalProperties": false
+        },
+        "copy_trigger_summary_attribute": {
+            "type": "object",
+            "description": "Operation summary",
+            "properties": {
+                "tags": {
+                    "description": "Empty tags list",
+                    "type": "array"
+                },
+                "triggers": {
+                    "description": "List of copied triggers",
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "source_trigger_id": {
+                                "$ref": "./operation_attributes.json#/definitions/source_trigger_id_attribute"
+                            },
+                            "target_trigger_id": {
+                                "$ref": "./operation_attributes.json#/definitions/target_trigger_id_attribute"
+                            },
+                            "source_id": {
+                                "$ref": "./operation_attributes.json#/definitions/source_id_attribute"
+                            },
+                            "source_name": {
+                                "$ref": "./operation_attributes.json#/definitions/source_name_attribute"
+                            },
+                            "target_name": {
+                                "$ref": "./operation_attributes.json#/definitions/target_name_attribute"
+                            },
+                            "is_renamed": {
+                                "$ref": "./operation_attributes.json#/definitions/is_renamed_attribute"
+                            }
+                        },
+                        "required": [
+                            "source_id",
+                            "source_trigger_id",
+                            "source_name",
+                            "target_trigger_id",
+                            "target_name",
+                            "is_renamed"
+                        ],
+                        "additionalProperties": false
+                    }
+                },
+                "variables": {
+                    "description": "List of copied variables",
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "source_variable_id": {
+                                "$ref": "./operation_attributes.json#/definitions/source_variable_id_attribute"
+                            },
+                            "target_variable_id": {
+                                "$ref": "./operation_attributes.json#/definitions/target_variable_id_attribute"
+                            },
+                            "source_id": {
+                                "$ref": "./operation_attributes.json#/definitions/source_id_attribute"
+                            },
+                            "source_name": {
+                                "$ref": "./operation_attributes.json#/definitions/source_name_attribute"
+                            },
+                            "target_name": {
+                                "$ref": "./operation_attributes.json#/definitions/target_name_attribute"
+                            },
+                            "is_renamed": {
+                                "$ref": "./operation_attributes.json#/definitions/is_renamed_attribute"
+                            }
+                        },
+                        "required": [
+                            "source_id",
+                            "source_variable_id",
+                            "source_name",
+                            "target_variable_id",
+                            "target_name",
+                            "is_renamed"
+                        ],
+                        "additionalProperties": false
+                    }
+                }
+            },
+            "required": [
+                "triggers",
+                "variables"
+            ],
+            "additionalProperties": false
+        },
+        "copy_variable_summary_attribute": {
+            "type": "object",
+            "description": "Operation summary",
+            "properties": {
+                "tags": {
+                    "description": "Empty tags list",
+                    "type": "array"
+                },
+                "triggers": {
+                    "description": "Empty triggers list",
+                    "type": "array"
+                },
+                "variables": {
+                    "description": "List of copied variables",
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "source_variable_id": {
+                                "$ref": "./operation_attributes.json#/definitions/source_variable_id_attribute"
+                            },
+                            "target_variable_id": {
+                                "$ref": "./operation_attributes.json#/definitions/target_variable_id_attribute"
+                            },
+                            "source_id": {
+                                "$ref": "./operation_attributes.json#/definitions/source_id_attribute"
+                            },
+                            "source_name": {
+                                "$ref": "./operation_attributes.json#/definitions/source_name_attribute"
+                            },
+                            "target_name": {
+                                "$ref": "./operation_attributes.json#/definitions/target_name_attribute"
+                            },
+                            "is_renamed": {
+                                "$ref": "./operation_attributes.json#/definitions/is_renamed_attribute"
+                            }
+                        },
+                        "required": [
+                            "source_id",
+                            "source_variable_id",
+                            "source_name",
+                            "target_variable_id",
+                            "target_name",
+                            "is_renamed"
+                        ],
+                        "additionalProperties": false
+                    }
+                }
+            },
+            "required": [
+                "variables"
+            ],
+            "additionalProperties": false
+        },
+        "export_version_summary_attribute": {
+            "type": "object",
+            "description": "Operation summary",
+            "properties": {
+                "export_file_id": {
+                    "allOf": [
+                        {
+                            "$ref": "../../common/schema/common_types.json#/definitions/uuid"
+                        },
+                        {
+                            "description": "Export file identifier"
+                        }
+                    ]
+                }
+            },
+            "required": [
+                "export_file_id"
+            ],
+            "additionalProperties": false
+        },
+        "import_version_summary_attribute": {
+            "type": "object",
+            "description": "Operation summary",
+            "properties": {
+                "tags": {
+                    "description": "List of imported tags",
+                    "type": "array",
+                    "items": {
+                        "oneOf": [
+                            {
+                                "title": "Successfully imported tags",
+                                "type": "object",
+                                "properties": {
+                                    "source_tag_id": {
+                                        "$ref": "./operation_attributes.json#/definitions/source_tag_id_attribute"
+                                    },
+                                    "target_tag_id": {
+                                        "$ref": "./operation_attributes.json#/definitions/target_tag_id_attribute"
+                                    },
+                                    "source_id": {
+                                        "$ref": "./operation_attributes.json#/definitions/source_id_attribute"
+                                    },
+                                    "source_name": {
+                                        "$ref": "./operation_attributes.json#/definitions/source_name_attribute"
+                                    },
+                                    "target_name": {
+                                        "$ref": "./operation_attributes.json#/definitions/target_name_attribute"
+                                    },
+                                    "is_renamed": {
+                                        "$ref": "./operation_attributes.json#/definitions/is_renamed_attribute"
+                                    }
+                                },
+                                "required": [
+                                    "source_id",
+                                    "source_tag_id",
+                                    "source_name",
+                                    "target_tag_id",
+                                    "target_name",
+                                    "is_renamed"
+                                ],
+                                "additionalProperties": false
+                            },
+                            {
+                                "title": "Not imported tags",
+                                "type": "object",
+                                "properties": {
+                                    "source_tag_id": {
+                                        "$ref": "./operation_attributes.json#/definitions/source_tag_id_attribute"
+                                    },
+                                    "source_id": {
+                                        "$ref": "./operation_attributes.json#/definitions/source_id_attribute"
+                                    },
+                                    "source_name": {
+                                        "$ref": "./operation_attributes.json#/definitions/source_name_attribute"
+                                    },
+                                    "errors": {
+                                        "$ref": "./operation_attributes.json#/definitions/summary_tag_error_attributes"
+                                    }
+                                },
+                                "required": [
+                                    "source_id",
+                                    "source_tag_id",
+                                    "source_name",
+                                    "errors"
+                                ],
+                                "additionalProperties": false
+                            }
+                        ]
+                    }
+                },
+                "triggers": {
+                    "description": "List of imported triggers",
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "source_trigger_id": {
+                                "$ref": "./operation_attributes.json#/definitions/source_trigger_id_attribute"
+                            },
+                            "target_trigger_id": {
+                                "$ref": "./operation_attributes.json#/definitions/target_trigger_id_attribute"
+                            },
+                            "source_id": {
+                                "$ref": "./operation_attributes.json#/definitions/source_id_attribute"
+                            },
+                            "source_name": {
+                                "$ref": "./operation_attributes.json#/definitions/source_name_attribute"
+                            },
+                            "target_name": {
+                                "$ref": "./operation_attributes.json#/definitions/target_name_attribute"
+                            },
+                            "is_renamed": {
+                                "$ref": "./operation_attributes.json#/definitions/is_renamed_attribute"
+                            }
+                        },
+                        "required": [
+                            "source_id",
+                            "source_trigger_id",
+                            "source_name",
+                            "target_trigger_id",
+                            "target_name",
+                            "is_renamed"
+                        ],
+                        "additionalProperties": false
+                    }
+                },
+                "variables": {
+                    "description": "List of imported variables",
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "source_variable_id": {
+                                "$ref": "./operation_attributes.json#/definitions/source_variable_id_attribute"
+                            },
+                            "target_variable_id": {
+                                "$ref": "./operation_attributes.json#/definitions/target_variable_id_attribute"
+                            },
+                            "source_id": {
+                                "$ref": "./operation_attributes.json#/definitions/source_id_attribute"
+                            },
+                            "source_name": {
+                                "$ref": "./operation_attributes.json#/definitions/source_name_attribute"
+                            },
+                            "target_name": {
+                                "$ref": "./operation_attributes.json#/definitions/target_name_attribute"
+                            },
+                            "is_renamed": {
+                                "$ref": "./operation_attributes.json#/definitions/is_renamed_attribute"
+                            }
+                        },
+                        "required": [
+                            "source_id",
+                            "source_variable_id",
+                            "source_name",
+                            "target_variable_id",
+                            "target_name",
+                            "is_renamed"
+                        ],
+                        "additionalProperties": false
+                    }
+                }
+            },
+            "additionalProperties": false
+        },
+        "import_file_summary_attribute": {
+            "type": "object",
+            "description": "Operation summary",
+            "properties": {
+                "tags": {
+                    "description": "List of imported tags",
+                    "type": "array",
+                    "items": {
+                        "oneOf": [
+                            {
+                                "title": "Successfully imported tags",
+                                "type": "object",
+                                "properties": {
+                                    "source_tag_id": {
+                                        "$ref": "./operation_attributes.json#/definitions/source_tag_id_attribute"
+                                    },
+                                    "target_tag_id": {
+                                        "$ref": "./operation_attributes.json#/definitions/target_tag_id_attribute"
+                                    },
+                                    "source_id": {
+                                        "$ref": "./operation_attributes.json#/definitions/source_id_attribute"
+                                    },
+                                    "source_name": {
+                                        "$ref": "./operation_attributes.json#/definitions/source_name_attribute"
+                                    },
+                                    "target_name": {
+                                        "$ref": "./operation_attributes.json#/definitions/target_name_attribute"
+                                    },
+                                    "is_renamed": {
+                                        "$ref": "./operation_attributes.json#/definitions/is_renamed_attribute"
+                                    }
+                                },
+                                "required": [
+                                    "source_id",
+                                    "source_tag_id",
+                                    "source_name",
+                                    "target_tag_id",
+                                    "target_name",
+                                    "is_renamed"
+                                ],
+                                "additionalProperties": false
+                            },
+                            {
+                                "title": "Not imported tags",
+                                "type": "object",
+                                "properties": {
+                                    "source_tag_id": {
+                                        "$ref": "./operation_attributes.json#/definitions/source_tag_id_attribute"
+                                    },
+                                    "source_id": {
+                                        "$ref": "./operation_attributes.json#/definitions/source_id_attribute"
+                                    },
+                                    "source_name": {
+                                        "$ref": "./operation_attributes.json#/definitions/source_name_attribute"
+                                    },
+                                    "errors": {
+                                        "$ref": "./operation_attributes.json#/definitions/summary_tag_error_attributes"
+                                    }
+                                },
+                                "required": [
+                                    "source_id",
+                                    "source_tag_id",
+                                    "source_name",
+                                    "errors"
+                                ],
+                                "additionalProperties": false
+                            }
+                        ]
+                    }
+                },
+                "triggers": {
+                    "description": "List of imported triggers",
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "source_trigger_id": {
+                                "$ref": "./operation_attributes.json#/definitions/source_trigger_id_attribute"
+                            },
+                            "target_trigger_id": {
+                                "$ref": "./operation_attributes.json#/definitions/target_trigger_id_attribute"
+                            },
+                            "source_id": {
+                                "$ref": "./operation_attributes.json#/definitions/source_id_attribute"
+                            },
+                            "source_name": {
+                                "$ref": "./operation_attributes.json#/definitions/source_name_attribute"
+                            },
+                            "target_name": {
+                                "$ref": "./operation_attributes.json#/definitions/target_name_attribute"
+                            },
+                            "is_renamed": {
+                                "$ref": "./operation_attributes.json#/definitions/is_renamed_attribute"
+                            }
+                        },
+                        "required": [
+                            "source_id",
+                            "source_trigger_id",
+                            "source_name",
+                            "target_trigger_id",
+                            "target_name",
+                            "is_renamed"
+                        ],
+                        "additionalProperties": false
+                    }
+                },
+                "variables": {
+                    "description": "List of imported variables",
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "source_variable_id": {
+                                "$ref": "./operation_attributes.json#/definitions/source_variable_id_attribute"
+                            },
+                            "target_variable_id": {
+                                "$ref": "./operation_attributes.json#/definitions/target_variable_id_attribute"
+                            },
+                            "source_id": {
+                                "$ref": "./operation_attributes.json#/definitions/source_id_attribute"
+                            },
+                            "source_name": {
+                                "$ref": "./operation_attributes.json#/definitions/source_name_attribute"
+                            },
+                            "target_name": {
+                                "$ref": "./operation_attributes.json#/definitions/target_name_attribute"
+                            },
+                            "is_renamed": {
+                                "$ref": "./operation_attributes.json#/definitions/is_renamed_attribute"
+                            }
+                        },
+                        "required": [
+                            "source_id",
+                            "source_variable_id",
+                            "source_name",
+                            "target_variable_id",
+                            "target_name",
+                            "is_renamed"
+                        ],
+                        "additionalProperties": false
+                    }
+                }
+            },
+            "additionalProperties": false
+        },
+        "publish_version_summary_attribute": {
+            "oneOf": [
+                { "$ref": "#/definitions/created_operation_summary" },
+                {
+                    "title": "Successful operation summary",
+                    "type": "object",
+                    "properties": {
+                        "versions": {
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "version_id": {
+                                        "$ref": "../../versions/schema/version_types.json#/definitions/version_identifier"
+                                    },
+                                    "version_type": {
+                                        "description": "Version type",
+                                        "type": "string",
+                                        "enum": [
+                                            "draft",
+                                            "published",
+                                            "historic"
+                                        ]
+                                    },
+                                    "version_major": {
+                                        "$ref": "../../versions/schema/version_attributes.json#/definitions/version_major_attribute"
+                                    },
+                                    "version_minor": {
+                                        "$ref": "../../versions/schema/version_attributes.json#/definitions/version_minor_attribute"
+                                    },
+                                    "created_at": {
+                                        "$ref": "../../common/schema/common_types.json#/definitions/datetime"
+                                    },
+                                    "updated_at": {
+                                        "$ref": "../../common/schema/common_types.json#/definitions/datetime"
+                                    },
+                                    "change_type": {
+                                        "type": "string",
+                                        "enum": [
+                                            "added",
+                                            "modified"
+                                        ]
+                                    }
+                                },
+                                "required": [
+                                    "version_id",
+                                    "version_type",
+                                    "version_major",
+                                    "version_minor",
+                                    "created_at",
+                                    "updated_at",
+                                    "change_type"
+                                ],
+                                "additionalProperties": false
+                            },
+                            "minItems": 3,
+                            "maxItems": 3
+                        }
+                    },
+                    "required": [
+                        "versions"
+                    ],
+                    "additionalProperties": false
+                },
+                { "$ref": "#/definitions/failed_version_operation_summary" }
+            ]
+        },
+        "snapshot_version_summary_attribute": {
+            "oneOf": [
+                { "$ref": "#/definitions/created_operation_summary" },
+                {
+                    "title": "Successful operation summary",
+                    "type": "object",
+                    "properties": {
+                        "versions": {
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "version_id": {
+                                        "$ref": "../../versions/schema/version_types.json#/definitions/version_identifier"
+                                    },
+                                    "version_type": {
+                                        "description": "Version type",
+                                        "type": "string",
+                                        "enum": [
+                                            "draft",
+                                            "historic"
+                                        ]
+                                    },
+                                    "version_major": {
+                                        "$ref": "../../versions/schema/version_attributes.json#/definitions/version_major_attribute"
+                                    },
+                                    "version_minor": {
+                                        "$ref": "../../versions/schema/version_attributes.json#/definitions/version_minor_attribute"
+                                    },
+                                    "created_at": {
+                                        "$ref": "../../common/schema/common_types.json#/definitions/datetime"
+                                    },
+                                    "updated_at": {
+                                        "$ref": "../../common/schema/common_types.json#/definitions/datetime"
+                                    },
+                                    "change_type": {
+                                        "type": "string",
+                                        "enum": [
+                                            "added",
+                                            "modified"
+                                        ]
+                                    }
+                                },
+                                "required": [
+                                    "version_id",
+                                    "version_type",
+                                    "version_major",
+                                    "version_minor",
+                                    "created_at",
+                                    "updated_at",
+                                    "change_type"
+                                ],
+                                "additionalProperties": false
+                            },
+                            "minItems": 2,
+                            "maxItems": 2
+                        }
+                    },
+                    "required": [
+                        "versions"
+                    ],
+                    "additionalProperties": false
+                },
+                { "$ref": "#/definitions/failed_version_operation_summary" }
+            ]
+        },
+        "restore_version_summary_attribute": {
+            "oneOf": [
+                { "$ref": "#/definitions/created_operation_summary" },
+                {
+                    "title": "Successful operation summary",
+                    "type": "object",
+                    "properties": {
+                        "versions": {
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "version_id": {
+                                        "$ref": "../../versions/schema/version_types.json#/definitions/version_identifier"
+                                    },
+                                    "version_type": {
+                                        "description": "Version type",
+                                        "type": "string",
+                                        "enum": [
+                                            "published",
+                                            "draft"
+                                        ]
+                                    },
+                                    "version_major": {
+                                        "$ref": "../../versions/schema/version_attributes.json#/definitions/version_major_attribute"
+                                    },
+                                    "version_minor": {
+                                        "$ref": "../../versions/schema/version_attributes.json#/definitions/version_minor_attribute"
+                                    },
+                                    "created_at": {
+                                        "$ref": "../../common/schema/common_types.json#/definitions/datetime"
+                                    },
+                                    "updated_at": {
+                                        "$ref": "../../common/schema/common_types.json#/definitions/datetime"
+                                    },
+                                    "change_type": {
+                                        "type": "string",
+                                        "enum": [
+                                            "removed",
+                                            "added"
+                                        ]
+                                    }
+                                },
+                                "required": [
+                                    "version_id",
+                                    "version_type",
+                                    "version_major",
+                                    "version_minor",
+                                    "created_at",
+                                    "updated_at",
+                                    "change_type"
+                                ],
+                                "additionalProperties": false
+                            },
+                            "minItems": 2,
+                            "maxItems": 2
+                        }
+                    },
+                    "required": [
+                        "versions"
+                    ],
+                    "additionalProperties": false
+                },
+                { "$ref": "#/definitions/failed_version_operation_summary" }
+            ]
+        },
+        "created_operation_summary": {
+            "title": "Created/Started operation summary",
+            "type": "object",
+            "additionalProperties": false
+        },
+        "failed_version_operation_summary": {
+            "title": "Failed operation summary",
+            "type": "object",
+            "properties": {
+                "errors": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "minItems": 1
+                }
+            },
+            "required": [
+                "errors"
+            ],
+            "additionalProperties": false
+        }
+    }
+}

@@ -1,0 +1,56 @@
+{
+    "data": {
+        "type": "trigger",
+        "id": "57a653c9-07c0-4f9a-85f6-1cda14eb5e3e",
+        "attributes": {
+            "name": "Trigger page view for custom campaign",
+            "trigger_type": "page_view",
+            "is_published": true,
+            "created_at": "2019-11-30T09:23:38+00:00",
+            "updated_at": "2020-05-05T07:53:29+00:00",
+            "conditions": [
+                {
+                    "condition_id": "48cb3c9d-8ca5-4899-82ed-f54fbaa26c7f",
+                    "variable_id": "a3f51ab7-ea76-4adc-a839-a32d392df37c",
+                    "condition_type": "contains",
+                    "value": "custom",
+                    "options": {}
+                },
+                {
+                    "condition_id": "a54628fa-52a3-469c-b634-a123908f1c4f",
+                    "variable_id": "e1e2b185-464f-4eb5-8575-feec34c5e281",
+                    "condition_type": "equals",
+                    "value": "/campaign",
+                    "options": {}
+                },
+                {
+                    "condition_id": "9c376cf0-09db-45f1-a2ee-9163d7f10d99",
+                    "variable_id": "9c63b4a0-db22-4c13-acaf-ef6bafdfecd3",
+                    "condition_type": "equals",
+                    "value": "#test-submit-form-pptm",
+                    "options": {
+                        "selector_type": "css"
+                    }
+                }
+            ]
+        },
+        "relationships": {
+            "tags": {
+                "data": [
+                    {
+                        "id": "42e1e8ff-2ee8-4519-a234-0d598bfb356b",
+                        "type": "tag"
+                    },
+                    {
+                        "id": "c61f563f-e3b3-414a-a166-f71d55d99a44",
+                        "type": "tag"
+                    },
+                    {
+                        "id": "58bbcddb-1056-4822-b98b-e56029e2d82f",
+                        "type": "tag"
+                    }
+                ]
+            }
+        }
+    }
+}

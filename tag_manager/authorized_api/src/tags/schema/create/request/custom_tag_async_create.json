@@ -1,0 +1,94 @@
+{
+    "title": "Custom tag (asynchronous)",
+    "description": "Custom tag create request",
+    "type": "object",
+    "properties": {
+        "data": {
+            "title": "JSON:API 1.0 request data",
+            "type": "object",
+            "properties": {
+                "id": {
+                    "$ref": "../../tag_types.json#/definitions/tag_identifier"
+                },
+                "type": {
+                    "$ref": "../../tag_types.json#/definitions/tag_resource_type"
+                },
+                "attributes": {
+                    "description": "Custom tag attributes",
+                    "type": "object",
+                    "properties": {
+                        "code": {
+                            "$ref": "../../tag_attributes.json#/definitions/code"
+                        },
+                        "disable_in_debug_mode": {
+                            "$ref": "../../tag_attributes.json#/definitions/disable_in_debug_mode_default"
+                        },
+                        "document_write": {
+                            "$ref": "../../tag_attributes.json#/definitions/document_write_default"
+                        },
+                        "is_active": {
+                            "$ref": "../../tag_attributes.json#/definitions/is_active_default"
+                        },
+                        "priority": {
+                            "$ref": "../../tag_attributes.json#/definitions/priority_default"
+                        },
+                        "tag_type": {
+                            "$ref": "../../tag_attributes.json#/definitions/tag_type_async"
+                        },
+                        "name": {
+                            "$ref": "../../tag_attributes.json#/definitions/name"
+                        },
+                        "respect_visitors_privacy": {
+                            "$ref": "../../tag_attributes.json#/definitions/respect_visitors_privacy_default"
+                        },
+                        "scheduler": {
+                            "$ref": "../../tag_attributes.json#/definitions/scheduler"
+                        },
+                        "consent_type": {
+                            "$ref": "../../tag_attributes.json#/definitions/consent_type"
+                        },
+                        "template": {
+                            "$ref": "../../tag_templates/custom_tag_attributes.json#/definitions/template"
+                        }
+                    },
+                    "additionalProperties": false,
+                    "required": [
+                        "code",
+                        "tag_type",
+                        "name",
+                        "consent_type",
+                        "template"
+                    ]
+                },
+                "relationships": {
+                    "allOf": [
+                        {
+                            "$ref": "../../tag_types.json#/definitions/relationships_description"
+                        },
+                        {
+                            "type": "object",
+                            "properties": {
+                                "triggers": {
+                                    "$ref": "../../tag_types.json#/definitions/trigger_relationship"
+                                }
+                            },
+                            "additionalProperties": false,
+                            "required": [
+                                "triggers"
+                            ]
+                        }
+                    ]
+                }
+            },
+            "additionalProperties": false,
+            "required": [
+                "type",
+                "attributes"
+            ]
+        }
+    },
+    "additionalProperties": false,
+    "required": [
+        "data"
+    ]
+}

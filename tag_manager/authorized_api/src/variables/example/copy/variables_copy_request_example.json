@@ -1,0 +1,17 @@
+{
+    "data": {
+        "id": "677423b3-e529-4e03-88fd-d3b9dcacf2cf",
+        "type": "variable",
+        "attributes": {
+            "name": "New variable - copy"
+        },
+        "relationships": {
+            "target_app": {
+                "data": {
+                    "id": "1bf18ce0-727e-43c0-885c-984e5496a0fa",
+                    "type": "app"
+                }
+            }
+        }
+    }
+}

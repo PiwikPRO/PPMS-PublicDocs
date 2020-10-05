@@ -1,0 +1,37 @@
+{
+    "description": "Variables list response",
+    "type": "object",
+    "properties": {
+        "data": {
+            "title": "JSON:API 1.0 list response data",
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "id": {"$ref": "../variable_types.json#/definitions/variable_identifier"},
+                    "type": {"$ref": "../variable_types.json#/definitions/variable_resource_type"},
+                    "attributes": {
+                        "description": "Variable attributes",
+                        "type": "object",
+                        "properties": {
+                            "name": {"$ref": "../variable_attributes.json#/definitions/variable_name_attribute"},
+                            "variable_type": {"$ref": "../variable_types.json#/definitions/variable_type"},
+                            "builtin": {"$ref": "../variable_attributes.json#/definitions/variable_builtin_attribute"},
+                            "is_published": {"$ref": "../variable_attributes.json#/definitions/variable_is_published_attribute"},
+                            "created_at": {"$ref": "../../../common/schema/common_types.json#/definitions/datetime"},
+                            "updated_at": {"$ref": "../../../common/schema/common_types.json#/definitions/datetime"}
+                        },
+                        "required": ["name", "variable_type", "builtin", "is_published", "created_at", "updated_at"],
+                        "additionalProperties": false
+                    }
+                },
+                "required": ["id", "type", "attributes"],
+                "additionalProperties": false
+            }
+        },
+        "meta": {"$ref": "../../../common/schema/common_attributes.json#/definitions/pagination_meta_attributes"},
+        "links": {"$ref": "../../../common/schema/common_attributes.json#/definitions/pagination_links_attributes"}
+    },
+    "required": ["data", "meta", "links"],
+    "additionalProperties": false
+}

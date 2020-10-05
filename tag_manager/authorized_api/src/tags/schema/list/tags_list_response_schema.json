@@ -1,0 +1,84 @@
+{
+    "description": "Tags list response",
+    "type": "object",
+    "properties": {
+        "data": {
+            "title": "JSON:API 1.0 list response data",
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "$ref": "../tag_types.json#/definitions/tag_identifier"
+                    },
+                    "type": {
+                        "$ref": "../tag_types.json#/definitions/tag_resource_type"
+                    },
+                    "attributes": {
+                        "description": "Tag attributes",
+                        "type": "object",
+                        "properties": {
+                            "is_active": {
+                                "$ref": "../tag_attributes.json#/definitions/is_active"
+                            },
+                            "is_published": {
+                                "$ref": "../tag_attributes.json#/definitions/is_published"
+                            },
+                            "priority": {
+                                "$ref": "../tag_attributes.json#/definitions/priority"
+                            },
+                            "tag_type": {
+                                "$ref": "../tag_attributes.json#/definitions/tag_type"
+                            },
+                            "name": {
+                                "$ref": "../tag_attributes.json#/definitions/name"
+                            },
+                            "consent_type": {
+                                "$ref": "../tag_attributes.json#/definitions/consent_type"
+                            },
+                            "template": {
+                                "$ref": "../tag_attributes.json#/definitions/template"
+                            },
+                            "created_at": {
+                                "$ref": "../../../common/schema/common_types.json#/definitions/datetime"
+                            },
+                            "updated_at": {
+                                "$ref": "../../../common/schema/common_types.json#/definitions/datetime"
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": [
+                            "is_active",
+                            "is_published",
+                            "priority",
+                            "tag_type",
+                            "name",
+                            "consent_type",
+                            "template",
+                            "created_at",
+                            "updated_at"
+                        ]
+                    }
+                },
+                "additionalProperties": false,
+                "required": [
+                    "id",
+                    "type",
+                    "attributes"
+                ]
+            }
+        },
+        "meta": {
+            "$ref": "../../../common/schema/common_attributes.json#/definitions/pagination_meta_attributes"
+        },
+        "links": {
+            "$ref": "../../../common/schema/common_attributes.json#/definitions/pagination_links_attributes"
+        }
+    },
+    "additionalProperties": false,
+    "required": [
+        "data",
+        "meta",
+        "links"
+    ]
+}

@@ -1,0 +1,36 @@
+{
+    "description": "Get export file response",
+    "type": "object",
+    "properties": {
+        "data": {
+            "title": "JSON:API 1.0 response data",
+            "type": "object",
+            "properties": {
+                "id": {"$ref": "../version_types.json#/definitions/export_file_identifier"},
+                "type": {"$ref": "../version_types.json#/definitions/export_file_resource_type"},
+                "attributes": {
+                    "description": "Export file attributes",
+                    "type": "object",
+                    "properties": {
+                        "content": {"$ref": "../export_file_attributes.json#/definitions/export_file_content"},
+                        "created_at": {"$ref": "../../../common/schema/common_types.json#/definitions/datetime"}
+                    },
+                    "required": ["content", "created_at"],
+                    "additionalProperties": false
+                }
+            },
+            "required": ["id", "type", "attributes"],
+            "additionalProperties": false
+        },
+        "meta": {
+            "type": "object",
+            "properties": {
+                "file_name": {"$ref": "../export_file_attributes.json#/definitions/export_file_file_name"}
+            },
+            "required": ["file_name"],
+            "additionalProperties": false
+        }
+    },
+    "required": ["data", "meta"],
+    "additionalProperties": false
+}

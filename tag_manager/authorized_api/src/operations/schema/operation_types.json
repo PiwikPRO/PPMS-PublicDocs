@@ -1,0 +1,27 @@
+{
+    "definitions": {
+        "operation_resource_type": {
+            "description": "Operation resource type",
+            "type": "string",
+            "enum": ["operation"]
+        },
+        "operation_identifier": {
+            "allOf": [
+                {"description": "Operation identifier"},
+                {"$ref": "../../common/schema/common_types.json#/definitions/uuid"}
+            ]
+        },
+        "target_app_identifier": {
+            "allOf": [
+                {"$ref": "../../common/schema/common_types.json#/definitions/uuid"},
+                {"description": "Target application identifier"}
+            ]
+        },
+        "source_app_identifier": {
+            "allOf": [
+                {"$ref": "../../common/schema/common_types.json#/definitions/uuid"},
+                {"description": "Source application identifier"}
+            ]
+        }
+    }
+}

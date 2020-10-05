@@ -1,0 +1,20 @@
+{
+    "data": {
+        "id": "2bf66a4f-3ca6-4d17-90e4-f75b632a309b",
+        "type": "version",
+        "attributes": {
+            "version_type": "draft",
+            "version_major": 2,
+            "version_minor": 1,
+            "created_at": "2020-01-29T13:43:57+00:00",
+            "updated_at": "2020-01-31T11:20:57+00:00",
+            "published_at": null,
+            "parent_id": "2bf66a4f-3ca6-4d17-90e4-f75b632a309b",
+            "author": {
+                "email": "john@doe.com",
+                "id": "10385e5a-d603-4cc7-a986-abc691ae3e03"
+            },
+            "publisher": null
+        }
+    }
+}

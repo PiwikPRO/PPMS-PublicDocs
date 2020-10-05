@@ -1,0 +1,36 @@
+{
+    "description": "Triggers list response",
+    "type": "object",
+    "properties": {
+        "data": {
+            "title": "JSON:API 1.0 list response data",
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "id": {"$ref": "../trigger_types.json#/definitions/trigger_identifier"},
+                    "type": {"$ref": "../trigger_types.json#/definitions/trigger_resource_type"},
+                    "attributes": {
+                        "type": "object",
+                        "description": "Trigger attributes",
+                        "properties": {
+                            "name": {"$ref": "../trigger_attributes.json#/definitions/trigger_name_attribute"},
+                            "trigger_type": {"$ref": "../trigger_attributes.json#/definitions/trigger_type_attribute"},
+                            "is_published": {"$ref": "../trigger_attributes.json#/definitions/trigger_is_published_attribute"},
+                            "created_at": {"$ref": "../../../common/schema/common_types.json#/definitions/datetime"},
+                            "updated_at": {"$ref": "../../../common/schema/common_types.json#/definitions/datetime"}
+                        },
+                        "required": ["name", "trigger_type", "is_published", "created_at", "updated_at"],
+                        "additionalProperties": false
+                    }
+                },
+                "required": ["id", "type", "attributes"],
+                "additionalProperties": false
+            }
+        },
+        "meta": {"$ref": "../../../common/schema/common_attributes.json#/definitions/pagination_meta_attributes"},
+        "links": {"$ref": "../../../common/schema/common_attributes.json#/definitions/pagination_links_attributes"}
+    },
+    "required": ["data", "meta", "links"],
+    "additionalProperties": false
+}

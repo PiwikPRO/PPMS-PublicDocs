@@ -1,0 +1,46 @@
+{
+    "components": {
+        "parameters": {
+            "sort": {
+                "in": "query",
+                "name": "sort",
+                "required": false,
+                "description": "Comma-separated sort list with given attributes: created_at",
+                "schema": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "enum": [
+                            "created_at",
+                            "-created_at"
+                        ]
+                    },
+                    "minItems": 1
+                },
+                "example": [
+                    "-created_at"
+                ]
+            },
+            "filter[resource_id]": {
+                "in": "query",
+                "name": "filter[resource_id]",
+                "required": false,
+                "description": "Filter changelog resource attribute",
+                "schema": {
+                    "$ref": "../../common/schema/common_types.json#/definitions/uuid"
+                },
+                "example": "5c39070d-9e0b-40a2-ae56-392f05711f74"
+            },
+            "filter[author]": {
+                "in": "query",
+                "name": "filter[author]",
+                "required": false,
+                "description": "Filter changelog by email of user who did the changes",
+                "schema": {
+                    "$ref": "../../common/schema/common_types.json#/definitions/email"
+                },
+                "example": "john@doe.com"
+            }
+        }
+    }
+}

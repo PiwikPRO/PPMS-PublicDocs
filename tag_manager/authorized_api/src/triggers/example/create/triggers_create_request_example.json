@@ -1,0 +1,27 @@
+{
+    "data": {
+        "type": "trigger",
+        "attributes": {
+            "name": "Trigger page view for default campaign",
+            "trigger_type": "page_view",
+            "conditions": [
+                {
+                    "condition_id": "9efa6364-8982-45c5-a288-cdabdf7a4001",
+                    "variable_id": "42ff090e-f97c-45b5-8625-21ae26891382",
+                    "condition_type": "equals",
+                    "value": "clearcode.cc",
+                    "options": {}
+                },
+                {
+                    "condition_id": "9c376cf0-09db-45f1-a2ee-9163d7f10d99",
+                    "variable_id": "9c63b4a0-db22-4c13-acaf-ef6bafdfecd3",
+                    "condition_type": "equals",
+                    "value": "#test-submit-form-pptm",
+                    "options": {
+                        "selector_type": "css"
+                    }
+                }
+            ]
+        }
+    }
+}

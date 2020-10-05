@@ -1,0 +1,14 @@
+{
+    "definitions": {
+        "consent_type_default": {
+            "$ref": "../tag_attributes.json#/definitions/consent_type",
+            "default": "ab_testing_and_personalization"
+        },
+        "template": {
+            "$ref": "../tag_attributes.json#/definitions/template",
+            "enum": [
+                "custom_popup"
+            ]
+        }
+    }
+}
