@@ -78,6 +78,10 @@ def resolve(content, dir):
             tmp = load_content(file_path)
             content.update(resolve(search(resolve_local(tmp[0]), ref), os.path.dirname(file_path)))
             del content['$ref']
+        elif 'externalValue' in content:
+            path = re.sub('^\./', '', content['externalValue'])
+            del content['externalValue']
+            content.update({'value': load(os.path.realpath(os.path.join(dir, path)))})
         else:
             for value in content.values():
                 resolve(value, dir)
