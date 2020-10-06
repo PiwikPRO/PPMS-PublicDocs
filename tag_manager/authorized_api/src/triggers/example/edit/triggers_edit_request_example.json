@@ -1,0 +1,9 @@
+{
+    "data": {
+        "id": "57a653c9-07c0-4f9a-85f6-1cda14eb5e3e",
+        "type": "trigger",
+        "attributes": {
+            "name": "Trigger page view for default campaign"
+        }
+    }
+}

@@ -1,0 +1,81 @@
+{
+    "components": {
+        "parameters": {
+            "tag_id": {
+                "in": "path",
+                "name": "tag_id",
+                "required": true,
+                "description": "Tag identifier",
+                "schema": {
+                    "$ref" : "../../common/schema/common_types.json#/definitions/uuid"
+                },
+                "example": "5c39070d-9e0b-40a2-ae56-392f05711f74"
+            },
+            "sort": {
+                "in": "query",
+                "name": "sort",
+                "required": false,
+                "description": "Comma-separated sort list with given attributes: name, is_active, tag_type, priority, created_at, updated_at.\n\nSorting by `priority` (and `-priority`) sorts also by primary key to keep stable order of tags with same priority.",
+                "schema": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "enum": ["name", "-name", "is_active", "-is_active", "tag_type", "-tag_type", "priority", "-priority", "created_at", "-created_at", "updated_at", "-updated_at"]
+                    },
+                    "minItems": 1
+                },
+                "example": ["name", "-tag_type", "updated_at"]
+            },
+            "filter[name]": {
+                "in": "query",
+                "name": "filter[name]",
+                "required": false,
+                "description": "Filter tags by name",
+                "schema": {
+                    "$ref": "../../common/schema/common_types.json#/definitions/name"
+                },
+                "example": "DoubleClick"
+            },
+            "filter[is_active]": {
+                "in": "query",
+                "name": "filter[is_active]",
+                "required": false,
+                "description": "Filter tags by active status",
+                "schema": {
+                    "$ref": "../schema/tag_attributes.json#/definitions/is_active"
+                },
+                "example": true
+            },
+            "filter[tag_type]": {
+                "in": "query",
+                "name": "filter[tag_type]",
+                "required": false,
+                "description": "Filter tags by type",
+                "schema": {
+                    "$ref": "../schema/tag_attributes.json#/definitions/tag_type"
+                },
+                "example": "async"
+            },
+            "filter[template]": {
+                "in": "query",
+                "name": "filter[template]",
+                "required": false,
+                "description": "Filter tags by template",
+                "schema": {
+                    "$ref": "../schema/tag_attributes.json#/definitions/template"
+                },
+                "example": "piwik"
+            },
+            "filter[is_prioritized]": {
+                "in": "query",
+                "name": "filter[is_prioritized]",
+                "required": false,
+                "description": "Filter tags by being prioritized or not",
+                "schema": {
+                    "type": "boolean"
+                },
+                "example": false
+            }
+        }
+    }
+}

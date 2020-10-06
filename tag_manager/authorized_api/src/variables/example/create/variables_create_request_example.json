@@ -1,0 +1,10 @@
+{
+    "data": {
+        "type": "variable",
+        "attributes": {
+            "name": "New variable",
+            "value": "function () {}",
+            "variable_type": "custom_javascript"
+        }
+    }
+}

@@ -1,0 +1,95 @@
+{
+    "definitions": {
+        "version_type_attribute": {
+            "type": "string",
+            "description": "Version type",
+            "enum": [
+                "published",
+                "draft",
+                "historic"
+            ]
+        },
+        "version_has_changes_attribute": {
+            "description": "When draft version differs from published version then true, false otherwise",
+            "type": "boolean"
+        },
+        "version_has_changes_attribute_false": {
+            "description": "Always false for published and historic versions",
+            "enum": [false]
+        },
+        "version_major_attribute": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "Version number before dot"
+        },
+        "version_minor_attribute": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "Version number after dot"
+        },
+        "version_author_attribute": {
+            "type": "object",
+            "description": "User who created the version",
+            "properties": {
+                "id": {
+                    "allOf": [
+                        {"$ref":  "../../common/schema/common_types.json#/definitions/uuid"},
+                        {"description": "User identifier"}
+                    ]
+                },
+                "email": {"$ref":  "../../common/schema/common_types.json#/definitions/email"}
+            },
+            "required": ["id", "email"],
+            "additionalProperties": false
+        },
+        "version_author_nullable_attribute": {
+            "description": "User who created the version (nullable)",
+            "oneOf": [
+                {"$ref": "./version_attributes.json#/definitions/version_author_attribute"},
+                {"$ref": "../../common/schema/common_types.json#/definitions/nullable"}
+            ]
+        },
+        "version_publisher_attribute": {
+            "type": "object",
+            "description": "User who published the version",
+            "properties": {
+                "id": {
+                    "allOf": [
+                        {"$ref":  "../../common/schema/common_types.json#/definitions/uuid"},
+                        {"description": "User identifier"}
+                    ]
+                },
+                "email": {"$ref":  "../../common/schema/common_types.json#/definitions/email"}
+            },
+            "required": ["id", "email"],
+            "additionalProperties": false
+        },
+        "version_publisher_nullable_attribute": {
+            "description": "User who published the version (nullable)",
+            "oneOf": [
+                {"$ref": "./version_attributes.json#/definitions/version_publisher_attribute"},
+                {"$ref": "../../common/schema/common_types.json#/definitions/nullable"}
+            ]
+        },
+        "version_publisher_null_attribute": {
+            "description": "User who published the version",
+            "allOf": [
+                {"$ref": "../../common/schema/common_types.json#/definitions/nullable"}
+            ]
+        },
+        "version_parent_id_attribute": {
+            "description": "Parent version identifier (nullable)",
+            "oneOf": [
+                {"$ref":  "../../common/schema/common_types.json#/definitions/uuid"},
+                {"$ref": "../../common/schema/common_types.json#/definitions/nullable"}
+            ]
+        },
+        "version_published_at_nullable_attribute": {
+            "description": "ISO 8601 (nullable)",
+            "oneOf": [
+                {"$ref": "../../common/schema/common_types.json#/definitions/datetime"},
+                {"$ref": "../../common/schema/common_types.json#/definitions/nullable"}
+            ]
+        }
+    }
+}

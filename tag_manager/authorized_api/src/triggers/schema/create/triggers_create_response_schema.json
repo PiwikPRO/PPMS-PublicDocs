@@ -1,0 +1,50 @@
+{
+    "description": "Create trigger response",
+    "type": "object",
+    "properties": {
+        "data": {
+            "title": "JSON:API 1.0 response data",
+            "type": "object",
+            "properties": {
+                "id": {"$ref": "../trigger_types.json#/definitions/trigger_identifier"},
+                "type": {"$ref": "../trigger_types.json#/definitions/trigger_resource_type"},
+                "attributes": {
+                    "type": "object",
+                    "description": "Trigger attributes",
+                    "properties": {
+                        "name": {"$ref": "../trigger_attributes.json#/definitions/trigger_name_attribute"},
+                        "trigger_type": {"$ref": "../trigger_attributes.json#/definitions/trigger_type_attribute"},
+                        "conditions": {"$ref": "../trigger_attributes.json#/definitions/trigger_conditions_attribute"},
+                        "created_at": {"$ref": "../../../common/schema/common_types.json#/definitions/datetime"},
+                        "updated_at": {"$ref": "../../../common/schema/common_types.json#/definitions/datetime"}
+                    },
+                    "required": ["name", "trigger_type", "conditions", "created_at", "updated_at"],
+                    "additionalProperties": false
+                },
+                "relationships": {
+                    "allOf": [
+                        {
+                            "$ref": "../trigger_types.json#/definitions/relationships_description"
+                        },
+                        {
+                            "type": "object",
+                            "properties": {
+                                "tags": {
+                                    "$ref": "../trigger_types.json#/definitions/tag_relationship"
+                                }
+                            },
+                            "additionalProperties": false,
+                            "required": [
+                                "tags"
+                            ]
+                        }
+                    ]
+                }
+            },
+            "required": ["id", "type", "attributes", "relationships"],
+            "additionalProperties": false
+        }
+    },
+    "required": ["data"],
+    "additionalProperties": false
+}

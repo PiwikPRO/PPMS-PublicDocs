@@ -1,0 +1,44 @@
+{
+    "description": "Tags edit order request",
+    "type": "object",
+    "properties": {
+        "data": {
+            "title": "JSON:API 1.0 request data",
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "$ref": "../tag_types.json#/definitions/tag_identifier"
+                    },
+                    "type": {
+                        "$ref": "../tag_types.json#/definitions/tag_resource_type"
+                    },
+                    "attributes": {
+                        "description": "Tag attributes",
+                        "type": "object",
+                        "properties": {
+                            "priority": {
+                                "$ref": "../tag_attributes.json#/definitions/priority"
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": [
+                            "priority"
+                        ]
+                    }
+                },
+                "additionalProperties": false,
+                "required": [
+                    "id",
+                    "type",
+                    "attributes"
+                ]
+            }
+        }
+    },
+    "additionalProperties": false,
+    "required": [
+        "data"
+    ]
+}

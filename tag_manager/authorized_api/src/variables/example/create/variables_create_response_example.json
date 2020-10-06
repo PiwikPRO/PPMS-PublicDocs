@@ -1,0 +1,14 @@
+{
+    "data": {
+        "id": "677423b3-e529-4e03-88fd-d3b9dcacf2cf",
+        "type": "variable",
+        "attributes": {
+            "name": "New variable",
+            "value": "function () {}",
+            "variable_type": "custom_javascript",
+            "builtin": false,
+            "created_at": "2020-01-29T13:43:57+00:00",
+            "updated_at": "2020-01-29T13:43:57+00:00"
+        }
+    }
+}

@@ -1,0 +1,61 @@
+{
+    "components": {
+        "parameters": {
+            "variable_id": {
+                "in": "path",
+                "name": "variable_id",
+                "required": true,
+                "description": "Variable identifier",
+                "schema": {
+                    "$ref" : "../../common/schema/common_types.json#/definitions/uuid"
+                },
+                "example": "5c39070d-9e0b-40a2-ae56-392f05711f74"
+            },
+            "sort": {
+                "in": "query",
+                "name": "sort",
+                "required": false,
+                "description": "Comma-separated sort list with given attributes: name, variable_type, created_at, updated_at",
+                "schema": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "enum": ["name", "-name", "variable_type", "-variable_type", "created_at", "-created_at", "updated_at", "-updated_at"]
+                    },
+                    "minItems": 1
+                },
+                "example": ["name", "-created_at", "updated_at"]
+            },
+            "filter[name]": {
+                "in": "query",
+                "name": "filter[name]",
+                "required": false,
+                "description": "Filter variable name attribute",
+                "schema": {
+                    "$ref": "../../common/schema/common_types.json#/definitions/name"
+                },
+                "example": "Custom Javascript variable"
+            },
+            "filter[variable_type]": {
+                "in": "query",
+                "name": "filter[variable_type]",
+                "required": false,
+                "description": "Filter variable with type",
+                "schema": {
+                    "$ref": "../schema/variable_types.json#/definitions/variable_type"
+                },
+                "example": "url"
+            },
+            "filter[builtin]": {
+                "in": "query",
+                "name": "filter[builtin]",
+                "required": false,
+                "description": "Filter variable with builtin attribute",
+                "schema": {
+                    "type": "boolean"
+                },
+                "example": true
+            }
+        }
+    }
+}

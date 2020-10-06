@@ -1,0 +1,55 @@
+{
+    "definitions": {
+        "trigger_resource_type": {
+            "type": "string",
+            "enum": ["trigger"],
+            "description": "Trigger resource type"
+        },
+        "trigger_identifier": {
+            "$ref": "../../common/schema/common_types.json#/definitions/uuid",
+            "description": "Trigger identifier"
+        },
+        "relationships_description": {
+            "description": "Tag relationships"
+        },
+        "tag_relationship": {
+            "description": "Trigger tags",
+            "type": "object",
+            "properties": {
+                "data": {
+                    "title": "Tag relationship",
+                    "description": "JSON:API 1.0 relationship data",
+                    "type": "array",
+                    "minItems": 0,
+                    "items": {
+                        "properties": {
+                            "id": {
+                                "$ref": "../../tags/schema/tag_types.json#/definitions/tag_identifier"
+                            },
+                            "type": {
+                                "$ref": "../../tags/schema/tag_types.json#/definitions/tag_resource_type"
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": [
+                            "id",
+                            "type"
+                        ]
+                    }
+                }
+            },
+            "additionalProperties": false,
+            "required": [
+                "data"
+            ]
+        },
+        "trigger_new_identifier": {
+            "$ref": "../../common/schema/common_types.json#/definitions/uuid",
+            "description": "New trigger's identifier"
+        },
+        "trigger_new_name": {
+            "$ref": "../../common/schema/common_types.json#/definitions/name",
+            "description": "New trigger's name"
+        }
+    }
+}

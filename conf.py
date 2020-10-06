@@ -31,13 +31,20 @@ api_definitions = {
     'audience_manager_public_api.json': 'audience_manager/public_api/index.yaml',
     'platform_access_control_authorized_api.json': 'platform/authorized_api/access_control/public_v2.yaml',
     'platform_apps_authorized_api.json': 'platform/authorized_api/apps/public_v2.yaml',
+    'platform_audit_log_authorized_api.json': 'platform/authorized_api/audit_log/public_v1.yaml',
     'platform_meta_sites_authorized_api.json': 'platform/authorized_api/meta_sites/public_v1.yaml',
     'platform_modules_authorized_api.json': 'platform/authorized_api/modules/public_v1.yaml',
     'platform_tracker_settings_authorized_api.json': 'platform/authorized_api/tracker_settings/public_v1.yaml',
     'platform_users_authorized_api.json': 'platform/authorized_api/users/public_v2.yaml',
     'platform_user_groups_authorized_api.json': 'platform/authorized_api/user_groups/public_v1.yaml',
     'audience_manager_authorized_api.json': 'audience_manager/authorized_api/index.yaml',
-    'custom_reports_http_api.json': 'custom_reports/http_api/index.yaml'
+    'custom_reports_http_api.json': 'custom_reports/http_api/index.yaml',
+    'tag_manager_authorized_api_tags.json': 'tag_manager/authorized_api/src/tags.yaml',
+    'tag_manager_authorized_api_triggers.json': 'tag_manager/authorized_api/src/triggers.yaml',
+    'tag_manager_authorized_api_variables.json': 'tag_manager/authorized_api/src/variables.yaml',
+    'tag_manager_authorized_api_versions.json': 'tag_manager/authorized_api/src/versions.yaml',
+    'tag_manager_authorized_api_changelog.json': 'tag_manager/authorized_api/src/changelog.yaml',
+    'tag_manager_authorized_api_operations.json': 'tag_manager/authorized_api/src/operations.yaml',
 }
 
 
@@ -78,7 +85,7 @@ author = u'Piwik PRO'
 # built documents.
 #
 # The short X.Y version.
-version = u'14.0'
+version = u'15.0'
 # The full version, including alpha/beta/rc tags.
 release = version
 

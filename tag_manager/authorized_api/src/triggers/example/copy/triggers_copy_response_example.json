@@ -1,0 +1,17 @@
+{
+    "data": {
+        "id": "12e11cbe-16f4-43b7-93ee-10795ccda34e",
+        "type": "trigger",
+        "attributes": {
+            "name": "Trigger - copy"
+        },
+        "relationships": {
+            "operation": {
+                "data": {
+                    "id": "fedbc70e-2390-4b89-8cc4-60a2f6df7b98",
+                    "type": "operation"
+                }
+            }
+        }
+    }
+}

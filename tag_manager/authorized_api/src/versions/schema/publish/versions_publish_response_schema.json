@@ -1,0 +1,45 @@
+{
+    "description": "Version publish response",
+    "type": "object",
+    "properties": {
+        "data": {
+            "title": "JSON:API 1.0 response data",
+            "type": "object",
+            "properties": {
+                "id": {"$ref": "../version_types.json#/definitions/version_identifier"},
+                "type": {"$ref": "../version_types.json#/definitions/version_resource_type"},
+                "relationships": {
+                    "description": "Version relationships",
+                    "type": "object",
+                    "properties": {
+                        "operation": {
+                            "description": "Operation",
+                            "type": "object",
+                            "properties": {
+                                "data": {
+                                    "title": "JSON:API 1.0 relationship data",
+                                    "description": "Operation data",
+                                    "type": "object",
+                                    "properties": {
+                                        "id": {"$ref": "../../../operations/schema/operation_types.json#/definitions/operation_identifier"},
+                                        "type": {"$ref": "../../../operations/schema/operation_types.json#/definitions/operation_resource_type"}
+                                    },
+                                    "required": ["id", "type"],
+                                    "additionalProperties": false
+                                }
+                            },
+                            "required": ["data"],
+                            "additionalProperties": false
+                        }
+                    },
+                    "required": ["operation"],
+                    "additionalProperties": false
+                }
+            },
+            "required": ["id", "type", "relationships"],
+            "additionalProperties": false
+        }
+    },
+    "required": ["data"],
+    "additionalProperties": false
+}

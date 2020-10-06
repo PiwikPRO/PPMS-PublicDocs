@@ -1,0 +1,13 @@
+{
+    "data": {
+        "type": "tag",
+        "attributes": {
+            "code": "<script>console.log('test');</script>",
+            "document_write": false,
+            "consent_type": "not_require_consent",
+            "tag_type": "async",
+            "name": "test",
+            "template": "custom_tag"
+        }
+    }
+}

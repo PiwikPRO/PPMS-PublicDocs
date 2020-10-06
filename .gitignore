@@ -42,7 +42,6 @@ xml_output
 private_*
 .rope_project/
 readthedocs/htmlcov
-tags
 .python-version
 *.pyo
 .pytest_cache/

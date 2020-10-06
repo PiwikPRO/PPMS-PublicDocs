@@ -1,0 +1,44 @@
+{
+    "definitions": {
+        "trigger_name_attribute": {
+            "$ref": "../../common/schema/common_types.json#/definitions/name",
+            "description": "Trigger name"
+        },
+        "trigger_type_attribute": {
+            "type": "string",
+            "enum": [
+                "page_view",
+                "page_load",
+                "dom_ready",
+                "leave_content",
+                "page_scroll",
+                "time_on_website",
+                "event",
+                "history",
+                "form_submission",
+                "click"
+            ],
+            "description": "Trigger type"
+        },
+        "trigger_is_published_attribute": {
+            "type": "boolean",
+            "description": "Flag describing whether trigger is published (true) or not published (false)"
+        },
+        "trigger_conditions_attribute": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "condition_id": {"$ref": "condition_attributes.json#/definitions/condition_id_attribute"},
+                    "variable_id": {"$ref": "../../variables/schema/variable_types.json#/definitions/variable_identifier"},
+                    "condition_type": {"$ref": "condition_attributes.json#/definitions/condition_type_attribute"},
+                    "value": {"$ref": "condition_attributes.json#/definitions/condition_value_attribute"},
+                    "options": {"$ref": "condition_attributes.json#/definitions/condition_options_attribute"}
+                },
+                "required": ["condition_id", "variable_id", "condition_type", "value", "options"],
+                "additionalProperties": false
+            },
+            "description": "Trigger conditions"
+        }
+    }
+}

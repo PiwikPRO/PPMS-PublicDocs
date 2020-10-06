@@ -1,0 +1,66 @@
+{
+    "description": "Copy tag response",
+    "type": "object",
+    "properties": {
+        "data": {
+            "title": "JSON:API 1.0 response data",
+            "type": "object",
+            "properties": {
+                "id": {
+                    "$ref": "../tag_types.json#/definitions/tag_new_identifier"
+                },
+                "type": {
+                    "$ref": "../tag_types.json#/definitions/tag_resource_type"
+                },
+                "relationships": {
+                    "description": "Copy tag relationships",
+                    "type": "object",
+                    "properties": {
+                        "operation": {
+                            "description": "Operation",
+                            "type": "object",
+                            "properties": {
+                                "data": {
+                                    "title": "JSON:API 1.0 relationship data",
+                                    "description": "Operation data",
+                                    "type": "object",
+                                    "properties": {
+                                        "id": {
+                                            "$ref": "../../../operations/schema/operation_types.json#/definitions/operation_identifier"
+                                        },
+                                        "type": {
+                                            "$ref": "../../../operations/schema/operation_types.json#/definitions/operation_resource_type"
+                                        }
+                                    },
+                                    "additionalProperties": false,
+                                    "required": [
+                                        "id",
+                                        "type"
+                                    ]
+                                }
+                            },
+                            "additionalProperties": false,
+                            "required": [
+                                "data"
+                            ]
+                        }
+                    },
+                    "additionalProperties": false,
+                    "required": [
+                        "operation"
+                    ]
+                }
+            },
+            "additionalProperties": false,
+            "required": [
+                "id",
+                "type",
+                "relationships"
+            ]
+        }
+    },
+    "additionalProperties": false,
+    "required": [
+        "data"
+    ]
+}

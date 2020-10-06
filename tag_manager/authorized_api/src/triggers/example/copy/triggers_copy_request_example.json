@@ -1,0 +1,17 @@
+{
+    "data": {
+        "id": "12e11cbe-16f4-43b7-93ee-10795ccda34e",
+        "type": "trigger",
+        "attributes": {
+            "name": "Trigger - copy"
+        },
+        "relationships": {
+            "target_app": {
+                "data": {
+                    "id": "1bf18ce0-727e-43c0-885c-984e5496a0fa",
+                    "type": "app"
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,78 @@
+{
+    "title": "Custom popup",
+    "description": "Custom popup edit request",
+    "type": "object",
+    "properties": {
+        "data": {
+            "title": "JSON:API 1.0 request data",
+            "type": "object",
+            "properties": {
+                "id": {
+                    "$ref": "../../tag_types.json#/definitions/tag_identifier"
+                },
+                "type": {
+                    "$ref": "../../tag_types.json#/definitions/tag_resource_type"
+                },
+                "attributes": {
+                    "description": "Custom popup attributes",
+                    "type": "object",
+                    "properties": {
+                        "code": {
+                            "$ref": "../../tag_attributes.json#/definitions/code"
+                        },
+                        "disable_in_debug_mode": {
+                            "$ref": "../../tag_attributes.json#/definitions/disable_in_debug_mode"
+                        },
+                        "document_write": {
+                            "$ref": "../../tag_attributes.json#/definitions/document_write"
+                        },
+                        "is_active": {
+                            "$ref": "../../tag_attributes.json#/definitions/is_active"
+                        },
+                        "priority": {
+                            "$ref": "../../tag_attributes.json#/definitions/priority"
+                        },
+                        "name": {
+                            "$ref": "../../tag_attributes.json#/definitions/name"
+                        },
+                        "respect_visitors_privacy": {
+                            "$ref": "../../tag_attributes.json#/definitions/respect_visitors_privacy"
+                        },
+                        "scheduler": {
+                            "$ref": "../../tag_attributes.json#/definitions/scheduler"
+                        },
+                        "consent_type": {
+                            "$ref": "../../tag_attributes.json#/definitions/consent_type"
+                        }
+                    },
+                    "additionalProperties": false
+                },
+                "relationships": {
+                    "allOf": [
+                        {
+                            "$ref": "../../tag_types.json#/definitions/relationships_description"
+                        },
+                        {
+                            "type": "object",
+                            "properties": {
+                                "triggers": {
+                                    "$ref": "../../tag_types.json#/definitions/trigger_relationship"
+                                }
+                            },
+                            "additionalProperties": false
+                        }
+                    ]
+                }
+            },
+            "additionalProperties": false,
+            "required": [
+                "id",
+                "type"
+            ]
+        }
+    },
+    "additionalProperties": false,
+    "required": [
+        "data"
+    ]
+}

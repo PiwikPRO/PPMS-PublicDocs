@@ -1,0 +1,216 @@
+{
+    "definitions": {
+        "name": {
+            "description": "Tag name",
+            "$ref": "../../common/schema/common_types.json#/definitions/name"
+        },
+        "code": {
+            "description": "Tag code (html, script or css)",
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 65536
+        },
+        "consent_type": {
+            "description": "Consent type",
+            "type": "string",
+            "enum": [
+                "not_require_consent",
+                "analytics",
+                "ab_testing_and_personalization",
+                "conversion_tracking",
+                "marketing_automation",
+                "remarketing",
+                "user_feedback",
+                "custom_consent"
+            ]
+        },
+        "disable_in_debug_mode": {
+            "description": "Flag describing whether tag should be disabled in debug mode (true) or enabled (false)",
+            "type": "boolean"
+        },
+        "disable_in_debug_mode_default": {
+            "$ref": "#/definitions/disable_in_debug_mode",
+            "default": false
+        },
+        "document_write": {
+            "description": "Flag describing whether tag is using JavaScripts document.write method (true) or not (false)",
+            "type": "boolean"
+        },
+        "document_write_default": {
+            "$ref": "#/definitions/document_write",
+            "default": false
+        },
+        "document_write_true": {
+            "$ref": "#/definitions/document_write",
+            "enum": [
+                true
+            ]
+        },
+        "document_write_false": {
+            "$ref": "#/definitions/document_write",
+            "enum": [
+                false
+            ]
+        },
+        "is_active": {
+            "description": "Flag describing whether tag is active (true) or inactive (false)",
+            "type": "boolean"
+        },
+        "is_published": {
+            "description": "Flag describing whether tag is published (true) or not published (false)",
+            "type": "boolean"
+        },
+        "priority": {
+            "description": "Order of firing tags (bigger number means earlier)",
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 4294967295
+        },
+        "priority_default": {
+            "$ref": "#/definitions/priority",
+            "default": 0
+        },
+        "is_active_default": {
+            "$ref": "#/definitions/is_active",
+            "default": true
+        },
+        "tag_type": {
+            "description": "Field describing whether tag is synchronous (sync) or asynchronous (async)",
+            "type": "string",
+            "enum": [
+                "sync",
+                "async"
+            ]
+        },
+        "tag_type_default": {
+            "$ref": "#/definitions/tag_type",
+            "default": "async"
+        },
+        "tag_type_sync": {
+            "$ref": "#/definitions/tag_type",
+            "enum": [
+                "sync"
+            ]
+        },
+        "tag_type_async": {
+            "$ref": "#/definitions/tag_type",
+            "enum": [
+                "async"
+            ]
+        },
+        "respect_visitors_privacy": {
+            "description": "Flag describing whether tag should respect visitors privacy settings (DNT header, opt-out)",
+            "type": "boolean"
+        },
+        "respect_visitors_privacy_default": {
+            "$ref": "#/definitions/respect_visitors_privacy",
+            "default": true
+        },
+        "scheduler": {
+            "description": "Tag flight date and time definition",
+            "type": "object",
+            "properties": {
+                "date_ranges": {
+                    "description": "Tag flight date definition",
+                    "type": "array",
+                    "items": {
+                        "title": "Date definition",
+                        "type": "object",
+                        "properties": {
+                            "from": {
+                                "$ref": "tag_types.json#/definitions/date"
+                            },
+                            "to": {
+                                "$ref": "tag_types.json#/definitions/date"
+                            },
+                            "timezone": {
+                                "$ref": "tag_types.json#/definitions/timezone"
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": [
+                            "from",
+                            "to",
+                            "timezone"
+                        ]
+                    },
+                    "minItems": 0
+                },
+                "times_of_day": {
+                    "description": "Tag flight time definition",
+                    "type": "array",
+                    "items": {
+                        "title": "Time definition",
+                        "type": "object",
+                        "properties": {
+                            "from": {
+                                "$ref": "tag_types.json#/definitions/time"
+                            },
+                            "to": {
+                                "$ref": "tag_types.json#/definitions/time"
+                            },
+                            "timezone": {
+                                "$ref": "tag_types.json#/definitions/timezone"
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": [
+                            "from",
+                            "to",
+                            "timezone"
+                        ]
+                    },
+                    "minItems": 0
+                }
+            },
+            "additionalProperties": false,
+            "required": [
+                "date_ranges",
+                "times_of_day"
+            ]
+        },
+        "template": {
+            "description": "Tag template",
+            "type": "string",
+            "enum": [
+                "ab_tasty",
+                "adroll",
+                "audience_manager",
+                "bing_ads",
+                "click_tale",
+                "crazy_egg",
+                "custom_content",
+                "custom_popup",
+                "custom_tag",
+                "doubleclick_floodlight",
+                "facebook_retargeting_pixel",
+                "google_adwords",
+                "google_analytics",
+                "hot_jar",
+                "hub_spot",
+                "linkedin",
+                "marketo",
+                "mautic",
+                "optimizely",
+                "piwik",
+                "piwik_custom_dimension",
+                "piwik_event",
+                "piwik_goal_conversion",
+                "piwik_virtual_page_view",
+                "qualaroo",
+                "sales_manago",
+                "salesforce_pardot",
+                "visual_website_optimizer"
+            ]
+        },
+        "template_options_empty": {
+            "description": "Tag template options",
+            "type": "object",
+            "additionalProperties": false
+        },
+        "template_options": {
+            "description": "Tag template options",
+            "type": "object"
+        }
+    }
+}

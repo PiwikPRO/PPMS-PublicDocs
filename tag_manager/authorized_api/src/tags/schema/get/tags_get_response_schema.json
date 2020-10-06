@@ -1,0 +1,110 @@
+{
+    "description": "Tag details response",
+    "oneOf": [
+        {
+            "$ref": "response/custom_tag_async_get.json"
+        },
+        {
+            "$ref": "response/custom_tag_sync_get.json"
+        },
+        {
+            "$ref": "response/custom_content_get.json"
+        },
+        {
+            "$ref": "response/custom_popup_get.json"
+        },
+        {
+            "$ref": "response/piwik_get.json"
+        },
+        {
+            "$ref": "response/audience_manager_get.json"
+        },
+        {
+            "$ref": "response/piwik_custom_dimension_get.json"
+        },
+        {
+            "$ref": "response/piwik_event_get.json"
+        },
+        {
+            "$ref": "response/piwik_goal_conversion_get.json"
+        },
+        {
+            "$ref": "response/piwik_virtual_page_view_get.json"
+        },
+        {
+            "$ref": "response/ab_tasty_get.json"
+        },
+        {
+            "$ref": "response/adroll_get.json"
+        },
+        {
+            "$ref": "response/bing_ads_get.json"
+        },
+        {
+            "$ref": "response/click_tale_get.json"
+        },
+        {
+            "$ref": "response/crazy_egg_get.json"
+        },
+        {
+            "$ref": "response/doubleclick_floodlight_sales_item_sold_get.json"
+        },
+        {
+            "$ref": "response/doubleclick_floodlight_sales_transactions_get.json"
+        },
+        {
+            "$ref": "response/doubleclick_floodlight_counter_session_get.json"
+        },
+        {
+            "$ref": "response/doubleclick_floodlight_counter_standard_method_get.json"
+        },
+        {
+            "$ref": "response/doubleclick_floodlight_counter_unique_method_get.json"
+        },
+        {
+            "$ref": "response/google_adwords_doubleclick_get.json"
+        },
+        {
+            "$ref": "response/facebook_retargeting_pixel_get.json"
+        },
+        {
+            "$ref": "response/google_adwords_remarketing_get.json"
+        },
+        {
+            "$ref": "response/google_adwords_conversion_tracking_get.json"
+        },
+        {
+            "$ref": "response/google_analytics_get.json"
+        },
+        {
+            "$ref": "response/hot_jar_get.json"
+        },
+        {
+            "$ref": "response/hub_spot_get.json"
+        },
+        {
+            "$ref": "response/linkedin_get.json"
+        },
+        {
+            "$ref": "response/marketo_get.json"
+        },
+        {
+            "$ref": "response/mautic_get.json"
+        },
+        {
+            "$ref": "response/optimizely_get.json"
+        },
+        {
+            "$ref": "response/qualaroo_get.json"
+        },
+        {
+            "$ref": "response/sales_manago_get.json"
+        },
+        {
+            "$ref": "response/salesforce_pardot_get.json"
+        },
+        {
+            "$ref": "response/visual_website_optimizer_get.json"
+        }
+    ]
+}

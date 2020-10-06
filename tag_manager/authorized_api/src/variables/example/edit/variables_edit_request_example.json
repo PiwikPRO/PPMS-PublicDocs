@@ -1,0 +1,14 @@
+{
+    "data": {
+        "id": "677423b3-e529-4e03-88fd-d3b9dcacf2cf",
+        "type": "variable",
+        "attributes": {
+            "name": "New variable name",
+            "variable_type": "url",
+            "options": {
+                "parameter_name": "param1"
+            },
+            "value": "parameter"
+        }
+    }
+}
