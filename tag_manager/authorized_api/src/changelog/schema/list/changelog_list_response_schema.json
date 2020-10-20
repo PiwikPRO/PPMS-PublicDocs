@@ -30,7 +30,7 @@
                                                 "$ref": "../../../versions/schema/version_types.json#/definitions/version_identifier"
                                             },
                                             "author": {
-                                                "$ref": "../changelog_attributes.json#/definitions/changelog_author_attribute"
+                                                "$ref": "../changelog_attributes.json#/definitions/changelog_author_nullable_attribute"
                                             },
                                             "resource_id": {
                                                 "$ref": "../../../tags/schema/tag_types.json#/definitions/tag_identifier"
@@ -64,7 +64,7 @@
                                                 "$ref": "../../../versions/schema/version_types.json#/definitions/version_identifier"
                                             },
                                             "author": {
-                                                "$ref": "../changelog_attributes.json#/definitions/changelog_author_attribute"
+                                                "$ref": "../changelog_attributes.json#/definitions/changelog_author_nullable_attribute"
                                             },
                                             "resource_id": {
                                                 "$ref": "../../../tags/schema/tag_types.json#/definitions/tag_identifier"
@@ -98,7 +98,7 @@
                                                 "$ref": "../../../versions/schema/version_types.json#/definitions/version_identifier"
                                             },
                                             "author": {
-                                                "$ref": "../changelog_attributes.json#/definitions/changelog_author_attribute"
+                                                "$ref": "../changelog_attributes.json#/definitions/changelog_author_nullable_attribute"
                                             },
                                             "resource_id": {
                                                 "$ref": "../../../tags/schema/tag_types.json#/definitions/tag_identifier"
@@ -138,7 +138,7 @@
                                                 "$ref": "../../../versions/schema/version_types.json#/definitions/version_identifier"
                                             },
                                             "author": {
-                                                "$ref": "../changelog_attributes.json#/definitions/changelog_author_attribute"
+                                                "$ref": "../changelog_attributes.json#/definitions/changelog_author_nullable_attribute"
                                             },
                                             "resource_id": {
                                                 "$ref": "../../../triggers/schema/trigger_types.json#/definitions/trigger_identifier"
@@ -168,8 +168,11 @@
                                         "title": "Edit",
                                         "description": "Edit trigger",
                                         "properties": {
+                                            "version_id": {
+                                                "$ref": "../../../versions/schema/version_types.json#/definitions/version_identifier"
+                                            },
                                             "author": {
-                                                "$ref": "../changelog_attributes.json#/definitions/changelog_author_attribute"
+                                                "$ref": "../changelog_attributes.json#/definitions/changelog_author_nullable_attribute"
                                             },
                                             "resource_id": {
                                                 "$ref": "../../../triggers/schema/trigger_types.json#/definitions/trigger_identifier"
@@ -203,7 +206,7 @@
                                                 "$ref": "../../../versions/schema/version_types.json#/definitions/version_identifier"
                                             },
                                             "author": {
-                                                "$ref": "../changelog_attributes.json#/definitions/changelog_author_attribute"
+                                                "$ref": "../changelog_attributes.json#/definitions/changelog_author_nullable_attribute"
                                             },
                                             "resource_id": {
                                                 "$ref": "../../../triggers/schema/trigger_types.json#/definitions/trigger_identifier"
@@ -243,7 +246,7 @@
                                                 "$ref": "../../../versions/schema/version_types.json#/definitions/version_identifier"
                                             },
                                             "author": {
-                                                "$ref": "../changelog_attributes.json#/definitions/changelog_author_attribute"
+                                                "$ref": "../changelog_attributes.json#/definitions/changelog_author_nullable_attribute"
                                             },
                                             "resource_id": {
                                                 "$ref": "../../../variables/schema/variable_types.json#/definitions/variable_identifier"
@@ -277,7 +280,7 @@
                                                 "$ref": "../../../versions/schema/version_types.json#/definitions/version_identifier"
                                             },
                                             "author": {
-                                                "$ref": "../changelog_attributes.json#/definitions/changelog_author_attribute"
+                                                "$ref": "../changelog_attributes.json#/definitions/changelog_author_nullable_attribute"
                                             },
                                             "resource_id": {
                                                 "$ref": "../../../variables/schema/variable_types.json#/definitions/variable_identifier"
@@ -311,7 +314,7 @@
                                                 "$ref": "../../../versions/schema/version_types.json#/definitions/version_identifier"
                                             },
                                             "author": {
-                                                "$ref": "../changelog_attributes.json#/definitions/changelog_author_attribute"
+                                                "$ref": "../changelog_attributes.json#/definitions/changelog_author_nullable_attribute"
                                             },
                                             "resource_id": {
                                                 "$ref": "../../../variables/schema/variable_types.json#/definitions/variable_identifier"

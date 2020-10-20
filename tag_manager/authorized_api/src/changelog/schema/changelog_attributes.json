@@ -1,7 +1,10 @@
 {
     "definitions": {
-        "changelog_author_attribute": {
-            "$ref": "../../common/schema/common_types.json#/definitions/email",
+        "changelog_author_nullable_attribute": {
+            "oneOf": [
+                {"$ref": "../../common/schema/common_types.json#/definitions/email"},
+                {"$ref": "../../common/schema/common_types.json#/definitions/nullable"}
+            ],
             "description": "E-mail of user who did the changes"
         },
         "changelog_change_type_add_attribute": {
