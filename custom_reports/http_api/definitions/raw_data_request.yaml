@@ -91,9 +91,8 @@ properties:
                     String operators: ``eq``, ``neq``,
                     ``starts_with``, ``ends_with``.
                     ``starts_with``, ``ends_with``,
-                    ``matches``, ``not_matches``.
-
-                    For regular expressions (operators: ``matches`` and ``not_matches``) use [re2](https://github.com/google/re2/wiki/Syntax) syntax.
+                    ``matches``, ``not_matches``. For regular expressions (operators: ``matches`` and ``not_matches``)
+                    use [re2](https://github.com/google/re2/wiki/Syntax) syntax.
 
                     Numeric operators: ``eq``, ``neq``, ``gt``, ``gte``,
                     ``lt``, ``lte``.
