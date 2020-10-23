@@ -569,6 +569,10 @@ Anonymization
 Advanced Usage
 --------------
 
+.. function:: ping()
+
+    Ping method may be used to update session dimensions during page view without attaching them to actions.
+
 .. function:: addListener(domElement)
 
     The function will add a click listener to link element.
