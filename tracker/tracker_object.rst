@@ -67,8 +67,8 @@ Tracking functions
     The function that tracks internal site searches.
 
     :param string keyword: **Required** String containing keyword that was searched.
-    :param string/boolean category: **Optional** String|Array<string> category selected in search engine. It can be set to false when not used. If multiple categories should be set, use array instead.
-    :param number/boolean searchCount:  **Optional** Number of results on the results page, can be set to false when not used.
+    :param string|Array<string>|boolean category: **Optional** String with category selected in search engine, can set it to false when not used. It can also accept multiple categories as an array.
+    :param number|boolean searchCount:  **Optional** Number of results on the results page, can be set to false when not used.
 
 .. function:: enableHeartBeatTimer(delay)
 
