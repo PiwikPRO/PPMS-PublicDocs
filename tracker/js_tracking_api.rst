@@ -858,7 +858,7 @@ To measure that time more accurately you can use the ``enableHeartBeatTimer`` fu
 
 .. describe:: beat
 
-    **Required** ``number`` Time in seconds between cyclical heartbeat requests, default ``15``
+    **Required** ``number`` Time in seconds between cyclical heartbeat requests, default ``30``
 
 Example of usage::
 
