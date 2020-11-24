@@ -75,7 +75,7 @@ Tracking functions
     When the user will enter a single page during a visit, we will assume that his total time spent on the website was 0 ms.
     To measure that time more accurately you can use the ``enableHeartBeatTimer`` function
 
-    :param number delay: **Required** Time in seconds between cyclical heartbeat requests, default ``15``
+    :param number delay: **Required** Time in seconds between cyclical heartbeat requests, default ``30``
 
 .. function:: enableCrossDomainLinking()
 
