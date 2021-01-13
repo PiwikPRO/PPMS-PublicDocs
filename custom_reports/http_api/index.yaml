@@ -29,3 +29,4 @@ definitions:
     $ref: ./definitions/query_request.yaml
   RawDataRequest:
     $ref: ./definitions/raw_data_request.yaml
+

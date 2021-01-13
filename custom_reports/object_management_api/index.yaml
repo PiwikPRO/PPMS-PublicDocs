@@ -1,0 +1,44 @@
+swagger: '2.0'
+info:
+  title: Object managemet HTTP API for Analytics (new).
+  description: |
+    **Authentication is required** to access any of the
+    following endpoints. Please see [Authorization](../../platform/authorized_api_guide.html)
+    documentation for more details.
+
+  version: 'auto'
+host: your-instance-name.piwik.pro
+basePath: /
+schemes:
+  - https
+consumes:
+  - application/json
+  - application/vnd.api+json
+produces:
+  - application/vnd.api+json
+paths:
+  /api/analytics/v1/manage/goals/:
+    $ref: ./paths/goals.yaml
+  /api/analytics/v1/manage/goals/{id}/:
+    $ref: ./paths/goals_detail.yaml
+  /api/analytics/v1/manage/custom-dimensions/:
+    $ref: ./paths/custom_dimensions.yaml
+  /api/analytics/v1/manage/custom-dimensions/{id}/:
+    $ref: ./paths/custom_dimensions_detail.yaml
+  /api/analytics/v1/manage/custom-dimensions/slots/:
+    $ref: ./paths/custom_dimensions_slots.yaml
+definitions:
+  Goal:
+    $ref: ./definitions/goal.yaml
+  GoalDetails:
+    $ref: ./definitions/goal_details.yaml
+  CustomDimension:
+    $ref: ./definitions/custom_dimension.yaml
+  CustomDimensionDetails:
+    $ref: ./definitions/custom_dimension_details.yaml
+  CustomDimensionList:
+    $ref: ./definitions/custom_dimension_list.yaml
+  CustomDimensionSlot:
+    $ref: ./definitions/custom_dimension_slot.yaml
+  CustomDimensionSlots:
+    $ref: ./definitions/custom_dimension_slots.yaml
