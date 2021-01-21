@@ -1,5 +1,5 @@
-Consent insights analytics
-==========================
+Consent Manager insights analytics
+==================================
 
 .. versionadded:: 15.3
 
@@ -10,15 +10,15 @@ Since the release of PPAS 15.3, Consent Manager stats tracking presented on Insi
 the custom event tracking API available in our Tracker (read more in `Trigger custom event` section of :ref:`Tracker
 documentation <tracker-js-tracking-api>`).
 
-Consent insights Analytics events breakdown
--------------------------------------------
+Consent Manager insights Analytics events breakdown
+---------------------------------------------------
 
 The events connected to Consent Manager insights Analytics have been divided into following categories:
 
   1. Consent form views
   2. Consent form interactions
-  3. Consent decisions
-  4. Consent decisions by type
+  3. Consents
+  4. Consents by type
 
 Details about each category - what is their scope and what events are emitted - are described below.
 
@@ -29,28 +29,28 @@ the number of consent form views, the method used to trigger the popup render, b
 consent at the moment of the form impression (if all consent decisions were made before, or if it included consent types
 that the visitor did not make a decision about previously).
 
-The source of the impression is reflected in the event action field and can take one of the following values: ``Automatic``,
-``Reminder widget``, ``Privacy policy link``.
+The source of the impression is reflected in the event action field and can take one of the following values: ``Main form``,
+``Reminder``, ``Privacy policy``.
 
-``Event name`` field is used to indicate the state of the visitors consents for ``Privacy policy link`` action (the remaining
-two actions always include undecided consent types). It can take one of two values: ``Initial view`` or ``Review consent decisions``.
+``Event name`` field is used to indicate the state of the visitors consents for ``Privacy policy`` action (the remaining
+two actions always include undecided consent types). It can take one of two values: ``First view`` or ``Review``.
 
 All events for this category are presented in the table below:
 
-  +--------------------+---------------------+--------------------------+---------------------------------------------------------------------+
-  | Event category     | Event action        | Event name               | Description                                                         |
-  +====================+=====================+==========================+=====================================================================+
-  | Consent form views | Automatic           |                          | Dispatched when consent form is shown for first time or when asking |
-  |                    |                     |                          | for additional consent                                              |
-  +--------------------+---------------------+--------------------------+---------------------------------------------------------------------+
-  | Consent form views | Reminder widget     |                          | Dispatched when consent form is opened via reminder widget          |
-  +--------------------+---------------------+--------------------------+---------------------------------------------------------------------+
-  | Consent form views | Privacy policy link | Initial view             | Dispatched when consent form is opened via privacy policy widget    |
-  |                    |                     |                          | and contains previously undecided consent types                     |
-  +--------------------+---------------------+--------------------------+---------------------------------------------------------------------+
-  | Consent form views | Privacy policy link | Review consent decisions | Dispatched when consent form is opened via privacy policy widget    |
-  |                    |                     |                          | and visitor previously made a decision about all consent types      |
-  +--------------------+---------------------+--------------------------+---------------------------------------------------------------------+
+  +--------------------+---------------------+------------+---------------------------------------------------------------------+
+  | Event category     | Event action        | Event name | Tracked when                                                        |
+  +====================+=====================+============+=====================================================================+
+  | Consent form views | Main form           |            | A visitor sees the form for the first time or again after we've     |
+  |                    |                     |            | changed consent types.                                              |
+  +--------------------+---------------------+------------+---------------------------------------------------------------------+
+  | Consent form views | Reminder            |            | A visitor opens the form by clicking on the reminder widget.        |
+  +--------------------+---------------------+------------+---------------------------------------------------------------------+
+  | Consent form views | Privacy policy      | First view | A visitor hasn't agreed to one or more consents and opens the form  |
+  |                    |                     |            | from a link on your privacy policy page.                            |
+  +--------------------+---------------------+------------+---------------------------------------------------------------------+
+  | Consent form views | Privacy policy      | Review     | A visitor has agreed to all consents and opens the form from a link |
+  |                    |                     |            | on your privacy policy page.                                        |
+  +--------------------+---------------------+------------+---------------------------------------------------------------------+
 
 Consent form interactions
 `````````````````````````
@@ -59,68 +59,66 @@ removed from the screen will have a dedicated custom event. Event name field is 
 
 All events for this category are presented in the table below:
 
-  +---------------------------+----------------------+----------------------------------------------------------+
-  | Event category            | Event action         | Description                                              |
-  +===========================+======================+==========================================================+
-  | Consent form interactions | Agree to all clicked | Dispatched when ``Agree to all`` button is clicked       |
-  +---------------------------+----------------------+----------------------------------------------------------+
-  | Consent form interactions | Reject all clicked   | Dispatched when ``Reject all`` button is clicked         |
-  +---------------------------+----------------------+----------------------------------------------------------+
-  | Consent form interactions | Save choices clicked | Dispatched when ``Save choices`` button is clicked       |
-  +---------------------------+----------------------+----------------------------------------------------------+
-  | Consent form interactions | Close button clicked | Dispatched when form is closed with the close button (X) |
-  +---------------------------+----------------------+----------------------------------------------------------+
+  +---------------------------+---------------+------------------------------------------------------+
+  | Event category            | Event action  | Tracked when                                         |
+  +===========================+===============+======================================================+
+  | Consent form interactions | Agreed to all | A visitor clicks on `Agree to all`.                  |
+  +---------------------------+---------------+------------------------------------------------------+
+  | Consent form interactions | Rejected all  | A visitor clicks on `Reject all`.                    |
+  +---------------------------+---------------+------------------------------------------------------+
+  | Consent form interactions | Saved choices | A visitor clicks on `Save choices`.                  |
+  +---------------------------+---------------+------------------------------------------------------+
+  | Consent form interactions | Closed a form | A visitor closes a form by clicking on the x button. |
+  +---------------------------+---------------+------------------------------------------------------+
 
-Consent decisions
-`````````````````
+Consents
+````````
 In this category, you can find information about the scope of the consent decisions. Event name field is not used for this category.
 
 All events for this category are presented in the table below:
 
-  +-------------------+-----------------+---------------------------------------------------------------------------------------------+
-  | Event category    | Event action    | Description                                                                                 |
-  +===================+=================+=============================================================================================+
-  | Consent decisions | Full consent    | Dispatched when visitor agrees to the full scope of the consent types used within a website |
-  +-------------------+-----------------+---------------------------------------------------------------------------------------------+
-  | Consent decisions | Any consent     | Dispatched when visitor agrees to at least one of the consent types used within a website   |
-  +-------------------+-----------------+---------------------------------------------------------------------------------------------+
-  | Consent decisions | No consent      | Dispatched when visitor rejects all consent types used within a website                     |
-  +-------------------+-----------------+---------------------------------------------------------------------------------------------+
-  | Consent decisions | Initial consent | Dispatched when visitor makes a decision about consent type for the first time              |
-  +-------------------+-----------------+---------------------------------------------------------------------------------------------+
+  +----------------+---------------+------------------------------------------------+
+  | Event category | Event action  | Tracked when                                   |
+  +================+===============+================================================+
+  | Consents       | Full consent  | A visitor agrees to all consent types.         |
+  +----------------+---------------+------------------------------------------------+
+  | Consents       | Any consent   | A visitor agrees to one or more consent types. |
+  +----------------+---------------+------------------------------------------------+
+  | Consents       | No consent    | A visitor rejects all consents.                |
+  +----------------+---------------+------------------------------------------------+
+  | Consents       | First consent | A visitor consents for the first time.         |
+  +----------------+---------------+------------------------------------------------+
 
-It is worth highlighting the `Consent decision - Initial consent` event. Its purpose is recreating the ``No decision``
+It is worth highlighting the `Consent decision - First consent` event. Its purpose is recreating the ``No decision``
 statistic from Consent Manager insights. It will be emitted each time when visitor consent decision had previously undecided
 consent in its scope (at least one). With the use of this event the no decision statistic can be calculated in the following manner::
 
-  consent_form_impressions = automatic + reminder_widget + privacy_policy_link_initial
+  consent_form_impressions = main_form + reminder_widget + privacy_policy_link_first_view
 
-  no_decision = consent_form_impressions - initial_consent
+  no_decision = consent_form_impressions - first_consent
 
 where:
 
   - ``consent_form_impressions`` - number of consent form impressions with undecided consent
-  - ``automatic`` - number of `Consent form views - Automatic` events
-  - ``reminder_widget`` - number of `Consent form views - Reminder widget` events
-  - ``privacy_policy_link_initial`` - number of `Consent form views - Privacy policy link - Initial view` events
-  - ``initial_consent`` - number of `Consent decisions - Initial consent` events
+  - ``main_form`` - number of `Consent form views - Main form` events
+  - ``reminder_widget`` - number of `Consent form views - Reminder` events
+  - ``privacy_policy_link_first_view`` - number of `Consent form views - Privacy policy - First view` events
+  - ``first_consent`` - number of `Consents - First consent` events
   - ``no_decision`` - final value for the `No decision` metric presented on Consent Manager insights
 
-Consent decisions by type
-`````````````````````````
+Consents by type
+````````````````
 This category provides a breakdown of visitors' consent decisions according to the consent types they agreed to.
 
 All events for this category are presented in the table below:
 
-  +---------------------------+------------------+------------------------+---------------------------------------------------------+
-  | Event category            | Event action     | Event name             | Description                                             |
-  +===========================+==================+========================+=========================================================+
-  | Consent decisions by type | ``consent_type`` | Initial consent        | Dispatched when user agrees to a specific consent type  |
-  |                           |                  |                        | and has not made a decision about it previously         |
-  +---------------------------+------------------+------------------------+---------------------------------------------------------+
-  | Consent decisions by type | ``consent_type`` | Consent choices review | Dispatched when user has rejected specific consent type |
-  |                           |                  |                        | previously and changes the decision                     |
-  +---------------------------+------------------+------------------------+---------------------------------------------------------+
+  +------------------+------------------+-----------------+----------------------------------------------------------------+
+  | Event category   | Event action     | Event name      | Tracked when                                                   |
+  +==================+==================+=================+================================================================+
+  | Consents by type | ``consent_type`` | First consent   | A visitor agrees to a given consent type for the first time.   |
+  +------------------+------------------+-----------------+----------------------------------------------------------------+
+  | Consents by type | ``consent_type`` | Changed consent | A visitor who didn't agree to a given consent type now agrees. |
+  +------------------+------------------+-----------------+----------------------------------------------------------------+
 
 where ``consent_type`` can take one of the following values (consent types available in Consent Manager):
 
