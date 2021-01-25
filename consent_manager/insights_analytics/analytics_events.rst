@@ -1,5 +1,5 @@
-Consent Manager insights analytics
-==================================
+Consent Manager insights analytics events
+=========================================
 
 .. versionadded:: 15.3
 
