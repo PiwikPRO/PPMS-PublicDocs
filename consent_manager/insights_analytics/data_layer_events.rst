@@ -145,7 +145,8 @@ that is emitted each time it is clicked.
 Agree to all button
 ^^^^^^^^^^^^^^^^^^^
 
-.. code-block:: js
+This event is dispatched for both `Agree to all` button on extended consent form, as well as `Agree` button on simple
+consent form::
 
   {
     event: 'stg.agreeToAllClicked',
@@ -158,7 +159,8 @@ Agree to all button
 Reject all button
 ^^^^^^^^^^^^^^^^^
 
-.. code-block:: js
+This event is dispatched for both `Reject all` button on extended consent form, as well as `Disagree` button on simple
+consent form::
 
   {
     event: 'stg.rejectAllClicked',
