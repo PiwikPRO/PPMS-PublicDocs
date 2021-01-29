@@ -659,13 +659,20 @@ paths:
           description: |
             Enables a special heartbeat mode for the tracking request.
             Such a reqest won't track any new action but rather will update time metrics for the last page view.
-            This parametr was designed to prolong the session when no new actions are coming in while user is still on the website,
-            now also updates Custom Variables and Custom Dimensions and Page Performance Metrics.
+            This parametr was designed to prolong the session when no new actions are coming in, while a user is still on the website.
+            Now, ping also updates Custom Variables and Custom Dimensions and Page Performance Metrics.
+            Each type of ping request updates all dimensions, types of pings are used for statistics only.
+            You can also use it for debugging, to determine which kind of `ping` and when updated the dimensions.
 
-            - ``1`` - enables heartbeat mode
+            - ``1`` - Periodic heartbeat request (sent every X seconds)
+            - ``2`` - Last heartbeat (sent on page unload event)
+            - ``3`` - Blur heartbeat (sent on page blur event)
+            - ``4`` - Request deanonymizing user
+            - ``5`` - Request with page performance metrics
+            - ``6`` - Request sent by the user (using ping command)
           type: integer
           minimium: 1
-          maximum: 1
+          maximum: 6
           example: 1
         - name: t_us
           in: query
