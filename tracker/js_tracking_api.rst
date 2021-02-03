@@ -922,7 +922,7 @@ To disable tracking user anonymously (after visitor gave consent) use ``deanonym
 
 Send ping request on demand
 ```````````````````````````
-Ping method may be used to update session dimensions during page view without attaching them to actions.
+Ping method sends request that will update session values without creating new event or page view. Most common use for this method is update of session custom dimensions or custom variables.
 
 Example of usage::
 
