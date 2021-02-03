@@ -920,6 +920,15 @@ To disable tracking user anonymously (after visitor gave consent) use ``deanonym
 
 
 
+Send ping request on demand
+```````````````````````````
+Ping method sends request that will update session values without creating new event or page view. Most common use for this method is update of session custom dimensions or custom variables.
+
+Example of usage::
+
+    _paq.push(["ping"]);
+
+
 Gathering navigation timing page performance metrics
 ``````````````````````````
 To set up page performance metrics gathering use the ``setTimingDataSamplingOnPageLoad`` function::

@@ -569,6 +569,10 @@ Anonymization
 Advanced Usage
 --------------
 
+.. function:: ping()
+
+    Ping method sends request that will update session values without creating new event or page view. Most common use for this method is update of session custom dimensions or custom variables.
+
 .. function:: addListener(domElement)
 
     The function will add a click listener to link element.
