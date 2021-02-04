@@ -80,3 +80,8 @@ Adjusting tags to work with Content Security Policy
 
 .. note::
     Finally, not all 3rd party tools that are available as build-in templates are adjusted to work with Content Security Policy. This includes e.g. Google Analytics. In such cases, please refer to documentation of each respective tool (e.g. https://developers.google.com/web/fundamentals/security/csp).
+
+Working with debugger on page that specifies Content Security Policy (CSP)
+---------------
+
+On both Firefox and MS Edge it is required to whitelist debugger assets domain in your CSP settings.
