@@ -3,21 +3,20 @@ Content Security Policy (CSP)
 
 Introduction
 ---------------
-Specifying Content Security Policy is a common way to secure web applications. This mechanism allows to specify which scripts and styles can execute on page. It can be done either through adding Content-Security-Policy header or appropriate meta tag. It is common to allow only scripts and styles that were received from known domains or ones that have special nonce attribute. Consequently, default Tag Manager snippet requires following modifications to work:
+Specifying Content Security Policy is a common way to secure web applications. This mechanism allows to specify which scripts and styles can execute on page. It can be done either through adding Content-Security-Policy header or appropriate meta tag. It is common to allow only scripts and styles that were received from known domains or ones that have special nonce attribute. Consequently, default container code requires following modifications to work:
 
-Installing Tag Manager on page that specifies
+Adding nonce to Container code
 ---------------
--   **asynchronous snippet** - given Tag Manager snippet following changes (highlighted) are required:
+-   **asynchronous snippet** - given container code following changes (highlighted) are required:
 
     .. code-block:: html
-        :emphasize-lines: 1, 12
+        :emphasize-lines: 1, 11
 
         <script type="text/javascript" nonce="INSERT_VALID_NONCE_VALUE">
             (function(window, document, dataLayerName, id) {
             window[dataLayerName]=window[dataLayerName]||[],window[dataLayerName].push({start:(new Date).getTime(),event:"stg.start"});
             var scripts=document.getElementsByTagName('script')[0],tags=document.createElement('script');
-            function stgCreateCookie(a,b,c){var d="";if(c){var e=new Date;e.setTime(e.getTime()+24*c*60*60*1e3),d=";
-            expires="+e.toUTCString()}document.cookie=a+"="+b+d+"; path=/"}
+            function stgCreateCookie(a,b,c){var d="";if(c){var e=new Date;e.setTime(e.getTime()+24*c*60*60*1e3),d=";expires="+e.toUTCString()}document.cookie=a+"="+b+d+"; path=/"}
             var isStgDebug=(window.location.href.match("stg_debug")||document.cookie.match("stg_debug"))&&!window.location.href.match("stg_disable_debug");
             stgCreateCookie("stg_debug",isStgDebug?1:"",isStgDebug?14:-1);
             var qP=[];dataLayerName!=="dataLayer"&&qP.push("data_layer_name="+dataLayerName),isStgDebug&&qP.push("stg_debug");
@@ -36,12 +35,11 @@ Installing Tag Manager on page that specifies
 -   **synchronous snippet** - following changes (highlighted) are required:
 
     .. code-block:: html
-        :emphasize-lines: 1, 9
+        :emphasize-lines: 1, 8
 
         <script type="text/javascript" nonce="INSERT_VALID_NONCE_VALUE">
             (function(window, document, dataLayerName, id) {
-            function stgCreateCookie(a,b,c){var d="";if(c){var e=new Date;e.setTime(e.getTime()+24*c*60*60*1e3),d=";
-            expires="+e.toUTCString()}document.cookie=a+"="+b+d+"; path=/"}
+            function stgCreateCookie(a,b,c){var d="";if(c){var e=new Date;e.setTime(e.getTime()+24*c*60*60*1e3),d=";expires="+e.toUTCString()}document.cookie=a+"="+b+d+"; path=/"}
             var isStgDebug=(window.location.href.match("stg_debug")||document.cookie.match("stg_debug"))&&!window.location.href.match("stg_disable_debug");
             stgCreateCookie("stg_debug",isStgDebug?1:"",isStgDebug?14:-1);
             var qP=[];dataLayerName!=="dataLayer"&&qP.push("data_layer_name="+dataLayerName),isStgDebug&&qP.push("stg_debug");
@@ -51,7 +49,17 @@ Installing Tag Manager on page that specifies
         </script>
 
 .. note::
-    All that is needed for Tag Manager to work is to replace **INSERT_VALID_NONCE_VALUE** with generated nonce value. It should be done twice for both asynchronous and synchronous snippet. Due too bug on MS Edge, you will also need to whitelist container domain in your CSP settings.
+    All that is needed for Tag Manager to work is to replace **INSERT_VALID_NONCE_VALUE** with generated nonce value. It should be done twice for both asynchronous and synchronous snippet.
+
+
+Defining nonce in Content Security Policy settings
+---------------
+Last thing to configure container to work with nonce is adding its definition in ``script-src`` directive of Content Security Policy:
+
+	.. code-block:: javascript
+
+		Content-Security-Policy: script-src 'nonce-INSERT_VALID_NONCE_VALUE';
+
 
 Adjusting tags to work with Content Security Policy
 ---------------
@@ -81,7 +89,35 @@ Adjusting tags to work with Content Security Policy
 .. note::
     Finally, not all 3rd party tools that are available as build-in templates are adjusted to work with Content Security Policy. This includes e.g. Google Analytics. In such cases, please refer to documentation of each respective tool (e.g. https://developers.google.com/web/fundamentals/security/csp).
 
-Working with debugger on page that specifies Content Security Policy (CSP)
+
+Piwik PRO tracker with custom domain
 ---------------
 
-On both Firefox and MS Edge it is required to whitelist debugger assets domain in your CSP settings.
+If the Piwik PRO tracker domain is different from the container domain, you need to add the tracker domain to the whitelist:
+
+.. code-block:: javascript
+
+	Content-Security-Policy: script-src your-custom-tracker-domain.com 'nonce-INSERT_VALID_NONCE_VALUE';
+
+
+Tag Manager debugger
+--------------
+
+To load all necessary assets from Tag Manager debugger we need to define:
+
+.. code-block:: javascript
+
+	Content-Security-Policy: img-src 'self' *.piwik.pro;
+
+
+Consent form assets
+------------
+
+If our website is GDPR compliant then we need to describe rules for communication:
+
+.. code-block:: javascript
+
+	Content-Security-Policy: connect-src *.piwik.pro;
+
+.. note::
+    You can configure connect sources more strictly, then you have to define container domain (eq. **organization.containers.piwik.pro**) and main domain (eq. **organization.piwik.pro**).
