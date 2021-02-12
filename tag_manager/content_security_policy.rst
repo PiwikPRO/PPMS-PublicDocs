@@ -109,17 +109,19 @@ To load all necessary assets from Tag Manager debugger you need to define source
 
 	img-src <your-sources> client.containers.piwik.pro;
 	font-src <your-sources> client.containers.piwik.pro;
-	style-src <your-sources> 'nonce-nceIOfn39fn3e9h3sd';
+	style-src <your-sources> client.containers.piwik.pro;
 
 
 Consent Manager form assets
 ------------
 
-If your website is GDPR compliant then you need to describe rules for communication with ``connect-src`` directive:
+If your website is GDPR compliant then you need to describe ``connect-src``, ``style-src`` and ``img-src`` directives:
 
 .. code-block:: javascript
 
 	connect-src <your-sources> client.piwik.pro client.containers.piwik.pro;
+	style-src <your-sources> 'nonce-INSERT_VALID_NONCE_VALUE';
+	img-src <your-sources> data:;
 
 .. note::
     Please note that we define here tracker domain **client.piwik.pro** for collecting visitor consents and container domain **client.containers.piwik.pro** for fetching consent form assets.
@@ -142,6 +144,7 @@ Example Content Security Policy definition
 Given example contain configuration of CSP assumes:
 
 -   client's website address: **client.com**
+-	client's website is GDPR compliant
 -	client's organization name in Piwik PRO: **client**
 -   client has Piwik PRO tag with default tracker domain: **client.piwik.pro**
 -   nonce value: **nceIOfn39fn3e9h3sd**
@@ -151,6 +154,6 @@ Given example contain configuration of CSP assumes:
 
     Content-Security-Policy: 	script-src 'self' client.piwik.pro 'nonce-nceIOfn39fn3e9h3sd';
                                 connect-src 'self' client.piwik.pro client.containers.piwik.pro;
-                                img-src 'self' client.piwik.pro client.containers.piwik.pro;
+                                img-src 'self' client.piwik.pro client.containers.piwik.pro data:;
                                 font-src 'self' client.containers.piwik.pro;
-                                style-src 'self' 'nonce-nceIOfn39fn3e9h3sd';
+                                style-src 'self' client.containers.piwik.pro 'nonce-nceIOfn39fn3e9h3sd';
