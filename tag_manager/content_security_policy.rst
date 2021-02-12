@@ -17,7 +17,7 @@ Nonce mechanism requires additional definition in ``script-src`` directive of Co
 
 .. code-block:: javascript
 
-    script-src <your-sources> 'nonce-INSERT_VALID_NONCE_VALUE'
+    script-src <your-sources> 'nonce-INSERT_VALID_NONCE_VALUE';
 
 .. note::
     Please note that we leave here space for your permitted sources **<your-sources>**.
@@ -103,11 +103,13 @@ Adjusting tags to work with Content Security Policy
 Tag Manager debugger
 --------------
 
-To load all necessary assets from Tag Manager debugger you need to define source with ``img-src`` directive:
+To load all necessary assets from Tag Manager debugger you need to define source with ``img-src``, ``font-src`` and ``style-src`` directives:
 
 .. code-block:: javascript
 
-	img-src <your-sources> client.containers.piwik.pro
+	img-src <your-sources> client.containers.piwik.pro;
+	font-src <your-sources> client.containers.piwik.pro;
+	style-src <your-sources> 'nonce-nceIOfn39fn3e9h3sd';
 
 
 Consent Manager form assets
@@ -117,7 +119,7 @@ If your website is GDPR compliant then you need to describe rules for communicat
 
 .. code-block:: javascript
 
-	connect-src <your-sources> client.piwik.pro client.containers.piwik.pro
+	connect-src <your-sources> client.piwik.pro client.containers.piwik.pro;
 
 .. note::
     Please note that we define here tracker domain **client.piwik.pro** for collecting visitor consents and container domain **client.containers.piwik.pro** for fetching consent form assets.
@@ -130,8 +132,8 @@ If your domain for tracker is custom, then you need to define it with ``img-src`
 
 .. code-block:: javascript
 
-	img-src <your-sources> your-custom-tracker-domain.com
-	script-src <your-sources> your-custom-tracker-domain.com
+	img-src <your-sources> your-custom-tracker-domain.com;
+	script-src <your-sources> your-custom-tracker-domain.com;
 
 
 Example Content Security Policy definition
@@ -147,6 +149,8 @@ Given example contain configuration of CSP assumes:
 
 .. code-block:: javascript
 
-    Content-Security-Policy: 	script-src 'self' client.piwik.pro 'nonce-nceIOfn39fn3e9h3sd',
-                                connect-src 'self' client.piwik.pro client.containers.piwik.pro,
-                                img-src 'self' client.piwik.pro client.containers.piwik.pro
+    Content-Security-Policy: 	script-src 'self' client.piwik.pro 'nonce-nceIOfn39fn3e9h3sd';
+                                connect-src 'self' client.piwik.pro client.containers.piwik.pro;
+                                img-src 'self' client.piwik.pro client.containers.piwik.pro;
+                                font-src 'self' client.containers.piwik.pro;
+                                style-src 'self' 'nonce-nceIOfn39fn3e9h3sd';
