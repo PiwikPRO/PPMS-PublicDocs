@@ -47,50 +47,6 @@ paths:
           $ref: "#/components/responses/UnauthorizedError"
         403:
           $ref: "#/components/responses/AccessDeniedError"
-  /api/audit-log/v1/authors:
-    get:
-      summary: Authors list
-      description: Authors list of events
-      operationId: list_authors_v1
-      parameters:
-        - $ref: "#/components/parameters/EmailFilter"
-        - $ref: "#/components/parameters/Limit"
-        - $ref: "#/components/parameters/Offset"
-      responses:
-        200:
-          description: OK
-          content:
-            application/vnd.api+json:
-              schema:
-                type: object
-                required:
-                  - data
-                  - meta
-                properties:
-                  meta:
-                    $ref: "#/components/schemas/Meta"
-                  data:
-                    type: array
-                    items:
-                      type: object
-                      required:
-                        - id
-                        - type
-                        - attributes
-                      properties:
-                        id:
-                          $ref: "#/components/schemas/Id"
-                        type:
-                          type: string
-                          enum:
-                            - ppms/user
-                        attributes:
-                          type: object
-                          required:
-                            - email
-                          properties:
-                            email:
-                              $ref: '#/components/schemas/Email'
 components:
   parameters:
     Limit:
@@ -102,7 +58,7 @@ components:
         type: integer
         default: 10
         minimum: 0
-        maximum: 1000
+        maximum: 100
     Offset:
       name: offset
       in: query
