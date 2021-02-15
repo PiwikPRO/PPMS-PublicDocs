@@ -3,12 +3,12 @@ Content Security Policy (CSP)
 
 Introduction
 ---------------
-Specifying Content Security Policy is a common way to secure web applications. This mechanism allows to specify which scripts and styles can execute on page. It can be done either through adding Content-Security-Policy header or appropriate meta tag.
+Specifying Content Security Policy is a common way to secure web applications. This mechanism allows specifying which scripts and styles can execute on page. It can be done either by adding a ``Content-Security-Policy`` header or an appropriate meta tag.
 
 
 Content Security Policy nonce configuration
 ---------------
-It is common to allow only scripts and styles that were received from known domains or ones that have special nonce attribute. Nonce mechanism relies on two steps, defining nonce value in Content Security Policy and placing nonce value as an attribute in styles and scripts. Consequently, default container code requires following modifications to work:
+It is common to allow only scripts and styles that were received from known domains or ones that have special nonce attribute. Nonce mechanism relies on two steps, defining nonce value in Content Security Policy and placing nonce value as an attribute in styles and scripts.
 
 
 Defining nonce in Content Security Policy settings
@@ -20,11 +20,12 @@ Nonce mechanism requires additional definition in ``script-src`` directive of Co
     script-src <your-sources> 'nonce-INSERT_VALID_NONCE_VALUE';
 
 .. note::
-    Please note that we leave here space for your permitted sources **<your-sources>**.
+	Nonce value should be generated on the server-side. Its value should be different for each request. Please note that we leave here space for your permitted sources **<your-sources>**.
 
 
 Adding nonce to container code
 ```````````````````````````````````
+Consequently, default container code requires following modifications to work:
 
 -   **asynchronous snippet** - given container code following changes (highlighted) are required:
 
@@ -97,7 +98,7 @@ Adjusting tags to work with Content Security Policy
             </script>
 
 .. note::
-    Finally, not all 3rd party tools that are available as build-in templates are adjusted to work with Content Security Policy. This includes e.g. Google Analytics. In such cases, please refer to documentation of each respective tool (e.g. https://developers.google.com/web/fundamentals/security/csp).
+    Finally, not all 3rd party tools that are available as built-in templates are adjusted to work with Content Security Policy. This includes e.g. Google Analytics. In such cases, please refer to documentation of each respective tool (e.g. https://developers.google.com/web/fundamentals/security/csp).
 
 
 Tag Manager debugger
@@ -141,11 +142,12 @@ If your domain for tracker is custom, then you need to define it with ``img-src`
 Example Content Security Policy definition
 ------------
 
-Given example contain configuration of CSP assumes:
+Following example configuration of CSP assumes:
 
 -   client's website address: **client.com**
 -	client's website is GDPR compliant
 -	client's organization name in Piwik PRO: **client**
+-   client's container domain: **client.containers.piwik.pro**
 -   client has Piwik PRO tag with default tracker domain: **client.piwik.pro**
 -   nonce value: **nceIOfn39fn3e9h3sd**
 -	configuration allows ``'self'`` source which is: **client.com**
