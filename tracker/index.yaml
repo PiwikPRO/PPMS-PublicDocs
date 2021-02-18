@@ -323,7 +323,7 @@ paths:
           in: query
           #TODO: Add limits to the item attributes (e.g. string max length).
           description: |
-            Ecommerce order item list.
+            Ecommerce order item list in the form of two dimensional JSON array.
 
             Each item on the list can contain:
 
@@ -333,21 +333,11 @@ paths:
               - price: `number` (optional) Price of an item.
                 Currency of this value does not matter, but only one should be used by the application (e.g. USD).
               - quantity: `integer` (optional, default to 1) Quantity of an item.
+
+            *IMPORTANT:* value should be urlencoded - example presented here is not encoded for readability reasons.
           type: string
           format: Array
-          example:
-            -
-              - "craft-311"
-              - "Unicorn Iron on Patch"
-              - "Crafts & Sewing"
-              - 4.99
-              - 3
-            -
-              - "craft-312"
-              - "Unicorn Lamp"
-              - "Crafts & Sewing"
-              - 13.25
-              - 1
+          example: "[[\"craft-311\",\"Unicorn Iron on Patch\",\"Crafts & Sewing\",4.99,3],[\"craft-312\",\"Unicorn Lamp\",\"Crafts & Sewing\",13.25,1]]"
         - name: ec_st
           in: query
           description: |
@@ -664,6 +654,188 @@ paths:
           minimium: 0
           maximum: 1
           example: 1
+        - name: ping
+          in: query
+          description: |
+            Enables a special heartbeat mode for the tracking request.
+            Such a reqest won't track any new action but rather will update time metrics for the last page view.
+            This parametr was designed to prolong the session when no new actions are coming in, while a user is still on the website.
+            Now, ping also updates Custom Variables and Custom Dimensions and Page Performance Metrics.
+            Each type of ping request updates all dimensions, types of pings are used for statistics only.
+            You can also use it for debugging, to determine which kind of `ping` and when updated the dimensions.
+
+            - ``1`` - Periodic heartbeat request (sent every X seconds)
+            - ``2`` - Last heartbeat (sent on page unload event)
+            - ``3`` - Blur heartbeat (sent on page blur event)
+            - ``4`` - Request deanonymizing user
+            - ``5`` - Request with page performance metrics
+            - ``6`` - Request sent by the user (using ping command)
+          type: integer
+          minimium: 1
+          maximum: 6
+          example: 1
+        - name: t_us
+          in: query
+          description: |
+            Unload Event Start - one of the Page Performance Metrics.
+            Designed for the value of `PerformanceTiming.unloadEventStart`
+          type: integer
+          minimium: 0
+          maximum: 65535
+          example: 7
+        - name: t_ue
+          in: query
+          description: |
+            Unload Event End - one of the Page Performance Metrics.
+            Designed for the value of `PerformanceTiming.unloadEventEnd`
+          type: integer
+          minimium: 0
+          maximum: 65535
+          example: 7
+        - name: t_rs
+          in: query
+          description: |
+            Redirect Start - one of the Page Performance Metrics.
+            Designed for the value of `PerformanceTiming.redirectStart`
+          type: integer
+          minimium: 0
+          maximum: 65535
+          example: 7
+        - name: t_re
+          in: query
+          description: |
+            Redirect End - one of the Page Performance Metrics.
+            Designed for the value of `PerformanceTiming.redirectEnd`
+          type: integer
+          minimium: 0
+          maximum: 65535
+          example: 7
+        - name: t_ss
+          in: query
+          description: |
+            Secure Connection Start - one of the Page Performance Metrics.
+            Designed for the value of `PerformanceTiming.secureConnectionStart`
+          type: integer
+          minimium: 0
+          maximum: 65535
+          example: 7
+        - name: t_fs
+          in: query
+          description: |
+            Fetch Start - one of the Page Performance Metrics.
+            Designed for the value of `PerformanceTiming.fetchStart`
+          type: integer
+          minimium: 0
+          maximum: 65535
+          example: 7
+        - name: t_ds
+          in: query
+          description: |
+            Domain Lookup Start - one of the Page Performance Metrics.
+            Designed for the value of `PerformanceTiming.domainLookupStart`
+          type: integer
+          minimium: 0
+          maximum: 65535
+          example: 7
+        - name: t_cs
+          in: query
+          description: |
+            Connect Start - one of the Page Performance Metrics.
+            Designed for the value of `PerformanceTiming.connectStart`
+          type: integer
+          minimium: 0
+          maximum: 65535
+          example: 7
+        - name: t_ce
+          in: query
+          description: |
+            Connect End - one of the Page Performance Metrics.
+            Designed for the value of `PerformanceTiming.connectEnd`
+          type: integer
+          minimium: 0
+          maximum: 65535
+          example: 7
+        - name: t_qs
+          in: query
+          description: |
+            Request Start - one of the Page Performance Metrics.
+            Designed for the value of `PerformanceTiming.requestStart`
+          type: integer
+          minimium: 0
+          maximum: 65535
+          example: 7
+        - name: t_as
+          in: query
+          description: |
+            Response Start - one of the Page Performance Metrics.
+            Designed for the value of `PerformanceTiming.responseStart`
+          type: integer
+          minimium: 0
+          maximum: 65535
+          example: 7
+        - name: t_ae
+          in: query
+          description: |
+            Response End - one of the Page Performance Metrics.
+            Designed for the value of `PerformanceTiming.responseEnd`
+          type: integer
+          minimium: 0
+          maximum: 65535
+          example: 7
+        - name: t_dl
+          in: query
+          description: |
+            DOM Loading - one of the Page Performance Metrics.
+            Designed for the value of `PerformanceTiming.domLoading`
+          type: integer
+          minimium: 0
+          maximum: 65535
+          example: 7
+        - name: t_di
+          in: query
+          description: |
+            DOM Interactive - one of the Page Performance Metrics.
+            Designed for the value of `PerformanceTiming.domInteractive`
+          type: integer
+          minimium: 0
+          maximum: 16777215
+          example: 7
+        - name: t_ls
+          in: query
+          description: |
+            DOM Content Loaded Event Start - one of the Page Performance Metrics.
+            Designed for the value of `PerformanceTiming.domContentLoadedEventStart`
+          type: integer
+          minimium: 0
+          maximum: 16777215
+          example: 7
+        - name: t_le
+          in: query
+          description: |
+            DOM Content Loaded Event End - one of the Page Performance Metrics.
+            Designed for the value of `PerformanceTiming.domContentLoadedEventEnd`
+          type: integer
+          minimium: 0
+          maximum: 16777215
+          example: 7
+        - name: t_dc
+          in: query
+          description: |
+            DOM Complete - one of the Page Performance Metrics.
+            Designed for the value of `PerformanceTiming.domComplete`
+          type: integer
+          minimium: 0
+          maximum: 16777215
+          example: 7
+        - name: t_ee
+          in: query
+          description: |
+            Load Event End - one of the Page Performance Metrics.
+            Designed for the value of `PerformanceTiming.loadEventEnd`
+          type: integer
+          minimium: 0
+          maximum: 16777215
+          example: 7
       responses:
         200:
           description: OK

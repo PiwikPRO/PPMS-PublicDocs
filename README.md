@@ -28,7 +28,7 @@ docker build \
     --tag "ppms-publicdocs" \
     .
 docker run \
-    --publish "9001:8080" \
+    --publish "9009:8080" \
     --volume "$(pwd):/app" \
     ppms-publicdocs
 ```
