@@ -204,7 +204,7 @@ Code::
     :param string|object error: **Required** Error code or exception.
 
 Open consent form
-`````````````````````````
+`````````````````
 .. versionadded:: 12.0
 Command used to open consent form.
 
@@ -237,6 +237,139 @@ Code::
         Example::
 
             ["analytics", "remarketing"]
+
+.. function:: onRejected(error)
+
+    The rejection handler callback (called with error code). If not specified, exception will be thrown in main stacktrace.
+
+    :param string|object error: **Required** Error code or exception.
+
+Track Main Form view
+````````````````````
+.. versionadded:: 15.3
+Command used to track Consent Form main view (automatic view, when user enters the website for the first time).
+
+Code::
+
+    ppms.cm.api('trackMainFormView', onFulfilled, onRejected);
+
+.. function:: onFulfilled()
+
+    The fulfilment handler callback.
+
+.. function:: onRejected(error)
+
+    The rejection handler callback (called with error code). If not specified, exception will be thrown in main stacktrace.
+
+    :param string|object error: **Required** Error code or exception.
+
+Track Reminder Widget view
+``````````````````````````
+.. versionadded:: 15.3
+Command used to track Consent Form view caused by clicking on Reminder Widget.
+
+Code::
+
+    ppms.cm.api('trackReminderWidgetView', onFulfilled, onRejected);
+
+.. function:: onFulfilled()
+
+    The fulfilment handler callback.
+
+.. function:: onRejected(error)
+
+    The rejection handler callback (called with error code). If not specified, exception will be thrown in main stacktrace.
+
+    :param string|object error: **Required** Error code or exception.
+
+Track Privacy Policy Link view
+``````````````````````````````
+.. versionadded:: 15.3
+Command used to track Consent Form view caused by clicking on Privacy Policy Link.
+
+Code::
+
+    ppms.cm.api('trackPrivacyPolicyLinkView', onFulfilled, onRejected);
+
+.. function:: onFulfilled()
+
+    The fulfilment handler callback.
+
+.. function:: onRejected(error)
+
+    The rejection handler callback (called with error code). If not specified, exception will be thrown in main stacktrace.
+
+    :param string|object error: **Required** Error code or exception.
+
+Track `Agree to all` click
+``````````````````````````
+.. versionadded:: 15.3
+Command used to track clicks on the `Agree to all` button.
+
+Code::
+
+    ppms.cm.api('trackAgreeToAllClick', onFulfilled, onRejected);
+
+.. function:: onFulfilled()
+
+    The fulfilment handler callback.
+
+.. function:: onRejected(error)
+
+    The rejection handler callback (called with error code). If not specified, exception will be thrown in main stacktrace.
+
+    :param string|object error: **Required** Error code or exception.
+
+Track `Reject all` click
+````````````````````````
+.. versionadded:: 15.3
+Command used to track clicks on the `Reject all` button.
+
+Code::
+
+    ppms.cm.api('trackRejectAllClick', onFulfilled, onRejected);
+
+.. function:: onFulfilled()
+
+    The fulfilment handler callback.
+
+.. function:: onRejected(error)
+
+    The rejection handler callback (called with error code). If not specified, exception will be thrown in main stacktrace.
+
+    :param string|object error: **Required** Error code or exception.
+
+Track `Save choices` click
+``````````````````````````
+.. versionadded:: 15.3
+Command used to track clicks on the `Save choices` button.
+
+Code::
+
+    ppms.cm.api('trackSaveChoicesClick', onFulfilled, onRejected);
+
+.. function:: onFulfilled()
+
+    The fulfilment handler callback.
+
+.. function:: onRejected(error)
+
+    The rejection handler callback (called with error code). If not specified, exception will be thrown in main stacktrace.
+
+    :param string|object error: **Required** Error code or exception.
+
+Track close button click
+````````````````````````
+.. versionadded:: 15.3
+Command used to track clicks on the close button (`X`).
+
+Code::
+
+    ppms.cm.api('trackCloseButtonClick', onFulfilled, onRejected);
+
+.. function:: onFulfilled()
+
+    The fulfilment handler callback.
 
 .. function:: onRejected(error)
 
