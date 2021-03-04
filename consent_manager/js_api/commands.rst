@@ -15,7 +15,7 @@ Code::
 
 .. function:: onFulfilled(types)
 
-    **required** The fulfilment handler callback (called with result).
+    **required** The fulfillment handler callback (called with result).
 
     :param Array<string> types: **Required** Array of consent types
 
@@ -42,7 +42,7 @@ Code::
 
 .. function:: onFulfilled(types)
 
-    **required** The fulfilment handler callback (called with result).
+    **required** The fulfillment handler callback (called with result).
 
     :param Array<string> types: **Required** Array of consent types
 
@@ -87,7 +87,7 @@ Code::
 
 .. function:: onFulfilled()
 
-     **required** The fulfilment handler callback. This function is **required**.
+     **required** The fulfillment handler callback. This function is **required**.
 
 .. function:: onRejected(error)
 
@@ -124,7 +124,7 @@ Code::
 
 .. function:: onFulfilled()
 
-     **required** The fulfilment handler callback. This function is **required**.
+     **required** The fulfillment handler callback. This function is **required**.
 
 .. function:: onRejected(error)
 
@@ -160,7 +160,7 @@ Code::
 
 .. function:: onFulfilled(settings)
 
-    **required** The fulfilment handler callback (called with result).
+    **required** The fulfillment handler callback (called with result).
 
 .. function:: onRejected(error)
 
@@ -195,7 +195,7 @@ Code::
 
 .. function:: onFulfilled()
 
-    **required** The fulfilment handler callback.
+    **required** The fulfillment handler callback.
 
 .. function:: onRejected(error)
 
@@ -217,7 +217,7 @@ Code::
 
 .. function:: onFulfilled(popupId, consentTypes, consents)
 
-    The fulfilment handler callback.
+    The fulfillment handler callback.
 
     :param string popupId: Id of the consent popup.
 
@@ -255,7 +255,7 @@ Code::
 
 .. function:: onFulfilled()
 
-    The fulfilment handler callback.
+    The fulfillment handler callback.
 
 .. function:: onRejected(error)
 
@@ -274,7 +274,7 @@ Code::
 
 .. function:: onFulfilled()
 
-    The fulfilment handler callback.
+    The fulfillment handler callback.
 
 .. function:: onRejected(error)
 
@@ -293,7 +293,7 @@ Code::
 
 .. function:: onFulfilled()
 
-    The fulfilment handler callback.
+    The fulfillment handler callback.
 
 .. function:: onRejected(error)
 
@@ -312,7 +312,7 @@ Code::
 
 .. function:: onFulfilled()
 
-    The fulfilment handler callback.
+    The fulfillment handler callback.
 
 .. function:: onRejected(error)
 
@@ -331,7 +331,7 @@ Code::
 
 .. function:: onFulfilled()
 
-    The fulfilment handler callback.
+    The fulfillment handler callback.
 
 .. function:: onRejected(error)
 
@@ -350,7 +350,7 @@ Code::
 
 .. function:: onFulfilled()
 
-    The fulfilment handler callback.
+    The fulfillment handler callback.
 
 .. function:: onRejected(error)
 
@@ -369,7 +369,7 @@ Code::
 
 .. function:: onFulfilled()
 
-    The fulfilment handler callback.
+    The fulfillment handler callback.
 
 .. function:: onRejected(error)
 
