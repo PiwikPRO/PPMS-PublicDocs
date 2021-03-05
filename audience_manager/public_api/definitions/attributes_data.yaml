@@ -57,11 +57,15 @@ properties:
           enum:
             - set
             - add
+            - list-add
+            - list-remove
           default: set
           description: |
             Action to perform:
             * `set` – overwrite the existing value with the new value,
-            * `add` – add the new value (or 1, if not specified) to the existing value.
+            * `add` – add the new value (or 1, if not specified) to the existing value,
+            * `list-add` - new value will be a list containing previous value(s) in addition to the added value,
+            * `list-remove` - new value will be a list containing previous value(s) without the removed value.
       example:
         name: occupation
         value: unicorn
