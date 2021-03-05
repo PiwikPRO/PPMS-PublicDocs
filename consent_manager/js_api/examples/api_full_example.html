@@ -241,7 +241,6 @@
       $(this.sendConsentButtonSelector).click(this.sendConsents.bind(this, false));
       $(this.optInButton).click(this.sendConsents.bind(this, true));
       this.loadConsentList();
-      this.setInitialConsents();
     },
 
     show: function() {
@@ -253,10 +252,11 @@
     },
 
     loadConsentList: function() {
-      function success(types) {
-        self = customConsentSolution;
+      self = customConsentSolution;
 
+      function success(types) {
         if (types.length > 0) {
+          ppms.cm.api('trackMainFormView');
           self.show();
         }
 
@@ -276,6 +276,7 @@
       ppms.cm.api('getNewComplianceTypes', function(types) {
         if (types.length) {
           success(types);
+          self.setInitialConsents(types);
           return;
         }
 
@@ -293,13 +294,17 @@
       }, function(e) {});
     },
 
-    setInitialConsents: function() {
-      ppms.cm.api('getNewComplianceTypes', function(types) {
-        ppms.cm.api('setInitialComplianceSettings', types, function() {}, function(e) {});
-      }, function(e) {});
+    setInitialConsents: function(types) {
+      ppms.cm.api('setInitialComplianceSettings', types, function() {}, function(e) {});
     },
 
     sendConsents: function(all) {
+      if(all) {
+        ppms.cm.api('trackAgreeToAllClick');
+      } else {
+        ppms.cm.api('trackSaveChoicesClick');
+      }
+
       var queryElements = {
         consents: {}
       };
