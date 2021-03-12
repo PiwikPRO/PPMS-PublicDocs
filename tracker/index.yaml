@@ -103,11 +103,13 @@ paths:
               - value - Array with:
                 - (`string`) Custom variable name, max length: 200 characters
                 - (`string`) Custom variable value, max length: 200 characters
+
+            *IMPORTANT:* value should be urlencoded - example presented here is not encoded for readability reasons.
           type: string
           #TODO: See JSON comment.
           format: JSON
           #TODO: Look for better example of custom variable.
-          example: {"1":["AspectRatio","16:9"],"2":["Height","1080"],"3":["Width","1920"]}
+          example: '{"1":["AspectRatio","16:9"],"2":["Height","1080"],"3":["Width","1920"]}'
         - name: cvar
           in: query
           #TODO: Confirm description of item format.
@@ -121,11 +123,13 @@ paths:
               - value - Array with:
                 - (`string`) Custom variable name, max length: 200 characters
                 - (`string`) Custom variable value, max length: 200 characters
+
+            *IMPORTANT:* value should be urlencoded - example presented here is not encoded for readability reasons.
           type: string
           #TODO: See JSON comment.
           format: JSON
           #TODO: Look for better example of custom variable.
-          example: {"1":["AspectRatio","16:9"],"2":["Height","1080"],"3":["Width","1920"]}
+          example: '{"1":["AspectRatio","16:9"],"2":["Height","1080"],"3":["Width","1920"]}'
         - name: _idvc
           in: query
           #TODO: Link to definition of a visit.
