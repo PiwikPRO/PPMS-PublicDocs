@@ -225,13 +225,13 @@ redoc table {
 }
 
 redoc td {
-	word-break: break-all;
+    overflow-wrap: break-word;
     white-space: normal !important;
 }
 
 redoc .param-name {
-	word-break: break-all;
-	white-space: normal !important;
+    overflow-wrap: break-word;
+    white-space: normal !important;
 }
 
 body {
