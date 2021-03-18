@@ -70,12 +70,15 @@ Tracking functions
     :param string/boolean category: **Optional** String with category selected in search engine, can set it to false when not used.
     :param number/boolean searchCount:  **Optional** Number of results on the results page, can be set to false when not used.
 
-.. function:: enableHeartBeatTimer(delay)
+.. function:: enableHeartBeatTimer()
 
-    When the user will enter a single page during a visit, we will assume that his total time spent on the website was 0 ms.
-    To measure that time more accurately you can use the ``enableHeartBeatTimer`` function
+    When the user will visit only one page during a session, we will assume that his total time spent on the website was 0 ms.
+    To measure session time more accurately you can use the ``enableHeartBeatTimer`` function
 
-    :param number delay: **Required** Time in seconds between cyclical heartbeat requests, default ``30``
+    .. note::
+        First heart beat will be sent after 15 seconds and each heart beat following it will sent with longer and longer
+        intervals (up to 5 minute ceiling). When page will loose focus, heart beats will be paused until focus is
+        restored. Heart beats will stop after 30 minutes from last page view.
 
 .. function:: enableCrossDomainLinking()
 
