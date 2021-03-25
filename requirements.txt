@@ -1,2 +1,2 @@
 sphinx-rtd-theme==0.2.5b2
-PyYAML==5.1.1
+PyYAML==5.4
