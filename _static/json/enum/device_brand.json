@@ -1,5 +1,9 @@
 [
     [
+        "5E",
+        "2E"
+    ],
+    [
         "3Q",
         "3Q"
     ],
@@ -8,8 +12,48 @@
         "4Good"
     ],
     [
+        "04",
+        "4ife"
+    ],
+    [
+        "36",
+        "360"
+    ],
+    [
+        "88",
+        "8848"
+    ],
+    [
+        "41",
+        "A1"
+    ],
+    [
+        "00",
+        "Accent"
+    ],
+    [
+        "AE",
+        "Ace"
+    ],
+    [
         "AC",
         "Acer"
+    ],
+    [
+        "A9",
+        "Advan"
+    ],
+    [
+        "AD",
+        "Advance"
+    ],
+    [
+        "AF",
+        "AfriOne"
+    ],
+    [
+        "A3",
+        "AGM"
     ],
     [
         "AZ",
@@ -20,28 +64,104 @@
         "Airness"
     ],
     [
+        "AT",
+        "Airties"
+    ],
+    [
+        "0A",
+        "AIS"
+    ],
+    [
+        "AW",
+        "Aiwa"
+    ],
+    [
+        "AK",
+        "Akai"
+    ],
+    [
+        "1A",
+        "Alba"
+    ],
+    [
         "AL",
         "Alcatel"
+    ],
+    [
+        "20",
+        "Alcor"
+    ],
+    [
+        "6L",
+        "ALDI SÜD"
+    ],
+    [
+        "3L",
+        "Alfawise"
+    ],
+    [
+        "4A",
+        "Aligator"
+    ],
+    [
+        "AA",
+        "AllCall"
+    ],
+    [
+        "3A",
+        "AllDocube"
     ],
     [
         "A2",
         "Allview"
     ],
     [
+        "A7",
+        "Allwinner"
+    ],
+    [
         "A1",
         "Altech UEC"
     ],
     [
-        "AN",
-        "Arnova"
+        "66",
+        "Altice"
+    ],
+    [
+        "A5",
+        "altron"
     ],
     [
         "KN",
         "Amazon"
     ],
     [
+        "AG",
+        "AMGOO"
+    ],
+    [
+        "9A",
+        "Amigoo"
+    ],
+    [
         "AO",
         "Amoi"
+    ],
+    [
+        "60",
+        "Andowl"
+    ],
+    [
+        "7A",
+        "Anry"
+    ],
+    [
+        "A0",
+        "ANS"
+    ],
+    [
+        "3N",
+        "Aoson"
     ],
     [
         "AP",
@@ -52,24 +172,76 @@
         "Archos"
     ],
     [
+        "AB",
+        "Arian Space"
+    ],
+    [
+        "A6",
+        "Ark"
+    ],
+    [
+        "5A",
+        "ArmPhone"
+    ],
+    [
+        "AN",
+        "Arnova"
+    ],
+    [
         "AS",
         "ARRIS"
     ],
     [
-        "AT",
-        "Airties"
+        "40",
+        "Artel"
+    ],
+    [
+        "21",
+        "Artizlee"
+    ],
+    [
+        "8A",
+        "Asano"
+    ],
+    [
+        "90",
+        "Asanzo"
+    ],
+    [
+        "A4",
+        "Ask"
+    ],
+    [
+        "A8",
+        "Assistant"
     ],
     [
         "AU",
         "Asus"
     ],
     [
-        "AV",
-        "Avvio"
+        "6A",
+        "AT&T"
+    ],
+    [
+        "2A",
+        "Atom"
     ],
     [
         "AX",
         "Audiovox"
+    ],
+    [
+        "ZA",
+        "Avenzo"
+    ],
+    [
+        "AH",
+        "AVH"
+    ],
+    [
+        "AV",
+        "Avvio"
     ],
     [
         "AY",
@@ -80,44 +252,40 @@
         "Azumi Mobile"
     ],
     [
-        "BB",
-        "BBK"
-    ],
-    [
-        "BE",
-        "Becker"
-    ],
-    [
-        "BI",
-        "Bird"
-    ],
-    [
-        "BT",
-        "Bitel"
-    ],
-    [
-        "BG",
-        "BGH"
-    ],
-    [
-        "BL",
-        "Beetel"
-    ],
-    [
-        "BP",
-        "Blaupunkt"
-    ],
-    [
-        "BM",
-        "Bmobile"
+        "BO",
+        "BangOlufsen"
     ],
     [
         "BN",
         "Barnes & Noble"
     ],
     [
-        "BO",
-        "BangOlufsen"
+        "BB",
+        "BBK"
+    ],
+    [
+        "0B",
+        "BB Mobile"
+    ],
+    [
+        "B6",
+        "BDF"
+    ],
+    [
+        "BE",
+        "Becker"
+    ],
+    [
+        "B5",
+        "Beeline"
+    ],
+    [
+        "B0",
+        "Beelink"
+    ],
+    [
+        "BL",
+        "Beetel"
     ],
     [
         "BQ",
@@ -128,12 +296,96 @@
         "BenQ-Siemens"
     ],
     [
-        "BU",
-        "Blu"
+        "BZ",
+        "Bezkam"
+    ],
+    [
+        "9B",
+        "Bellphone"
+    ],
+    [
+        "BG",
+        "BGH"
+    ],
+    [
+        "6B",
+        "Bigben"
+    ],
+    [
+        "B8",
+        "BIHEE"
+    ],
+    [
+        "1B",
+        "Billion"
+    ],
+    [
+        "BH",
+        "BioRugged"
+    ],
+    [
+        "BI",
+        "Bird"
+    ],
+    [
+        "BT",
+        "Bitel"
+    ],
+    [
+        "B7",
+        "Bitmore"
+    ],
+    [
+        "BK",
+        "Bkav"
+    ],
+    [
+        "5B",
+        "Black Bear"
+    ],
+    [
+        "BF",
+        "Black Fox"
     ],
     [
         "B2",
         "Blackview"
+    ],
+    [
+        "BP",
+        "Blaupunkt"
+    ],
+    [
+        "BU",
+        "Blu"
+    ],
+    [
+        "B3",
+        "Bluboo"
+    ],
+    [
+        "2B",
+        "Bluedot"
+    ],
+    [
+        "BD",
+        "Bluegood"
+    ],
+    [
+        "LB",
+        "Bluewave"
+    ],
+    [
+        "BM",
+        "Bmobile"
+    ],
+    [
+        "B9",
+        "Bobarry"
+    ],
+    [
+        "B4",
+        "bogo"
     ],
     [
         "BW",
@@ -142,6 +394,10 @@
     [
         "BX",
         "bq"
+    ],
+    [
+        "8B",
+        "Brandt"
     ],
     [
         "BV",
@@ -156,32 +412,60 @@
         "Bush"
     ],
     [
-        "CB",
-        "CUBOT"
+        "C9",
+        "CAGI"
     ],
     [
-        "CF",
-        "Carrefour"
+        "CT",
+        "Capitel"
+    ],
+    [
+        "G3",
+        "CG Mobile"
     ],
     [
         "CP",
         "Captiva"
     ],
     [
+        "CF",
+        "Carrefour"
+    ],
+    [
         "CS",
         "Casio"
+    ],
+    [
+        "R4",
+        "Casper"
     ],
     [
         "CA",
         "Cat"
     ],
     [
-        "CE",
-        "Celkon"
+        "BC",
+        "Camfone"
     ],
     [
-        "CC",
-        "ConCorde"
+        "CJ",
+        "Cavion"
+    ],
+    [
+        "02",
+        "Cell-C"
+    ],
+    [
+        "34",
+        "CellAllure"
+    ],
+    [
+        "7C",
+        "Celcus"
+    ],
+    [
+        "CE",
+        "Celkon"
     ],
     [
         "C2",
@@ -192,64 +476,148 @@
         "Cherry Mobile"
     ],
     [
-        "CK",
-        "Cricket"
+        "C3",
+        "China Mobile"
     ],
     [
-        "C1",
-        "Crosscall"
+        "CI",
+        "Chico Mobile"
     ],
     [
-        "CL",
-        "Compal"
+        "1C",
+        "Chuwi"
+    ],
+    [
+        "L8",
+        "Clarmin"
+    ],
+    [
+        "25",
+        "Claresta"
+    ],
+    [
+        "CD",
+        "Cloudfone"
+    ],
+    [
+        "6C",
+        "Cloudpad"
+    ],
+    [
+        "C0",
+        "Clout"
     ],
     [
         "CN",
         "CnM"
     ],
     [
-        "CM",
-        "Crius Mea"
+        "CY",
+        "Coby Kyros"
     ],
     [
-        "C3",
-        "China Mobile"
+        "C6",
+        "Comio"
     ],
     [
-        "CR",
-        "CreNova"
-    ],
-    [
-        "CT",
-        "Capitel"
+        "CL",
+        "Compal"
     ],
     [
         "CQ",
         "Compaq"
     ],
     [
-        "CO",
-        "Coolpad"
+        "C7",
+        "ComTrade Tesla"
+    ],
+    [
+        "C8",
+        "Concord"
+    ],
+    [
+        "CC",
+        "ConCorde"
     ],
     [
         "C5",
         "Condor"
     ],
     [
+        "4C",
+        "Conquest"
+    ],
+    [
+        "3C",
+        "Contixo"
+    ],
+    [
+        "8C",
+        "Connex"
+    ],
+    [
+        "53",
+        "Connectce"
+    ],
+    [
+        "9C",
+        "Colors"
+    ],
+    [
+        "CO",
+        "Coolpad"
+    ],
+    [
         "CW",
         "Cowon"
+    ],
+    [
+        "33",
+        "Clementoni"
+    ],
+    [
+        "CR",
+        "CreNova"
+    ],
+    [
+        "CX",
+        "Crescent"
+    ],
+    [
+        "CK",
+        "Cricket"
+    ],
+    [
+        "CM",
+        "Crius Mea"
+    ],
+    [
+        "0C",
+        "Crony"
+    ],
+    [
+        "C1",
+        "Crosscall"
     ],
     [
         "CU",
         "Cube"
     ],
     [
-        "CY",
-        "Coby Kyros"
+        "CB",
+        "CUBOT"
+    ],
+    [
+        "CV",
+        "CVTE"
     ],
     [
         "C4",
         "Cyrus"
+    ],
+    [
+        "D5",
+        "Daewoo"
     ],
     [
         "DA",
@@ -260,48 +628,100 @@
         "Datang"
     ],
     [
-        "DE",
-        "Denver"
+        "D7",
+        "Datawind"
     ],
     [
-        "DX",
-        "DEXP"
-    ],
-    [
-        "DS",
-        "Desay"
+        "D1",
+        "Datsun"
     ],
     [
         "DB",
         "Dbtel"
     ],
     [
-        "DC",
-        "DoCoMo"
+        "DL",
+        "Dell"
+    ],
+    [
+        "DE",
+        "Denver"
+    ],
+    [
+        "DS",
+        "Desay"
+    ],
+    [
+        "DW",
+        "DeWalt"
+    ],
+    [
+        "DX",
+        "DEXP"
+    ],
+    [
+        "DG",
+        "Dialog"
     ],
     [
         "DI",
         "Dicam"
     ],
     [
+        "D4",
+        "Digi"
+    ],
+    [
+        "D3",
+        "Digicel"
+    ],
+    [
+        "DH",
+        "Digihome"
+    ],
+    [
+        "DD",
+        "Digiland"
+    ],
+    [
         "D2",
         "Digma"
     ],
     [
-        "DL",
-        "Dell"
+        "1D",
+        "Diva"
     ],
     [
-        "DN",
-        "DNS"
+        "D6",
+        "Divisat"
     ],
     [
         "DM",
         "DMM"
     ],
     [
+        "DN",
+        "DNS"
+    ],
+    [
+        "DC",
+        "DoCoMo"
+    ],
+    [
+        "DF",
+        "Doffler"
+    ],
+    [
+        "D9",
+        "Dolamee"
+    ],
+    [
         "DO",
         "Doogee"
+    ],
+    [
+        "D0",
+        "Doopro"
     ],
     [
         "DV",
@@ -316,6 +736,10 @@
         "Doro"
     ],
     [
+        "D8",
+        "Droxio"
+    ],
+    [
         "DU",
         "Dune HD"
     ],
@@ -324,40 +748,112 @@
         "E-Boda"
     ],
     [
-        "EA",
-        "EBEST"
+        "2E",
+        "E-Ceros"
     ],
     [
-        "EC",
-        "Ericsson"
-    ],
-    [
-        "ES",
-        "ECS"
-    ],
-    [
-        "EI",
-        "Ezio"
-    ],
-    [
-        "EL",
-        "Elephone"
+        "E8",
+        "E-tel"
     ],
     [
         "EP",
         "Easypix"
     ],
     [
+        "EQ",
+        "Eagle"
+    ],
+    [
+        "EA",
+        "EBEST"
+    ],
+    [
+        "E4",
+        "Echo Mobiles"
+    ],
+    [
+        "ES",
+        "ECS"
+    ],
+    [
+        "E6",
+        "EE"
+    ],
+    [
         "EK",
         "EKO"
+    ],
+    [
+        "EY",
+        "Einstein"
+    ],
+    [
+        "EM",
+        "Eks Mobility"
+    ],
+    [
+        "7E",
+        "ELARI"
+    ],
+    [
+        "03",
+        "Electroneum"
+    ],
+    [
+        "L0",
+        "Element"
+    ],
+    [
+        "EG",
+        "Elenberg"
+    ],
+    [
+        "EL",
+        "Elephone"
+    ],
+    [
+        "4E",
+        "Eltex"
+    ],
+    [
+        "ED",
+        "Energizer"
     ],
     [
         "E1",
         "Energy Sistem"
     ],
     [
+        "3E",
+        "Enot"
+    ],
+    [
+        "8E",
+        "Epik One"
+    ],
+    [
+        "E7",
+        "Ergo"
+    ],
+    [
+        "EC",
+        "Ericsson"
+    ],
+    [
         "ER",
         "Ericy"
+    ],
+    [
+        "EE",
+        "Essential"
+    ],
+    [
+        "E2",
+        "Essentielb"
+    ],
+    [
+        "6E",
+        "eSTAR"
     ],
     [
         "EN",
@@ -368,16 +864,60 @@
         "eTouch"
     ],
     [
+        "1E",
+        "Etuline"
+    ],
+    [
+        "EU",
+        "Eurostar"
+    ],
+    [
+        "E9",
+        "Evercoss"
+    ],
+    [
         "EV",
         "Evertek"
+    ],
+    [
+        "E3",
+        "Evolio"
     ],
     [
         "EO",
         "Evolveo"
     ],
     [
+        "E0",
+        "EvroMedia"
+    ],
+    [
+        "XE",
+        "ExMobile"
+    ],
+    [
+        "EH",
+        "EXO"
+    ],
+    [
         "EX",
         "Explay"
+    ],
+    [
+        "E5",
+        "Extrem"
+    ],
+    [
+        "EF",
+        "EXCEED"
+    ],
+    [
+        "QE",
+        "EWIS"
+    ],
+    [
+        "EI",
+        "Ezio"
     ],
     [
         "EZ",
@@ -388,20 +928,80 @@
         "Fairphone"
     ],
     [
+        "FM",
+        "Famoco"
+    ],
+    [
+        "17",
+        "FarEasTone"
+    ],
+    [
+        "FE",
+        "Fengxiang"
+    ],
+    [
+        "F7",
+        "Fero"
+    ],
+    [
+        "FI",
+        "FiGO"
+    ],
+    [
+        "F1",
+        "FinePower"
+    ],
+    [
+        "FX",
+        "Finlux"
+    ],
+    [
+        "F3",
+        "FireFly Mobile"
+    ],
+    [
         "FL",
         "Fly"
     ],
     [
-        "FT",
-        "Freetel"
+        "FN",
+        "FNB"
+    ],
+    [
+        "FD",
+        "Fondi"
+    ],
+    [
+        "F0",
+        "Fonos"
+    ],
+    [
+        "F2",
+        "FORME"
+    ],
+    [
+        "FR",
+        "Forstar"
+    ],
+    [
+        "RF",
+        "Fortis"
     ],
     [
         "FO",
         "Foxconn"
     ],
     [
+        "FT",
+        "Freetel"
+    ],
+    [
         "FU",
         "Fujitsu"
+    ],
+    [
+        "GT",
+        "G-TiDE"
     ],
     [
         "GM",
@@ -416,8 +1016,24 @@
         "Gemini"
     ],
     [
-        "GI",
-        "Gionee"
+        "GN",
+        "General Mobile"
+    ],
+    [
+        "G2",
+        "GEOFOX"
+    ],
+    [
+        "GE",
+        "Geotel"
+    ],
+    [
+        "GH",
+        "Ghia"
+    ],
+    [
+        "2C",
+        "Ghong"
     ],
     [
         "GG",
@@ -428,6 +1044,22 @@
         "Gigaset"
     ],
     [
+        "GZ",
+        "Ginzzu"
+    ],
+    [
+        "1G",
+        "Gini"
+    ],
+    [
+        "GI",
+        "Gionee"
+    ],
+    [
+        "G4",
+        "Globex"
+    ],
+    [
         "GC",
         "GOCLEVER"
     ],
@@ -436,40 +1068,128 @@
         "Goly"
     ],
     [
+        "GX",
+        "GLX"
+    ],
+    [
+        "G5",
+        "Gome"
+    ],
+    [
+        "G1",
+        "GoMobile"
+    ],
+    [
         "GO",
         "Google"
+    ],
+    [
+        "G0",
+        "Goophone"
     ],
     [
         "GR",
         "Gradiente"
     ],
     [
+        "GP",
+        "Grape"
+    ],
+    [
+        "G6",
+        "Gree"
+    ],
+    [
         "GU",
         "Grundig"
+    ],
+    [
+        "HF",
+        "Hafury"
     ],
     [
         "HA",
         "Haier"
     ],
     [
+        "HE",
+        "HannSpree"
+    ],
+    [
+        "HK",
+        "Hardkernel"
+    ],
+    [
         "HS",
         "Hasee"
     ],
     [
-        "HI",
-        "Hisense"
+        "H6",
+        "Helio"
+    ],
+    [
+        "ZH",
+        "Hezire"
     ],
     [
         "HL",
         "Hi-Level"
     ],
     [
+        "H2",
+        "Highscreen"
+    ],
+    [
+        "Q1",
+        "High Q"
+    ],
+    [
+        "1H",
+        "Hipstreet"
+    ],
+    [
+        "HI",
+        "Hisense"
+    ],
+    [
+        "HC",
+        "Hitachi"
+    ],
+    [
+        "H1",
+        "Hoffmann"
+    ],
+    [
+        "H0",
+        "Hometech"
+    ],
+    [
         "HM",
         "Homtom"
     ],
     [
+        "HZ",
+        "Hoozo"
+    ],
+    [
         "HO",
         "Hosin"
+    ],
+    [
+        "H3",
+        "Hotel"
+    ],
+    [
+        "HV",
+        "Hotwav"
+    ],
+    [
+        "HW",
+        "How"
+    ],
+    [
+        "WH",
+        "Honeywell"
     ],
     [
         "HP",
@@ -480,12 +1200,20 @@
         "HTC"
     ],
     [
+        "HD",
+        "Huadoo"
+    ],
+    [
         "HU",
         "Huawei"
     ],
     [
         "HX",
         "Humax"
+    ],
+    [
+        "HR",
+        "Hurricane"
     ],
     [
         "HY",
@@ -496,36 +1224,92 @@
         "Hyundai"
     ],
     [
-        "IA",
-        "Ikea"
+        "7H",
+        "Hyve"
     ],
     [
-        "IB",
-        "iBall"
+        "3I",
+        "i-Cherry"
     ],
     [
         "IJ",
         "i-Joy"
     ],
     [
+        "IM",
+        "i-mate"
+    ],
+    [
+        "IO",
+        "i-mobile"
+    ],
+    [
+        "IB",
+        "iBall"
+    ],
+    [
         "IY",
         "iBerry"
+    ],
+    [
+        "7I",
+        "iBrit"
+    ],
+    [
+        "I2",
+        "IconBIT"
+    ],
+    [
+        "IC",
+        "iDroid"
+    ],
+    [
+        "IG",
+        "iGet"
+    ],
+    [
+        "IH",
+        "iHunt"
+    ],
+    [
+        "IA",
+        "Ikea"
+    ],
+    [
+        "8I",
+        "IKU Mobile"
+    ],
+    [
+        "2K",
+        "IKI Mobile"
     ],
     [
         "IK",
         "iKoMo"
     ],
     [
-        "IM",
-        "i-mate"
+        "I7",
+        "iLA"
     ],
     [
-        "I1",
-        "iOcean"
+        "2I",
+        "iLife"
     ],
     [
-        "I2",
-        "IconBIT"
+        "1I",
+        "iMars"
+    ],
+    [
+        "IL",
+        "IMO Mobile"
+    ],
+    [
+        "I3",
+        "Impression"
+    ],
+    [
+        "6I",
+        "Inco"
     ],
     [
         "IW",
@@ -536,56 +1320,196 @@
         "Infinix"
     ],
     [
-        "IN",
-        "Innostream"
+        "I0",
+        "InFocus"
     ],
     [
         "II",
         "Inkti"
     ],
     [
-        "IX",
-        "Intex"
+        "I5",
+        "InnJoo"
     ],
     [
-        "IO",
-        "i-mobile"
+        "IN",
+        "Innostream"
+    ],
+    [
+        "I4",
+        "Inoi"
     ],
     [
         "IQ",
         "INQ"
     ],
     [
+        "IS",
+        "Insignia"
+    ],
+    [
         "IT",
         "Intek"
+    ],
+    [
+        "IX",
+        "Intex"
     ],
     [
         "IV",
         "Inverto"
     ],
     [
+        "32",
+        "Invens"
+    ],
+    [
+        "4I",
+        "Invin"
+    ],
+    [
+        "I1",
+        "iOcean"
+    ],
+    [
+        "IP",
+        "iPro"
+    ],
+    [
+        "8Q",
+        "IQM"
+    ],
+    [
+        "I6",
+        "Irbis"
+    ],
+    [
+        "5I",
+        "Iris"
+    ],
+    [
+        "IR",
+        "iRola"
+    ],
+    [
+        "IU",
+        "iRulu"
+    ],
+    [
+        "9I",
+        "iSWAG"
+    ],
+    [
         "IZ",
         "iTel"
+    ],
+    [
+        "0I",
+        "iTruck"
+    ],
+    [
+        "I8",
+        "iVA"
+    ],
+    [
+        "IE",
+        "iView"
+    ],
+    [
+        "0J",
+        "iVooMi"
+    ],
+    [
+        "I9",
+        "iZotron"
     ],
     [
         "JA",
         "JAY-Tech"
     ],
     [
+        "JF",
+        "JFone"
+    ],
+    [
         "JI",
         "Jiayu"
+    ],
+    [
+        "JG",
+        "Jinga"
+    ],
+    [
+        "VJ",
+        "Jivi"
+    ],
+    [
+        "JK",
+        "JKL"
     ],
     [
         "JO",
         "Jolla"
     ],
     [
+        "J5",
+        "Just5"
+    ],
+    [
+        "JV",
+        "JVC"
+    ],
+    [
+        "JS",
+        "Jesy"
+    ],
+    [
+        "KT",
+        "K-Touch"
+    ],
+    [
+        "K4",
+        "Kaan"
+    ],
+    [
+        "K7",
+        "Kaiomy"
+    ],
+    [
+        "KL",
+        "Kalley"
+    ],
+    [
+        "K6",
+        "Kanji"
+    ],
+    [
         "KA",
         "Karbonn"
     ],
     [
+        "K5",
+        "KATV1"
+    ],
+    [
+        "KZ",
+        "Kazam"
+    ],
+    [
         "KD",
         "KDDI"
+    ],
+    [
+        "KS",
+        "Kempler & Strauss"
+    ],
+    [
+        "K3",
+        "Keneksi"
+    ],
+    [
+        "KX",
+        "Kenxinda"
     ],
     [
         "K1",
@@ -596,36 +1520,76 @@
         "Kingsun"
     ],
     [
-        "KO",
-        "Konka"
+        "KV",
+        "Kivi"
+    ],
+    [
+        "0K",
+        "Klipad"
+    ],
+    [
+        "KC",
+        "Kocaso"
+    ],
+    [
+        "KK",
+        "Kodak"
+    ],
+    [
+        "KG",
+        "Kogan"
     ],
     [
         "KM",
         "Komu"
     ],
     [
-        "KB",
-        "Koobee"
-    ],
-    [
-        "KT",
-        "K-Touch"
-    ],
-    [
-        "KH",
-        "KT-Tech"
-    ],
-    [
-        "KP",
-        "KOPO"
+        "KO",
+        "Konka"
     ],
     [
         "KW",
         "Konrow"
     ],
     [
+        "KB",
+        "Koobee"
+    ],
+    [
+        "7K",
+        "Koolnee"
+    ],
+    [
+        "K9",
+        "Kooper"
+    ],
+    [
+        "KP",
+        "KOPO"
+    ],
+    [
         "KR",
         "Koridy"
+    ],
+    [
+        "K2",
+        "KRONO"
+    ],
+    [
+        "KE",
+        "Krüger&Matz"
+    ],
+    [
+        "KH",
+        "KT-Tech"
+    ],
+    [
+        "K8",
+        "Kuliao"
+    ],
+    [
+        "8K",
+        "Kult"
     ],
     [
         "KU",
@@ -636,56 +1600,80 @@
         "Kyocera"
     ],
     [
-        "KZ",
-        "Kazam"
+        "1K",
+        "Kzen"
+    ],
+    [
+        "LQ",
+        "LAIQ"
+    ],
+    [
+        "L6",
+        "Land Rover"
     ],
     [
         "L2",
         "Landvo"
     ],
     [
-        "LV",
-        "Lava"
-    ],
-    [
         "LA",
         "Lanix"
+    ],
+    [
+        "LK",
+        "Lark"
+    ],
+    [
+        "LV",
+        "Lava"
     ],
     [
         "LC",
         "LCT"
     ],
     [
+        "L5",
+        "Leagoo"
+    ],
+    [
+        "LD",
+        "Ledstar"
+    ],
+    [
         "L1",
         "LeEco"
     ],
     [
-        "LE",
-        "Lenovo"
+        "4B",
+        "Leff"
+    ],
+    [
+        "L4",
+        "Lemhoov"
     ],
     [
         "LN",
         "Lenco"
     ],
     [
+        "LE",
+        "Lenovo"
+    ],
+    [
+        "LT",
+        "Leotec"
+    ],
+    [
         "LP",
         "Le Pan"
     ],
     [
-        "LG",
-        "LG"
+        "L7",
+        "Lephone"
     ],
     [
-        "LI",
-        "Lingwin"
-    ],
-    [
-        "LO",
-        "Loewe"
-    ],
-    [
-        "LM",
-        "Logicom"
+        "LZ",
+        "Lesia"
     ],
     [
         "L3",
@@ -696,24 +1684,128 @@
         "Lexibook"
     ],
     [
+        "LG",
+        "LG"
+    ],
+    [
+        "LI",
+        "Lingwin"
+    ],
+    [
+        "5L",
+        "Linsar"
+    ],
+    [
+        "LO",
+        "Loewe"
+    ],
+    [
+        "1L",
+        "Logic"
+    ],
+    [
+        "LM",
+        "Logicom"
+    ],
+    [
+        "0L",
+        "Lumigon"
+    ],
+    [
+        "LU",
+        "Lumus"
+    ],
+    [
+        "L9",
+        "Luna"
+    ],
+    [
+        "LR",
+        "Luxor"
+    ],
+    [
         "LY",
         "LYF"
+    ],
+    [
+        "LL",
+        "Leader Phone"
+    ],
+    [
+        "MQ",
+        "M.T.T."
+    ],
+    [
+        "MN",
+        "M4tel"
+    ],
+    [
+        "XM",
+        "Macoox"
     ],
     [
         "MJ",
         "Majestic"
     ],
     [
+        "23",
+        "Magnus"
+    ],
+    [
+        "5M",
+        "Mann"
+    ],
+    [
         "MA",
         "Manta Multimedia"
     ],
     [
-        "MB",
-        "Mobistel"
+        "2M",
+        "Masstel"
+    ],
+    [
+        "50",
+        "Matrix"
+    ],
+    [
+        "7M",
+        "Maxcom"
+    ],
+    [
+        "6X",
+        "Maxtron"
+    ],
+    [
+        "0D",
+        "MAXVI"
+    ],
+    [
+        "MW",
+        "Maxwest"
+    ],
+    [
+        "M0",
+        "Maze"
+    ],
+    [
+        "09",
+        "meanIT"
     ],
     [
         "M3",
         "Mecer"
+    ],
+    [
+        "0M",
+        "Mecool"
+    ],
+    [
+        "MC",
+        "Mediacom"
+    ],
+    [
+        "MK",
+        "MediaTek"
     ],
     [
         "MD",
@@ -724,8 +1816,24 @@
         "MEEG"
     ],
     [
+        "MP",
+        "MegaFon"
+    ],
+    [
+        "3M",
+        "Meitu"
+    ],
+    [
         "M1",
         "Meizu"
+    ],
+    [
+        "0E",
+        "Melrose"
+    ],
+    [
+        "MU",
+        "Memup"
     ],
     [
         "ME",
@@ -740,24 +1848,76 @@
         "MicroMax"
     ],
     [
-        "M5",
-        "MIXC"
+        "MS",
+        "Microsoft"
     ],
     [
-        "MC",
-        "Mediacom"
+        "1X",
+        "Minix"
     ],
     [
-        "MK",
-        "MediaTek"
+        "OM",
+        "Mintt"
     ],
     [
         "MO",
         "Mio"
     ],
     [
-        "MM",
-        "Mpman"
+        "M7",
+        "Miray"
+    ],
+    [
+        "8M",
+        "Mito"
+    ],
+    [
+        "MT",
+        "Mitsubishi"
+    ],
+    [
+        "M5",
+        "MIXC"
+    ],
+    [
+        "2D",
+        "MIVO"
+    ],
+    [
+        "1Z",
+        "MiXzo"
+    ],
+    [
+        "ML",
+        "MLLED"
+    ],
+    [
+        "LS",
+        "MLS"
+    ],
+    [
+        "4M",
+        "Mobicel"
+    ],
+    [
+        "M6",
+        "Mobiistar"
+    ],
+    [
+        "MH",
+        "Mobiola"
+    ],
+    [
+        "MB",
+        "Mobistel"
+    ],
+    [
+        "6W",
+        "MobiWire"
+    ],
+    [
+        "9M",
+        "Mobo"
     ],
     [
         "M4",
@@ -772,96 +1932,236 @@
         "Motorola"
     ],
     [
-        "MS",
-        "Microsoft"
+        "MV",
+        "Movic"
+    ],
+    [
+        "MM",
+        "Mpman"
     ],
     [
         "MZ",
         "MSI"
     ],
     [
-        "MU",
-        "Memup"
+        "M9",
+        "MTC"
     ],
     [
-        "MT",
-        "Mitsubishi"
+        "N4",
+        "MTN"
     ],
     [
-        "ML",
-        "MLLED"
+        "1R",
+        "Multilaser"
     ],
     [
-        "MQ",
-        "M.T.T."
+        "1M",
+        "MYFON"
     ],
     [
         "MY",
         "MyPhone"
     ],
     [
+        "51",
+        "Myros"
+    ],
+    [
+        "M8",
+        "Myria"
+    ],
+    [
+        "6M",
+        "Mystery"
+    ],
+    [
+        "3T",
+        "MyTab"
+    ],
+    [
+        "MG",
+        "MyWigo"
+    ],
+    [
+        "N7",
+        "National"
+    ],
+    [
+        "6N",
+        "Navitech"
+    ],
+    [
+        "N3",
+        "Navon"
+    ],
+    [
         "NE",
         "NEC"
+    ],
+    [
+        "8N",
+        "Necnot"
     ],
     [
         "NF",
         "Neffos"
     ],
     [
+        "1N",
+        "Neomi"
+    ],
+    [
         "NA",
         "Netgear"
     ],
     [
-        "NG",
-        "NGM"
-    ],
-    [
-        "NO",
-        "Nous"
-    ],
-    [
-        "NI",
-        "Nintendo"
-    ],
-    [
-        "N1",
-        "Noain"
-    ],
-    [
-        "NK",
-        "Nokia"
-    ],
-    [
-        "NV",
-        "Nvidia"
-    ],
-    [
-        "NB",
-        "Noblex"
-    ],
-    [
-        "NM",
-        "Nomi"
-    ],
-    [
-        "NN",
-        "Nikon"
+        "NU",
+        "NeuImage"
     ],
     [
         "NW",
         "Newgen"
     ],
     [
+        "N9",
+        "Newland"
+    ],
+    [
+        "0N",
+        "Newman"
+    ],
+    [
+        "NS",
+        "NewsMy"
+    ],
+    [
+        "XB",
+        "NEXBOX"
+    ],
+    [
         "NX",
         "Nexian"
+    ],
+    [
+        "N8",
+        "NEXON"
+    ],
+    [
+        "N2",
+        "Nextbit"
     ],
     [
         "NT",
         "NextBook"
     ],
     [
+        "4N",
+        "NextTab"
+    ],
+    [
+        "NG",
+        "NGM"
+    ],
+    [
+        "NZ",
+        "NG Optics"
+    ],
+    [
+        "NN",
+        "Nikon"
+    ],
+    [
+        "NI",
+        "Nintendo"
+    ],
+    [
+        "N5",
+        "NOA"
+    ],
+    [
+        "N1",
+        "Noain"
+    ],
+    [
+        "N6",
+        "Nobby"
+    ],
+    [
+        "NB",
+        "Noblex"
+    ],
+    [
+        "NK",
+        "Nokia"
+    ],
+    [
+        "NM",
+        "Nomi"
+    ],
+    [
+        "2N",
+        "Nomu"
+    ],
+    [
+        "NR",
+        "Nordmende"
+    ],
+    [
+        "7N",
+        "NorthTech"
+    ],
+    [
+        "5N",
+        "Nos"
+    ],
+    [
+        "NO",
+        "Nous"
+    ],
+    [
+        "NJ",
+        "NuAns"
+    ],
+    [
+        "NL",
+        "NUU Mobile"
+    ],
+    [
+        "N0",
+        "Nuvo"
+    ],
+    [
+        "NV",
+        "Nvidia"
+    ],
+    [
+        "NY",
+        "NYX Mobile"
+    ],
+    [
+        "O3",
+        "O+"
+    ],
+    [
+        "OT",
+        "O2"
+    ],
+    [
+        "O7",
+        "Oale"
+    ],
+    [
+        "OB",
+        "Obi"
+    ],
+    [
         "O1",
         "Odys"
+    ],
+    [
+        "OA",
+        "Okapia"
     ],
     [
         "OD",
@@ -872,40 +2172,112 @@
         "OnePlus"
     ],
     [
+        "OX",
+        "Onix"
+    ],
+    [
+        "O4",
+        "ONN"
+    ],
+    [
+        "2O",
+        "OpelMobile"
+    ],
+    [
+        "OH",
+        "Openbox"
+    ],
+    [
         "OP",
         "OPPO"
-    ],
-    [
-        "OR",
-        "Orange"
-    ],
-    [
-        "OT",
-        "O2"
-    ],
-    [
-        "OK",
-        "Ouki"
-    ],
-    [
-        "OU",
-        "OUYA"
     ],
     [
         "OO",
         "Opsson"
     ],
     [
+        "OR",
+        "Orange"
+    ],
+    [
+        "O5",
+        "Orbic"
+    ],
+    [
+        "OS",
+        "Ordissimo"
+    ],
+    [
+        "OK",
+        "Ouki"
+    ],
+    [
+        "QK",
+        "OKWU"
+    ],
+    [
+        "OE",
+        "Oukitel"
+    ],
+    [
+        "OU",
+        "OUYA"
+    ],
+    [
         "OV",
         "Overmax"
+    ],
+    [
+        "30",
+        "Ovvi"
+    ],
+    [
+        "O2",
+        "Owwo"
     ],
     [
         "OY",
         "Oysters"
     ],
     [
+        "O6",
+        "Oyyu"
+    ],
+    [
+        "OZ",
+        "OzoneHD"
+    ],
+    [
+        "7P",
+        "P-UP"
+    ],
+    [
+        "PM",
+        "Palm"
+    ],
+    [
+        "PN",
+        "Panacom"
+    ],
+    [
         "PA",
         "Panasonic"
+    ],
+    [
+        "PT",
+        "Pantech"
+    ],
+    [
+        "PB",
+        "PCBOX"
+    ],
+    [
+        "PC",
+        "PCD"
+    ],
+    [
+        "PD",
+        "PCD Argentina"
     ],
     [
         "PE",
@@ -916,92 +2288,204 @@
         "Pentagram"
     ],
     [
+        "1P",
+        "Phicomm"
+    ],
+    [
+        "4P",
+        "Philco"
+    ],
+    [
         "PH",
         "Philips"
     ],
     [
-        "PI",
-        "Pioneer"
-    ],
-    [
-        "PL",
-        "Polaroid"
-    ],
-    [
-        "PM",
-        "Palm"
+        "5P",
+        "Phonemax"
     ],
     [
         "PO",
         "phoneOne"
     ],
     [
-        "PT",
-        "Pantech"
+        "PI",
+        "Pioneer"
+    ],
+    [
+        "8P",
+        "Pixelphone"
+    ],
+    [
+        "PX",
+        "Pixus"
+    ],
+    [
+        "9P",
+        "Planet Computers"
     ],
     [
         "PY",
         "Ployer"
     ],
     [
+        "P4",
+        "Plum"
+    ],
+    [
+        "22",
+        "Pluzz"
+    ],
+    [
+        "P8",
+        "PocketBook"
+    ],
+    [
+        "0P",
+        "POCO"
+    ],
+    [
         "PV",
         "Point of View"
+    ],
+    [
+        "PL",
+        "Polaroid"
     ],
     [
         "PP",
         "PolyPad"
     ],
     [
+        "P5",
+        "Polytron"
+    ],
+    [
         "P2",
         "Pomp"
     ],
     [
-        "P3",
-        "PPTV"
+        "P0",
+        "Poppox"
     ],
     [
         "PS",
         "Positivo"
     ],
     [
+        "3P",
+        "Positivo BGH"
+    ],
+    [
+        "P3",
+        "PPTV"
+    ],
+    [
+        "FP",
+        "Premio"
+    ],
+    [
         "PR",
         "Prestigio"
+    ],
+    [
+        "P9",
+        "Primepad"
+    ],
+    [
+        "6P",
+        "Primux"
+    ],
+    [
+        "2P",
+        "Prixton"
+    ],
+    [
+        "P6",
+        "Proline"
     ],
     [
         "P1",
         "ProScan"
     ],
     [
+        "P7",
+        "Protruly"
+    ],
+    [
         "PU",
         "PULID"
+    ],
+    [
+        "QH",
+        "Q-Touch"
+    ],
+    [
+        "QB",
+        "Q.Bell"
     ],
     [
         "QI",
         "Qilive"
     ],
     [
+        "QM",
+        "QMobile"
+    ],
+    [
         "QT",
         "Qtek"
     ],
     [
-        "QM",
-        "QMobile"
+        "QA",
+        "Quantum"
     ],
     [
         "QU",
         "Quechua"
     ],
     [
+        "QO",
+        "Qumo"
+    ],
+    [
+        "R2",
+        "R-TV"
+    ],
+    [
         "RA",
         "Ramos"
+    ],
+    [
+        "R9",
+        "Ravoz"
+    ],
+    [
+        "RZ",
+        "Razer"
     ],
     [
         "RC",
         "RCA Tablets"
     ],
     [
+        "2R",
+        "Reach"
+    ],
+    [
         "RB",
         "Readboy"
+    ],
+    [
+        "RE",
+        "Realme"
+    ],
+    [
+        "R8",
+        "RED"
+    ],
+    [
+        "RD",
+        "Reeder"
     ],
     [
         "RI",
@@ -1012,72 +2496,328 @@
         "RIM"
     ],
     [
+        "RN",
+        "Rinno"
+    ],
+    [
+        "RX",
+        "Ritmix"
+    ],
+    [
+        "R7",
+        "Ritzviva"
+    ],
+    [
+        "RV",
+        "Riviera"
+    ],
+    [
+        "RR",
+        "Roadrover"
+    ],
+    [
+        "R1",
+        "Rokit"
+    ],
+    [
         "RK",
         "Roku"
+    ],
+    [
+        "R3",
+        "Rombica"
+    ],
+    [
+        "R5",
+        "Ross&Moor"
     ],
     [
         "RO",
         "Rover"
     ],
     [
-        "SA",
-        "Samsung"
+        "R6",
+        "RoverPad"
     ],
     [
-        "SD",
-        "Sega"
+        "RT",
+        "RT Project"
     ],
     [
-        "SE",
-        "Sony Ericsson"
+        "RG",
+        "RugGear"
     ],
     [
-        "S1",
-        "Sencor"
+        "RU",
+        "Runbo"
     ],
     [
-        "SF",
-        "Softbank"
+        "RL",
+        "Ruio"
     ],
     [
-        "SX",
-        "SFR"
+        "RY",
+        "Ryte"
+    ],
+    [
+        "X1",
+        "Safaricom"
     ],
     [
         "SG",
         "Sagem"
     ],
     [
-        "SH",
-        "Sharp"
+        "4L",
+        "Salora"
     ],
     [
-        "SI",
-        "Siemens"
+        "SA",
+        "Samsung"
+    ],
+    [
+        "S0",
+        "Sanei"
+    ],
+    [
+        "12",
+        "Sansui"
+    ],
+    [
+        "SQ",
+        "Santin"
+    ],
+    [
+        "SY",
+        "Sanyo"
+    ],
+    [
+        "S9",
+        "Savio"
+    ],
+    [
+        "CZ",
+        "Schneider"
+    ],
+    [
+        "SD",
+        "Sega"
+    ],
+    [
+        "9G",
+        "Selenga"
+    ],
+    [
+        "SV",
+        "Selevision"
+    ],
+    [
+        "SL",
+        "Selfix"
+    ],
+    [
+        "0S",
+        "SEMP TCL"
+    ],
+    [
+        "S1",
+        "Sencor"
     ],
     [
         "SN",
         "Sendo"
     ],
     [
+        "01",
+        "Senkatel"
+    ],
+    [
         "S6",
         "Senseit"
+    ],
+    [
+        "EW",
+        "Senwa"
+    ],
+    [
+        "24",
+        "Seeken"
+    ],
+    [
+        "SX",
+        "SFR"
+    ],
+    [
+        "SH",
+        "Sharp"
+    ],
+    [
+        "7S",
+        "Shift Phones"
+    ],
+    [
+        "RS",
+        "Shtrikh-M"
+    ],
+    [
+        "3S",
+        "Shuttle"
+    ],
+    [
+        "13",
+        "Sico"
+    ],
+    [
+        "SI",
+        "Siemens"
+    ],
+    [
+        "1S",
+        "Sigma"
+    ],
+    [
+        "70",
+        "Silelis"
+    ],
+    [
+        "SJ",
+        "Silent Circle"
+    ],
+    [
+        "10",
+        "Simbans"
+    ],
+    [
+        "31",
+        "Siragon"
+    ],
+    [
+        "SW",
+        "Sky"
     ],
     [
         "SK",
         "Skyworth"
     ],
     [
+        "14",
+        "Smadl"
+    ],
+    [
+        "19",
+        "Smailo"
+    ],
+    [
+        "SR",
+        "Smart"
+    ],
+    [
+        "80",
+        "SMARTEC"
+    ],
+    [
         "SC",
         "Smartfren"
+    ],
+    [
+        "S7",
+        "Smartisan"
+    ],
+    [
+        "SF",
+        "Softbank"
+    ],
+    [
+        "16",
+        "Solone"
+    ],
+    [
+        "OI",
+        "Sonim"
     ],
     [
         "SO",
         "Sony"
     ],
     [
+        "SE",
+        "Sony Ericsson"
+    ],
+    [
+        "X2",
+        "Soundmax"
+    ],
+    [
+        "8S",
+        "Soyes"
+    ],
+    [
+        "FS",
+        "SPC"
+    ],
+    [
+        "6S",
+        "Spectrum"
+    ],
+    [
         "SP",
         "Spice"
+    ],
+    [
+        "QS",
+        "SQOOL"
+    ],
+    [
+        "S4",
+        "Star"
+    ],
+    [
+        "OL",
+        "Starlight"
+    ],
+    [
+        "18",
+        "Starmobile"
+    ],
+    [
+        "2S",
+        "Starway"
+    ],
+    [
+        "SB",
+        "STF Mobile"
+    ],
+    [
+        "S8",
+        "STK"
+    ],
+    [
+        "S2",
+        "Stonex"
+    ],
+    [
+        "ST",
+        "Storex"
+    ],
+    [
+        "9S",
+        "Sugar"
+    ],
+    [
+        "SZ",
+        "Sumvision"
+    ],
+    [
+        "0H",
+        "Sunstech"
+    ],
+    [
+        "S3",
+        "SunVan"
+    ],
+    [
+        "5S",
+        "Sunvell"
     ],
     [
         "SU",
@@ -1088,52 +2828,36 @@
         "Supra"
     ],
     [
-        "SV",
-        "Selevision"
+        "0W",
+        "Swipe"
     ],
     [
-        "SY",
-        "Sanyo"
+        "SS",
+        "SWISSMOBILITY"
+    ],
+    [
+        "1W",
+        "Swisstone"
     ],
     [
         "SM",
         "Symphony"
     ],
     [
-        "SR",
-        "Smart"
+        "4S",
+        "Syrox"
     ],
     [
-        "S7",
-        "Smartisan"
+        "TM",
+        "T-Mobile"
     ],
     [
-        "S4",
-        "Star"
+        "TK",
+        "Takara"
     ],
     [
-        "S8",
-        "STK"
-    ],
-    [
-        "ST",
-        "Storex"
-    ],
-    [
-        "S2",
-        "Stonex"
-    ],
-    [
-        "S3",
-        "SunVan"
-    ],
-    [
-        "SZ",
-        "Sumvision"
-    ],
-    [
-        "TA",
-        "Tesla"
+        "9N",
+        "Tanix"
     ],
     [
         "T5",
@@ -1144,64 +2868,144 @@
         "TCL"
     ],
     [
+        "T0",
+        "TD Systems"
+    ],
+    [
+        "TX",
+        "TechniSat"
+    ],
+    [
+        "TT",
+        "TechnoTrend"
+    ],
+    [
+        "TP",
+        "TechPad"
+    ],
+    [
+        "9E",
+        "Techwood"
+    ],
+    [
         "T7",
         "Teclast"
-    ],
-    [
-        "TE",
-        "Telit"
-    ],
-    [
-        "T4",
-        "ThL"
-    ],
-    [
-        "TH",
-        "TiPhone"
     ],
     [
         "TB",
         "Tecno Mobile"
     ],
     [
-        "TD",
-        "Tesco"
-    ],
-    [
-        "TI",
-        "TIANYU"
+        "2L",
+        "Tele2"
     ],
     [
         "TL",
         "Telefunken"
     ],
     [
+        "TG",
+        "Telego"
+    ],
+    [
         "T2",
         "Telenor"
     ],
     [
-        "TM",
-        "T-Mobile"
+        "TE",
+        "Telit"
+    ],
+    [
+        "TD",
+        "Tesco"
+    ],
+    [
+        "TA",
+        "Tesla"
+    ],
+    [
+        "9T",
+        "Tetratab"
+    ],
+    [
+        "TZ",
+        "teXet"
+    ],
+    [
+        "29",
+        "Teknosa"
+    ],
+    [
+        "T4",
+        "ThL"
     ],
     [
         "TN",
         "Thomson"
     ],
     [
+        "O0",
+        "Thuraya"
+    ],
+    [
+        "TI",
+        "TIANYU"
+    ],
+    [
+        "8T",
+        "Time2"
+    ],
+    [
+        "TQ",
+        "Timovi"
+    ],
+    [
+        "2T",
+        "Tinai"
+    ],
+    [
+        "TF",
+        "Tinmo"
+    ],
+    [
+        "TH",
+        "TiPhone"
+    ],
+    [
         "T1",
         "Tolino"
+    ],
+    [
+        "0T",
+        "Tone"
+    ],
+    [
+        "TY",
+        "Tooky"
+    ],
+    [
+        "T9",
+        "Top House"
     ],
     [
         "TO",
         "Toplux"
     ],
     [
+        "7T",
+        "Torex"
+    ],
+    [
         "TS",
         "Toshiba"
     ],
     [
-        "TT",
-        "TechnoTrend"
+        "T8",
+        "Touchmate"
+    ],
+    [
+        "5R",
+        "Transpeed"
     ],
     [
         "T6",
@@ -1212,80 +3016,248 @@
         "Trevi"
     ],
     [
+        "TJ",
+        "Trifone"
+    ],
+    [
+        "4T",
+        "Tronsmart"
+    ],
+    [
+        "11",
+        "True"
+    ],
+    [
+        "5C",
+        "TTEC"
+    ],
+    [
         "TU",
         "Tunisie Telecom"
+    ],
+    [
+        "1T",
+        "Turbo"
     ],
     [
         "TR",
         "Turbo-X"
     ],
     [
+        "5T",
+        "TurboKids"
+    ],
+    [
         "TV",
         "TVC"
     ],
     [
-        "TX",
-        "TechniSat"
+        "TW",
+        "TWM"
     ],
     [
-        "TZ",
-        "teXet"
+        "6T",
+        "Twoe"
+    ],
+    [
+        "15",
+        "Tymes"
+    ],
+    [
+        "UC",
+        "U.S. Cellular"
+    ],
+    [
+        "UG",
+        "Ugoos"
+    ],
+    [
+        "U1",
+        "Uhans"
+    ],
+    [
+        "UH",
+        "Uhappy"
     ],
     [
         "UL",
         "Ulefone"
     ],
     [
-        "UN",
-        "Unowhy"
-    ],
-    [
-        "US",
-        "Uniscope"
+        "UA",
+        "Umax"
     ],
     [
         "UM",
         "UMIDIGI"
     ],
     [
+        "UZ",
+        "Unihertz"
+    ],
+    [
+        "UX",
+        "Unimax"
+    ],
+    [
+        "US",
+        "Uniscope"
+    ],
+    [
+        "U2",
+        "UNIWA"
+    ],
+    [
+        "UO",
+        "Unnecto"
+    ],
+    [
+        "UU",
+        "Unonu"
+    ],
+    [
+        "UN",
+        "Unowhy"
+    ],
+    [
+        "UK",
+        "UTOK"
+    ],
+    [
+        "3U",
+        "IUNI"
+    ],
+    [
         "UT",
         "UTStarcom"
+    ],
+    [
+        "5V",
+        "VAIO"
     ],
     [
         "VA",
         "Vastking"
     ],
     [
-        "VD",
-        "Videocon"
+        "VB",
+        "VC"
+    ],
+    [
+        "VN",
+        "Venso"
+    ],
+    [
+        "4V",
+        "Verico"
+    ],
+    [
+        "V4",
+        "Verizon"
+    ],
+    [
+        "VR",
+        "Vernee"
+    ],
+    [
+        "VX",
+        "Vertex"
     ],
     [
         "VE",
         "Vertu"
     ],
     [
-        "VI",
-        "Vitelcom"
+        "VL",
+        "Verykool"
     ],
     [
-        "VK",
-        "VK Mobile"
-    ],
-    [
-        "VS",
-        "ViewSonic"
+        "V8",
+        "Vesta"
     ],
     [
         "VT",
         "Vestel"
     ],
     [
-        "VL",
-        "Verykool"
+        "V6",
+        "VGO TEL"
+    ],
+    [
+        "VD",
+        "Videocon"
+    ],
+    [
+        "VW",
+        "Videoweb"
+    ],
+    [
+        "VS",
+        "ViewSonic"
+    ],
+    [
+        "V7",
+        "Vinga"
+    ],
+    [
+        "V3",
+        "Vinsoc"
+    ],
+    [
+        "0V",
+        "Vipro"
+    ],
+    [
+        "VI",
+        "Vitelcom"
+    ],
+    [
+        "8V",
+        "Viumee"
+    ],
+    [
+        "V5",
+        "Vivax"
     ],
     [
         "VV",
         "Vivo"
+    ],
+    [
+        "VZ",
+        "Vizio"
+    ],
+    [
+        "VK",
+        "VK Mobile"
+    ],
+    [
+        "V0",
+        "VKworld"
+    ],
+    [
+        "VM",
+        "Vodacom"
+    ],
+    [
+        "VF",
+        "Vodafone"
+    ],
+    [
+        "V2",
+        "Vonino"
+    ],
+    [
+        "1V",
+        "Vontar"
+    ],
+    [
+        "VG",
+        "Vorago"
+    ],
+    [
+        "2V",
+        "Vorke"
     ],
     [
         "V1",
@@ -1296,36 +3268,84 @@
         "Voxtel"
     ],
     [
-        "VF",
-        "Vodafone"
+        "VY",
+        "Voyo"
     ],
     [
-        "VZ",
-        "Vizio"
+        "VH",
+        "Vsmart"
     ],
     [
-        "VW",
-        "Videoweb"
+        "V9",
+        "Vsun"
+    ],
+    [
+        "VU",
+        "Vulcan"
+    ],
+    [
+        "3V",
+        "VVETIME"
     ],
     [
         "WA",
         "Walton"
     ],
     [
-        "WF",
-        "Wileyfox"
+        "WM",
+        "Weimei"
     ],
     [
         "WE",
         "WellcoM"
     ],
     [
+        "WT",
+        "Westpoint"
+    ],
+    [
         "WY",
         "Wexler"
     ],
     [
+        "3W",
+        "WE"
+    ],
+    [
+        "WP",
+        "Wieppo"
+    ],
+    [
+        "W2",
+        "Wigor"
+    ],
+    [
         "WI",
         "Wiko"
+    ],
+    [
+        "WF",
+        "Wileyfox"
+    ],
+    [
+        "WS",
+        "Winds"
+    ],
+    [
+        "WN",
+        "Wink"
+    ],
+    [
+        "9W",
+        "Winmax"
+    ],
+    [
+        "W0",
+        "Wiseasy"
+    ],
+    [
+        "2W",
+        "Wizz"
     ],
     [
         "WL",
@@ -1340,20 +3360,96 @@
         "Wonu"
     ],
     [
+        "W1",
+        "Woo"
+    ],
+    [
+        "WR",
+        "Wortmann"
+    ],
+    [
         "WX",
         "Woxter"
+    ],
+    [
+        "X3",
+        "X-BO"
+    ],
+    [
+        "XT",
+        "X-TIGI"
+    ],
+    [
+        "XV",
+        "X-View"
+    ],
+    [
+        "X4",
+        "X.Vision"
+    ],
+    [
+        "XG",
+        "Xgody"
+    ],
+    [
+        "XL",
+        "Xiaolajiao"
     ],
     [
         "XI",
         "Xiaomi"
     ],
     [
+        "XN",
+        "Xion"
+    ],
+    [
         "XO",
         "Xolo"
     ],
     [
+        "XR",
+        "Xoro"
+    ],
+    [
+        "XS",
+        "Xshitou"
+    ],
+    [
+        "4X",
+        "Xtouch"
+    ],
+    [
+        "YD",
+        "Yandex"
+    ],
+    [
         "YA",
         "Yarvik"
+    ],
+    [
+        "Y2",
+        "Yes"
+    ],
+    [
+        "YE",
+        "Yezz"
+    ],
+    [
+        "YK",
+        "Yoka TV"
+    ],
+    [
+        "YO",
+        "Yota"
+    ],
+    [
+        "YT",
+        "Ytone"
+    ],
+    [
+        "Y1",
+        "Yu"
     ],
     [
         "YU",
@@ -1364,12 +3460,44 @@
         "Yusun"
     ],
     [
-        "YT",
-        "Ytone"
+        "YX",
+        "Yxtel"
+    ],
+    [
+        "0Z",
+        "Zatec"
+    ],
+    [
+        "PZ",
+        "Zebra"
     ],
     [
         "ZE",
         "Zeemi"
+    ],
+    [
+        "ZN",
+        "Zen"
+    ],
+    [
+        "ZK",
+        "Zenek"
+    ],
+    [
+        "ZL",
+        "Zentality"
+    ],
+    [
+        "ZF",
+        "Zfiner"
+    ],
+    [
+        "ZI",
+        "Zidoo"
+    ],
+    [
+        "ZX",
+        "Ziox"
     ],
     [
         "ZO",
@@ -1384,11 +3512,31 @@
         "ZTE"
     ],
     [
-        "ZN",
-        "Zen"
+        "ZU",
+        "Zuum"
+    ],
+    [
+        "ZY",
+        "Zync"
+    ],
+    [
+        "ZQ",
+        "ZYQ"
+    ],
+    [
+        "Z4",
+        "ZH&K"
+    ],
+    [
+        "OW",
+        "öwn"
     ],
     [
         "WB",
         "Web TV"
+    ],
+    [
+        "XX",
+        "Unknown"
     ]
 ]
