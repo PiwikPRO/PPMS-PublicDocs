@@ -1,13 +1,5 @@
 [
     [
-        "1B",
-        "115 Browser"
-    ],
-    [
-        "2B",
-        "2345 Browser"
-    ],
-    [
         "36",
         "360 Phone Browser"
     ],
@@ -36,10 +28,6 @@
         "Aloha Browser"
     ],
     [
-        "AH",
-        "Aloha Browser Lite"
-    ],
-    [
         "AM",
         "Amaya"
     ],
@@ -52,20 +40,8 @@
         "Android Browser"
     ],
     [
-        "AE",
-        "AOL Desktop"
-    ],
-    [
-        "AD",
-        "AOL Shield"
-    ],
-    [
         "AR",
         "Arora"
-    ],
-    [
-        "AX",
-        "Arctic Fox"
     ],
     [
         "AV",
@@ -76,32 +52,8 @@
         "Amiga Aweb"
     ],
     [
-        "A0",
-        "Atom"
-    ],
-    [
         "AT",
         "Atomic Web Browser"
-    ],
-    [
-        "AS",
-        "Avast Secure Browser"
-    ],
-    [
-        "VG",
-        "AVG Secure Browser"
-    ],
-    [
-        "A1",
-        "AwoX"
-    ],
-    [
-        "BA",
-        "Beaker Browser"
-    ],
-    [
-        "BM",
-        "Beamrise"
     ],
     [
         "BB",
@@ -116,16 +68,8 @@
         "Baidu Spark"
     ],
     [
-        "BI",
-        "Basilisk"
-    ],
-    [
         "BE",
         "Beonex"
-    ],
-    [
-        "BH",
-        "BlackHawk"
     ],
     [
         "BJ",
@@ -134,14 +78,6 @@
     [
         "BL",
         "B-Line"
-    ],
-    [
-        "BU",
-        "Blue Browser"
-    ],
-    [
-        "BN",
-        "Borealis Navigator"
     ],
     [
         "BR",
@@ -156,32 +92,12 @@
         "BrowseX"
     ],
     [
-        "BZ",
-        "Browzar"
-    ],
-    [
-        "BY",
-        "Biyubi"
-    ],
-    [
         "CA",
         "Camino"
     ],
     [
-        "CL",
-        "CCleaner"
-    ],
-    [
-        "C0",
-        "Centaury"
-    ],
-    [
         "CC",
         "Coc Coc"
-    ],
-    [
-        "C2",
-        "Colibri"
     ],
     [
         "CD",
@@ -196,16 +112,8 @@
         "Charon"
     ],
     [
-        "CE",
-        "CM Browser"
-    ],
-    [
         "CF",
         "Chrome Frame"
-    ],
-    [
-        "HC",
-        "Headless Chrome"
     ],
     [
         "CH",
@@ -232,14 +140,6 @@
         "CometBird"
     ],
     [
-        "CB",
-        "COS Browser"
-    ],
-    [
-        "C3",
-        "Chim Lac"
-    ],
-    [
         "CP",
         "ChromePlus"
     ],
@@ -256,32 +156,12 @@
         "Cheshire"
     ],
     [
-        "CT",
-        "Crusta"
-    ],
-    [
-        "CZ",
-        "Crazy Browser"
-    ],
-    [
-        "CU",
-        "Cunaguaro"
-    ],
-    [
-        "CV",
-        "Chrome Webview"
-    ],
-    [
         "DB",
         "dbrowser"
     ],
     [
         "DE",
         "Deepnet Explorer"
-    ],
-    [
-        "DT",
-        "Delta Browser"
     ],
     [
         "DF",
@@ -300,14 +180,6 @@
         "Dillo"
     ],
     [
-        "DD",
-        "DuckDuckGo Privacy Browser"
-    ],
-    [
-        "EC",
-        "Ecosia"
-    ],
-    [
         "EI",
         "Epic"
     ],
@@ -320,36 +192,12 @@
         "Element Browser"
     ],
     [
-        "EE",
-        "Elements Browser"
-    ],
-    [
-        "EZ",
-        "eZ Browser"
-    ],
-    [
-        "EU",
-        "EUI Browser"
-    ],
-    [
         "EP",
         "GNOME Web"
     ],
     [
         "ES",
         "Espial TV Browser"
-    ],
-    [
-        "FA",
-        "Falkon"
-    ],
-    [
-        "FX",
-        "Faux Browser"
-    ],
-    [
-        "F1",
-        "Firefox Mobile iOS"
     ],
     [
         "FB",
@@ -372,14 +220,6 @@
         "Firefox Focus"
     ],
     [
-        "FY",
-        "Firefox Reality"
-    ],
-    [
-        "FR",
-        "Firefox Rocket"
-    ],
-    [
         "FL",
         "Flock"
     ],
@@ -396,44 +236,20 @@
         "Fireweb Navigator"
     ],
     [
-        "FU",
-        "FreeU"
-    ],
-    [
         "GA",
         "Galeon"
-    ],
-    [
-        "GH",
-        "Ghostery Privacy Browser"
-    ],
-    [
-        "GB",
-        "Glass Browser"
     ],
     [
         "GE",
         "Google Earth"
     ],
     [
-        "GO",
-        "GOG Galaxy"
-    ],
-    [
-        "HA",
-        "Hawk Turbo Browser"
-    ],
-    [
-        "HO",
-        "hola! Browser"
-    ],
-    [
         "HJ",
         "HotJava"
     ],
     [
-        "HU",
-        "Huawei Browser"
+        "IA",
+        "Iceape"
     ],
     [
         "IB",
@@ -450,14 +266,6 @@
     [
         "I1",
         "Iridium"
-    ],
-    [
-        "I3",
-        "Iron Mobile"
-    ],
-    [
-        "I4",
-        "IceCat"
     ],
     [
         "ID",
@@ -484,28 +292,12 @@
         "Iron"
     ],
     [
-        "JB",
-        "Japan Browser"
-    ],
-    [
         "JS",
         "Jasmine"
     ],
     [
         "JI",
         "Jig Browser"
-    ],
-    [
-        "JP",
-        "Jig Browser Plus"
-    ],
-    [
-        "JO",
-        "Jio Browser"
-    ],
-    [
-        "KB",
-        "K.Browser"
     ],
     [
         "KI",
@@ -524,18 +316,6 @@
         "Kapiko"
     ],
     [
-        "KN",
-        "Kinza"
-    ],
-    [
-        "KW",
-        "Kiwi"
-    ],
-    [
-        "KD",
-        "Kode Browser"
-    ],
-    [
         "KY",
         "Kylo"
     ],
@@ -545,51 +325,27 @@
     ],
     [
         "LB",
-        "Cheetah Browser"
-    ],
-    [
-        "LF",
-        "LieBaoFast"
+        "Liebao"
     ],
     [
         "LG",
         "LG Browser"
     ],
     [
-        "LH",
-        "Light"
-    ],
-    [
         "LI",
         "Links"
-    ],
-    [
-        "LO",
-        "Lovense Browser"
     ],
     [
         "LU",
         "LuaKit"
     ],
     [
-        "LL",
-        "Lulumi"
-    ],
-    [
         "LS",
         "Lunascape"
     ],
     [
-        "LN",
-        "Lunascape Lite"
-    ],
-    [
         "LX",
         "Lynx"
-    ],
-    [
-        "M1",
-        "mCent"
     ],
     [
         "MB",
@@ -598,10 +354,6 @@
     [
         "MC",
         "NCSA Mosaic"
-    ],
-    [
-        "MZ",
-        "Meizu Browser"
     ],
     [
         "ME",
@@ -616,10 +368,6 @@
         "Midori"
     ],
     [
-        "MO",
-        "Mobicip"
-    ],
-    [
         "MU",
         "MIUI Browser"
     ],
@@ -628,40 +376,8 @@
         "Mobile Silk"
     ],
     [
-        "MN",
-        "Minimo"
-    ],
-    [
-        "MT",
-        "Mint Browser"
-    ],
-    [
         "MX",
         "Maxthon"
-    ],
-    [
-        "NM",
-        "MxNitro"
-    ],
-    [
-        "MY",
-        "Mypal"
-    ],
-    [
-        "MR",
-        "Monument Browser"
-    ],
-    [
-        "MW",
-        "MAUI WAP Browser"
-    ],
-    [
-        "NW",
-        "Navigateur Web"
-    ],
-    [
-        "NR",
-        "NFS Browser"
     ],
     [
         "NB",
@@ -674,10 +390,6 @@
     [
         "NV",
         "Nokia Ovi Browser"
-    ],
-    [
-        "NX",
-        "Nox Browser"
     ],
     [
         "NE",
@@ -700,24 +412,8 @@
         "Netscape"
     ],
     [
-        "NT",
-        "NTENT Browser"
-    ],
-    [
-        "OC",
-        "Oculus Browser"
-    ],
-    [
-        "O1",
-        "Opera Mini iOS"
-    ],
-    [
         "OB",
         "Obigo"
-    ],
-    [
-        "O2",
-        "Odin"
     ],
     [
         "OD",
@@ -728,24 +424,8 @@
         "Off By One"
     ],
     [
-        "HH",
-        "OhHai Browser"
-    ],
-    [
         "OE",
         "ONE Browser"
-    ],
-    [
-        "OX",
-        "Opera GX"
-    ],
-    [
-        "OG",
-        "Opera Neon"
-    ],
-    [
-        "OH",
-        "Opera Devices"
     ],
     [
         "OI",
@@ -764,24 +444,8 @@
         "Opera Next"
     ],
     [
-        "OO",
-        "Opera Touch"
-    ],
-    [
-        "OS",
-        "Ordissimo"
-    ],
-    [
         "OR",
         "Oregano"
-    ],
-    [
-        "O0",
-        "Origin In-Game Overlay"
-    ],
-    [
-        "OY",
-        "Origyn Web Browser"
     ],
     [
         "OV",
@@ -804,14 +468,6 @@
         "Pale Moon"
     ],
     [
-        "PY",
-        "Polypane"
-    ],
-    [
-        "PP",
-        "Oppo Browser"
-    ],
-    [
         "PR",
         "Palm Pre"
     ],
@@ -828,24 +484,8 @@
         "Palmscape"
     ],
     [
-        "PE",
-        "Perfect Browser"
-    ],
-    [
-        "PH",
-        "Phantom Browser"
-    ],
-    [
         "PX",
         "Phoenix"
-    ],
-    [
-        "PB",
-        "Phoenix Browser"
-    ],
-    [
-        "PF",
-        "PlayFree Browser"
     ],
     [
         "PO",
@@ -856,16 +496,8 @@
         "Polarity"
     ],
     [
-        "PI",
-        "PrivacyWall"
-    ],
-    [
         "PS",
         "Microsoft Edge"
-    ],
-    [
-        "Q1",
-        "QQ Browser Mini"
     ],
     [
         "QQ",
@@ -876,24 +508,8 @@
         "Qutebrowser"
     ],
     [
-        "QU",
-        "Quark"
-    ],
-    [
         "QZ",
         "QupZilla"
-    ],
-    [
-        "QM",
-        "Qwant Mobile"
-    ],
-    [
-        "QW",
-        "QtWebEngine"
-    ],
-    [
-        "RE",
-        "Realme Browser"
     ],
     [
         "RK",
@@ -912,10 +528,6 @@
         "Sailfish Browser"
     ],
     [
-        "S8",
-        "Seewo Browser"
-    ],
-    [
         "SC",
         "SEMC-Browser"
     ],
@@ -928,28 +540,8 @@
         "Safari"
     ],
     [
-        "S5",
-        "Safe Exam Browser"
-    ],
-    [
-        "SW",
-        "SalamWeb"
-    ],
-    [
-        "SV",
-        "SFive"
-    ],
-    [
         "SH",
         "Shiira"
-    ],
-    [
-        "S1",
-        "SimpleBrowser"
-    ],
-    [
-        "SY",
-        "Sizzy"
     ],
     [
         "SK",
@@ -964,32 +556,12 @@
         "Sleipnir"
     ],
     [
-        "S6",
-        "Slimjet"
-    ],
-    [
-        "7S",
-        "7Star"
-    ],
-    [
-        "LE",
-        "Smart Lenovo Browser"
+        "SM",
+        "SeaMonkey"
     ],
     [
         "SN",
         "Snowshoe"
-    ],
-    [
-        "SO",
-        "Sogou Mobile Browser"
-    ],
-    [
-        "S2",
-        "Splash"
-    ],
-    [
-        "SI",
-        "Sputnik Browser"
     ],
     [
         "SR",
@@ -1000,26 +572,6 @@
         "SuperBird"
     ],
     [
-        "SU",
-        "Super Fast Browser"
-    ],
-    [
-        "S3",
-        "surf"
-    ],
-    [
-        "SG",
-        "Stargon"
-    ],
-    [
-        "S0",
-        "START Internet Browser"
-    ],
-    [
-        "S4",
-        "Steam In-Game Overlay"
-    ],
-    [
         "ST",
         "Streamy"
     ],
@@ -1028,96 +580,24 @@
         "Swiftfox"
     ],
     [
-        "SZ",
-        "Seznam Browser"
-    ],
-    [
-        "TR",
-        "T-Browser"
-    ],
-    [
-        "TO",
-        "t-online.de Browser"
-    ],
-    [
-        "TA",
-        "Tao Browser"
-    ],
-    [
-        "TF",
-        "TenFourFox"
-    ],
-    [
-        "TB",
-        "Tenta Browser"
-    ],
-    [
         "TZ",
         "Tizen Browser"
-    ],
-    [
-        "TU",
-        "Tungsten"
-    ],
-    [
-        "TG",
-        "ToGate"
     ],
     [
         "TS",
         "TweakStyle"
     ],
     [
-        "TV",
-        "TV Bro"
-    ],
-    [
-        "UB",
-        "UBrowser"
-    ],
-    [
         "UC",
         "UC Browser"
-    ],
-    [
-        "UM",
-        "UC Browser Mini"
-    ],
-    [
-        "UT",
-        "UC Browser Turbo"
-    ],
-    [
-        "UR",
-        "UR Browser"
-    ],
-    [
-        "UZ",
-        "Uzbl"
     ],
     [
         "VI",
         "Vivaldi"
     ],
     [
-        "VV",
-        "vivo Browser"
-    ],
-    [
         "VB",
         "Vision Mobile Browser"
-    ],
-    [
-        "VM",
-        "VMware AirWatch"
-    ],
-    [
-        "WI",
-        "Wear Internet Browser"
-    ],
-    [
-        "WP",
-        "Web Explorer"
     ],
     [
         "WE",
@@ -1128,10 +608,6 @@
         "Waterfox"
     ],
     [
-        "WH",
-        "Whale Browser"
-    ],
-    [
         "WO",
         "wOSBrowser"
     ],
@@ -1140,39 +616,11 @@
         "WeTab Browser"
     ],
     [
-        "YJ",
-        "Yahoo! Japan Browser"
-    ],
-    [
         "YA",
         "Yandex Browser"
     ],
     [
-        "YL",
-        "Yandex Browser Lite"
-    ],
-    [
-        "YN",
-        "Yaani Browser"
-    ],
-    [
-        "YB",
-        "Yolo Browser"
-    ],
-    [
         "XI",
         "Xiino"
-    ],
-    [
-        "XV",
-        "Xvast"
-    ],
-    [
-        "ZE",
-        "Zetakey"
-    ],
-    [
-        "ZV",
-        "Zvu"
     ]
 ]

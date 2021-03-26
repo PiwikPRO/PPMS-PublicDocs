@@ -72,14 +72,6 @@
         "Firefox OS"
     ],
     [
-        "FIR",
-        "Fire OS"
-    ],
-    [
-        "FYD",
-        "FydeOS"
-    ],
-    [
         "BSD",
         "FreeBSD"
     ],
@@ -106,10 +98,6 @@
     [
         "INF",
         "Inferno"
-    ],
-    [
-        "KOS",
-        "KaiOS"
     ],
     [
         "KNO",
@@ -164,10 +152,6 @@
         "MorphOS"
     ],
     [
-        "MRE",
-        "MRE"
-    ],
-    [
         "NBS",
         "NetBSD"
     ],
@@ -196,10 +180,6 @@
         "OpenBSD"
     ],
     [
-        "ORD",
-        "Ordissimo"
-    ],
-    [
         "PSP",
         "PlayStation Portable"
     ],
@@ -216,10 +196,6 @@
         "RISC OS"
     ],
     [
-        "RSO",
-        "Rosa"
-    ],
-    [
         "REM",
         "Remix OS"
     ],
@@ -230,10 +206,6 @@
     [
         "SAB",
         "Sabayon"
-    ],
-    [
-        "SEE",
-        "SeewoOS"
     ],
     [
         "SSE",
@@ -284,24 +256,12 @@
         "Tizen"
     ],
     [
-        "TOS",
-        "TmaxOS"
-    ],
-    [
         "UBT",
         "Ubuntu"
     ],
     [
-        "WAS",
-        "watchOS"
-    ],
-    [
         "WTV",
         "WebTV"
-    ],
-    [
-        "WHS",
-        "Whale OS"
     ],
     [
         "WIN",
@@ -337,7 +297,7 @@
     ],
     [
         "YNS",
-        "YunOS"
+        "YunOs"
     ],
     [
         "IOS",
