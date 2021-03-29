@@ -211,7 +211,7 @@ paths:
                       type:
                         type: string
                         enum:
-                          - module
+                          - ppms/module
         "401":
           $ref: "#/components/responses/UnauthorizedError"
         "403":
