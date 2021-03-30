@@ -446,8 +446,8 @@ components:
         gdprLocationRecognition:
           type: boolean
           description: Use geolocation to detect UE visitors and present consent forms only to them
-          default: false
-          example: false
+          default: true
+          example: true
         gdprDataAnonymization:
           type: boolean
           description: Track only a minimal amount of users data, for which we don't need to gather their consent. Any data points considered as personally identifiable information will not be tracked unless the consent is provided
@@ -458,6 +458,19 @@ components:
           description: Enable sharepoint integration
           default: false
           example: false
+        gdprDataAnonymizationMode:
+          type: string
+          description: Anonymization mode
+          enum: [no_device_storage, session_cookie_id]
+          default: session_cookie_id
+        privacyUseCookies:
+          type: boolean
+          description: Use cookies to recognize new and returning visitors
+          default: true
+        privacyUseFingerprinting:
+          type: boolean
+          description: Use fingerprinting to recognize new and returning visitors
+          default: true
 
     App_Attributes:
       type: object
