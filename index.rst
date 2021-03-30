@@ -24,5 +24,5 @@ Welcome to the Piwik PRO documentation for developers!
    consent_manager/index
    tag_manager/index
    platform/index
-   sdk/index
+   integrations/index
    glossary

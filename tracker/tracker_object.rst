@@ -52,6 +52,8 @@ Tracking functions
     :param string name: **Optional** Event name, for example ``"Cancel button"``.
     :param string value: **Optional** Event value.
 
+.. _trackGoalEvent:
+
 .. function:: trackGoal(idGoal[, customRevenue, customData])
 
     Manually tracks goal (conversion).
@@ -61,6 +63,8 @@ Tracking functions
     :param mixed customData: **Optional** Object with `Custom dimensions <Custom dimensions_>`_.
 
 .. todo:: What else can be in customData?
+
+.. _trackSearchEvent:
 
 .. function:: trackSiteSearch(keyword[, category, resultCount])
 
@@ -274,6 +278,8 @@ Interactions
     :param string contentName: **Required** Name of Content Impression.
     :param string contentPiece: **Required** Name of Content Impression Piece.
     :param string contentTarget: **Required** URL of Content Impression Target.
+
+.. _trackLinkEvent:
 
 Download and Outlink Tracking
 -----------------------------
