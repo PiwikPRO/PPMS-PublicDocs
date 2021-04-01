@@ -168,12 +168,12 @@ Example Content Security Policy definition
 Following example configuration of CSP assumes:
 
 - client's website address: **client.com**
--	client's website is GDPR compliant
--	client's organization name in Piwik PRO: **client**
+- client's website is GDPR compliant
+- client's organization name in Piwik PRO: **client**
 - client's container domain: **client.containers.piwik.pro**
 - client has Piwik PRO tag with default tracker domain: **client.piwik.pro**
 - nonce value: **nceIOfn39fn3e9h3sd**
--	configuration allows ``'self'`` source which is: **client.com**
+- configuration allows ``'self'`` source which is: **client.com**
 
 .. code-block:: text
 
