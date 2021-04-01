@@ -5,6 +5,8 @@ Introduction
 ---------------
 Specifying Content Security Policy is a common way to secure web applications. This mechanism allows specifying which scripts and styles can execute on page. It can be done either by adding a ``Content-Security-Policy`` header or an appropriate meta tag.
 
+You can read about Consent Security Policy here: https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP
+
 
 Content Security Policy nonce configuration
 ---------------
@@ -122,10 +124,31 @@ If your website is GDPR compliant then you need to describe ``connect-src``, ``s
 
 	connect-src <your-sources> client.piwik.pro client.containers.piwik.pro;
 	style-src <your-sources> 'nonce-INSERT_VALID_NONCE_VALUE';
-	img-src <your-sources> data:;
 
 .. note::
     Please note that we define here tracker domain **client.piwik.pro** for collecting visitor consents and container domain **client.containers.piwik.pro** for fetching consent form assets.
+
+
+Consent Manager's data subject request widget
+------------
+
+When using a data subject request widget, you need to add a nonce attribute to its ``<script>`` tag.
+
+.. code-block:: html
+  :emphasize-lines: 9
+
+  <div id="ppms_cm_data_subject" class="ppms_cm_data_subject_widget__wrapper" data-editor-centralize="true" data-main-container="true" data-root="true">
+      <h3 id="ppms_cm_data_subject_header" class="header3">Data requests</h3>
+      <p id="ppms_cm_data_subject_paragraph" class="paragraph">
+          Please select below the type of data request along with any special requests in the body of the message. (...)
+      </p>
+      <form id="ppms_cm_data_subject_form" class="ppms_cm_data_subject_form" data-disable-select="true">
+          ...
+      </form>
+      <script nonce="INSERT_VALID_NONCE_VALUE">
+          ...
+      </script>
+  </div>
 
 
 Tracker with custom domain
@@ -144,18 +167,19 @@ Example Content Security Policy definition
 
 Following example configuration of CSP assumes:
 
--   client's website address: **client.com**
+- client's website address: **client.com**
 -	client's website is GDPR compliant
 -	client's organization name in Piwik PRO: **client**
--   client's container domain: **client.containers.piwik.pro**
--   client has Piwik PRO tag with default tracker domain: **client.piwik.pro**
--   nonce value: **nceIOfn39fn3e9h3sd**
+- client's container domain: **client.containers.piwik.pro**
+- client has Piwik PRO tag with default tracker domain: **client.piwik.pro**
+- nonce value: **nceIOfn39fn3e9h3sd**
 -	configuration allows ``'self'`` source which is: **client.com**
 
-.. code-block:: javascript
+.. code-block:: text
 
-    Content-Security-Policy: 	script-src 'self' client.piwik.pro 'nonce-nceIOfn39fn3e9h3sd';
-                                connect-src 'self' client.piwik.pro client.containers.piwik.pro;
-                                img-src 'self' client.piwik.pro client.containers.piwik.pro data:;
-                                font-src 'self' client.containers.piwik.pro;
-                                style-src 'self' client.containers.piwik.pro 'nonce-nceIOfn39fn3e9h3sd';
+    Content-Security-Policy: default-src 'self';
+                             script-src  'self' client.piwik.pro 'nonce-nceIOfn39fn3e9h3sd';
+                             connect-src 'self' client.containers.piwik.pro client.piwik.pro;
+                             img-src     'self' client.containers.piwik.pro client.piwik.pro;
+                             font-src    'self' client.containers.piwik.pro;
+                             style-src   'self' client.containers.piwik.pro 'nonce-nceIOfn39fn3e9h3sd';
