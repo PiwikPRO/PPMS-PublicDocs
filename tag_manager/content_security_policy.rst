@@ -168,7 +168,7 @@ Example Content Security Policy definition
 Following example configuration of CSP assumes:
 
 - client's website address: **client.com**
-- client's website is GDPR compliant
+- Consent Manager is enabled for the website
 - client's organization name in Piwik PRO: **client**
 - client's container domain: **client.containers.piwik.pro**
 - client has Piwik PRO tag with default tracker domain: **client.piwik.pro**
