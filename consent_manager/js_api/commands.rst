@@ -4,7 +4,7 @@ All commands work in the context of the current visitor and website. Additionall
 
 Get compliance types
 ````````````````````
-Fetches a list of consent types.
+Fetches a list of consent types for the current setup.
 
 Code::
 
@@ -25,13 +25,13 @@ Code::
 
 .. function:: onRejected(error)
 
-    The rejection handler callback (called with error code). If not specified, exception will be thrown in main stacktrace.
+    The rejection handler callback (called with error code). If not specified, the exception will be thrown in the main stack trace.
 
     :param string|object error: **Required** Error code or exception.
 
 Get new compliance types
 ````````````````````````
-Fetches a list of new consent types which were appearing after given consents.
+Fetches a list of the consent types which a visitor did not see yet.
 
 Code::
 
@@ -59,10 +59,9 @@ Code::
 
 Set initial compliance settings
 ```````````````````````````````
-Sets initial compliance settings.
-This API command might be useful to note that user has seen a popup with consents but didn't make a decision (popup was closed).
-After successful, Consent Manager internally sends only to stats endpoint an information that user has seen consents.
-Result from getNewComplianceTypes method can be passed directly.
+Sets initial compliance settings (no decision signal for each consent type) in the cookie.
+This API command might be useful to note that a visitor has seen a popup with consents but didn't make a decision (the consent form was closed).
+Result from `getNewComplianceTypes` method can be passed directly.
 
 Code::
 
@@ -91,16 +90,15 @@ Code::
 
 .. function:: onRejected(error)
 
-    The rejection handler callback (called with error code). If not specified, exception will be thrown in main stacktrace.
+    The rejection handler callback (called with error code). If not specified, the exception will be thrown in the main stack trace.
 
     :param string|object error: **Required** Error code or exception.
 
 Set compliance settings
 ```````````````````````
-Set compliance settings base on user decision.
-This API command might be useful when user interact with custom, extended UI that reacts on user approve/reject action.
-After successful, Consent Manager internally send consent settings to tracking server and force page view on tags.
-Additionally information to statistics is sent about user decisions.
+Set compliance settings based on visitor's decisions.
+Use this command to save visitor's consent choices from the consent form.
+Consent Manager forces a page view after the command is invoked, so all tags requiring certain choices will be fired immediately after the consent is given.
 
 Code::
 
@@ -128,7 +126,7 @@ Code::
 
 .. function:: onRejected(error)
 
-    The rejection handler callback (called with error code). If not specified, exception will be thrown in main stacktrace.
+    The rejection handler callback (called with error code). If not specified, the exception will be thrown in the main stack trace.
 
     :param string|object error: **Required** Error code or exception.
 
@@ -164,7 +162,7 @@ Code::
 
 .. function:: onRejected(error)
 
-    The rejection handler callback (called with error code). If not specified, exception will be thrown in main stacktrace.
+    The rejection handler callback (called with error code). If not specified, the exception will be thrown in the main stack trace.
 
     :param string|object error: **Required** Error code or exception.
 
@@ -199,7 +197,7 @@ Code::
 
 .. function:: onRejected(error)
 
-    The rejection handler callback (called with error code). If not specified, exception will be thrown in main stacktrace.
+    The rejection handler callback (called with error code). If not specified, the exception will be thrown in the main stack trace.
 
     :param string|object error: **Required** Error code or exception.
 
@@ -240,7 +238,7 @@ Code::
 
 .. function:: onRejected(error)
 
-    The rejection handler callback (called with error code). If not specified, exception will be thrown in main stacktrace.
+    The rejection handler callback (called with error code). If not specified, the exception will be thrown in the main stack trace.
 
     :param string|object error: **Required** Error code or exception.
 
