@@ -57,6 +57,7 @@ Commands
 Trigger tracking on demand
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+.. _trackCustomEvent:
 
 Trigger custom event
 ````````````````````
