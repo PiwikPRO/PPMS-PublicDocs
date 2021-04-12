@@ -4,7 +4,7 @@ All commands work in the context of the current visitor and website. Additionall
 
 Get compliance types
 ````````````````````
-Fetches a list of consent types for the current setup.
+Fetches a list of consent types for the current setup. For the consent type to appear in the output, at least one tag must have it set.
 
 Code::
 
@@ -15,7 +15,7 @@ Code::
 
 .. function:: onFulfilled(types)
 
-    **required** The fulfillment handler callback (called with result).
+    **required** The fulfillment handler callback (called with result)
 
     :param Array<string> types: **Required** Array of consent types
 
@@ -27,7 +27,7 @@ Code::
 
     The rejection handler callback (called with error code). If not specified, the exception will be thrown in the main stack trace.
 
-    :param string|object error: **Required** Error code or exception.
+    :param string|object error: **Required** Error code or exception
 
 Get new compliance types
 ````````````````````````
@@ -42,7 +42,7 @@ Code::
 
 .. function:: onFulfilled(types)
 
-    **required** The fulfillment handler callback (called with result).
+    **required** The fulfillment handler callback (called with result)
 
     :param Array<string> types: **Required** Array of consent types
 
@@ -54,13 +54,13 @@ Code::
 
     The rejection handler callback (called with error code).
 
-    :param string|object error: **Required** Error code or exception.
+    :param string|object error: **Required** Error code or exception
 
 
 Set initial compliance settings
 ```````````````````````````````
 Sets initial compliance settings (no decision signal for each consent type) in the cookie.
-This API command might be useful to note that a visitor has seen a popup with consents but didn't make a decision (the consent form was closed).
+Use this command to save "no decision" for the available consent types, to further know that a visitor has seen the form.
 Result from `getNewComplianceTypes` method can be passed directly.
 
 Code::
@@ -72,7 +72,7 @@ Code::
 
 .. object:: settings
 
-    **required** The consent settings object.
+    **required** The consent settings object
 
         Example::
 
@@ -86,13 +86,13 @@ Code::
 
 .. function:: onFulfilled()
 
-     **required** The fulfillment handler callback. This function is **required**.
+     **required** The fulfillment handler callback
 
 .. function:: onRejected(error)
 
     The rejection handler callback (called with error code). If not specified, the exception will be thrown in the main stack trace.
 
-    :param string|object error: **Required** Error code or exception.
+    :param string|object error: **Required** Error code or exception
 
 Set compliance settings
 ```````````````````````
@@ -109,7 +109,7 @@ Code::
 
 .. object:: settings
 
-    **required** The consent settings object.
+    **required** The consent settings object
 
         Example::
 
@@ -122,18 +122,18 @@ Code::
 
 .. function:: onFulfilled()
 
-     **required** The fulfillment handler callback. This function is **required**.
+     **required** The fulfillment handler callback
 
 .. function:: onRejected(error)
 
     The rejection handler callback (called with error code). If not specified, the exception will be thrown in the main stack trace.
 
-    :param string|object error: **Required** Error code or exception.
+    :param string|object error: **Required** Error code or exception
 
 Get compliance settings
 ```````````````````````
-Return current privacy settings. Might be useful for initializing custom decision view.
-When there is no decisions, just returns empty object. This state can be used to detect first time user interaction with consent mechanism.
+Returns current privacy settings. Use this command to get visitor's decisions.
+This command returns an empty object if there were no decisions registered yet.
 
 Code::
 
@@ -144,7 +144,7 @@ Code::
 
 .. object:: settings
 
-     **required** The consent settings object.
+     **required** The consent settings object
 
         Example::
 
@@ -158,17 +158,17 @@ Code::
 
 .. function:: onFulfilled(settings)
 
-    **required** The fulfillment handler callback (called with result).
+    **required** The fulfillment handler callback (called with result)
 
 .. function:: onRejected(error)
 
     The rejection handler callback (called with error code). If not specified, the exception will be thrown in the main stack trace.
 
-    :param string|object error: **Required** Error code or exception.
+    :param string|object error: **Required** Error code or exception
 
 Send data subject request
 `````````````````````````
-Command send data subject request to Consent Manager collector.
+Command that sends a Data subject request to the Consent Manager.
 
 Code::
 
@@ -193,18 +193,18 @@ Code::
 
 .. function:: onFulfilled()
 
-    **required** The fulfillment handler callback.
+    **required** The fulfillment handler callback
 
 .. function:: onRejected(error)
 
     The rejection handler callback (called with error code). If not specified, the exception will be thrown in the main stack trace.
 
-    :param string|object error: **Required** Error code or exception.
+    :param string|object error: **Required** Error code or exception
 
 Open consent form
 `````````````````
 .. versionadded:: 12.0
-Command used to open consent form.
+Command used to open consent form. Works only for built-in consent forms, it will not do anything if Custom consent form mode is enabled.
 
 Code::
 
@@ -215,22 +215,22 @@ Code::
 
 .. function:: onFulfilled(popupId, consentTypes, consents)
 
-    The fulfillment handler callback.
+    The fulfillment handler callback
 
-    :param string popupId: Id of the consent popup.
+    :param string popupId: Id of the consent popup
 
         Example::
 
             "ppms_cm_consent_popup_30a851b6-6bf4-45f9-9a53-583401bb5d60"
 
-    :param array<string> consentTypes: Array of consent types.
+    :param array<string> consentTypes: Array of consent types
 
 
         Example::
 
             ["analytics", "conversion_tracking", "remarketing"]
 
-    :param array<string> consents: Array list of all given consents.
+    :param array<string> consents: Array list of all given consents
 
         Example::
 
@@ -240,7 +240,7 @@ Code::
 
     The rejection handler callback (called with error code). If not specified, the exception will be thrown in the main stack trace.
 
-    :param string|object error: **Required** Error code or exception.
+    :param string|object error: **Required** Error code or exception
 
 Track Main Form view
 ````````````````````
@@ -253,13 +253,13 @@ Code::
 
 .. function:: onFulfilled()
 
-    The fulfillment handler callback.
+    The fulfillment handler callback
 
 .. function:: onRejected(error)
 
-    The rejection handler callback (called with error code). If not specified, exception will be thrown in main stacktrace.
+    The rejection handler callback (called with error code). If not specified, the exception will be thrown in the main stack trace.
 
-    :param string|object error: **Required** Error code or exception.
+    :param string|object error: **Required** Error code or exception
 
 Track Reminder Widget view
 ``````````````````````````
@@ -272,13 +272,13 @@ Code::
 
 .. function:: onFulfilled()
 
-    The fulfillment handler callback.
+    The fulfillment handler callback
 
 .. function:: onRejected(error)
 
-    The rejection handler callback (called with error code). If not specified, exception will be thrown in main stacktrace.
+    The rejection handler callback (called with error code). If not specified, the exception will be thrown in the main stack trace.
 
-    :param string|object error: **Required** Error code or exception.
+    :param string|object error: **Required** Error code or exception
 
 Track Privacy Policy Link view
 ``````````````````````````````
@@ -291,13 +291,13 @@ Code::
 
 .. function:: onFulfilled()
 
-    The fulfillment handler callback.
+    The fulfillment handler callback
 
 .. function:: onRejected(error)
 
-    The rejection handler callback (called with error code). If not specified, exception will be thrown in main stacktrace.
+    The rejection handler callback (called with error code). If not specified, the exception will be thrown in the main stack trace.
 
-    :param string|object error: **Required** Error code or exception.
+    :param string|object error: **Required** Error code or exception
 
 Track `Agree to all` click
 ``````````````````````````
@@ -310,13 +310,13 @@ Code::
 
 .. function:: onFulfilled()
 
-    The fulfillment handler callback.
+    The fulfillment handler callback
 
 .. function:: onRejected(error)
 
-    The rejection handler callback (called with error code). If not specified, exception will be thrown in main stacktrace.
+    The rejection handler callback (called with error code). If not specified, the exception will be thrown in the main stack trace.
 
-    :param string|object error: **Required** Error code or exception.
+    :param string|object error: **Required** Error code or exception
 
 Track `Reject all` click
 ````````````````````````
@@ -329,13 +329,13 @@ Code::
 
 .. function:: onFulfilled()
 
-    The fulfillment handler callback.
+    The fulfillment handler callback
 
 .. function:: onRejected(error)
 
-    The rejection handler callback (called with error code). If not specified, exception will be thrown in main stacktrace.
+    The rejection handler callback (called with error code). If not specified, the exception will be thrown in the main stack trace.
 
-    :param string|object error: **Required** Error code or exception.
+    :param string|object error: **Required** Error code or exception
 
 Track `Save choices` click
 ``````````````````````````
@@ -348,13 +348,13 @@ Code::
 
 .. function:: onFulfilled()
 
-    The fulfillment handler callback.
+    The fulfillment handler callback
 
 .. function:: onRejected(error)
 
-    The rejection handler callback (called with error code). If not specified, exception will be thrown in main stacktrace.
+    The rejection handler callback (called with error code). If not specified, the exception will be thrown in the main stack trace.
 
-    :param string|object error: **Required** Error code or exception.
+    :param string|object error: **Required** Error code or exception
 
 Track close button click
 ````````````````````````
@@ -367,10 +367,10 @@ Code::
 
 .. function:: onFulfilled()
 
-    The fulfillment handler callback.
+    The fulfillment handler callback
 
 .. function:: onRejected(error)
 
-    The rejection handler callback (called with error code). If not specified, exception will be thrown in main stacktrace.
+    The rejection handler callback (called with error code). If not specified, the exception will be thrown in the main stack trace.
 
-    :param string|object error: **Required** Error code or exception.
+    :param string|object error: **Required** Error code or exception
