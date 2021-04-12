@@ -9,9 +9,7 @@ Fetches a list of consent types for the current setup. For the consent type to a
 Code::
 
     ppms.cm.api('getComplianceTypes', onFulfilled, onRejected);
-    dataLayer.push({'event': 'ppms.cm:getComplianceTypes', parameters: [onFulfilled, onRejected]});
 
-:func:`dataLayer.push` interface is only for backward compatibility and you can read more about this particular case below. We recommend :func:`ppms.cm.api`.
 
 .. function:: onFulfilled(types)
 
@@ -36,9 +34,7 @@ Fetches a list of the consent types which a visitor did not see yet.
 Code::
 
     ppms.cm.api('getNewComplianceTypes', onFulfilled, onRejected);
-    dataLayer.push({'event': 'ppms.cm:getNewComplianceTypes', parameters: [onFulfilled, onRejected]});
 
-:func:`dataLayer.push` interface is only for backward compatibility and you can read more about this particular case below. We recommend :func:`ppms.cm.api`.
 
 .. function:: onFulfilled(types)
 
@@ -66,9 +62,7 @@ Result from `getNewComplianceTypes` method can be passed directly.
 Code::
 
     ppms.cm.api('setInitialComplianceSettings', settings, onFulfilled, onRejected);
-    dataLayer.push({'event': 'ppms.cm:setInitialComplianceSettings', parameters: [settings, onFulfilled, onRejected]});
 
-:func:`dataLayer.push` interface is only for backward compatibility and you can read more about this particular case below. We recommend :func:`ppms.cm.api`.
 
 .. object:: settings
 
@@ -103,9 +97,7 @@ Consent Manager forces a page view after the command is invoked, so all tags req
 Code::
 
     ppms.cm.api('setComplianceSettings', settings, onFulfilled, onRejected);
-    dataLayer.push({'event': 'ppms.cm:setComplianceSettings', parameters: [settings, onFulfilled, onRejected]});
 
-:func:`dataLayer.push` interface is only for backward compatibility and you can read more about this particular case below. We recommend :func:`ppms.cm.api`.
 
 .. object:: settings
 
@@ -138,9 +130,7 @@ This command returns an empty object if there were no decisions registered yet.
 Code::
 
     ppms.cm.api('getComplianceSettings', onFulfilled, onRejected);
-    dataLayer.push({'event': 'ppms.cm:getComplianceSettings', parameters: [onFulfilled, onRejected]});
 
-:func:`dataLayer.push` interface is only for backward compatibility and you can read more about this particular case below. We recommend :func:`ppms.cm.api`.
 
 .. object:: settings
 
@@ -173,9 +163,7 @@ Command that sends a Data subject request to the Consent Manager.
 Code::
 
     ppms.cm.api('sendDataRequest', request, onFulfilled, onRejected);
-    dataLayer.push({'event': 'ppms.cm:sendDataRequest', parameters: [request, onFulfilled, onRejected]});
 
-:func:`dataLayer.push` interface is only for backward compatibility and you can read more about this particular case below. We recommend :func:`ppms.cm.api`.
 
 .. object:: request
 
@@ -209,9 +197,7 @@ Command used to open consent form. Works only for built-in consent forms, it wil
 Code::
 
     ppms.cm.api('openConsentForm', onFulfilled, onRejected);
-    dataLayer.push({'event': 'ppms.cm:openConsentForm', parameters: [onFulfilled, onRejected]});
 
-:func:`dataLayer.push` interface is only for backward compatibility and you can read more about this particular case below. We recommend :func:`ppms.cm.api`.
 
 .. function:: onFulfilled(popupId, consentTypes, consents)
 

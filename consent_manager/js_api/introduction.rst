@@ -21,13 +21,4 @@ JavaScript API is implemented by providing global JavaScript objects queue respo
     :returns: Commands are expected to be run asynchronously and return no value
     :rtype: undefined
 
-.. function:: dataLayer.push({event: command, ...args})
-
-    .. deprecated:: 6.2
-        This interface is only for backward compatibility. You can read more about this particular case below.
-        We recommend using :func:`ppms.cm.api` instead.
-
-    :param string command: Command name
-    :param args: Command arguments. The number of arguments and their function depend on command.
-    :returns: Commands are expected to be run asynchronously and return no value
-    :rtype: undefined
+Consent Manager is fully integrated with Tag Manager. If you already have asynchronous snippet installed, then you are able use Consent Manager's JavaScript API.
