@@ -1,8 +1,8 @@
 Installation
 ------------
-Consent Manager is fully integrated with Tag Manager. If you have already installed asynchronous snippet and you are using API only from Tag Manager tags, you are able use JavaScript API without any pitfalls.
+Consent Manager is fully integrated with Tag Manager. If you already have asynchronous snippet installed and you are using API only from Tag Manager tags, you are able use JavaScript API without any pitfalls.
 
-The one thing that should be considered before using API is where you call commands. Lets assume that your goal is to perform API method outside Tag Manager tags like in example below:
+The one thing that should be considered before using the API is where you call commands. Let's assume that your goal is to perform API method outside Tag Manager tags like in example below:
 
 .. code-block:: html
 

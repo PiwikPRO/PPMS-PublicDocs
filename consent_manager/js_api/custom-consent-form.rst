@@ -6,17 +6,9 @@ To turn off default consent form follow steps:
 
     #. Login to your PPAS instance
     #. Go to **Menu** > **Administration**
-        .. image:: /_static/images/cm_js_api/menu-administration.png
-            :alt: Menu with Administration setting
     #. Go to **Websites & apps** and find **Privacy** section
-        .. image:: /_static/images/cm_js_api/app-privacy.png
-            :alt: Website settings
     #. Click **Configure**
-        .. image:: /_static/images/cm_js_api/privacy-configure.png
-            :alt: Website setting's privacy section
     #. Check **Custom consent form** check box
-        .. image:: /_static/images/cm_js_api/custom-consent-form.png
-            :alt: GDPR compliance settings with custom consent form check box
 
 Here is basic flow description to achieve a result similar to default consent form:
 
