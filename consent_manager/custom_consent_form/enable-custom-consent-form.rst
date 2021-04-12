@@ -1,7 +1,9 @@
-Custom consent form
--------------------
+.. _JavaScript API: js_api/index
 
-Consent Manager's JS API enables you to build custom consent form in place of the default one.
+Enable custom consent form
+--------------------------
+
+Consent Manager's JS API enables you to build a custom consent form in place of the default one.
 
 To turn on Custom consent form mode:
 
@@ -10,3 +12,5 @@ To turn on Custom consent form mode:
   #. In “Settings” section, find “Privacy” settings
   #. Ensure that “Ask visitors for consent” is checked
   #. Enable “Use a custom consent form” option
+
+Then you can build a form using the `JavaScript API`_.

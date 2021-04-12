@@ -4,5 +4,5 @@
 Custom consent form
 ===================
 
-.. include:: custom-consent-form.rst
+.. include:: enable-custom-consent-form.rst
 .. include:: example.rst
