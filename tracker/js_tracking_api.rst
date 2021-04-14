@@ -57,6 +57,7 @@ Commands
 Trigger tracking on demand
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+.. _trackCustomEvent:
 
 Trigger custom event
 ````````````````````
@@ -851,18 +852,19 @@ Example of usage::
 
 Measuring user time spent on web page
 `````````````````````````````````````
-When the user will enter a single page during a visit, we will assume that his total time spent on the website was 0 ms.
-To measure that time more accurately you can use the ``enableHeartBeatTimer`` function::
+When the user will visit only one page during a session, we will assume that his total time spent on the website was 0 ms.
+To measure session time more accurately you can use the ``enableHeartBeatTimer`` function::
 
-    _paq.push(["enableHeartBeatTimer", beat]);
-
-.. describe:: beat
-
-    **Required** ``number`` Time in seconds between cyclical heartbeat requests, default ``30``
+    _paq.push(["enableHeartBeatTimer"]);
 
 Example of usage::
 
-    _paq.push(["enableHeartBeatTimer", 50]);
+    _paq.push(["enableHeartBeatTimer"]);
+
+.. note::
+    First heart beat will be sent after 15 seconds and each heart beat following it will sent with longer and longer
+    intervals (up to 5 minute ceiling). When page will loose focus, heart beats will be paused until focus is restored.
+    Heart beats will stop after 30 minutes from last page view.
 
 Tracking internal searches
 ``````````````````````````

@@ -6,4 +6,5 @@ Tag Manager
 
   authorized_api/index
   data_layer_name
+  content_security_policy
   custom_popup_examples

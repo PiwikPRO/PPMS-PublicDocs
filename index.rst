@@ -6,10 +6,10 @@
 Welcome to the Piwik PRO documentation for developers!
 ======================================================
 
-*PPAS version: 15.2 (see* |changelog|_\ *)*
+*PPAS version: 15.3 (see* |changelog|_\ *)*
 
 .. |changelog| replace:: *changelog*
-.. _changelog: https://piwik.pro/changelog/version-15/15-2-0/
+.. _changelog: https://piwik.pro/changelog/version-15/15-3-0/
 
 .. meta::
 	:google-site-verification: MbvqEqLW68SvZYkp04VIPXk85GYi1xlMmZimeIePJv8
@@ -24,5 +24,5 @@ Welcome to the Piwik PRO documentation for developers!
    consent_manager/index
    tag_manager/index
    platform/index
-   sdk/index
+   integrations/index
    glossary
