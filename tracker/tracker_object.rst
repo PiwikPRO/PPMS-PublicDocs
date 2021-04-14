@@ -208,6 +208,18 @@ Custom dimensions
 
 .. function:: setCustomDimension(customDimensionId, customDimensionValue)
 
+    .. deprecated:: 15.3
+        It is deprecated due to difficulty of use (passed values should be URL encoded). Please use :func:`setCustomDimensionValue` instead.
+
+    The function that sets a custom dimension to be used later.
+
+    :param string customDimensionId: **Required** Id of custom dimension.
+    :param string customDimensionValue: **Required** Value of custom dimension (value should be URL encoded).
+
+.. function:: setCustomDimensionValue(customDimensionId, customDimensionValue)
+
+    .. versionadded:: 15.3
+
     The function that sets a custom dimension to be used later.
 
     :param string customDimensionId: **Required** Id of custom dimension.
@@ -221,9 +233,24 @@ Custom dimensions
 
 .. function:: getCustomDimension(customDimensionId)
 
+    .. deprecated:: 15.3
+        It is deprecated due to difficulty of use (returned values should be URL encoded). Please use :func:`getCustomDimensionValue` instead.
+
     The function that will return the value of custom dimension.
 
     :param string customDimensionId: **Required** Id of custom dimension.
+    :returns: Value set with :func:`setCustomDimension`
+    :rtype: string
+
+.. function:: getCustomDimensionValue(customDimensionId)
+
+    .. versionadded:: 15.3
+
+    The function that will return the value of custom dimension.
+
+    :param string customDimensionId: **Required** Id of custom dimension.
+    :returns: Value set with :func:`setCustomDimensionValue`
+    :rtype: string
 
 Content Tracking
 ----------------
