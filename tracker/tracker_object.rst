@@ -218,7 +218,7 @@ Custom dimensions
 .. function:: setCustomDimension(customDimensionId, customDimensionValue)
 
     .. deprecated:: 15.3
-        Function :func:`setCustomDimension` is deprecated due to difficulty of use (passed values should be URL encoded). Please use :func:`setCustomDimensionValue` instead.
+        Function :func:`setCustomDimension` is deprecated due to the difficulty of use (passed values should be URL encoded). Please use :func:`setCustomDimensionValue` instead.
 
     The function that sets a custom dimension to be used later.
 
