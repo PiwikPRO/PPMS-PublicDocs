@@ -424,7 +424,7 @@ If you wish to set a custom dimension to use it in tracking functions, use the `
 
 .. warning::
 
-    When you set a Custom Dimension, that value will be used in all tracking requests within a page load.
+    When you set a Custom Dimension, its value will be used in all tracking requests within a page load.
 
 .. warning::
     This function does not send any data to the :term:`Analytics`. It sets a Custom Dimension to be sent with following events (e.g. page view, ecommerce events, outlink or download events).
