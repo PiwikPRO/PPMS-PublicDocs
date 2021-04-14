@@ -410,9 +410,9 @@ Tracking Custom Dimension
 `````````````````````````
 .. todo:: Maybe add section about using tag template from Tag Manager.
 
-If you wish to set a custom dimension to use it in tracking functions, use the ``setCustomDimension`` function::
+If you wish to set a custom dimension to use it in tracking functions, use the ``setCustomDimensionValue`` function::
 
-    _paq.push(["setCustomDimension", customDimensionID, customDimensionValue]);
+    _paq.push(["setCustomDimensionValue", customDimensionID, customDimensionValue]);
 
 .. describe:: customDimensionID
 
@@ -434,11 +434,47 @@ Example of usage::
 
     _paq.push(["setCustomDimension", 3, "loginStatus"]);
 
+.. deprecated:: 15.3
+    Function :func:`setCustomDimension` is deprecated due to difficulty of use (passed values should be URL encoded). Please use :func:`setCustomDimensionValue` instead.
+
+If you wish to set a custom dimension to use it in tracking functions, use the ``setCustomDimension`` function::
+
+    _paq.push(["setCustomDimension", customDimensionID, customDimensionValue]);
+
+.. describe:: customDimensionID
+
+    **Required** ``number`` ID of dimension
+
+.. describe:: customDimensionValue
+
+    **Required** ``string`` Value of Custom Dimension - limited to 255 characters. The value provided to the function should be URL encoded.
+
+.. warning::
+
+    When you set a Custom Dimension, that value will be used in all tracking requests within a page load.
+
+.. warning::
+    This function does not send any data to the :term:`Analytics`. It sets a Custom Dimension to be sent with following events (e.g. page view, ecommerce events, outlink or download events).
+
+
+Example of usage::
+
+    _paq.push(["setCustomDimension", 3, "loginStatus"]);
+
 
 Retrieving Custom Dimension
 ```````````````````````````
 .. todo::
     It would be nice to have some examples of returned data.
+
+You can access custom dimension by providing a function that will use the ``getCustomDimensionValue`` function::
+
+    _paq.push([ function() {
+        var customDimension = this.getCustomDimensionValue(index);
+    }]);
+
+.. deprecated:: 15.3
+    Function :func:`getCustomDimension` is deprecated due to difficulty of use (returned values should be URL encoded). Please use :func:`getCustomDimensionValue` instead.
 
 You can access custom dimension by providing a function that will use the ``getCustomDimension`` function::
 
