@@ -220,7 +220,7 @@ Custom dimensions
     .. deprecated:: 15.3
         Function :func:`setCustomDimension` is deprecated due to the difficulty of use (passed values should be URL encoded). Please use :func:`setCustomDimensionValue` instead.
 
-    The function that sets a custom dimension to be used later.
+    Function that sets a custom dimension to be used later.
 
     :param string customDimensionId: **Required** Id of custom dimension.
     :param string customDimensionValue: **Required** Value of custom dimension (value should be URL encoded).
