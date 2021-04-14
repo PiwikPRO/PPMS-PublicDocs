@@ -432,7 +432,7 @@ If you wish to set a custom dimension to use it in tracking functions, use the `
 
 Example of usage::
 
-    _paq.push(["setCustomDimension", 3, "loginStatus"]);
+    _paq.push(["setCustomDimensionValue", 3, "loginStatus"]);
 
 .. deprecated:: 15.3
     Function :func:`setCustomDimension` is deprecated due to difficulty of use (passed values should be URL encoded). Please use :func:`setCustomDimensionValue` instead.
