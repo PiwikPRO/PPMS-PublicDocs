@@ -474,7 +474,7 @@ You can access custom dimension by providing a function that will use the ``getC
     }]);
 
 .. deprecated:: 15.3
-    Function :func:`getCustomDimension` is deprecated due to difficulty of use (returned values should be URL encoded). Please use :func:`getCustomDimensionValue` instead.
+    Function :func:`getCustomDimension` is deprecated due to the difficulty of use (returned values should be URL encoded). Please use :func:`getCustomDimensionValue` instead.
 
 You can access custom dimension by providing a function that will use the ``getCustomDimension`` function::
 
