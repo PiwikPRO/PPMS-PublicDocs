@@ -1,6 +1,6 @@
-.. _ConsentManager-CustomConsentFormExample: https://piwikpro.github.io/ConsentManager-CustomConsentFormExample/
+.. _`Piwik PRO - Custom consent form example`: https://piwikpro.github.io/ConsentManager-CustomConsentFormExample/
 
 Example implementation
 ----------------------
 
-Visit ConsentManager-CustomConsentFormExample_ page to discover a live demo of Custom consent form implementation.
+Visit `Piwik PRO - Custom consent form example`_ page to discover a live demo of Custom consent form implementation.
