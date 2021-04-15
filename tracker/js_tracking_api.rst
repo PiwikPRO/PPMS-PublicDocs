@@ -434,6 +434,9 @@ Example of usage::
 
     _paq.push(["setCustomDimensionValue", 3, "loginStatus"]);
 
+Tracking Custom Dimension (legacy)
+``````````````````````````````````
+
 .. deprecated:: 15.3
     Function :func:`setCustomDimension` is deprecated due to difficulty of use (passed values should be URL encoded). Please use :func:`setCustomDimensionValue` instead.
 
@@ -472,6 +475,20 @@ You can access custom dimension by providing a function that will use the ``getC
     _paq.push([ function() {
         var customDimension = this.getCustomDimensionValue(index);
     }]);
+
+.. function:: getCustomDimensionValue(index)
+
+    :param number index: **Required** Index of custom dimension
+
+Example of usage::
+
+    _paq.push([ function() {
+        var customDimension = this.getCustomDimensionValue(1);
+        console.log(customDimension);
+    }]);
+
+Retrieving Custom Dimension (legacy)
+````````````````````````````````````
 
 .. deprecated:: 15.3
     Function :func:`getCustomDimension` is deprecated due to the difficulty of use (returned values should be URL encoded). Please use :func:`getCustomDimensionValue` instead.
