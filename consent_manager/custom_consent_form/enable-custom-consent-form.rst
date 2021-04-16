@@ -1,4 +1,4 @@
-.. _JavaScript API: js_api/index
+.. _JavaScript API: ../js_api/
 
 Enable custom consent form
 --------------------------
