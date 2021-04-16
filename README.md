@@ -40,3 +40,5 @@ You can run it with `docker-compose up`. It uses `docker-compose.yaml` file.
 ### Serving generated files
 Build files are served by default at http://127.0.0.1:9009/
 Documentation is live (browser updates view each time any file changes).
+
+test
