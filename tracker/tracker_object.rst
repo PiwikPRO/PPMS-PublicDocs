@@ -451,6 +451,12 @@ Cookies that are used by analytics are first party cookies.
 
     The function that will disable all first party cookies. Existing ones will be deleted in the next page view.
 
+.. function:: enableCookies()
+
+    The function that will enable all first party cookies. Cookies will be created on first sent tracking request.
+
+    .. note:: Tracker has cookies enabled by default.
+
 .. function:: deleteCookies()
 
     The function that will delete existing tracking cookies after the next page view.
