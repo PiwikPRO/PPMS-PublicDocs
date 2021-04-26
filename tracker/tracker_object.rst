@@ -50,7 +50,7 @@ Tracking functions
     :param string category: **Required** Category of event.
     :param string action: **Required** Event action, for example ``"link click"``.
     :param string name: **Optional** Event name, for example ``"Cancel button"``.
-    :param string value: **Optional** Event value.
+    :param number value: **Optional** Event value.
 
 .. _trackGoalEvent:
 
@@ -451,6 +451,12 @@ Cookies that are used by analytics are first party cookies.
 
     The function that will disable all first party cookies. Existing ones will be deleted in the next page view.
 
+.. function:: enableCookies()
+
+    The function that will enable all first party cookies. Cookies will be created on first sent tracking request.
+
+    .. note:: Tracker has cookies enabled by default.
+
 .. function:: deleteCookies()
 
     The function that will delete existing tracking cookies after the next page view.
@@ -693,3 +699,10 @@ Advanced Usage
             _paq.push(['customCrossDomainLinkVisitorIdGetter', function(url, name) {
                 return (new URL(url)).searchParams.get(name) || '';
             }]);
+
+.. function:: enableJSErrorTracking()
+
+    Enables tracking of unhandled JavaScript errors
+
+    .. note::
+        Browsers may limit information about error details if it occurs in script loaded from different origin (see `details <https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onerror#notes>`_).
