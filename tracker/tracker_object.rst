@@ -50,7 +50,7 @@ Tracking functions
     :param string category: **Required** Category of event.
     :param string action: **Required** Event action, for example ``"link click"``.
     :param string name: **Optional** Event name, for example ``"Cancel button"``.
-    :param string value: **Optional** Event value.
+    :param number value: **Optional** Event value.
 
 .. function:: trackGoal(idGoal[, customRevenue, customData])
 
@@ -657,3 +657,10 @@ Advanced Usage
             _paq.push(['customCrossDomainLinkVisitorIdGetter', function(url, name) {
                 return (new URL(url)).searchParams.get(name) || '';
             }]);
+
+.. function:: enableJSErrorTracking()
+
+    Enables tracking of unhandled JavaScript errors
+
+    .. note::
+        Browsers may limit information about error details if it occurs in script loaded from different origin (see `details <https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onerror#notes>`_).
