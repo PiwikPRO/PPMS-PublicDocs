@@ -1,0 +1,876 @@
+openapi: 3.0.2
+info:
+  title: Processor Storage API
+  description: Processor Storage API exposes sessions. Handles public endpoint for tracker debugger.
+paths:
+  /api/tracker/v1/debugger:
+    description: Returns a stream of newest sessions.
+    get:
+      parameters:
+        - name: Authorization
+          description: JSON Web Token
+          schema:
+            type: string
+            example: 'Bearer valid.and_propper.jwt_value'
+          in: header
+          required: true
+        - name: app_id
+          description: An application UUID for which sessions are requested
+          schema:
+            type: string
+            example: 'd898ae47-61cd-4c9d-9d67-e5a930eb9f38'
+          in: query
+          required: true
+        - name: limit
+          description: 'Limit of fetched sessions'
+          schema:
+            type: integer
+            example: 20
+          in: query
+          required: false
+        - name: offset
+          description: Fetched sessions offset
+          schema:
+            type: integer
+            example: 100
+          in: query
+          required: false
+        - name: ip
+          description: IP address from which event originated
+          schema:
+            type: string
+            example: '73.112.8.189'
+          in: query
+          required: false
+        - name: visitor_id
+          description: Visitor ID of the user
+          schema:
+            type: string
+            example: '288f90221c221f81'
+          in: query
+          required: false
+        - name: user_id
+          description: User ID dimension of the user
+          schema:
+            type: string
+            example: 'my_user_login'
+          in: query
+          required: false
+        - name: lookup_window
+          description: 'Describes how much back in time sessions shall be fetched, takes value in minutes, max 300'
+          schema:
+            type: string
+            default: 30
+            example: 90
+          in: query
+          required: false
+      responses:
+        '200':
+          content:
+            application/x-ndjson:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Session'
+          description: A stream of sessions that match given criteria
+      description: Get stream of sessions
+components:
+  schemas:
+    Event:
+      description: An object representing an event
+      required:
+        - event_id
+        - log_uuids
+        - is_exit
+        - is_entry
+        - event_type
+        - event_url
+        - event_index
+        - server_time
+      type: object
+      properties:
+        event_id:
+          description: ID of an event - random hash
+          type: integer
+        log_uuids:
+          description: IDs of logs used to create the event
+          type: array
+          items:
+            type: string
+            format: uuid
+        is_exit:
+          description: Is an event the last one in a session
+          enum:
+            - '0'
+            - '1'
+          type: string
+        is_entry:
+          description: Is an event first in a session
+          enum:
+            - '0'
+            - '1'
+          type: string
+        event_type:
+          description: A type of an event
+          enum:
+            - '1'
+            - '2'
+            - '3'
+            - '4'
+            - '5'
+            - '6'
+            - '7'
+            - '8'
+            - '9'
+            - '10'
+            - '11'
+            - '12'
+            - '13'
+            - '14'
+            - '15'
+            - '16'
+          type: string
+        event_url:
+          format: url
+          description: A URL on which event occurred
+          type: string
+        event_title:
+          description: Page title of a page an event occurred
+          type: string
+        server_time:
+          format: date-time
+          description: 'Time when event was received by a server format YYYY-MM-DDTHH:MM:SS in UTC'
+          type: string
+        outlink_url:
+          format: url
+          description: A URL of an outlink that was clicked
+          type: string
+        download_url:
+          format: url
+          description: Download link URL that was clicked
+          type: string
+        search_keyword:
+          description: A keyword that was searched
+          type: string
+        search_category:
+          description: Search category
+          type: string
+        search_results_count:
+          description: Number of results on search results list
+          type: integer
+        custom_event_category:
+          description: Custom event category
+          type: string
+        custom_event_action:
+          description: Custom event action name
+          type: string
+        custom_event_name:
+          description: Custom event name
+          type: string
+        custom_event_value:
+          format: float
+          description: A value of a custom event
+          type: number
+        content_name:
+          description: A name of a content there was interaction with
+          type: string
+        content_piece:
+          description: Content piece there was an interaction with
+          type: string
+        content_target:
+          description: A target of a content there was an interaction with
+          type: string
+        event_index:
+          description: Event index starting from 0
+          type: integer
+        page_view_index:
+          description: Page view index starting from 0
+          type: integer
+        time_on_page:
+          description: Time spent on a page in seconds
+          type: integer
+        page_generation_time:
+          description: Page generation time in milliseonds
+          type: integer
+        goal_id:
+          description: Converted goal ID
+          type: integer
+        goal_uuid:
+          description: Converted goal UUID
+          type: string
+          format: uuid
+        order_id:
+          description: Ecommerce order ID
+          type: string
+        item_count:
+          description: Ecommerce items count
+          type: integer
+        revenue:
+          format: float
+          description: Ecommerce revenue
+          type: number
+        revenue_subtotal:
+          format: float
+          description: Ecommerce revenue subtotal
+          type: number
+        revenue_tax:
+          format: float
+          description: Ecommerce revenue tax
+          type: number
+        revenue_shipping:
+          format: float
+          description: Ecommerce revenue shipping
+          type: number
+        revenue_discount:
+          format: float
+          description: Ecommerce revenue discount
+          type: number
+        timing_connect_end:
+          description: Time between browser navigation start and connection end in milliseconds
+          type: integer
+        timing_connect_start:
+          description: Time between browser navigation start and connection start in milliseconds
+          type: integer
+        timing_dom_complete:
+          description: Time between browser navigation start and dom complete in milliseconds
+          type: integer
+        timing_content_end:
+          description: Time between browser navigation start and DOM content end in milliseconds
+          type: integer
+        timing_content_start:
+          description: Time between browser navigation start and DOM content start in milliseconds
+          type: integer
+        timing_dom_interactive:
+          description: Time between browser navigation start and DOM interactive in milliseconds
+          type: integer
+        timing_dom_loading:
+          description: Time between browser navigation start and DOM loading in milliseconds
+          type: integer
+        timing_lookup_start:
+          description: Time between browser navigation start and domain lookup start in milliseconds
+          type: integer
+        timing_fetch_start:
+          description: Time between browser navigation start and fetch start in milliseconds
+          type: integer
+        timing_event_end:
+          description: Time between browser navigation start and load event end in milliseconds
+          type: integer
+        timing_redirect_end:
+          description: Time between browser navigation start and redirect end in milliseconds
+          type: integer
+        timing_redirect_start:
+          description: Time between browser navigation start and redirect start in milliseconds
+          type: integer
+        timing_request_start:
+          description: Time between browser navigation start and request start in milliseconds
+          type: integer
+        timing_response_end:
+          description: Time between browser navigation start and response end in milliseconds
+          type: integer
+        timing_response_start:
+          description: Time between browser navigation start and response start in milliseconds
+          type: integer
+        timing_secure_start:
+          description: Time between browser navigation start and secure connection start in milliseconds
+          type: integer
+        timing_unload_end:
+          description: Time between browser navigation start and unload start in milliseconds
+          type: integer
+        timing_unload_start:
+          description: Time between browser navigation start and unload start in milliseconds
+          type: integer
+        event_custom_dimension_1:
+          description: Custom dimension 1 value
+          type: string
+        event_custom_dimension_2:
+          description: Custom dimension 2 value
+          type: string
+        event_custom_dimension_3:
+          description: Custom dimension 3 value
+          type: string
+        event_custom_dimension_4:
+          description: Custom dimension 4 value
+          type: string
+        event_custom_dimension_5:
+          description: Custom dimension 5 value
+          type: string
+        event_custom_variable_key_1:
+          description: Custom variable key
+          type: string
+        event_custom_variable_key_2:
+          description: Custom variable key
+          type: string
+        event_custom_variable_key_3:
+          description: Custom variable key
+          type: string
+        event_custom_variable_key_4:
+          description: Custom variable key
+          type: string
+        event_custom_variable_key_5:
+          description: Custom variable key
+          type: string
+        event_custom_variable_value_1:
+          description: Custom variable value
+          type: string
+        event_custom_variable_value_2:
+          description: Custom variable value
+          type: string
+        event_custom_variable_value_3:
+          description: Custom variable value
+          type: string
+        event_custom_variable_value_4:
+          description: Custom variable value
+          type: string
+        event_custom_variable_value_5:
+          description: Custom variable value
+          type: string
+        items:
+          description: Ecommerce items
+          type: array
+          items:
+            $ref: '#/components/schemas/EcommerceItem'
+        goal_revenue:
+          format: float
+          description: Revenue from a conversion
+          type: number
+        lost_revenue:
+          format: float
+          description: Revenue from abandoned cart.
+          type: number
+        previous_event_url:
+          description: A URL of previous event
+          type: string
+        previous_event_title:
+          description: A title of previous event
+          type: string
+        next_event_url:
+          description: A URL of next event
+          type: string
+        next_event_title:
+          description: A title of next event
+          type: string
+    EcommerceItem:
+      description: Ecommerce item from a cart
+      required:
+        - sku
+        - quantity
+        - price
+      type: object
+      properties:
+        name:
+          description: Ecommerce item name
+          type: string
+        sku:
+          description: Ecommerce item SKU
+          type: string
+        price:
+          format: float
+          description: Ecommerce item price (at least 0)
+          type: number
+        quantity:
+          description: Items quantity (at least 1)
+          type: integer
+        category1:
+          description: Category 1
+          type: string
+        category2:
+          description: Category 2
+          type: string
+        category3:
+          description: Category 3
+          type: string
+        category4:
+          description: Category 4
+          type: string
+        category5:
+          description: Category 5
+          type: string
+    Session:
+      description: A session
+      required:
+        - session_id
+        - server_time
+        - updated_at
+        - app_uuid
+        - organization
+        - cookie_id
+        - visitor_id
+        - visitor_returning
+        - session_first_event_time
+        - session_last_event_time
+        - session_total_events
+        - session_total_time
+        - session_total_page_views
+        - session_total_outlinks
+        - session_total_downloads
+        - session_total_site_searches
+        - session_total_custom_events
+        - session_total_content_impressions
+        - session_total_content_interactions
+        - session_total_goal_conversions
+        - session_total_ecommerce_conversions
+        - session_total_abandoned_carts
+        - session_unique_page_views
+        - session_unique_outlinks
+        - session_unique_downloads
+        - session_unique_searches
+        - session_unique_custom_events
+        - session_unique_content_impressions
+        - session_unique_content_interactions
+        - session_ecommerce_status
+        - referrer_type
+        - session_exit_url
+        - session_entry_url
+        - is_bounce
+        - events
+        - fingerprint
+        - plugin_pdf
+        - plugin_flash
+        - plugin_java
+        - plugin_quicktime
+        - plugin_realplayer
+        - plugin_windowsmedia
+        - plugin_gears
+        - plugin_silverlight
+        - plugin_cookie
+        - plugin_director
+      type: object
+      properties:
+        session_id:
+          description: ID of session - random hash
+          type: integer
+        server_time:
+          format: date-time
+          description: 'Time of session cration in UTC in YYYY-MM-DDTHH:MM:SS format in UTC'
+          type: string
+        updated_at:
+          format: date-time
+          description: 'Server time of last update of the session in YYYY-MM-DDTHH:MM:SS format in UTC'
+          type: string
+        app_id:
+          description: Legacy App ID
+          type: integer
+        app_uuid:
+          format: uuid
+          description: UUID of an app
+          type: string
+        organization:
+          description: Name of PPAS organization tracked website belongs to
+          type: string
+        cookie_id:
+          description: Cookie ID
+          type: integer
+        user_id:
+          description: User ID
+          type: string
+        visitor_id:
+          description: 'Visitor identifier, defaults to `cookie_id` value. When `user_id` is available, this field is set to first 16 characters of `user_id` SH1 hash'
+          type: string
+        local_time:
+          format: time
+          description: 'Local time of first event occurrence in format HH:MM:SS in visitor''s time zone'
+          type: string
+        visitor_returning:
+          description: Is returning visitor
+          enum:
+            - '0'
+            - '1'
+          type: string
+        visitor_session_number:
+          description: Number of visitor's session
+          type: integer
+        visitor_days_since_last_session:
+          description: Days since last session
+          type: integer
+        visitor_days_since_first_session:
+          description: Days sice first session
+          type: integer
+        visitor_days_since_order:
+          description: Days since last ecommerce order
+          type: integer
+        session_first_event_time:
+          format: date-time
+          description: Date and time of first event in a session in UTC
+          type: string
+        session_last_event_time:
+          format: date-time
+          description: Date and time of last event in session in UTC
+          type: string
+        session_total_events:
+          description: Total number of events in a session
+          type: integer
+        session_total_time:
+          description: Session total time in seconds
+          type: integer
+        session_total_page_views:
+          description: Number of page views during a session
+          type: integer
+        session_total_outlinks:
+          description: Number of clicks on outlinks during a session
+          type: integer
+        session_total_downloads:
+          description: Number of clicks on download links during a session
+          type: integer
+        session_total_site_searches:
+          description: Sum of number of site searches during a session
+          type: integer
+        session_total_custom_events:
+          description: Number of custom events during a session
+          type: integer
+        session_total_content_impressions:
+          description: Number of content impressions during a session
+          type: integer
+        session_total_content_interactions:
+          description: Number of content interactions
+          type: integer
+        session_total_goal_conversions:
+          description: IDs of unique conversions triggered manually
+          type: array
+          items:
+            type: integer
+        session_total_ecommerce_conversions:
+          description: Number of ecommerce conversions
+          type: integer
+        session_total_abandoned_carts:
+          description: Number of abandoned carts
+          type: integer
+        session_unique_page_views:
+          description: Number of unique page views
+          type: integer
+        session_unique_outlinks:
+          description: Number of unique outlinks clicked
+          type: integer
+        session_unique_downloads:
+          description: Number of unique downloads
+          type: integer
+        session_unique_searches:
+          description: Number of unique searches
+          type: integer
+        session_unique_custom_events:
+          description: Number of unique custom events
+          type: integer
+        session_unique_content_impressions:
+          description: Number of unique content impressions
+          type: integer
+        session_unique_content_interactions:
+          description: Number of unique content interactions
+          type: integer
+        session_ecommerce_status:
+          description: Was there a commerce conversion during a session?
+          enum:
+            - '0'
+            - '1'
+            - '2'
+            - '3'
+          type: string
+        source:
+          description: Source (?)
+          type: string
+        referrer_type:
+          description: Referrer type
+          enum:
+            - '1'
+            - '2'
+            - '3'
+            - '6'
+          type: string
+        referrer_name:
+          description: Referrer name
+          type: string
+        referrer_url:
+          description: Referrer URL
+          type: string
+        referrer_keyword:
+          description: Referrer keyword
+          type: string
+        campaign_name:
+          description: Campaign name
+          type: string
+        campaign_keyword:
+          description: Campaign keyword
+          type: string
+        campaign_source:
+          description: Campaign source
+          type: string
+        campaign_medium:
+          description: Campaign medium
+          type: string
+        campaign_id:
+          description: Campaign ID
+          type: string
+        campaign_content:
+          description: Campaign content
+          type: string
+        operating_system:
+          description: Operating system code
+          type: string
+        operating_system_version:
+          description: Operating system version
+          type: string
+        browser_engine:
+          description: Browser engine
+          type: string
+        browser_name:
+          description: Browser name code
+          type: string
+        browser_version:
+          description: Browser version
+          type: string
+        browser_language:
+          description: Browser language code
+          type: string
+        fingerprint:
+          description: Visitor's fingerprint
+          type: integer
+        device_type:
+          description: Device type code
+          type: integer
+        device_brand:
+          description: Device brand
+          type: string
+        device_model:
+          description: Device model
+          type: string
+        resolution_width:
+          description: Screen resolution widh
+          type: integer
+        resolution_height:
+          description: Screen resolution height
+          type: integer
+        plugin_pdf:
+          description: If browser has PDF plugin
+          enum:
+            - '0'
+            - '1'
+          type: string
+        plugin_flash:
+          description: If browser has Flash plugin
+          enum:
+            - '0'
+            - '1'
+          type: string
+        plugin_java:
+          description: If browser has Java plugin
+          enum:
+            - '0'
+            - '1'
+          type: string
+        plugin_quicktime:
+          description: If browser has QuickTime plugin
+          enum:
+            - '0'
+            - '1'
+          type: string
+        plugin_realplayer:
+          description: If browser has RealPlayer plugin
+          enum:
+            - '0'
+            - '1'
+          type: string
+        plugin_windowsmedia:
+          description: If browser has Windows Media plugin
+          enum:
+            - '0'
+            - '1'
+          type: string
+        plugin_gears:
+          description: If browser has Gears plugin
+          enum:
+            - '0'
+            - '1'
+          type: string
+        plugin_silverlight:
+          description: If browser has Silverlight plugin
+          enum:
+            - '0'
+            - '1'
+          type: string
+        plugin_cookie:
+          description: If browser supports cookies
+          enum:
+            - '0'
+            - '1'
+          type: string
+        location_ipv4:
+          description: IPv4 address
+          type: string
+        location_ipv6:
+          description: IPv6 address
+          type: string
+        location_continent_iso_code:
+          description: Continent ISO code
+          type: string
+        location_country_iso_code:
+          description: Country ISO code
+          type: string
+        location_country_name:
+          description: Country name
+          type: string
+        location_subdivision_1_iso_code:
+          description: Subdivision 1 ISO code
+          type: string
+        location_subdivision_1_name:
+          description: Subdivision 1 name
+          type: string
+        location_subdivision_2_iso_code:
+          description: Subdivision 2 ISO code
+          type: string
+        location_subdivision_2_name:
+          description: Subdivision 2 name
+          type: string
+        location_city_geoname_id:
+          description: City geoname ID
+          type: integer
+        location_city_name:
+          description: City name
+          type: string
+        location_metro_code:
+          description: Metro code
+          type: string
+        location_latitude:
+          format: float
+          description: Latitude
+          type: number
+        location_longitude:
+          format: float
+          description: Longitude
+          type: number
+        location_provider:
+          description: Provider
+          type: string
+        location_organization:
+          description: Location organization
+          type: string
+        session_exit_url:
+          description: A URL of last event in a session
+          type: string
+        session_exit_title:
+          description: A title of a page where last event in a session occurred
+          type: string
+        session_entry_url:
+          description: A URL of first event that occurred in a session
+          type: string
+        session_entry_title:
+          description: A title of a page where first event in a session occurred
+          type: string
+        session_second_url:
+          description: Session second page view URL
+          type: string
+        session_second_title:
+          description: Session second page view title
+          type: string
+        is_bounce:
+          description: If session has only one event
+          enum:
+            - '0'
+            - '1'
+          type: string
+        session_custom_dimension_1:
+          description: Session dimension 1 value
+          type: string
+        session_custom_dimension_2:
+          description: Session dimension 2 value
+          type: string
+        session_custom_dimension_3:
+          description: Session dimension 3 value
+          type: string
+        session_custom_dimension_4:
+          description: Session dimension 4 value
+          type: string
+        session_custom_dimension_5:
+          description: Session dimension 5 value
+          type: string
+        session_custom_dimension_6:
+          description: Session dimension 6 value
+          type: string
+        session_custom_dimension_7:
+          description: Session dimension 7 value
+          type: string
+        session_custom_dimension_8:
+          description: Session dimension 8 value
+          type: string
+        session_custom_dimension_9:
+          description: Session dimension 9 value
+          type: string
+        session_custom_dimension_10:
+          description: Session dimension 10 value
+          type: string
+        session_custom_variable_key_1:
+          description: Custom variable key
+          type: string
+        session_custom_variable_key_2:
+          description: Custom variable key
+          type: string
+        session_custom_variable_key_3:
+          description: Custom variable key
+          type: string
+        session_custom_variable_key_4:
+          description: Custom variable key
+          type: string
+        session_custom_variable_key_5:
+          description: Custom variable key
+          type: string
+        session_custom_variable_value_1:
+          description: Custom variable value
+          type: string
+        session_custom_variable_value_2:
+          description: Custom variable value
+          type: string
+        session_custom_variable_value_3:
+          description: Custom variable value
+          type: string
+        session_custom_variable_value_4:
+          description: Custom variable value
+          type: string
+        session_custom_variable_value_5:
+          description: Custom variable value
+          type: string
+        events:
+          description: Events that occurred during the session
+          type: array
+          items:
+            $ref: '#/components/schemas/Event'
+        session_goals:
+          description: IDs of goals converted during session
+          type: array
+          items:
+            type: integer
+        session_goal_uuids:
+          description: UUIDs of goals converted during session
+          type: array
+          items:
+            type: string
+            format: uuid
+        session_total_revenue:
+          format: float
+          description: Revenue from ecommerce in a session
+          type: number
+        session_total_goal_revenue:
+          format: float
+          description: Revenue from goal conversions in a session
+          type: number
+        session_total_lost_revenue:
+          format: float
+          description: Revenue lost from abandoned carts
+          type: number
+        medium:
+          description: Referrer medium
+          type: string
+        source_medium:
+          description: Concatenated source and medium
+          type: string
+        keyword:
+          description: Referrer keyword
+          type: string
+        resolution:
+          description: Concatenated resolution_width and resolution_height
+          type: string
+        plugin_director:
+          description: If browser has Director plugin
+          enum:
+            - '0'
+            - '1'
+          type: string
+        campaign_gclid:
+          description: Google Click ID
+          type: string
