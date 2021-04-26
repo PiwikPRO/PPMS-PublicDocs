@@ -656,7 +656,7 @@ Advanced Usage
 
 .. function:: enableJSErrorTracking()
 
-    Enable tracking of unhandled JavaScript errors
+    Enables tracking of unhandled JavaScript errors
 
     .. note::
         Browsers may limit information about error details if it occurs in script loaded from different origin (see `details <https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onerror#notes>`_).
