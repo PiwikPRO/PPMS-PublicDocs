@@ -207,10 +207,6 @@
             "description": "Tag template options",
             "type": "object",
             "additionalProperties": false
-        },
-        "template_options": {
-            "description": "Tag template options",
-            "type": "object"
         }
     }
 }

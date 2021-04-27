@@ -11,7 +11,7 @@
             ]
         },
         "template_options": {
-            "description": "Tag template options",
+            "description": "[Tag template options](#tag-template-options)",
             "type": "object",
             "properties": {
                 "smid": {
