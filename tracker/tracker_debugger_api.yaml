@@ -98,11 +98,7 @@ paths:
         '500':
           content:
             atext/plain:
-              schema:
-                type: string
-                example: Internal error
-          description: Internal application error response (some service encountered unexpected error and died in pain)
-      description: Get stream of sessions
+            scription: Get stream of sessions
 components:
   schemas:
     Event:
