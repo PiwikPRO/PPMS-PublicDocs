@@ -563,7 +563,7 @@ components:
       type: object
       properties:
         session_id:
-          description: ID of session - random hash
+          description: ID of session - random value
           type: integer
           example: 12930330323049021000
         server_time:
