@@ -599,7 +599,7 @@ components:
           type: string
           example: john@doe.com
         visitor_id:
-          description: 'Visitor identifier, defaults to `cookie_id` value. When `user_id` is available, this field is set to first 16 characters of `user_id` SH1 hash'
+          description: 'Visitor identifier, defaults to `cookie_id` value. When `user_id` is available, this field is set to first 16 characters of `user_id` SHA1 hash'
           type: integer
           example: 9601996549342362000
         local_time:
