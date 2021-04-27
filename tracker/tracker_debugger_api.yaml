@@ -568,7 +568,7 @@ components:
           example: 12930330323049021000
         server_time:
           format: date-time
-          description: 'Time of session cration in UTC in YYYY-MM-DDTHH:MM:SS format in UTC'
+          description: 'Time of session creation in YYYY-MM-DDTHH:MM:SS format in UTC'
           type: string
           example: '2020-07-14T13:30:17'
         updated_at:
