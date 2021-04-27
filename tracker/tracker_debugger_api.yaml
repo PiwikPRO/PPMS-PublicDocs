@@ -2,7 +2,7 @@ openapi: 3.0.2
 info:
   title: Tracker API
   version: 0.21.0
-  description: Processor Storage API exposes sessions. Handles public endpoint for tracker debugger.
+  description: Exposes sessions
 paths:
   /api/tracker/v1/debugger:
     description: Returns a stream of newest sessions.
@@ -12,7 +12,7 @@ paths:
           description: JSON Web Token
           schema:
             type: string
-            example: 'Bearer valid.and_propper.jwt_value'
+            example: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE2MTk1NjIxNzcsImV4cCI6MTYxOTU2MjE3Nywic3ViIjoiYjQ1NGEwNmItYWQ5OS00MDUzLTkyMGItZDk4MTkxMGVhYjBjIiwiaXNzIjoicHBtcyIsImF1ZCI6InNvbWV0ZXN0b3JnYW5pemF0aW9uLnBpd2lrLnBybyIsIm9yZyI6InNvbWV0ZXN0b3JnYW5pemF0aW9uIiwiZW1sIjoiam9obkBkb2UuY29tIn0.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
           in: header
           required: true
         - name: app_id
@@ -24,9 +24,11 @@ paths:
           in: query
           required: true
         - name: limit
-          description: 'Limit of fetched sessions'
+          description: 'Limit of fetched sessions (default value: 100)'
           schema:
             type: integer
+            minimum: 0
+            maximum: 18446744073709552000
             example: 20
           in: query
           required: false
@@ -34,6 +36,8 @@ paths:
           description: Fetched sessions offset
           schema:
             type: integer
+            minimum: 0
+            maximum: 18446744073709552000
             example: 100
           in: query
           required: false
@@ -42,7 +46,7 @@ paths:
           schema:
             type: string
             format: ip
-            example: 73.112.8.189
+            example: 74.12.12.86
           in: query
           required: false
         - name: visitor_id
@@ -98,7 +102,11 @@ paths:
         '500':
           content:
             atext/plain:
-            scription: Get stream of sessions
+              schema:
+                type: string
+                example: Internal error occurred. Check logs
+          description: Internal application error response (some service encountered unexpected error and died in pain)
+      description: Get stream of sessions
 components:
   schemas:
     Event:
@@ -117,6 +125,8 @@ components:
         event_id:
           description: ID of an event - random value
           type: integer
+          minimum: 0
+          maximum: 18446744073709552000
           example: 16856741104283292000
         log_uuids:
           description: IDs of logs used to create the event
@@ -153,12 +163,14 @@ components:
             - 15
             - 16
           type: integer
+          minimum: 1
+          maximum: 16
           example: 8
         event_url:
           format: url
           description: A URL on which event occurred
           type: string
-          example: 'http://my.website.com/path.php'
+          example: 'http://domain.tld/path.php'
         event_title:
           description: Page title of a page an event occurred on
           type: string
@@ -172,12 +184,12 @@ components:
           format: url
           description: A URL of an outlink that was clicked
           type: string
-          example: 'https://www.some.website.com/'
+          example: 'https://other-domain.tld/'
         download_url:
           format: url
           description: Download link URL that was clicked
           type: string
-          example: 'http://my.website.com/some.pdf'
+          example: 'http://domain.tld/some.pdf'
         search_keyword:
           description: A keyword that was searched
           type: string
@@ -189,6 +201,8 @@ components:
         search_results_count:
           description: Number of results on search results list
           type: integer
+          minimum: 0
+          maximum: 65535
           example: 7
         custom_event_category:
           description: Custom event category
@@ -206,6 +220,8 @@ components:
           format: float
           description: A value of a custom event
           type: number
+          minimum: 0
+          maximum: 1.7976931348623157e+308
           example: 7.12
         content_name:
           description: A name of a content there was interaction with
@@ -223,26 +239,31 @@ components:
           description: Event index starting from 0
           type: integer
           minimum: 0
+          maximum: 65535
           example: 6
         page_view_index:
           description: Page view index starting from 0
           type: integer
           minimum: 0
+          maximum: 65535
           example: 3
         time_on_page:
           description: Time spent on a page in seconds
           type: integer
           minimum: 0
+          maximum: 4294967295
           example: 122
         page_generation_time:
           description: Page generation time in milliseonds
           type: integer
           minimum: 0
+          maximum: 4294967295
           example: 784
         goal_id:
           description: Converted goal ID
           type: integer
           minimum: 0
+          maximum: 2147483647
           example: 412
         goal_uuid:
           description: Converted goal UUID
@@ -257,121 +278,150 @@ components:
           description: Ecommerce items count
           type: integer
           minimum: 0
+          maximum: 65535
           example: 3
         revenue:
           format: float
           description: Ecommerce revenue
           type: number
+          minimum: 0
+          maximum: 1.7976931348623157e+308
           example: 89.99
         revenue_subtotal:
           format: float
           description: Ecommerce revenue subtotal
           type: number
+          minimum: 0
+          maximum: 1.7976931348623157e+308
           example: 122.95
         revenue_tax:
           format: float
           description: Ecommerce revenue tax
           type: number
+          minimum: 0
+          maximum: 1.7976931348623157e+308
           example: 9.15
         revenue_shipping:
           format: float
           description: Ecommerce revenue shipping
           type: number
+          minimum: 0
+          maximum: 1.7976931348623157e+308
           example: 12.15
         revenue_discount:
           format: float
           description: Ecommerce revenue discount
           type: number
+          minimum: 0
+          maximum: 1.7976931348623157e+308
           example: 0.12
         timing_connect_end:
           description: Time between browser navigation start and connection end in milliseconds
           type: integer
           minimum: 0
+          maximum: 65535
           example: 10
         timing_connect_start:
           description: Time between browser navigation start and connection start in milliseconds
           type: integer
           minimum: 0
+          maximum: 65535
           example: 11
         timing_dom_complete:
           description: Time between browser navigation start and dom complete in milliseconds
           type: integer
           minimum: 0
+          maximum: 4294967295
           example: 12
         timing_content_end:
           description: Time between browser navigation start and DOM content end in milliseconds
           type: integer
           minimum: 0
+          maximum: 4294967295
           example: 13
         timing_content_start:
           description: Time between browser navigation start and DOM content start in milliseconds
           type: integer
           minimum: 0
+          maximum: 4294967295
           example: 21
         timing_dom_interactive:
           description: Time between browser navigation start and DOM interactive in milliseconds
           type: integer
           minimum: 0
+          maximum: 4294967295
           example: 28
         timing_dom_loading:
           description: Time between browser navigation start and DOM loading in milliseconds
           type: integer
           minimum: 0
+          maximum: 65535
           example: 98
         timing_lookup_start:
           description: Time between browser navigation start and domain lookup start in milliseconds
           type: integer
           minimum: 0
+          maximum: 65535
           example: 17
         timing_fetch_start:
           description: Time between browser navigation start and fetch start in milliseconds
           type: integer
           minimum: 0
+          maximum: 65535
           example: 59
         timing_event_end:
           description: Time between browser navigation start and load event end in milliseconds
           type: integer
           minimum: 0
+          maximum: 4294967295
           example: 6
         timing_redirect_end:
           description: Time between browser navigation start and redirect end in milliseconds
           type: integer
           minimum: 0
+          maximum: 65535
           example: 952
         timing_redirect_start:
           description: Time between browser navigation start and redirect start in milliseconds
           type: integer
           minimum: 0
+          maximum: 65535
           example: 778
         timing_request_start:
           description: Time between browser navigation start and request start in milliseconds
           type: integer
           minimum: 0
+          maximum: 65535
           example: 37
         timing_response_end:
           description: Time between browser navigation start and response end in milliseconds
           type: integer
           minimum: 0
+          maximum: 65535
           example: 90
         timing_response_start:
           description: Time between browser navigation start and response start in milliseconds
           type: integer
           minimum: 0
+          maximum: 65535
           example: 46
         timing_secure_start:
           description: Time between browser navigation start and secure connection start in milliseconds
           type: integer
           minimum: 0
+          maximum: 65535
           example: 28
         timing_unload_end:
           description: Time between browser navigation start and unload start in milliseconds
           type: integer
           minimum: 0
+          maximum: 65535
           example: 22
         timing_unload_start:
           description: Time between browser navigation start and unload start in milliseconds
           type: integer
           minimum: 0
+          maximum: 65535
           example: 956
         event_custom_dimension_1:
           description: Custom dimension 1 value
@@ -392,47 +442,47 @@ components:
         event_custom_dimension_5:
           description: Custom dimension 5 value
           type: string
-          example: my cus dim 8
+          example: my cus dim 5
         event_custom_variable_key_1:
           description: Custom variable key
           type: string
           example: my cus var 1 key
-        event_custom_variable_key_2:
-          description: Custom variable key
-          type: string
-          example: my cus var 2 key
-        event_custom_variable_key_3:
-          description: Custom variable key
-          type: string
-          example: my cus var 3 key
-        event_custom_variable_key_4:
-          description: Custom variable key
-          type: string
-          example: my cus var 4 key
-        event_custom_variable_key_5:
-          description: Custom variable key
-          type: string
-          example: my cus var 18key
         event_custom_variable_value_1:
           description: Custom variable value
           type: string
           example: my cus var 1 val
+        event_custom_variable_key_2:
+          description: Custom variable key
+          type: string
+          example: my cus var 2 key
         event_custom_variable_value_2:
           description: Custom variable value
           type: string
           example: my cus var 2 val
+        event_custom_variable_key_3:
+          description: Custom variable key
+          type: string
+          example: my cus var 3 key
         event_custom_variable_value_3:
           description: Custom variable value
           type: string
           example: my cus var 3 val
+        event_custom_variable_key_4:
+          description: Custom variable key
+          type: string
+          example: my cus var 4 key
         event_custom_variable_value_4:
           description: Custom variable value
           type: string
           example: my cus var 4 val
+        event_custom_variable_key_5:
+          description: Custom variable key
+          type: string
+          example: my cus var 5 key
         event_custom_variable_value_5:
           description: Custom variable value
           type: string
-          example: my cus var 9 val
+          example: my cus var 5 val
         items:
           description: Ecommerce items
           type: array
@@ -447,6 +497,8 @@ components:
           format: float
           description: Revenue from abandoned cart.
           type: number
+          minimum: 0
+          maximum: 1.7976931348623157e+308
           example: 8.19
         previous_event_url:
           description: A URL of previous event
@@ -455,7 +507,7 @@ components:
         previous_event_title:
           description: A title of previous event
           type: string
-          example: this was the previous event
+          example: This was the previous event
         next_event_url:
           description: A URL of next event
           type: string
@@ -463,7 +515,7 @@ components:
         next_event_title:
           description: A title of next event
           type: string
-          example: this was the following event
+          example: This was the following event
     EcommerceItem:
       description: Ecommerce item from a cart
       required:
@@ -475,42 +527,44 @@ components:
         name:
           description: Ecommerce item name
           type: string
-          example: deadly poison
+          example: RaceFace enduro crank
         sku:
           description: Ecommerce item SKU
           type: string
-          example: DEPO0017-KLL
+          example: A20078021
         price:
           format: float
           description: Ecommerce item price
           type: number
           minimum: 0
+          maximum: 1.7976931348623157e+308
           example: 9.19
         quantity:
           description: Items quantity
           type: integer
           minimum: 1
+          maximum: 2147483647
           example: 4
         category1:
           description: Category 1
           type: string
-          example: Poisons
+          example: Cranks
         category2:
           description: Category 2
           type: string
-          example: Drinks
+          example: Enduro cranks
         category3:
           description: Category 3
           type: string
-          example: Best poisons for a neighbour
+          example: New items
         category4:
           description: Category 4
           type: string
-          example: yyyyyyy it wasn't me officer
+          example: Best buy
         category5:
           description: Category 5
           type: string
-          example: 'OK, it was me'
+          example: Cranks with bashguard
     Session:
       description: A session
       required:
@@ -565,6 +619,8 @@ components:
         session_id:
           description: ID of session - random value
           type: integer
+          minimum: 0
+          maximum: 18446744073709552000
           example: 12930330323049021000
         server_time:
           format: date-time
@@ -580,6 +636,7 @@ components:
           description: Legacy App ID
           type: integer
           minimum: 0
+          maximum: 4294967295
           example: 8
         app_uuid:
           format: uuid
@@ -593,6 +650,8 @@ components:
         cookie_id:
           description: Cookie ID
           type: integer
+          minimum: 0
+          maximum: 18446744073709552000
           example: 2701247379086788600
         user_id:
           description: User ID
@@ -601,6 +660,8 @@ components:
         visitor_id:
           description: 'Visitor identifier, defaults to `cookie_id` value. When `user_id` is available, this field is set to first 16 characters of `user_id` SHA1 hash'
           type: integer
+          minimum: 0
+          maximum: 18446744073709552000
           example: 9601996549342362000
         local_time:
           format: time
@@ -613,22 +674,32 @@ components:
             - '0'
             - '1'
           type: integer
+          minimum: 0
+          maximum: 1
           example: 0
         visitor_session_number:
           description: Number of visitor's session
           type: integer
+          minimum: 1
+          maximum: 65535
           example: 2
         visitor_days_since_last_session:
           description: Days since last session
           type: integer
+          minimum: 0
+          maximum: 65535
           example: 8
         visitor_days_since_first_session:
           description: Days sice first session
           type: integer
+          minimum: 0
+          maximum: 65535
           example: 9
         visitor_days_since_order:
           description: Days since last ecommerce order
           type: integer
+          minimum: 0
+          maximum: 65535
           example: 3
         session_first_event_time:
           format: date-time
@@ -644,96 +715,115 @@ components:
           description: Total number of events in a session
           type: integer
           minimum: 0
+          maximum: 65535
           example: 45
         session_total_time:
           description: Session total time in seconds
           type: integer
           minimum: 0
+          maximum: 4294967295
           example: 679
         session_total_page_views:
           description: Number of page views during a session
           type: integer
           minimum: 0
+          maximum: 65535
           example: 3
         session_total_outlinks:
           description: Number of clicks on outlinks during a session
           type: integer
           minimum: 0
+          maximum: 65535
           example: 1
         session_total_downloads:
           description: Number of clicks on download links during a session
           type: integer
           minimum: 0
+          maximum: 65535
           example: 55
         session_total_site_searches:
           description: Sum of number of site searches during a session
           type: integer
           minimum: 0
+          maximum: 65535
           example: 8
         session_total_custom_events:
           description: Number of custom events during a session
           type: integer
           minimum: 0
+          maximum: 65535
           example: 0
         session_total_content_impressions:
           description: Number of content impressions during a session
           type: integer
           minimum: 0
+          maximum: 65535
           example: 2
         session_total_content_interactions:
           description: Number of content interactions
           type: integer
           minimum: 0
+          maximum: 65535
           example: 3
         session_total_goal_conversions:
           description: IDs of unique conversions triggered manually
           type: integer
           minimum: 0
+          maximum: 65535
           example: 2
         session_total_ecommerce_conversions:
           description: Number of ecommerce conversions
           type: integer
           minimum: 0
+          maximum: 65535
           example: 0
         session_total_abandoned_carts:
           description: Number of abandoned carts
           type: integer
           minimum: 0
+          maximum: 65535
           example: 0
         session_unique_page_views:
           description: Number of unique page views
           type: integer
           minimum: 0
+          maximum: 65535
           example: 2
         session_unique_outlinks:
           description: Number of unique outlinks clicked
           type: integer
           minimum: 0
+          maximum: 65535
           example: 2
         session_unique_downloads:
           description: Number of unique downloads
           type: integer
           minimum: 0
+          maximum: 65535
           example: 43
         session_unique_searches:
           description: Number of unique searches
           type: integer
           minimum: 0
+          maximum: 65535
           example: 1
         session_unique_custom_events:
           description: Number of unique custom events
           type: integer
           minimum: 0
+          maximum: 65535
           example: 2
         session_unique_content_impressions:
           description: Number of unique content impressions
           type: integer
           minimum: 0
+          maximum: 65535
           example: 1
         session_unique_content_interactions:
           description: Number of unique content interactions
           type: integer
           minimum: 0
+          maximum: 65535
           example: 8
         session_ecommerce_status:
           description: Was there a commerce conversion during a session?
@@ -743,13 +833,15 @@ components:
             - 2
             - 3
           type: integer
+          minimum: 0
+          maximum: 3
           example: 2
         source:
-          description: Source of the visit
+          description: Source of the session
           type: string
           example: direct
         referrer_type:
-          description: Referrer type
+          description: 'Referrer type'
           enum:
             - 1
             - 2
@@ -757,45 +849,47 @@ components:
             - 6
             - 7
           type: integer
+          minimum: 1
+          maximum: 7
           example: 1
         referrer_name:
           description: Referrer name
           type: string
-          example: MySpace
+          example: PinkBike
         referrer_url:
           description: Referrer URL
           type: string
-          example: 'http://myspace.com/'
+          example: 'https://www.pinkbike.com/forum/'
         referrer_keyword:
           description: Referrer keyword
           type: string
-          example: some keyword
+          example: pinkbike
         campaign_name:
           description: Campaign name
           type: string
-          example: how to poison people
+          example: 2021-cranks
         campaign_keyword:
           description: Campaign keyword
           type: string
-          example: blunt object
+          example: enduro_cranks
         campaign_source:
           description: Campaign source
           type: string
-          example: ''
+          example: double-opt-in-users
         campaign_medium:
           description: Campaign medium
           type: string
-          example: remedium
+          example: banner-click
         campaign_id:
           description: Campaign ID
           type: string
-          example: this_is_an_ID
+          example: this_campaign_id
         campaign_content:
           description: Campaign content
           type: string
-          example: awesome content
+          example: left-side-banner
         operating_system:
-          description: 'Operating system code (vide: https://github.com/matomo-org/device-detector/)'
+          description: 'Operating system code'
           type: string
           example: FED
         operating_system_version:
@@ -803,44 +897,52 @@ components:
           type: string
           example: '33'
         browser_engine:
-          description: 'Browser engine (vide: https://github.com/matomo-org/device-detector/)'
+          description: Browser engine
           type: string
           example: Gecko
         browser_name:
-          description: 'Browser name code (vide: https://github.com/matomo-org/device-detector/)'
+          description: 'Browser name code'
           type: string
           example: FF
         browser_version:
           description: Browser version
           type: string
-          example: 77.2.1
+          example: '88.0'
         browser_language:
-          description: Browser language code
+          description: 'Browser language code'
           type: string
           example: en
         fingerprint:
           description: Visitor's fingerprint
           type: integer
+          minimum: 0
+          maximum: 18446744073709552000
           example: 777468334834467100
         device_type:
-          description: Device type code
+          description: 'Device type code'
           type: integer
+          minimum: 0
+          maximum: 255
           example: 1
         device_brand:
-          description: 'Device brand (vide: https://github.com/matomo-org/device-detector/)'
+          description: 'Device brand'
           type: string
-          example: Lenovo
+          example: LE
         device_model:
-          description: 'Device model (vide: https://github.com/matomo-org/device-detector/)'
+          description: Device model
           type: string
           example: ThinkPad Helix 2
         resolution_width:
           description: Screen resolution width
           type: integer
+          minimum: 0
+          maximum: 65535
           example: 1920
         resolution_height:
           description: Screen resolution height
           type: integer
+          minimum: 0
+          maximum: 65535
           example: 1080
         plugin_pdf:
           description: If browser has PDF plugin
@@ -887,63 +989,69 @@ components:
           type: string
           example: 'c84e:9d52:49d4:271d:0a7e:6313:0098:c7f0'
         location_continent_iso_code:
-          description: 'Continent ISO code (vide: https://dev.maxmind.com/geoip/legacy/codes/country_continent/)'
+          description: 'Continent ISO code - click [here](https://datahub.io/core/continent-codes/r/0.html) for more information'
           type: string
-          example: AN
+          example: NA
         location_country_iso_code:
-          description: 'Country ISO code (vide: https://en.wikipedia.org/wiki/List_of_ISO_3166_country_codes)'
+          description: 'Country ISO code - click [here](https://en.wikipedia.org/wiki/List_of_ISO_3166_country_codes) for more information'
           type: string
-          example: VN
+          example: CA
         location_country_name:
           description: Country name
           type: string
-          example: Nauru
+          example: Canada
         location_subdivision_1_iso_code:
-          description: 'Subdivision 1 ISO code (https://en.wikipedia.org/wiki/ISO_3166-2)'
+          description: 'Subdivision 1 ISO code - click [here](https://en.wikipedia.org/wiki/ISO_3166-2) for more information'
           type: string
-          example: RU-SMO
+          example: CA-ON
         location_subdivision_1_name:
-          description: 'Subdivision 1 name (https://en.wikipedia.org/wiki/ISO_3166-2)'
+          description: 'Subdivision 1 name - click [here](https://en.wikipedia.org/wiki/ISO_3166-2) for more information'
           type: string
-          example: Smolenskaya oblast'
+          example: Ontario
         location_subdivision_2_iso_code:
-          description: 'Subdivision 2 ISO code (https://en.wikipedia.org/wiki/ISO_3166-2)'
+          description: 'Subdivision 2 ISO code - click [here](https://en.wikipedia.org/wiki/ISO_3166-2) for more information'
           type: string
-          example: GR-I
+          example: ''
         location_subdivision_2_name:
-          description: 'Subdivision 2 name (https://en.wikipedia.org/wiki/ISO_3166-2)'
+          description: 'Subdivision 2 name - click [here](https://en.wikipedia.org/wiki/ISO_3166-2) for more information'
           type: string
-          example: Attikí
+          example: ''
         location_city_geoname_id:
-          description: 'City geoname ID (vide: https://geoip2.readthedocs.io/en/latest/#geoip2.records.City.geoname_id)'
+          description: 'City geoname ID - click [here](https://geoip2.readthedocs.io/en/latest/#geoip2.records.City.geoname_id) or [here](https://www.geonames.org) for more information'
           type: integer
-          example: 7663
+          minimum: 0
+          maximum: 4294967295
+          example: 6177869
         location_city_name:
           description: City name
           type: string
-          example: Olsztyn
+          example: Welland
         location_metro_code:
           description: Metro code
           type: string
-          example: 10-208
+          example: L3C
         location_latitude:
           format: float
           description: Latitude
           type: number
-          example: '50.8136153'
+          minimum: -90
+          maximum: 90
+          example: '42.9883961'
         location_longitude:
           format: float
           description: Longitude
           type: number
-          example: '-2.4749152'
+          minimum: -180
+          maximum: 180
+          example: '-79.2555634'
         location_provider:
           description: Provider
           type: string
-          example: Orange
+          example: Bell DSL Internet
         location_organization:
           description: Location organization
           type: string
-          example: Some organization
+          example: Bell DSL Internet
         session_exit_url:
           description: A URL of last event in a session
           type: string
@@ -951,15 +1059,15 @@ components:
         session_exit_title:
           description: A title of a page where last event in a session occurred
           type: string
-          example: Close the doors
+          example: This is the end
         session_entry_url:
           description: A URL of first event that occurred in a session
           type: string
-          example: 'http://domain.tld/this-is-the-first-page'
+          example: 'http://domain.tld/this-is-the-beginning'
         session_entry_title:
           description: A title of a page where first event in a session occurred
           type: string
-          example: 'In the beginning, there was chaos'
+          example: 'In the beginning, there was this event'
         session_second_url:
           description: Session second page view URL
           type: string
@@ -967,7 +1075,7 @@ components:
         session_second_title:
           description: Session second page view title
           type: string
-          example: Really boring stuff
+          example: This is not the first page
         is_bounce:
           description: If session has only one event
           type: boolean
@@ -975,83 +1083,83 @@ components:
         session_custom_dimension_1:
           description: Session dimension 1 value
           type: string
-          example: No I'd rather go and journey
+          example: Lorem ipsum
         session_custom_dimension_2:
           description: Session dimension 2 value
           type: string
-          example: Where the diamond crescent's glowing
+          example: dolor sit amet
         session_custom_dimension_3:
           description: Session dimension 3 value
           type: string
-          example: And run across the valley
+          example: consectetur adipiscing elit
         session_custom_dimension_4:
           description: Session dimension 4 value
           type: string
-          example: Beneath the sacred mountain
+          example: sed do eiusmod
         session_custom_dimension_5:
           description: Session dimension 5 value
           type: string
-          example: And wander through the forest
+          example: tempor incididunt
         session_custom_dimension_6:
           description: Session dimension 6 value
           type: string
-          example: Where the trees have leaves of prisms
+          example: ut labore
         session_custom_dimension_7:
           description: Session dimension 7 value
           type: string
-          example: And break the light in colors
+          example: et dolore
         session_custom_dimension_8:
           description: Session dimension 8 value
           type: string
-          example: That no one know the names of
+          example: magna aliqua
         session_custom_dimension_9:
           description: Session dimension 9 value
           type: string
-          example: And when it's time I'll go and lay
+          example: Ut enim
         session_custom_dimension_10:
           description: Session dimension 10 value
           type: string
-          example: Beside the legendary fountain
+          example: ad minim veniam
         session_custom_variable_key_1:
           description: Custom variable key
           type: string
-          example: '''Till I see her form reflected'
+          example: quis nostrud
         session_custom_variable_value_1:
           description: Custom variable key
           type: string
-          example: In its clear and jewelled waters
+          example: exercitation ullamco
         session_custom_variable_key_2:
           description: Custom variable key
           type: string
-          example: And if you think I'm ready
+          example: laboris nisi
         session_custom_variable_value_2:
           description: Custom variable key
           type: string
-          example: You may lead me to the chasm
+          example: ut aliquip
         session_custom_variable_key_3:
           description: Custom variable key
           type: string
-          example: Where the rivers of our visions
+          example: ex ea commodo
         session_custom_variable_value_3:
           description: Custom variable value
           type: string
-          example: Flow into one another
+          example: consequat
         session_custom_variable_key_4:
           description: Custom variable value
           type: string
-          example: I will want to dive beneath the white cascading waters
+          example: Duis aute irure dolor
         session_custom_variable_value_4:
           description: Custom variable value
           type: string
-          example: 'She may beg, she may plead, she may argue with her logic'
+          example: in reprehenderit in
         session_custom_variable_key_5:
           description: Custom variable value
           type: string
-          example: And mention all the things I'll lose
+          example: voluptate velit
         session_custom_variable_value_5:
           description: Custom variable value
           type: string
-          example: That really have no value in the end she will surely know I wasn't born to follow
+          example: esse cillum
         events:
           description: Events that occurred during the session
           type: array
@@ -1062,6 +1170,8 @@ components:
           type: array
           items:
             type: integer
+            minimum: 0
+            maximum: 2147483647
             example:
               - 1
               - 3
@@ -1088,24 +1198,28 @@ components:
           format: float
           description: Revenue from goal conversions in a session
           type: number
+          minimum: 0
+          maximum: 1.7976931348623157e+308
           example: 8.53
         session_total_lost_revenue:
           format: float
           description: Revenue lost from abandoned carts
           type: number
+          minimum: 0
+          maximum: 1.7976931348623157e+308
           example: 1.67
         medium:
           description: Referrer medium
           type: string
-          example: shovel
+          example: pinkbike
         source_medium:
           description: Concatenated source and medium
           type: string
-          example: dig / shovel
+          example: double-opt-in-users / banner-click
         keyword:
           description: Referrer keyword
           type: string
-          example: enterprise
+          example: pinkbike
         resolution:
           description: Concatenated resolution_width and resolution_height
           type: string
@@ -1117,4 +1231,4 @@ components:
         campaign_gclid:
           description: Google Click ID
           type: string
-          example: 7b
+          example: 1237abcdb
