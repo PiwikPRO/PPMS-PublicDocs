@@ -1,6 +1,7 @@
 openapi: 3.0.2
 info:
-  title: Processor Storage API
+  title: Tracker API
+  version: 0.21.0
   description: Processor Storage API exposes sessions. Handles public endpoint for tracker debugger.
 paths:
   /api/tracker/v1/debugger:
@@ -18,7 +19,8 @@ paths:
           description: An application UUID for which sessions are requested
           schema:
             type: string
-            example: 'd898ae47-61cd-4c9d-9d67-e5a930eb9f38'
+            format: uuid
+            example: d898ae47-61cd-4c9d-9d67-e5a930eb9f38
           in: query
           required: true
         - name: limit
@@ -39,29 +41,35 @@ paths:
           description: IP address from which event originated
           schema:
             type: string
-            example: '73.112.8.189'
+            format: ip
+            example: 73.112.8.189
           in: query
           required: false
         - name: visitor_id
           description: Visitor ID of the user
           schema:
             type: string
-            example: '288f90221c221f81'
+            minLength: 16
+            maxLength: 16
+            pattern: '^[[:xdigit:]]{16}$'
+            example: 288f90221c221f81
           in: query
           required: false
         - name: user_id
           description: User ID dimension of the user
           schema:
             type: string
-            example: 'my_user_login'
+            example: john@doe.com
           in: query
           required: false
         - name: lookup_window
-          description: 'Describes how much back in time sessions shall be fetched, takes value in minutes, max 300'
+          description: 'Describes how much back in time sessions shall be fetched, takes value in minutes'
           schema:
-            type: string
+            type: number
             default: 30
             example: 90
+            minimum: 1
+            maximum: 300
           in: query
           required: false
       responses:
@@ -73,6 +81,27 @@ paths:
                 items:
                   $ref: '#/components/schemas/Session'
           description: A stream of sessions that match given criteria
+        '400':
+          content:
+            atext/plain:
+              schema:
+                type: string
+                example: 'Query deserialize error: missing field `app_id`'
+          description: 'Bad request response (eg. missing GET parameter, or parameter value out of bounds)'
+        '404':
+          content:
+            atext/plain:
+              schema:
+                type: string
+                example: 404 page not found
+          description: Unauthorized request (eg. `Authorization` header is missing or contains incorrect JWT value)
+        '500':
+          content:
+            atext/plain:
+              schema:
+                type: string
+                example: Internal error
+          description: Internal application error response (some service encountered unexpected error and died in pain)
       description: Get stream of sessions
 components:
   schemas:
@@ -90,240 +119,324 @@ components:
       type: object
       properties:
         event_id:
-          description: ID of an event - random hash
+          description: ID of an event - random value
           type: integer
+          example: 16856741104283292000
         log_uuids:
           description: IDs of logs used to create the event
           type: array
           items:
             type: string
             format: uuid
+            example: 0d454742-0e95-4321-a200-fd9d1c4b8031
         is_exit:
           description: Is an event the last one in a session
-          enum:
-            - '0'
-            - '1'
-          type: string
+          type: boolean
+          example: true
         is_entry:
           description: Is an event first in a session
-          enum:
-            - '0'
-            - '1'
-          type: string
+          type: boolean
+          example: false
         event_type:
           description: A type of an event
           enum:
-            - '1'
-            - '2'
-            - '3'
-            - '4'
-            - '5'
-            - '6'
-            - '7'
-            - '8'
-            - '9'
-            - '10'
-            - '11'
-            - '12'
-            - '13'
-            - '14'
-            - '15'
-            - '16'
-          type: string
+            - 1
+            - 2
+            - 3
+            - 4
+            - 5
+            - 6
+            - 7
+            - 8
+            - 9
+            - 10
+            - 11
+            - 12
+            - 13
+            - 14
+            - 15
+            - 16
+          type: integer
+          example: 8
         event_url:
           format: url
           description: A URL on which event occurred
           type: string
+          example: 'http://my.website.com/path.php'
         event_title:
-          description: Page title of a page an event occurred
+          description: Page title of a page an event occurred on
           type: string
+          example: Contact form
         server_time:
           format: date-time
-          description: 'Time when event was received by a server format YYYY-MM-DDTHH:MM:SS in UTC'
+          description: 'Date and time of event occurrence in format YYYY-MM-DDTHH:MM:SS in UTC'
           type: string
+          example: '2020-07-14T13:30:07'
         outlink_url:
           format: url
           description: A URL of an outlink that was clicked
           type: string
+          example: 'https://www.some.website.com/'
         download_url:
           format: url
           description: Download link URL that was clicked
           type: string
+          example: 'http://my.website.com/some.pdf'
         search_keyword:
           description: A keyword that was searched
           type: string
+          example: I'm searching for this
         search_category:
           description: Search category
           type: string
+          example: Baseball bats
         search_results_count:
           description: Number of results on search results list
           type: integer
+          example: 7
         custom_event_category:
           description: Custom event category
           type: string
+          example: form interaction
         custom_event_action:
           description: Custom event action name
           type: string
+          example: input focus
         custom_event_name:
           description: Custom event name
           type: string
+          example: image loaded
         custom_event_value:
           format: float
           description: A value of a custom event
           type: number
+          example: 7.12
         content_name:
           description: A name of a content there was interaction with
           type: string
+          example: this paragraph
         content_piece:
           description: Content piece there was an interaction with
           type: string
+          example: image
         content_target:
           description: A target of a content there was an interaction with
           type: string
+          example: faq
         event_index:
           description: Event index starting from 0
           type: integer
+          minimum: 0
+          example: 6
         page_view_index:
           description: Page view index starting from 0
           type: integer
+          minimum: 0
+          example: 3
         time_on_page:
           description: Time spent on a page in seconds
           type: integer
+          minimum: 0
+          example: 122
         page_generation_time:
           description: Page generation time in milliseonds
           type: integer
+          minimum: 0
+          example: 784
         goal_id:
           description: Converted goal ID
           type: integer
+          minimum: 0
+          example: 412
         goal_uuid:
           description: Converted goal UUID
           type: string
           format: uuid
+          example: 23724a56-4f12-4743-b4ea-a321e59a521b
         order_id:
           description: Ecommerce order ID
           type: string
+          example: ORD000018
         item_count:
           description: Ecommerce items count
           type: integer
+          minimum: 0
+          example: 3
         revenue:
           format: float
           description: Ecommerce revenue
           type: number
+          example: 89.99
         revenue_subtotal:
           format: float
           description: Ecommerce revenue subtotal
           type: number
+          example: 122.95
         revenue_tax:
           format: float
           description: Ecommerce revenue tax
           type: number
+          example: 9.15
         revenue_shipping:
           format: float
           description: Ecommerce revenue shipping
           type: number
+          example: 12.15
         revenue_discount:
           format: float
           description: Ecommerce revenue discount
           type: number
+          example: 0.12
         timing_connect_end:
           description: Time between browser navigation start and connection end in milliseconds
           type: integer
+          minimum: 0
+          example: 10
         timing_connect_start:
           description: Time between browser navigation start and connection start in milliseconds
           type: integer
+          minimum: 0
+          example: 11
         timing_dom_complete:
           description: Time between browser navigation start and dom complete in milliseconds
           type: integer
+          minimum: 0
+          example: 12
         timing_content_end:
           description: Time between browser navigation start and DOM content end in milliseconds
           type: integer
+          minimum: 0
+          example: 13
         timing_content_start:
           description: Time between browser navigation start and DOM content start in milliseconds
           type: integer
+          minimum: 0
+          example: 21
         timing_dom_interactive:
           description: Time between browser navigation start and DOM interactive in milliseconds
           type: integer
+          minimum: 0
+          example: 28
         timing_dom_loading:
           description: Time between browser navigation start and DOM loading in milliseconds
           type: integer
+          minimum: 0
+          example: 98
         timing_lookup_start:
           description: Time between browser navigation start and domain lookup start in milliseconds
           type: integer
+          minimum: 0
+          example: 17
         timing_fetch_start:
           description: Time between browser navigation start and fetch start in milliseconds
           type: integer
+          minimum: 0
+          example: 59
         timing_event_end:
           description: Time between browser navigation start and load event end in milliseconds
           type: integer
+          minimum: 0
+          example: 6
         timing_redirect_end:
           description: Time between browser navigation start and redirect end in milliseconds
           type: integer
+          minimum: 0
+          example: 952
         timing_redirect_start:
           description: Time between browser navigation start and redirect start in milliseconds
           type: integer
+          minimum: 0
+          example: 778
         timing_request_start:
           description: Time between browser navigation start and request start in milliseconds
           type: integer
+          minimum: 0
+          example: 37
         timing_response_end:
           description: Time between browser navigation start and response end in milliseconds
           type: integer
+          minimum: 0
+          example: 90
         timing_response_start:
           description: Time between browser navigation start and response start in milliseconds
           type: integer
+          minimum: 0
+          example: 46
         timing_secure_start:
           description: Time between browser navigation start and secure connection start in milliseconds
           type: integer
+          minimum: 0
+          example: 28
         timing_unload_end:
           description: Time between browser navigation start and unload start in milliseconds
           type: integer
+          minimum: 0
+          example: 22
         timing_unload_start:
           description: Time between browser navigation start and unload start in milliseconds
           type: integer
+          minimum: 0
+          example: 956
         event_custom_dimension_1:
           description: Custom dimension 1 value
           type: string
+          example: my cus dim 1
         event_custom_dimension_2:
           description: Custom dimension 2 value
           type: string
+          example: my cus dim 2
         event_custom_dimension_3:
           description: Custom dimension 3 value
           type: string
+          example: my cus dim 3
         event_custom_dimension_4:
           description: Custom dimension 4 value
           type: string
+          example: my cus dim 4
         event_custom_dimension_5:
           description: Custom dimension 5 value
           type: string
+          example: my cus dim 8
         event_custom_variable_key_1:
           description: Custom variable key
           type: string
+          example: my cus var 1 key
         event_custom_variable_key_2:
           description: Custom variable key
           type: string
+          example: my cus var 2 key
         event_custom_variable_key_3:
           description: Custom variable key
           type: string
+          example: my cus var 3 key
         event_custom_variable_key_4:
           description: Custom variable key
           type: string
+          example: my cus var 4 key
         event_custom_variable_key_5:
           description: Custom variable key
           type: string
+          example: my cus var 18key
         event_custom_variable_value_1:
           description: Custom variable value
           type: string
+          example: my cus var 1 val
         event_custom_variable_value_2:
           description: Custom variable value
           type: string
+          example: my cus var 2 val
         event_custom_variable_value_3:
           description: Custom variable value
           type: string
+          example: my cus var 3 val
         event_custom_variable_value_4:
           description: Custom variable value
           type: string
+          example: my cus var 4 val
         event_custom_variable_value_5:
           description: Custom variable value
           type: string
+          example: my cus var 9 val
         items:
           description: Ecommerce items
           type: array
@@ -333,22 +446,28 @@ components:
           format: float
           description: Revenue from a conversion
           type: number
+          example: 18.99
         lost_revenue:
           format: float
           description: Revenue from abandoned cart.
           type: number
+          example: 8.19
         previous_event_url:
           description: A URL of previous event
           type: string
+          example: 'http://domain.tld/previous-page.html'
         previous_event_title:
           description: A title of previous event
           type: string
+          example: this was the previous event
         next_event_url:
           description: A URL of next event
           type: string
+          example: 'http://domain.tld/this-event-came-next'
         next_event_title:
           description: A title of next event
           type: string
+          example: this was the following event
     EcommerceItem:
       description: Ecommerce item from a cart
       required:
@@ -360,31 +479,42 @@ components:
         name:
           description: Ecommerce item name
           type: string
+          example: deadly poison
         sku:
           description: Ecommerce item SKU
           type: string
+          example: DEPO0017-KLL
         price:
           format: float
-          description: Ecommerce item price (at least 0)
+          description: Ecommerce item price
           type: number
+          minimum: 0
+          example: 9.19
         quantity:
-          description: Items quantity (at least 1)
+          description: Items quantity
           type: integer
+          minimum: 1
+          example: 4
         category1:
           description: Category 1
           type: string
+          example: Poisons
         category2:
           description: Category 2
           type: string
+          example: Drinks
         category3:
           description: Category 3
           type: string
+          example: Best poisons for a neighbour
         category4:
           description: Category 4
           type: string
+          example: yyyyyyy it wasn't me officer
         category5:
           description: Category 5
           type: string
+          example: 'OK, it was me'
     Session:
       description: A session
       required:
@@ -439,392 +569,493 @@ components:
         session_id:
           description: ID of session - random hash
           type: integer
+          example: 12930330323049021000
         server_time:
           format: date-time
           description: 'Time of session cration in UTC in YYYY-MM-DDTHH:MM:SS format in UTC'
           type: string
+          example: '2020-07-14T13:30:17'
         updated_at:
           format: date-time
           description: 'Server time of last update of the session in YYYY-MM-DDTHH:MM:SS format in UTC'
           type: string
+          example: '2020-07-14T13:30:19'
         app_id:
           description: Legacy App ID
           type: integer
+          minimum: 0
+          example: 8
         app_uuid:
           format: uuid
           description: UUID of an app
           type: string
+          example: 01e7e7f7-8a34-4aca-b700-45f6a6aa3aba
         organization:
           description: Name of PPAS organization tracked website belongs to
           type: string
+          example: my_organization_name
         cookie_id:
           description: Cookie ID
           type: integer
+          example: 2701247379086788600
         user_id:
           description: User ID
           type: string
+          example: john@doe.com
         visitor_id:
           description: 'Visitor identifier, defaults to `cookie_id` value. When `user_id` is available, this field is set to first 16 characters of `user_id` SH1 hash'
-          type: string
+          type: integer
+          example: 9601996549342362000
         local_time:
           format: time
           description: 'Local time of first event occurrence in format HH:MM:SS in visitor''s time zone'
           type: string
+          example: '12:00:00'
         visitor_returning:
           description: Is returning visitor
           enum:
             - '0'
             - '1'
-          type: string
+          type: integer
+          example: 0
         visitor_session_number:
           description: Number of visitor's session
           type: integer
+          example: 2
         visitor_days_since_last_session:
           description: Days since last session
           type: integer
+          example: 8
         visitor_days_since_first_session:
           description: Days sice first session
           type: integer
+          example: 9
         visitor_days_since_order:
           description: Days since last ecommerce order
           type: integer
+          example: 3
         session_first_event_time:
           format: date-time
           description: Date and time of first event in a session in UTC
           type: string
+          example: '2020-07-14T13:30:07'
         session_last_event_time:
           format: date-time
           description: Date and time of last event in session in UTC
           type: string
+          example: '2020-07-14T13:352:55'
         session_total_events:
           description: Total number of events in a session
           type: integer
+          minimum: 0
+          example: 45
         session_total_time:
           description: Session total time in seconds
           type: integer
+          minimum: 0
+          example: 679
         session_total_page_views:
           description: Number of page views during a session
           type: integer
+          minimum: 0
+          example: 3
         session_total_outlinks:
           description: Number of clicks on outlinks during a session
           type: integer
+          minimum: 0
+          example: 1
         session_total_downloads:
           description: Number of clicks on download links during a session
           type: integer
+          minimum: 0
+          example: 55
         session_total_site_searches:
           description: Sum of number of site searches during a session
           type: integer
+          minimum: 0
+          example: 8
         session_total_custom_events:
           description: Number of custom events during a session
           type: integer
+          minimum: 0
+          example: 0
         session_total_content_impressions:
           description: Number of content impressions during a session
           type: integer
+          minimum: 0
+          example: 2
         session_total_content_interactions:
           description: Number of content interactions
           type: integer
+          minimum: 0
+          example: 3
         session_total_goal_conversions:
           description: IDs of unique conversions triggered manually
-          type: array
-          items:
-            type: integer
+          type: integer
+          minimum: 0
+          example: 2
         session_total_ecommerce_conversions:
           description: Number of ecommerce conversions
           type: integer
+          minimum: 0
+          example: 0
         session_total_abandoned_carts:
           description: Number of abandoned carts
           type: integer
+          minimum: 0
+          example: 0
         session_unique_page_views:
           description: Number of unique page views
           type: integer
+          minimum: 0
+          example: 2
         session_unique_outlinks:
           description: Number of unique outlinks clicked
           type: integer
+          minimum: 0
+          example: 2
         session_unique_downloads:
           description: Number of unique downloads
           type: integer
+          minimum: 0
+          example: 43
         session_unique_searches:
           description: Number of unique searches
           type: integer
+          minimum: 0
+          example: 1
         session_unique_custom_events:
           description: Number of unique custom events
           type: integer
+          minimum: 0
+          example: 2
         session_unique_content_impressions:
           description: Number of unique content impressions
           type: integer
+          minimum: 0
+          example: 1
         session_unique_content_interactions:
           description: Number of unique content interactions
           type: integer
+          minimum: 0
+          example: 8
         session_ecommerce_status:
           description: Was there a commerce conversion during a session?
           enum:
-            - '0'
-            - '1'
-            - '2'
-            - '3'
-          type: string
+            - 0
+            - 1
+            - 2
+            - 3
+          type: integer
+          example: 2
         source:
-          description: Source (?)
+          description: Source of the visit
           type: string
+          example: direct
         referrer_type:
           description: Referrer type
           enum:
-            - '1'
-            - '2'
-            - '3'
-            - '6'
-          type: string
+            - 1
+            - 2
+            - 3
+            - 6
+            - 7
+          type: integer
+          example: 1
         referrer_name:
           description: Referrer name
           type: string
+          example: MySpace
         referrer_url:
           description: Referrer URL
           type: string
+          example: 'http://myspace.com/'
         referrer_keyword:
           description: Referrer keyword
           type: string
+          example: some keyword
         campaign_name:
           description: Campaign name
           type: string
+          example: how to poison people
         campaign_keyword:
           description: Campaign keyword
           type: string
+          example: blunt object
         campaign_source:
           description: Campaign source
           type: string
+          example: ''
         campaign_medium:
           description: Campaign medium
           type: string
+          example: remedium
         campaign_id:
           description: Campaign ID
           type: string
+          example: this_is_an_ID
         campaign_content:
           description: Campaign content
           type: string
+          example: awesome content
         operating_system:
-          description: Operating system code
+          description: 'Operating system code (vide: https://github.com/matomo-org/device-detector/)'
           type: string
+          example: FED
         operating_system_version:
           description: Operating system version
           type: string
+          example: '33'
         browser_engine:
-          description: Browser engine
+          description: 'Browser engine (vide: https://github.com/matomo-org/device-detector/)'
           type: string
+          example: Gecko
         browser_name:
-          description: Browser name code
+          description: 'Browser name code (vide: https://github.com/matomo-org/device-detector/)'
           type: string
+          example: FF
         browser_version:
           description: Browser version
           type: string
+          example: 77.2.1
         browser_language:
           description: Browser language code
           type: string
+          example: en
         fingerprint:
           description: Visitor's fingerprint
           type: integer
+          example: 777468334834467100
         device_type:
           description: Device type code
           type: integer
+          example: 1
         device_brand:
-          description: Device brand
+          description: 'Device brand (vide: https://github.com/matomo-org/device-detector/)'
           type: string
+          example: Lenovo
         device_model:
-          description: Device model
+          description: 'Device model (vide: https://github.com/matomo-org/device-detector/)'
           type: string
+          example: ThinkPad Helix 2
         resolution_width:
-          description: Screen resolution widh
+          description: Screen resolution width
           type: integer
+          example: 1920
         resolution_height:
           description: Screen resolution height
           type: integer
+          example: 1080
         plugin_pdf:
           description: If browser has PDF plugin
-          enum:
-            - '0'
-            - '1'
-          type: string
+          type: boolean
+          example: false
         plugin_flash:
           description: If browser has Flash plugin
-          enum:
-            - '0'
-            - '1'
-          type: string
+          type: boolean
+          example: false
         plugin_java:
           description: If browser has Java plugin
-          enum:
-            - '0'
-            - '1'
-          type: string
+          type: boolean
+          example: false
         plugin_quicktime:
           description: If browser has QuickTime plugin
-          enum:
-            - '0'
-            - '1'
-          type: string
+          type: boolean
+          example: false
         plugin_realplayer:
           description: If browser has RealPlayer plugin
-          enum:
-            - '0'
-            - '1'
-          type: string
+          type: boolean
+          example: false
         plugin_windowsmedia:
           description: If browser has Windows Media plugin
-          enum:
-            - '0'
-            - '1'
-          type: string
+          type: boolean
+          example: false
         plugin_gears:
           description: If browser has Gears plugin
-          enum:
-            - '0'
-            - '1'
-          type: string
+          type: boolean
+          example: true
         plugin_silverlight:
           description: If browser has Silverlight plugin
-          enum:
-            - '0'
-            - '1'
-          type: string
+          type: boolean
+          example: false
         plugin_cookie:
           description: If browser supports cookies
-          enum:
-            - '0'
-            - '1'
-          type: string
+          type: boolean
+          example: false
         location_ipv4:
           description: IPv4 address
           type: string
+          example: 74.12.12.86
         location_ipv6:
           description: IPv6 address
           type: string
+          example: 'c84e:9d52:49d4:271d:0a7e:6313:0098:c7f0'
         location_continent_iso_code:
-          description: Continent ISO code
+          description: 'Continent ISO code (vide: https://dev.maxmind.com/geoip/legacy/codes/country_continent/)'
           type: string
+          example: AN
         location_country_iso_code:
-          description: Country ISO code
+          description: 'Country ISO code (vide: https://en.wikipedia.org/wiki/List_of_ISO_3166_country_codes)'
           type: string
+          example: VN
         location_country_name:
           description: Country name
           type: string
+          example: Nauru
         location_subdivision_1_iso_code:
-          description: Subdivision 1 ISO code
+          description: 'Subdivision 1 ISO code (https://en.wikipedia.org/wiki/ISO_3166-2)'
           type: string
+          example: RU-SMO
         location_subdivision_1_name:
-          description: Subdivision 1 name
+          description: 'Subdivision 1 name (https://en.wikipedia.org/wiki/ISO_3166-2)'
           type: string
+          example: Smolenskaya oblast'
         location_subdivision_2_iso_code:
-          description: Subdivision 2 ISO code
+          description: 'Subdivision 2 ISO code (https://en.wikipedia.org/wiki/ISO_3166-2)'
           type: string
+          example: GR-I
         location_subdivision_2_name:
-          description: Subdivision 2 name
+          description: 'Subdivision 2 name (https://en.wikipedia.org/wiki/ISO_3166-2)'
           type: string
+          example: Attikí
         location_city_geoname_id:
-          description: City geoname ID
+          description: 'City geoname ID (vide: https://geoip2.readthedocs.io/en/latest/#geoip2.records.City.geoname_id)'
           type: integer
+          example: 7663
         location_city_name:
           description: City name
           type: string
+          example: Olsztyn
         location_metro_code:
           description: Metro code
           type: string
+          example: 10-208
         location_latitude:
           format: float
           description: Latitude
           type: number
+          example: '50.8136153'
         location_longitude:
           format: float
           description: Longitude
           type: number
+          example: '-2.4749152'
         location_provider:
           description: Provider
           type: string
+          example: Orange
         location_organization:
           description: Location organization
           type: string
+          example: Some organization
         session_exit_url:
           description: A URL of last event in a session
           type: string
+          example: 'http://domain.tld/this-is-the-end-my-only-f'
         session_exit_title:
           description: A title of a page where last event in a session occurred
           type: string
+          example: Close the doors
         session_entry_url:
           description: A URL of first event that occurred in a session
           type: string
+          example: 'http://domain.tld/this-is-the-first-page'
         session_entry_title:
           description: A title of a page where first event in a session occurred
           type: string
+          example: 'In the beginning, there was chaos'
         session_second_url:
           description: Session second page view URL
           type: string
+          example: 'http://domain.tld/this-is-not-the-first-page'
         session_second_title:
           description: Session second page view title
           type: string
+          example: Really boring stuff
         is_bounce:
           description: If session has only one event
-          enum:
-            - '0'
-            - '1'
-          type: string
+          type: boolean
+          example: true
         session_custom_dimension_1:
           description: Session dimension 1 value
           type: string
+          example: No I'd rather go and journey
         session_custom_dimension_2:
           description: Session dimension 2 value
           type: string
+          example: Where the diamond crescent's glowing
         session_custom_dimension_3:
           description: Session dimension 3 value
           type: string
+          example: And run across the valley
         session_custom_dimension_4:
           description: Session dimension 4 value
           type: string
+          example: Beneath the sacred mountain
         session_custom_dimension_5:
           description: Session dimension 5 value
           type: string
+          example: And wander through the forest
         session_custom_dimension_6:
           description: Session dimension 6 value
           type: string
+          example: Where the trees have leaves of prisms
         session_custom_dimension_7:
           description: Session dimension 7 value
           type: string
+          example: And break the light in colors
         session_custom_dimension_8:
           description: Session dimension 8 value
           type: string
+          example: That no one know the names of
         session_custom_dimension_9:
           description: Session dimension 9 value
           type: string
+          example: And when it's time I'll go and lay
         session_custom_dimension_10:
           description: Session dimension 10 value
           type: string
+          example: Beside the legendary fountain
         session_custom_variable_key_1:
           description: Custom variable key
           type: string
+          example: '''Till I see her form reflected'
+        session_custom_variable_value_1:
+          description: Custom variable key
+          type: string
+          example: In its clear and jewelled waters
         session_custom_variable_key_2:
           description: Custom variable key
           type: string
+          example: And if you think I'm ready
+        session_custom_variable_value_2:
+          description: Custom variable key
+          type: string
+          example: You may lead me to the chasm
         session_custom_variable_key_3:
           description: Custom variable key
           type: string
-        session_custom_variable_key_4:
-          description: Custom variable key
-          type: string
-        session_custom_variable_key_5:
-          description: Custom variable key
-          type: string
-        session_custom_variable_value_1:
-          description: Custom variable value
-          type: string
-        session_custom_variable_value_2:
-          description: Custom variable value
-          type: string
+          example: Where the rivers of our visions
         session_custom_variable_value_3:
           description: Custom variable value
           type: string
+          example: Flow into one another
+        session_custom_variable_key_4:
+          description: Custom variable value
+          type: string
+          example: I will want to dive beneath the white cascading waters
         session_custom_variable_value_4:
           description: Custom variable value
           type: string
+          example: 'She may beg, she may plead, she may argue with her logic'
+        session_custom_variable_key_5:
+          description: Custom variable value
+          type: string
+          example: And mention all the things I'll lose
         session_custom_variable_value_5:
           description: Custom variable value
           type: string
+          example: That really have no value in the end she will surely know I wasn't born to follow
         events:
           description: Events that occurred during the session
           type: array
@@ -835,42 +1066,59 @@ components:
           type: array
           items:
             type: integer
+            example:
+              - 1
+              - 3
+              - 5
+              - 7
+              - 11
+              - 13
         session_goal_uuids:
           description: UUIDs of goals converted during session
           type: array
           items:
             type: string
             format: uuid
+          example:
+            - 60cda3ca-0e76-4fa2-9167-7a6159a9be82
+            - 99329e7a-efae-4ad7-b423-ccccbc46cdf8
+            - 76485d34-26f5-420c-afd2-2a96ecff8b42
         session_total_revenue:
           format: float
           description: Revenue from ecommerce in a session
           type: number
+          example: 76348.07
         session_total_goal_revenue:
           format: float
           description: Revenue from goal conversions in a session
           type: number
+          example: 8.53
         session_total_lost_revenue:
           format: float
           description: Revenue lost from abandoned carts
           type: number
+          example: 1.67
         medium:
           description: Referrer medium
           type: string
+          example: shovel
         source_medium:
           description: Concatenated source and medium
           type: string
+          example: dig / shovel
         keyword:
           description: Referrer keyword
           type: string
+          example: enterprise
         resolution:
           description: Concatenated resolution_width and resolution_height
           type: string
+          example: 640x479
         plugin_director:
           description: If browser has Director plugin
-          enum:
-            - '0'
-            - '1'
-          type: string
+          type: boolean
+          example: false
         campaign_gclid:
           description: Google Click ID
           type: string
+          example: 7b
