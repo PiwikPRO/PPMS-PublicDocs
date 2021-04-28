@@ -105,7 +105,7 @@ paths:
               schema:
                 type: string
                 example: Internal error occurred. Check logs
-          description: Internal application error response (some service encountered unexpected error and died in pain)
+          description: Internal application error response (some service encountered unexpected error)
       description: Get stream of sessions
 components:
   schemas:
