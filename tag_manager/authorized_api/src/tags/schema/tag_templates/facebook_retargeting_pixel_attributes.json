@@ -39,7 +39,7 @@
             "$ref": "../tag_types.json#/definitions/non_empty_string"
         },
         "template_options": {
-            "description": "Tag template options",
+            "description": "[Tag template options](#tag-template-options)",
             "type": "object",
             "properties": {
                 "pixel_id": {

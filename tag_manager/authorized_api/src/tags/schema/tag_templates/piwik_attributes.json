@@ -107,9 +107,10 @@
                     "type": "boolean"
                 },
                 "spent_time": {
-                    "description": "Time spent on page threshold in seconds",
+                    "description": "Time spent on page threshold in seconds (is ignored and will be removed in next version)",
                     "type": "integer",
-                    "minimum": 1
+                    "minimum": 1,
+                    "deprecated": true
                 }
             },
             "additionalProperties": false,
@@ -184,7 +185,7 @@
             "$ref": "piwik_base_attributes.json#/definitions/custom_dimensions"
         },
         "template_options_create_edit": {
-            "description": "Tag template options",
+            "description": "[Tag template options](#tag-template-options)",
             "type": "object",
             "properties": {
                 "link_tracking": {
@@ -236,7 +237,7 @@
             "additionalProperties": false
         },
         "template_options_get": {
-            "description": "Tag template options",
+            "description": "[Tag template options](#tag-template-options)",
             "type": "object",
             "properties": {
                 "link_tracking": {
