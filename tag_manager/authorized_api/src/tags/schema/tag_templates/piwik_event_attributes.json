@@ -51,6 +51,9 @@
                         },
                         {
                             "type": "integer"
+                        },
+                        {
+                            "$ref": "../tag_types.json#/definitions/variable_reference"
                         }
                     ]
                 },
