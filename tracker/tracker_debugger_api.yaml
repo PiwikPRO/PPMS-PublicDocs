@@ -514,6 +514,94 @@ components:
           description: A title of next event
           type: string
           example: This was the following event
+        consent_source:
+          description: How a user viewed consent form. Present if event_type is 12 (consent form impression). 1 - popup, 2 - reminder, 3 - privacy_settings
+          type: integer
+          enum:
+            - 1
+            - 2
+            - 3
+        consent_form_button:
+          description: How a user interacted with consent form. Present if event_type is 13 (consent form click). 1 - agree_to_all, 2 - reject_all, 3 - save_choices, 4 - close
+          type: integer
+          enum:
+            - 1
+            - 2
+            - 3
+            - 4
+        consent_scope:
+          description: Whether a user gave consent to all, some, or none types of tracking. Present if event_type is 14 (consent decision). 1 - full_consent, 2 - any_consent, 3 - no_consent
+          type: integer
+          enum:
+            - 1
+            - 2
+            - 3
+        consent_action:
+          description: Whether it's the first decision or a modification of previously made consent decision. Present if event_type is 14 (consent decision). 1 - first_consent, 2 - changed_consent
+          type: integer
+          enum:
+            - 1
+            - 2
+        consent_type_analytics:
+          description: Whether a user gave consent for analytics. Present if event_type is 14 (consent decision)
+          type: integer
+          enum:
+            - 0
+            - 1
+        consent_type_ab_testing_personalization:
+          description: Whether a user gave consent for ab testing personalization. Present if event_type is 14 (consent decision)
+          type: integer
+          enum:
+            - 0
+            - 1
+        consent_type_conversion_tracking:
+          description: Whether a user gave consent for conversion tracking. Present if event_type is 14 (consent decision)
+          type: integer
+          enum:
+            - 0
+            - 1
+        consent_type_remarketing:
+          description: Whether a user gave consent for remarketing. Present if event_type is 14 (consent decision)
+          type: integer
+          enum:
+            - 0
+            - 1
+        consent_type_user_feedback:
+          description: Whether a user gave consent for user feedback. Present if event_type is 14 (consent decision)
+          type: integer
+          enum:
+            - 0
+            - 1
+        consent_type_custom_1:
+          description: Whether a user gave custom consent 1. Present if event_type is 14 (consent decision)
+          type: integer
+          enum:
+            - 0
+            - 1
+        consent_type_custom_2:
+          description: Whether a user gave custom consent 2. Present if event_type is 14 (consent decision)
+          type: integer
+          enum:
+            - 0
+            - 1
+        consent_type_custom_3:
+          description: Whether a user gave custom consent 3. Present if event_type is 14 (consent decision)
+          type: integer
+          enum:
+            - 0
+            - 1
+        consent_type_custom_4:
+          description: Whether a user gave custom consent 4. Present if event_type is 14 (consent decision)
+          type: integer
+          enum:
+            - 0
+            - 1
+        consent_type_custom_5:
+          description: Whether a user gave custom consent 5. Present if event_type is 14 (consent decision)
+          type: integer
+          enum:
+            - 0
+            - 1
     EcommerceItem:
       description: Ecommerce item from a cart
       required:
@@ -1051,27 +1139,27 @@ components:
           type: string
           example: Bell DSL Internet
         session_exit_url:
-          description: A URL of last event in a session
+          description: A URL of the last page view that ocurred in a session
           type: string
           example: 'http://domain.tld/this-is-the-end-my-only-f'
         session_exit_title:
-          description: A title of a page where last event in a session occurred
+          description: A title of the last page view that ocurred in a session
           type: string
           example: This is the end
         session_entry_url:
-          description: A URL of first event that occurred in a session
+          description: A URL of the first page view that occurred in a session
           type: string
           example: 'http://domain.tld/this-is-the-beginning'
         session_entry_title:
-          description: A title of a page where first event in a session occurred
+          description: A title of the first page view that occurred in a session
           type: string
           example: 'In the beginning, there was this event'
         session_second_url:
-          description: Session second page view URL
+          description: A URL of the second page view that ocurred in a session
           type: string
           example: 'http://domain.tld/this-is-not-the-first-page'
         session_second_title:
-          description: Session second page view title
+          description: A title of the second page view that occurred in a session
           type: string
           example: This is not the first page
         is_bounce:
