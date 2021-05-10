@@ -32,7 +32,7 @@ Consequently, default container code requires following modifications to work:
 -   **asynchronous snippet** - given container code following changes (highlighted) are required:
 
     .. code-block:: html
-        :emphasize-lines: 1, 11
+        :emphasize-lines: 1
 
         <script type="text/javascript" nonce="INSERT_VALID_NONCE_VALUE">
             (function(window, document, dataLayerName, id) {
