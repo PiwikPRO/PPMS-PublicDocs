@@ -15,6 +15,7 @@
                 "time_on_website",
                 "event",
                 "history",
+                "debounced_history",
                 "form_submission",
                 "click"
             ],
