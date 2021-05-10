@@ -7,7 +7,7 @@
             ]
         },
         "template_options": {
-            "description": "Tag template options",
+            "description": "[Tag template options](#tag-template-options)",
             "type": "object",
             "properties": {
                 "category": {
@@ -51,6 +51,9 @@
                         },
                         {
                             "type": "integer"
+                        },
+                        {
+                            "$ref": "../tag_types.json#/definitions/variable_reference"
                         }
                     ]
                 },

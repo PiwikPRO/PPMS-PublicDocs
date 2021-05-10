@@ -79,7 +79,7 @@
             }
         },
         "template_options_create_edit": {
-            "description": "Tag template options",
+            "description": "[Tag template options](#tag-template-options)",
             "type": "object",
             "properties": {
                 "included_forms": {
@@ -95,7 +95,7 @@
             ]
         },
         "template_options_get": {
-            "description": "Tag template options",
+            "description": "[Tag template options](#tag-template-options)",
             "type": "object",
             "properties": {
                 "included_forms": {
