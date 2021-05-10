@@ -23,6 +23,7 @@ Installing tracking code via Tag Manager
 This is the easiest and recommended way of tracking code installation. When Tag Manager is added to the site - it automatically publishes tracking code (using "Piwik PRO Analytics template").
 
 If you do not have Tag Manager on your website yet, follow this procedure to install it:
+
 #. Sign in to your PPAS with your admin or Super User account.
 #. Click on the menu button on the top left.
 #. Click on the "Websites" position.
