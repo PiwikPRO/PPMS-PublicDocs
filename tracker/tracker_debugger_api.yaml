@@ -994,7 +994,7 @@ components:
           description: Browser version
           type: string
           example: '88.0'
-        browser_language:
+        browser_language_iso639:
           description: 'Browser language code'
           type: string
           example: en
