@@ -317,6 +317,8 @@ paths:
       summary: Set user permission for a given app
       description: Sets user permission for a given app
       operationId: set_app_permission_for_user_v2
+      consumes:
+        - application/vnd.api+json
       parameters:
         - $ref: '#/parameters/AppId'
         - $ref: '#/parameters/UserId'
@@ -335,6 +337,8 @@ paths:
       summary: Set user group permission for a given app
       description: It sets permission for a given app for a user group
       operationId: set_app_permission_for_user_group_v2
+      consumes:
+        - application/vnd.api+json
       parameters:
         - $ref: '#/parameters/AppId'
         - $ref: '#/parameters/UserGroupId'
@@ -353,6 +357,8 @@ paths:
       summary: Set user permission for a given meta site
       description: It sets permission for a given meta site for a user
       operationId: set_meta_site_permission_for_user_v2
+      consumes:
+        - application/vnd.api+json
       parameters:
         - $ref: '#/parameters/MetaSiteId'
         - $ref: '#/parameters/UserId'
@@ -371,6 +377,8 @@ paths:
       summary: Set user group permission for a given meta site
       description: It sets permission for a given meta site for a user group
       operationId: set_meta_site_permission_for_user_group_v2
+      consumes:
+        - application/vnd.api+json
       parameters:
         - $ref: '#/parameters/MetaSiteId'
         - $ref: '#/parameters/UserGroupId'
@@ -392,6 +400,8 @@ paths:
         Please use <a href="#operation/set_app_permission_for_user_v2">Set user permission for a given app</a> instead.<br><br>
         It sets permission for a given entity (ppms/user or ppms/app).
       operationId: _legacy_set_permission_group_v2
+      consumes:
+        - application/vnd.api+json
       parameters:
         - name: permission request
           in: body
