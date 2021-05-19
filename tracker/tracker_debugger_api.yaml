@@ -7,14 +7,9 @@ paths:
   /api/tracker/v1/debugger:
     description: Returns a stream of newest sessions.
     get:
+      security:
+        - JWTAuth: []
       parameters:
-        - name: Authorization
-          description: JSON Web Token
-          schema:
-            type: string
-            example: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE2MTk1NjIxNzcsImV4cCI6MTYxOTU2MjE3Nywic3ViIjoiYjQ1NGEwNmItYWQ5OS00MDUzLTkyMGItZDk4MTkxMGVhYjBjIiwiaXNzIjoicHBtcyIsImF1ZCI6InNvbWV0ZXN0b3JnYW5pemF0aW9uLnBpd2lrLnBybyIsIm9yZyI6InNvbWV0ZXN0b3JnYW5pemF0aW9uIiwiZW1sIjoiam9obkBkb2UuY29tIn0.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
-          in: header
-          required: true
         - name: app_id
           description: An application UUID for which sessions are requested
           schema:
@@ -90,13 +85,15 @@ paths:
                 type: string
                 example: 'Request parameters deserialization error.'
           description: 'Bad request response (eg. missing GET parameter, or parameter value out of bounds)'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
         '404':
           content:
             text/plain:
               schema:
                 type: string
                 example: 404 page not found
-          description: Unauthorized request (eg. `Authorization` header is missing or contains incorrect JWT value)
+          description: Authenticated user doesn't have proper access rights
         '500':
           content:
             text/plain:
@@ -108,14 +105,9 @@ paths:
   /api/tracker/v1/logs:
     description: Returns a stream of tracking logs.
     get:
+      security:
+        - JWTAuth: []
       parameters:
-        - name: Authorization
-          description: JSON Web Token
-          schema:
-            type: string
-            example: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE2MTk1NjIxNzcsImV4cCI6MTYxOTU2MjE3Nywic3ViIjoiYjQ1NGEwNmItYWQ5OS00MDUzLTkyMGItZDk4MTkxMGVhYjBjIiwiaXNzIjoicHBtcyIsImF1ZCI6InNvbWV0ZXN0b3JnYW5pemF0aW9uLnBpd2lrLnBybyIsIm9yZyI6InNvbWV0ZXN0b3JnYW5pemF0aW9uIiwiZW1sIjoiam9obkBkb2UuY29tIn0.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
-          in: header
-          required: true
         - name: app_id
           description: An application UUID for which Logs are requested
           schema:
@@ -146,13 +138,15 @@ paths:
                 type: string
                 example: 'Request parameters deserialization error.'
           description: 'Bad request response (eg. missing GET parameter, or parameter value out of bounds)'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
         '404':
           content:
             text/plain:
               schema:
                 type: string
                 example: ''
-          description: Unauthorized request (eg. `Authorization` header is missing or contains incorrect JWT value)
+          description: Authenticated user doesn't have proper access rights
         '500':
           content:
             text/plain:
@@ -162,6 +156,19 @@ paths:
           description: Internal application error response (some service encountered unexpected error)
       description: Get stream of logs
 components:
+  responses:
+    UnauthorizedError:
+      content:
+        text/plain:
+          schema:
+            type: string
+            example: ''
+      description: Access token is missing or invalid
+  securitySchemes:
+    JWTAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
   schemas:
     Event:
       description: An object representing an event
@@ -1449,15 +1456,15 @@ components:
           default: false
           example: true
     TrackingParameters:
-      description: A tracking log
+      description: Parameters of a tracking request
       required:
         - idsite
       type: object
       properties:
         idsite:
-          description: ID of the tracked app/website
+          description: ID of the tracked app/website - can be UUID or legacy integer.
           type: string
-          example: 4
+          example: '4'
         _idts:
           description: 'Time of first visit'
           type: integer
@@ -1569,7 +1576,7 @@ components:
           type: string
           example: '[[\"craft-311\",\"Unicorn Iron on Patch\",\"Crafts & Sewing\",4.99,3],[\"craft-312\",\"Unicorn Lamp\",\"Crafts & Sewing\",13.25,1]]'
         _ects:
-          description: 'Time of last Ecommerce order'
+          description: 'Timestamp of last Ecommerce order'
           type: integer
           minimum: 0
           maximum: 4294967295
@@ -1598,7 +1605,7 @@ components:
           format: IPv4|IPv6
           example: '172.16.254.1'
         cdt:
-          description: ' Override request time'
+          description: 'Override request time'
           type: string
           format: UNIX timestamp|UTC DateTime<YYYY-MM-DD hh:mm:ss>
           example: '2018-02-24 15:34:48'
@@ -1611,6 +1618,8 @@ components:
         _id:
           description: 'Visitor ID'
           type: string
+          minLength: 16
+          maxLength: 16
           example: 'dcce8b9ea5d80b52'
         uia:
           description: 'Allows to track user anonymously'
@@ -1676,7 +1685,7 @@ components:
         search_cats:
           description: 'Result categories'
           type: string
-          example: 'res cat 1, res cat 2'
+          example: '["res cat 1","res cat 2"]'
         search_count:
           description: 'Number of results of internal search'
           type: integer
