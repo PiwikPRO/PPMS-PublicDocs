@@ -665,6 +665,10 @@ components:
           enum:
             - 0
             - 1
+        error_message:
+          description: Message informing why event is removed from event set, if it errored during processing. Present if event type is 17 (broken event)
+          type: string
+          example: 'Resolving referrer failed due to internal error (<error eg. ApiError()>, log: <log>)'
     EcommerceItem:
       description: Ecommerce item from a cart
       required:
