@@ -223,6 +223,8 @@ components:
             - 14
             - 15
             - 16
+            - 17
+            - 18
           type: integer
           minimum: 1
           maximum: 16
@@ -669,6 +671,10 @@ components:
           description: Message informing why event is removed from event set, if it errored during processing. Present if event type is 17 (broken event)
           type: string
           example: 'Resolving referrer failed due to internal error (<error eg. ApiError()>, log: <log>)'
+        exclusion_reason:
+          description: Message informing why event was excluded and will not be visible in reports. Present if event type is 18 (excluded event)
+          type: string
+          example: 'IP is on the crawler list'
     EcommerceItem:
       description: Ecommerce item from a cart
       required:
