@@ -225,9 +225,10 @@ components:
             - 16
             - 17
             - 18
+            - 19
+            - 20
+            - 21
           type: integer
-          minimum: 1
-          maximum: 16
           example: 8
         event_url:
           format: url
