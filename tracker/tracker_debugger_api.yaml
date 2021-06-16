@@ -329,6 +329,10 @@ components:
           minimum: 0
           maximum: 2147483647
           example: 412
+        goal_name:
+          description: Converted goal name
+          type: string
+          example: User entered contact page
         goal_uuid:
           description: Converted goal UUID
           type: string
