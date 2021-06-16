@@ -207,27 +207,27 @@ components:
         event_type:
           description: A type of an event
           enum:
-            - 1
-            - 2
-            - 3
-            - 4
-            - 5
-            - 6
-            - 7
-            - 8
-            - 9
-            - 10
-            - 11
-            - 12
-            - 13
-            - 14
-            - 15
-            - 16
-            - 17
-            - 18
-            - 19
-            - 20
-            - 21
+            - 1 # page view
+            - 2 # outlink
+            - 3 # download
+            - 4 # search
+            - 5 # custom event
+            - 6 # content impression
+            - 7 # content interaction
+            - 8 # goal conversion
+            - 9 # ecommerce conversion
+            # - 10 # abandoned cart - hidden
+            # - 11 # share point - not implemented
+            - 12 # consent form impression
+            - 13 # consent form click
+            - 14 # consent decision
+            - 15 # custom ping
+            - 16 # cart update
+            - 17 # broken event
+            - 18 # excluded event
+            - 19 # heartbeat
+            - 20 # deanonymization
+            - 21 # page performance
           type: integer
           example: 8
         event_url:
