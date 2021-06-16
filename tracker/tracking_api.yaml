@@ -235,8 +235,8 @@ paths:
           in: query
           description: Force start of new visit when value is ``1``.
           type: integer
-          minimal: 0
-          maximal: 1
+          minimum: 0
+          maximum: 1
           example: 1
         - name: dimensionID
           in: query
@@ -633,7 +633,7 @@ paths:
           #TODO: Check if there's a limit to the number of decimal places.
           format: Decimal degrees
           #TODO: Check if it's possible to set minimum below zero. Redoc doesn't render this correctly.
-          minimium: -90
+          minimum: -90
           maximum: 90
           example: 40.7629659
         - name: lon
@@ -644,7 +644,7 @@ paths:
             This parameter requires authentication using the ``token_auth`` parameter.
           type: number
           format: Decimal degrees
-          minimium: -180
+          minimum: -180
           maximum: 180
           example: -74.0023705
         - name: uia
@@ -655,15 +655,15 @@ paths:
             - ``1`` - all IP bytes will be masked (0.0.0.0), no GeoIP data will be stored and visits won't be matched by the fingerprinting process
             - ``0`` - all available visitor data will be enriched if anonymized previously
           type: integer
-          minimium: 0
+          minimum: 0
           maximum: 1
           example: 1
         - name: ping
           in: query
           description: |
-            Enables a special heartbeat mode for the tracking request.
-            Such a reqest won't track any new action but rather will update time metrics for the last page view.
-            This parametr was designed to prolong the session when no new actions are coming in, while a user is still on the website.
+            Enables a special ping mode for the tracking request.
+            Such a request won't track any new action but rather will update time metrics for the last page view.
+            This parameter was designed to prolong the session when no new actions are coming in, while a user is still on the website.
             Now, ping also updates Custom Variables and Custom Dimensions and Page Performance Metrics.
             Each type of ping request updates all dimensions, types of pings are used for statistics only.
             You can also use it for debugging, to determine which kind of `ping` and when updated the dimensions.
@@ -675,7 +675,7 @@ paths:
             - ``5`` - Request with page performance metrics
             - ``6`` - Request sent by the user (using ping command)
           type: integer
-          minimium: 1
+          minimum: 1
           maximum: 6
           example: 1
         - name: t_us
@@ -684,7 +684,7 @@ paths:
             Unload Event Start - one of the Page Performance Metrics.
             Designed for the value of `PerformanceTiming.unloadEventStart`
           type: integer
-          minimium: 0
+          minimum: 0
           maximum: 65535
           example: 7
         - name: t_ue
@@ -693,7 +693,7 @@ paths:
             Unload Event End - one of the Page Performance Metrics.
             Designed for the value of `PerformanceTiming.unloadEventEnd`
           type: integer
-          minimium: 0
+          minimum: 0
           maximum: 65535
           example: 7
         - name: t_rs
@@ -702,7 +702,7 @@ paths:
             Redirect Start - one of the Page Performance Metrics.
             Designed for the value of `PerformanceTiming.redirectStart`
           type: integer
-          minimium: 0
+          minimum: 0
           maximum: 65535
           example: 7
         - name: t_re
@@ -711,7 +711,7 @@ paths:
             Redirect End - one of the Page Performance Metrics.
             Designed for the value of `PerformanceTiming.redirectEnd`
           type: integer
-          minimium: 0
+          minimum: 0
           maximum: 65535
           example: 7
         - name: t_ss
@@ -720,7 +720,7 @@ paths:
             Secure Connection Start - one of the Page Performance Metrics.
             Designed for the value of `PerformanceTiming.secureConnectionStart`
           type: integer
-          minimium: 0
+          minimum: 0
           maximum: 65535
           example: 7
         - name: t_fs
@@ -729,7 +729,7 @@ paths:
             Fetch Start - one of the Page Performance Metrics.
             Designed for the value of `PerformanceTiming.fetchStart`
           type: integer
-          minimium: 0
+          minimum: 0
           maximum: 65535
           example: 7
         - name: t_ds
@@ -738,7 +738,7 @@ paths:
             Domain Lookup Start - one of the Page Performance Metrics.
             Designed for the value of `PerformanceTiming.domainLookupStart`
           type: integer
-          minimium: 0
+          minimum: 0
           maximum: 65535
           example: 7
         - name: t_cs
@@ -747,7 +747,7 @@ paths:
             Connect Start - one of the Page Performance Metrics.
             Designed for the value of `PerformanceTiming.connectStart`
           type: integer
-          minimium: 0
+          minimum: 0
           maximum: 65535
           example: 7
         - name: t_ce
@@ -756,7 +756,7 @@ paths:
             Connect End - one of the Page Performance Metrics.
             Designed for the value of `PerformanceTiming.connectEnd`
           type: integer
-          minimium: 0
+          minimum: 0
           maximum: 65535
           example: 7
         - name: t_qs
@@ -765,7 +765,7 @@ paths:
             Request Start - one of the Page Performance Metrics.
             Designed for the value of `PerformanceTiming.requestStart`
           type: integer
-          minimium: 0
+          minimum: 0
           maximum: 65535
           example: 7
         - name: t_as
@@ -774,7 +774,7 @@ paths:
             Response Start - one of the Page Performance Metrics.
             Designed for the value of `PerformanceTiming.responseStart`
           type: integer
-          minimium: 0
+          minimum: 0
           maximum: 65535
           example: 7
         - name: t_ae
@@ -783,7 +783,7 @@ paths:
             Response End - one of the Page Performance Metrics.
             Designed for the value of `PerformanceTiming.responseEnd`
           type: integer
-          minimium: 0
+          minimum: 0
           maximum: 65535
           example: 7
         - name: t_dl
@@ -792,7 +792,7 @@ paths:
             DOM Loading - one of the Page Performance Metrics.
             Designed for the value of `PerformanceTiming.domLoading`
           type: integer
-          minimium: 0
+          minimum: 0
           maximum: 65535
           example: 7
         - name: t_di
@@ -801,7 +801,7 @@ paths:
             DOM Interactive - one of the Page Performance Metrics.
             Designed for the value of `PerformanceTiming.domInteractive`
           type: integer
-          minimium: 0
+          minimum: 0
           maximum: 16777215
           example: 7
         - name: t_ls
@@ -810,7 +810,7 @@ paths:
             DOM Content Loaded Event Start - one of the Page Performance Metrics.
             Designed for the value of `PerformanceTiming.domContentLoadedEventStart`
           type: integer
-          minimium: 0
+          minimum: 0
           maximum: 16777215
           example: 7
         - name: t_le
@@ -819,7 +819,7 @@ paths:
             DOM Content Loaded Event End - one of the Page Performance Metrics.
             Designed for the value of `PerformanceTiming.domContentLoadedEventEnd`
           type: integer
-          minimium: 0
+          minimum: 0
           maximum: 16777215
           example: 7
         - name: t_dc
@@ -828,7 +828,7 @@ paths:
             DOM Complete - one of the Page Performance Metrics.
             Designed for the value of `PerformanceTiming.domComplete`
           type: integer
-          minimium: 0
+          minimum: 0
           maximum: 16777215
           example: 7
         - name: t_ee
@@ -837,7 +837,7 @@ paths:
             Load Event End - one of the Page Performance Metrics.
             Designed for the value of `PerformanceTiming.loadEventEnd`
           type: integer
-          minimium: 0
+          minimum: 0
           maximum: 16777215
           example: 7
       responses:
@@ -858,7 +858,8 @@ paths:
         #TODO: Confirm that this endpoint expects only application/json (no application/x-www-form-urlencoded) requests.
         - application/json
       parameters:
-        - in: body
+        - name: "body"
+          in: body
           required: true
           schema:
             type: object
