@@ -153,8 +153,9 @@
             "type": "integer"
         },
         "template_options_referral_cookie_timeout": {
-            "description": "Referral cookie timeout in seconds",
-            "type": "integer"
+            "description": "Referral cookie timeout in seconds (is ignored and will be removed in next version)",
+            "type": "integer",
+            "deprecated": true
         },
         "template_options_session_cookie_timeout": {
             "description": "Session cookie timeout in seconds",
