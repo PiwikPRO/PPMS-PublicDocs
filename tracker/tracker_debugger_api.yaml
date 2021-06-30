@@ -61,6 +61,61 @@ paths:
             example: john@doe.com
           in: query
           required: false
+        - name: page_url
+          description: Filters out sessions that don't contain at least one event with URL matching the specified string.
+          schema:
+            type: string
+            example: blog
+          in: query
+          required: false
+        - name: event_type
+          description: |
+            Filters out sessions that don't contain at least one event of the specified type.
+            The allowed values are:
+            - 1 # page view
+            - 2 # outlink
+            - 3 # download
+            - 4 # search
+            - 5 # custom event
+            - 6 # content impression
+            - 7 # content interaction
+            - 8 # goal conversion
+            - 9 # ecommerce conversion
+            - 12 # consent form impression
+            - 13 # consent form click
+            - 14 # consent decision
+            - 15 # custom ping
+            - 16 # cart update
+            - 17 # broken event
+            - 18 # excluded event
+            - 19 # heartbeat
+            - 20 # deanonymization
+            - 21 # page performance
+          schema:
+            type: integer
+            example: 1
+            enum:
+              - 1 # page view
+              - 2 # outlink
+              - 3 # download
+              - 4 # search
+              - 5 # custom event
+              - 6 # content impression
+              - 7 # content interaction
+              - 8 # goal conversion
+              - 9 # ecommerce conversion
+              - 12 # consent form impression
+              - 13 # consent form click
+              - 14 # consent decision
+              - 15 # custom ping
+              - 16 # cart update
+              - 17 # broken event
+              - 18 # excluded event
+              - 19 # heartbeat
+              - 20 # deanonymization
+              - 21 # page performance
+          in: query
+          required: false
         - name: lookup_window
           description: 'Describes how much back in time sessions shall be fetched, takes value in minutes'
           schema:
