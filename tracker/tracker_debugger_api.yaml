@@ -234,6 +234,7 @@ components:
         - is_entry
         - event_type
         - event_url
+        - event_original
         - event_index
         - server_time
       type: object
@@ -286,6 +287,11 @@ components:
           type: integer
           example: 8
         event_url:
+          format: url
+          description: A URL on which event occurred, human-readable
+          type: string
+          example: 'http://domain.tld/path.php'
+        event_url_original:
           format: url
           description: A URL on which event occurred
           type: string
@@ -624,7 +630,7 @@ components:
           maximum: 1.7976931348623157e+308
           example: 8.19
         previous_event_url:
-          description: A URL of previous event
+          description: A URL of previous event, human-readable
           type: string
           example: 'http://domain.tld/previous-page.html'
         previous_event_title:
@@ -632,7 +638,7 @@ components:
           type: string
           example: This was the previous event
         next_event_url:
-          description: A URL of next event
+          description: A URL of next event, human-readable
           type: string
           example: 'http://domain.tld/this-event-came-next'
         next_event_title:
@@ -1272,7 +1278,7 @@ components:
           type: string
           example: Bell DSL Internet
         session_exit_url:
-          description: A URL of the last page view that ocurred in a session
+          description: A URL of the last page view that ocurred in a session, human-readable
           type: string
           example: 'http://domain.tld/this-is-the-end-my-only-f'
         session_exit_title:
@@ -1280,7 +1286,7 @@ components:
           type: string
           example: This is the end
         session_entry_url:
-          description: A URL of the first page view that occurred in a session
+          description: A URL of the first page view that occurred in a session, human-readable
           type: string
           example: 'http://domain.tld/this-is-the-beginning'
         session_entry_title:
@@ -1288,7 +1294,7 @@ components:
           type: string
           example: 'In the beginning, there was this event'
         session_second_url:
-          description: A URL of the second page view that ocurred in a session
+          description: A URL of the second page view that ocurred in a session, human-readable
           type: string
           example: 'http://domain.tld/this-is-not-the-first-page'
         session_second_title:
