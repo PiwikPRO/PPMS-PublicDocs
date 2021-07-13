@@ -290,12 +290,12 @@ components:
           format: url
           description: A URL on which event occurred, human-readable
           type: string
-          example: 'http://domain.tld/path.php'
+          example: 'http://domain.tld/path.php?c=grønn'
         event_url_original:
           format: url
           description: A URL on which event occurred
           type: string
-          example: 'http://domain.tld/path.php'
+          example: 'http://domain.tld/path.php?c=gr%C3%B8nn'
         event_title:
           description: Page title of a page an event occurred on
           type: string
