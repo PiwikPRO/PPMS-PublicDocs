@@ -565,7 +565,6 @@ redoc .redoc-json .collapser {
     box-shadow: inset 0 0 0 0 #DDDDDD;
     text-align: center;
     padding: 24px;
-    margin: 0 12px 24px 12px;
     flex: 1 1 0;
     width: 0;
     min-width: 200px;
@@ -576,6 +575,8 @@ redoc .redoc-json .collapser {
     display: flex;
     flex: 1 1 0;
     flex-wrap:wrap;
+    gap: 24px;
+    padding-bottom: 24px;
 }
 
 .started-block:first-child {
