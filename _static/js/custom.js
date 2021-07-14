@@ -19,8 +19,12 @@
     }
     if(document.querySelector('#welcome-to-the-piwik-pro-documentation-for-developers')) {
         let footer = document.querySelector('.rst-footer-buttons');
+        let anchor = document.querySelector('#welcome-to-the-piwik-pro-documentation-for-developers .headerlink');
         if(footer){
             footer.style.display = 'none';
+        }
+        if (anchor) {
+            anchor.style.display = 'none';
         }
     }
 })();
