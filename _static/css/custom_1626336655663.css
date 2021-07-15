@@ -679,7 +679,7 @@ a.link-large {
 }
 
 
-@media (max-width:794px) and (min-width:768px) {
+@media (max-width:794px) and (min-width:769px) {
     .popular-links-el:nth-child(2) {
         order: 3;
     }
