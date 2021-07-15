@@ -1,0 +1,23 @@
+type: object
+allOf:
+  - $ref: '#/definitions/Annotation'
+  - type: object
+    required:
+      - content
+      - website_id
+      - date
+    properties:
+      visibility:
+        enum:
+          - private
+          - public
+        default: private
+        description: |
+          Determines whether the attribution should be visible only to the author or to everyone with access to the website.
+        type: string
+      website_id:
+        description: ID of the website.
+        type: string
+        format: uuid
+
+

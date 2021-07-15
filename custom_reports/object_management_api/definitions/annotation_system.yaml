@@ -1,0 +1,17 @@
+type: object
+allOf:
+  - $ref: '#/definitions/Annotation'
+  - type: object
+    required:
+      - content
+      - id
+      - date
+    properties:
+      id:
+        type: string
+        description: Id of a annotation.
+        readOnly: true
+        format: uuid
+        example: dde2dc68-b6bb-45ee-9ac2-868b6181e33f
+
+

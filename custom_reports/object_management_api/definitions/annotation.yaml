@@ -1,0 +1,10 @@
+type: object
+properties:
+  date:
+    description: Date of the annotation.
+    type: string
+  content:
+    description: Content of the annotation.
+    type: string
+    maxLength: 150
+

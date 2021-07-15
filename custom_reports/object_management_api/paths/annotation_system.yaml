@@ -1,0 +1,34 @@
+get:
+  tags:
+    - System Annotations
+  summary: List System Annotations
+  description: |
+    Returns a list all System Annotations available for a website.
+    Please note that each request must be authenticated.
+  parameters:
+      - $ref: '#/parameters/DateFrom'
+      - $ref: '#/parameters/DateTo'
+      - $ref: '#/parameters/Limit'
+      - $ref: '#/parameters/Offset'
+  responses:
+    '200':
+      description: OK
+      schema:
+        type: object
+        required:
+          - count
+          - results
+        properties:
+          count:
+            type: integer
+            minimum: 0
+            description: Number of total annotations matching query criteria.
+            example: 1
+          results:
+            type: array
+            items:
+              $ref: '#/definitions/AnnotationSystem'
+    '400':
+      description: Bad Request
+    '403':
+      description: Forbidden

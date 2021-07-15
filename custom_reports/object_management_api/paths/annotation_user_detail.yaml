@@ -1,0 +1,57 @@
+get:
+  tags:
+    - User Annotations
+  summary: Get user annotation
+  description: |
+    Returns a definition of a specific user annotation.
+    Please note that each request must be authenticated.
+  parameters:    
+    - $ref: '#/parameters/AnnotationId'
+    - $ref: '#/parameters/WebsiteId'
+  responses:
+    '200':
+      description: OK
+      schema:
+        $ref: '#/definitions/AnnotationUserDetails'
+    '403':
+      description: Forbidden
+put:
+  tags:
+    - User Annotations
+  summary: Update user annotation
+  description: |
+    Update an existing user annotation.
+    Please note that each request must be authenticated.
+  parameters:
+    - name: body
+      in: body
+      type: object
+      required: true
+      schema:
+        $ref: '#/definitions/AnnotationUser'
+  responses:
+    '200':
+      description: OK
+      schema:
+        $ref: '#/definitions/AnnotationUserDetails'
+    '400':
+      description: Bad Request
+    '403':
+      description: Forbidden
+delete:
+  tags:
+    - User Annotations
+  summary: Delete user annotation
+  description: |
+    Delete the specified user annotation.
+    Please note that each request must be authenticated.
+  parameters:
+    - $ref: '#/parameters/AnnotationId'
+    - $ref: '#/parameters/WebsiteId'
+  responses:
+    '204':
+      description: No Content
+    '403':
+      description: Forbidden
+    '404':
+      description: Not Found
