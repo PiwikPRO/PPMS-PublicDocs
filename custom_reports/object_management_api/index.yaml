@@ -16,6 +16,16 @@ consumes:
   - application/vnd.api+json
 produces:
   - application/vnd.api+json,
+schemas:
+  Meta:
+    type: object
+    required:
+      - "total"
+    properties:
+      total:
+        type: integer
+        description: Total number of results.
+        example: 1
 parameters:
   AnnotationId:
     name: annotation_id

@@ -11,8 +11,15 @@ get:
   responses:
     '200':
       description: OK
-      schema:
-        $ref: '#/definitions/AnnotationUserDetails'
+      content:
+        application/vnd.api+json:
+          schema:
+            type: object
+            required:
+              - data
+            properties:
+              data:
+                $ref: '#/definitions/AnnotationUserDetails'
     '403':
       description: Forbidden
 put:
@@ -23,17 +30,47 @@ put:
     Update an existing user annotation.
     Please note that each request must be authenticated.
   parameters:
-    - name: body
-      in: body
-      type: object
+    - name: id
+      in: path
       required: true
+      description: ID of the custom dimension.
       schema:
-        $ref: '#/definitions/AnnotationUser'
+        type: string
+  requestBody:
+    content:
+      application/vnd.api+json:
+        schema:
+            type: object
+            required:
+              - data
+            properties:
+              data:
+                type: object
+                allOf:
+                  - $ref: '#/definitions/AnnotationUser'
+                required:
+                  - type
+                  - attributes
+                  - id
+                properties:
+                  id:
+                    type: string
+                    description: ID of a annotation.
+                    format: uuid
+                    readOnly: false
+                    example: 677fe0d3-b4f7-43ed-852d-1a9e7b8e59fb
   responses:
     '200':
       description: OK
-      schema:
-        $ref: '#/definitions/AnnotationUserDetails'
+      content:
+        application/vnd.api+json:
+          schema:
+            type: object
+            required:
+              - data
+            properties:
+              data:
+                $ref: '#/definitions/AnnotationUserDetails'
     '400':
       description: Bad Request
     '403':
