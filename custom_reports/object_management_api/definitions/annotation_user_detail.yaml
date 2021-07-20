@@ -1,14 +1,19 @@
 type: object
 allOf:
   - $ref: '#/definitions/AnnotationUser'
-  - type: object
+required:
+  - type
+  - attributes
+properties:
+  attributes:
+    required:
+      - content
+      - website_id
+      - date
+      - is_author
+      - author
+      - visibility
     properties:
-      id:
-        type: string
-        description: Id of a annotation.
-        readOnly: true
-        format: uuid
-        example: dde2dc68-b6bb-45ee-9ac2-868b6181e33f
       website_id:
         type: string
         format: uuid

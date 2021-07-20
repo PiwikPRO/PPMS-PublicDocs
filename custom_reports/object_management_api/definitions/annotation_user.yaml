@@ -1,7 +1,24 @@
 type: object
-allOf:
-  - $ref: '#/definitions/Annotation'
-  - type: object
+required:
+  - type
+  - attributes
+  - id
+properties:
+  type:
+    type: string
+    description: Type of the object.
+    enum:
+      - UserAnnotation
+  id:
+    type: string
+    description: ID of a annotation.
+    format: uuid
+    readOnly: true
+    example: 677fe0d3-b4f7-43ed-852d-1a9e7b8e59fb
+  attributes:
+    type: object
+    allOf:
+      - $ref: '#/definitions/Annotation'
     required:
       - content
       - website_id
@@ -19,5 +36,7 @@ allOf:
         description: ID of the website.
         type: string
         format: uuid
+        example: dde2dc68-b6bb-45ee-9ac2-868b6181e33f
+
 
 

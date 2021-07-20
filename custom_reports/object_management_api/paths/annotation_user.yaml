@@ -9,12 +9,25 @@ post:
     content:
       application/vnd.api+json:
         schema:
-          $ref: '#/definitions/AnnotationUser'
+          type: object
+          required:
+            - data
+          properties:
+            data:
+              $ref: '#/definitions/AnnotationUser'
+    required: true
   responses:
     '201':
       description: OK
-      schema:
-        $ref: '#/definitions/AnnotationUserDetails'
+      content:
+        application/vnd.api+json:
+          schema:
+            type: object
+            required:
+              - data
+            properties:
+              data:
+                $ref: '#/definitions/AnnotationUserDetails'
     '400':
       description: Bad Request
     '403':
@@ -35,21 +48,22 @@ get:
   responses:
     '200':
       description: OK
-      schema:
-        type: object
-        required:
-          - count
-          - results
-        properties:
-          count:
-            type: integer
-            minimum: 0
-            description: Number of total annotations matching query criteria.
-            example: 1
-          results:
-            type: array
-            items:
-              $ref: '#/definitions/AnnotationUserDetails'
+      content:
+        application/vnd.api+json:
+          schema:
+            type: object
+            required:
+              - data
+              - meta
+            properties:
+              meta:
+                type: object
+                allOf:
+                  - $ref: '#/schemas/Meta'
+              data:
+                type: array
+                items:
+                  $ref: '#/definitions/AnnotationUserDetails'
     '400':
       description: Bad Request
     '403':

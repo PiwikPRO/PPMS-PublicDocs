@@ -1,17 +1,26 @@
 type: object
-allOf:
-  - $ref: '#/definitions/Annotation'
-  - type: object
+required:
+  - type
+  - attributes
+  - id
+properties:
+  type:
+    type: string
+    description: Type of the object.
+    enum:
+      - SystemAnnotation
+  id:
+    type: string
+    description: ID of a annotation.
+    readOnly: true
+    format: uuid
+    example: 677fe0d3-b4f7-43ed-852d-1a9e7b8e59fb
+  attributes:
     required:
       - content
       - id
       - date
-    properties:
-      id:
-        type: string
-        description: Id of a annotation.
-        readOnly: true
-        format: uuid
-        example: dde2dc68-b6bb-45ee-9ac2-868b6181e33f
+    allOf:
+      - $ref: '#/definitions/Annotation'
 
 

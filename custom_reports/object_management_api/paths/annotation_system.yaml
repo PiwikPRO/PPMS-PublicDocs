@@ -13,21 +13,22 @@ get:
   responses:
     '200':
       description: OK
-      schema:
-        type: object
-        required:
-          - count
-          - results
-        properties:
-          count:
-            type: integer
-            minimum: 0
-            description: Number of total annotations matching query criteria.
-            example: 1
-          results:
-            type: array
-            items:
-              $ref: '#/definitions/AnnotationSystem'
+      content:
+        application/vnd.api+json:
+          schema:
+            type: object
+            required:
+              - meta
+              - data
+            properties:
+              meta:
+                type: object
+                allOf:
+                  - $ref: '#/schemas/Meta'
+              data:
+                type: array
+                items:
+                  $ref: '#/definitions/AnnotationSystem'
     '400':
       description: Bad Request
     '403':
