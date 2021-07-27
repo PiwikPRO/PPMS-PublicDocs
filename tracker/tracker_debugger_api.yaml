@@ -233,8 +233,6 @@ components:
         - is_exit
         - is_entry
         - event_type
-        - event_url
-        - event_original
         - event_index
         - server_time
       type: object
@@ -824,8 +822,6 @@ components:
         - session_unique_content_interactions
         - session_ecommerce_status
         - referrer_type
-        - session_exit_url
-        - session_entry_url
         - is_bounce
         - events
         - fingerprint
