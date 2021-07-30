@@ -22,7 +22,7 @@ get:
                 $ref: '#/definitions/AnnotationUserDetails'
     '403':
       description: Forbidden
-put:
+patch:
   tags:
     - User Annotations
   summary: Update user annotation
