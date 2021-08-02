@@ -1,5 +1,5 @@
 Authorized API guide
-========================
+====================
 
 ## Introduction
 This page describes how to access Piwik PRO API which uses
@@ -7,7 +7,7 @@ This page describes how to access Piwik PRO API which uses
 OAuth grant type for obtaining user token.
 All data is sent and received as JSON and is compliant with [JSON API](http://jsonapi.org/) specification.
 
-### Obtaining token
+### Creating API Credentials
 
 If you want to access API for the first time you need to generate your
 API credentials which then allows you to request for a token that is used for authentication during communication with authorized API.
@@ -18,10 +18,10 @@ API credentials which then allows you to request for a token that is used for au
 * Go to your profile (`Menu` then `User panel`).
 * On this page click on `API Credentials` tab. This page allows you to manage all your API credentials.
 * Click `Generate new credentials` which will result in new popup. Fill in your custom `credentials name`.
-  Name must contains at least 3 characters.
+  Name must contain at least 3 characters. Note: That name will be used later if you would like to revoke those API credentials.
 * Copy your newly generated `CLIENT ID` and `CLIENT SECRET` because they **won't be available for you after dismissing this window.**
 
-Those credentials will be valid as long as you will not revoke them in your profile.
+Those credentials will be valid as long as you will not revoke them in your profile. How to do that you can [read here](#deleting-api-credentials).
 
 #### Create access token
 
@@ -30,8 +30,10 @@ communication with API.
 
 Piwik PRO API tokens use [JWT](https://jwt.io/) format.
 
-Make POST call to `https://<domain>/auth/token` with header `Content-Type: application/json` and payload:
+Make POST call to `https://<domain>/auth/token` where  with header `Content-Type: application/json` and payload:
 `{ "grant_type": "client_credentials", "client_id": "<client_id>", "client_secret": "<client_secret>" }`.
+
+If you are [core plan](https://stage.piwik.pro/core-plan/) user as `<domain>` use your Account Name + `.piwik.pro`.
 
 Response example:
 ```
@@ -39,7 +41,7 @@ Response example:
 ```
 
 Now, you can use obtained `<your_access_token>` for communication with Piwik PRO API.
-Field `expires_in` stands for time (in seconds) for token expiration (TTL).
+Field `expires_in` stands for time (in seconds) for token expiration (TTL). Every token is valid for 30 minutes.
 Since token is a Bearer type, it must be **included in every API call** within header.
 
 ```
@@ -49,21 +51,21 @@ Authorization: Bearer <your_access_token>
 ### Deleting API Credentials
 
 Once you want to revoke the possibility of generating API token using given `CLIENT ID` and `CLIENT SECRET`,
-go to `User panel` and click `Delete` button on selected API credentials.
+go to `User panel > API Credentials`, find proper credentials by name, and click `X` button on the right.
 
 ## API usage example
 
 Whatever API call you choose, first remember that you must generate
-[API credentials](#generate-api-credentials) for obtaining client id and secret.
+[API credentials](#generate-api-credentials) for obtaining `CLIENT ID` and `CLIENT SECRET`.
 
 ### API usage example with curl
 
-For sake of this examples, `https://<domain>` is a URL of your PPAS instance (e.g. `https://example.piwik.pro`) and our goal
-is to perform basic operations on an app. We will:
-* create an app
-* get created app
-* update its attributes
-* remove the app
+For sake of these examples, `https://<domain>` is a URL of your PPAS instance (e.g. `https://example.piwik.pro`) and our goal
+is to perform basic operations on a user. We will:
+* invite a user
+* get created user
+* change user language
+* delete the user
 
 #### Generate your access token
 
@@ -91,28 +93,24 @@ Response example:
 ```
 
 Field `access_token` contains your token which then will be used for all API calls.
-Once you generated an access token, you can use it during its lifetime (30 minutes by default)
+Once you generated an access token, you can use it during its lifetime (30 minutes)
 
-#### Create an app
+#### Invite a user
 
 Request example:
 
 ```
-POST /api/apps/v2
+POST /api/users/v2
 ```
 
 ```
-curl -X POST 'https://<domain>/api/apps/v2' -H "Authorization: Bearer <your_access_token>" -H "Content-Type: application/vnd.api+json" --data '{
+curl -X POST 'https://<domain>/api/users/v2' -H "Authorization: Bearer <your_access_token>" -H "Content-Type: application/vnd.api+json" --data '{
   "data": {
+    "type": "ppms/user",
     "attributes": {
-      "timezone": "UTC",
-      "name": "AppName",
-      "urls": [
-        "http://example.com"
-      ],
-      "currency": "USD"
-    },
-    "type": "ppms/app"
+      "email": "user@example.com",
+      "language": "en-US"
+    }
   }
 }'
 
@@ -125,171 +123,94 @@ Note, that you have to replace:
 Response example:
 ```
 {
-   "data":{
-      "type":"ppms/app",
-      "id":"b30e538d-4b05-4a75-ae25-7eb565901f38",
-      "attributes":{
-         "name":"AppName",
-         "addedAt":"2018-09-13T12:16:30+00:00",
-         "urls":[
-            "http://example.com"
-         ],
-         "timezone":"UTC",
-         "currency":"USD",
-         "excludeUnknownUrls":false,
-         "keepUrlFragment":true,
-         "eCommerceTracking":false,
-         "siteSearchTracking":true,
-         "siteSearchQueryParams":[
-            "q",
-            "query",
-            "s",
-            "search",
-            "searchword",
-            "keyword"
-         ],
-         "siteSearchCategoryParams":[
-
-         ],
-         "delay":500,
-         "excludedIps":[
-
-         ],
-         "excludedUrlParams":[
-
-         ],
-         "excludedUserAgents":[
-
-         ],
-         "gdpr":true,
-         "gdprUserModeEnabled":false,
-         "privacyCookieDomainsEnabled":false,
-         "privacyCookieExpirationPeriod":31536000,
-         "privacyCookieDomains":[
-
-         ],
-         "organization":"default",
-         "appType":"web",
-         "gdprLocationRecognition":false
-      }
-   }
+  "data": {
+    "id": "b30e538d-4b05-4a75-ae25-7eb565901f38",
+    "type": "ppms/user",
+    "attributes": {
+      "email": "user@example.com",
+      "role": "USER",
+      "addedAt": "2021-08-02T12:16:30+00:00",
+      "language": "en-US"
+    }
+  }
 }
-
 ```
-#### Get an app
+#### Get a user
 
-Now, when app is added, it is possible to get it.
+Now, when a user is invited, it is possible to get it.
 
 Request example:
 ```
-GET /api/apps/v2/<app_id>
+GET /api/users/v2/<user_id>
 ```
 
 ```
-curl 'https://<domain>/api/apps/v2/b30e538d-4b05-4a75-ae25-7eb565901f38' -H "Authorization: Bearer <your_access_token>" -H "Content-Type: application/vnd.api+json"
+curl 'https://<domain>/api/users/v2/b30e538d-4b05-4a75-ae25-7eb565901f38' -H "Authorization: Bearer <your_access_token>" -H "Content-Type: application/vnd.api+json"
 ```
 
 
->Notice: URL contains `b30e538d-4b05-4a75-ae25-7eb565901f38`. What is it? It is unique ID of an app.
+>Notice: URL contains `b30e538d-4b05-4a75-ae25-7eb565901f38`. What is it? It is a unique ID of a user.
 If you want to update given resource you must specify which one. How to obtain this ID?
-You can obtain ID from response's 'data/id' field when you added an app
+You can obtain ID from response's 'data/id' field when you added a user
 
 Response example:
 ```
 {
-   "data":{
-      "type":"ppms/app",
-      "id":"b30e538d-4b05-4a75-ae25-7eb565901f38",
-      "attributes":{
-         "name":"AppName",
-         "addedAt":"2018-09-13T12:16:30+00:00",
-         "urls":[
-            "http://example.com"
-         ],
-         "timezone":"UTC",
-         "currency":"USD",
-         "excludeUnknownUrls":false,
-         "keepUrlFragment":true,
-         "eCommerceTracking":false,
-         "siteSearchTracking":true,
-         "siteSearchQueryParams":[
-            "q",
-            "query",
-            "s",
-            "search",
-            "searchword",
-            "keyword"
-         ],
-         "siteSearchCategoryParams":[
-
-         ],
-         "delay":500,
-         "excludedIps":[
-
-         ],
-         "excludedUrlParams":[
-
-         ],
-         "excludedUserAgents":[
-
-         ],
-         "gdpr":true,
-         "gdprUserModeEnabled":false,
-         "privacyCookieDomainsEnabled":false,
-         "privacyCookieExpirationPeriod":31536000,
-         "privacyCookieDomains":[
-
-         ],
-         "organization":"default",
-         "appType":"web",
-         "gdprLocationRecognition":false
-      }
-   }
+  "data": {
+    "id": "b30e538d-4b05-4a75-ae25-7eb565901f38",
+    "type": "ppms/user",
+    "attributes": {
+      "email": "user@example.com",
+      "role": "USER",
+      "addedAt": "2021-08-02T12:16:30+00:00",
+      "language": "en-US"
+    }
+  }
 }
 ```
 
-#### Update app
+#### Change user language
 
-Consider you added app, but afterwards you want to change its name.
+Consider you added a user, but afterwards you want to change its language.
 
 Request example:
 ```
-PATCH /api/apps/v2/<app_id>
+PATCH /api/users/v2/<user_id>
 ```
 
 ```
-curl -X PATCH 'https://<domain>/api/apps/v2/b30e538d-4b05-4a75-ae25-7eb565901f38' -H "Authorization: Bearer <your_access_token>" -H "Content-Type: application/vnd.api+json" -v --data '{
+curl -X PATCH 'https://<domain>/api/users/v2/b30e538d-4b05-4a75-ae25-7eb565901f38' -H "Authorization: Bearer <your_access_token>" -H "Content-Type: application/vnd.api+json" -v --data '{
   "data": {
+    "type": "ppms/user",
+    "id": "b30e538d-4b05-4a75-ae25-7eb565901f38",
     "attributes": {
-      "name": "NewAppName"
-    },
-    "type": "ppms/app",
-    "id": "b30e538d-4b05-4a75-ae25-7eb565901f38"
+      "language": "de-DE"
+    }
   }
 }'
 ```
 
-This request changed app name from `AppName` to `NewAppName`.
+This request changed user language name from `en-US` to `de-DE`.
 > Notice three things:
 > * `-X PATCH` before URL. It means that this request is available using `HTTP PATCH method`
 > * you have to specify also `data/id` - it's a [JSON API](http://jsonapi.org/) requirement
-> * also `data/type` is required. For example, when you want to work with app resource, specify it's type as `ppms/app`
-> * you can set only parameters you want to update. For more apps attributes go to [App edit reference](https://developers.piwik.pro/en/latest/platform/authorized_api/apps/apps_api.html#operation/api_app_edit_v2)
+> * also `data/type` is required. For example, when you want to work with user resource, specify it's type as `ppms/user`
+> * you can set only parameters you want to update. For more users attributes go to [User edit reference](https://developers.piwik.pro/en/latest/platform/authorized_api/users/users_api.html#operation/api_user_edit_v2)
 
 API will return `204 No Content` status code with an empty response.
 
-#### Delete an app
+#### Delete a user
 
 Sometimes resources are not needed anymore, so let's have a look at example on how to delete them.
 
 Request example:
 
 ```
-DELETE /api/apps/v2/<app_id>
+DELETE /api/users/v2/<user_id>
 ```
 
 ```
-curl -X DELETE 'https://<domain>/api/apps/v2/b30e538d-4b05-4a75-ae25-7eb565901f38' -H "Authorization: Bearer <your_access_token>" -H "Content-Type: application/vnd.api+json"
+curl -X DELETE 'https://<domain>/api/users/v2/b30e538d-4b05-4a75-ae25-7eb565901f38' -H "Authorization: Bearer <your_access_token>" -H "Content-Type: application/vnd.api+json"
 ```
 
 There is no response example. API will return `204 No Content` status code.
@@ -301,7 +222,10 @@ PPAS allows you to export swagger documentation and easily import it to Postman.
 Depending of what you want to work with, you can import given swagger docs:
 * <a href="../_static/api/platform_access_control_authorized_api.json" target="_blank">Access control</a>
 * <a href="../_static/api/platform_apps_authorized_api.json" target="_blank">Apps</a>
+* <a href="../_static/api/platform_audit_log_authorized_api.json" target="_blank">Audit Log</a>
 * <a href="../_static/api/platform_meta_sites_authorized_api.json" target="_blank">Meta Sites</a>
+* <a href="../_static/api/platform_modules_authorized_api.json" target="_blank">Modules</a>
+* <a href="../_static/api/platform_tracker_settings_authorized_api.json" target="_blank">Tracker Settings</a>
 * <a href="../_static/api/platform_users_authorized_api.json" target="_blank">Users</a>
 * <a href="../_static/api/platform_user_groups_authorized_api.json" target="_blank">User Groups</a>
 
@@ -315,25 +239,25 @@ You have to override two things:
 
 Here you can find the most common issues encountered during work with the API
 
-### API returns `"application/json" is not a valid JSON API Content-Type header, use "application/vnd.api+json" instead"`
+#### API returns `"application/json" is not a valid JSON API Content-Type header, use "application/vnd.api+json" instead"`
 
 Remember, all API calls needs to be created with `Content-Type: application/vnd.api+json` header.
 If you use `curl` you need to use `-H "Content-Type: application/vnd.api+json"` flag.
 Postman allows configuring headers with `Header` tab.
 
-### API returns `JWT not found`
+#### API returns `JWT not found`
 
 Remember, you need to always use your API token. You need to send it all the time within `Authorization: Bearer <your_access_token>` header.
 If you use `curl` you need to use `-H "Authorization: Bearer <your_access_token>"` flag.
 Postman allows configuring tokens in authorization tab. Choose type `Bearer Token` and paste it there.
 Remember to keep this token secure as it allows access to sensitive data!
 
-### API returns `Expired JWT Token`
+#### API returns `Expired JWT Token`
 
 Every token that you generated is specified by TTL - time to live. By default it's 30 minutes.
 After token is expired, you need to [generate your access token](#generate-your-access-token)
 
-### API returns `access token not authorized`
+#### API returns `access token not authorized`
 
 This message means, that you sent access token within proper `Authorization: Bearer` field, although it is invalid.
 Make sure you set proper token.
