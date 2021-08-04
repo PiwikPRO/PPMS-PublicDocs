@@ -17,14 +17,12 @@
     if(typeof window.detectionOfStuff !== 'undefined' && typeof unicornDetector !== 'undefined') {
         window.unicornDetector.onDetected(detectedUnicorn);
     }
-    if(document.querySelector('#welcome-to-the-piwik-pro-documentation-for-developers')) {
-        let footer = document.querySelector('.rst-footer-buttons');
-        let anchor = document.querySelector('#welcome-to-the-piwik-pro-documentation-for-developers .headerlink');
-        if(footer){
-            footer.style.display = 'none';
-        }
-        if (anchor) {
-            anchor.style.display = 'none';
-        }
+    console.warn(document.querySelectorAll('#redoc-container [role=navigation]'))
+    window.prepareRedocMenu = function () {
+        let redocmenu = document.querySelector('#redoc-container [role=navigation]');
+        let prependMenu = document.querySelector('.toctree-l2.current');
+        let prependMenuexpand = document.querySelector('.toctree-l2.current a');
+        prependMenuexpand.innerHTML = '<span class="toctree-expand"> </span>' + prependMenuexpand.innerHTML;
+        prependMenu.appendChild(redocmenu);
     }
 })();

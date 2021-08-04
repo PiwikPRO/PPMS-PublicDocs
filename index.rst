@@ -29,6 +29,24 @@ Welcome to the Piwik PRO documentation for developers!
 
 .. raw:: html
 
+    <script>
+        if(document.querySelector('#welcome-to-the-piwik-pro-documentation-for-developers')) {
+            let footer = document.querySelector('.rst-footer-buttons');
+            let anchor = document.querySelector('#welcome-to-the-piwik-pro-documentation-for-developers .headerlink');
+            if(footer){
+                footer.style.display = 'none';
+            }
+            if (anchor) {
+                anchor.style.display = 'none';
+            }
+            let menuBar = document.querySelector('.wy-nav-side');
+            let content = document.querySelector('.wy-nav-content-wrap');
+            if(menuBar) {
+                menuBar.style.display = 'none';
+                content.style.marginLeft = '0';
+            }
+        }
+    </script>
     <div class="main-subheader">
         Getting started
     </div>
