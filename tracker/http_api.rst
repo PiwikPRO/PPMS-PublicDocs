@@ -10,5 +10,10 @@ Tracking HTTP API allows sending to analytics information about Visitors page vi
 
 .. raw:: html
 
-    <redoc spec-url="../_static/api/tracker_tracking_api.json" expand-responses="" sticky-sidebar="">
-    </redoc>
+    <div id='redoc-container'>
+    </div>
+    <script>
+        (function() {
+            Redoc.init('../_static/api/tracker_tracking_api.json', {}, document.getElementById('redoc-container'), () => {window.prepareRedocMenu()});
+        })();
+    </script>

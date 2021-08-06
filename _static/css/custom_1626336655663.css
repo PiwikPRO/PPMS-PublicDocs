@@ -1,90 +1,75 @@
 @font-face {
-    font-family: 'Museo Sans 300';
-    src: url('../font/MuseoSans-300Italic.woff2') format('woff2'),
-    url('../font/MuseoSans-300Italic.woff') format('woff');
-    font-weight: 300;
-    font-style: italic;
+    font-family: 'Inter';
+    font-style:  normal;
+    font-weight: 100;
+    src: url("../font/Inter-Thin.ttf") format("truetype");
 }
 
 @font-face {
-    font-family: 'Museo Sans 900';
-    src: url('../font/MuseoSans-900Italic.woff2') format('woff2'),
-    url('../font/MuseoSans-900Italic.woff') format('woff');
-    font-weight: bold;
-    font-style: italic;
-}
-
-@font-face {
-    font-family: 'Museo Sans 500';
-    src: url('../font/MuseoSans-500Italic.woff2') format('woff2'),
-    url('../font/MuseoSans-500Italic.woff') format('woff');
-    font-weight: normal;
-    font-style: italic;
-}
-
-@font-face {
-    font-family: 'Museo Sans 500';
-    src: url('../font/MuseoSans-500.woff2') format('woff2'),
-    url('../font/MuseoSans-500.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'Museo Sans 900';
-    src: url('../font/MuseoSans-900.woff2') format('woff2'),
-    url('../font/MuseoSans-900.woff') format('woff');
-    font-weight: bold;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'Museo Sans 300';
-    src: url('../font/MuseoSans-300.woff2') format('woff2'),
-    url('../font/MuseoSans-300.woff') format('woff');
-    font-weight: 300;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'Museo Sans 100';
-    src: url('../font/MuseoSans-100.woff2') format('woff2'),
-    url('../font/MuseoSans-100.woff') format('woff');
+    font-family: 'Inter';
+    font-style:  normal;
     font-weight: 200;
-    font-style: normal;
+    src: url("../font/Inter-ExtraLight.ttf") format("truetype");
 }
 
 @font-face {
-    font-family: 'Museo Sans 700';
-    src: url('../font/MuseoSans-700.woff2') format('woff2'),
-    url('../font/MuseoSans-700.woff') format('woff');
+    font-family: 'Inter';
+    font-style:  normal;
+    font-weight: 300;
+    src: url("../font/Inter-Light.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: 'Inter';
+    font-style:  normal;
+    font-weight: 400;
+    src: url("../font/Inter-Regular.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: 'Inter';
+    font-style:  normal;
+    font-weight: 500;
+    src: url("../font/Inter-Medium.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: 'Inter';
+    font-style:  normal;
     font-weight: 600;
-    font-style: normal;
+    src: url("../font/Inter-SemiBold.ttf") format("truetype");
 }
 
 @font-face {
-    font-family: 'Museo Sans 700';
-    src: url('../font/MuseoSans-700Italic.woff2') format('woff2'),
-    url('../font/MuseoSans-700Italic.woff') format('woff');
-    font-weight: 600;
-    font-style: italic;
+    font-family: 'Inter';
+    font-style:  normal;
+    font-weight: 700;
+    src: url("../font/Inter-Bold.ttf") format("truetype");
 }
 
 @font-face {
-    font-family: 'Museo Sans 100';
-    src: url('../font/MuseoSans-100Italic.woff2') format('woff2'),
-    url('../font/MuseoSans-100Italic.woff') format('woff');
-    font-weight: 200;
-    font-style: italic;
+    font-family: 'Inter';
+    font-style:  normal;
+    font-weight: 800;
+    src: url("../font/Inter-ExtraBold.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: 'Inter';
+    font-style:  normal;
+    font-weight: 900;
+    src: url("../font/Inter-Black.ttf") format("truetype");
 }
 
 h1 {
-    font-family: "Museo Sans 500";
-    font-size: 38px;
+    font-family: "Inter";
+    font-weight: 800;
+    font-size: 36px;
 }
 
 .rst-content .toctree-wrapper p.caption, body, h2, h3, h4, h5, h6, legend {
-    font-family: "Museo Sans 300" !important;
+    font-family: "Inter" !important;
+    font-weight: 300;
 }
 
 h2 {
@@ -100,7 +85,7 @@ h4 {
 }
 
 p {
-    font-size: 16px;
+    font-size: 14px;
 }
 
 .rst-content dl:not(.docutils) dt {
@@ -143,6 +128,7 @@ div .rst-other-versions a, div .rst-other-versions a:hover, div .rst-other-versi
 
 .wy-nav-side {
     background-color: #F2F4F8;
+    width: 280px;
 }
 
 .wy-menu-vertical a:hover {
@@ -158,11 +144,11 @@ dl.post, dl.patch, dl.delete, dl.get, dl.put {
 }
 
 .wy-nav-content a {
-    color: #0660f3;
+    color: #006bd6;
 }
 
 .wy-nav-content a:hover, .wy-nav-content a:visited {
-    color: #094bb3;
+    color: #006bd6;
 }
 
 a.icon.icon-home {
@@ -170,7 +156,7 @@ a.icon.icon-home {
 }
 
 .redoc-wrap {
-    background-color: #fafafa;
+    background-color: #ffffff;
 }
 
 redoc .background {
@@ -216,16 +202,16 @@ ul.react-tabs__tab-list {
 }
 
 
-redoc table {
+#redoc-container table {
 	table-layout: fixed;
 }
 
-redoc td {
+#redoc-container td {
     overflow-wrap: break-word;
     white-space: normal !important;
 }
 
-redoc .param-name {
+#redoc-container .param-name {
     overflow-wrap: break-word;
     white-space: normal !important;
 }
@@ -234,19 +220,202 @@ body {
     overflow-x: initial !important;
 }
 
-redoc .redoc-json code {
+#redoc-container .redoc-json code {
     border: none !important;
     background: none !important;
 }
 
-redoc .redoc-json .token.punctuation {
+#redoc-container .redoc-json .token.punctuation {
     color: white !important;
 }
 
-redoc .redoc-json .collapser {
+#redoc-container .redoc-json .collapser {
     color: white !important;
 }
 
+#redoc-container .api-info h1, #redoc-container [data-section-id^="tag"] h1 {
+    font-size: 22px;
+    font-weight: 800;
+    color: #0C0F12 !important;
+}
+
+#redoc-container [data-section-id^="tag"] h2, #redoc-container [data-section-id^="tag"] h4 {
+    font-size: 20px;
+    font-weight: 800;
+    color: #0C0F12 !important;
+    margin-bottom: 8px;
+}
+
+#redoc-container [data-section-id^="tag"] p {
+    margin-bottom: 16px;
+}
+
+#redoc-container [data-section-id^="tag"] .sc-jlyJG.evvbxn p {
+    margin-bottom: 0;
+}
+
+#redoc-container [data-section-id^="tag"] {
+    padding: 0 !important;
+}
+
+#redoc-container .dluJDj {
+    padding: 0 0 20px 0;
+}
+
+#redoc-container .cjtbAK {
+    padding: 0 20px 0 0;
+}
+
+#redoc-container [data-section-id*="/paths/"] + [data-section-id*="/paths/"] {
+    padding-top: 20px !important;
+}
+
+#redoc-container [data-section-id*="/paths/"] + [data-section-id^="tag"] {
+    padding-top: 20px !important;
+}
+
+#redoc-container [data-section-id*="/paths/"] {
+    padding-bottom: 20px !important;
+}
+
+#redoc-container h5 {
+    box-sizing: border-box;
+    border: 1px solid #D5D9E0;
+    background-color: #FFFFFF;
+    padding: 16PX;
+}
+
+#redoc-container .dtUibw, #redoc-container .fLUKgj {
+    background: #373D42;
+}
+
+#redoc-container span[type="post"], #redoc-container span[type="get"], #redoc-container span[type="patch"], #redoc-container span[type="delete"] {
+    border-radius: 1px;
+    font-weight: bold;
+}
+
+#redoc-container span[type="post"] {
+    background-color: #0D95FD;
+}
+
+#redoc-container span[type="get"] {
+    background-color: #66BB6A;
+}
+
+#redoc-container span[type="patch"] {
+    background-color: #FFA400;
+}
+
+#redoc-container span[type="delete"] {
+    background-color: #F44336;
+}
+
+#redoc-container .dpMbau {
+    position: initial;
+    padding-bottom: 12px;
+}
+
+#redoc-container .react-tabs__tab-panel > div {
+    padding: 16px;
+}
+
+#redoc-container .sc-EHOje.sc-bZQynM.dtUibw {
+    padding: 0 16px;
+}
+
+#redoc-container .sc-brqgnP.fCJmC {
+    opacity: 1;
+}
+
+#redoc-container .sc-EHOje.sc-bZQynM.dtUibw h3{
+    color: #FFFFFF;
+    font-family: Inter;
+    font-size: 18px;
+    font-weight: 800;
+    margin: 16px 0;
+}
+
+#redoc-container .hiuczA:not(:last-of-type)::after {
+    width: 59%;
+}
+
+thead  {
+    background-color: #D5D9E0;
+    box-shadow: inset 0 -1px 0 0 #B9BFC7, inset -1px 0 0 0 #B9BFC7;
+}
+
+.row-even, .row-even {
+    box-shadow: inset 0 -1px 0 0 #D5D9E0, inset 1px 0 0 0 #D5D9E0, inset -1px 0 0 0 #D5D9E0;
+}
+
+.row-even td{
+    background-color: #FFFFFF;
+}
+
+.row-odd td{
+    background-color: #F2F4F8;
+}
+
+.admonition.note {
+    background-color: #E2F2FD;
+    border-top: 2px solid #006BD6;
+    border-bottom: 2px solid #006BD6;
+}
+
+.admonition.warning {
+    background-color: #FFFBEB;
+    border-top: 2px solid #ED8E00;
+    border-bottom: 2px solid #ED8E00;
+}
+
+.note .first.admonition-title {
+    background-color: #006BD6 !important;
+}
+
+.warning .first.admonition-title {
+    background-color: #ED8E00 !important;
+}
+
+.last {
+    top: -4px;
+    position: relative;
+}
+
+.first.admonition-title {
+    display: inline-block;
+    top: -14px;
+    position: relative;
+    font-size: 12px;
+    font-weight: 800;
+    margin-bottom: -5px !important;
+}
+
+.first.admonition-title:before {
+    display: none;
+}
+
+.rst-content tt.literal, .rst-content tt.literal, .rst-content code.literal{
+    color: #D2302F;
+    border: 1px solid #D5D9E0;
+    border-radius: 2px;
+    background-color: #F2F4F8;
+}
+
+.rst-content dl:not(.docutils) dt{
+    border: 1px solid #0D95FD;
+    border-left: 4px solid #0D95FD;
+    background-color: #FFFFFF;
+}
+
+.rst-content dl:not(.docutils) dl dt {
+    border: 1px solid #D5D9E0;
+    border-left: 4px solid #D5D9E0;
+    background-color: #FFFFFF;
+}
+
+.codeblock, pre.literal-block, .rst-content .literal-block, .rst-content pre.literal-block, div[class^='highlight'] {
+    border: 1px solid #D5D9E0;
+}
 .wy-nav-content-wrap .unicorn-found {
     background: #FFD000;
     text-align: center;
@@ -535,7 +704,7 @@ redoc .redoc-json .collapser {
 
 .main-subheader{
     color: #404040;
-    font-family: "Museo Sans 500";
+    font-family: "Inter";
     font-size: 24px;
     font-weight: bold;
     letter-spacing: -0.11px;
@@ -545,7 +714,7 @@ redoc .redoc-json .collapser {
 
 .started-block-text {
     color: #131313;
-    font-family: "Museo Sans 500";
+    font-family: "Inter";
     font-size: 18px;
     font-weight: bold;
     letter-spacing: -0.14px;
@@ -633,7 +802,7 @@ redoc .redoc-json .collapser {
 
 .popular-links-header {
     color: #131313;
-    font-family: "Museo Sans 500";
+    font-family: "Inter";
     font-size: 18px;
     font-weight: bold;
     letter-spacing: -0.14px;
@@ -713,7 +882,7 @@ a.link-large {
 }
 
 .topbar-menu a.current {
-    border-bottom: 3px solid #0D95FD;
+    border-bottom: 3px solid #006bd6;
 }
 
 .wy-nav-side {
@@ -729,12 +898,19 @@ div[role="navigation"] hr {
 }
 
 .wy-breadcrumbs {
+    font-family: "Inter";
     padding-top: 14px;
     padding-bottom: 13px;
     font-size: 14px;
+    font-weight: 500;
+}
+
+.bread-crumb-el {
+    font-weight: bold;
 }
 
 .logo-ctn {
+    font-family: "Inter";
     padding: 24px;
     background-color: #000000;
     box-shadow: inset 0 1px 0 0 #333333;
@@ -752,7 +928,7 @@ div[role="navigation"] hr {
 
 .wy-side-scroll {
     border: 1px solid #D5D9E0;
-    width: 300px;
+    width: 280px;
     overflow-y: auto;
 }
 
@@ -784,6 +960,7 @@ div[role="main"] {
 }
 
 footer {
+    font-family: "Inter";
     padding-bottom: 24px;
 }
 
@@ -797,6 +974,28 @@ footer {
 
 #redoc-container .sc-iuJeZd.fLUKgj {
     width: calc(100% * 0.4);
+}
+
+#redoc-container .api-info > p {
+    box-sizing: border-box;
+    border: 1px solid #D5D9E0;
+    background-color: #F2F4F8;
+    padding: 8px 16px 8px 16px;
+    display: inline-block;
+}
+
+#redoc-container .api-info > p a {
+    box-sizing: border-box;
+    border: 1px solid #B9BFC7;
+    border-radius: 1px;
+    background-color: #FFFFFF;
+    box-shadow: 0 1px 1px 0 rgba(0,0,0,0.2);
+    color: #0C0F12;
+    font-weight: bold;
+}
+
+#redoc-container .kGwPhO {
+    border-bottom: 1px solid #D5D9E0;
 }
 
 .sc-bwCtUz {
@@ -829,4 +1028,18 @@ footer {
     font-weight: bold;
     background: #c9c9c9;
     color: black;
+}
+
+#glossary {
+    max-width: 1200px;
+    margin: auto;
+}
+
+#welcome-to-the-piwik-pro-documentation-for-developers {
+    max-width: 1200px;
+    margin: auto;
+}
+
+.rst-content dl dd {
+    margin: 0 0 12px 0;
 }

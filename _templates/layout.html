@@ -5,10 +5,12 @@
 {% endblock %}
 {% block extrabody %}
 {{ super() }}
-<div class="logo-ctn">
-    <img src="/_static/images/pp-logo_white.svg" height="20px"/>
-    <span class="logo-txt">Developers portal</span>
-</div>
+<a href="/">
+    <div class="logo-ctn">
+        <img src="/_static/images/pp-logo_white.svg" height="20px"/>
+        <span class="logo-txt">Developers portal</span>
+    </div>
+</a>
 {% endblock %}
 {% block footer %}
 {{ super() }}
@@ -17,11 +19,29 @@
     let menuBar = document.querySelectorAll('nav.wy-nav-side .wy-menu.wy-menu-vertical > ul > li > a');
     let content = document.querySelector('.wy-grid-for-nav');
     if(menuBar) {
-        let menuBarArr = Array.from(menuBar);
         let newMenu = document.createElement('div');
         newMenu.className = 'topbar-menu';
         menuBar.forEach(value => newMenu.appendChild(value))
         content.parentElement.insertBefore(newMenu, content)
+    }
+    let menuArray = [
+        'custom_reports',
+        'analytics',
+        'tracker',
+        'audience_manager',
+        'consent_manager',
+        'tag_manager',
+        'platform',
+        'integrations',
+    ];
+    let linkIndex = menuArray.indexOf(window.location.pathname.split('/')[1]);
+    let activeMenu = document.querySelectorAll('.topbar-menu a')[linkIndex];
+    if(activeMenu) {
+        activeMenu.classList.add('active', 'current');
+    }
+    let breadCrumbs = document.querySelector('.wy-breadcrumbs');
+    if(breadCrumbs) {
+        breadCrumbs.innerHTML = breadCrumbs.innerHTML.replaceAll(' »', '<span class="bread-crumb-el">→</span>');
     }
 </script>
 <!-- Start Piwik PRO Tag Manager code --><script type="text/javascript">
