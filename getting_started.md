@@ -1,5 +1,5 @@
-Authorized API guide
-====================
+Getting started
+===============
 
 ## Introduction
 This page describes how to access Piwik PRO API which uses
@@ -30,7 +30,7 @@ communication with API.
 
 Piwik PRO API tokens use [JWT](https://jwt.io/) format.
 
-Make POST call to `https://<domain>/auth/token` where  with header `Content-Type: application/json` and payload:
+Make POST call to `https://<domain>/auth/token` with header `Content-Type: application/json` and payload:
 `{ "grant_type": "client_credentials", "client_id": "<client_id>", "client_secret": "<client_secret>" }`.
 
 If you are [core plan](https://stage.piwik.pro/core-plan/) user as `<domain>` use your Account Name + `.piwik.pro`.
@@ -220,14 +220,14 @@ There is no response example. API will return `204 No Content` status code.
 [Postman](https://www.getpostman.com/) is a multiplatform GUI application for creating API calls.
 PPAS allows you to export swagger documentation and easily import it to Postman.
 Depending of what you want to work with, you can import given swagger docs:
-* <a href="../_static/api/platform_access_control_authorized_api.json" target="_blank">Access control</a>
-* <a href="../_static/api/platform_apps_authorized_api.json" target="_blank">Apps</a>
-* <a href="../_static/api/platform_audit_log_authorized_api.json" target="_blank">Audit Log</a>
-* <a href="../_static/api/platform_meta_sites_authorized_api.json" target="_blank">Meta Sites</a>
-* <a href="../_static/api/platform_modules_authorized_api.json" target="_blank">Modules</a>
-* <a href="../_static/api/platform_tracker_settings_authorized_api.json" target="_blank">Tracker Settings</a>
-* <a href="../_static/api/platform_users_authorized_api.json" target="_blank">Users</a>
-* <a href="../_static/api/platform_user_groups_authorized_api.json" target="_blank">User Groups</a>
+* <a href="_static/api/platform_access_control_authorized_api.json" target="_blank">Access control</a>
+* <a href="_static/api/platform_apps_authorized_api.json" target="_blank">Apps</a>
+* <a href="_static/api/platform_audit_log_authorized_api.json" target="_blank">Audit Log</a>
+* <a href="_static/api/platform_meta_sites_authorized_api.json" target="_blank">Meta Sites</a>
+* <a href="_static/api/platform_modules_authorized_api.json" target="_blank">Modules</a>
+* <a href="_static/api/platform_tracker_settings_authorized_api.json" target="_blank">Tracker Settings</a>
+* <a href="_static/api/platform_users_authorized_api.json" target="_blank">Users</a>
+* <a href="_static/api/platform_user_groups_authorized_api.json" target="_blank">User Groups</a>
 
 Simply click in Postman: `import -> Import From Link`. Then all of your paths are imported!
 You have to override two things:

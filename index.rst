@@ -17,6 +17,7 @@ Welcome to the Piwik PRO documentation for developers!
 .. toctree::
    :maxdepth: 1
 
+   getting_started
    custom_reports/index
    analytics/index
    tracker/index
