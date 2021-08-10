@@ -39,7 +39,7 @@ Welcome to the Piwik PRO documentation for developers!
                     <img src="_static/images/setup-tracking.svg" />
                 </div>
                 <div class="started-block-text">
-                    Setup tracking
+                    Set up tracking
                 </div>
             </div>
         </a>
