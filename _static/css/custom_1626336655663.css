@@ -73,15 +73,28 @@ h1 {
 }
 
 h2 {
-    font-size: 32px;
+    font-size: 22px;
+    font-weight: 800;
 }
 
 h3 {
-    font-size: 24px;
+    font-size: 18px;
+    font-weight: 800;
 }
 
 h4 {
-    font-size: 20px;
+    font-size: 16px;
+    font-weight: 800;
+}
+
+h5 {
+    font-size: 14px;
+    font-weight: 800;
+}
+
+h6 {
+    font-size: 14px;
+    font-weight: 800;
 }
 
 p {
