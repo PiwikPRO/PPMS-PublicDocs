@@ -15,7 +15,7 @@ Welcome to the Piwik PRO documentation for developers!
 	:google-site-verification: MbvqEqLW68SvZYkp04VIPXk85GYi1xlMmZimeIePJv8
 
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 2
 
    custom_reports/index
    analytics/index
@@ -54,17 +54,17 @@ Welcome to the Piwik PRO documentation for developers!
         <a href="https://help.piwik.pro/support/getting-started/#install-a-container" target="_blank" class="started-block">
             <div>
                 <div class="started-block-icon">
-                    <img src="_static/images/setup-tracking.svg" />
+                    <img src="_static/images/setup.png" />
                 </div>
                 <div class="started-block-text">
-                    Setup tracking
+                    Set up tracking
                 </div>
             </div>
         </a>
         <a href="https://help.piwik.pro/support/account/#users-and-groups" target="_blank" class="started-block">
             <div>
                 <div class="started-block-icon">
-                    <img src="_static/images/user-and-groups.svg" />
+                    <img src="_static/images/users.png" />
                 </div>
                 <div class="started-block-text">
                     Users
@@ -74,7 +74,7 @@ Welcome to the Piwik PRO documentation for developers!
         <a href="https://help.piwik.pro/support/account/#security" target="_blank" class="started-block">
             <div>
                 <div class="started-block-icon">
-                    <img src="_static/images/security.svg" />
+                    <img src="_static/images/security.png" />
                 </div>
                 <div class="started-block-text">
                     Security
@@ -84,7 +84,7 @@ Welcome to the Piwik PRO documentation for developers!
         <a href="https://help.piwik.pro/support/privacy/#data-and-cookies" target="_blank" class="started-block">
             <div>
                 <div class="started-block-icon">
-                    <img src="_static/images/data-and-cookies.svg" />
+                    <img src="_static/images/cookies.png" />
                 </div>
                 <div class="started-block-text">
                     Data and cookies

@@ -2,7 +2,7 @@ Tracker
 =======
 
 .. toctree::
-    :maxdepth: 2
+    :maxdepth: 4
 
     reserved_names
     js_tracking_api

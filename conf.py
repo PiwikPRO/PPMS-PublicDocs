@@ -229,7 +229,8 @@ html_theme = "sphinx_rtd_theme"
 
 
 html_theme_options = {
-    'includehidden': False
+    'includehidden': False,
+    'navigation_depth': 4,
 }
 
 def setup(app):

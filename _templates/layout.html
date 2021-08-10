@@ -5,16 +5,24 @@
 {% endblock %}
 {% block extrabody %}
 {{ super() }}
-<a href="/">
     <div class="logo-ctn">
-        <img src="/_static/images/pp-logo_white.svg" height="20px"/>
-        <span class="logo-txt">Developers portal</span>
+        <a href="/">
+            <img src="/_static/images/pp-logo_white.svg" height="20px"/>
+            <span class="logo-txt">Developers portal</span>
+        </a>
+        <div class="search-form">
+            <form id="rtd-search-form-2" class="wy-form" action="../search.html" method="get" _lpchecked="1">
+                <div class="search-input">
+                    <input type="text" name="q" placeholder="Search" autocomplete="off">
+                </div>
+                <input type="hidden" name="check_keywords" value="yes">
+                <input type="hidden" name="area" value="default">
+            </form>
+        </div>
     </div>
-</a>
 {% endblock %}
 {% block footer %}
 {{ super() }}
-<div>test</div>
 <script>
     let menuBar = document.querySelectorAll('nav.wy-nav-side .wy-menu.wy-menu-vertical > ul > li > a');
     let content = document.querySelector('.wy-grid-for-nav');
