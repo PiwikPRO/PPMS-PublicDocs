@@ -1257,14 +1257,22 @@ footer {
     box-shadow: 0 1px 1px 0 rgba(0,0,0,0.2);
 }
 
+.rst-current-version span.fa.fa-book {
+    color: #0C0F12
+}
+
 .rst-other-versions, .rst-current-version, .rst-versions {
-    width: 280px;
-    background: #F2F4F8;
-    color: #0C0F12;
+    width: 278px;
+    background: #F2F4F8 !important;
+    color: #0C0F12 !important;
+}
+
+.rst-versions {
+    border: 1px solid #D5D9E0;
 }
 
 .rst-versions a, .rst-current-version a, .rst-other-versions a {
-    color: #006bd6;
+    color: #006bd6 !important;
 }
 
 .rst-versions .injected dl:nth-child(3), .rst-versions .injected dl:nth-child(4), .rst-versions .injected dl:nth-child(5) {
