@@ -119,7 +119,7 @@ p {
 }
 
 div .rst-other-versions a, div .rst-other-versions a:hover, div .rst-other-versions a:visited {
-    color: #82bcff !important;
+    color: #006bd6 !important;
 }
 
 .wy-side-nav-search {
@@ -1268,7 +1268,7 @@ footer {
 }
 
 .rst-versions {
-    border: 1px solid #D5D9E0;
+    border: 1px solid #B9BFC7;
 }
 
 .rst-versions a, .rst-current-version a, .rst-other-versions a {
