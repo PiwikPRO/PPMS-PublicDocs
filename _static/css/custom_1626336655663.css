@@ -1259,3 +1259,11 @@ footer {
     padding: 16px 16px;
     margin: 0;
 }
+
+.rst-versions {
+    width: 280px;
+}
+
+.rst-versions .injected:nth-child(3), .rst-versions .injected:nth-child(4), .rst-versions .injected:nth-child(5) {
+    display: none;
+}
