@@ -118,15 +118,6 @@ p {
     border-top: none;
 }
 
-.rst-versions .rst-current-version {
-    background-color: #2f394d;
-    color: #82bcff;
-}
-
-.rst-other-versions {
-    background: #1f2633;
-}
-
 div .rst-other-versions a, div .rst-other-versions a:hover, div .rst-other-versions a:visited {
     color: #82bcff !important;
 }
@@ -1266,7 +1257,7 @@ footer {
     box-shadow: 0 1px 1px 0 rgba(0,0,0,0.2);
 }
 
-.rst-versions, .rst-current-version {
+.rst-other-versions, .rst-current-version {
     width: 280px;
     background: #F2F4F8;
     color: #0C0F12;
