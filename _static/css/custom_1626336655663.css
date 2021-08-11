@@ -101,6 +101,14 @@ p {
     font-size: 14px;
 }
 
+.wy-plain-list-disc, .rst-content .section ul, .rst-content .toctree-wrapper ul, article ul, .wy-plain-list-decimal, .rst-content .section ol, .rst-content ol.arabic, article ol {
+    font-size: 14px;
+}
+
+.deprecated .versionmodified {
+    font-size: 14px !important;
+}
+
 .rst-content dl:not(.docutils) dt {
     border-top: none;
     border-left: solid 3px #6ab0de;
@@ -174,10 +182,6 @@ a.icon.icon-home {
 
 redoc .background {
     background-color: #FFFFFF;
-}
-
-.deprecated {
-    color: red;
 }
 
 .deprecated .versionmodified {
@@ -1238,4 +1242,20 @@ footer {
 
 .toctree-l4 {
     padding-left: 16px;
+}
+
+.deprecated {
+    background: #FFECEE;
+    border-top: 2px solid #D32F2F;
+    border-bottom: 2px solid #D32F2F;
+    margin-bottom: 16px;
+}
+
+.deprecated .versionmodified {
+    padding-right: 8px;
+}
+
+.deprecated p {
+    padding: 16px 16px;
+    margin: 0;
 }
