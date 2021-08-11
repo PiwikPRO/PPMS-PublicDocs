@@ -1264,6 +1264,6 @@ footer {
     width: 280px;
 }
 
-.rst-versions .injected:nth-child(3), .rst-versions .injected:nth-child(4), .rst-versions .injected:nth-child(5) {
+.rst-versions .injected dl:nth-child(3), .rst-versions .injected dl:nth-child(4), .rst-versions .injectedd dl:nth-child(5) {
     display: none;
 }
