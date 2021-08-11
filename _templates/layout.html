@@ -42,7 +42,7 @@
         'platform',
         'integrations',
     ];
-    let linkIndex = menuArray.indexOf(window.location.pathname.split('/')[1]);
+    let linkIndex = menuArray.indexOf(window.location.pathname.split('/')[3]);
     let activeMenu = document.querySelectorAll('.topbar-menu a')[linkIndex];
     if(activeMenu) {
         activeMenu.classList.add('active', 'current');

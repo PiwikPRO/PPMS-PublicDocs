@@ -1260,10 +1260,22 @@ footer {
     margin: 0;
 }
 
-.rst-versions {
-    width: 280px;
+.rst-current-version {
+    border-bottom: 1px solid #B9BFC7;
+    background-color: #F2F4F8;
+    box-shadow: 0 1px 1px 0 rgba(0,0,0,0.2);
 }
 
-.rst-versions .injected dl:nth-child(3), .rst-versions .injected dl:nth-child(4), .rst-versions .injectedd dl:nth-child(5) {
+.rst-versions, .rst-current-version {
+    width: 280px;
+    background: #F2F4F8;
+    color: #0C0F12;
+}
+
+.rst-versions a, .rst-current-version a {
+    color: #006bd6;
+}
+
+.rst-versions .injected dl:nth-child(3), .rst-versions .injected dl:nth-child(4), .rst-versions .injected dl:nth-child(5) {
     display: none;
 }
