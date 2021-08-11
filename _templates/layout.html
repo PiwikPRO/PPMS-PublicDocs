@@ -1,17 +1,17 @@
 {% extends "!layout.html" %}
 {% block extrahead %}
 {{ super() }}
-<script src="../_static/js/redoc.2.0.0-rc.23.min.js" />
+<script src="{{ pathto('_static/js/redoc.2.0.0-rc.23.min.js', 1) }}" />
 {% endblock %}
 {% block extrabody %}
 {{ super() }}
     <div class="logo-ctn">
         <a href="/">
-            <img src="../_static/images/pp-logo_white.svg" height="20px"/>
+            <img src="{{ pathto('_static/images/pp-logo_white.svg', 1) }}" height="20px"/>
             <span class="logo-txt">Developers portal</span>
         </a>
         <div class="search-form">
-            <form id="rtd-search-form-2" class="wy-form" action="../search.html" method="get" _lpchecked="1">
+            <form id="rtd-search-form-2" class="wy-form" action="{{ pathto('search') }}" method="get" _lpchecked="1">
                 <div class="search-input">
                     <input type="text" name="q" placeholder="Search" autocomplete="off">
                 </div>
