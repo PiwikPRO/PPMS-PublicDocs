@@ -1257,7 +1257,7 @@ footer {
     box-shadow: 0 1px 1px 0 rgba(0,0,0,0.2);
 }
 
-.rst-current-version span.fa.fa-book {
+.rst-current-version span.fa.fa-book, .fa.fa-caret-down {
     color: #0C0F12
 }
 
@@ -1281,4 +1281,8 @@ footer {
 
 .codeblock div[class^='highlight'], pre.literal-block div[class^='highlight'], .rst-content .literal-block div[class^='highlight'], div[class^='highlight'] div[class^='highlight'] {
     background: #F2F4F8;
+}
+
+body {
+    color: #0C0F12;
 }
