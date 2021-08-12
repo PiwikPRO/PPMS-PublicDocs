@@ -144,7 +144,11 @@ div .rst-other-versions a, div .rst-other-versions a:hover, div .rst-other-versi
 }
 
 .wy-menu-vertical a:hover {
-    background-color: #10131a;
+    background-color: #D5D9E0;
+}
+
+.wy-menu-vertical li.current a:hover {
+    background-color: #D5D9E0;
 }
 
 dl.post, dl.patch, dl.delete, dl.get, dl.put {
@@ -1252,7 +1256,7 @@ footer {
 }
 
 .rst-versions {
-    width: 278px;
+    width: 280px;
 }
 
 .rst-current-version {
