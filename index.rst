@@ -3,8 +3,8 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to the Piwik PRO documentation for developers!
-======================================================
+Developer docs and guides
+=========================
 
 *Version: 15.5 (see* |changelog|_\ *)*
 
@@ -30,9 +30,9 @@ Welcome to the Piwik PRO documentation for developers!
 .. raw:: html
 
     <script>
-        if(document.querySelector('#welcome-to-the-piwik-pro-documentation-for-developers')) {
+        if(document.querySelector('#developer-docs-and-guides')) {
             let footer = document.querySelector('.rst-footer-buttons');
-            let anchor = document.querySelector('#welcome-to-the-piwik-pro-documentation-for-developers .headerlink');
+            let anchor = document.querySelector('#developer-docs-and-guides .headerlink');
             if(footer){
                 footer.style.display = 'none';
             }
