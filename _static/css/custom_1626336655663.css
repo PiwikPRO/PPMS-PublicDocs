@@ -1251,6 +1251,10 @@ footer {
     margin: 0;
 }
 
+.rst-versions {
+    width: 278px;
+}
+
 .rst-current-version {
     border-bottom: 1px solid #B9BFC7;
     background-color: #F2F4F8;
@@ -1267,7 +1271,6 @@ footer {
 }
 
 .rst-other-versions, .rst-current-version, .rst-versions {
-    width: 278px;
     background: #F2F4F8 !important;
     color: #0C0F12 !important;
 }
@@ -1290,4 +1293,8 @@ footer {
 
 body {
     color: #0C0F12;
+}
+
+.wy-menu.wy-menu-vertical code{
+    white-space: break-spaces;
 }
