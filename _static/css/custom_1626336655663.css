@@ -1255,10 +1255,15 @@ footer {
     border-bottom: 1px solid #B9BFC7;
     background-color: #F2F4F8;
     box-shadow: 0 1px 1px 0 rgba(0,0,0,0.2);
+    width: 276px;
+}
+
+.rst-other-versions {
+    width: 276px;
 }
 
 .rst-current-version span.fa.fa-book, .fa.fa-caret-down {
-    color: #0C0F12
+    color: #0C0F12 !important;
 }
 
 .rst-other-versions, .rst-current-version, .rst-versions {
