@@ -1414,3 +1414,10 @@ body {
     }
 
 }
+
+@media screen and (max-width: 400px) {
+    .logo-txt {
+        display: none;
+    }
+
+}
