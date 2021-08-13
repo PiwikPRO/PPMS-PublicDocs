@@ -1404,7 +1404,7 @@ body {
         height: 60px;
     }
 
-    .rst-versions {
+    .rst-versions.show-on-mobile {
         display: initial;
         width: 100%;
     }
