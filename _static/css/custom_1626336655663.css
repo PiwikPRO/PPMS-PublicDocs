@@ -1022,7 +1022,7 @@ div[role="main"] {
 
 footer {
     font-family: "Inter";
-    padding-bottom: 24px;
+    padding-bottom: 38px;
 }
 
 #redoc-container .menu-content {
@@ -1398,7 +1398,7 @@ body {
         width: 100%;
     }
 
-    .mobile-menu-ctn.mobile-enforce {
+    .mobile-menu-ctn {
         display: inline-block;
         width: 100%;
         height: 60px;
