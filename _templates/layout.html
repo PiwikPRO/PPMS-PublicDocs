@@ -77,6 +77,8 @@
     let hamburgerButton = document.querySelector('.hamburger');
     hamburgerButton.onclick = (e) => {
         let sideMenu = document.querySelector('.wy-nav-side');
+        let rtdVersions = document.querySelector('.rst-versions');
+        rtdVersions.classList.toggle('mobile-enforce');
         sideMenu.classList.toggle('mobile-enforce');
         e.target.classList.toggle('close');
     }
