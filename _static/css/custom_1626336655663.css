@@ -1326,7 +1326,8 @@ body {
     font-family: "Inter";
     font-weight: 400;
     font-style: normal;
-    appearance:none;
+    appearance: none;
+    -webkit-appearance: none;
 }
 
 .mobile-menu-ctn {
