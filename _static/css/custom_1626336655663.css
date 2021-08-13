@@ -1302,3 +1302,103 @@ body {
 .wy-menu.wy-menu-vertical code{
     white-space: break-spaces;
 }
+
+.wy-nav-top{
+    display: none;
+}
+
+@media (max-width:973px) {
+    .wy-nav-side {
+        top: 159px;
+    }
+}
+
+.mobile-menu-select {
+    border: 1px solid #B9BFC7;
+    border-radius: 1px;
+    background-color: #F2F4F8;
+    box-shadow: 0 1px 1px 0 rgba(0,0,0,0.2);
+    cursor: pointer;
+    width: calc(100% - 16px);
+    margin: 8px;
+    font-size: 1rem;
+    line-height: 1.5;
+    font-family: "Inter";
+    font-weight: 400;
+    font-style: normal;
+    appearance:none;
+}
+
+.mobile-menu-ctn {
+    border-bottom: 1px solid #D5D9E0;
+    display: none;
+}
+
+.mobile-menu-ctn:after {
+    width: 21px !important;
+    display: inline-block;
+    float: right;
+    content:url("data:image/svg+xml,<svg version='1.1' viewBox='0 0 24 24' x='0' xmlns='http://www.w3.org/2000/svg' y='0'> <polygon points='17.3 8.3 12 13.6 6.7 8.3 5.3 9.7 12 16.4 18.7 9.7'></polygon> </svg>") !important;
+    top: -40px;
+    right: 16px;
+    position: relative;
+}
+
+.hamburger {
+    background: url("../images/menu.svg");
+    width: 24px;
+    height: 24px;
+    margin-right: 16px;
+    position: relative;
+    top: 6px;
+    cursor: pointer;
+    display: none;
+}
+
+.hamburger.close {
+    background: url("../images/close.svg");
+}
+
+@media screen and (max-width: 768px) {
+    .wy-nav-content-wrap {
+        margin-left: 0;
+    }
+    .wy-nav-content-wrap .wy-nav-content {
+        padding: 0 22px 0 22px;
+    }
+
+    #rtd-search-form-2 {
+        display: none;
+    }
+
+    .topbar-menu {
+        display: none;
+    }
+
+    .wy-side-nav-search {
+        display: block;
+        width: 100%;
+        padding: 8px;
+        margin: 0;
+        border-bottom: 1px solid #D5D9E0;
+    }
+
+    .hamburger {
+        display: inline-block;
+    }
+
+    .mobile-enforce {
+        left: 0;
+        top: 80px;
+        width: 100%;
+    }
+
+    .mobile-enforce .wy-side-scroll {
+        width: 100%;
+    }
+
+    .mobile-menu-ctn {
+        display: inline-block;
+    }
+
+}
