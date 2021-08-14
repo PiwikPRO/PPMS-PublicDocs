@@ -9,3 +9,4 @@ Tracker
     tracker_object
     http_api
     web_log_analytics
+    first_party_tracking
