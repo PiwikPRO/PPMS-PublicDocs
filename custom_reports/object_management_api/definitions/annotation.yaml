@@ -1,0 +1,12 @@
+type: object
+properties:
+  date:
+    description: Date of the annotation.
+    type: string
+    example: '2021-05-01'
+  content:
+    description: Content of the annotation.
+    type: string
+    maxLength: 150
+    example: 'Launch of a new campaign!'
+
