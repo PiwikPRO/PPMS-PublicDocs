@@ -1,0 +1,29 @@
+{
+    "definitions": {
+        "template": {
+            "$ref": "../tag_attributes.json#/definitions/template",
+            "enum": [
+                "piwik_custom_dimension"
+            ]
+        },
+        "template_options": {
+            "description": "[Tag template options](#tag-template-options)",
+            "type": "object",
+            "properties": {
+                "custom_dimensions": {
+                    "description": "Custom dimensions",
+                    "type": "array",
+                    "items": {
+                        "$ref": "piwik_base_attributes.json#/definitions/custom_dimensions_item"
+                    },
+                    "minItems": 1,
+                    "maxItems": 100
+                }
+            },
+            "additionalProperties": false,
+            "required": [
+                "custom_dimensions"
+            ]
+        }
+    }
+}

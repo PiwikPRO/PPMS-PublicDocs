@@ -1,0 +1,18 @@
+{
+    "data": [
+        {
+            "type": "tag",
+            "id": "7533cd95-537a-495f-9b10-450b413a3a75",
+            "attributes": {
+                "priority": 2
+            }
+        },
+        {
+            "type": "tag",
+            "id": "82afe8a0-2b77-4552-9372-ca8642b6b9d3",
+            "attributes": {
+                "priority": 1
+            }
+        }
+    ]
+}

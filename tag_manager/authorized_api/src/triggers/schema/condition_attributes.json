@@ -1,0 +1,103 @@
+{
+    "definitions": {
+        "condition_id_attribute": {
+            "$ref": "../../common/schema/common_types.json#/definitions/uuid",
+            "description": "Condition identifier"
+        },
+        "condition_type_attribute": {
+            "type": "string",
+            "enum": [
+                "contains",
+                "does_not_contain",
+                "starts_with",
+                "ends_with",
+                "equals",
+                "does_not_equal",
+                "regexp",
+                "does_not_start_with",
+                "does_not_end_with",
+                "does_not_regexp",
+                "is_true",
+                "is_false",
+                "is_set",
+                "is_not_set",
+                "is_empty",
+                "is_not_empty",
+                "matches",
+                "does_not_match",
+                "is_a_child_of",
+                "is_not_a_child_of",
+                "is_first_visit",
+                "is_not_first_visit",
+                "each_time",
+                "once_per_page_view",
+                "once_per_session",
+                "visitor_belongs_to",
+                "visitor_not_belongs_to",
+                "cannot_identify_audience"
+            ],
+            "description": "Condition type"
+        },
+        "condition_value_attribute": {
+            "description": "Condition value",
+            "oneOf": [
+                {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 255
+                },
+                {
+                    "$ref": "../../common/schema/common_types.json#/definitions/nullable"
+                }
+            ]
+        },
+        "condition_options_attribute": {
+            "description": "Condition options",
+            "oneOf": [
+                {
+                    "title": "Default condition options",
+                    "type": "object",
+                    "additionalProperties": false
+                },
+                {
+                    "title": "Selector type condition options",
+                    "type": "object",
+                    "properties": {
+                        "selector_type": {
+                            "$ref": "#/definitions/condition_options_selector_type_attribute"
+                        }
+                    },
+                    "required": ["selector_type"],
+                    "additionalProperties": false
+                },
+                {
+                    "title": "Page scroll unit condition options",
+                    "type": "object",
+                    "properties": {
+                        "unit": {
+                            "$ref": "#/definitions/condition_options_page_scroll_unit_attribute"
+                        }
+                    },
+                    "required": ["unit"],
+                    "additionalProperties": false
+                }
+            ]
+        },
+        "condition_options_selector_type_attribute": {
+            "type": "string",
+            "enum": [
+                "xpath",
+                "css"
+            ],
+            "description": "Selector type"
+        },
+        "condition_options_page_scroll_unit_attribute": {
+            "type": "string",
+            "enum": [
+                "percentage",
+                "pixels"
+            ],
+            "description": "Page scroll unit"
+        }
+    }
+}

@@ -1,0 +1,115 @@
+{
+    "definitions": {
+        "consent_type_default": {
+            "$ref": "../tag_attributes.json#/definitions/consent_type",
+            "default": "analytics"
+        },
+        "template": {
+            "$ref": "../tag_attributes.json#/definitions/template",
+            "enum": [
+                "audience_manager"
+            ]
+        },
+        "template_options_form_labels": {
+            "description": "Flag describing whether use form input labels (true) or input names (false) as attribute names",
+            "type": "boolean"
+        },
+        "template_options_form_labels_default": {
+            "$ref": "#/definitions/template_options_form_labels",
+            "default": false
+        },
+        "template_options_included_forms_item_base": {
+            "type": "object",
+            "properties": {
+                "form_id": {
+                    "description": "Form to track (`id` attribute)",
+                    "type": "string",
+                    "minLength": 1
+                },
+                "included_fields": {
+                    "description": "List of fields to track (`name` attribute), when empty all fields are tracked",
+                    "type": "array",
+                    "items": {
+                        "$ref": "../tag_types.json#/definitions/non_empty_string"
+                    },
+                    "minItems": 0
+                }
+            },
+            "additionalProperties": false
+        },
+        "template_options_included_forms_item_create_edit": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/template_options_included_forms_item_base"
+                },
+                {
+                    "required": [
+                        "form_id"
+                    ]
+                }
+            ]
+        },
+        "template_options_included_forms_item_get": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/template_options_included_forms_item_base"
+                },
+                {
+                    "required": [
+                        "form_id",
+                        "included_fields"
+                    ]
+                }
+            ]
+        },
+        "template_options_included_forms_create_edit": {
+            "description": "Definition of forms and fields to track",
+            "type": "array",
+            "minItems": 1,
+            "items": {
+                "$ref": "#/definitions/template_options_included_forms_item_create_edit"
+            }
+        },
+        "template_options_included_forms_get": {
+            "description": "Definition of forms and fields to track",
+            "type": "array",
+            "minItems": 1,
+            "items": {
+                "$ref": "#/definitions/template_options_included_forms_item_get"
+            }
+        },
+        "template_options_create_edit": {
+            "description": "[Tag template options](#tag-template-options)",
+            "type": "object",
+            "properties": {
+                "included_forms": {
+                    "$ref": "#/definitions/template_options_included_forms_create_edit"
+                },
+                "form_labels": {
+                    "$ref": "#/definitions/template_options_form_labels_default"
+                }
+            },
+            "additionalProperties": false,
+            "required": [
+                "included_forms"
+            ]
+        },
+        "template_options_get": {
+            "description": "[Tag template options](#tag-template-options)",
+            "type": "object",
+            "properties": {
+                "included_forms": {
+                    "$ref": "#/definitions/template_options_included_forms_get"
+                },
+                "form_labels": {
+                    "$ref": "#/definitions/template_options_form_labels"
+                }
+            },
+            "additionalProperties": false,
+            "required": [
+                "included_forms",
+                "form_labels"
+            ]
+        }
+    }
+}

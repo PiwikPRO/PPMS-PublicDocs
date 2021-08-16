@@ -1,0 +1,45 @@
+{
+    "description": "Create trigger request",
+    "type": "object",
+    "properties": {
+        "data": {
+            "title": "JSON:API 1.0 request data",
+            "type": "object",
+            "properties": {
+                "id": {"$ref": "../trigger_types.json#/definitions/trigger_identifier"},
+                "type": {"$ref": "../trigger_types.json#/definitions/trigger_resource_type"},
+                "attributes": {
+                    "type": "object",
+                    "description": "Trigger attributes",
+                    "properties": {
+                        "name": {"$ref": "../trigger_attributes.json#/definitions/trigger_name_attribute"},
+                        "trigger_type": {"$ref": "../trigger_attributes.json#/definitions/trigger_type_attribute"},
+                        "conditions": {"$ref": "../trigger_attributes.json#/definitions/trigger_conditions_attribute"}
+                    },
+                    "required": ["name", "trigger_type", "conditions"],
+                    "additionalProperties": false
+                },
+                "relationships": {
+                    "allOf": [
+                        {
+                            "$ref": "../trigger_types.json#/definitions/relationships_description"
+                        },
+                        {
+                            "type": "object",
+                            "properties": {
+                                "tags": {
+                                    "$ref": "../trigger_types.json#/definitions/tag_relationship"
+                                }
+                            },
+                            "additionalProperties": false
+                        }
+                    ]
+                }
+            },
+            "required": ["type", "attributes"],
+            "additionalProperties": false
+        }
+    },
+    "required": ["data"],
+    "additionalProperties": false
+}

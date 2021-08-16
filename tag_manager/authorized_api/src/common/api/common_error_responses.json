@@ -1,0 +1,71 @@
+{
+    "components": {
+        "responses": {
+            "bad_request_uri_parameter": {
+                "description": "Bad request parameter",
+                "content": {
+                    "application/vnd.api+json": {
+                        "schema": {
+                            "$ref": "../schema/error/common_error_schema.json"
+                        },
+                        "example": {
+                            "$ref": "../example/error/common_bad_request_parameter_response_example.json"
+                        }
+                    }
+                }
+            },
+            "bad_request": {
+                "description": "Bad request",
+                "content": {
+                    "application/vnd.api+json": {
+                        "schema": {
+                            "$ref": "../schema/error/common_error_schema.json"
+                        },
+                        "example": {
+                            "$ref": "../example/error/common_bad_request_response_example.json"
+                        }
+                    }
+                }
+            },
+            "unauthorized": {
+                "description": "Unauthorized",
+                "content": {
+                    "application/vnd.api+json": {
+                        "schema": {
+                            "$ref": "../schema/error/common_error_schema.json"
+                        },
+                        "example": {
+                            "$ref": "../example/error/common_unauthorized_response_example.json"
+                        }
+                    }
+                }
+            },
+            "not_found": {
+                "description": "Not found",
+                "content": {
+                    "application/vnd.api+json": {
+                        "schema": {
+                            "$ref": "../schema/error/common_error_schema.json"
+                        },
+                        "example": {
+                            "$ref": "../example/error/common_not_found_response_example.json"
+                        }
+                    }
+                }
+            },
+            "internal_server_error": {
+                "description": "Internal server error",
+                "content": {
+                    "application/vnd.api+json": {
+                        "schema": {
+                            "$ref": "../schema/error/common_error_schema.json"
+                        },
+                        "example": {
+                            "$ref": "../example/error/common_internal_server_error_response_example.json"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

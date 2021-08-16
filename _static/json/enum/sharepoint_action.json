@@ -1,0 +1,50 @@
+[
+    [
+        1,
+        "Like"
+    ],
+    [
+        2,
+        "Share"
+    ],
+    [
+        3,
+        "Comment"
+    ],
+    [
+        4,
+        "Promote"
+    ],
+    [
+        5,
+        "Create"
+    ],
+    [
+        6,
+        "Edit"
+    ],
+    [
+        7,
+        "Delete"
+    ],
+    [
+        8,
+        "Open"
+    ],
+    [
+        9,
+        "Upload"
+    ],
+    [
+        10,
+        "Item view"
+    ],
+    [
+        11,
+        "Item attachment view"
+    ],
+    [
+        12,
+        "Item share"
+    ]
+]

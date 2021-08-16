@@ -1,0 +1,18 @@
+{
+    "data": {
+        "id": "78e49d2b-4d55-4a6b-af8e-67eaea2cbad1",
+        "type": "tag",
+        "attributes": {
+            "name": "Tag - copy",
+            "with_triggers": false
+        },
+        "relationships": {
+            "target_app": {
+                "data": {
+                    "id": "60733047-e7ea-4a65-8359-84e9bd1590df",
+                    "type": "app"
+                }
+            }
+        }
+    }
+}

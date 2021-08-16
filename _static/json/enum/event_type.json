@@ -38,5 +38,21 @@
     [
         10,
         "Abandoned cart"
+    ],
+    [
+        11,
+        "SharePoint"
+    ],
+    [
+        12,
+        "Consent form impression"
+    ],
+    [
+        13,
+        "Consent form click"
+    ],
+    [
+        14,
+        "Consent decision"
     ]
 ]

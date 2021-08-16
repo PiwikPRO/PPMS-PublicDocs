@@ -1,0 +1,45 @@
+{
+    "components": {
+        "parameters": {
+            "version_id": {
+                "in": "path",
+                "name": "version_id",
+                "required": true,
+                "description": "Version identifier",
+                "schema": {"$ref" : "../../common/schema/common_types.json#/definitions/uuid"},
+                "example": "10023b8c-5de0-4d77-93e3-f9727d2ee3cd"
+            },
+            "export_file_id": {
+                "in": "path",
+                "name": "export_file_id",
+                "required": true,
+                "description": "Export file identifier",
+                "schema": {"$ref" : "../../common/schema/common_types.json#/definitions/uuid"},
+                "example": "5a71cdce-e77f-43d7-b43b-377b94e7d582"
+            },
+            "filter[version_type]": {
+                "in": "query",
+                "name": "filter[version_type]",
+                "required": false,
+                "description": "Filter version by version_type attribute",
+                "schema": {"$ref": "../schema/version_attributes.json#/definitions/version_type_attribute"},
+                "example": "draft"
+            },
+            "sort": {
+                "in": "query",
+                "name": "sort",
+                "required": false,
+                "description": "Comma-separated sort list with given attributes: created_at, updated_at",
+                "schema": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "enum": ["created_at", "-created_at", "updated_at", "-updated_at"]
+                    },
+                    "minItems": 1
+                },
+                "example": ["-created_at", "updated_at"]
+            }
+        }
+    }
+}

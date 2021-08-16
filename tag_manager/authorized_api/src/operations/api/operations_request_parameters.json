@@ -1,0 +1,16 @@
+{
+    "components": {
+        "parameters": {
+            "operation_id": {
+                "in": "path",
+                "name": "operation_id",
+                "required": true,
+                "description": "Operation identifier",
+                "schema": {
+                    "$ref" : "../../common/schema/common_types.json#/definitions/uuid"
+                },
+                "example": "d2d9e011-6693-4088-9a20-e1c3498bf24a"
+            }
+        }
+    }
+}

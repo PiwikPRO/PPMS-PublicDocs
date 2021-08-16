@@ -1,0 +1,53 @@
+{
+    "description": "Copy trigger request",
+    "type": "object",
+    "properties": {
+        "data": {
+            "title": "JSON:API 1.0 request data",
+            "type": "object",
+            "properties": {
+                "id": {"$ref": "../trigger_types.json#/definitions/trigger_new_identifier"},
+                "type": {"$ref": "../trigger_types.json#/definitions/trigger_resource_type"},
+                "attributes": {
+                    "type": "object",
+                    "description": "Copy trigger attributes",
+                    "properties": {
+                        "name": {"$ref": "../trigger_types.json#/definitions/trigger_new_name"}
+                    },
+                    "additionalProperties": false
+                },
+                "relationships": {
+                    "type": "object",
+                    "description": "Copy trigger relationships",
+                    "properties": {
+                        "target_app": {
+                            "type": "object",
+                            "description": "Target application",
+                            "properties": {
+                                "data": {
+                                    "title": "JSON:API 1.0 relationship data",
+                                    "description": "Target application data",
+                                    "type": "object",
+                                    "properties": {
+                                        "id": {"$ref": "../../../common/schema/common_types.json#/definitions/app_identifier"},
+                                        "type": {"$ref": "../../../common/schema/common_types.json#/definitions/app_resource_type"}
+                                    },
+                                    "required": ["id", "type"],
+                                    "additionalProperties": false
+                                }
+                            },
+                            "required": ["data"],
+                            "additionalProperties": false
+                        }
+                    },
+                    "required": ["target_app"],
+                    "additionalProperties": false
+                }
+            },
+            "required": ["type", "relationships"],
+            "additionalProperties": false
+        }
+    },
+    "required": ["data"],
+    "additionalProperties": false
+}

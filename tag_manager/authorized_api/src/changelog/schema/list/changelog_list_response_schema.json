@@ -1,0 +1,380 @@
+{
+    "description": "Changelog get list response",
+    "type": "object",
+    "properties": {
+        "data": {
+            "title": "JSON:API 1.0 list response data",
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "$ref": "../changelog_types.json#/definitions/changelog_identifier"
+                    },
+                    "type": {
+                        "$ref": "../changelog_types.json#/definitions/changelog_resource_type"
+                    },
+                    "attributes": {
+                        "description": "Changelog attributes",
+                        "oneOf": [
+                            {
+                                "title": "Tag",
+                                "description": "Tag change types",
+                                "oneOf": [
+                                    {
+                                        "type": "object",
+                                        "title": "Add",
+                                        "description": "Add tag",
+                                        "properties": {
+                                            "version_id": {
+                                                "$ref": "../../../versions/schema/version_types.json#/definitions/version_identifier"
+                                            },
+                                            "author": {
+                                                "$ref": "../changelog_attributes.json#/definitions/changelog_author_nullable_attribute"
+                                            },
+                                            "resource_id": {
+                                                "$ref": "../../../tags/schema/tag_types.json#/definitions/tag_identifier"
+                                            },
+                                            "resource_name": {
+                                                "$ref": "../../../tags/schema/tag_attributes.json#/definitions/name"
+                                            },
+                                            "resource_type": {
+                                                "$ref": "../changelog_attributes.json#/definitions/changelog_resource_type_tag_attribute"
+                                            },
+                                            "created_at": {
+                                                "$ref": "../../../common/schema/common_types.json#/definitions/datetime"
+                                            },
+                                            "change_type": {
+                                                "$ref": "../changelog_attributes.json#/definitions/changelog_change_type_add_attribute"
+                                            },
+                                            "before_content": {
+                                                "$ref": "../changelog_content_attributes.json#/definitions/empty_before_content_attribute"
+                                            },
+                                            "after_content": {
+                                                "$ref": "../changelog_content_attributes.json#/definitions/tag_type_after_content_attribute"
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "type": "object",
+                                        "title": "Edit",
+                                        "description": "Edit tag",
+                                        "properties": {
+                                            "version_id": {
+                                                "$ref": "../../../versions/schema/version_types.json#/definitions/version_identifier"
+                                            },
+                                            "author": {
+                                                "$ref": "../changelog_attributes.json#/definitions/changelog_author_nullable_attribute"
+                                            },
+                                            "resource_id": {
+                                                "$ref": "../../../tags/schema/tag_types.json#/definitions/tag_identifier"
+                                            },
+                                            "resource_name": {
+                                                "$ref": "../../../tags/schema/tag_attributes.json#/definitions/name"
+                                            },
+                                            "resource_type": {
+                                                "$ref": "../changelog_attributes.json#/definitions/changelog_resource_type_tag_attribute"
+                                            },
+                                            "created_at": {
+                                                "$ref": "../../../common/schema/common_types.json#/definitions/datetime"
+                                            },
+                                            "change_type": {
+                                                "$ref": "../changelog_attributes.json#/definitions/changelog_change_type_edit_attribute"
+                                            },
+                                            "before_content": {
+                                                "$ref": "../changelog_content_attributes.json#/definitions/tag_type_before_content_attribute"
+                                            },
+                                            "after_content": {
+                                                "$ref": "../changelog_content_attributes.json#/definitions/tag_type_after_content_attribute"
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "type": "object",
+                                        "title": "Delete",
+                                        "description": "Delete tag",
+                                        "properties": {
+                                            "version_id": {
+                                                "$ref": "../../../versions/schema/version_types.json#/definitions/version_identifier"
+                                            },
+                                            "author": {
+                                                "$ref": "../changelog_attributes.json#/definitions/changelog_author_nullable_attribute"
+                                            },
+                                            "resource_id": {
+                                                "$ref": "../../../tags/schema/tag_types.json#/definitions/tag_identifier"
+                                            },
+                                            "resource_name": {
+                                                "$ref": "../../../tags/schema/tag_attributes.json#/definitions/name"
+                                            },
+                                            "resource_type": {
+                                                "$ref": "../changelog_attributes.json#/definitions/changelog_resource_type_tag_attribute"
+                                            },
+                                            "created_at": {
+                                                "$ref": "../../../common/schema/common_types.json#/definitions/datetime"
+                                            },
+                                            "change_type": {
+                                                "$ref": "../changelog_attributes.json#/definitions/changelog_change_type_delete_attribute"
+                                            },
+                                            "before_content": {
+                                                "$ref": "../changelog_content_attributes.json#/definitions/tag_type_before_content_attribute"
+                                            },
+                                            "after_content": {
+                                                "$ref": "../changelog_content_attributes.json#/definitions/empty_after_content_attribute"
+                                            }
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "title": "Trigger",
+                                "description": "Trigger change types",
+                                "oneOf": [
+                                    {
+                                        "type": "object",
+                                        "title": "Add",
+                                        "description": "Add trigger",
+                                        "properties": {
+                                            "version_id": {
+                                                "$ref": "../../../versions/schema/version_types.json#/definitions/version_identifier"
+                                            },
+                                            "author": {
+                                                "$ref": "../changelog_attributes.json#/definitions/changelog_author_nullable_attribute"
+                                            },
+                                            "resource_id": {
+                                                "$ref": "../../../triggers/schema/trigger_types.json#/definitions/trigger_identifier"
+                                            },
+                                            "resource_name": {
+                                                "$ref": "../../../triggers/schema/trigger_attributes.json#/definitions/trigger_name_attribute"
+                                            },
+                                            "resource_type": {
+                                                "$ref": "../changelog_attributes.json#/definitions/changelog_resource_type_trigger_attribute"
+                                            },
+                                            "created_at": {
+                                                "$ref": "../../../common/schema/common_types.json#/definitions/datetime"
+                                            },
+                                            "change_type": {
+                                                "$ref": "../changelog_attributes.json#/definitions/changelog_change_type_add_attribute"
+                                            },
+                                            "before_content": {
+                                                "$ref": "../changelog_content_attributes.json#/definitions/empty_before_content_attribute"
+                                            },
+                                            "after_content": {
+                                                "$ref": "../changelog_content_attributes.json#/definitions/trigger_type_after_content_attribute"
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "type": "object",
+                                        "title": "Edit",
+                                        "description": "Edit trigger",
+                                        "properties": {
+                                            "version_id": {
+                                                "$ref": "../../../versions/schema/version_types.json#/definitions/version_identifier"
+                                            },
+                                            "author": {
+                                                "$ref": "../changelog_attributes.json#/definitions/changelog_author_nullable_attribute"
+                                            },
+                                            "resource_id": {
+                                                "$ref": "../../../triggers/schema/trigger_types.json#/definitions/trigger_identifier"
+                                            },
+                                            "resource_name": {
+                                                "$ref": "../../../triggers/schema/trigger_attributes.json#/definitions/trigger_name_attribute"
+                                            },
+                                            "resource_type": {
+                                                "$ref": "../changelog_attributes.json#/definitions/changelog_resource_type_trigger_attribute"
+                                            },
+                                            "created_at": {
+                                                "$ref": "../../../common/schema/common_types.json#/definitions/datetime"
+                                            },
+                                            "change_type": {
+                                                "$ref": "../changelog_attributes.json#/definitions/changelog_change_type_edit_attribute"
+                                            },
+                                            "before_content": {
+                                                "$ref": "../changelog_content_attributes.json#/definitions/trigger_type_before_content_attribute"
+                                            },
+                                            "after_content": {
+                                                "$ref": "../changelog_content_attributes.json#/definitions/trigger_type_after_content_attribute"
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "type": "object",
+                                        "title": "Delete",
+                                        "description": "Delete trigger",
+                                        "properties": {
+                                            "version_id": {
+                                                "$ref": "../../../versions/schema/version_types.json#/definitions/version_identifier"
+                                            },
+                                            "author": {
+                                                "$ref": "../changelog_attributes.json#/definitions/changelog_author_nullable_attribute"
+                                            },
+                                            "resource_id": {
+                                                "$ref": "../../../triggers/schema/trigger_types.json#/definitions/trigger_identifier"
+                                            },
+                                            "resource_name": {
+                                                "$ref": "../../../triggers/schema/trigger_attributes.json#/definitions/trigger_name_attribute"
+                                            },
+                                            "resource_type": {
+                                                "$ref": "../changelog_attributes.json#/definitions/changelog_resource_type_trigger_attribute"
+                                            },
+                                            "created_at": {
+                                                "$ref": "../../../common/schema/common_types.json#/definitions/datetime"
+                                            },
+                                            "change_type": {
+                                                "$ref": "../changelog_attributes.json#/definitions/changelog_change_type_delete_attribute"
+                                            },
+                                            "before_content": {
+                                                "$ref": "../changelog_content_attributes.json#/definitions/trigger_type_before_content_attribute"
+                                            },
+                                            "after_content": {
+                                                "$ref": "../changelog_content_attributes.json#/definitions/empty_after_content_attribute"
+                                            }
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "title": "Variable",
+                                "description": "Variable change types",
+                                "oneOf": [
+                                    {
+                                        "type": "object",
+                                        "title": "Add",
+                                        "description": "Add variable",
+                                        "properties": {
+                                            "version_id": {
+                                                "$ref": "../../../versions/schema/version_types.json#/definitions/version_identifier"
+                                            },
+                                            "author": {
+                                                "$ref": "../changelog_attributes.json#/definitions/changelog_author_nullable_attribute"
+                                            },
+                                            "resource_id": {
+                                                "$ref": "../../../variables/schema/variable_types.json#/definitions/variable_identifier"
+                                            },
+                                            "resource_name": {
+                                                "$ref": "../../../variables/schema/variable_attributes.json#/definitions/variable_name_attribute"
+                                            },
+                                            "resource_type": {
+                                                "$ref": "../changelog_attributes.json#/definitions/changelog_resource_type_variable_attribute"
+                                            },
+                                            "created_at": {
+                                                "$ref": "../../../common/schema/common_types.json#/definitions/datetime"
+                                            },
+                                            "change_type": {
+                                                "$ref": "../changelog_attributes.json#/definitions/changelog_change_type_add_attribute"
+                                            },
+                                            "before_content": {
+                                                "$ref": "../changelog_content_attributes.json#/definitions/empty_before_content_attribute"
+                                            },
+                                            "after_content": {
+                                                "$ref": "../changelog_content_attributes.json#/definitions/variable_type_after_content_attribute"
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "type": "object",
+                                        "title": "Edit",
+                                        "description": "Edit variable",
+                                        "properties": {
+                                            "version_id": {
+                                                "$ref": "../../../versions/schema/version_types.json#/definitions/version_identifier"
+                                            },
+                                            "author": {
+                                                "$ref": "../changelog_attributes.json#/definitions/changelog_author_nullable_attribute"
+                                            },
+                                            "resource_id": {
+                                                "$ref": "../../../variables/schema/variable_types.json#/definitions/variable_identifier"
+                                            },
+                                            "resource_name": {
+                                                "$ref": "../../../variables/schema/variable_attributes.json#/definitions/variable_name_attribute"
+                                            },
+                                            "resource_type": {
+                                                "$ref": "../changelog_attributes.json#/definitions/changelog_resource_type_variable_attribute"
+                                            },
+                                            "created_at": {
+                                                "$ref": "../../../common/schema/common_types.json#/definitions/datetime"
+                                            },
+                                            "change_type": {
+                                                "$ref": "../changelog_attributes.json#/definitions/changelog_change_type_edit_attribute"
+                                            },
+                                            "before_content": {
+                                                "$ref": "../changelog_content_attributes.json#/definitions/variable_type_before_content_attribute"
+                                            },
+                                            "after_content": {
+                                                "$ref": "../changelog_content_attributes.json#/definitions/variable_type_after_content_attribute"
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "type": "object",
+                                        "title": "Delete",
+                                        "description": "Delete variable",
+                                        "properties": {
+                                            "version_id": {
+                                                "$ref": "../../../versions/schema/version_types.json#/definitions/version_identifier"
+                                            },
+                                            "author": {
+                                                "$ref": "../changelog_attributes.json#/definitions/changelog_author_nullable_attribute"
+                                            },
+                                            "resource_id": {
+                                                "$ref": "../../../variables/schema/variable_types.json#/definitions/variable_identifier"
+                                            },
+                                            "resource_name": {
+                                                "$ref": "../../../variables/schema/variable_attributes.json#/definitions/variable_name_attribute"
+                                            },
+                                            "resource_type": {
+                                                "$ref": "../changelog_attributes.json#/definitions/changelog_resource_type_variable_attribute"
+                                            },
+                                            "created_at": {
+                                                "$ref": "../../../common/schema/common_types.json#/definitions/datetime"
+                                            },
+                                            "change_type": {
+                                                "$ref": "../changelog_attributes.json#/definitions/changelog_change_type_delete_attribute"
+                                            },
+                                            "before_content": {
+                                                "$ref": "../changelog_content_attributes.json#/definitions/variable_type_before_content_attribute"
+                                            },
+                                            "after_content": {
+                                                "$ref": "../changelog_content_attributes.json#/definitions/empty_after_content_attribute"
+                                            }
+                                        }
+                                    }
+                                ]
+                            }
+                        ],
+                        "required": [
+                            "version_id",
+                            "author",
+                            "change_type",
+                            "resource_id",
+                            "resource_name",
+                            "resource_type",
+                            "created_at",
+                            "before_content",
+                            "after_content"
+                        ],
+                        "additionalProperties": false
+                    }
+                },
+                "required": [
+                    "id",
+                    "type",
+                    "attributes"
+                ],
+                "additionalProperties": false
+            }
+        },
+        "meta": {
+            "$ref": "../../../common/schema/common_attributes.json#/definitions/pagination_meta_attributes"
+        },
+        "links": {
+            "$ref": "../../../common/schema/common_attributes.json#/definitions/pagination_links_attributes"
+        }
+    },
+    "required": [
+        "data",
+        "meta",
+        "links"
+    ],
+    "additionalProperties": false
+}

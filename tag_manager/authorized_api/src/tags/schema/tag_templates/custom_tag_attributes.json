@@ -1,0 +1,10 @@
+{
+    "definitions": {
+        "template": {
+            "$ref": "../tag_attributes.json#/definitions/template",
+            "enum": [
+                "custom_tag"
+            ]
+        }
+    }
+}

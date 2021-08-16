@@ -1,0 +1,143 @@
+{
+    "definitions": {
+        "source_tag_id_attribute": {
+            "allOf": [
+                {"description": "Source tag identifier"},
+                {"$ref": "../../common/schema/common_types.json#/definitions/uuid"}
+            ]
+        },
+        "target_tag_id_attribute": {
+            "allOf": [
+                {"description": "Target tag identifier"},
+                {"$ref": "../../common/schema/common_types.json#/definitions/uuid"}
+            ]
+        },
+        "source_trigger_id_attribute": {
+            "allOf": [
+                {"description": "Source trigger identifier"},
+                {"$ref": "../../common/schema/common_types.json#/definitions/uuid"}
+            ]
+        },
+        "target_trigger_id_attribute": {
+            "allOf": [
+                {"description": "Target trigger identifier"},
+                {"$ref": "../../common/schema/common_types.json#/definitions/uuid"}
+            ]
+        },
+        "source_variable_id_attribute": {
+            "allOf": [
+                {"description": "Source variable identifier"},
+                {"$ref": "../../common/schema/common_types.json#/definitions/uuid"}
+            ]
+        },
+        "target_variable_id_attribute": {
+            "allOf": [
+                {"description": "Target variable identifier"},
+                {"$ref": "../../common/schema/common_types.json#/definitions/uuid"}
+            ]
+        },
+        "source_id_attribute": {
+            "allOf": [
+                {"description": "Source resource internal identifier"},
+                {"$ref": "../../common/schema/common_types.json#/definitions/uuid"}
+            ]
+        },
+        "source_name_attribute": {
+            "allOf": [
+                {"description": "Source resource name"},
+                {"$ref":  "../../common/schema/common_types.json#/definitions/name"}
+            ]
+        },
+        "target_name_attribute": {
+            "allOf": [
+                {"description": "Target resource name"},
+                {"$ref":  "../../common/schema/common_types.json#/definitions/name"}
+            ]
+        },
+        "is_renamed_attribute": {
+            "type": "boolean",
+            "description": "Target resource is renamed"
+        },
+        "summary_tag_error_attributes": {
+            "description": "List of tag's errors",
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "operation_state_attribute": {
+            "description": "Operation state",
+            "type": "string",
+            "enum": [
+                "created",
+                "started",
+                "completed",
+                "failed"
+            ]
+        },
+        "copy_tag_operation_type_attribute": {
+            "description": "Copy tag operation type",
+            "type": "string",
+            "enum": ["copy/tag"]
+        },
+        "copy_trigger_operation_type_attribute": {
+            "description": "Copy trigger operation type",
+            "type": "string",
+            "enum": ["copy/trigger"]
+        },
+        "copy_variable_operation_type_attribute": {
+            "description": "Copy variable operation type",
+            "type": "string",
+            "enum": ["copy/variable"]
+        },
+        "export_version_operation_type_attribute": {
+            "description": "Export version operation type",
+            "type": "string",
+            "enum": ["export/version"]
+        },
+        "import_version_operation_type_attribute": {
+            "description": "Import version operation type",
+            "type": "string",
+            "enum": ["import/version"]
+        },
+        "import_file_operation_type_attribute": {
+            "description": "Import file operation type",
+            "type": "string",
+            "enum": ["import/file"]
+        },
+        "restore_version_operation_type_attribute": {
+            "description": "Restore version operation type",
+            "type": "string",
+            "enum": ["restore/version"]
+        },
+        "publish_version_operation_type_attribute": {
+            "description": "Publish version operation type",
+            "type": "string",
+            "enum": ["publish/version"]
+        },
+        "snapshot_version_operation_type_attribute": {
+            "description": "Snapshot version operation type",
+            "type": "string",
+            "enum": ["snapshot/version"]
+        },
+        "resource_name_attribute": {
+            "$ref": "../../common/schema/common_types.json#/definitions/name",
+            "description": "New resource name"
+        },
+        "publish_version_type_attribute": {
+            "description": "Version type to publish",
+            "type": "string",
+            "enum": ["draft", "historic"]
+        },
+        "restore_version_type_attribute": {
+            "description": "Version type to restore",
+            "type": "string",
+            "enum": ["published", "historic"]
+        },
+        "snapshot_version_type_attribute": {
+            "description": "Version type to snapshot",
+            "type": "string",
+            "enum": ["draft"]
+        }
+    }
+}

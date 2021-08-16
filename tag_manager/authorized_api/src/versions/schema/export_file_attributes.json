@@ -1,0 +1,12 @@
+{
+    "definitions": {
+        "export_file_content": {
+            "description": "File content (json string)",
+            "type": "string"
+        },
+        "export_file_file_name": {
+            "description": "System generated file name",
+            "type": "string"
+        }
+    }
+}

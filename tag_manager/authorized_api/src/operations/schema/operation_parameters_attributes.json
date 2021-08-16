@@ -1,0 +1,132 @@
+{
+    "definitions": {
+        "copy_tag_parameters_attribute": {
+            "type": "object",
+            "description": "Operation parameters",
+            "properties": {
+                "source_tag_id": {
+                    "allOf": [
+                        {"$ref": "../../common/schema/common_types.json#/definitions/uuid"},
+                        {"description": "Source tag's identifier"}
+                    ]
+                },
+                "target_tag_id": {"$ref": "../../tags/schema/tag_types.json#/definitions/tag_new_identifier"},
+                "target_app_id": {"$ref": "./operation_types.json#/definitions/target_app_identifier"},
+                "name": {"$ref": "./operation_attributes.json#/definitions/resource_name_attribute"},
+                "with_triggers": {"$ref": "../../tags/schema/tag_types.json#/definitions/with_triggers"}
+            },
+            "required": ["source_tag_id", "target_tag_id", "target_app_id", "name", "with_triggers"],
+            "additionalProperties": false
+        },
+        "copy_trigger_parameters_attribute": {
+            "type": "object",
+            "description": "Operation parameters",
+            "properties": {
+                "source_trigger_id": {
+                    "allOf": [
+                        {"$ref": "../../common/schema/common_types.json#/definitions/uuid"},
+                        {"description": "Source trigger's identifier"}
+                    ]
+                },
+                "target_trigger_id": {"$ref": "../../triggers/schema/trigger_types.json#/definitions/trigger_new_identifier"},
+                "target_app_id": {"$ref": "./operation_types.json#/definitions/target_app_identifier"},
+                "name": {"$ref": "./operation_attributes.json#/definitions/resource_name_attribute"}
+            },
+            "required": ["source_trigger_id", "target_trigger_id", "target_app_id", "name"],
+            "additionalProperties": false
+        },
+        "copy_variable_parameters_attribute": {
+            "type": "object",
+            "description": "Operation parameters",
+            "properties": {
+                "source_variable_id": {
+                    "allOf": [
+                        {"$ref": "../../common/schema/common_types.json#/definitions/uuid"},
+                        {"description": "Source variable's identifier"}
+                    ]
+                },
+                "target_variable_id": {"$ref": "../../variables/schema/variable_types.json#/definitions/new_variable_identifier"},
+                "target_app_id": {"$ref": "./operation_types.json#/definitions/target_app_identifier"},
+                "name": {"$ref": "./operation_attributes.json#/definitions/resource_name_attribute"}
+            },
+            "required": ["source_variable_id", "target_variable_id", "target_app_id", "name"],
+            "additionalProperties": false
+        },
+        "export_version_parameters_attribute": {
+            "type": "object",
+            "description": "Operation parameters",
+            "properties": {
+                "source_app_id": {"$ref": "./operation_types.json#/definitions/source_app_identifier"},
+                "source_version_id": {
+                    "allOf": [
+                        {"$ref": "../../common/schema/common_types.json#/definitions/uuid"},
+                        {"description": "Exported version identifier"}
+                    ]
+                },
+                "export_file_id": {
+                    "allOf": [
+                        {"$ref": "../../common/schema/common_types.json#/definitions/uuid"},
+                        {"description": "Exported file identifier"}
+                    ]
+                }
+            },
+            "required": ["source_app_id", "source_version_id", "export_file_id"],
+            "additionalProperties": false
+        },
+        "import_version_parameters_attribute": {
+            "type": "object",
+            "description": "Operation parameters",
+            "properties": {
+                "target_app_id": {"$ref": "./operation_types.json#/definitions/target_app_identifier"},
+                "source_version_id": {"$ref": "../../versions/schema/version_types.json#/definitions/source_version_identifier"}
+            },
+            "required": ["target_app_id", "source_version_id"],
+            "additionalProperties": false
+        },
+        "import_file_parameters_attribute": {
+            "type": "object",
+            "description": "Operation parameters",
+            "properties": {
+                "target_app_id": {"$ref": "./operation_types.json#/definitions/target_app_identifier"},
+                "import_file_id":  {
+                    "allOf": [
+                        {"$ref": "../../common/schema/common_types.json#/definitions/uuid"},
+                        {"description": "Imported file identifier"}
+                    ]
+                }
+            },
+            "required": ["target_app_id", "import_file_id"],
+            "additionalProperties": false
+        },
+        "restore_version_parameters_attribute": {
+            "type": "object",
+            "description": "Operation parameters",
+            "properties": {
+                "version_id": {"$ref": "../../versions/schema/version_types.json#/definitions/version_identifier"},
+                "version_type": {"$ref": "operation_attributes.json#/definitions/restore_version_type_attribute"}
+            },
+            "required": ["version_id", "version_type"],
+            "additionalProperties": false
+        },
+        "publish_version_parameters_attribute": {
+            "type": "object",
+            "description": "Operation parameters",
+            "properties": {
+                "version_id": {"$ref": "../../versions/schema/version_types.json#/definitions/version_identifier"},
+                "version_type": {"$ref": "operation_attributes.json#/definitions/publish_version_type_attribute"}
+            },
+            "required": ["version_id", "version_type"],
+            "additionalProperties": false
+        },
+        "snapshot_version_parameters_attribute": {
+            "type": "object",
+            "description": "Operation parameters",
+            "properties": {
+                "version_id": {"$ref": "../../versions/schema/version_types.json#/definitions/version_identifier"},
+                "version_type": {"$ref": "operation_attributes.json#/definitions/snapshot_version_type_attribute"}
+            },
+            "required": ["version_id", "version_type"],
+            "additionalProperties": false
+        }
+    }
+}

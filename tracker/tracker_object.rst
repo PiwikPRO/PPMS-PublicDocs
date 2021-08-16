@@ -50,7 +50,9 @@ Tracking functions
     :param string category: **Required** Category of event.
     :param string action: **Required** Event action, for example ``"link click"``.
     :param string name: **Optional** Event name, for example ``"Cancel button"``.
-    :param string value: **Optional** Event value.
+    :param number value: **Optional** Event value.
+
+.. _trackGoalEvent:
 
 .. function:: trackGoal(idGoal[, customRevenue, customData])
 
@@ -62,6 +64,8 @@ Tracking functions
 
 .. todo:: What else can be in customData?
 
+.. _trackSearchEvent:
+
 .. function:: trackSiteSearch(keyword[, category, resultCount])
 
     The function that tracks internal site searches.
@@ -70,12 +74,15 @@ Tracking functions
     :param string/boolean category: **Optional** String with category selected in search engine, can set it to false when not used.
     :param number/boolean searchCount:  **Optional** Number of results on the results page, can be set to false when not used.
 
-.. function:: enableHeartBeatTimer(delay)
+.. function:: enableHeartBeatTimer()
 
-    When the user will enter a single page during a visit, we will assume that his total time spent on the website was 0 ms.
-    To measure that time more accurately you can use the ``enableHeartBeatTimer`` function::
+    When the user will visit only one page during a session, we will assume that his total time spent on the website was 0 ms.
+    To measure session time more accurately you can use the ``enableHeartBeatTimer`` function
 
-    :param number delay: **Required** Time in seconds between cyclical heartbeat requests, default ``30``
+    .. note::
+        First heart beat will be sent after 15 seconds and each heart beat following it will sent with longer and longer
+        intervals (up to 5 minute ceiling). When page will loose focus, heart beats will be paused until focus is
+        restored. Heart beats will stop after 30 minutes from last page view.
 
 .. function:: enableCrossDomainLinking()
 
@@ -109,7 +116,7 @@ Ecommerce tracking
 
     :param string productSKU: **Required** String with product stock-keeping unit.
     :param string productName: **Optional** String with product name.
-    :param Array<string> productCategory: **Optional** Product category, can be written as Array with up to 5 elements.
+    :param Array<string>|string productCategory: **Optional** Product category, can be written as Array with up to 5 elements.
     :param string price: **Optional** String with product price.
     :param string quantity: **Optional** String with product quantity.
 
@@ -139,7 +146,7 @@ Ecommerce tracking
 
     :param string orderId: **Required** Unique order ID.
     :param number orderGrandTotal: **Required** Order Revenue grand total  - tax, shipping and discount included.
-    :param number orderSubTotal: **Optional** Order sub total - without shipping.
+    :param number orderSubTotal: **Optional** Order subtotal - without shipping.
     :param number orderTax: **Optional** Order tax amount.
     :param number orderShipping: **Optional** Order shipping costs.
     :param number orderDiscount: **Optional** Order discount amount.
@@ -151,18 +158,21 @@ Ecommerce tracking
 
     :param number grandTotal:  **Required** Order Revenue grand total  - tax, shipping and discount included.
 
-.. function:: setEcommerceView(productSKU[, productName, categoryName, productPrice])
+.. function:: setEcommerceView(productSKU[, productName, productCategory, productPrice])
 
     The function to track product or category page view, must be followed by the ``trackPageView`` function.
 
     :param string productSKU: **Required** String with product stock-keeping unit.
     :param string productName: **Optional** String with product name.
-    :param Array<string> productCategory: **Optional** Product category, can be written as Array with up to 5 elements.
+    :param Array<string>|string productCategory: **Optional** Product category, can be written as Array with up to 5 elements.
     :param string price: **Optional** String with product price.
 
 
 Custom variables
 ----------------
+
+.. deprecated:: 5.5
+    We strongly advise using custom dimensions instead.
 
 .. function:: setCustomVariable(index, name, value, scope)
 
@@ -196,12 +206,24 @@ Custom variables
 Custom dimensions
 -----------------
 
-.. function:: setCustomDimension(customDimensionId, customDimensionValue)
+.. function:: setCustomDimensionValue(customDimensionId, customDimensionValue)
+
+    .. versionadded:: 15.3
 
     The function that sets a custom dimension to be used later.
 
     :param string customDimensionId: **Required** Id of custom dimension.
     :param string customDimensionValue: **Required** Value of custom dimension.
+
+.. function:: setCustomDimension(customDimensionId, customDimensionValue)
+
+    .. deprecated:: 15.3
+        Function :func:`setCustomDimension` is deprecated due to the difficulty of use (passed values should be URL encoded). Please use :func:`setCustomDimensionValue` instead.
+
+    Function that sets a custom dimension to be used later.
+
+    :param string customDimensionId: **Required** Id of custom dimension.
+    :param string customDimensionValue: **Required** Value of custom dimension (value should be URL encoded).
 
 .. function:: deleteCustomDimension(customDimensionId)
 
@@ -209,11 +231,26 @@ Custom dimensions
 
     :param string customDimensionId: **Required** Id of custom dimension.
 
-.. function:: getCustomDimension(customDimensionId)
+.. function:: getCustomDimensionValue(customDimensionId)
+
+    .. versionadded:: 15.3
 
     The function that will return the value of custom dimension.
 
     :param string customDimensionId: **Required** Id of custom dimension.
+    :returns: Value set with :func:`setCustomDimensionValue`
+    :rtype: string
+
+.. function:: getCustomDimension(customDimensionId)
+
+    .. deprecated:: 15.3
+        Function :func:`getCustomDimension` is deprecated due to the difficulty of use (returned values should be URL encoded). Please use :func:`getCustomDimensionValue` instead.
+
+    The function that will return the value of custom dimension.
+
+    :param string customDimensionId: **Required** Id of custom dimension.
+    :returns: Value set with :func:`setCustomDimension`
+    :rtype: string
 
 Content Tracking
 ----------------
@@ -272,6 +309,8 @@ Interactions
     :param string contentPiece: **Required** Name of Content Impression Piece.
     :param string contentTarget: **Required** URL of Content Impression Target.
 
+.. _trackLinkEvent:
+
 Download and Outlink Tracking
 -----------------------------
 
@@ -302,6 +341,24 @@ Tracking Outlink
 
 Tracking Downloads
 ^^^^^^^^^^^^^^^^^^
+
+Default extensions recognized as download
++++++++++++++++++++++++++++++++++++++++++
+
+The following extensions are tracked as download by default:
+
+
++-------+-----+-----+-----+------+-----+-----+-----+------+-----+------+-----+---------+-----+-----+
+| 7z    | aac | arc | arj | apk  | asf | asx | avi | bin  | bz  | bz2  | csv | deb     | dmg | doc |
++-------+-----+-----+-----+------+-----+-----+-----+------+-----+------+-----+---------+-----+-----+
+| exe   | flv | gif | gz  | gzip | hqx | jar | jpg | jpeg | js  | mp2  | mp3 | mp4     | mpg | mov |
++-------+-----+-----+-----+------+-----+-----+-----+------+-----+------+-----+---------+-----+-----+
+| movie | msi | msp | odb | odf  | odg | odp | ods | odt  | ogg | ogv  | pdf | phps    | png | ppt |
++-------+-----+-----+-----+------+-----+-----+-----+------+-----+------+-----+---------+-----+-----+
+| qt    | qtm | ra  | ram | rar  | rpm | sea | sit | tar  | tbz | tbz2 | tgz | torrent | txt | wav |
++-------+-----+-----+-----+------+-----+-----+-----+------+-----+------+-----+---------+-----+-----+
+| wma   | wmv | wpd | xls | xml  | z   | zip |     |      |     |      |     |         |     |     |
++-------+-----+-----+-----+------+-----+-----+-----+------+-----+------+-----+---------+-----+-----+
 
 .. function:: setDownloadClasses(classes)
 
@@ -362,7 +419,7 @@ User ID
 
     :param string userId: **Required** Unique, non-empty string preserved for each user.
 
-.. function:: regetUserId()
+.. function:: resetUserId()
 
     The function that will reset user ID value.
 
@@ -393,6 +450,12 @@ Cookies that are used by analytics are first party cookies.
 .. function:: disableCookies()
 
     The function that will disable all first party cookies. Existing ones will be deleted in the next page view.
+
+.. function:: enableCookies()
+
+    The function that will enable all first party cookies. Cookies will be created on first sent tracking request.
+
+    .. note:: Tracker has cookies enabled by default.
 
 .. function:: deleteCookies()
 
@@ -488,7 +551,7 @@ Tracker Configuration
 .. function:: discardHashTag(enableFilter)
 
     The function that will set tracker to include or remove
-    `URL fragment identifier<https://en.wikipedia.org/wiki/Fragment_identifier>`_ from tracked URLs.
+    `URL fragment identifier <https://en.wikipedia.org/wiki/Fragment_identifier>`_ from tracked URLs.
 
     :param boolean enableFilter: **Required** If set to true, URL fragment identifier will be removed from tracked URLs.
 
@@ -520,13 +583,6 @@ Tracker Configuration
 
     :param string url: **Required** URL that should be loaded.
 
-.. function:: setHeartBeatTimer(minimumVisitLength, heartBeatDelay)
-
-    The function that sets how long the page has been viewed for if the minimumVisitLength is attained.
-
-    :param number minimumVisitLength: **Required** Minimum visit length in seconds.
-    :param number heartBeatDelay: **Required** Update sever time threshold.
-
 .. function:: setCampaignNameKey(name)
 
     The function that will set campaign name parameters.
@@ -554,6 +610,10 @@ Anonymization
 
 Advanced Usage
 --------------
+
+.. function:: ping()
+
+    Ping method sends request that will update session values without creating new event or page view. Most common use for this method is update of session custom dimensions or custom variables.
 
 .. function:: addListener(domElement)
 
@@ -586,3 +646,63 @@ Advanced Usage
     The function that will set tracking requests ``Content-Type`` header. Used when tracking uses the ``"POST"`` method (set by ``setRequestMethod``).
 
     :param string contentType: **Required** Content-Type value to be set.
+
+.. function:: customCrossDomainLinkDecorator(urlDecorator)
+
+    The function that set custom cross domain decorator used on links to pass visitor ID via URL (used by
+    :js:func:`enableCrossDomainLinking`). It will be later parsed by :js:func:`customCrossDomainLinkVisitorIdGetter`.
+
+    :param function urlDecorator: function that will decorate URL with visitor ID passed by URL
+
+    .. function:: urlDecorator(url, value, name)
+
+        Decorator function accepts link URL and visitor ID value and parameter name and returns URL containing
+        visitor ID data.
+
+        :param string url: **Required** Link URL
+        :param string value: **Required** Value of visitor ID that should be passed via URL
+        :param string name: **Required** Name of visitor ID parameter used by tracker (can be set)
+        :return: Decorated URL or ``null`` (no change in URL)
+        :rtype: string|null
+
+    .. note:: Usage example: value send via URL query parameter (equivalent of default implementation).
+
+        .. code-block:: js
+
+            _paq.push(['customCrossDomainLinkDecorator', function(url, value, name) {
+                var parsedUrl = new URL(url);
+                parsedUrl.searchParams.append(name, value);
+                return parsedUrl.href;
+            }]);
+
+.. function:: customCrossDomainLinkVisitorIdGetter(urlParser)
+
+    The function that set custom cross domain URL parser (decorated by function set via
+    :js:func:`customCrossDomainLinkDecorator`). It returns value of visitor ID parsed from page URL (used by
+    :js:func:`enableCrossDomainLinking`).
+
+    :param function urlParser: function that will parse URL and return value of visitor ID passed through it.
+
+    .. function:: urlParser(url, name)
+
+        Parser function that accepts page URL and visitor ID parameter name and returns visitor ID value.
+
+        :param string url: **Required** page URL
+        :param string name: **Required** name of visitor ID param used by tracker (can be set)
+        :return: Visitor ID value (parsed from URL)
+        :rtype: string
+
+    .. note:: Usage example: value send via URL query parameter (equivalent of default implementation).
+
+        .. code-block:: js
+
+            _paq.push(['customCrossDomainLinkVisitorIdGetter', function(url, name) {
+                return (new URL(url)).searchParams.get(name) || '';
+            }]);
+
+.. function:: enableJSErrorTracking()
+
+    Enables tracking of unhandled JavaScript errors
+
+    .. note::
+        Browsers may limit information about error details if it occurs in script loaded from different origin (see `details <https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onerror#notes>`_).

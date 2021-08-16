@@ -1,0 +1,53 @@
+{
+    "definitions": {
+        "changelog_author_nullable_attribute": {
+            "oneOf": [
+                {"$ref": "../../common/schema/common_types.json#/definitions/email"},
+                {"$ref": "../../common/schema/common_types.json#/definitions/nullable"}
+            ],
+            "description": "E-mail of user who did the changes"
+        },
+        "changelog_change_type_add_attribute": {
+            "type": "string",
+            "enum": [
+                "add"
+            ],
+            "description": "Add"
+        },
+        "changelog_change_type_edit_attribute": {
+            "type": "string",
+            "enum": [
+                "edit"
+            ],
+            "description": "Edit"
+        },
+        "changelog_change_type_delete_attribute": {
+            "type": "string",
+            "enum": [
+                "delete"
+            ],
+            "description": "Delete"
+        },
+        "changelog_resource_type_tag_attribute": {
+            "type": "string",
+            "enum": [
+                "tag"
+            ],
+            "description": "Tag resource type"
+        },
+        "changelog_resource_type_trigger_attribute": {
+            "type": "string",
+            "enum": [
+                "trigger"
+            ],
+            "description": "Trigger resource type"
+        },
+        "changelog_resource_type_variable_attribute": {
+            "type": "string",
+            "enum": [
+                "variable"
+            ],
+            "description": "Variable resource type"
+        }
+    }
+}

@@ -1,9 +1,4 @@
-
 SDK
 ===
 
-.. toctree::
-   :maxdepth: 2
-   :glob:
-
-   *
+This page was moved here: :ref:`integrations`.

@@ -58,6 +58,7 @@ Commands
 Trigger tracking on demand
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+.. _trackCustomEvent:
 
 Trigger custom event
 ````````````````````
@@ -157,7 +158,7 @@ To add an e-commerce item (for example to track changes in the user's cart using
 
 .. describe:: productCategory
 
-    **Optional** ``array/string`` Product category, can be written as Array with up to 5 elements.
+    **Optional** ``Array<string>|string`` Product category, can be written as Array with up to 5 elements.
 
 .. describe:: productPrice
 
@@ -177,7 +178,7 @@ To add an e-commerce item (for example to track changes in the user's cart using
 
 Example of usage::
 
-    _paq.push(["addEcommerceItem", "craft-311", "Unicorn Iron on Patch", "Crafts & Sewing", "499", "3"]);
+    _paq.push(["addEcommerceItem", "craft-311", "Unicorn Iron on Patch", "Crafts & Sewing", 499, 3]);
 
 Remove Ecommerce item
 `````````````````````
@@ -241,7 +242,7 @@ To successfully track the e-commerce order(s) (on the checkout page, for example
 
 .. describe:: orderSubTotal
 
-    **Optional** ``number`` Order sub total - without shipping.
+    **Optional** ``number`` Order subtotal - without shipping.
 .. describe:: orderTax
 
     **Optional** ``number`` Order tax amount.
@@ -297,7 +298,7 @@ If you wish to track when the user enters the product site or is browsing produc
 
 .. describe:: productCategory
 
-    **Optional** ``array/string`` Product category, can be written as Array with up to 5 elements.
+    **Optional** ``Array<string>|string`` Product category, can be written as Array with up to 5 elements.
 
 .. describe:: productPrice
 
@@ -309,7 +310,7 @@ If you wish to track when the user enters the product site or is browsing produc
 
 Example of usage::
 
-    _paq.push(["setEcommerceView", "craft-311", "Unicorn Iron on Patch", "Crafts & Sewing", "499"]);
+    _paq.push(["setEcommerceView", "craft-311", "Unicorn Iron on Patch", "Crafts & Sewing", 499]);
 
 
 Custom Variables
@@ -318,7 +319,7 @@ Custom Variables
     What's difference between custom variables and dimensions? Maybe some sort of help.center link?
 
 .. deprecated:: 5.5
-    We strongly advise using custom dimensions.
+    We strongly advise using custom dimensions instead.
 
 Adding / Editing Custom Variable
 ````````````````````````````````
@@ -410,6 +411,36 @@ Tracking Custom Dimension
 `````````````````````````
 .. todo:: Maybe add section about using tag template from Tag Manager.
 
+If you wish to set a custom dimension to use it in tracking functions, use the ``setCustomDimensionValue`` function::
+
+    _paq.push(["setCustomDimensionValue", customDimensionID, customDimensionValue]);
+
+.. describe:: customDimensionID
+
+    **Required** ``number`` ID of dimension
+
+.. describe:: customDimensionValue
+
+    **Required** ``string`` Value of Custom Dimension - limited to 255 characters.
+
+.. warning::
+
+    When you set a Custom Dimension, its value will be used in all tracking requests within a page load.
+
+.. warning::
+    This function does not send any data to the :term:`Analytics`. It prepares a Custom Dimension to be sent with following events (e.g. page view, ecommerce events, outlink or download events).
+
+
+Example of usage::
+
+    _paq.push(["setCustomDimensionValue", 3, "loginStatus"]);
+
+Tracking Custom Dimension (legacy)
+``````````````````````````````````
+
+.. deprecated:: 15.3
+    Function :func:`setCustomDimension` is deprecated due to difficulty of use (passed values should be URL encoded). Please use :func:`setCustomDimensionValue` instead.
+
 If you wish to set a custom dimension to use it in tracking functions, use the ``setCustomDimension`` function::
 
     _paq.push(["setCustomDimension", customDimensionID, customDimensionValue]);
@@ -420,7 +451,7 @@ If you wish to set a custom dimension to use it in tracking functions, use the `
 
 .. describe:: customDimensionValue
 
-    **Required** ``string`` Value of Custom Dimension - limited to 255 characters.
+    **Required** ``string`` Value of Custom Dimension - limited to 255 characters. The value provided to the function should be URL encoded.
 
 .. warning::
 
@@ -439,6 +470,29 @@ Retrieving Custom Dimension
 ```````````````````````````
 .. todo::
     It would be nice to have some examples of returned data.
+
+You can access custom dimension by providing a function that will use the ``getCustomDimensionValue`` function::
+
+    _paq.push([ function() {
+        var customDimension = this.getCustomDimensionValue(index);
+    }]);
+
+.. function:: getCustomDimensionValue(index)
+
+    :param number index: **Required** Index of custom dimension
+
+Example of usage::
+
+    _paq.push([ function() {
+        var customDimension = this.getCustomDimensionValue(1);
+        console.log(customDimension);
+    }]);
+
+Retrieving Custom Dimension (legacy)
+````````````````````````````````````
+
+.. deprecated:: 15.3
+    Function :func:`getCustomDimension` is deprecated due to the difficulty of use (returned values should be URL encoded). Please use :func:`getCustomDimensionValue` instead.
 
 You can access custom dimension by providing a function that will use the ``getCustomDimension`` function::
 
@@ -545,7 +599,7 @@ Example of use
 
 Track impression manually
 `````````````````````````
-If you wish to trigger tracking impressions entirely manually, you can use the ``trackContentImpression``
+If you wish to trigger tracking impressions entirely manually, you can use the ``trackContentImpression``::
 
     _paq.push(["trackContentImpression", contentName, contentPiece, contentTarget]);
 
@@ -852,18 +906,19 @@ Example of usage::
 
 Measuring user time spent on web page
 `````````````````````````````````````
-When the user will enter a single page during a visit, we will assume that his total time spent on the website was 0 ms.
-To measure that time more accurately you can use the ``enableHeartBeatTimer`` function::
+When the user will visit only one page during a session, we will assume that his total time spent on the website was 0 ms.
+To measure session time more accurately you can use the ``enableHeartBeatTimer`` function::
 
-    _paq.push(["enableHeartBeatTimer", beat]);
-
-.. describe:: beat
-
-    **Required** ``number`` Time in seconds between cyclical heartbeat requests, default ``30``
+    _paq.push(["enableHeartBeatTimer"]);
 
 Example of usage::
 
-    _paq.push(["enableHeartBeatTimer", 50]);
+    _paq.push(["enableHeartBeatTimer"]);
+
+.. note::
+    First heart beat will be sent after 15 seconds and each heart beat following it will sent with longer and longer
+    intervals (up to 5 minute ceiling). When page will loose focus, heart beats will be paused until focus is restored.
+    Heart beats will stop after 30 minutes from last page view.
 
 Tracking internal searches
 ``````````````````````````
@@ -921,6 +976,15 @@ To disable tracking user anonymously (after visitor gave consent) use ``deanonym
 
 
 
+Send ping request on demand
+```````````````````````````
+Ping method sends request that will update session values without creating new event or page view. Most common use for this method is update of session custom dimensions or custom variables.
+
+Example of usage::
+
+    _paq.push(["ping"]);
+
+
 Gathering navigation timing page performance metrics
 ``````````````````````````
 To set up page performance metrics gathering use the ``setTimingDataSamplingOnPageLoad`` function::
@@ -946,7 +1010,8 @@ Example of usage::
     _paq.push(["setTimingDataSamplingOnPageLoad", 30]); // enables 30% data sampling (only around 30% of all tracked actions will collect timing data if possible)
     _paq.push(["setTimingDataSamplingOnPageLoad", 100]); // enables 100% data sampling (which means that all tracked actions will collect timing data if possible)
 
-IMPORTANT: in order for this setting to make effect `setTimingDataSamplingOnPageLoad()` should be used before the `trackPageView()` function
+.. note::
+    In order for this setting to make effect `setTimingDataSamplingOnPageLoad()` should be used before the `trackPageView()` function
 
-IMPORTANT: if enabled, timing data is collected only when page view lasted longer than the time it takes the page to load no partial information is stored, all metrics or nothing
-
+.. note::
+    If enabled, timing data is collected only when page view lasted longer than the time it takes the page to load no partial information is stored, all metrics or nothing

@@ -27,17 +27,26 @@ from convert import write_open_api_json
 API_PATH = os.path.join(os.path.dirname(__file__), '_static/api')
 
 api_definitions = {
-    'tracker_tracking_api.json': 'tracker/index.yaml',
+    'tracker_tracking_api.json': 'tracker/tracking_api.yaml',
+    'tracker_debugger_api.json': 'tracker/tracker_debugger_api.yaml',
     'audience_manager_public_api.json': 'audience_manager/public_api/index.yaml',
     'platform_access_control_authorized_api.json': 'platform/authorized_api/access_control/public_v2.yaml',
     'platform_apps_authorized_api.json': 'platform/authorized_api/apps/public_v2.yaml',
+    'platform_audit_log_authorized_api.json': 'platform/authorized_api/audit_log/public_v1.yaml',
     'platform_meta_sites_authorized_api.json': 'platform/authorized_api/meta_sites/public_v1.yaml',
     'platform_modules_authorized_api.json': 'platform/authorized_api/modules/public_v1.yaml',
+    'platform_tracker_settings_authorized_api.json': 'platform/authorized_api/tracker_settings/public_v1.yaml',
     'platform_users_authorized_api.json': 'platform/authorized_api/users/public_v2.yaml',
     'platform_user_groups_authorized_api.json': 'platform/authorized_api/user_groups/public_v1.yaml',
     'audience_manager_authorized_api.json': 'audience_manager/authorized_api/index.yaml',
     'custom_reports_http_api.json': 'custom_reports/http_api/index.yaml',
     'custom_reports_object_management_api.json': 'custom_reports/object_management_api/index.yaml',
+    'tag_manager_authorized_api_tags.json': 'tag_manager/authorized_api/src/tags.yaml',
+    'tag_manager_authorized_api_triggers.json': 'tag_manager/authorized_api/src/triggers.yaml',
+    'tag_manager_authorized_api_variables.json': 'tag_manager/authorized_api/src/variables.yaml',
+    'tag_manager_authorized_api_versions.json': 'tag_manager/authorized_api/src/versions.yaml',
+    'tag_manager_authorized_api_changelog.json': 'tag_manager/authorized_api/src/changelog.yaml',
+    'tag_manager_authorized_api_operations.json': 'tag_manager/authorized_api/src/operations.yaml',
 }
 
 
@@ -78,7 +87,7 @@ author = u'Piwik PRO'
 # built documents.
 #
 # The short X.Y version.
-version = u'12.1'
+version = u'16.0'
 # The full version, including alpha/beta/rc tags.
 release = version
 
@@ -226,7 +235,7 @@ html_theme_options = {
 }
 
 def setup(app):
-    app.add_css_file('css/custom_1582183857228.css')
+    app.add_css_file('css/custom_1617355937936.css')
     app.add_js_file('js/unicornDetector.js')
     app.add_js_file('js/custom.js')
     app.add_js_file('js/redoc.2.0.0-rc.23.min.js')

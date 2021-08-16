@@ -1,0 +1,62 @@
+{
+    "description": "Get trigger response",
+    "type": "object",
+    "properties": {
+        "data": {
+            "title": "JSON:API 1.0 response data",
+            "type": "object",
+            "properties": {
+                "id": {"$ref": "../trigger_types.json#/definitions/trigger_identifier"},
+                "type": {"$ref": "../trigger_types.json#/definitions/trigger_resource_type"},
+                "attributes": {
+                    "type": "object",
+                    "description": "Trigger attributes",
+                    "properties": {
+                        "name": {"$ref": "../trigger_attributes.json#/definitions/trigger_name_attribute"},
+                        "trigger_type": {"$ref": "../trigger_attributes.json#/definitions/trigger_type_attribute"},
+                        "is_published": {"$ref": "../trigger_attributes.json#/definitions/trigger_is_published_attribute"},
+                        "conditions": {"$ref": "../trigger_attributes.json#/definitions/trigger_conditions_attribute"},
+                        "created_at": {"$ref": "../../../common/schema/common_types.json#/definitions/datetime"},
+                        "updated_at": {"$ref": "../../../common/schema/common_types.json#/definitions/datetime"}
+                    },
+                    "required": ["name", "trigger_type", "is_published", "conditions", "created_at", "updated_at"],
+                    "additionalProperties": false
+                },
+                "relationships": {
+                    "type": "object",
+                    "description": "Trigger relationships",
+                    "properties": {
+                        "tags": {
+                            "type": "object",
+                            "description": "Related tags",
+                            "properties": {
+                                "data": {
+                                    "title": "JSON:API 1.0 relationship data",
+                                    "type": "array",
+                                    "description": "Tag resource identifiers",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "id": {"$ref": "../../../tags/schema/tag_types.json#/definitions/tag_identifier"},
+                                            "type": {"$ref": "../../../tags/schema/tag_types.json#/definitions/tag_resource_type"}
+                                        },
+                                        "required": ["id", "type"],
+                                        "additionalProperties": false
+                                    }
+                                }
+                            },
+                            "required": ["data"],
+                            "additionalProperties": false
+                        }
+                    },
+                    "required": ["tags"],
+                    "additionalProperties": false
+                }
+            },
+            "required": ["id", "type", "attributes", "relationships"],
+            "additionalProperties": false
+        }
+    },
+    "required": ["data"],
+    "additionalProperties": false
+}

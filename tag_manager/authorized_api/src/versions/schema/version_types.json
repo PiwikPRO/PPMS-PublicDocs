@@ -1,0 +1,28 @@
+{
+    "definitions": {
+        "version_resource_type": {
+            "description": "Version resource type",
+            "type": "string",
+            "enum": ["version"]
+        },
+        "export_file_identifier": {
+            "allOf": [
+                {"description": "Export file identifier"},
+                {"$ref": "../../common/schema/common_types.json#/definitions/uuid"}
+            ]
+        },
+        "export_file_resource_type": {
+            "description": "Export file resource type",
+            "type": "string",
+            "enum": ["export_file"]
+        },
+        "version_identifier": {
+            "description": "Version identifier",
+            "$ref": "../../common/schema/common_types.json#/definitions/uuid"
+        },
+        "source_version_identifier": {
+            "description": "Source version identifier",
+            "$ref": "../../common/schema/common_types.json#/definitions/uuid"
+        }
+    }
+}

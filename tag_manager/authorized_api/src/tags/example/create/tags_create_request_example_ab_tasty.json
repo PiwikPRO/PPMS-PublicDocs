@@ -1,0 +1,13 @@
+{
+    "data": {
+        "type": "tag",
+        "attributes": {
+            "consent_type": "not_require_consent",
+            "name": "ab tasty integration",
+            "template": "ab_tasty",
+            "template_options": {
+                "id": "c8a60aac906b54e99e24686eb8e34f30"
+            }
+        }
+    }
+}

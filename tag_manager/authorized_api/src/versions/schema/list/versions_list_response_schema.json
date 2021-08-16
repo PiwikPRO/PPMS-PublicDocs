@@ -1,0 +1,36 @@
+{
+    "description": "Versions list response",
+    "type": "object",
+    "properties": {
+        "data": {
+            "title": "JSON:API 1.0 list response data",
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "id": {"$ref": "../version_types.json#/definitions/version_identifier"},
+                    "type": {"$ref": "../version_types.json#/definitions/version_resource_type"},
+                    "attributes": {
+                        "description": "Version attributes",
+                        "type": "object",
+                        "properties": {
+                            "version_type": {"$ref": "../version_attributes.json#/definitions/version_type_attribute"},
+                            "version_major": {"$ref": "../version_attributes.json#/definitions/version_major_attribute"},
+                            "version_minor": {"$ref": "../version_attributes.json#/definitions/version_minor_attribute"},
+                            "created_at": {"$ref": "../../../common/schema/common_types.json#/definitions/datetime"},
+                            "updated_at": {"$ref": "../../../common/schema/common_types.json#/definitions/datetime"}
+                        },
+                        "required": ["version_type", "version_major", "version_minor", "created_at", "updated_at"],
+                        "additionalProperties": false
+                    }
+                },
+                "required": ["id", "type", "attributes"],
+                "additionalProperties": false
+            }
+        },
+        "meta": {"$ref": "../../../common/schema/common_attributes.json#/definitions/pagination_meta_attributes"},
+        "links": {"$ref": "../../../common/schema/common_attributes.json#/definitions/pagination_links_attributes"}
+    },
+    "required": ["data", "meta", "links"],
+    "additionalProperties": false
+}

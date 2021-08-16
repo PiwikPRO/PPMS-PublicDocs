@@ -1,21 +1,19 @@
 Commands
 --------
-All commands work in context of the current visitor and website. Additionally they sometimes require communication with a PPAS server and are asynchronous. Callback functions are used to provide response value or information about errors. ``onSuccess(...args)`` callback is required, with the exception of ``openConsentForm`` command where it is optional. ``onFailure(exception)`` callback is optional and if is specified, any error object occurred will be passed as a argument. If not specified, error is reported directly on console output.
+All commands work in the context of the current visitor and website. Additionally, they sometimes require communication with a PPAS server and are asynchronous. Callback functions are used to provide response value or information about errors. ``onSuccess(...args)`` callback is required, with the exception of ``openConsentForm`` command where it is optional. ``onFailure(exception)`` callback is optional and if is specified, any error object occurred will be passed as an argument. If not specified, an error is reported directly on the console output.
 
 Get compliance types
 ````````````````````
-Fetches a list of consent types.
+Fetches a list of consent types for the current setup. For the consent type to appear in the output, at least one tag must have it set.
 
 Code::
 
     ppms.cm.api('getComplianceTypes', onFulfilled, onRejected);
-    dataLayer.push({'event': 'ppms.cm:getComplianceTypes', parameters: [onFulfilled, onRejected]});
 
-:func:`dataLayer.push` interface is only for backward compatibility and you can read more about this particular case below. We recommend :func:`ppms.cm.api`.
 
 .. function:: onFulfilled(types)
 
-    **required** The fulfilment handler callback (called with result).
+    **required** The fulfillment handler callback (called with result)
 
     :param Array<string> types: **Required** Array of consent types
 
@@ -25,24 +23,22 @@ Code::
 
 .. function:: onRejected(error)
 
-    The rejection handler callback (called with error code). If not specified, exception will be thrown in main stacktrace.
+    The rejection handler callback (called with error code). If not specified, the exception will be thrown in the main stack trace.
 
-    :param string|object error: **Required** Error code or exception.
+    :param string|object error: **Required** Error code or exception
 
 Get new compliance types
 ````````````````````````
-Fetches a list of new consent types which were appearing after given consents.
+Fetches a list of the consent types which a visitor did not see yet.
 
 Code::
 
     ppms.cm.api('getNewComplianceTypes', onFulfilled, onRejected);
-    dataLayer.push({'event': 'ppms.cm:getNewComplianceTypes', parameters: [onFulfilled, onRejected]});
 
-:func:`dataLayer.push` interface is only for backward compatibility and you can read more about this particular case below. We recommend :func:`ppms.cm.api`.
 
 .. function:: onFulfilled(types)
 
-    **required** The fulfilment handler callback (called with result).
+    **required** The fulfillment handler callback (called with result)
 
     :param Array<string> types: **Required** Array of consent types
 
@@ -54,26 +50,23 @@ Code::
 
     The rejection handler callback (called with error code).
 
-    :param string|object error: **Required** Error code or exception.
+    :param string|object error: **Required** Error code or exception
 
 
 Set initial compliance settings
 ```````````````````````````````
-Sets initial compliance settings.
-This API command might be useful to note that user has seen a popup with consents but didn't make a decision (popup was closed).
-After successful, Consent Manager internally sends only to stats endpoint an information that user has seen consents.
-Result from getNewComplianceTypes method can be passed directly.
+Sets initial compliance settings (no decision signal for each consent type) in the cookie.
+Use this command to save "no decision" for the available consent types, to further know that a visitor has seen the form.
+Result from `getNewComplianceTypes` method can be passed directly.
 
 Code::
 
     ppms.cm.api('setInitialComplianceSettings', settings, onFulfilled, onRejected);
-    dataLayer.push({'event': 'ppms.cm:setInitialComplianceSettings', parameters: [settings, onFulfilled, onRejected]});
 
-:func:`dataLayer.push` interface is only for backward compatibility and you can read more about this particular case below. We recommend :func:`ppms.cm.api`.
 
 .. object:: settings
 
-    **required** The consent settings object.
+    **required** The consent settings object
 
         Example::
 
@@ -87,31 +80,28 @@ Code::
 
 .. function:: onFulfilled()
 
-     **required** The fulfilment handler callback. This function is **required**.
+     **required** The fulfillment handler callback
 
 .. function:: onRejected(error)
 
-    The rejection handler callback (called with error code). If not specified, exception will be thrown in main stacktrace.
+    The rejection handler callback (called with error code). If not specified, the exception will be thrown in the main stack trace.
 
-    :param string|object error: **Required** Error code or exception.
+    :param string|object error: **Required** Error code or exception
 
 Set compliance settings
 ```````````````````````
-Set compliance settings base on user decision.
-This API command might be useful when user interact with custom, extended UI that reacts on user approve/reject action.
-After successful, Consent Manager internally send consent settings to tracking server and force page view on tags.
-Additionally information to statistics is sent about user decisions.
+Set compliance settings based on visitor's decisions.
+Use this command to save visitor's consent choices from the consent form.
+Consent Manager forces a page view after the command is invoked, so all tags requiring certain choices will be fired immediately after the consent is given.
 
 Code::
 
     ppms.cm.api('setComplianceSettings', settings, onFulfilled, onRejected);
-    dataLayer.push({'event': 'ppms.cm:setComplianceSettings', parameters: [settings, onFulfilled, onRejected]});
 
-:func:`dataLayer.push` interface is only for backward compatibility and you can read more about this particular case below. We recommend :func:`ppms.cm.api`.
 
 .. object:: settings
 
-    **required** The consent settings object.
+    **required** The consent settings object
 
         Example::
 
@@ -124,29 +114,27 @@ Code::
 
 .. function:: onFulfilled()
 
-     **required** The fulfilment handler callback. This function is **required**.
+     **required** The fulfillment handler callback
 
 .. function:: onRejected(error)
 
-    The rejection handler callback (called with error code). If not specified, exception will be thrown in main stacktrace.
+    The rejection handler callback (called with error code). If not specified, the exception will be thrown in the main stack trace.
 
-    :param string|object error: **Required** Error code or exception.
+    :param string|object error: **Required** Error code or exception
 
 Get compliance settings
 ```````````````````````
-Return current privacy settings. Might be useful for initializing custom decision view.
-When there is no decisions, just returns empty object. This state can be used to detect first time user interaction with consent mechanism.
+Returns current privacy settings. Use this command to get visitor's decisions.
+This command returns an empty object if there were no decisions registered yet.
 
 Code::
 
     ppms.cm.api('getComplianceSettings', onFulfilled, onRejected);
-    dataLayer.push({'event': 'ppms.cm:getComplianceSettings', parameters: [onFulfilled, onRejected]});
 
-:func:`dataLayer.push` interface is only for backward compatibility and you can read more about this particular case below. We recommend :func:`ppms.cm.api`.
 
 .. object:: settings
 
-     **required** The consent settings object.
+     **required** The consent settings object
 
         Example::
 
@@ -160,24 +148,22 @@ Code::
 
 .. function:: onFulfilled(settings)
 
-    **required** The fulfilment handler callback (called with result).
+    **required** The fulfillment handler callback (called with result)
 
 .. function:: onRejected(error)
 
-    The rejection handler callback (called with error code). If not specified, exception will be thrown in main stacktrace.
+    The rejection handler callback (called with error code). If not specified, the exception will be thrown in the main stack trace.
 
-    :param string|object error: **Required** Error code or exception.
+    :param string|object error: **Required** Error code or exception
 
 Send data subject request
 `````````````````````````
-Command send data subject request to Consent Manager collector.
+Command that sends a Data subject request to the Consent Manager.
 
 Code::
 
     ppms.cm.api('sendDataRequest', request, onFulfilled, onRejected);
-    dataLayer.push({'event': 'ppms.cm:sendDataRequest', parameters: [request, onFulfilled, onRejected]});
 
-:func:`dataLayer.push` interface is only for backward compatibility and you can read more about this particular case below. We recommend :func:`ppms.cm.api`.
 
 .. object:: request
 
@@ -195,44 +181,42 @@ Code::
 
 .. function:: onFulfilled()
 
-    **required** The fulfilment handler callback.
+    **required** The fulfillment handler callback
 
 .. function:: onRejected(error)
 
-    The rejection handler callback (called with error code). If not specified, exception will be thrown in main stacktrace.
+    The rejection handler callback (called with error code). If not specified, the exception will be thrown in the main stack trace.
 
-    :param string|object error: **Required** Error code or exception.
+    :param string|object error: **Required** Error code or exception
 
 Open consent form
-`````````````````````````
+`````````````````
 .. versionadded:: 12.0
-Command used to open consent form.
+Command used to open consent form. Works only for built-in consent forms, it will not do anything if Custom consent form mode is enabled.
 
 Code::
 
     ppms.cm.api('openConsentForm', onFulfilled, onRejected);
-    dataLayer.push({'event': 'ppms.cm:openConsentForm', parameters: [onFulfilled, onRejected]});
 
-:func:`dataLayer.push` interface is only for backward compatibility and you can read more about this particular case below. We recommend :func:`ppms.cm.api`.
 
 .. function:: onFulfilled(popupId, consentTypes, consents)
 
-    The fulfilment handler callback.
+    The fulfillment handler callback
 
-    :param string popupId: Id of the consent popup.
+    :param string popupId: Id of the consent popup
 
         Example::
 
             "ppms_cm_consent_popup_30a851b6-6bf4-45f9-9a53-583401bb5d60"
 
-    :param array<string> consentTypes: Array of consent types.
+    :param array<string> consentTypes: Array of consent types
 
 
         Example::
 
             ["analytics", "conversion_tracking", "remarketing"]
 
-    :param array<string> consents: Array list of all given consents.
+    :param array<string> consents: Array list of all given consents
 
         Example::
 
@@ -240,6 +224,139 @@ Code::
 
 .. function:: onRejected(error)
 
-    The rejection handler callback (called with error code). If not specified, exception will be thrown in main stacktrace.
+    The rejection handler callback (called with error code). If not specified, the exception will be thrown in the main stack trace.
 
-    :param string|object error: **Required** Error code or exception.
+    :param string|object error: **Required** Error code or exception
+
+Track Main Form view
+````````````````````
+.. versionadded:: 15.3
+Command used to track Consent Form main view (automatic view, when user enters the website for the first time).
+
+Code::
+
+    ppms.cm.api('trackMainFormView', onFulfilled, onRejected);
+
+.. function:: onFulfilled()
+
+    The fulfillment handler callback
+
+.. function:: onRejected(error)
+
+    The rejection handler callback (called with error code). If not specified, the exception will be thrown in the main stack trace.
+
+    :param string|object error: **Required** Error code or exception
+
+Track Reminder Widget view
+``````````````````````````
+.. versionadded:: 15.3
+Command used to track Consent Form view caused by clicking on Reminder Widget.
+
+Code::
+
+    ppms.cm.api('trackReminderWidgetView', onFulfilled, onRejected);
+
+.. function:: onFulfilled()
+
+    The fulfillment handler callback
+
+.. function:: onRejected(error)
+
+    The rejection handler callback (called with error code). If not specified, the exception will be thrown in the main stack trace.
+
+    :param string|object error: **Required** Error code or exception
+
+Track Privacy Policy Link view
+``````````````````````````````
+.. versionadded:: 15.3
+Command used to track Consent Form view caused by clicking on Privacy Policy Link.
+
+Code::
+
+    ppms.cm.api('trackPrivacyPolicyLinkView', onFulfilled, onRejected);
+
+.. function:: onFulfilled()
+
+    The fulfillment handler callback
+
+.. function:: onRejected(error)
+
+    The rejection handler callback (called with error code). If not specified, the exception will be thrown in the main stack trace.
+
+    :param string|object error: **Required** Error code or exception
+
+Track `Agree to all` click
+``````````````````````````
+.. versionadded:: 15.3
+Command used to track clicks on the `Agree to all` button.
+
+Code::
+
+    ppms.cm.api('trackAgreeToAllClick', onFulfilled, onRejected);
+
+.. function:: onFulfilled()
+
+    The fulfillment handler callback
+
+.. function:: onRejected(error)
+
+    The rejection handler callback (called with error code). If not specified, the exception will be thrown in the main stack trace.
+
+    :param string|object error: **Required** Error code or exception
+
+Track `Reject all` click
+````````````````````````
+.. versionadded:: 15.3
+Command used to track clicks on the `Reject all` button.
+
+Code::
+
+    ppms.cm.api('trackRejectAllClick', onFulfilled, onRejected);
+
+.. function:: onFulfilled()
+
+    The fulfillment handler callback
+
+.. function:: onRejected(error)
+
+    The rejection handler callback (called with error code). If not specified, the exception will be thrown in the main stack trace.
+
+    :param string|object error: **Required** Error code or exception
+
+Track `Save choices` click
+``````````````````````````
+.. versionadded:: 15.3
+Command used to track clicks on the `Save choices` button.
+
+Code::
+
+    ppms.cm.api('trackSaveChoicesClick', onFulfilled, onRejected);
+
+.. function:: onFulfilled()
+
+    The fulfillment handler callback
+
+.. function:: onRejected(error)
+
+    The rejection handler callback (called with error code). If not specified, the exception will be thrown in the main stack trace.
+
+    :param string|object error: **Required** Error code or exception
+
+Track close button click
+````````````````````````
+.. versionadded:: 15.3
+Command used to track clicks on the close button (`X`).
+
+Code::
+
+    ppms.cm.api('trackCloseButtonClick', onFulfilled, onRejected);
+
+.. function:: onFulfilled()
+
+    The fulfillment handler callback
+
+.. function:: onRejected(error)
+
+    The rejection handler callback (called with error code). If not specified, the exception will be thrown in the main stack trace.
+
+    :param string|object error: **Required** Error code or exception
