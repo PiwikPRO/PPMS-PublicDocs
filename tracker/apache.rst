@@ -3,13 +3,11 @@
 Apache reverse proxy
 ====================
 
-Configuration of apache reverse proxy requires an additional module ``proxy_http_module`` and a set of commands containing ``ProxyPass`` with ``ProxyPassReverse``. 
-
-.. CAUTION::
-  Please replace ``piwikpro-instance`` with your actual instance name. 
+Configuration of apache reverse proxy requires an additional module ``proxy_http_module`` and a set of commands containing ``ProxyPass`` and ``ProxyPassReverse``.
 
 .. highlight:: ini
-::  
+
+Please add following lines to your apache main configuration file::  
 
   # Modules required by PiwikPRO reverse proxy
   <IfModule !proxy_module>
@@ -31,4 +29,8 @@ Configuration of apache reverse proxy requires an additional module ``proxy_http
       ProxyPass "/ppas.js" "http://piwikpro-instance/ppas.js"
       ProxyPassReverse "/ppas.js" "http://piwikpro-instance/ppas.js"
   </IfModule>
+
+.. CAUTION::
+  Please replace ``piwikpro-instance`` with your actual instance name. 
+
 

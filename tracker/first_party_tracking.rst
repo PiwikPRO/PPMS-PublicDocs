@@ -11,11 +11,11 @@ In order to create a first party visitor cookie you need to host a tracker in yo
 
 As terms of first and third party cookies were introduced without any explanation it is advised to  read the following Clearcode blog post - https://clearcode.cc/blog/difference-between-first-party-third-party-cookies.
 
-In order to set up a first party tracker you need to modify two components - your proxy and PiwikPro tag.
+In order to set up a first party tracker you need to modify two components - your reverse proxy and PiwikPro tag.
 
 How to configure a reverse proxy?
 ---------------------------------
-We need to configure a proxy to achieve following goals:
+We need to configure a reverse proxy to achieve following goals:
 
 * All requests to ``your-website.com/t.js`` will be proxied to ``your-instance.piwik.pro/ppms.js``.
 * All requests to ``your-website.com/t.php`` will be proxied to ``your-instance.piwik.pro/ppms.php``.
