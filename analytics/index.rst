@@ -1,5 +1,5 @@
-Analytics
-=========
+Analytics (Classic)
+===================
 
 .. toctree::
     :maxdepth: 2
