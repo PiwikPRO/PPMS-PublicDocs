@@ -43,7 +43,6 @@
         'glossary.html',
     ];
     let linkIndex = menuArray.indexOf(window.location.pathname.split('/')[3]);
-    let activeMenu = document.querySelectorAll('.topbar-menu a')[linkIndex];
     let menu = document.querySelector('.wy-menu.wy-menu-vertical');
     if(menuBar) {
         let newMenu = document.createElement('div');
@@ -67,6 +66,7 @@
         menu.parentElement.insertBefore(mobileSelectCtn, menu);
         content.parentElement.insertBefore(newMenu, content);
     }
+    let activeMenu = document.querySelectorAll('.topbar-menu a')[linkIndex];
     if(activeMenu) {
         activeMenu.classList.add('active', 'current');
     }

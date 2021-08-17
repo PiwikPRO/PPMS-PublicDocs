@@ -1360,6 +1360,27 @@ body {
     background: url("../images/close.svg");
 }
 
+#search-results .context {
+    color: #0C0F12;
+}
+
+.toctree-l3.current a .toctree-expand:nth-child(2) {
+    display: none;
+}
+
+.toctree-l2.current a .toctree-expand:nth-child(2) {
+    display: none;
+}
+
+.iNoDtm .sc-jTzLTM polygon {
+    fill: black;
+}
+
+.sc-jTzLTM.gBhLRG {
+    height: 20px;
+    width: 20px;
+}
+
 @media screen and (max-width: 768px) {
     .wy-nav-content-wrap {
         margin-left: 0;

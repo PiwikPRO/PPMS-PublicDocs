@@ -21,11 +21,23 @@
     window.prepareRedocMenu = function () {
         let redocmenu = document.querySelector('#redoc-container [role=navigation]');
         let prependMenu = document.querySelector('.toctree-l3.current');
+        let index = 3;
+        let isAlreadyExpanded, prependMenuexpand;
         if(!prependMenu){
             prependMenu = document.querySelector('.toctree-l2.current');
+            index = 2;
         }
-        let prependMenuexpand = document.querySelector('.toctree-l2.current a');
-        prependMenuexpand.innerHTML = '<span class="toctree-expand"> </span>' + prependMenuexpand.innerHTML;
+        if(index === 3) {
+            prependMenuexpand = document.querySelector('.toctree-l3.current a');
+            isAlreadyExpanded = document.querySelector('.toctree-l3.current a .toctree-expand');
+        } else {
+            prependMenuexpand = document.querySelector('.toctree-l2.current a');
+            isAlreadyExpanded = document.querySelector('.toctree-l2.current a .toctree-expand');
+        }
+
+        if(!isAlreadyExpanded) {
+            prependMenuexpand.innerHTML = '<span class="toctree-expand"> </span>' + prependMenuexpand.innerHTML;
+        }
         prependMenu.appendChild(redocmenu);
     }
 })();
