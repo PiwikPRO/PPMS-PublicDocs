@@ -18,7 +18,6 @@ Developer docs and guides
    :maxdepth: 2
 
    custom_reports/index
-   analytics/index
    tracker/index
    audience_manager/index
    consent_manager/index
