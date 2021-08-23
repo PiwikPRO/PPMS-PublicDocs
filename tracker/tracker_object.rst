@@ -507,6 +507,12 @@ Cookies that are used by analytics are first party cookies.
 
     :param number seconds: **Required** Seconds after which the cookie will expire. Default is 30 minutes.
 
+.. function:: setVisitorIdCookie()
+
+    The function that will set cookie containing :term:`analytics ID`.
+
+    .. note:: It's needed only when tracker instance is created without use of :func:`_paq.push` and script needs to know :term:`analytics ID` before first tracking request is sent. Make sure that it is called after all methods that configure cookie are called (e.g. :func:`setCookieNamePrefix`, :func:`setCookieDomain`, :func:`setCookiePath`, etc.).
+
 Tracker Configuration
 ---------------------
 
