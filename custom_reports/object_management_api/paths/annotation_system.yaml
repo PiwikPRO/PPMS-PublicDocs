@@ -1,0 +1,35 @@
+get:
+  tags:
+    - System Annotations
+  summary: List System Annotations
+  description: |
+    Returns a list all System Annotations available for a website.
+    Please note that each request must be authenticated.
+  parameters:
+      - $ref: '#/parameters/DateFrom'
+      - $ref: '#/parameters/DateTo'
+      - $ref: '#/parameters/Limit'
+      - $ref: '#/parameters/Offset'
+  responses:
+    '200':
+      description: OK
+      content:
+        application/vnd.api+json:
+          schema:
+            type: object
+            required:
+              - meta
+              - data
+            properties:
+              meta:
+                type: object
+                allOf:
+                  - $ref: '#/schemas/Meta'
+              data:
+                type: array
+                items:
+                  $ref: '#/definitions/AnnotationSystem'
+    '400':
+      description: Bad Request
+    '403':
+      description: Forbidden

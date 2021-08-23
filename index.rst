@@ -6,10 +6,10 @@
 Developer docs and guides
 =========================
 
-*Version: 15.5 (see* |changelog|_\ *)*
+*Version: 16.0 (see* |changelog|_\ *)*
 
 .. |changelog| replace:: *changelog*
-.. _changelog: https://piwik.pro/changelog/version-15/15-5-0/
+.. _changelog: https://piwik.pro/changelog/version-16/16-0-0/
 
 .. meta::
 	:google-site-verification: MbvqEqLW68SvZYkp04VIPXk85GYi1xlMmZimeIePJv8

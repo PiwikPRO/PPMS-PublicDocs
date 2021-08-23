@@ -1,0 +1,36 @@
+type: object
+allOf:
+  - $ref: '#/definitions/AnnotationUser'
+required:
+  - type
+  - attributes
+properties:
+  attributes:
+    required:
+      - content
+      - website_id
+      - date
+      - is_author
+      - author
+      - visibility
+    properties:
+      website_id:
+        type: string
+        format: uuid
+        description: ID of the website.
+        example: dde2dc68-b6bb-45ee-9ac2-868b6181e33f
+      author:
+        type: object
+        description: Author of the object.
+        properties:
+          email:
+            type: string
+            description: Email address of the author.
+            example: foo@bar.com
+        required:
+          - email
+        readOnly: true
+      is_author:
+        type: boolean
+        description: Flag that says whether the current user is the author.
+        readOnly: true

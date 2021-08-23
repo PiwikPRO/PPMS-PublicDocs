@@ -27,7 +27,8 @@ from convert import write_open_api_json
 API_PATH = os.path.join(os.path.dirname(__file__), '_static/api')
 
 api_definitions = {
-    'tracker_tracking_api.json': 'tracker/index.yaml',
+    'tracker_tracking_api.json': 'tracker/tracking_api.yaml',
+    'tracker_debugger_api.json': 'tracker/tracker_debugger_api.yaml',
     'audience_manager_public_api.json': 'audience_manager/public_api/index.yaml',
     'platform_access_control_authorized_api.json': 'platform/authorized_api/access_control/public_v2.yaml',
     'platform_apps_authorized_api.json': 'platform/authorized_api/apps/public_v2.yaml',
@@ -39,6 +40,7 @@ api_definitions = {
     'platform_user_groups_authorized_api.json': 'platform/authorized_api/user_groups/public_v1.yaml',
     'audience_manager_authorized_api.json': 'audience_manager/authorized_api/index.yaml',
     'custom_reports_http_api.json': 'custom_reports/http_api/index.yaml',
+    'custom_reports_object_management_api.json': 'custom_reports/object_management_api/index.yaml',
     'tag_manager_authorized_api_tags.json': 'tag_manager/authorized_api/src/tags.yaml',
     'tag_manager_authorized_api_triggers.json': 'tag_manager/authorized_api/src/triggers.yaml',
     'tag_manager_authorized_api_variables.json': 'tag_manager/authorized_api/src/variables.yaml',
@@ -85,7 +87,7 @@ author = u'Piwik PRO'
 # built documents.
 #
 # The short X.Y version.
-version = u'15.5'
+version = u'16.0'
 # The full version, including alpha/beta/rc tags.
 release = version
 
