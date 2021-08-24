@@ -231,14 +231,14 @@ html_theme = "sphinx_rtd_theme"
 
 
 html_theme_options = {
-    'includehidden': False
+    'includehidden': False,
+    'navigation_depth': 4,
 }
 
 def setup(app):
-    app.add_css_file('css/custom_1626336655663.css')
+    app.add_css_file('css/custom_1629786506693.css')
     app.add_js_file('js/unicornDetector.js')
     app.add_js_file('js/custom.js')
-    app.add_js_file('js/redoc.2.0.0-rc.23.min.js')
 
 # Example configuration for intersphinx: refer to the Python standard library.
 intersphinx_mapping = {'https://docs.python.org/': None}

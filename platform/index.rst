@@ -1,5 +1,5 @@
-Platform
-========
+Administration
+==============
 
 .. toctree::
   :maxdepth: 3

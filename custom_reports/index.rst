@@ -1,5 +1,5 @@
-Analytics (new)
-===============
+Analytics
+=========
 
 .. toctree::
   :maxdepth: 2
