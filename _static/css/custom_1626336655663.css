@@ -294,7 +294,7 @@ body {
     box-sizing: border-box;
     border: 1px solid #D5D9E0;
     background-color: #FFFFFF;
-    padding: 16PX;
+    padding: 16px;
 }
 
 #redoc-container .dtUibw, #redoc-container .fLUKgj {
@@ -1034,7 +1034,7 @@ footer {
 }
 
 #redoc-container .sc-iuJeZd.fLUKgj {
-    width: calc(100% * 0.4);
+    width: 40%;
 }
 
 #redoc-container .api-info > p {
