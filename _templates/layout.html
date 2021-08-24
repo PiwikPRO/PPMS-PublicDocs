@@ -2,6 +2,11 @@
 {% block extrahead %}
 {{ super() }}
 <script src="{{ pathto('_static/js/redoc.2.0.0-rc.23.min.js', 1) }}" />
+<style>
+    body {
+        display: none;
+    }
+</style>
 {% endblock %}
 {% block extrabody %}
 {{ super() }}
