@@ -6,5 +6,10 @@ Tracker debugger API exposes sessions in live mode. It's a useful tool for verif
 
 .. raw:: html
 
-    <redoc spec-url="../_static/api/tracker_debugger_api.json" expand-responses="" sticky-sidebar="">
-    </redoc>
+    <div id='redoc-container'>
+    </div>
+    <script>
+        (function() {
+            Redoc.init('../_static/api/tracker_debugger_api.json', {}, document.getElementById('redoc-container'), () => {window.prepareRedocMenu()});
+        })();
+    </script>
