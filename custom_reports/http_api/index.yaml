@@ -1,6 +1,6 @@
 swagger: '2.0'
 info:
-  title: Analytics (new) HTTP API
+  title: Analytics HTTP API
   description: |
     **Authentication is required** to access any of the
     following endpoints. Please see [Authorization](../../platform/authorized_api_guide.html)
