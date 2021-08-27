@@ -1,82 +1,86 @@
 Getting started
 ===============
 
-## Introduction
-This page describes how to access Piwik PRO API which uses
-[client credentials](https://www.oauth.com/oauth2-servers/access-tokens/client-credentials/)
-OAuth grant type for obtaining user token.
-All data is sent and received as JSON and is compliant with [JSON API](http://jsonapi.org/) specification.
+Create API credentials and an access token
+------------------------------------------
 
-### Creating API Credentials
+If you want to access API for the first time, you need to generate your API credentials and use them to create an access token. The token is needed to authenticate API calls.
 
-If you want to access API for the first time you need to generate your
-API credentials which then allows you to request for a token that is used for authentication during communication with authorized API.
+Our API uses [client credentials](https://www.google.com/url?q=https://www.oauth.com/oauth2-servers/access-tokens/client-credentials/&sa=D&source=editors&ust=1630060263067000&usg=AOvVaw3sSE7Kj9YdsZdt_F7kR4Dg) (OAuth grant type) for obtaining a user token. All data is sent and received as JSON and is compliant with the [JSON API](https://www.google.com/url?q=http://jsonapi.org/&sa=D&source=editors&ust=1630060263068000&usg=AOvVaw3gWYzJ3CM3WZneyuHqiwDD) specification.
 
-#### Generate API Credentials
+### Generate API credentials
 
-* Login to your account using your email and password.
-* Go to your profile (`Menu` then `User panel`).
-* On this page click on `API Credentials` tab. This page allows you to manage all your API credentials.
-* Click `Generate new credentials` which will result in new popup. Fill in your custom `credentials name`.
-  Name must contain at least 3 characters. Note: That name will be used later if you would like to revoke those API credentials.
-* Copy your newly generated `CLIENT ID` and `CLIENT SECRET` because they **won't be available for you after dismissing this window.**
+To generate API credentials, follow these steps:
 
-Those credentials will be valid as long as you will not revoke them in your profile. How to do that you can [read here](#deleting-api-credentials).
+1.  Log in to [Piwik PRO](https://www.google.com/url?q=https://piwik.pro/login/&sa=D&source=editors&ust=1630060263068000&usg=AOvVaw2zFTi-fgZWlr4WI6jfsozD).
+2.  Go to Menu &gt; Profile.
+3.  Navigate to API credentials.
+4.  Click Generate new credentials.
+5.  Enter Name and click OK.
+6.  Copy Client ID and Client secret. They won’t be available after you close this window.
 
-#### Create access token
+Note: Credentials are valid until they are deleted in the Profile.
 
-Having generated your API Credentials, now you are ready for creating access token that will be used in
-communication with API.
+### Create an access token
 
-Piwik PRO API tokens use [JWT](https://jwt.io/) format.
+To create an access token, follow these steps:
 
-Make POST call to `https://<domain>/auth/token` with header `Content-Type: application/json` and payload:
-`{ "grant_type": "client_credentials", "client_id": "<client_id>", "client_secret": "<client_secret>" }`.
+1.  Piwik PRO API tokens use [JWT](https://www.google.com/url?q=https://jwt.io/&sa=D&source=editors&ust=1630060263070000&usg=AOvVaw3KCeEZp1td0_QwfpbHid37) format.
+2.  Make a call:
+    ```
+    curl -X POST 'https://<example>/auth/token' -H "Content-Type: application/json" --data '{
+        "grant_type": "client_credentials",
+        "client_id": "<client_id>",
+        "client_secret": "<client_secret>"
+    }'
+    ```
+    Note: If you are the [Core plan](https://www.google.com/url?q=https://stage.piwik.pro/core-plan/&sa=D&source=editors&ust=1630060263071000&usg=AOvVaw2nqlsp6Xh-XZXAiey1Z8ZS) user, replace &lt;example&gt; with &lt;your_account_name&gt;.piwik.pro.
 
-If you are [core plan](https://stage.piwik.pro/core-plan/) user as `<domain>` use your Account Name + `.piwik.pro`.
 
-Response example:
-```
-{"token_type":"Bearer","expires_in":1800,"access_token":"<your_access_token>"}
-```
+3.  Response example:
+    ```
+    {"token_type":"Bearer","expires_in":1800,"access_token":"<your_access_token>"}
+    ```
+4.  Now you can use &lt;your_access_token&gt; to communicate with Piwik PRO API. The token is a Bearer type, so you need to include it within the header in every API call.  
+    ```
+    Authorization: Bearer <your_access_token>
+    ```
+    Note: Every token is valid for 30 minutes. expires_in shows the expiration time in seconds.
 
-Now, you can use obtained `<your_access_token>` for communication with Piwik PRO API.
-Field `expires_in` stands for time (in seconds) for token expiration (TTL). Every token is valid for 30 minutes.
-Since token is a Bearer type, it must be **included in every API call** within header.
+### Delete API credentials
 
-```
-Authorization: Bearer <your_access_token>
-```
+If you no longer want to use generated API credentials in access tokens, you need to delete them.
 
-### Deleting API Credentials
+To delete API credentials, follow these steps:
 
-Once you want to revoke the possibility of generating API token using given `CLIENT ID` and `CLIENT SECRET`,
-go to `User panel > API Credentials`, find proper credentials by name, and click `X` button on the right.
+1.  Log in to [Piwik PRO](https://www.google.com/url?q=https://piwik.pro/login/&sa=D&source=editors&ust=1630060263074000&usg=AOvVaw2AxWdP-tuJMm5bwgIOyCch).
+2.  Go to Menu &gt; Profile.
+3.  Navigate to API credentials.
+4.  Choose credentials that you want to revoke and click X.
 
-## API usage example
+Examples of using API
+---------------------
 
-Whatever API call you choose, first remember that you must generate
-[API credentials](#generate-api-credentials) for obtaining `CLIENT ID` and `CLIENT SECRET`.
+Note: To use any API call, you need to have API credentials (see above).
 
-### API usage example with curl
+### Using API with curl
 
-For sake of these examples, `https://<domain>` is a URL of your PPAS instance (e.g. `https://example.piwik.pro`) and our goal
-is to perform basic operations on a user. We will:
-* invite a user
-* get created user
-* change user language
-* delete the user
+In this example, we want to perform some basic operations on a user. We'll do the following operations:
 
-#### Generate your access token
+-   Invite a user
+-   Get a created user
+-   Change the user's language
+-   Delete a user
 
-Request example:
+Note: In our example, we use https://&lt;example&gt; as an account address. An account address has this format: https://example.piwik.pro.
 
-```
+### Generate your access token
+
+Example of a request:
+
 POST /auth/token
 ```
-
-```
-curl -X POST 'https://<domain>/auth/token' -H "Content-Type: application/json" --data '{
+curl -X POST 'https://<example>/auth/token' -H "Content-Type: application/json" --data '{
     "grant_type": "client_credentials",
     "client_id": "your_generated_client_id",
     "client_secret": "your_generated_client_secret"
@@ -91,20 +95,15 @@ Response example:
     "access_token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJwcG1zIiwiYXVkIjoiaHR0cHM6XC9cL3Rlc3RpbmcucGl3aWsucHJvXC9zZXR5LCJzdWIiOiJkNmNkZGMxMS1iZDA1L0aW5ncyIsImlhdCI6MTUzNzI3MDQ1OSwiZXhwIjoxNTM3MzU2ODUTRhYmUtYWIyZC02YjlhNjIxZmU0ZDciLCJvcmciOiJkZWZhdWx0In0.Nec2mYFRv6manzXjq0sHQxINZvu-fbDYT8AedVHBKYvu1F9hYKaFReY8rNgfsMANw2OX8-IKpTrQb1DyRkG4nxpIEbob528_lPd7roho5mtKlE8sfS9WZE1piYOwaNDySDEUwUowgj2xBiJqSODjxBI6qVhLkynGEEeNBVh-lrUmlcjpYqUc3saHvX72L-rqbIHa_1dzGarR-dcPyns-RpKjZEILzUSYOHdM09KDti-xsG-nbKHGdP8fVEEJPyupnAfJPOLHQg_j1c5IvJSvTKVF3j4_zo6Zw5g8YkaheT9Iwph5BGHFRneXatcmbwKI8JzSDFi6CinzI-okYKRPbg"
 }
 ```
-
-Field `access_token` contains your token which then will be used for all API calls.
-Once you generated an access token, you can use it during its lifetime (30 minutes)
+Note: access_token contains your token. You'll need it for all API calls. Every token is valid for 30 minutes.
 
 #### Invite a user
 
 Request example:
 
-```
 POST /api/users/v2
 ```
-
-```
-curl -X POST 'https://<domain>/api/users/v2' -H "Authorization: Bearer <your_access_token>" -H "Content-Type: application/vnd.api+json" --data '{
+curl -X POST 'https://<example>/api/users/v2' -H "Authorization: Bearer <your_access_token>" -H "Content-Type: application/vnd.api+json" --data '{
   "data": {
     "type": "ppms/user",
     "attributes": {
@@ -113,14 +112,13 @@ curl -X POST 'https://<domain>/api/users/v2' -H "Authorization: Bearer <your_acc
     }
   }
 }'
-
 ```
+Replace in your request the following fields:
 
-Note, that you have to replace:
-* `<domain>` with your PPAS instance URL,
-* `<your_access_token>` with your generated access token
+-   &lt;example&gt; with your account address. Example: example.piwik.pro.
+-   &lt;your_access_token&gt; with your generated access token
 
-Response example:
+Example of a response:
 ```
 {
   "data": {
@@ -137,21 +135,15 @@ Response example:
 ```
 #### Get a user
 
-Now, when a user is invited, it is possible to get it.
+After inviting a user, you can get a user.
 
 Request example:
-```
-GET /api/users/v2/<user_id>
-```
 
+GET /api/users/v2/&lt;user_id&gt;
 ```
-curl 'https://<domain>/api/users/v2/b30e538d-4b05-4a75-ae25-7eb565901f38' -H "Authorization: Bearer <your_access_token>" -H "Content-Type: application/vnd.api+json"
+curl 'https://<example>/api/users/v2/b30e538d-4b05-4a75-ae25-7eb565901f38' -H "Authorization: Bearer <your_access_token>"
 ```
-
-
->Notice: URL contains `b30e538d-4b05-4a75-ae25-7eb565901f38`. What is it? It is a unique ID of a user.
-If you want to update given resource you must specify which one. How to obtain this ID?
-You can obtain ID from response's 'data/id' field when you added a user
+Note: The URL contains b30e538d-4b05-4a75-ae25-7eb565901f38. What is it? It is a user ID. If you want to update a given resource, you need to specify which one. You'll find a user ID in the 'data/id' field in the response for adding a user.
 
 Response example:
 ```
@@ -168,18 +160,15 @@ Response example:
   }
 }
 ```
+#### Change the user's language
 
-#### Change user language
-
-Consider you added a user, but afterwards you want to change its language.
+If you want to change the user's language after adding a user, you can use the following method.
 
 Request example:
-```
-PATCH /api/users/v2/<user_id>
-```
 
+PATCH /api/users/v2/&lt;user_id&gt;
 ```
-curl -X PATCH 'https://<domain>/api/users/v2/b30e538d-4b05-4a75-ae25-7eb565901f38' -H "Authorization: Bearer <your_access_token>" -H "Content-Type: application/vnd.api+json" -v --data '{
+curl -X PATCH 'https://<example>/api/users/v2/b30e538d-4b05-4a75-ae25-7eb565901f38' -H "Authorization: Bearer <your_access_token>" -H "Content-Type: application/vnd.api+json" -v --data '{
   "data": {
     "type": "ppms/user",
     "id": "b30e538d-4b05-4a75-ae25-7eb565901f38",
@@ -189,75 +178,67 @@ curl -X PATCH 'https://<domain>/api/users/v2/b30e538d-4b05-4a75-ae25-7eb565901f3
   }
 }'
 ```
+This request changed the user's language name from en-US to de-DE.
 
-This request changed user language name from `en-US` to `de-DE`.
-> Notice three things:
-> * `-X PATCH` before URL. It means that this request is available using `HTTP PATCH method`
-> * you have to specify also `data/id` - it's a [JSON API](http://jsonapi.org/) requirement
-> * also `data/type` is required. For example, when you want to work with user resource, specify it's type as `ppms/user`
-> * you can set only parameters you want to update. For more users attributes go to [User edit reference](https://developers.piwik.pro/en/latest/platform/authorized_api/users/users_api.html#operation/api_user_edit_v2)
+Here are some things to know:
 
-API will return `204 No Content` status code with an empty response.
+-   We use -X PATCH before the URL. It means that this request is available using HTTP PATCH method.
+-   You also need to specify data/id. It's a [JSON API](https://www.google.com/url?q=http://jsonapi.org/&sa=D&source=editors&ust=1630060263085000&usg=AOvVaw2_e_sclz4GJt7m6MGXaLFm) requirement.
+-   data/type is required. For example, when you want to work with a user resource, specify its type as ppms/user.
+-   You can set only parameters you want to update. For more user attributes, go to [User edit reference](https://www.google.com/url?q=https://developers.piwik.pro/en/latest/platform/authorized_api/users/users_api.html%23operation/api_user_edit_v2&sa=D&source=editors&ust=1630060263086000&usg=AOvVaw0yoM7j6pRMx9PuxjFogbK_)
+
+API will return 204 No Content status code with an empty response.
 
 #### Delete a user
 
-Sometimes resources are not needed anymore, so let's have a look at example on how to delete them.
+When you want to remove a user, you can use the following method.
 
 Request example:
 
+DELETE /api/users/v2/&lt;user_id&gt;
 ```
-DELETE /api/users/v2/<user_id>
+curl -X DELETE 'https://<example>/api/users/v2/b30e538d-4b05-4a75-ae25-7eb565901f38' -H "Authorization: Bearer <your_access_token>"
 ```
+API will only return 204 No Content status code.
 
-```
-curl -X DELETE 'https://<domain>/api/users/v2/b30e538d-4b05-4a75-ae25-7eb565901f38' -H "Authorization: Bearer <your_access_token>" -H "Content-Type: application/vnd.api+json"
-```
+Using API with Postman
+----------------------
 
-There is no response example. API will return `204 No Content` status code.
+[Postman](https://www.google.com/url?q=https://www.getpostman.com/&sa=D&source=editors&ust=1630060263088000&usg=AOvVaw1lQo0yxNdLX5HMpj8mXRUo) is a multiplatform GUI application for creating API calls. Piwik PRO allows you to export Swagger documentation and easily import it to Postman. Depending of what you want to work with, you can import the following swagger docs:
 
-### API usage example with Postman
+-   [Access control](https://www.google.com/url?q=https://github.com/PiwikPRO/PPMS-PublicDocs/blob/feature/PPCDEV-13485-authorized-api-doc/_static/api/platform_access_control_authorized_api.json&sa=D&source=editors&ust=1630060263089000&usg=AOvVaw3emmPpf6ETqjfL5R93qvZB)
+-   [Apps](https://www.google.com/url?q=https://github.com/PiwikPRO/PPMS-PublicDocs/blob/feature/PPCDEV-13485-authorized-api-doc/_static/api/platform_apps_authorized_api.json&sa=D&source=editors&ust=1630060263089000&usg=AOvVaw1iixYjCox51M9uoZ1ficpO)
+-   [Audit Log](https://www.google.com/url?q=https://github.com/PiwikPRO/PPMS-PublicDocs/blob/feature/PPCDEV-13485-authorized-api-doc/_static/api/platform_audit_log_authorized_api.json&sa=D&source=editors&ust=1630060263090000&usg=AOvVaw2wgD5SlTA74IbxjX9F_Ra3)
+-   [Meta Sites](https://www.google.com/url?q=https://github.com/PiwikPRO/PPMS-PublicDocs/blob/feature/PPCDEV-13485-authorized-api-doc/_static/api/platform_meta_sites_authorized_api.json&sa=D&source=editors&ust=1630060263091000&usg=AOvVaw2i_vDuAgQva3fSrCHrKo74)
+-   [Modules](https://www.google.com/url?q=https://github.com/PiwikPRO/PPMS-PublicDocs/blob/feature/PPCDEV-13485-authorized-api-doc/_static/api/platform_modules_authorized_api.json&sa=D&source=editors&ust=1630060263091000&usg=AOvVaw3vON6waazTeHVZI5Tosp-B)
+-   [Tracker Settings](https://www.google.com/url?q=https://github.com/PiwikPRO/PPMS-PublicDocs/blob/feature/PPCDEV-13485-authorized-api-doc/_static/api/platform_tracker_settings_authorized_api.json&sa=D&source=editors&ust=1630060263092000&usg=AOvVaw0zCerEax3PSW5ICgIksH4e)
+-   [Users](https://www.google.com/url?q=https://github.com/PiwikPRO/PPMS-PublicDocs/blob/feature/PPCDEV-13485-authorized-api-doc/_static/api/platform_users_authorized_api.json&sa=D&source=editors&ust=1630060263092000&usg=AOvVaw1cGIqKjWZbrrvWrhYbM0C7)
+-   [User Groups](https://www.google.com/url?q=https://github.com/PiwikPRO/PPMS-PublicDocs/blob/feature/PPCDEV-13485-authorized-api-doc/_static/api/platform_user_groups_authorized_api.json&sa=D&source=editors&ust=1630060263093000&usg=AOvVaw1yAsakcklH15NA7U0dxT4f)
 
-[Postman](https://www.getpostman.com/) is a multiplatform GUI application for creating API calls.
-PPAS allows you to export swagger documentation and easily import it to Postman.
-Depending of what you want to work with, you can import given swagger docs:
-* <a href="_static/api/platform_access_control_authorized_api.json" target="_blank">Access control</a>
-* <a href="_static/api/platform_apps_authorized_api.json" target="_blank">Apps</a>
-* <a href="_static/api/platform_audit_log_authorized_api.json" target="_blank">Audit Log</a>
-* <a href="_static/api/platform_meta_sites_authorized_api.json" target="_blank">Meta Sites</a>
-* <a href="_static/api/platform_modules_authorized_api.json" target="_blank">Modules</a>
-* <a href="_static/api/platform_tracker_settings_authorized_api.json" target="_blank">Tracker Settings</a>
-* <a href="_static/api/platform_users_authorized_api.json" target="_blank">Users</a>
-* <a href="_static/api/platform_user_groups_authorized_api.json" target="_blank">User Groups</a>
+To use Postman, follow these steps:
 
-Simply click in Postman: `import -> Import From Link`. Then all of your paths are imported!
-You have to override two things:
-* replace your domain in url
-* add token. Click on `Authorization` tab on chosen API call and then use Bearer Token type.
-  Paste your token and now you can call API using `SEND` button.
+1.  In Postman, click import -&gt; Import From Link.
+2.  Done. All of your paths are imported.
+3.  Now override two elements:
 
-## FAQ
+-   Replace your domain in the URL.
+-   Add your token: In the selected API call, click Authorization. Use the Bearer Token type. Paste your token. Click SEND to call API.
 
-Here you can find the most common issues encountered during work with the API
+FAQ
+---
 
-#### API returns `"application/json" is not a valid JSON API Content-Type header, use "application/vnd.api+json" instead"`
+#### API returns "application/json" is not a valid JSON API Content-Type header, use "application/vnd.api+json" instead"
 
-Remember, all API calls needs to be created with `Content-Type: application/vnd.api+json` header.
-If you use `curl` you need to use `-H "Content-Type: application/vnd.api+json"` flag.
-Postman allows configuring headers with `Header` tab.
+All API calls need to be created with the Content-Type: application/vnd.api+json header. If you use curl, you need to use the -H "Content-Type: application/vnd.api+json" flag. Postman allows configuring headers with the Header tab.
 
-#### API returns `JWT not found`
+#### API returns JWT not found
 
-Remember, you need to always use your API token. You need to send it all the time within `Authorization: Bearer <your_access_token>` header.
-If you use `curl` you need to use `-H "Authorization: Bearer <your_access_token>"` flag.
-Postman allows configuring tokens in authorization tab. Choose type `Bearer Token` and paste it there.
-Remember to keep this token secure as it allows access to sensitive data!
+You need to use your API token with every API call. Always send your API token within the Authorization: Bearer &lt;your_access_token&gt; header. If you use curl, you need to use the -H "Authorization: Bearer &lt;your_access_token&gt;" flag. Postman allows configuring tokens in the authorization tab. Choose the Bearer Token type and paste the token there. Remember to keep your token secure because it gives access to sensitive data.
 
-#### API returns `Expired JWT Token`
+#### API returns Expired JWT Token
 
-Every token that you generated is specified by TTL - time to live. By default it's 30 minutes.
-After token is expired, you need to [generate your access token](#generate-your-access-token)
+Every token is valid for 30 minutes. After the token expires, you can create it again.
 
-#### API returns `access token not authorized`
+#### API returns access token not authorized
 
-This message means, that you sent access token within proper `Authorization: Bearer` field, although it is invalid.
-Make sure you set proper token.
+This message means that you sent an access token within a correct Authorization: Bearer field, but the token is invalid. Check your token and try again.
