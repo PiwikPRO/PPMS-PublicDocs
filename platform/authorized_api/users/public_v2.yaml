@@ -1,20 +1,56 @@
-
 swagger: '2.0'
 info:
   title: Users Api
   version: auto
 
 host: example.piwik.pro
-schemes: [https]
-
-consumes:
-  - application/vnd.api+json
+schemes: [ https ]
 
 paths:
+  /api/users/v2/invite:
+    post:
+      summary: Invite user
+      operationId: api_users_invited_v2
+      produces:
+        - application/vnd.api+json
+      parameters:
+        - in: body
+          name: user data
+          required: true
+          schema:
+            $ref: '#/definitions/JsonApi_User_Invite'
+      responses:
+        201:
+          description: Created
+          schema:
+            type: object
+            properties:
+              data:
+                type: object
+                properties:
+                  id:
+                    $ref: '#/definitions/JsonApi_Id'
+                  type:
+                    $ref: '#/definitions/JsonApi_Type'
+                  attributes:
+                    type: object
+                    properties:
+                      email:
+                        $ref: '#/definitions/User_Email'
+                      role:
+                        $ref: '#/definitions/User_Role'
+                      addedAt:
+                        $ref: '#/definitions/Date'
+                      language:
+                        $ref: '#/definitions/Language'
+        400:
+          $ref: '#/responses/Bad_Request'
+        403:
+          $ref: '#/responses/Forbidden'
   /api/users/v2:
     post:
       summary: Create user
-      operationId: api_user_add_v2
+      operationId: api_users_add_v2
       produces:
         - application/vnd.api+json
       parameters:
@@ -30,7 +66,8 @@ paths:
             $ref: '#/definitions/JsonApi_User_Object'
         400:
           $ref: '#/responses/Bad_Request'
-
+        403:
+          $ref: '#/responses/Forbidden'
     get:
       summary: Get users list
       operationId: api_users_list_v2
@@ -76,18 +113,20 @@ paths:
 
     delete:
       summary: Delete user
-      operationId: api_user_delete_v2
+      operationId: api_users_delete_v2
       responses:
         204:
           $ref: '#/responses/No_Content'
         400:
           $ref: '#/responses/Bad_Request'
+        403:
+          $ref: '#/responses/Forbidden'
         404:
           $ref: '#/responses/Not_Found'
 
     patch:
       summary: Edit user
-      operationId: api_user_edit_v2
+      operationId: api_users_edit_v2
       consumes:
         - application/vnd.api+json
       parameters:
@@ -101,6 +140,8 @@ paths:
           $ref: '#/responses/No_Content'
         400:
           $ref: '#/responses/Bad_Request'
+        403:
+          $ref: '#/responses/Forbidden'
         404:
           $ref: '#/responses/Not_Found'
 
@@ -115,6 +156,8 @@ paths:
     patch:
       summary: Change user role
       operationId: api_users_change_role_v2
+      consumes:
+        - application/vnd.api+json
       parameters:
         - name: User with role
           in: body
@@ -126,13 +169,17 @@ paths:
           $ref: '#/responses/No_Content'
         400:
           $ref: '#/responses/Bad_Request'
+        403:
+          $ref: '#/responses/Forbidden'
         404:
           $ref: '#/responses/Not_Found'
 
   /api/users/v2/me/change-password:
     patch:
       summary: Change my password
-      operationId: api_me_change_password_v2
+      operationId: api_users_me_change_password_v2
+      consumes:
+        - application/json
       parameters:
         - name: User with new password
           in: body
@@ -152,10 +199,8 @@ paths:
       deprecated: true
       description: Use GET /api/users/v2/me
       summary: Current user details
-      operationId: _legacy_api_user_details_v2
+      operationId: deprecated_api_user_details_v2
       produces:
-        - application/vnd.api+json
-      consumes:
         - application/vnd.api+json
       responses:
         200:
@@ -169,10 +214,8 @@ paths:
   /api/users/v2/me:
     get:
       summary: Current user details
-      operationId: api_user_details_v2
+      operationId: api_users_me_details_v2
       produces:
-        - application/vnd.api+json
-      consumes:
         - application/vnd.api+json
       responses:
         200:
@@ -185,7 +228,7 @@ paths:
 
     patch:
       summary: Edit own account
-      operationId: api_me_edit_v2
+      operationId: api_users_me_edit_v2
       consumes:
         - application/vnd.api+json
       parameters:
@@ -199,6 +242,8 @@ paths:
           $ref: '#/responses/No_Content'
         400:
           $ref: '#/responses/Bad_Request'
+        403:
+          $ref: '#/responses/Forbidden'
         404:
           $ref: '#/responses/Not_Found'
 
@@ -258,14 +303,13 @@ definitions:
     type: string
     description: User role
     example: USER
-    enum: [OWNER, USER]
+    enum: [ OWNER, USER ]
 
   User_Email:
     type: string
     description: Valid user email
     format: email
     example: john@doe.com
-    maxLength: 100
 
   User_Organization:
     type: string
@@ -301,7 +345,7 @@ definitions:
 
   JsonApi_User_Type:
     type: string
-    enum: [ppms/user]
+    enum: [ ppms/user ]
     description: PPAS user resource type
 
   JsonApi_Resource_Object:
@@ -354,7 +398,7 @@ definitions:
         properties:
           type:
             type: string
-            enum: [ppms/user]
+            enum: [ ppms/user ]
             description: Resource type, unique across whole PPAS
           attributes:
             type: object
@@ -372,6 +416,32 @@ definitions:
             required:
               - email
               - password
+
+  JsonApi_User_Invite:
+    type: object
+    required:
+      - data
+    properties:
+      data:
+        type: object
+        required:
+          - type
+          - attributes
+        properties:
+          type:
+            type: string
+            enum: [ ppms/user ]
+            description: Resource type, unique across whole PPAS
+          attributes:
+            type: object
+            properties:
+              email:
+                $ref: '#/definitions/User_Email'
+              language:
+                $ref: '#/definitions/Language'
+            required:
+              - email
+              - language
 
   JsonApi_Edit_User:
     type: object
@@ -452,6 +522,8 @@ definitions:
 responses:
   Bad_Request:
     description: Bad Request
+  Forbidden:
+    description: Forbidden
   Not_Found:
     description: Not Found
   No_Content:
