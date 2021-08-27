@@ -35,7 +35,7 @@ api_definitions = {
     'platform_audit_log_authorized_api.json': 'platform/authorized_api/audit_log/public_v1.yaml',
     'platform_meta_sites_authorized_api.json': 'platform/authorized_api/meta_sites/public_v1.yaml',
     'platform_modules_authorized_api.json': 'platform/authorized_api/modules/public_v1.yaml',
-    'platform_tracker_settings_authorized_api.json': 'platform/authorized_api/tracker_settings/public_settings_v1.yaml',
+    'platform_tracker_settings_authorized_api.json': 'platform/authorized_api/tracker_settings/public_v2.yaml',
     'platform_users_authorized_api.json': 'platform/authorized_api/users/public_v2.yaml',
     'platform_user_groups_authorized_api.json': 'platform/authorized_api/user_groups/public_v1.yaml',
     'audience_manager_authorized_api.json': 'audience_manager/authorized_api/index.yaml',
