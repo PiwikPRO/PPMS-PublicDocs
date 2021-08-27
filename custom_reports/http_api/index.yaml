@@ -3,7 +3,7 @@ info:
   title: Analytics (new) HTTP API
   description: |
     **Authentication is required** to access any of the
-    following endpoints. Please see [Authorization](../../platform/authorized_api_guide.html)
+    following endpoints. Please see [Authorization](../../getting_started.html)
     documentation for more details.
 
     Available columns and transformations are listed in the
