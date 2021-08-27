@@ -220,9 +220,8 @@ To use Postman, follow these steps:
 1.  In Postman, click import -&gt; Import From Link.
 2.  Done. All of your paths are imported.
 3.  Now override two elements:
-
--   Replace your domain in the URL.
--   Add your token: In the selected API call, click Authorization. Use the Bearer Token type. Paste your token. Click SEND to call API.
+    -   Replace your domain in the URL.
+    -   Add your token: In the selected API call, click Authorization. Use the Bearer Token type. Paste your token. Click SEND to call API.
 
 FAQ
 ---
