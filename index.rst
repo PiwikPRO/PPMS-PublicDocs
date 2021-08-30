@@ -18,12 +18,11 @@ Developer docs and guides
    :maxdepth: 2
 
    custom_reports/index
-   tracker/index
+   data_collection/index
    audience_manager/index
    consent_manager/index
    tag_manager/index
    platform/index
-   integrations/index
    glossary
 
 .. raw:: html
