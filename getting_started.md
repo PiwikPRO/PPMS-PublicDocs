@@ -75,7 +75,7 @@ Request example:
 POST /auth/token
 ```
 
-```
+```shell
 curl -X POST 'https://<domain>/auth/token' -H "Content-Type: application/json" --data '{
     "grant_type": "client_credentials",
     "client_id": "your_generated_client_id",
@@ -103,7 +103,7 @@ Request example:
 POST /api/users/v2
 ```
 
-```
+```shell
 curl -X POST 'https://<domain>/api/users/v2' -H "Authorization: Bearer <your_access_token>" -H "Content-Type: application/vnd.api+json" --data '{
   "data": {
     "type": "ppms/user",
@@ -144,14 +144,14 @@ Request example:
 GET /api/users/v2/<user_id>
 ```
 
-```
+```shell
 curl 'https://<domain>/api/users/v2/b30e538d-4b05-4a75-ae25-7eb565901f38' -H "Authorization: Bearer <your_access_token>" -H "Content-Type: application/vnd.api+json"
 ```
 
 
 >Notice: URL contains `b30e538d-4b05-4a75-ae25-7eb565901f38`. What is it? It is a unique ID of a user.
 If you want to update given resource you must specify which one. How to obtain this ID?
-You can obtain ID from response's 'data/id' field when you added a user
+You can obtain ID from response's `data/id` field when you added a user
 
 Response example:
 ```
@@ -178,7 +178,7 @@ Request example:
 PATCH /api/users/v2/<user_id>
 ```
 
-```
+```shell
 curl -X PATCH 'https://<domain>/api/users/v2/b30e538d-4b05-4a75-ae25-7eb565901f38' -H "Authorization: Bearer <your_access_token>" -H "Content-Type: application/vnd.api+json" -v --data '{
   "data": {
     "type": "ppms/user",
@@ -209,7 +209,7 @@ Request example:
 DELETE /api/users/v2/<user_id>
 ```
 
-```
+```shell
 curl -X DELETE 'https://<domain>/api/users/v2/b30e538d-4b05-4a75-ae25-7eb565901f38' -H "Authorization: Bearer <your_access_token>" -H "Content-Type: application/vnd.api+json"
 ```
 
