@@ -53,8 +53,7 @@ If you no longer want to use generated API credentials in access tokens, you nee
 
 To delete API credentials, follow these steps:
 
-1.  Log in to [Piwik PRO](https://www.
-.com/url?q=https://piwik.pro/login/&sa=D&source=editors&ust=1630060263074000&usg=AOvVaw2AxWdP-tuJMm5bwgIOyCch).
+1.  Log in to [Piwik PRO](https://piwik.pro/login/).
 2.  Go to Menu &gt; Profile.
 3.  Navigate to API credentials.
 4.  Choose credentials that you want to revoke and click X.
@@ -206,8 +205,6 @@ Using API with Postman
 ----------------------
 
 [Postman](https://www.getpostman.com/) is a multiplatform GUI application for creating API calls. Piwik PRO allows you to export Swagger documentation and easily import it to Postman. Depending of what you want to work with, you can import the following swagger docs:
-
-https://developers.piwik.pro/en/latest/_static/api/platform_access_control_authorized_api.json
 
 * <a href="_static/api/platform_access_control_authorized_api.json" target="_blank">Access control</a>
 * <a href="_static/api/platform_apps_authorized_api.json" target="_blank">Apps</a>
