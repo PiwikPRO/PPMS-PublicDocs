@@ -6,13 +6,13 @@ Create API credentials and an access token
 
 If you want to access API for the first time, you need to generate your API credentials and use them to create an access token. The token is needed to authenticate API calls.
 
-Our API uses [client credentials](https://www.google.com/url?q=https://www.oauth.com/oauth2-servers/access-tokens/client-credentials/&sa=D&source=editors&ust=1630060263067000&usg=AOvVaw3sSE7Kj9YdsZdt_F7kR4Dg) (OAuth grant type) for obtaining a user token. All data is sent and received as JSON and is compliant with the [JSON API](https://www.google.com/url?q=http://jsonapi.org/&sa=D&source=editors&ust=1630060263068000&usg=AOvVaw3gWYzJ3CM3WZneyuHqiwDD) specification.
+Our API uses [client credentials](https://www.oauth.com/oauth2-servers/access-tokens/client-credentials/) (OAuth grant type) for obtaining a user token. All data is sent and received as JSON and is compliant with the [JSON API](http://jsonapi.org/) specification.
 
 ### Generate API credentials
 
 To generate API credentials, follow these steps:
 
-1.  Log in to [Piwik PRO](https://www.google.com/url?q=https://piwik.pro/login/&sa=D&source=editors&ust=1630060263068000&usg=AOvVaw2zFTi-fgZWlr4WI6jfsozD).
+1.  Log in to [Piwik PRO](https://piwik.pro/login/).
 2.  Go to Menu &gt; Profile.
 3.  Navigate to API credentials.
 4.  Click Generate new credentials.
@@ -25,7 +25,7 @@ Note: Credentials are valid until they are deleted in the Profile.
 
 To create an access token, follow these steps:
 
-1.  Piwik PRO API tokens use [JWT](https://www.google.com/url?q=https://jwt.io/&sa=D&source=editors&ust=1630060263070000&usg=AOvVaw3KCeEZp1td0_QwfpbHid37) format.
+1.  Piwik PRO API tokens use [JWT](https://jwt.io/) format.
 2.  Make a call:
     ```
     curl -X POST 'https://<example>/auth/token' -H "Content-Type: application/json" --data '{
@@ -34,7 +34,7 @@ To create an access token, follow these steps:
         "client_secret": "<client_secret>"
     }'
     ```
-    Note: If you are the [Core plan](https://www.google.com/url?q=https://stage.piwik.pro/core-plan/&sa=D&source=editors&ust=1630060263071000&usg=AOvVaw2nqlsp6Xh-XZXAiey1Z8ZS) user, replace &lt;example&gt; with &lt;your_account_name&gt;.piwik.pro.
+    Note: If you are the [Core plan](https://piwik.pro/core-plan/) user, replace &lt;example&gt; with &lt;your_account_name&gt;.piwik.pro.
 
 
 3.  Response example:
@@ -53,7 +53,8 @@ If you no longer want to use generated API credentials in access tokens, you nee
 
 To delete API credentials, follow these steps:
 
-1.  Log in to [Piwik PRO](https://www.google.com/url?q=https://piwik.pro/login/&sa=D&source=editors&ust=1630060263074000&usg=AOvVaw2AxWdP-tuJMm5bwgIOyCch).
+1.  Log in to [Piwik PRO](https://www.
+.com/url?q=https://piwik.pro/login/&sa=D&source=editors&ust=1630060263074000&usg=AOvVaw2AxWdP-tuJMm5bwgIOyCch).
 2.  Go to Menu &gt; Profile.
 3.  Navigate to API credentials.
 4.  Choose credentials that you want to revoke and click X.
@@ -183,9 +184,9 @@ This request changed the user's language name from en-US to de-DE.
 Here are some things to know:
 
 -   We use -X PATCH before the URL. It means that this request is available using HTTP PATCH method.
--   You also need to specify data/id. It's a [JSON API](https://www.google.com/url?q=http://jsonapi.org/&sa=D&source=editors&ust=1630060263085000&usg=AOvVaw2_e_sclz4GJt7m6MGXaLFm) requirement.
+-   You also need to specify data/id. It's a [JSON API](http://jsonapi.org/) requirement.
 -   data/type is required. For example, when you want to work with a user resource, specify its type as ppms/user.
--   You can set only parameters you want to update. For more user attributes, go to [User edit reference](https://www.google.com/url?q=https://developers.piwik.pro/en/latest/platform/authorized_api/users/users_api.html%23operation/api_user_edit_v2&sa=D&source=editors&ust=1630060263086000&usg=AOvVaw0yoM7j6pRMx9PuxjFogbK_)
+-   You can set only parameters you want to update. For more user attributes, go to [User edit reference](https://developers.piwik.pro/en/latest/platform/authorized_api/users/users_api.html#operation/api_user_edit_v2)
 
 API will return 204 No Content status code with an empty response.
 
@@ -204,16 +205,18 @@ API will only return 204 No Content status code.
 Using API with Postman
 ----------------------
 
-[Postman](https://www.google.com/url?q=https://www.getpostman.com/&sa=D&source=editors&ust=1630060263088000&usg=AOvVaw1lQo0yxNdLX5HMpj8mXRUo) is a multiplatform GUI application for creating API calls. Piwik PRO allows you to export Swagger documentation and easily import it to Postman. Depending of what you want to work with, you can import the following swagger docs:
+[Postman](https://www.getpostman.com/) is a multiplatform GUI application for creating API calls. Piwik PRO allows you to export Swagger documentation and easily import it to Postman. Depending of what you want to work with, you can import the following swagger docs:
 
--   [Access control](https://www.google.com/url?q=https://github.com/PiwikPRO/PPMS-PublicDocs/blob/feature/PPCDEV-13485-authorized-api-doc/_static/api/platform_access_control_authorized_api.json&sa=D&source=editors&ust=1630060263089000&usg=AOvVaw3emmPpf6ETqjfL5R93qvZB)
--   [Apps](https://www.google.com/url?q=https://github.com/PiwikPRO/PPMS-PublicDocs/blob/feature/PPCDEV-13485-authorized-api-doc/_static/api/platform_apps_authorized_api.json&sa=D&source=editors&ust=1630060263089000&usg=AOvVaw1iixYjCox51M9uoZ1ficpO)
--   [Audit Log](https://www.google.com/url?q=https://github.com/PiwikPRO/PPMS-PublicDocs/blob/feature/PPCDEV-13485-authorized-api-doc/_static/api/platform_audit_log_authorized_api.json&sa=D&source=editors&ust=1630060263090000&usg=AOvVaw2wgD5SlTA74IbxjX9F_Ra3)
--   [Meta Sites](https://www.google.com/url?q=https://github.com/PiwikPRO/PPMS-PublicDocs/blob/feature/PPCDEV-13485-authorized-api-doc/_static/api/platform_meta_sites_authorized_api.json&sa=D&source=editors&ust=1630060263091000&usg=AOvVaw2i_vDuAgQva3fSrCHrKo74)
--   [Modules](https://www.google.com/url?q=https://github.com/PiwikPRO/PPMS-PublicDocs/blob/feature/PPCDEV-13485-authorized-api-doc/_static/api/platform_modules_authorized_api.json&sa=D&source=editors&ust=1630060263091000&usg=AOvVaw3vON6waazTeHVZI5Tosp-B)
--   [Tracker Settings](https://www.google.com/url?q=https://github.com/PiwikPRO/PPMS-PublicDocs/blob/feature/PPCDEV-13485-authorized-api-doc/_static/api/platform_tracker_settings_authorized_api.json&sa=D&source=editors&ust=1630060263092000&usg=AOvVaw0zCerEax3PSW5ICgIksH4e)
--   [Users](https://www.google.com/url?q=https://github.com/PiwikPRO/PPMS-PublicDocs/blob/feature/PPCDEV-13485-authorized-api-doc/_static/api/platform_users_authorized_api.json&sa=D&source=editors&ust=1630060263092000&usg=AOvVaw1cGIqKjWZbrrvWrhYbM0C7)
--   [User Groups](https://www.google.com/url?q=https://github.com/PiwikPRO/PPMS-PublicDocs/blob/feature/PPCDEV-13485-authorized-api-doc/_static/api/platform_user_groups_authorized_api.json&sa=D&source=editors&ust=1630060263093000&usg=AOvVaw1yAsakcklH15NA7U0dxT4f)
+https://developers.piwik.pro/en/latest/_static/api/platform_access_control_authorized_api.json
+
+* <a href="_static/api/platform_access_control_authorized_api.json" target="_blank">Access control</a>
+* <a href="_static/api/platform_apps_authorized_api.json" target="_blank">Apps</a>
+* <a href="_static/api/platform_audit_log_authorized_api.json" target="_blank">Audit log</a>
+* <a href="_static/api/platform_meta_sites_authorized_api.json" target="_blank">Meta Sites</a>
+* <a href="_static/api/platform_modules_authorized_api.json" target="_blank">Modules</a>
+* <a href="_static/api/platform_tracker_settings_authorized_api.json" target="_blank">Tracker settings</a>
+* <a href="_static/api/platform_users_authorized_api.json" target="_blank">Users</a>
+* <a href="_static/api/platform_user_groups_authorized_api.json" target="_blank">User Groups</a>
 
 To use Postman, follow these steps:
 
