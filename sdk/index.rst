@@ -1,4 +1,4 @@
 SDK
 ===
 
-This page was moved here: :ref:`integrations`.
+This page was moved here: :ref:`data-collection-mobile`.
