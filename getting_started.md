@@ -27,7 +27,7 @@ To create an access token, follow these steps:
 
 1.  Piwik PRO API tokens use [JWT](https://jwt.io/) format.
 2.  Make a call:
-    ```
+    ```shell
     curl -X POST 'https://<example>/auth/token' -H "Content-Type: application/json" --data '{
         "grant_type": "client_credentials",
         "client_id": "<client_id>",
@@ -196,7 +196,7 @@ When you want to remove a user, you can use the following method.
 Request example:
 
 DELETE /api/users/v2/&lt;user_id&gt;
-```
+```shell
 curl -X DELETE 'https://<example>/api/users/v2/b30e538d-4b05-4a75-ae25-7eb565901f38' -H "Authorization: Bearer <your_access_token>"
 ```
 API will only return 204 No Content status code.
