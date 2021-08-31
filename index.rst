@@ -100,7 +100,7 @@ Developer docs and guides
             <div class="popular-links-header">
                 API
             </div>
-            <a class="link link-large" href="platform/authorized_api_guide.html#authorized-api-guide">
+            <a class="link link-large" href="getting_started.html">
                 Getting started (API)
             </a>
             <a class="link link-large" href="custom_reports/http_api/http_api.html">
