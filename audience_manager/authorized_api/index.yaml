@@ -3,7 +3,7 @@ info:
   title: Authorized Audience Manager API
   description: |
     In order to acces those endpoints, you need to **authenticate**.
-    <a href="../../platform/authorized_api_guide.html">Here is a guide on how to do it.</a>
+    <a href="../../getting_started.html">Here is a guide on how to do it.</a>
   version: 'auto'
 host: your-instance-name.piwik.pro
 basePath: /

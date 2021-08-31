@@ -17,6 +17,7 @@ Developer docs and guides
 .. toctree::
    :maxdepth: 2
 
+   getting_started
    custom_reports/index
    tracker/index
    audience_manager/index
