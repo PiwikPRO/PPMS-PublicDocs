@@ -2,6 +2,7 @@ type: object
 required:
   - type
   - attributes
+  - id
 properties:
   type:
     type: string
@@ -19,7 +20,15 @@ properties:
       - name
       - active
       - case_sensitive
+      - scope
+      - website_id
+      - tracking_id
     properties:
+      website_id:
+        type: string
+        format: uuid
+        description: ID of the website.
+        example: dde2dc68-b6bb-45ee-9ac2-868b6181e33f
       name:
         type: string
         description: Name of the custom dimension.
@@ -30,9 +39,9 @@ properties:
       case_sensitive:
         type: boolean
         description: Specifies if custom dimension is case sensitive or not.
-      slot:
+      tracking_id:
         type: integer
-        description: Slot number for custom dimension.
+        description: Tracking id of custom dimension.
         minimum: 1
         readOnly: true
       extractions:

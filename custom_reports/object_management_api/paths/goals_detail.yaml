@@ -6,28 +6,20 @@ get:
     Returns a definition of a specific goal.
     Please note that each request must be authenticated.
   parameters:
-    - name: website_id
-      in: query
-      description: ID of the website.
-      required: true
-      schema:
-        type: string
-    - name: id
-      in: path
-      required: true
-      description: ID of the goal.
-      schema:
-        type: string
-        format: uuid
-        example: 62c1dc78-35a4-4b54-acd1-6156f814b44c
+    - $ref: '#/parameters/Id'
+    - $ref: '#/parameters/WebsiteId'
   responses:
     '200':
       description: OK
-      schema:
-        type: object
-        properties:
-          data:
-            $ref: '#/definitions/Goal'
+      content:
+        application/vnd.api+json:
+          schema:
+            type: object
+            required:
+              - data
+            properties:
+              data:
+                $ref: '#/definitions/GoalDetails'
     '403':
       description: Forbidden
 put:
@@ -38,31 +30,43 @@ put:
     Update an existing goal.
     Please note that each request must be authenticated.
   parameters:
-    - name: id
-      in: path
-      required: true
-      description: ID of the goal.
-      schema:
-        type: string
-        format: uuid
-        example: 62c1dc78-35a4-4b54-acd1-6156f814b44c
-    - name: body
-      in: body
-      type: object
-      schema:
-        type: object
-        properties:
-          data:
-            $ref: '#/definitions/Goal'
+    - $ref: '#/parameters/Id'
+  requestBody:
+    content:
+      application/vnd.api+json:
+        schema:
+            type: object
+            required:
+              - data
+            properties:
+              data:
+                type: object
+                allOf:
+                  - $ref: '#/definitions/Goal'
+                required:
+                  - type
+                  - attributes
+                  - id
+                properties:
+                  id:
+                    type: string
+                    description: ID of a Goal.
+                    format: uuid
+                    readOnly: false
+                    example: 677fe0d3-b4f7-43ed-852d-1a9e7b8e59fb
       required: true
   responses:
     '200':
       description: OK
-      schema:
-        type: object
-        properties:
-          data:
-            $ref: '#/definitions/Goal'
+      content:
+        application/vnd.api+json:
+          schema:
+            type: object
+            required:
+              - data
+            properties:
+              data:
+                $ref: '#/definitions/GoalDetails'
     '400':
       description: Bad Request
     '403':
@@ -75,20 +79,8 @@ delete:
     Delete the specified goal.
     Please note that each request must be authenticated.
   parameters:
-    - name: id
-      in: path
-      required: true
-      description: ID of the goal.
-      schema:
-        type: string
-        format: uuid
-        example: 62c1dc78-35a4-4b54-acd1-6156f814b44c
-    - name: website_id
-      in: query
-      description: ID of the website.
-      required: true
-      schema:
-        type: string
+    - $ref: '#/parameters/Id'
+    - $ref: '#/parameters/WebsiteId'
   responses:
     '204':
       description: No Content

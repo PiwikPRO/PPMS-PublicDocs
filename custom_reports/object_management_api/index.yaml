@@ -27,14 +27,15 @@ schemas:
         description: Total number of results.
         example: 1
 parameters:
-  AnnotationId:
-    name: annotation_id
+  Id:
+    name: id
     in: path
     description: ID of the object.
     required: true
     schema:
       type: string
       format: uuid
+    example: 'dde2dc68-b6bb-45ee-9ac2-868b6181e33f'
   WebsiteId:
     name: website_id
     in: query
@@ -43,6 +44,7 @@ parameters:
     schema:
       type: string
       format: uuid
+    example: '677fe0d3-b4f7-43ed-852d-1a9e7b8e59fb'
   DateFrom:
     name: date_from
     in: query
@@ -108,10 +110,12 @@ definitions:
     $ref: ./definitions/goal_details.yaml
   CustomDimension:
     $ref: ./definitions/custom_dimension.yaml
-  CustomDimensionDetails:
+  CustomDimensionCreate:
+    $ref: ./definitions/custom_dimension_create.yaml
+  CustomDimensionDetail:
     $ref: ./definitions/custom_dimension_details.yaml
-  CustomDimensionList:
-    $ref: ./definitions/custom_dimension_list.yaml
+  CustomDimensionUpdate:
+    $ref: ./definitions/custom_dimension_update.yaml
   CustomDimensionSlot:
     $ref: ./definitions/custom_dimension_slot.yaml
   CustomDimensionSlots:

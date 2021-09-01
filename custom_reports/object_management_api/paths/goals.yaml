@@ -5,24 +5,28 @@ post:
   description: |
     Create a new goal.
     Please note that each request must be authenticated.
-  parameters:
-    - name: body
-      in: body
-      type: object
-      required: true
-      schema:
-        type: object
-        properties:
-          data:
-            $ref: '#/definitions/Goal'
+  requestBody:
+    content:
+      application/vnd.api+json:
+        schema:
+          type: object
+          required:
+            - data
+          properties:
+            data:
+              $ref: '#/definitions/Goal'
   responses:
-    '200':
+    '201':
       description: OK
-      schema:
-        type: object
-        properties:
-          data:
-            $ref: '#/definitions/Goal'
+      content:
+        application/vnd.api+json:
+          schema:
+            type: object
+            required:
+              - data
+            properties:
+              data:
+                $ref: '#/definitions/GoalDetails'
     '400':
       description: Bad Request
     '403':
@@ -35,21 +39,29 @@ get:
     Returns a list all goals available for a website.
     Please note that each request must be authenticated.
   parameters:
-    - name: website_id
-      in: query
-      description: ID of the website.
-      required: true
-      schema:
-        type: string
+    - $ref: '#/parameters/WebsiteId'
+    - $ref: '#/parameters/Limit'
+    - $ref: '#/parameters/Offset'
   responses:
     '200':
       description: OK
-      schema:
-        type: array
-        items:
-          type: object
-          properties:
-            data:
-              $ref: '#/definitions/Goal'
+      content:
+        application/vnd.api+json:
+          schema:
+            type: object
+            required:
+              - data
+              - meta
+            properties:
+              meta:
+                type: object
+                allOf:
+                  - $ref: '#/schemas/Meta'
+              data:
+                type: array
+                items:
+                  $ref: '#/definitions/GoalDetails'
+    '400':
+      description: Bad Request
     '403':
       description: Forbidden
