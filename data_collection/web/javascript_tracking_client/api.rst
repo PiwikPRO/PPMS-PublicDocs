@@ -314,7 +314,7 @@ E-commerce
         The state of the virtual shopping cart is not persisted in browser
         storage. You must add all products again after a page reload.
 
-.. _jtc-api-clearEcommerceItems:
+.. _jtc-api-clearEcommerceCart:
 
 .. function:: clearEcommerceCart()
 

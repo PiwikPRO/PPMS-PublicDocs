@@ -17,18 +17,27 @@ If you do not have Tag Manager on your website yet, follow this procedure to ins
 
 In case you do not want to install Tag Manager on your website, you can install tracking code via JavaScript Tracking Client snippet. Guide how to do it is available here: :ref:`jtc-installation-installing-tracking-code-via-node-snippet`
 
+
+
+
+
 Page views
 ----------
 
 Page view is the most basic type of the tracked event. It represents a single page viewing action.
 By default it's triggered only once as soon as the HTML content is loaded to the browser with the :ref:`trackPageView<jtc-api-trackPageView>` method.
 
-**Example:**
-``_paq.push(['trackPageView']);``
+Example::
+
+    _paq.push(['trackPageView']);
 
 .. note:: It's not required for the session to start with the page view or even involve them in any other way.
 
 .. note:: We recommend to trigger this method more than once for Singe Page Applications (SPA). That way you'll create additional "virtual" page view as the visitor travels across you app.
+
+
+
+
 
 Custom Events
 -------------
@@ -46,9 +55,7 @@ A custom event consists of the following properties:
 
     Consider designing categories and actions upfront and documenting them at start and as they change. Follow one naming convention, e.g. *snake_case*, *kebab-case*, *camelCase*. This will minimize the risk of making mistakes and having to debug the tracking implementation.
 
-Tracking a custom event together with a page view is straightforward - simply call :ref:`trackEvent<jtc-api-trackEvent>` method after the page view.
-
-.. code:: javascript
+Tracking a custom event together with a page view is straightforward - simply call :ref:`trackEvent<jtc-api-trackEvent>` method after the page view. ::
 
     _paq.push(["trackPageView"]);
     _paq.push(["trackEvent", "assignment", "assignment-submitted", "Math - Trigonometry - assignment 4", 10]);
@@ -56,9 +63,7 @@ Tracking a custom event together with a page view is straightforward - simply ca
 
 The snippet above tracks a custom event with category *assignment*, action *assignment-submitted*, name *Math - Trigonometry - assignment 4* and value *10* (which might indicate the number of pages in a submitted document).
 
-Custom event name and custom event value are optional. You can skip them if there are not meaningful in you use case.
-
-.. code:: JavaScript
+Custom event name and custom event value are optional. You can skip them if there are not meaningful in you use case. ::
 
     _paq.push(["trackEvent", "category", "action"]); // skip both name and value
     _paq.push(["trackEvent", "category", "action", "name"]); // skip only value
@@ -67,7 +72,7 @@ Custom event name and custom event value are optional. You can skip them if ther
 
 Very often we want to track actions triggered by visitors some time after the page has loaded. One way to do that, is adding tracking code to event handling attributes of HTML elements, e.g. ``onclick`` attribute of ``button`` element.
 
-.. code:: html
+.. code-block:: html
 
     <button onclick="likePost(); _paq.push(['trackEvent', 'social', 'like-post', 'top-10-attractions-in-london'])">Like</button>
 
@@ -81,7 +86,7 @@ Very often we want to track actions triggered by visitors some time after the pa
 
 Tracking more sophisticated events might require attaching listeners to the DOM elements in a script and using :ref:`trackEvent<jtc-api-trackEvent>` inside, for example:
 
-.. code:: html
+.. code-block:: html
 
     <script>
         var maxScroll = 0.0;
@@ -93,6 +98,163 @@ Tracking more sophisticated events might require attaching listeners to the DOM 
             }
         });
     </script>
+
+
+
+
+
+E-commerce
+----------
+
+JavaScript API supports 3 types of e-commerce interactions: :ref:`Category and product views<guide_tracking_category_and_product_views>`, :ref:`Cart updates<guide_tracking_cart_updates>` and :ref:`Orders<guide_tracking_orders>`.
+
+.. _guide_tracking_category_and_product_views:
+
+Tracking category and product views
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Usually, the first e-commerce-related action a visitor performs on a website is browsing products. :ref:`setEcommerceView<jtc-api-setEcommerceView>` method allows us to track both category views and product views.
+
+To track a category view, use :ref:`setEcommerceView<jtc-api-setEcommerceView>` method **before** tracking the page view, like this::
+
+    // set category to "Smartphones"
+    _paq.push(["setEcommerceView", false, false, "Smartphones"]);
+
+    // track page view
+    _paq.push(["trackPageView"]);
+
+The same method can be used for tracking product views. Again, it must be called **before** tracking a page view. Example::
+
+    // set product
+    _paq.push(["setEcommerceView",
+        "71253029",              // SKU (stock-keeping unit)
+        "SUPER Phone A40 White", // name
+        "Smartphones",           // category
+        1499.99                  // price
+    ]);
+
+    // track page view
+    _paq.push(["trackPageView"]);
+
+``category`` parameter of the :ref:`setEcommerceView<jtc-api-setEcommerceView>` method accepts not only string values, but also arrays of strings. This is useful for tracking products that belong to more than one category, or tracking pages that list products from multiple categories. ::
+
+    // set product to "SUPER Watch B20 Silver" belonging to 2 categories
+    _paq.push(["setEcommerceView", "00492710", "SUPER Watch B20 Silver", ["New offer", "Smartwatches"], 700.00]);
+
+    // track page view
+    _paq.push(["trackPageView"]);
+
+.. _guide_tracking_cart_updates:
+
+Tracking cart updates
+^^^^^^^^^^^^^^^^^^^^^
+
+Another type of e-commerce activity you can track is an update to a shopping cart. With it, we are able to measure how often visitors don't complete the ordering process and what products stay in abandoned carts.
+
+Tracking a cart update has two steps: registering items from the cart and sending them. The following example uses two methods - :ref:`addEcommerceItem<jtc-api-addEcommerceItem>` and :ref:`trackEcommerceCartUpdate<jtc-api-trackEcommerceCartUpdate>` - to achieve exactly that. ::
+
+    // visitor added one chocolate bar to an empty shopping cart
+
+    // register chocolate bar
+    _paq.push(["addEcommerceItem", "82775027", "MEGA Milk Chocolate 200g", "Candy", 6.00, 1]);
+
+    // track cart update
+    _paq.push(["trackEcommerceCartUpdate", 6.00]);
+
+This code snippet sends a cart update event with a cart containing one item (SKU *candy-12837*, name *MEGA Milk Chocolate 200g*, category *Candy*, price *6.00*) and having total value of *6.00*.
+
+The list of registered items is stored only in memory. **Reloading the page will clear the list** and the previously registered items will have to be added again. ::
+
+    // visitor added one mango fruit to a shopping cart with one chocolate bar
+
+    // register previously added items
+    _paq.push(["addEcommerceItem", "82775027", "MEGA Milk Chocolate 200g", "Candy", 6.00, 1]);
+
+    // register the new item
+    _paq.push(["addEcommerceItem", "01809926", "FRUTASTIC Mango", "Fruits & vegetables", 4.00, 1]);
+
+    // track cart update
+    _paq.push(["trackEcommerceCartUpdate", 10.00]);
+
+If you are not sure what items have been registered, use :ref:`getEcommerceCart<jtc-api-getEcommerceItems>` method. ::
+
+    _paq.push([function() { console.log(this.getEcommerceItems()); }]);
+
+Because single page applications do not refresh the page when a visitor manipulates the cart, an e-commerce implementation in SPAs must either:
+
+1. Clear the cart using :ref:`clearEcommerceCart<jtc-api-clearEcommerceCart>` and register all items from the cart before tracking cart update, e.g. ::
+
+    // visitor added one chocolate bar to an empty shopping cart
+    _paq.push(["clearEcommerceCart"]);
+    _paq.push(["addEcommerceItem", "82775027", "MEGA Milk Chocolate 200g", "Candy", 6.00, 1]);
+    _paq.push(["trackEcommerceCartUpdate", 6.00]);
+
+    // visitor added one mango fruit to a shopping cart with one chocolate bar
+    _paq.push(["clearEcommerceCart"]);
+    _paq.push(["addEcommerceItem", "82775027", "MEGA Milk Chocolate 200g", "Candy", 6.00, 1]);
+    _paq.push(["addEcommerceItem", "01809926", "FRUTASTIC Mango", "Fruits & vegetables", 4.00, 1]);
+    _paq.push(["trackEcommerceCartUpdate", 10.00]);
+
+    // visitor removed one chocolate from a shopping cart with one chocolate bar and one mango
+    _paq.push(["clearEcommerceCart"]);
+    _paq.push(["addEcommerceItem", "01809926", "FRUTASTIC Mango", "Fruits & vegetables", 4.00, 1]);
+    _paq.push(["trackEcommerceCartUpdate", 4.00]);
+
+2. Replicate visitor's interactions with the cart using methods :ref:`addEcommerceItem<jtc-api-addEcommerceItem>`, :ref:`removeEcommerceItem<jtc-api-addEcommerceItem>`, :ref:`clearEcommerceCart<jtc-api-clearEcommerceCart>`. ::
+
+    // visitor added one chocolate bar to an empty shopping cart
+    _paq.push(["addEcommerceItem", "82775027", "MEGA Milk Chocolate 200g", "Candy", 6.00, 1]);
+    _paq.push(["trackEcommerceCartUpdate", 6.00]);
+
+    // visitor added one mango fruit to a shopping cart with one chocolate bar
+    _paq.push(["addEcommerceItem", "01809926", "FRUTASTIC Mango", "Fruits & vegetables", 4.00, 1]);
+    _paq.push(["trackEcommerceCartUpdate", 10.00]);
+
+    // visitor removed one chocolate bar from a shopping cart with one chocolate bar and one mango
+    _paq.push(["removeEcommerceItem", "82775027"]);
+    _paq.push(["trackEcommerceCartUpdate", 4.00]);
+
+.. _guide_tracking_orders:
+
+Tracking orders
+^^^^^^^^^^^^^^^
+
+Perhaps the most important element of an e-commerce implementation is tracking orders. Just like with :ref:`cart updates<guide_tracking_cart_updates>`, tracking orders has two steps: registering items that have been purchased and tracking the order. Registering items looks exactly the same - we use :ref:`addEcommerceItem<jtc-api-addEcommerceItem>`, :ref:`removeEcommerceItem<jtc-api-addEcommerceItem>` and :ref:`clearEcommerceCart<jtc-api-clearEcommerceCart>`. The actual tracking of an order is done with a call to :ref:`trackEcommerceOrder<jtc-api-trackEcommerceOrder>` method. ::
+
+    // register all purchased items
+
+    _paq.push(["addEcommerceItem",
+        "66251929",               // SKU
+        "Red Unicorn Coffee Mug", // name
+        "Tableware",              // category
+        8.00,                     // price
+        1                         // quantity
+    ]);
+
+    _paq.push(["addEcommerceItem",
+        "08273511",               // SKU
+        "SUPER Blue Ink Pen 0.2", // name
+        "Office products",        // category
+        2.00,                     // price
+        2                         // quantity
+    ]);
+
+    // track order
+    _paq.push(["trackEcommerceOrder",
+        "online-5289",            // ID
+        16.00,                    // grand total (value + tax + discount + shipping)
+        10.00,                    // sub total (value + tax + discount)
+        1.00,                     // tax
+        6.00,                     // shipping
+        2.00                      // discount
+    ]);
+
+.. note::
+
+    ``trackEcommerceOrder`` method clears the list with registered e-commerce items
+
+
+
 
 
 Content tracking
@@ -209,6 +371,10 @@ Form submission:
     // content name   = Survey form
     // content piece  = Unknown
     // content target = http://our-company.tld/form-handler
+
+
+
+
 
 Downloads and Outlinks
 ----------------------
