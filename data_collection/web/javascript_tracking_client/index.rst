@@ -7,5 +7,4 @@ JavaScript Tracking Client
 
    installation.rst
    api.rst
-   tracker_snippet.rst
    reserved_names.rst
