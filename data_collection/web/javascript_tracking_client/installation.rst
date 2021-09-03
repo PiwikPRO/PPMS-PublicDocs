@@ -51,7 +51,7 @@ This code initializes the Analytics tracker in following ways:
     #. Schedules basic configuration of Analytics tracker using ``_paq.push``.
     #. Creates a ``<script>`` tag that asynchronously loads the Analytics tracker library.
 
-When loading, the snippet is added on the page. The Analytics tracker will start tracking :term:`visitor` actions starting with page
+When loading, the snippet is added on the page. The Analytics tracker will start tracking :term:`user` actions starting with page
 view.
 
 .. _jtc-installation-alternative-configurations:
