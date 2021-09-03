@@ -30,6 +30,71 @@ By default it's triggered only once as soon as the HTML content is loaded to the
 
 .. note:: We recommend to trigger this method more than once for Singe Page Applications (SPA). That way you'll create additional "virtual" page view as the visitor travels across you app.
 
+Custom Events
+-------------
+
+Custom events enable tracking visitor actions that do not have dedicated methods in the existing tracker API, allowing web analysts to accurately measure and analyze any domain. Many integrations, including those offered by Tag Manager, use custom events for tracking actions detectable only on client-side, e.g. scrolling a page, viewing images, interacting with a video player, filling forms etc.
+
+A custom event consists of the following properties:
+
+* **category** - Describes the category of an event, e.g. *video*, *form*, *scroll*
+* **action** - Describes what action happened on a website, e.g. *video-play*, *video-pause*, *form-focus*, *scroll-progress*
+* **name** (optional) - Usually contains the name of an action target, e.g. the name of a video, label of a form field, name of the scrolled article
+* **value** (optional) - Additional numeric value carried with an event, e.g. number of seconds a video has been watched for, how far (in percentages) an article has been scrolled
+
+.. warning::
+
+    Consider designing categories and actions upfront and documenting them at start and as they change. Follow one naming convention, e.g. *snake_case*, *kebab-case*, *camelCase*. This will minimize the risk of making mistakes and having to debug the tracking implementation.
+
+Tracking a custom event together with a page view is straightforward - simply call :ref:`trackEvent<jtc-api-trackEvent>` method after the page view.
+
+.. code:: javascript
+
+    _paq.push(["trackPageView"]);
+    _paq.push(["trackEvent", "assignment", "assignment-submitted", "Math - Trigonometry - assignment 4", 10]);
+
+
+The snippet above tracks a custom event with category *assignment*, action *assignment-submitted*, name *Math - Trigonometry - assignment 4* and value *10* (which might indicate the number of pages in a submitted document).
+
+Custom event name and custom event value are optional. You can skip them if there are not meaningful in you use case.
+
+.. code:: JavaScript
+
+    _paq.push(["trackEvent", "category", "action"]); // skip both name and value
+    _paq.push(["trackEvent", "category", "action", "name"]); // skip only value
+    _paq.push(["trackEvent", "category", "action", undefined, 10.0]); // skip only name
+
+
+Very often we want to track actions triggered by visitors some time after the page has loaded. One way to do that, is adding tracking code to event handling attributes of HTML elements, e.g. ``onclick`` attribute of ``button`` element.
+
+.. code:: html
+
+    <button onclick="likePost(); _paq.push(['trackEvent', 'social', 'like-post', 'top-10-attractions-in-london'])">Like</button>
+
+.. warning::
+
+    When tracking custom events this way, make sure HTML events trigger both the intended action and tracking code.
+
+.. note::
+
+    Notice the change in string quotation style. Because ``onclick`` attribute content is quoted with double quotes, to avoid conflicts, strings in ``_paq.push`` have been surrounded with single quotes.
+
+Tracking more sophisticated events might require attaching listeners to the DOM elements in a script and using :ref:`trackEvent<jtc-api-trackEvent>` inside, for example:
+
+.. code:: html
+
+    <script>
+        var maxScroll = 0.0;
+        window.addEventListener("scroll", function (event) {
+            var currentScroll = calculateScrollBetween0And1(event);
+            if (currentScroll >= maxScroll + 0.1) {
+                _paq.push(["trackEvent", "scroll", "page-scroll", document.title, currentScroll]);
+                maxScroll = currentScroll;
+            }
+        });
+    </script>
+
+
 Content tracking
 ----------------
 
@@ -278,7 +343,7 @@ You can use :ref:`setDomains<jtc-api-setDomains>` function of JavaScript Trackin
 
 .. code-block:: javascript
 
-  _paq(['setDomains', ["help.piwik.pro", "piwik.pro", "*.other-domain.pro"]]);
+  _paq.push(['setDomains', ["help.piwik.pro", "piwik.pro", "*.other-domain.pro"]]);
   _paq.push(['trackPageView']);
 
 .. note::
@@ -291,7 +356,7 @@ Similar as downloads, links can be set to be treated as outlinks manually, but o
 
 You can use one of default CSS classes: ``piwik_link`` or ``piwik-link``. eg.
 
-.. code-block:: javascript
+.. code-block:: html
 
   <a href='https://piwik.pro' class="piwik-link">Piwik PRO</a>
 

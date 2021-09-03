@@ -18,6 +18,8 @@ The following API allows the user to:
 
 .. contents:: Table of Contents
 
+.. _jtc-api-command-queue:
+
 Command queue
 -------------
 
