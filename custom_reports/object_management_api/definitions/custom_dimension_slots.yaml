@@ -4,7 +4,7 @@ properties:
     type: string
     description: Type of the object.
     enum:
-      - CustomDimension
+      - CustomDimensionSlots
   id:
     type: string
     readOnly: true
