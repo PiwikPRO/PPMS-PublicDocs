@@ -15,9 +15,9 @@ By default it's triggered only once as soon as the HTML content is loaded to the
 **Example:**
 ``_paq.push(['trackPageView']);``
 
-.. note:: It's not required for the session to start with the page view or even involve them in any other way. Modern web applications like single page application rely on JS events which may be tracked with `trackEvent` rather then `trackPageView` JS tracker method.
+.. note:: It's not required for the session to start with the page view or even involve them in any other way.
 
-.. note:: AWe recommend to trigger this method more than once for Singe Page Applications (SPA). That way you'll create additional "virtual" page view as the visitor travels across you app.
+.. note:: We recommend to trigger this method more than once for Singe Page Applications (SPA). That way you'll create additional "virtual" page view as the visitor travels across you app.
 
 Downloads and Outlinks
 ----------------------
