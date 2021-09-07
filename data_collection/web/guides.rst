@@ -106,6 +106,53 @@ Tracking more sophisticated events might require attaching listeners to the DOM 
 
 
 
+Site search
+-----------
+
+Site search tracking gives you insight into how visitors interact with the
+search engine on your website - what they search for and how many results they
+get back.
+
+Our data collecting and processing pipeline automatically converts page views
+into site search events if the URL contains site search query parameters:
+``q``, ``query``, ``s``, ``search``, ``searchword`` and ``keyword``.  You can
+customize these parameters in on website settings page. Site search events can
+also be tracked manually by calling :ref:`trackSiteSearch<js-api-trackSiteSearch>`
+method. It allows to specify not only the keyword and category, but also
+the number of results and additional custom dimensions.
+
+:ref:`trackSiteSearch<js-api-trackSiteSearch>` accepts the following parameters:
+
+* **keyword** - what term someone looked for
+* **category** (optional) - which category the search was in
+* **results** (optional) - how many search results were returned
+* **dimensions** (optional) - custom dimensions to send along the site search
+
+It is used like this::
+
+    _paq.push(["trackSiteSearch", "les paul", "electric guitars", 5, { dimension10: "amber" }]);
+
+In this case, we track site search with keyword *les paul*, category *electric
+guitars*, *5* search results and custom dimension *10* with value *amber*.
+
+The optional parameters might be skipped or replaced with ``undefined`` to
+indicate no value. ::
+
+    _paq.push(["trackSiteSearch", "playstation"]); // only keyword provided
+    _paq.push(["trackSiteSearch", "playstation", "consoles"]); // only keyword and category provided
+    _paq.push(["trackSiteSearch", "playstation", undefined, 5]); // only keyword and results count provided
+
+.. warning::
+
+    If you can't or don't want to rely on automatic site search detection from
+    URL parameters, call ``trackSiteSearch`` method instead of ``trackPageView``
+    on search results page. Using both methods might result in a duplication
+    of site search events.
+
+
+
+
+
 E-commerce
 ----------
 
@@ -659,7 +706,7 @@ Alternatively, you can trigger a goal manually with the used of
 
 .. code-block:: javascript
 
-    // force conversion of the goal with ID 17 
+    // force conversion of the goal with ID 17
     _paq.push(["trackGoal", 17]);
 
 .. note::
