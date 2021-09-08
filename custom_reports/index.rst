@@ -1,5 +1,5 @@
-Analytics (new)
-===============
+Analytics
+=========
 
 .. toctree::
   :maxdepth: 2
@@ -7,4 +7,5 @@ Analytics (new)
   columns
   integrations/index.rst
   http_api/http_api
+  object_management_api/object_management_api
   metrics_mapping

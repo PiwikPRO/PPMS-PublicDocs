@@ -27,18 +27,20 @@ from convert import write_open_api_json
 API_PATH = os.path.join(os.path.dirname(__file__), '_static/api')
 
 api_definitions = {
-    'tracker_tracking_api.json': 'tracker/index.yaml',
+    'tracker_tracking_api.json': 'tracker/tracking_api.yaml',
+    'tracker_debugger_api.json': 'tracker/tracker_debugger_api.yaml',
     'audience_manager_public_api.json': 'audience_manager/public_api/index.yaml',
     'platform_access_control_authorized_api.json': 'platform/authorized_api/access_control/public_v2.yaml',
     'platform_apps_authorized_api.json': 'platform/authorized_api/apps/public_v2.yaml',
     'platform_audit_log_authorized_api.json': 'platform/authorized_api/audit_log/public_v1.yaml',
     'platform_meta_sites_authorized_api.json': 'platform/authorized_api/meta_sites/public_v1.yaml',
     'platform_modules_authorized_api.json': 'platform/authorized_api/modules/public_v1.yaml',
-    'platform_tracker_settings_authorized_api.json': 'platform/authorized_api/tracker_settings/public_v1.yaml',
+    'platform_tracker_settings_authorized_api.json': 'platform/authorized_api/tracker_settings/public_v2.yaml',
     'platform_users_authorized_api.json': 'platform/authorized_api/users/public_v2.yaml',
     'platform_user_groups_authorized_api.json': 'platform/authorized_api/user_groups/public_v1.yaml',
     'audience_manager_authorized_api.json': 'audience_manager/authorized_api/index.yaml',
     'custom_reports_http_api.json': 'custom_reports/http_api/index.yaml',
+    'custom_reports_object_management_api.json': 'custom_reports/object_management_api/index.yaml',
     'tag_manager_authorized_api_tags.json': 'tag_manager/authorized_api/src/tags.yaml',
     'tag_manager_authorized_api_triggers.json': 'tag_manager/authorized_api/src/triggers.yaml',
     'tag_manager_authorized_api_variables.json': 'tag_manager/authorized_api/src/variables.yaml',
@@ -77,7 +79,7 @@ master_doc = 'index'
 autosectionlabel_prefix_document = True
 # General information about the project.
 project = u'Piwik PRO Marketing Suite'
-copyright = u'{year}, Piwik.pro - Enterprise Analytics and Tag Management Platform'.format(year=datetime.date.today().year)
+copyright = u'{year}, Piwik PRO - Enterprise Analytics and Tag Management Platform'.format(year=datetime.date.today().year)
 author = u'Piwik PRO'
 
 # The version info for the project you're documenting, acts as replacement for
@@ -85,7 +87,7 @@ author = u'Piwik PRO'
 # built documents.
 #
 # The short X.Y version.
-version = u'15.6'
+version = u'16.0'
 # The full version, including alpha/beta/rc tags.
 release = version
 
@@ -229,14 +231,14 @@ html_theme = "sphinx_rtd_theme"
 
 
 html_theme_options = {
-    'includehidden': False
+    'includehidden': False,
+    'navigation_depth': 4,
 }
 
 def setup(app):
-    app.add_css_file('css/custom_1626336655663.css')
+    app.add_css_file('css/custom_1629786506693.css')
     app.add_js_file('js/unicornDetector.js')
     app.add_js_file('js/custom.js')
-    app.add_js_file('js/redoc.2.0.0-rc.23.min.js')
 
 # Example configuration for intersphinx: refer to the Python standard library.
 intersphinx_mapping = {'https://docs.python.org/': None}

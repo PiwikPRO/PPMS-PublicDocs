@@ -1,0 +1,12 @@
+{% extends "!search.html" %}
+{% block footer %}
+{{ super() }}
+<script>
+        menuBar = document.querySelector('.wy-nav-side');
+        content = document.querySelector('.wy-nav-content-wrap');
+        if(menuBar) {
+            menuBar.style.display = 'none';
+            content.style.marginLeft = '0';
+        }
+</script>
+{% endblock %}
