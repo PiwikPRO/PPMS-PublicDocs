@@ -1,9 +1,9 @@
 swagger: '2.0'
 info:
-  title: Analytics HTTP API
+  title: Analytics (new) HTTP API
   description: |
     **Authentication is required** to access any of the
-    following endpoints. Please see [Authorization](../../getting_started.html)
+    following endpoints. Please see [Authorization](../../platform/authorized_api_guide.html)
     documentation for more details.
 
     Available columns and transformations are listed in the
@@ -29,4 +29,3 @@ definitions:
     $ref: ./definitions/query_request.yaml
   RawDataRequest:
     $ref: ./definitions/raw_data_request.yaml
-

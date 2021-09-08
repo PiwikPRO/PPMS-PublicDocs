@@ -3,19 +3,6 @@ Glossary
 
 .. todo:: Compare descriptions with https://help.piwik.pro/analytics/glossary-piwik-pro-terminology/
 
-.. raw:: html
-
-    <script>
-        if(document.querySelector('#glossary')) {
-            let menuBar = document.querySelector('.wy-nav-side');
-            let content = document.querySelector('.wy-nav-content-wrap');
-            if(menuBar) {
-                menuBar.style.display = 'none';
-                content.style.marginLeft = '0';
-            }
-        }
-    </script>
-
 .. glossary::
 
     Application

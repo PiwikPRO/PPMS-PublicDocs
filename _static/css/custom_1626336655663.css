@@ -1,0 +1,700 @@
+@font-face {
+    font-family: 'Museo Sans 300';
+    src: url('../font/MuseoSans-300Italic.woff2') format('woff2'),
+    url('../font/MuseoSans-300Italic.woff') format('woff');
+    font-weight: 300;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Museo Sans 900';
+    src: url('../font/MuseoSans-900Italic.woff2') format('woff2'),
+    url('../font/MuseoSans-900Italic.woff') format('woff');
+    font-weight: bold;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Museo Sans 500';
+    src: url('../font/MuseoSans-500Italic.woff2') format('woff2'),
+    url('../font/MuseoSans-500Italic.woff') format('woff');
+    font-weight: normal;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Museo Sans 500';
+    src: url('../font/MuseoSans-500.woff2') format('woff2'),
+    url('../font/MuseoSans-500.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Museo Sans 900';
+    src: url('../font/MuseoSans-900.woff2') format('woff2'),
+    url('../font/MuseoSans-900.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Museo Sans 300';
+    src: url('../font/MuseoSans-300.woff2') format('woff2'),
+    url('../font/MuseoSans-300.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Museo Sans 100';
+    src: url('../font/MuseoSans-100.woff2') format('woff2'),
+    url('../font/MuseoSans-100.woff') format('woff');
+    font-weight: 200;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Museo Sans 700';
+    src: url('../font/MuseoSans-700.woff2') format('woff2'),
+    url('../font/MuseoSans-700.woff') format('woff');
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Museo Sans 700';
+    src: url('../font/MuseoSans-700Italic.woff2') format('woff2'),
+    url('../font/MuseoSans-700Italic.woff') format('woff');
+    font-weight: 600;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Museo Sans 100';
+    src: url('../font/MuseoSans-100Italic.woff2') format('woff2'),
+    url('../font/MuseoSans-100Italic.woff') format('woff');
+    font-weight: 200;
+    font-style: italic;
+}
+
+h1 {
+    font-family: "Museo Sans 500";
+    font-size: 38px;
+}
+
+.rst-content .toctree-wrapper p.caption, body, h2, h3, h4, h5, h6, legend {
+    font-family: "Museo Sans 300" !important;
+}
+
+h2 {
+    font-size: 32px;
+}
+
+h3 {
+    font-size: 24px;
+}
+
+h4 {
+    font-size: 20px;
+}
+
+p {
+    font-size: 16px;
+}
+
+.rst-content dl:not(.docutils) dt {
+    border-top: none;
+    border-left: solid 3px #6ab0de;
+}
+
+.rst-versions {
+    border-top: none;
+}
+
+.rst-versions .rst-current-version {
+    background-color: #2f394d;
+    color: #82bcff;
+}
+
+.rst-other-versions {
+    background: #1f2633;
+}
+
+div .rst-other-versions a, div .rst-other-versions a:hover, div .rst-other-versions a:visited {
+    color: #82bcff !important;
+}
+
+.wy-side-nav-search {
+    background-color: #2f394d;
+}
+
+.wy-side-nav-search input[type="text"] {
+    border-radius: 4px;
+}
+
+.wy-side-nav-search .version {
+    display: none
+}
+
+.wy-menu-vertical a {
+    color: #ebf2fa;
+}
+
+.wy-nav-side {
+    background: #1f2633;
+}
+
+.wy-menu-vertical a:hover {
+    background-color: #10131a;
+}
+
+dl.post, dl.patch, dl.delete, dl.get, dl.put {
+    display: none
+}
+
+.wy-nav-content {
+    max-width: initial;
+}
+
+.wy-nav-content a {
+    color: #0660f3;
+}
+
+.wy-nav-content a:hover, .wy-nav-content a:visited {
+    color: #094bb3;
+}
+
+a.icon.icon-home {
+    display: inline-block;
+    width: 150px;
+    background: url('../images/pp-logo_white.svg') no-repeat;
+    background-size: contain;
+    text-indent: -9999px;
+}
+
+.redoc-wrap {
+    background-color: #fafafa;
+}
+
+redoc .background {
+    background-color: #FFFFFF;
+}
+
+.deprecated {
+    color: red;
+}
+
+.deprecated .versionmodified {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+input.search-input {
+    padding: 5px 10px 5px 20px !important;
+}
+
+.redoc-wrap .search-icon {
+    left: 25px !important;
+}
+
+.redoc-wrap {
+    margin-bottom: 20px;
+}
+
+.menu-content {
+    height: 600px !important;
+}
+
+.api-content {
+    overflow: visible !important;
+    contain: inherit !important;
+}
+
+ul.react-tabs__tab-list {
+    display: none;
+}
+
+.injected dl:nth-child(2) {
+    display: none !important;
+}
+
+
+redoc table {
+	table-layout: fixed;
+}
+
+redoc td {
+    overflow-wrap: break-word;
+    white-space: normal !important;
+}
+
+redoc .param-name {
+    overflow-wrap: break-word;
+    white-space: normal !important;
+}
+
+body {
+    overflow-x: initial !important;
+}
+
+redoc .redoc-json code {
+    border: none !important;
+    background: none !important;
+}
+
+redoc .redoc-json .token.punctuation {
+    color: white !important;
+}
+
+redoc .redoc-json .collapser {
+    color: white !important;
+}
+
+.wy-nav-content-wrap .unicorn-found {
+    background: #FFD000;
+    text-align: center;
+    padding: 8px;
+    font-size: 12px;
+    box-shadow: inset 0 1px 0 0 #ccc, inset 0 -1px 0 0 #ccc;
+}
+
+/*Here are css from FA, highlights that are not available now*/
+
+.hll {
+    background-color: #ffc;
+    margin: 0 -12px;
+    padding: 0 12px;
+    display: block
+}
+
+.c {
+    color: #998;
+    font-style: italic
+}
+
+.err {
+    color: #a61717;
+    background-color: #e3d2d2
+}
+
+.k {
+    font-weight: bold
+}
+
+.o {
+    font-weight: bold
+}
+
+.cm {
+    color: #998;
+    font-style: italic
+}
+
+.cp {
+    color: #999;
+    font-weight: bold
+}
+
+.c1 {
+    color: #998;
+    font-style: italic
+}
+
+.cs {
+    color: #999;
+    font-weight: bold;
+    font-style: italic
+}
+
+.gd {
+    color: #000;
+    background-color: #fdd
+}
+
+.gd .x {
+    color: #000;
+    background-color: #faa
+}
+
+.ge {
+    font-style: italic
+}
+
+.gr {
+    color: #a00
+}
+
+.gh {
+    color: #999
+}
+
+.gi {
+    color: #000;
+    background-color: #dfd
+}
+
+.gi .x {
+    color: #000;
+    background-color: #afa
+}
+
+.go {
+    color: #888
+}
+
+.gp {
+    color: #555
+}
+
+.gs {
+    font-weight: bold
+}
+
+.gu {
+    color: purple;
+    font-weight: bold
+}
+
+.gt {
+    color: #a00
+}
+
+.kc {
+    font-weight: bold
+}
+
+.kd {
+    font-weight: bold
+}
+
+.kn {
+    font-weight: bold
+}
+
+.kp {
+    font-weight: bold
+}
+
+.kr {
+    font-weight: bold
+}
+
+.kt {
+    color: #458;
+    font-weight: bold
+}
+
+.m {
+    color: #099
+}
+
+.s {
+    color: #d14
+}
+
+.n {
+    color: #333
+}
+
+.na {
+    color: teal
+}
+
+.nb {
+    color: #0086b3
+}
+
+.nc {
+    color: #458;
+    font-weight: bold
+}
+
+.no {
+    color: teal
+}
+
+.ni {
+    color: purple
+}
+
+.ne {
+    color: #900;
+    font-weight: bold
+}
+
+.nf {
+    color: #900;
+    font-weight: bold
+}
+
+.nn {
+    color: #555
+}
+
+.nt {
+    color: navy
+}
+
+.nv {
+    color: teal
+}
+
+.ow {
+    font-weight: bold
+}
+
+.w {
+    color: #bbb
+}
+
+.mf {
+    color: #099
+}
+
+.mh {
+    color: #099
+}
+
+.mi {
+    color: #099
+}
+
+.mo {
+    color: #099
+}
+
+.sb {
+    color: #d14
+}
+
+.sc {
+    color: #d14
+}
+
+.sd {
+    color: #d14
+}
+
+.s2 {
+    color: #d14
+}
+
+.se {
+    color: #d14
+}
+
+.sh {
+    color: #d14
+}
+
+.si {
+    color: #d14
+}
+
+.sx {
+    color: #d14
+}
+
+.sr {
+    color: #009926
+}
+
+.s1 {
+    color: #d14
+}
+
+.ss {
+    color: #990073
+}
+
+.bp {
+    color: #999
+}
+
+.vc {
+    color: teal
+}
+
+.vg {
+    color: teal
+}
+
+.vi {
+    color: teal
+}
+
+.il {
+    color: #099
+}
+
+.gc {
+    color: #999;
+    background-color: #EAF2F5
+}
+
+#welcome-to-the-piwik-pro-documentation-for-developers .toctree-wrapper.compound {
+    display: none;
+}
+
+.main-subheader{
+    color: #404040;
+    font-family: "Museo Sans 500";
+    font-size: 24px;
+    font-weight: bold;
+    letter-spacing: -0.11px;
+    line-height: 29px;
+    padding-bottom: 24px;
+}
+
+.started-block-text {
+    color: #131313;
+    font-family: "Museo Sans 500";
+    font-size: 18px;
+    font-weight: bold;
+    letter-spacing: -0.14px;
+    line-height: 21px;
+    padding-top: 16px;
+}
+
+.started-block {
+    box-sizing: border-box;
+    border: 1px solid #DDDDDD;
+    border-radius: 1px;
+    background-color: #FFFFFF;
+    box-shadow: inset 0 0 0 0 #DDDDDD;
+    text-align: center;
+    padding: 24px;
+    flex: 1 1 0;
+    width: 0;
+    min-width: 200px;
+    cursor: pointer;
+}
+
+.started-blocks-ctn {
+    display: flex;
+    flex: 1 1 0;
+    flex-wrap:wrap;
+    gap: 24px;
+    padding-bottom: 24px;
+}
+
+.started-block:first-child {
+    margin-left: 0;
+}
+
+.started-block:last-child {
+    margin-right: 0;
+}
+
+.popular-links-ctn {
+    display: flex;
+    flex: 1 1 0;
+    flex-wrap:wrap;
+    gap: 24px;
+}
+
+.popular-links-el {
+    padding: 24px;
+    box-sizing: border-box;
+    border: 1px solid #DDDDDD;
+    border-radius: 1px;
+    background-color: #FFFFFF;
+    box-shadow: inset 0 0 0 0 #DDDDDD;
+    flex: 1 1 0;
+    min-width: calc(max(50%, 200px) - 24px);
+}
+
+.popular-links-el:nth-child(1) {
+    order: 1;
+}
+
+.popular-links-el:nth-child(2) {
+    order: 2;
+}
+
+.popular-links-el.subdued {
+    background-color: #FAFAFA;
+    border-top: none;
+    margin-top: -24px;
+    order: 3;
+    padding: 24px;
+    box-sizing: border-box;
+    border-radius: 1px;
+    box-shadow: inset 0 0 0 0 #DDDDDD;
+    flex: 1 1 0;
+    min-width: calc(max(50%, 200px) - 25px);
+}
+
+.popular-links-el-filler {
+    margin-top: 24px;
+    min-width: calc(max(50%, 200px) - 12px);
+    padding: 24px;
+    flex: 1 1 0;
+    order: 4;
+    box-sizing: border-box;
+}
+
+.popular-links-header {
+    color: #131313;
+    font-family: "Museo Sans 500";
+    font-size: 18px;
+    font-weight: bold;
+    letter-spacing: -0.14px;
+    line-height: 21px;
+    padding-bottom: 16px;
+}
+
+a.link {
+    display: block;
+    font-size: 14px;
+    padding-bottom: 14px;
+}
+
+a.link-large {
+    font-size: 18px;
+    padding-bottom: 16px;
+}
+
+.popular-links-el a.link:last-child {
+    padding-bottom: 0;
+}
+
+@media (max-width:825px) and (min-width:795px) {
+    .popular-links-el.subdued {
+        min-width: calc(max(50%, 200px) - 24px);
+    }
+    .popular-links-el-filler {
+        min-width: calc(max(50%, 200px) - 25px);
+    }
+}
+
+@media (max-width:465px) and (min-width:443px) {
+    .popular-links-el.subdued {
+        min-width: calc(max(50%, 200px) - 24px);
+    }
+    .popular-links-el-filler {
+        min-width: calc(max(50%, 200px) - 25px);
+    }
+}
+
+
+@media (max-width:794px) and (min-width:769px) {
+    .popular-links-el:nth-child(2) {
+        order: 3;
+    }
+    .popular-links-el.subdued {
+        order: 2;
+        min-width: calc(max(50%, 200px) - 24px);
+    }
+}
+
+@media (max-width:442px){
+    .popular-links-el:nth-child(2) {
+        order: 3;
+    }
+    .popular-links-el.subdued {
+        order: 2;
+        min-width: calc(max(50%, 200px) - 24px);
+    }
+}
