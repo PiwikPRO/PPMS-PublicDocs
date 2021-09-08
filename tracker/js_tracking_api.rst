@@ -932,7 +932,7 @@ To track search requests on your site use the ``trackSiteSearch`` function::
 
 .. describe:: category
 
-    **Optional** ``string`` Category seleted in search engine - you can set it to false when not used.
+    **Optional** ``string|Array<string>`` Category (or categories) selected in search engine - you can set it to false when not used, or send multiple categories using array.
 
 .. describe:: searchCount
 
