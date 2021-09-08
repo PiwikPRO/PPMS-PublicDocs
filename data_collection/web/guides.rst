@@ -30,9 +30,9 @@ Content impression and content interaction tracking feature fills that gap.
 
 Content impression allows you to track what content is visible to the visitor. On the bigger pages it may tell what particular parts/blocks of it the visitor has reached. When they keep scrolling and new content is presented on the screen it will be tracked automatically. This is useful for ads and banners but may be also attached to a image carousell or other forms of image galleries.
 
-Now we know what block became visible on the screen but we would also like to know how the visitor interacted with them. Content interaction tracking completes this feature. After particular block became visible on the viewport JS Tracker will automatically record visitor clicks realted to it.
+Now we know what block became visible on the screen but we would also like to know how the visitor interacted with them. Content interaction tracking completes this feature. After particular block became visible on the viewport JS Tracker will automatically record visitor clicks related to it.
 
-JS tracker distinguishes three parts of the content structure: `content name`, `content piece` and `content target`. Alltogether they are called `content block`.
+JS tracker distinguishes three parts of the content structure: `content name`, `content piece` and `content target`. All together they are called `content block`.
 
 * `Content name` - this is the title describing the content block, tracked data will be visible as an entry in the reports under that name
 * `Content piece` - gives us the specific piece that was reached on the page (typically an image or other media)
