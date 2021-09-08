@@ -1,0 +1,2366 @@
+openapi: 3.0.2
+info:
+  title: Tracker API
+  version: 0.21.0
+  description: Exposes sessions
+paths:
+  /api/tracker/v1/debugger:
+    description: Returns a stream of newest sessions.
+    get:
+      security:
+        - JWTAuth: []
+      parameters:
+        - name: app_id
+          description: An application UUID for which sessions are requested
+          schema:
+            type: string
+            format: uuid
+            example: d898ae47-61cd-4c9d-9d67-e5a930eb9f38
+          in: query
+          required: true
+        - name: limit
+          description: 'Limit of fetched sessions (default value: 100)'
+          schema:
+            type: integer
+            minimum: 0
+            maximum: 18446744073709552000
+            example: 20
+          in: query
+          required: false
+        - name: offset
+          description: Fetched sessions offset
+          schema:
+            type: integer
+            minimum: 0
+            maximum: 18446744073709552000
+            example: 100
+          in: query
+          required: false
+        - name: ip
+          description: IP address from which event originated
+          schema:
+            type: string
+            format: ip
+            example: 74.12.12.86
+          in: query
+          required: false
+        - name: visitor_id
+          description: Visitor ID of the user
+          schema:
+            type: string
+            minLength: 16
+            maxLength: 16
+            pattern: '^[[:xdigit:]]{16}$'
+            example: 288f90221c221f81
+          in: query
+          required: false
+        - name: user_id
+          description: User ID dimension of the user
+          schema:
+            type: string
+            example: john@doe.com
+          in: query
+          required: false
+        - name: page_url
+          description: Filters out sessions that don't contain at least one event with URL matching the specified string.
+          schema:
+            type: string
+            example: blog
+          in: query
+          required: false
+        - name: event_type
+          description: |
+            Filters out sessions that don't contain at least one event of the specified type.
+            The allowed values are:
+            - 1 # page view
+            - 2 # outlink
+            - 3 # download
+            - 4 # search
+            - 5 # custom event
+            - 6 # content impression
+            - 7 # content interaction
+            - 8 # goal conversion
+            - 9 # ecommerce conversion
+            - 12 # consent form impression
+            - 13 # consent form click
+            - 14 # consent decision
+            - 15 # custom ping
+            - 16 # cart update
+            - 17 # broken event
+            - 18 # excluded event
+            - 19 # heartbeat
+            - 20 # deanonymization
+            - 21 # page performance
+          schema:
+            type: integer
+            example: 1
+            enum:
+              - 1 # page view
+              - 2 # outlink
+              - 3 # download
+              - 4 # search
+              - 5 # custom event
+              - 6 # content impression
+              - 7 # content interaction
+              - 8 # goal conversion
+              - 9 # ecommerce conversion
+              - 12 # consent form impression
+              - 13 # consent form click
+              - 14 # consent decision
+              - 15 # custom ping
+              - 16 # cart update
+              - 17 # broken event
+              - 18 # excluded event
+              - 19 # heartbeat
+              - 20 # deanonymization
+              - 21 # page performance
+          in: query
+          required: false
+        - name: lookup_window
+          description: 'Describes how much back in time sessions shall be fetched, takes value in minutes'
+          schema:
+            type: number
+            default: 30
+            example: 90
+            minimum: 1
+            maximum: 300
+          in: query
+          required: false
+      responses:
+        '200':
+          content:
+            application/x-ndjson:
+              schema:
+                $ref: '#/components/schemas/Session'
+          description: A stream of sessions matching given criteria
+        '400':
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: 'Request parameters deserialization error.'
+          description: 'Bad request response (eg. missing GET parameter, or parameter value out of bounds)'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '404':
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: 404 page not found
+          description: Authenticated user doesn't have proper access rights
+        '500':
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: Internal error occurred. Check logs
+          description: Internal application error response (some service encountered unexpected error)
+      description: Get stream of sessions
+  /api/tracker/v1/logs:
+    description: Returns a stream of tracking logs.
+    get:
+      security:
+        - JWTAuth: []
+      parameters:
+        - name: app_id
+          description: An application UUID for which Logs are requested
+          schema:
+            type: string
+            format: uuid
+            example: d898ae47-61cd-4c9d-9d67-e5a930eb9f38
+          in: query
+          required: true
+        - name: log_uuids
+          description: Comma separated list of Log UUIDs that are requested
+          schema:
+            type: string
+            format: uuid
+            example: '6ae7402a-0cad-49d6-bc6d-829131ae55ba,654c80f9-4c26-4f71-ac32-cf271c945237'
+          in: query
+          required: true
+      responses:
+        '200':
+          content:
+            application/x-ndjson:
+              schema:
+                $ref: '#/components/schemas/Log'
+          description: A stream of logs matching given criteria
+        '400':
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: 'Request parameters deserialization error.'
+          description: 'Bad request response (eg. missing GET parameter, or parameter value out of bounds)'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '404':
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: ''
+          description: Authenticated user doesn't have proper access rights
+        '500':
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: ''
+          description: Internal application error response (some service encountered unexpected error)
+      description: Get stream of logs
+components:
+  responses:
+    UnauthorizedError:
+      content:
+        text/plain:
+          schema:
+            type: string
+            example: ''
+      description: Access token is missing or invalid
+  securitySchemes:
+    JWTAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    Event:
+      description: An object representing an event
+      required:
+        - event_id
+        - log_uuids
+        - is_exit
+        - is_entry
+        - event_type
+        - event_index
+        - server_time
+      type: object
+      properties:
+        event_id:
+          description: ID of an event - random value
+          type: integer
+          minimum: 0
+          maximum: 18446744073709552000
+          example: 16856741104283292000
+        log_uuids:
+          description: IDs of logs used to create the event
+          type: array
+          items:
+            type: string
+            format: uuid
+            example: 0d454742-0e95-4321-a200-fd9d1c4b8031
+        is_exit:
+          description: Is an event the last one in a session
+          type: boolean
+          example: true
+        is_entry:
+          description: Is an event first in a session
+          type: boolean
+          example: false
+        event_type:
+          description: A type of an event
+          enum:
+            - 1 # page view
+            - 2 # outlink
+            - 3 # download
+            - 4 # search
+            - 5 # custom event
+            - 6 # content impression
+            - 7 # content interaction
+            - 8 # goal conversion
+            - 9 # ecommerce conversion
+            # - 10 # abandoned cart - hidden
+            # - 11 # share point - not implemented
+            - 12 # consent form impression
+            - 13 # consent form click
+            - 14 # consent decision
+            - 15 # custom ping
+            - 16 # cart update
+            - 17 # broken event
+            - 18 # excluded event
+            - 19 # heartbeat
+            - 20 # deanonymization
+            - 21 # page performance
+          type: integer
+          example: 8
+        event_url:
+          format: url
+          description: A URL on which event occurred, human-readable
+          type: string
+          example: 'http://domain.tld/path.php?c=grønn'
+        event_url_original:
+          format: url
+          description: A URL on which event occurred
+          type: string
+          example: 'http://domain.tld/path.php?c=gr%C3%B8nn'
+        event_title:
+          description: Page title of a page an event occurred on
+          type: string
+          example: Contact form
+        server_time:
+          format: date-time
+          description: 'Date and time of event occurrence in format YYYY-MM-DDTHH:MM:SS in UTC'
+          type: string
+          example: '2020-07-14T13:30:07'
+        outlink_url:
+          format: url
+          description: A URL of an outlink that was clicked
+          type: string
+          example: 'https://other-domain.tld/'
+        download_url:
+          format: url
+          description: Download link URL that was clicked
+          type: string
+          example: 'http://domain.tld/some.pdf'
+        search_keyword:
+          description: A keyword that was searched
+          type: string
+          example: I'm searching for this
+        search_category:
+          description: Search category
+          type: string
+          example: Baseball bats
+        search_results_count:
+          description: Number of results on search results list
+          type: integer
+          minimum: 0
+          maximum: 65535
+          example: 7
+        custom_event_category:
+          description: Custom event category
+          type: string
+          example: form interaction
+        custom_event_action:
+          description: Custom event action name
+          type: string
+          example: input focus
+        custom_event_name:
+          description: Custom event name
+          type: string
+          example: image loaded
+        custom_event_value:
+          format: float
+          description: A value of a custom event
+          type: number
+          minimum: 0
+          maximum: 1.7976931348623157e+308
+          example: 7.12
+        content_name:
+          description: A name of a content there was interaction with
+          type: string
+          example: this paragraph
+        content_piece:
+          description: Content piece there was an interaction with
+          type: string
+          example: image
+        content_target:
+          description: A target of a content there was an interaction with
+          type: string
+          example: faq
+        event_index:
+          description: Event index starting from 0
+          type: integer
+          minimum: 0
+          maximum: 65535
+          example: 6
+        page_view_index:
+          description: Page view index starting from 0
+          type: integer
+          minimum: 0
+          maximum: 65535
+          example: 3
+        time_on_page:
+          description: Time spent on a page in seconds
+          type: integer
+          minimum: 0
+          maximum: 4294967295
+          example: 122
+        page_generation_time:
+          description: Page generation time in milliseonds
+          type: integer
+          minimum: 0
+          maximum: 4294967295
+          example: 784
+        goal_id:
+          description: Converted goal ID
+          type: integer
+          minimum: 0
+          maximum: 2147483647
+          example: 412
+        goal_name:
+          description: Converted goal name
+          type: string
+          example: User entered contact page
+        goal_uuid:
+          description: Converted goal UUID
+          type: string
+          format: uuid
+          example: 23724a56-4f12-4743-b4ea-a321e59a521b
+        order_id:
+          description: Ecommerce order ID
+          type: string
+          example: ORD000018
+        item_count:
+          description: Ecommerce items count
+          type: integer
+          minimum: 0
+          maximum: 65535
+          example: 3
+        revenue:
+          format: float
+          description: Ecommerce revenue
+          type: number
+          minimum: 0
+          maximum: 1.7976931348623157e+308
+          example: 89.99
+        revenue_subtotal:
+          format: float
+          description: Ecommerce revenue subtotal
+          type: number
+          minimum: 0
+          maximum: 1.7976931348623157e+308
+          example: 122.95
+        revenue_tax:
+          format: float
+          description: Ecommerce revenue tax
+          type: number
+          minimum: 0
+          maximum: 1.7976931348623157e+308
+          example: 9.15
+        revenue_shipping:
+          format: float
+          description: Ecommerce revenue shipping
+          type: number
+          minimum: 0
+          maximum: 1.7976931348623157e+308
+          example: 12.15
+        revenue_discount:
+          format: float
+          description: Ecommerce revenue discount
+          type: number
+          minimum: 0
+          maximum: 1.7976931348623157e+308
+          example: 0.12
+        timing_connect_end:
+          description: Time between browser navigation start and connection end in milliseconds
+          type: integer
+          minimum: 0
+          maximum: 65535
+          example: 10
+        timing_connect_start:
+          description: Time between browser navigation start and connection start in milliseconds
+          type: integer
+          minimum: 0
+          maximum: 65535
+          example: 11
+        timing_dom_complete:
+          description: Time between browser navigation start and dom complete in milliseconds
+          type: integer
+          minimum: 0
+          maximum: 4294967295
+          example: 12
+        timing_content_end:
+          description: Time between browser navigation start and DOM content end in milliseconds
+          type: integer
+          minimum: 0
+          maximum: 4294967295
+          example: 13
+        timing_content_start:
+          description: Time between browser navigation start and DOM content start in milliseconds
+          type: integer
+          minimum: 0
+          maximum: 4294967295
+          example: 21
+        timing_dom_interactive:
+          description: Time between browser navigation start and DOM interactive in milliseconds
+          type: integer
+          minimum: 0
+          maximum: 4294967295
+          example: 28
+        timing_dom_loading:
+          description: Time between browser navigation start and DOM loading in milliseconds
+          type: integer
+          minimum: 0
+          maximum: 65535
+          example: 98
+        timing_lookup_start:
+          description: Time between browser navigation start and domain lookup start in milliseconds
+          type: integer
+          minimum: 0
+          maximum: 65535
+          example: 17
+        timing_fetch_start:
+          description: Time between browser navigation start and fetch start in milliseconds
+          type: integer
+          minimum: 0
+          maximum: 65535
+          example: 59
+        timing_event_end:
+          description: Time between browser navigation start and load event end in milliseconds
+          type: integer
+          minimum: 0
+          maximum: 4294967295
+          example: 6
+        timing_redirect_end:
+          description: Time between browser navigation start and redirect end in milliseconds
+          type: integer
+          minimum: 0
+          maximum: 65535
+          example: 952
+        timing_redirect_start:
+          description: Time between browser navigation start and redirect start in milliseconds
+          type: integer
+          minimum: 0
+          maximum: 65535
+          example: 778
+        timing_request_start:
+          description: Time between browser navigation start and request start in milliseconds
+          type: integer
+          minimum: 0
+          maximum: 65535
+          example: 37
+        timing_response_end:
+          description: Time between browser navigation start and response end in milliseconds
+          type: integer
+          minimum: 0
+          maximum: 65535
+          example: 90
+        timing_response_start:
+          description: Time between browser navigation start and response start in milliseconds
+          type: integer
+          minimum: 0
+          maximum: 65535
+          example: 46
+        timing_secure_start:
+          description: Time between browser navigation start and secure connection start in milliseconds
+          type: integer
+          minimum: 0
+          maximum: 65535
+          example: 28
+        timing_unload_end:
+          description: Time between browser navigation start and unload start in milliseconds
+          type: integer
+          minimum: 0
+          maximum: 65535
+          example: 22
+        timing_unload_start:
+          description: Time between browser navigation start and unload start in milliseconds
+          type: integer
+          minimum: 0
+          maximum: 65535
+          example: 956
+        event_custom_dimension_1:
+          description: Custom dimension 1 value
+          type: string
+          example: my cus dim 1
+        event_custom_dimension_2:
+          description: Custom dimension 2 value
+          type: string
+          example: my cus dim 2
+        event_custom_dimension_3:
+          description: Custom dimension 3 value
+          type: string
+          example: my cus dim 3
+        event_custom_dimension_4:
+          description: Custom dimension 4 value
+          type: string
+          example: my cus dim 4
+        event_custom_dimension_5:
+          description: Custom dimension 5 value
+          type: string
+          example: my cus dim 5
+        event_custom_variable_key_1:
+          description: Custom variable key
+          type: string
+          example: my cus var 1 key
+        event_custom_variable_value_1:
+          description: Custom variable value
+          type: string
+          example: my cus var 1 val
+        event_custom_variable_key_2:
+          description: Custom variable key
+          type: string
+          example: my cus var 2 key
+        event_custom_variable_value_2:
+          description: Custom variable value
+          type: string
+          example: my cus var 2 val
+        event_custom_variable_key_3:
+          description: Custom variable key
+          type: string
+          example: my cus var 3 key
+        event_custom_variable_value_3:
+          description: Custom variable value
+          type: string
+          example: my cus var 3 val
+        event_custom_variable_key_4:
+          description: Custom variable key
+          type: string
+          example: my cus var 4 key
+        event_custom_variable_value_4:
+          description: Custom variable value
+          type: string
+          example: my cus var 4 val
+        event_custom_variable_key_5:
+          description: Custom variable key
+          type: string
+          example: my cus var 5 key
+        event_custom_variable_value_5:
+          description: Custom variable value
+          type: string
+          example: my cus var 5 val
+        items:
+          description: Ecommerce items
+          type: array
+          items:
+            $ref: '#/components/schemas/EcommerceItem'
+        goal_revenue:
+          format: float
+          description: Revenue from a conversion
+          type: number
+          example: 18.99
+        lost_revenue:
+          format: float
+          description: Revenue from abandoned cart.
+          type: number
+          minimum: 0
+          maximum: 1.7976931348623157e+308
+          example: 8.19
+        previous_event_url:
+          description: A URL of previous event, human-readable
+          type: string
+          example: 'http://domain.tld/previous-page.html'
+        previous_event_title:
+          description: A title of previous event
+          type: string
+          example: This was the previous event
+        next_event_url:
+          description: A URL of next event, human-readable
+          type: string
+          example: 'http://domain.tld/this-event-came-next'
+        next_event_title:
+          description: A title of next event
+          type: string
+          example: This was the following event
+        consent_source:
+          description: How a user viewed consent form. Present if event_type is 12 (consent form impression). 1 - popup, 2 - reminder, 3 - privacy_settings
+          type: integer
+          enum:
+            - 1
+            - 2
+            - 3
+        consent_form_button:
+          description: How a user interacted with consent form. Present if event_type is 13 (consent form click). 1 - agree_to_all, 2 - reject_all, 3 - save_choices, 4 - close
+          type: integer
+          enum:
+            - 1
+            - 2
+            - 3
+            - 4
+        consent_scope:
+          description: Whether a user gave consent to all, some, or none types of tracking. Present if event_type is 14 (consent decision). 1 - full_consent, 2 - any_consent, 3 - no_consent
+          type: integer
+          enum:
+            - 1
+            - 2
+            - 3
+        consent_action:
+          description: Whether it's the first decision or a modification of previously made consent decision. Present if event_type is 14 (consent decision). 1 - first_consent, 2 - changed_consent
+          type: integer
+          enum:
+            - 1
+            - 2
+        consent_type_analytics:
+          description: Whether a user gave consent for analytics. Present if event_type is 14 (consent decision)
+          type: integer
+          enum:
+            - 0
+            - 1
+        consent_type_ab_testing_personalization:
+          description: Whether a user gave consent for ab testing personalization. Present if event_type is 14 (consent decision)
+          type: integer
+          enum:
+            - 0
+            - 1
+        consent_type_conversion_tracking:
+          description: Whether a user gave consent for conversion tracking. Present if event_type is 14 (consent decision)
+          type: integer
+          enum:
+            - 0
+            - 1
+        consent_type_remarketing:
+          description: Whether a user gave consent for remarketing. Present if event_type is 14 (consent decision)
+          type: integer
+          enum:
+            - 0
+            - 1
+        consent_type_user_feedback:
+          description: Whether a user gave consent for user feedback. Present if event_type is 14 (consent decision)
+          type: integer
+          enum:
+            - 0
+            - 1
+        consent_type_custom_1:
+          description: Whether a user gave custom consent 1. Present if event_type is 14 (consent decision)
+          type: integer
+          enum:
+            - 0
+            - 1
+        consent_type_custom_2:
+          description: Whether a user gave custom consent 2. Present if event_type is 14 (consent decision)
+          type: integer
+          enum:
+            - 0
+            - 1
+        consent_type_custom_3:
+          description: Whether a user gave custom consent 3. Present if event_type is 14 (consent decision)
+          type: integer
+          enum:
+            - 0
+            - 1
+        consent_type_custom_4:
+          description: Whether a user gave custom consent 4. Present if event_type is 14 (consent decision)
+          type: integer
+          enum:
+            - 0
+            - 1
+        consent_type_custom_5:
+          description: Whether a user gave custom consent 5. Present if event_type is 14 (consent decision)
+          type: integer
+          enum:
+            - 0
+            - 1
+        error_message:
+          description: Message informing why event is removed from event set, if it errored during processing. Present if event type is 17 (broken event)
+          type: string
+          example: 'Resolving referrer failed due to internal error (<error eg. ApiError()>, log: <log>)'
+        exclusion_reason:
+          description: Message informing why event was excluded and will not be visible in reports. Present if event type is 18 (excluded event)
+          type: string
+          example: 'IP is on the crawler list'
+    EcommerceItem:
+      description: Ecommerce item from a cart
+      required:
+        - sku
+        - quantity
+        - price
+      type: object
+      properties:
+        name:
+          description: Ecommerce item name
+          type: string
+          example: RaceFace enduro crank
+        sku:
+          description: Ecommerce item SKU
+          type: string
+          example: A20078021
+        price:
+          format: float
+          description: Ecommerce item price
+          type: number
+          minimum: 0
+          maximum: 1.7976931348623157e+308
+          example: 9.19
+        quantity:
+          description: Items quantity
+          type: integer
+          minimum: 1
+          maximum: 2147483647
+          example: 4
+        category1:
+          description: Category 1
+          type: string
+          example: Cranks
+        category2:
+          description: Category 2
+          type: string
+          example: Enduro cranks
+        category3:
+          description: Category 3
+          type: string
+          example: New items
+        category4:
+          description: Category 4
+          type: string
+          example: Best buy
+        category5:
+          description: Category 5
+          type: string
+          example: Cranks with bashguard
+    Session:
+      description: A session
+      required:
+        - session_id
+        - server_time
+        - updated_at
+        - app_uuid
+        - organization
+        - cookie_id
+        - visitor_id
+        - visitor_returning
+        - session_first_event_time
+        - session_last_event_time
+        - session_total_events
+        - session_total_time
+        - session_total_page_views
+        - session_total_outlinks
+        - session_total_downloads
+        - session_total_site_searches
+        - session_total_custom_events
+        - session_total_content_impressions
+        - session_total_content_interactions
+        - session_total_goal_conversions
+        - session_total_ecommerce_conversions
+        - session_total_abandoned_carts
+        - session_unique_page_views
+        - session_unique_outlinks
+        - session_unique_downloads
+        - session_unique_searches
+        - session_unique_custom_events
+        - session_unique_content_impressions
+        - session_unique_content_interactions
+        - session_ecommerce_status
+        - referrer_type
+        - is_bounce
+        - events
+        - fingerprint
+        - plugin_pdf
+        - plugin_flash
+        - plugin_java
+        - plugin_quicktime
+        - plugin_realplayer
+        - plugin_windowsmedia
+        - plugin_gears
+        - plugin_silverlight
+        - plugin_cookie
+        - plugin_director
+      type: object
+      properties:
+        session_id:
+          description: ID of session - random value
+          type: integer
+          minimum: 0
+          maximum: 18446744073709552000
+          example: 12930330323049021000
+        server_time:
+          format: date-time
+          description: 'Time of session creation in YYYY-MM-DDTHH:MM:SS format in UTC'
+          type: string
+          example: '2020-07-14T13:30:17'
+        updated_at:
+          format: date-time
+          description: 'Server time of last update of the session in YYYY-MM-DDTHH:MM:SS format in UTC'
+          type: string
+          example: '2020-07-14T13:30:19'
+        app_id:
+          description: Legacy App ID
+          type: integer
+          minimum: 0
+          maximum: 4294967295
+          example: 8
+        app_uuid:
+          format: uuid
+          description: UUID of an app
+          type: string
+          example: 01e7e7f7-8a34-4aca-b700-45f6a6aa3aba
+        organization:
+          description: Name of PPAS organization tracked website belongs to
+          type: string
+          example: my_organization_name
+        cookie_id:
+          description: Cookie ID
+          type: integer
+          minimum: 0
+          maximum: 18446744073709552000
+          example: 2701247379086788600
+        user_id:
+          description: User ID
+          type: string
+          example: john@doe.com
+        visitor_id:
+          description: 'Visitor identifier, defaults to `cookie_id` value. When `user_id` is available, this field is set to first 16 characters of `user_id` SHA1 hash'
+          type: integer
+          minimum: 0
+          maximum: 18446744073709552000
+          example: 9601996549342362000
+        local_time:
+          format: time
+          description: 'Local time of first event occurrence in format HH:MM:SS in visitor''s time zone'
+          type: string
+          example: '12:00:00'
+        visitor_returning:
+          description: Is returning visitor
+          enum:
+            - '0'
+            - '1'
+          type: integer
+          minimum: 0
+          maximum: 1
+          example: 0
+        visitor_session_number:
+          description: Number of visitor's session
+          type: integer
+          minimum: 1
+          maximum: 65535
+          example: 2
+        visitor_days_since_last_session:
+          description: Days since last session
+          type: integer
+          minimum: 0
+          maximum: 65535
+          example: 8
+        visitor_days_since_first_session:
+          description: Days sice first session
+          type: integer
+          minimum: 0
+          maximum: 65535
+          example: 9
+        visitor_days_since_order:
+          description: Days since last ecommerce order
+          type: integer
+          minimum: 0
+          maximum: 65535
+          example: 3
+        session_first_event_time:
+          format: date-time
+          description: Date and time of first event in a session in UTC
+          type: string
+          example: '2020-07-14T13:30:07'
+        session_last_event_time:
+          format: date-time
+          description: Date and time of last event in session in UTC
+          type: string
+          example: '2020-07-14T13:352:55'
+        session_total_events:
+          description: Total number of events in a session
+          type: integer
+          minimum: 0
+          maximum: 65535
+          example: 45
+        session_total_time:
+          description: Session total time in seconds
+          type: integer
+          minimum: 0
+          maximum: 4294967295
+          example: 679
+        session_total_page_views:
+          description: Number of page views during a session
+          type: integer
+          minimum: 0
+          maximum: 65535
+          example: 3
+        session_total_outlinks:
+          description: Number of clicks on outlinks during a session
+          type: integer
+          minimum: 0
+          maximum: 65535
+          example: 1
+        session_total_downloads:
+          description: Number of clicks on download links during a session
+          type: integer
+          minimum: 0
+          maximum: 65535
+          example: 55
+        session_total_site_searches:
+          description: Sum of number of site searches during a session
+          type: integer
+          minimum: 0
+          maximum: 65535
+          example: 8
+        session_total_custom_events:
+          description: Number of custom events during a session
+          type: integer
+          minimum: 0
+          maximum: 65535
+          example: 0
+        session_total_content_impressions:
+          description: Number of content impressions during a session
+          type: integer
+          minimum: 0
+          maximum: 65535
+          example: 2
+        session_total_content_interactions:
+          description: Number of content interactions
+          type: integer
+          minimum: 0
+          maximum: 65535
+          example: 3
+        session_total_goal_conversions:
+          description: IDs of unique conversions triggered manually
+          type: integer
+          minimum: 0
+          maximum: 65535
+          example: 2
+        session_total_ecommerce_conversions:
+          description: Number of ecommerce conversions
+          type: integer
+          minimum: 0
+          maximum: 65535
+          example: 0
+        session_total_abandoned_carts:
+          description: Number of abandoned carts
+          type: integer
+          minimum: 0
+          maximum: 65535
+          example: 0
+        session_unique_page_views:
+          description: Number of unique page views
+          type: integer
+          minimum: 0
+          maximum: 65535
+          example: 2
+        session_unique_outlinks:
+          description: Number of unique outlinks clicked
+          type: integer
+          minimum: 0
+          maximum: 65535
+          example: 2
+        session_unique_downloads:
+          description: Number of unique downloads
+          type: integer
+          minimum: 0
+          maximum: 65535
+          example: 43
+        session_unique_searches:
+          description: Number of unique searches
+          type: integer
+          minimum: 0
+          maximum: 65535
+          example: 1
+        session_unique_custom_events:
+          description: Number of unique custom events
+          type: integer
+          minimum: 0
+          maximum: 65535
+          example: 2
+        session_unique_content_impressions:
+          description: Number of unique content impressions
+          type: integer
+          minimum: 0
+          maximum: 65535
+          example: 1
+        session_unique_content_interactions:
+          description: Number of unique content interactions
+          type: integer
+          minimum: 0
+          maximum: 65535
+          example: 8
+        session_ecommerce_status:
+          description: Was there a commerce conversion during a session?
+          enum:
+            - 0
+            - 1
+            - 2
+            - 3
+          type: integer
+          minimum: 0
+          maximum: 3
+          example: 2
+        source:
+          description: Source of the session
+          type: string
+          example: direct
+        referrer_type:
+          description: 'Referrer type'
+          enum:
+            - 1
+            - 2
+            - 3
+            - 6
+            - 7
+          type: integer
+          minimum: 1
+          maximum: 7
+          example: 1
+        referrer_name:
+          description: Referrer name
+          type: string
+          example: PinkBike
+        referrer_url:
+          description: Referrer URL
+          type: string
+          example: 'https://www.pinkbike.com/forum/'
+        referrer_keyword:
+          description: Referrer keyword
+          type: string
+          example: pinkbike
+        campaign_name:
+          description: Campaign name
+          type: string
+          example: 2021-cranks
+        campaign_keyword:
+          description: Campaign keyword
+          type: string
+          example: enduro_cranks
+        campaign_source:
+          description: Campaign source
+          type: string
+          example: double-opt-in-users
+        campaign_medium:
+          description: Campaign medium
+          type: string
+          example: banner-click
+        campaign_id:
+          description: Campaign ID
+          type: string
+          example: this_campaign_id
+        campaign_content:
+          description: Campaign content
+          type: string
+          example: left-side-banner
+        operating_system:
+          description: 'Operating system code'
+          type: string
+          example: FED
+        operating_system_version:
+          description: Operating system version
+          type: string
+          example: '33'
+        browser_engine:
+          description: Browser engine
+          type: string
+          example: Gecko
+        browser_name:
+          description: 'Browser name code'
+          type: string
+          example: FF
+        browser_version:
+          description: Browser version
+          type: string
+          example: '88.0'
+        browser_language_iso639:
+          description: 'Browser language code'
+          type: string
+          example: en
+        fingerprint:
+          description: Visitor's fingerprint
+          type: integer
+          minimum: 0
+          maximum: 18446744073709552000
+          example: 777468334834467100
+        device_type:
+          description: 'Device type code'
+          type: integer
+          minimum: 0
+          maximum: 255
+          example: 1
+        device_brand:
+          description: 'Device brand'
+          type: string
+          example: LE
+        device_model:
+          description: Device model
+          type: string
+          example: ThinkPad Helix 2
+        resolution_width:
+          description: Screen resolution width
+          type: integer
+          minimum: 0
+          maximum: 65535
+          example: 1920
+        resolution_height:
+          description: Screen resolution height
+          type: integer
+          minimum: 0
+          maximum: 65535
+          example: 1080
+        plugin_pdf:
+          description: If browser has PDF plugin
+          type: boolean
+          example: false
+        plugin_flash:
+          description: If browser has Flash plugin
+          type: boolean
+          example: false
+        plugin_java:
+          description: If browser has Java plugin
+          type: boolean
+          example: false
+        plugin_quicktime:
+          description: If browser has QuickTime plugin
+          type: boolean
+          example: false
+        plugin_realplayer:
+          description: If browser has RealPlayer plugin
+          type: boolean
+          example: false
+        plugin_windowsmedia:
+          description: If browser has Windows Media plugin
+          type: boolean
+          example: false
+        plugin_gears:
+          description: If browser has Gears plugin
+          type: boolean
+          example: true
+        plugin_silverlight:
+          description: If browser has Silverlight plugin
+          type: boolean
+          example: false
+        plugin_cookie:
+          description: If browser supports cookies
+          type: boolean
+          example: false
+        location_ipv4:
+          description: IPv4 address
+          type: string
+          example: 74.12.12.86
+        location_ipv6:
+          description: IPv6 address
+          type: string
+          example: 'c84e:9d52:49d4:271d:0a7e:6313:0098:c7f0'
+        location_continent_iso_code:
+          description: 'Continent ISO code - click [here](https://datahub.io/core/continent-codes/r/0.html) for more information'
+          type: string
+          example: NA
+        location_country_iso_code:
+          description: 'Country ISO code - click [here](https://en.wikipedia.org/wiki/List_of_ISO_3166_country_codes) for more information'
+          type: string
+          example: CA
+        location_country_name:
+          description: Country name
+          type: string
+          example: Canada
+        location_subdivision_1_iso_code:
+          description: 'Subdivision 1 ISO code - click [here](https://en.wikipedia.org/wiki/ISO_3166-2) for more information'
+          type: string
+          example: CA-ON
+        location_subdivision_1_name:
+          description: 'Subdivision 1 name - click [here](https://en.wikipedia.org/wiki/ISO_3166-2) for more information'
+          type: string
+          example: Ontario
+        location_subdivision_2_iso_code:
+          description: 'Subdivision 2 ISO code - click [here](https://en.wikipedia.org/wiki/ISO_3166-2) for more information'
+          type: string
+          example: ''
+        location_subdivision_2_name:
+          description: 'Subdivision 2 name - click [here](https://en.wikipedia.org/wiki/ISO_3166-2) for more information'
+          type: string
+          example: ''
+        location_city_geoname_id:
+          description: 'City geoname ID - click [here](https://geoip2.readthedocs.io/en/latest/#geoip2.records.City.geoname_id) or [here](https://www.geonames.org) for more information'
+          type: integer
+          minimum: 0
+          maximum: 4294967295
+          example: 6177869
+        location_city_name:
+          description: City name
+          type: string
+          example: Welland
+        location_metro_code:
+          description: Metro code
+          type: string
+          example: L3C
+        location_latitude:
+          format: float
+          description: Latitude
+          type: number
+          minimum: -90
+          maximum: 90
+          example: '42.9883961'
+        location_longitude:
+          format: float
+          description: Longitude
+          type: number
+          minimum: -180
+          maximum: 180
+          example: '-79.2555634'
+        location_provider:
+          description: Provider
+          type: string
+          example: Bell DSL Internet
+        location_organization:
+          description: Location organization
+          type: string
+          example: Bell DSL Internet
+        session_exit_url:
+          description: A URL of the last page view that ocurred in a session, human-readable
+          type: string
+          example: 'http://domain.tld/this-is-the-end-my-only-f'
+        session_exit_title:
+          description: A title of the last page view that ocurred in a session
+          type: string
+          example: This is the end
+        session_entry_url:
+          description: A URL of the first page view that occurred in a session, human-readable
+          type: string
+          example: 'http://domain.tld/this-is-the-beginning'
+        session_entry_title:
+          description: A title of the first page view that occurred in a session
+          type: string
+          example: 'In the beginning, there was this event'
+        session_second_url:
+          description: A URL of the second page view that ocurred in a session, human-readable
+          type: string
+          example: 'http://domain.tld/this-is-not-the-first-page'
+        session_second_title:
+          description: A title of the second page view that occurred in a session
+          type: string
+          example: This is not the first page
+        is_bounce:
+          description: If session has only one event
+          type: boolean
+          example: true
+        session_custom_dimension_1:
+          description: Session dimension 1 value
+          type: string
+          example: Lorem ipsum
+        session_custom_dimension_2:
+          description: Session dimension 2 value
+          type: string
+          example: dolor sit amet
+        session_custom_dimension_3:
+          description: Session dimension 3 value
+          type: string
+          example: consectetur adipiscing elit
+        session_custom_dimension_4:
+          description: Session dimension 4 value
+          type: string
+          example: sed do eiusmod
+        session_custom_dimension_5:
+          description: Session dimension 5 value
+          type: string
+          example: tempor incididunt
+        session_custom_dimension_6:
+          description: Session dimension 6 value
+          type: string
+          example: ut labore
+        session_custom_dimension_7:
+          description: Session dimension 7 value
+          type: string
+          example: et dolore
+        session_custom_dimension_8:
+          description: Session dimension 8 value
+          type: string
+          example: magna aliqua
+        session_custom_dimension_9:
+          description: Session dimension 9 value
+          type: string
+          example: Ut enim
+        session_custom_dimension_10:
+          description: Session dimension 10 value
+          type: string
+          example: ad minim veniam
+        session_custom_variable_key_1:
+          description: Custom variable key
+          type: string
+          example: quis nostrud
+        session_custom_variable_value_1:
+          description: Custom variable key
+          type: string
+          example: exercitation ullamco
+        session_custom_variable_key_2:
+          description: Custom variable key
+          type: string
+          example: laboris nisi
+        session_custom_variable_value_2:
+          description: Custom variable key
+          type: string
+          example: ut aliquip
+        session_custom_variable_key_3:
+          description: Custom variable key
+          type: string
+          example: ex ea commodo
+        session_custom_variable_value_3:
+          description: Custom variable value
+          type: string
+          example: consequat
+        session_custom_variable_key_4:
+          description: Custom variable value
+          type: string
+          example: Duis aute irure dolor
+        session_custom_variable_value_4:
+          description: Custom variable value
+          type: string
+          example: in reprehenderit in
+        session_custom_variable_key_5:
+          description: Custom variable value
+          type: string
+          example: voluptate velit
+        session_custom_variable_value_5:
+          description: Custom variable value
+          type: string
+          example: esse cillum
+        events:
+          description: Events that occurred during the session
+          type: array
+          items:
+            $ref: '#/components/schemas/Event'
+        session_goals:
+          description: IDs of goals converted during session
+          type: array
+          items:
+            type: integer
+            minimum: 0
+            maximum: 2147483647
+            example:
+              - 1
+              - 3
+              - 5
+              - 7
+              - 11
+              - 13
+        session_goal_uuids:
+          description: UUIDs of goals converted during session
+          type: array
+          items:
+            type: string
+            format: uuid
+          example:
+            - 60cda3ca-0e76-4fa2-9167-7a6159a9be82
+            - 99329e7a-efae-4ad7-b423-ccccbc46cdf8
+            - 76485d34-26f5-420c-afd2-2a96ecff8b42
+        session_total_revenue:
+          format: float
+          description: Revenue from ecommerce in a session
+          type: number
+          example: 76348.07
+        session_total_goal_revenue:
+          format: float
+          description: Revenue from goal conversions in a session
+          type: number
+          minimum: 0
+          maximum: 1.7976931348623157e+308
+          example: 8.53
+        session_total_lost_revenue:
+          format: float
+          description: Revenue lost from abandoned carts
+          type: number
+          minimum: 0
+          maximum: 1.7976931348623157e+308
+          example: 1.67
+        medium:
+          description: Referrer medium
+          type: string
+          example: pinkbike
+        source_medium:
+          description: Concatenated source and medium
+          type: string
+          example: double-opt-in-users / banner-click
+        keyword:
+          description: Referrer keyword
+          type: string
+          example: pinkbike
+        resolution:
+          description: Concatenated resolution_width and resolution_height
+          type: string
+          example: 640x479
+        plugin_director:
+          description: If browser has Director plugin
+          type: boolean
+          example: false
+        campaign_gclid:
+          description: Google Click ID
+          type: string
+          example: 1237abcdb
+    Log:
+      description: A tracking log
+      required:
+        - id
+        - time
+        - ip
+        - scheme
+        - method
+        - headers
+        - query_params
+      type: object
+      properties:
+        id:
+          description: UUID of the log
+          type: string
+          format: uuid
+          example: 76d1b36e-c2d5-44e8-ad60-028cb0bf17f6
+        time:
+          description: 'Time when the request was received by a tracker (in UTC)'
+          type: string
+          format: date-time
+          example: '2020-02-01T00:00:00.000000000Z'
+        ip:
+          description: 'Tracker client IP (real value can be provided in headers or `cip` parameter)'
+          type: string
+          format: ip
+          example: 75.13.13.87
+        host:
+          description: 'A host under which app is available'
+          type: string
+          example: piwikpro.tld
+        scheme:
+          description: 'Scheme used for the request'
+          type: string
+          example: http
+        method:
+          description: 'Method used for the request'
+          type: string
+          example: GET
+        headers:
+          description: Request HTTP headers
+          type: array
+          items:
+            type: array
+            items:
+              type: string
+          example:
+            - - 'x-forwarded-for'
+              - '172.18.0.15'
+            - - 'accept-language'
+              - 'en-US,en;q=0.9'
+            - - 'user-agent'
+              - 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.117 Safari/537.36'
+        query_params:
+          description: 'Tracking request parameters'
+          type: object
+          $ref: '#/components/schemas/TrackingParameters'
+        cookie_id:
+          description: 'Cookie ID sent in the _id parameter'
+          type: string
+          example: eddf6b9aa9d8fb32
+        user_id:
+          description: 'User ID sent in the uid parameter'
+          type: string
+          example: 'particular-user_login'
+        body:
+          description: 'Request body payload'
+          type: string
+          example: "idsite=1&rec=0&action_name=This%20won%27t%20be%20recorded"
+        debug:
+          description: 'States whether request is used for debugging'
+          type: boolean
+          default: false
+          example: true
+    TrackingParameters:
+      description: Parameters of a tracking request
+      required:
+        - idsite
+      type: object
+      properties:
+        idsite:
+          description: ID of the tracked app/website - can be UUID or legacy integer.
+          type: string
+          example: '4'
+        _idts:
+          description: 'Time of first visit'
+          type: integer
+          minimum: 0
+          maximum: 4294967295
+          example: 1577836800
+        _viewts:
+          description: 'Time of previous visit'
+          type: integer
+          minimum: 0
+          maximum: 4294967295
+          example: 1580342400
+        _idvc:
+          description: 'Visit counter'
+          type: integer
+          minimum: 0
+          maximum: 4294967295
+          example: 2
+        url:
+          description: 'URL of the action'
+          type: string
+          example: 'https://piwik.pro/'
+        urlref:
+          description: 'HTTP referrer'
+          type: string
+          example: 'https://clearcode.cc/'
+        res:
+          description: 'Resolution of the visitor''s device in pixels'
+          type: string
+          example: '1920x1080'
+        idgoal:
+          description: 'Goal ID. Signifies that a goal has been reached and tracks its conversion.'
+          type: string
+          example: '12'
+        revenue:
+          description: Revenue value of achieved goal
+          type: number
+          minimum: -1.0e+28
+          maximum: 1.0e+28
+          example: 7.12
+        ping:
+          description: 'Enables a special heartbeat mode for the tracking request'
+          type: integer
+          minimum: 0
+          maximum: 255
+          example: 1
+        send_image:
+          description: 'Request response content'
+          type: boolean
+          example: true
+        _cvar:
+          description: '[Custom variables](https://help.piwik.pro/analytics/custom-variables/) set on the ``visit`` scope.'
+          type: string
+          example: '{"1":["AspectRatio","16:9"],"2":["Height","1080"],"3":["Width","1920"]}'
+        cvar:
+          description: '[Custom variables](https://help.piwik.pro/analytics/custom-variables/) set on the ``page`` scope.'
+          type: string
+          example: '{"1":["AspectRatio","16:9"],"2":["Height","1080"],"3":["Width","1920"]}'
+        bots:
+          description: 'Bots tracking enabled / disabled'
+          type: boolean
+          example: true
+        rec:
+          description: 'Consent to tracking (value "1" allows it)'
+          type: boolean
+          example: true
+        new_visit:
+          description: 'Forces new session'
+          type: boolean
+          example: true
+        token_auth:
+          description: 'Authentication token used by SuperUser or Admin in requests using parameters that require it'
+          type: string
+          example: 'caa18074df8347b684d7b943b2484fe9'
+        debug:
+          description: 'States whether request is used for debugging'
+          type: boolean
+          example: true
+        ec_id:
+          description: 'Ecommerce order ID'
+          type: string
+          example: 'order-123-customer-321'
+        ec_st:
+          description: 'Ecommerce order sub-total (order cost without shipping)'
+          type: number
+          minimum: -1.0e+28
+          maximum: 1.0e+28
+          example: 7.99
+        ec_tx:
+          description: 'Ecommerce order tax'
+          type: number
+          minimum: -1.0e+28
+          maximum: 1.0e+28
+          example: 1.00
+        ec_sh:
+          description: 'Ecommerce order shipping'
+          type: number
+          minimum: -1.0e+28
+          maximum: 1.0e+28
+          example: 1.95
+        ec_dt:
+          description: Ecommerce order discount
+          type: number
+          minimum: -1.0e+28
+          maximum: 1.0e+28
+          example: 0.05
+        ec_items:
+          description: 'Ecommerce order item list in the form of two dimensional JSON array'
+          type: string
+          example: '[[\"craft-311\",\"Unicorn Iron on Patch\",\"Crafts & Sewing\",4.99,3],[\"craft-312\",\"Unicorn Lamp\",\"Crafts & Sewing\",13.25,1]]'
+        _ects:
+          description: 'Timestamp of last Ecommerce order'
+          type: integer
+          minimum: 0
+          maximum: 4294967295
+          example: 122
+        e_c:
+          description: 'Custom event category'
+          type: string
+          example: 'CE Cat'
+        e_a:
+          description: 'Custom event action'
+          type: string
+          example: 'CE Action'
+        e_n:
+          description: 'Custom event name'
+          type: string
+          example: 'CE Name'
+        e_v:
+          description: 'Custom event value'
+          type: number
+          minimum: 0
+          maximum: 1.7976931348623157e+308
+          example: 7.12
+        cip:
+          description: 'Override IP'
+          type: string
+          format: IPv4|IPv6
+          example: '172.16.254.1'
+        cdt:
+          description: 'Override request time'
+          type: string
+          format: UNIX timestamp|UTC DateTime<YYYY-MM-DD hh:mm:ss>
+          example: '2018-02-24 15:34:48'
+        cid:
+          description: 'Configuration ID'
+          type: string
+          minLength: 16
+          maxLength: 16
+          example: '257cc22df0ec483a'
+        _id:
+          description: 'Visitor ID'
+          type: string
+          minLength: 16
+          maxLength: 16
+          example: 'dcce8b9ea5d80b52'
+        uia:
+          description: 'Allows to track user anonymously'
+          type: boolean
+          example: true
+        ua:
+          description: 'Override User-Agent header'
+          type: string
+          example: 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.162 Safari/537.36'
+        lang:
+          description: 'Override Accept-Language header'
+          type: string
+          example: 'en-US,en;q=0.9,pl;q=0.8'
+        uid:
+          description: 'User ID'
+          type: string
+          example: 'username-of-some-user'
+        country:
+          description: 'Override GeoIP country'
+          type: string
+          format: ISO 3166-1
+          example: 'pl'
+        region:
+          description: 'Override GeoIP region'
+          type: string
+          example: '85'
+        city:
+          description: 'Override GeoIP city'
+          type: string
+          example: 'Olsztyn'
+        long:
+          description: 'Override GeoIP longitude'
+          type: string
+          example: '20.4952105'
+        lat:
+          description: 'Override GeoIP latitude'
+          type: string
+          example: '53.7683212'
+        cs:
+          description: 'Page charset'
+          type: string
+          example: 'ISO-8859-1'
+        download:
+          description: 'URL of downloaded file'
+          type: string
+          example: 'http://example.com/files/TermsOfService.pdf'
+        link:
+          description: 'External URL opened by the Visitor'
+          type: string
+          example: 'http://help-example.com/how-to/register.html'
+        action_name:
+          description: 'Name of the action'
+          type: string
+          example: 'Piwik PRO Analytics Suite | On-premise & private cloud'
+        search:
+          description: 'Internal search query'
+          type: string
+          example: 'searching for this'
+        search_cat:
+          description: 'Internal search category'
+          type: string
+          example: 'Result category'
+        search_cats:
+          description: 'Result categories'
+          type: string
+          example: '["res cat 1","res cat 2"]'
+        search_count:
+          description: 'Number of results of internal search'
+          type: integer
+          minimum: 0
+          maximum: 65535
+          example: 0
+        pv_id:
+          description: 'Unique page view ID generated when the page is loaded'
+          type: string
+          example: '1ViMbH'
+        gt_ms:
+          description: 'Page generation and load time in milliseconds'
+          type: integer
+          minimum: 0
+          maximum: 4294967295
+          example: 448
+        h:
+          description: 'Hour when the request was made in the visitor''s local time'
+          type: integer
+          minimum: 0
+          maximum: 4294967295
+          example: 12
+        m:
+          description: 'Minute when the request was made in the visitor''s local time'
+          type: integer
+          minimum: 0
+          maximum: 4294967295
+          example: 39
+        s:
+          description: 'Second when the request was made in the visitor''s local time'
+          type: integer
+          minimum: 0
+          maximum: 4294967295
+          example: 28
+        fla:
+          description: 'Status of Flash plugin in Visitor browser'
+          type: boolean
+          example: true
+        java:
+          description: 'Status of Java plugin in Visitor browser'
+          type: boolean
+          example: true
+        dir:
+          description: 'Status of Adobe Director plugin in Visitor browser'
+          type: boolean
+          example: true
+        qt:
+          description: 'Status of QuickTime plugin in Visitor browser'
+          type: boolean
+          example: true
+        realp:
+          description: 'Status of RealPlayer plugin in Visitor browser'
+          type: boolean
+          example: true
+        pdf:
+          description: 'Status of PDF plugin in Visitor browser'
+          type: boolean
+          example: true
+        wma:
+          description: 'Status of Windows Media Player plugin in Visitor browser'
+          type: boolean
+          example: true
+        gears:
+          description: 'Status of Gears plugin in Visitor browser'
+          type: boolean
+          example: true
+        ag:
+          description: 'Status of Silverlight plugin in Visitor browser'
+          type: boolean
+          example: true
+        cookie:
+          description: 'Status of Cookie capability in Visitor browser'
+          type: boolean
+          example: true
+        c_p:
+          description: 'Content piece'
+          type: string
+          example: 'Unicorn Iron on Patch'
+        c_n:
+          description: 'Content name'
+          type: string
+          example: 'recommended-products'
+        c_t:
+          description: 'Content target'
+          type: string
+          example: 'http://example.com/product/unicorn-iron-on-path.html'
+        c_i:
+          description: 'Content interaction'
+          type: string
+          example: 'show details'
+        t_us:
+          description: 'Unload Event Start - one of the Page Performance Metrics'
+          type: integer
+          minimum: 0
+          maximum: 65535
+          example: 566
+        t_ue:
+          description: 'Unload Event End - one of the Page Performance Metrics'
+          type: integer
+          minimum: 0
+          maximum: 65535
+          example: 566
+        t_rs:
+          description: 'Redirect Start - one of the Page Performance Metrics'
+          type: integer
+          minimum: 0
+          maximum: 65535
+          example: 7
+        t_re:
+          description: 'Redirect End - one of the Page Performance Metrics'
+          type: integer
+          minimum: 0
+          maximum: 65535
+          example: 7
+        t_fs:
+          description: 'Fetch Start - one of the Page Performance Metrics'
+          type: integer
+          minimum: 0
+          maximum: 65535
+          example: 7
+        t_ss:
+          description: 'Secure Connection Start - one of the Page Performance Metrics'
+          type: integer
+          minimum: 0
+          maximum: 65535
+          example: 69
+        t_ds:
+          description: 'Domain Lookup Start - one of the Page Performance Metrics'
+          type: integer
+          minimum: 0
+          maximum: 65535
+          example: 9
+        t_cs:
+          description: 'Connect Start - one of the Page Performance Metrics'
+          type: integer
+          minimum: 0
+          maximum: 65535
+          example: 11
+        t_ce:
+          description: 'Connect End - one of the Page Performance Metrics'
+          type: integer
+          minimum: 0
+          maximum: 65535
+          example: 121
+        t_qs:
+          description: 'Request Start - one of the Page Performance Metrics'
+          type: integer
+          minimum: 0
+          maximum: 65535
+          example: 121
+        t_as:
+          description: 'Response Start - one of the Page Performance Metrics'
+          type: integer
+          minimum: 0
+          maximum: 65535
+          example: 557
+        t_ae:
+          description: 'Response End - one of the Page Performance Metrics'
+          type: integer
+          minimum: 0
+          maximum: 65535
+          example: 569
+        t_dl:
+          description: 'DOM Loading - one of the Page Performance Metrics'
+          type: integer
+          minimum: 0
+          maximum: 65535
+          example: 579
+        t_di:
+          description: 'DOM Interactive - one of the Page Performance Metrics'
+          type: integer
+          minimum: 0
+          maximum: 4294967295
+          example: 974
+        t_ls:
+          description: 'DOM Content Loaded Event Start - one of the Page Performance Metrics'
+          type: integer
+          minimum: 0
+          maximum: 4294967295
+          example: 974
+        t_le:
+          description: 'DOM Content Loaded Event End - one of the Page Performance Metrics'
+          type: integer
+          minimum: 0
+          maximum: 4294967295
+          example: 975
+        t_dc:
+          description: 'DOM Complete - one of the Page Performance Metrics'
+          type: integer
+          minimum: 0
+          maximum: 4294967295
+          example: 3822
+        t_ee:
+          description: 'Load Event End - one of the Page Performance Metrics'
+          type: integer
+          minimum: 0
+          maximum: 4294967295
+          example: 3923
+        _rcn:
+          description: 'The Campaign name'
+          type: string
+          example: 'deprecated campaign name parameter'
+        _rck:
+          description: 'The Campaign Keyword'
+          type: string
+          example: 'deprecated keyword parameter'
+        dimension1:
+          description: Custom dimension 1
+          type: string
+          example: 'custom_dimension_1_value'
+        dimension2:
+          description: Custom dimension 2
+          type: string
+          example: 'custom_dimension_2_value'
+        dimension3:
+          description: Custom dimension 3
+          type: string
+          example: 'custom_dimension_3_value'
+        dimension4:
+          description: Custom dimension 4
+          type: string
+          example: 'custom_dimension_4_value'
+        dimension5:
+          description: Custom dimension 5
+          type: string
+          example: 'custom_dimension_5_value'
+        dimension6:
+          description: Custom dimension 6
+          type: string
+          example: 'custom_dimension_6_value'
+        dimension7:
+          description: Custom dimension 7
+          type: string
+          example: 'custom_dimension_7_value'
+        dimension8:
+          description: Custom dimension 8
+          type: string
+          example: 'custom_dimension_8_value'
+        dimension9:
+          description: Custom dimension 9
+          type: string
+          example: 'custom_dimension_9_value'
+        dimension10:
+          description: Custom dimension 10
+          type: string
+          example: 'custom_dimension_10_value'
+        dimension11:
+          description: Custom dimension 11
+          type: string
+          example: 'custom_dimension_11_value'
+        dimension12:
+          description: Custom dimension 12
+          type: string
+          example: 'custom_dimension_12_value'
+        dimension13:
+          description: Custom dimension 13
+          type: string
+          example: 'custom_dimension_13_value'
+        dimension14:
+          description: Custom dimension 14
+          type: string
+          example: 'custom_dimension_14_value'
+        dimension15:
+          description: Custom dimension 15
+          type: string
+          example: 'custom_dimension_15_value'
+        dimension16:
+          description: Custom dimension 16
+          type: string
+          example: 'custom_dimension_16_value'
+        dimension17:
+          description: Custom dimension 17
+          type: string
+          example: 'custom_dimension_17_value'
+        dimension18:
+          description: Custom dimension 18
+          type: string
+          example: 'custom_dimension_18_value'
+        dimension19:
+          description: Custom dimension 19
+          type: string
+          example: 'custom_dimension_19_value'
+        dimension20:
+          description: Custom dimension 20
+          type: string
+          example: 'custom_dimension_20_value'
+        dimension21:
+          description: Custom dimension 21
+          type: string
+          example: 'custom_dimension_21_value'
+        dimension22:
+          description: Custom dimension 22
+          type: string
+          example: 'custom_dimension_22_value'
+        dimension23:
+          description: Custom dimension 23
+          type: string
+          example: 'custom_dimension_23_value'
+        dimension24:
+          description: Custom dimension 24
+          type: string
+          example: 'custom_dimension_24_value'
+        dimension25:
+          description: Custom dimension 25
+          type: string
+          example: 'custom_dimension_25_value'
+        dimension26:
+          description: Custom dimension 26
+          type: string
+          example: 'custom_dimension_26_value'
+        dimension27:
+          description: Custom dimension 27
+          type: string
+          example: 'custom_dimension_27_value'
+        dimension28:
+          description: Custom dimension 28
+          type: string
+          example: 'custom_dimension_28_value'
+        dimension29:
+          description: Custom dimension 29
+          type: string
+          example: 'custom_dimension_29_value'
+        dimension30:
+          description: Custom dimension 30
+          type: string
+          example: 'custom_dimension_30_value'
+        dimension31:
+          description: Custom dimension 31
+          type: string
+          example: 'custom_dimension_31_value'
+        dimension32:
+          description: Custom dimension 32
+          type: string
+          example: 'custom_dimension_32_value'
+        dimension33:
+          description: Custom dimension 33
+          type: string
+          example: 'custom_dimension_33_value'
+        dimension34:
+          description: Custom dimension 34
+          type: string
+          example: 'custom_dimension_34_value'
+        dimension35:
+          description: Custom dimension 35
+          type: string
+          example: 'custom_dimension_35_value'
+        dimension36:
+          description: Custom dimension 36
+          type: string
+          example: 'custom_dimension_36_value'
+        dimension37:
+          description: Custom dimension 37
+          type: string
+          example: 'custom_dimension_37_value'
+        dimension38:
+          description: Custom dimension 38
+          type: string
+          example: 'custom_dimension_38_value'
+        dimension39:
+          description: Custom dimension 39
+          type: string
+          example: 'custom_dimension_39_value'
+        dimension40:
+          description: Custom dimension 40
+          type: string
+          example: 'custom_dimension_40_value'
+        dimension41:
+          description: Custom dimension 41
+          type: string
+          example: 'custom_dimension_41_value'
+        dimension42:
+          description: Custom dimension 42
+          type: string
+          example: 'custom_dimension_42_value'
+        dimension43:
+          description: Custom dimension 43
+          type: string
+          example: 'custom_dimension_43_value'
+        dimension44:
+          description: Custom dimension 44
+          type: string
+          example: 'custom_dimension_44_value'
+        dimension45:
+          description: Custom dimension 45
+          type: string
+          example: 'custom_dimension_45_value'
+        dimension46:
+          description: Custom dimension 46
+          type: string
+          example: 'custom_dimension_46_value'
+        dimension47:
+          description: Custom dimension 47
+          type: string
+          example: 'custom_dimension_47_value'
+        dimension48:
+          description: Custom dimension 48
+          type: string
+          example: 'custom_dimension_48_value'
+        dimension49:
+          description: Custom dimension 49
+          type: string
+          example: 'custom_dimension_49_value'
+        dimension50:
+          description: Custom dimension 50
+          type: string
+          example: 'custom_dimension_50_value'
+        dimension51:
+          description: Custom dimension 51
+          type: string
+          example: 'custom_dimension_51_value'
+        dimension52:
+          description: Custom dimension 52
+          type: string
+          example: 'custom_dimension_52_value'
+        dimension53:
+          description: Custom dimension 53
+          type: string
+          example: 'custom_dimension_53_value'
+        dimension54:
+          description: Custom dimension 54
+          type: string
+          example: 'custom_dimension_54_value'
+        dimension55:
+          description: Custom dimension 55
+          type: string
+          example: 'custom_dimension_55_value'
+        dimension56:
+          description: Custom dimension 56
+          type: string
+          example: 'custom_dimension_56_value'
+        dimension57:
+          description: Custom dimension 57
+          type: string
+          example: 'custom_dimension_57_value'
+        dimension58:
+          description: Custom dimension 58
+          type: string
+          example: 'custom_dimension_58_value'
+        dimension59:
+          description: Custom dimension 59
+          type: string
+          example: 'custom_dimension_59_value'
+        dimension60:
+          description: Custom dimension 60
+          type: string
+          example: 'custom_dimension_60_value'
+        dimension61:
+          description: Custom dimension 61
+          type: string
+          example: 'custom_dimension_61_value'
+        dimension62:
+          description: Custom dimension 62
+          type: string
+          example: 'custom_dimension_62_value'
+        dimension63:
+          description: Custom dimension 63
+          type: string
+          example: 'custom_dimension_63_value'
+        dimension64:
+          description: Custom dimension 64
+          type: string
+          example: 'custom_dimension_64_value'
+        dimension65:
+          description: Custom dimension 65
+          type: string
+          example: 'custom_dimension_65_value'
+        dimension66:
+          description: Custom dimension 66
+          type: string
+          example: 'custom_dimension_66_value'
+        dimension67:
+          description: Custom dimension 67
+          type: string
+          example: 'custom_dimension_67_value'
+        dimension68:
+          description: Custom dimension 68
+          type: string
+          example: 'custom_dimension_68_value'
+        dimension69:
+          description: Custom dimension 69
+          type: string
+          example: 'custom_dimension_69_value'
+        dimension70:
+          description: Custom dimension 70
+          type: string
+          example: 'custom_dimension_70_value'
+        dimension71:
+          description: Custom dimension 71
+          type: string
+          example: 'custom_dimension_71_value'
+        dimension72:
+          description: Custom dimension 72
+          type: string
+          example: 'custom_dimension_72_value'
+        dimension73:
+          description: Custom dimension 73
+          type: string
+          example: 'custom_dimension_73_value'
+        dimension74:
+          description: Custom dimension 74
+          type: string
+          example: 'custom_dimension_74_value'
+        dimension75:
+          description: Custom dimension 75
+          type: string
+          example: 'custom_dimension_75_value'
+        dimension76:
+          description: Custom dimension 76
+          type: string
+          example: 'custom_dimension_76_value'
+        dimension77:
+          description: Custom dimension 77
+          type: string
+          example: 'custom_dimension_77_value'
+        dimension78:
+          description: Custom dimension 78
+          type: string
+          example: 'custom_dimension_78_value'
+        dimension79:
+          description: Custom dimension 79
+          type: string
+          example: 'custom_dimension_79_value'
+        dimension80:
+          description: Custom dimension 80
+          type: string
+          example: 'custom_dimension_80_value'
+        dimension81:
+          description: Custom dimension 81
+          type: string
+          example: 'custom_dimension_81_value'
+        dimension82:
+          description: Custom dimension 82
+          type: string
+          example: 'custom_dimension_82_value'
+        dimension83:
+          description: Custom dimension 83
+          type: string
+          example: 'custom_dimension_83_value'
+        dimension84:
+          description: Custom dimension 84
+          type: string
+          example: 'custom_dimension_84_value'
+        dimension85:
+          description: Custom dimension 85
+          type: string
+          example: 'custom_dimension_85_value'
+        dimension86:
+          description: Custom dimension 86
+          type: string
+          example: 'custom_dimension_86_value'
+        dimension87:
+          description: Custom dimension 87
+          type: string
+          example: 'custom_dimension_87_value'
+        dimension88:
+          description: Custom dimension 88
+          type: string
+          example: 'custom_dimension_88_value'
+        dimension89:
+          description: Custom dimension 89
+          type: string
+          example: 'custom_dimension_89_value'
+        dimension90:
+          description: Custom dimension 90
+          type: string
+          example: 'custom_dimension_90_value'
+        dimension91:
+          description: Custom dimension 91
+          type: string
+          example: 'custom_dimension_91_value'
+        dimension92:
+          description: Custom dimension 92
+          type: string
+          example: 'custom_dimension_92_value'
+        dimension93:
+          description: Custom dimension 93
+          type: string
+          example: 'custom_dimension_93_value'
+        dimension94:
+          description: Custom dimension 94
+          type: string
+          example: 'custom_dimension_94_value'
+        dimension95:
+          description: Custom dimension 95
+          type: string
+          example: 'custom_dimension_95_value'
+        dimension96:
+          description: Custom dimension 96
+          type: string
+          example: 'custom_dimension_96_value'
+        dimension97:
+          description: Custom dimension 97
+          type: string
+          example: 'custom_dimension_97_value'
+        dimension98:
+          description: Custom dimension 98
+          type: string
+          example: 'custom_dimension_98_value'
+        dimension99:
+          description: Custom dimension 99
+          type: string
+          example: 'custom_dimension_99_value'
+        dimension100:
+          description: Custom dimension 100
+          type: string
+          example: 'custom_dimension_100_value'
