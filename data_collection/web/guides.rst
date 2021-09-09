@@ -1,8 +1,8 @@
 Guides
 ======
 
-Instalation
------------
+Installation
+------------
 
 Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop p
 
@@ -10,7 +10,7 @@ Page views
 ----------
 
 Page view is the most basic type of the tracked event. It represents a single page viewing action.
-By default it's triggered only once as soon as the HTML content is loaded to the browser with the `trackPageView` JS tracker method.
+By default it's triggered only once as soon as the HTML content is loaded to the browser with the :ref:`trackPageView<jtc-api-trackPageView>` method.
 
 **Example:**
 ``_paq.push(['trackPageView']);``
@@ -46,7 +46,7 @@ Simply use one of:
 * track all content blocks: ``_paq.push(['trackAllContentImpressions']);``
 * track only the visible blocks: ``_paq.push(['trackVisibleContentImpressions']);`` (generally visible, not only the ones currently visible on the screen)
 
-For more information visit the :ref:`Content tracking<content-tracking>` section of the JS Tracker API documentation.
+For more information visit the :ref:`Content tracking<jtc-api-content-tracking>` section of the JavaScript Tracking Client API documentation.
 
 **But how JS tracker will know what blocks you would like to track?**
 There are two ways of marking the blocks, you should either use a ``piwikTrackContent`` CSS class or a special html attribute ``data-track-content`` on them.
@@ -153,8 +153,8 @@ It will automatically recognize such when a clicked link contains one of followi
 In one of following link schemas:
 
  - file extension is at the very end of a link eg. ``http://example.com/file.7z`` or ``http://example.com/article?click=file.7z``
- - file extension directly preceeds query part (``?``), eg. ``http://example.com/article/file.7z?source=user#how-to``
- - file extension directly preceeds fragment part (``#``) ``http://example.com/article?target=file.7z#how-to``
+ - file extension directly proceeds query part (``?``), eg. ``http://example.com/article/file.7z?source=user#how-to``
+ - file extension directly proceeds fragment part (``#``) ``http://example.com/article?target=file.7z#how-to``
  - file extension is at the end of query param, eg. ``http://example.com/article?click=file.7z&page=3``
 
 Customizing list of file extensions
@@ -184,7 +184,7 @@ Manually marking links as downloads
 """""""""""""""""""""""""""""""""""
 
 .. note::
-  If you want to use CSS classes or HTML attributes to mark links as download or outlink and you have modified default JS snippet, make sure that :ref:`enableLinkTracking<tracking-outlink>` is called. It is enabled in default snippet, but if you use a custom one, then you have to enable it by yourself.
+  If you want to use CSS classes or HTML attributes to mark links as download or outlink and you have modified default JS snippet, make sure that :ref:`enableLinkTracking<jtc-api-enableLinkTracking>` is called. It is enabled in default snippet, but if you use a custom one, then you have to enable it by yourself.
 
   .. code-block:: javascript
 
@@ -193,19 +193,19 @@ Manually marking links as downloads
 
 If your case of download links does not fall in above cases you still have options to use, to tell tracker that link should be tracked as a download.
 
-You can add a download attribute to a link HTML tag. eg. 
+You can add a download attribute to a link HTML tag. eg.
 
 .. code-block:: html
 
   <a href="/target-file" download>
 
-Or if you have to be strict with your HTML, you can add a HTML tag class. Default classes are ``piwik_download`` and ``piwik-download``. Eg. 
+Or if you have to be strict with your HTML, you can add a HTML tag class. Default classes are ``piwik_download`` and ``piwik-download``. Eg.
 
 .. code-block:: html
 
   <a href="/taget-file" class="piwik-download">
 
-Additionally you can define your custom CSS classes for download links with ours :ref:`Javascript Tracker API<force-tracking-download-using-css-class>`. Eg. 
+Additionally you can define your custom CSS classes for download links with our :ref:`JavaScript Tracking Client API<jtc-api-setDownloadClasses>`. Eg.
 
 .. code-block:: javascript
 
@@ -261,7 +261,7 @@ You can configure it in website settings section of the Administration panel. Go
 
 .. image:: /_static/images/data_collection/website_settings_urls.jpg
 
-You can use :ref:`setDomains()<ignoring-alias-domains>` function of JS tracker.
+You can use :ref:`setDomains<jtc-api-setDomains>` function of JavaScript Tracking Client API.
 
 .. code-block:: javascript
 
@@ -276,13 +276,13 @@ Marking links as outlinks in HTML code
 
 Similar as downloads, links can be set to be treated as outlinks manually, but only with CSS classes, you cannot use a HTML attribute.
 
-You can use one of default CSS classes: ``piwik_link`` or ``piwik-link``. eg. 
+You can use one of default CSS classes: ``piwik_link`` or ``piwik-link``. eg.
 
 .. code-block:: javascript
 
   <a href='https://piwik.pro' class="piwik-link">Piwik PRO</a>
 
-Or you can define your custom CSS classes for outlinks with :ref:`Javascript Tracker API<force-tracking-using-css-class>`. 
+Or you can define your custom CSS classes for outlinks with :ref:`JavaScript Tracking Client API<jtc-api-setLinkClasses>`.
 
 .. code-block:: javascript
 
@@ -358,14 +358,14 @@ or a list of classes:
 and later in HTML code:
 
 .. code-block:: html
-  
+
   <a href="https://piwik.pro/document.pdf" class="dont-track-this">A document, that should not be tracked.</a>
 
 Tracking link clicks on pages with dynamically generated content
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-When you want to track clicks on the links, which are dynamically added to the HTML document, you have to call :ref:`enableLinkTracking<tracking-outlink>` every time when the new links are added to the document.
+When you want to track clicks on the links, which are dynamically added to the HTML document, you have to call :ref:`enableLinkTracking<jtc-api-enableLinkTracking>` every time when the new links are added to the document.
 
-For fully static pages calling :ref:`enableLinkTracking<tracking-outlink>` once is enough, because each call adds listeners only for those links, which are currently present in the HTML document. So if you add new links to the document and you want to track them, you have to call :ref:`enableLinkTracking<tracking-outlink>` multiple times.
+For fully static pages calling :ref:`enableLinkTracking<jtc-api-enableLinkTracking>` once is enough, because each call adds listeners only for those links, which are currently present in the HTML document. So if you add new links to the document and you want to track them, you have to call :ref:`enableLinkTracking<jtc-api-enableLinkTracking>` multiple times.
 
 .. code-block:: javascript
 
@@ -374,10 +374,10 @@ For fully static pages calling :ref:`enableLinkTracking<tracking-outlink>` once 
 
 .. note::
 
-  You don't have to call :ref:`enableLinkTracking<tracking-outlink>` if you are :ref:`already adding and inline call to a link.<marking-outlinks-inline-calls>`.
+  You don't have to call :ref:`enableLinkTracking<jtc-api-enableLinkTracking>` if you are :ref:`already adding and inline call to a link<marking-outlinks-inline-calls>`.
 
 
 A Tip
 """""
 
-To increase accuracy of download and outlink tracking, you can consider enabling the use of :ref:`navigator.sendBeacon()<navigation-send-beacon>`.
+To increase accuracy of download and outlink tracking, you can consider enabling the use of :ref:`navigator.sendBeacon<navigation-send-beacon>`.

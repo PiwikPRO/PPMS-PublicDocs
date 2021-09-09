@@ -48,7 +48,7 @@ Here you can see how to look for tracker cookie in Google Chrome developer tools
 Tracking custom events
 ----------------------
 
-To track :ref:`custom event<trackCustomEvent>` you should attach a trigger on the interactive page element and define event values. To do that add to the configuration the `triggers <https://www.ampproject.org/docs/reference/components/amp-analytics#triggers>`_ section and set up event trigger.
+To track :ref:`custom event<jtc-api-custom-events>` you should attach a trigger on the interactive page element and define event values. To do that add to the configuration the `triggers <https://www.ampproject.org/docs/reference/components/amp-analytics#triggers>`_ section and set up event trigger.
 
 This example will send custom event when page element using "mybutton" ID will be clicked:
 
@@ -93,7 +93,7 @@ These are parameters used by custom event:
 Tracking download events
 ------------------------
 
-To track :ref:`download event<trackLinkEvent>` attach trigger to a link in a similar way to :ref:`custom event <ampCustomEvent>`.
+To track :ref:`download event<jtc-api-download-and-outlink>` attach trigger to a link in a similar way to :ref:`custom event <ampCustomEvent>`.
 
 This example will send download event when page element using "mydownload" ID will be clicked:
 
@@ -132,7 +132,7 @@ These are parameters used by download event:
 Tracking outlink events
 -----------------------
 
-To track :ref:`outlink event<trackLinkEvent>` attach trigger to a link in a similar way to :ref:`custom event <ampCustomEvent>`.
+To track :ref:`outlink event<jtc-api-download-and-outlink>` attach trigger to a link in a similar way to :ref:`custom event <ampCustomEvent>`.
 
 This example will send outlink event when page element using "myoutlink" ID will be clicked:
 
@@ -171,7 +171,7 @@ These are parameters used by outlink event:
 Tracking goal conversions
 -------------------------
 
-To track :ref:`goal conversion<trackGoalEvent>` attach trigger to a link in a similar way to :ref:`custom event <ampCustomEvent>`.
+To track :ref:`goal conversion<jtc-api-goal-conversions>` attach trigger to a link in a similar way to :ref:`custom event <ampCustomEvent>`.
 
 This example will send goal conversion when page element using "mygoal" ID will be clicked:
 
@@ -212,7 +212,7 @@ These are parameters used by goal event:
 Track internal search events
 ----------------------------
 
-To track :ref:`internal search event<trackSearchEvent>` attach trigger to a link in a similar way to :ref:`custom event <ampCustomEvent>`.
+To track :ref:`internal search event<jtc-api-site-search>` attach trigger to a link in a similar way to :ref:`custom event <ampCustomEvent>`.
 
 This example will send internal search event when page element using "mysearch" ID will be clicked:
 
