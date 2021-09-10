@@ -1,10 +1,21 @@
 Guides
 ======
 
-Installation
-------------
+Installing Tracking code
+------------------------
 
-Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop p
+Using Tag Manager's snippet is the recommended and also the easiest way of installing tracking code on your website. When Tag Manager is added to the site, it automatically starts tracking actions using "Piwik PRO Analytics template".
+
+If you do not have Tag Manager on your website yet, follow this procedure to install it:
+
+#. Sign in to your PPAS with your admin or Super User account.
+#. Click on the menu button on the top left.
+#. Click on the "Websites" position.
+#. Choose the website for which you want to implement a tracking code.
+#. Select the "Installation" tab.
+#. The Tag Manager code snippet for your website is displayed under the "Website code for asynchronous tags" or "Website code for synchronous tags".
+
+In case you do not want to install Tag Manager on your website, you can install tracking code via JavaScript Tracking Client snippet. Guide how to do it is available here: :ref:`jtc-installation-installing-tracking-code-via-node-snippet`
 
 Page views
 ----------
