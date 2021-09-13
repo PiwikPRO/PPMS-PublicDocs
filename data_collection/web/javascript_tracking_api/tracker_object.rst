@@ -252,6 +252,8 @@ Custom dimensions
     :returns: Value set with :func:`setCustomDimension`
     :rtype: string
 
+.. _content-tracking:
+
 Content Tracking
 ----------------
 
