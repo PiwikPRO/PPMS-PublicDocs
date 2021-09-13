@@ -3,6 +3,7 @@
 
 Installing tracking code via code snippet
 =========================================
+
 Installation via snippet should only be carried out if the Tag Manager is not available or when options of "Piwik PRO Analytics template" do not let you configure your use case.
 
 .. note::
@@ -75,6 +76,7 @@ To track all data between domain and all its subdomains, we must use cookies con
 
 Tracking multiple domains as one site
 -------------------------------------
+
 To set up tracking between multiple domains, you must use multiple functions ``setDomains`` to set a list of domains and
 ``enableCrossDomainLinking`` to enable cross domain linking::
 
@@ -90,6 +92,7 @@ To set up tracking between multiple domains, you must use multiple functions ``s
 
 Tracking subdirectories of domain as separate websites
 ------------------------------------------------------
+
 To differentiate parts of a website as another site, you must configure tracker this way::
 
     _paq.push(["setSiteId", "App1"]);
@@ -117,7 +120,8 @@ If you wish to track a group of pages as separate site, you can use the wildcard
 
 
 Navigation timing page performance metrics
--------------------------------------
+------------------------------------------
+
 To set up page performance metrics gathering use the
 ``setTimingDataSamplingOnPageLoad`` function::
 

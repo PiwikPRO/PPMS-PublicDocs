@@ -1076,7 +1076,7 @@ Download and Outlink
         [tracker object]
         tracker.addDownloadExtensions("mhj|docx");
 
-    .. warn::
+    .. warning::
 
         The list of download extensions is not persisted in the browser. It has
         to be configured on every page load.
@@ -1091,7 +1091,7 @@ Download and Outlink
         be added. Can be written as string, e.g. ``"7z|apk|mp4"``, or an array,
         e.g. ``["7z","apk","mp4"]``.
 
-    .. warn::
+    .. warning::
 
         The list of download extensions is not persisted in the browser. It has
         to be configured on every page load.
@@ -1113,7 +1113,7 @@ Download and Outlink
         [tracker object]
         tracker.removeDownloadExtensions("mhj|docx");
 
-    .. warn::
+    .. warning::
 
         The list of download extensions is not persisted in the browser. It has
         to be configured on every page load.
