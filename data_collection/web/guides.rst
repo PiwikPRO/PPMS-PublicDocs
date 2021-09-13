@@ -19,6 +19,121 @@ By default it's triggered only once as soon as the HTML content is loaded to the
 
 .. note:: We recommend to trigger this method more than once for Singe Page Applications (SPA). That way you'll create additional "virtual" page view as the visitor travels across you app.
 
+Content tracking
+----------------
+
+What is content tracking
+************************
+
+Let's talk about a scenario in which simple page-view tracking is not enough. It will just tell you which page was loaded, but it won't point out how visitor interacts with the content on that particular page.
+Content impression and content interaction tracking feature fills that gap.
+
+Content impression allows you to track what content is visible to the visitor. On the bigger pages it may tell what particular parts/blocks of it the visitor has reached. When they keep scrolling and new content is presented on the screen it will be tracked automatically. This is useful for ads and banners but may be also attached to a image carousell or other forms of image galleries.
+
+Now we know what block became visible on the screen but we would also like to know how the visitor interacted with them. Content interaction tracking completes this feature. After particular block became visible on the viewport JS Tracker will automatically record visitor clicks related to it.
+
+JS tracker distinguishes three parts of the content structure: `content name`, `content piece` and `content target`. All together they are called `content block`.
+
+* `Content name` - this is the title describing the content block, tracked data will be visible as an entry in the reports under that name
+* `Content piece` - gives us the specific piece that was reached on the page (typically an image or other media)
+* `Content target` - if the content block you want to track is an anchor, content target will contain the url this anchor links to
+
+Enabling automatic content tracking
+***********************************
+
+Simply use one of:
+
+* track all content blocks: ``_paq.push(['trackAllContentImpressions']);``
+* track only the visible blocks: ``_paq.push(['trackVisibleContentImpressions']);`` (generally visible, not only the ones currently visible on the screen)
+
+For more information visit the :ref:`Content tracking<content-tracking>` section of the JS Tracker API documentation.
+
+**But how JS tracker will know what blocks you would like to track?**
+There are two ways of marking the blocks, you should either use a ``piwikTrackContent`` CSS class or a special html attribute ``data-track-content`` on them.
+Same technique is used for pointing out the content piece (``piwikContentPiece`` CSS class or ``data-content-piece`` attribute) and the content target (``piwikContentTarget`` CSS class or ``data-content-target`` attribute).
+
+Although JS Tracker has the ability of auto-detection for name, piece and target metrics, we still recommend providing those values manually as was described in the previous paragraph. If you don't then JS Tracked will try to fill them as follows:
+
+* it will read block ``title`` attribute as for the Content name
+* it will read piece from the ``src`` attribute of an image
+* it will read target from the ``href`` attribute of an anchor wrapping the image
+
+As you can imagine this may produce inconsistent results, providing those values manually seems like a more desired approach.
+
+Manual content tracking
+***********************
+
+If for some reason automatic content tracking does not suit you needs you may still trigger `trackContentImpression` and `trackContentInteraction` JS tracker methods manually.
+
+Example:
+
+.. code-block:: javascript
+   :linenos:
+
+    _paq.push(['trackContentImpression', 'Ads', 'Partner banner', 'http://some-company.tld']);
+
+    some_dom_node.addEventListener('click', function () {
+        _paq.push(['trackContentInteraction', 'bannerClicked', 'Ads', 'Partner banner', 'http://some-company.tld']);
+    });
+
+Half way between automatic and manual content tracking
+******************************************************
+
+There is also a third way for successful the content tracking in more complicated situations. Automatic scenario will track clicks as a visitor interaction, but sometimes other activity may interest you more. Hovering the mouse over an element of submiting a form. In such scenario you would like to enable automatic content impression tracking but track interaction manually.
+
+Example:
+
+.. code-block:: javascript
+   :linenos:
+
+    some_image_node.addEventListener('dblclick', function () {
+        _paq.push(['trackContentInteractionNode', this, 'imageDoubleClick']);
+    });
+
+.. note:: It may be important that your "custom" interaction tracking is not later on doubled by the automatic one. To disable automatic content interaction tracking you should either apply ``piwikContentIgnoreInteraction`` CSS class or ``data-content-ignoreinteraction`` HTML attribute to the given element.
+
+Examples
+********
+
+Simple HTML content block may look like this:
+
+.. code-block:: html
+   :linenos:
+
+    <a href="http://some-company.tld" title="Our business partner ad" data-track-content>
+        Click here to see the website
+    </a>
+
+    // content name   = Our business partner ad
+    // content piece  = Unknown
+    // content target = http://some-company.tld
+
+More advanced HTML content block with all attributes prepared (leaving nothing to chance) may look like this:
+
+.. code-block:: html
+   :linenos:
+
+    <a href="http://some-company.tld" title="Click here" data-track-content data-content-name="Our business partner ad">
+        <img src="/images/business-partners/banners/some-company.png" data-content-piece />
+    </a>
+
+    // content name   = Our business partner ad
+    // content piece  = /images/business-partners/banners/some-company.png
+    // content target = http://some-company.tld
+
+Form submission:
+
+.. code-block:: html
+   :linenos:
+
+    <form data-track-content data-content-name="Survey form">
+        <input type="submit" data-content-target="http://our-company.tld/form-handler" />
+    </form>
+
+    // content name   = Survey form
+    // content piece  = Unknown
+    // content target = http://our-company.tld/form-handler
+
 Downloads and Outlinks
 ----------------------
 
