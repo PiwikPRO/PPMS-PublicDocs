@@ -46,7 +46,7 @@ Additionally, the snippet must be configured in the following way:
 
 This code initializes the Analytics tracker in following ways:
 
-    #. Initializes the global ``_paq.push`` command queue that schedules commands to be run when the Analytics tracker library
+    #. Initializes the global ``_paq`` command queue that schedules commands to be run when the Analytics tracker library
        is loaded.
     #. Schedules basic configuration of Analytics tracker using ``_paq.push``.
     #. Creates a ``<script>`` tag that asynchronously loads the Analytics tracker library.
@@ -107,7 +107,7 @@ Afterwards, you can change configuration for selected paths and track them as an
     _paq.push(["setTrackerUrl", u+"ppms.php"]);
     _paq.push(["trackPageView"]);
 
-In this way, all actions tracked on ``/data/something_useful`` will be tracked for ``App2`` instead of ``App1``.
+This way, all actions tracked on ``/data/something_useful`` will be tracked for ``App2`` instead of ``App1``.
 
 If you wish to track a group of pages as separate site, you can use the wildcard in the :ref:`setDomains<jtc-api-setDomains>` function.
 
