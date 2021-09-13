@@ -650,8 +650,12 @@ Example of use::
     Use this function in conjunction with ``trackContentImpression``, as it can only be mapped with an impression by linking ``contentName``.
     It does not map automatically as  ``trackContentInteractionNode``.
 
+.. _download-and-outlink-tracking:
+
 Download and Outlink Tracking
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _tracking-outlink:
 
 Tracking Outlink
 ````````````````
@@ -665,6 +669,8 @@ just after the first ``trackPageView`` or ``trackEvent``
 .. note::
 
     All Outlinks are tracked automatically. As ``enableLinkTracking`` is part of the default snippet.
+
+.. _ignoring-alias-domains:
 
 Ignoring alias domains
 ++++++++++++++++++++++
@@ -680,6 +686,8 @@ To ignore internal outlinks from alias domains, use the ``setDomains`` function 
 Example of usage::
 
     _paq(["setDomains", ["*.example.com", "*.example.co.uk"]]);
+
+.. _force-tracking-using-css-class:
 
 Force Tracking using CSS class
 ++++++++++++++++++++++++++++++
@@ -785,6 +793,8 @@ Default extensions list can be overwritten using the ``setDownloadExtensions`` f
 Example of usage::
 
     _paq.push(["setDownloadExtensions", "7z|apk|mp4"]);
+
+.. _force-tracking-download-using-css-class:
 
 Force Tracking download using CSS class
 +++++++++++++++++++++++++++++++++++++++

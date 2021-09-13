@@ -22,4 +22,247 @@ By default it's triggered only once as soon as the HTML content is loaded to the
 Downloads and Outlinks
 ----------------------
 
-Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop p
+Downloads
+^^^^^^^^^
+
+Download data helps you learn which files people pick from your site — be it a white paper, a case study, or a guide in pdf. Piwik PRO will automatically track clicks on such links as `Downloads`, and reports them in `Downloads` report.
+
+Our JS tracker is able to recognize when a click on a link is a download link.
+
+It will automatically recognize such when a clicked link contains one of following file extensions (extensions starts with "``.``" character and one of following characters sets):
+
+.. note::
+  7z, aac, apk, arc, arj, asf, asx, avi, azw3, bin, bz, bz2, csv, deb, dmg, doc, docx, epub, exe, flv, gif, gz, gzip, hqx, ibooks, jar, jpg, jpeg, js, mp2, mp3, mp4, mpg, mpeg, mobi, mov, movie, msi, msp, odb, odf, odg, ods, odt, ogg, ogv, pdf, phps, png, ppt, pptx, qt, qtm, ra, ram, rar, rpm, sea, sit, tar, tbz, tbz2, tgz, torrent, txt, wav, wma, wmv, wpd, xls, xlsx, xml, z, zip
+
+
+In one of following link schemas:
+
+ - file extension is at the very end of a link eg. ``http://example.com/file.7z`` or ``http://example.com/article?click=file.7z``
+ - file extension directly preceeds query part (``?``), eg. ``http://example.com/article/file.7z?source=user#how-to``
+ - file extension directly preceeds fragment part (``#``) ``http://example.com/article?target=file.7z#how-to``
+ - file extension is at the end of query param, eg. ``http://example.com/article?click=file.7z&page=3``
+
+Customizing list of file extensions
+"""""""""""""""""""""""""""""""""""
+You can customize list of file extensions you want to track as downloads. For example, if you want to track only images as downloads, you can use `setDownloadExtensions` function to replace the list this:
+
+.. code-block:: javascript
+
+  // track clicks on images links (eg. <a href="image.png">) only
+  _paq.push(['setDownloadExtensions', "png|jpg|webp|gif"]);
+
+You can add new extensions, to an existing list with `addDownloadExtensions`:
+
+.. code-block:: javascript
+
+  // add other image formats
+  _paq.push(['setDownloadExtensions', "svg|xcf"]);
+
+Or remove some of extenstions from the existing list with `removeDownloadExtensions`:
+
+.. code-block:: javascript
+
+  _paq.push(['removeDownloadExtensions', "jpg|jpeg"]);
+
+
+Manually marking links as downloads
+"""""""""""""""""""""""""""""""""""
+
+.. note::
+  If you want to use CSS classes or HTML attributes to mark links as download or outlink and you have modified default JS snippet, make sure that :ref:`enableLinkTracking<tracking-outlink>` is called. It is enabled in default snippet, but if you use a custom one, then you have to enable it by yourself.
+
+  .. code-block:: javascript
+
+    // Enable Download & Outlink tracking
+    _paq.push(['enableLinkTracking']);
+
+If your case of download links does not fall in above cases you still have options to use, to tell tracker that link should be tracked as a download.
+
+You can add a download attribute to a link HTML tag. eg. 
+
+.. code-block:: html
+
+  <a href="/target-file" download>
+
+Or if you have to be strict with your HTML, you can add a HTML tag class. Default classes are ``piwik_download`` and ``piwik-download``. Eg. 
+
+.. code-block:: html
+
+  <a href="/taget-file" class="piwik-download">
+
+Additionally you can define your custom CSS classes for download links with ours :ref:`Javascript Tracker API<force-tracking-download-using-css-class>`. Eg. 
+
+.. code-block:: javascript
+
+  _paq.push(['setDownloadClasses', "custom-download-class"]);
+  _paq.push(['trackPageView']);
+
+or you can define a list of classes at once, by passing an array list of CSS classes:
+
+.. code-block:: javascript
+
+  _paq.push(['setDownloadClasses', ["custom-download-class", "other-download-class", "another-class"]]);
+  _paq.push(['trackPageView']);
+
+and in HTML code:
+
+.. code-block:: html
+
+  <a href="/taget-file" class="custom-download-class">
+
+.. note::
+  You have to remember that using ``setDownloadClasses`` always overwrite current list of CSS classes.
+
+
+Tracking downloads with inline Javascript
+"""""""""""""""""""""""""""""""""""""""""
+
+There is another alternative for above methods. You can track a download with inline javascript. Insert inline javascript to HTML tag with onclick attribute:
+
+.. code-block:: html
+
+  <a href="https://piwik.pro/document-url" target="_blank" onClick="_paq.push(['trackLink', 'https://piwik.pro/document-url', 'download']);">Download document</a>
+
+.. hide::
+  Tracking downloads when using log importer
+  """"""""""""""""""""""""""""""""""""""""""
+
+  When you use the :ref:`Log Importer<data-collection-web-log-analytics>`, files with one of the file extensions listed above will be automatically tracked as downloads in Piwik PRO.
+
+Outlinks
+^^^^^^^^
+The Piwik PRO `Outlinks` report shows the list of external URLs that were clicked by your visitors. Outlinks are links that have different domain than those configured for your website. For example, if your visitor click on a link to `piwik.pro` and your website domain is `example.org`, this will be reported as an outlink, no matter if the website opens in current tab/window or a new one.
+
+.. code-block:: html
+
+  <a href="https://piwik.pro">Piwik PRO</a>
+
+Configuring which domains are outlinks
+"""""""""""""""""""""""""""""""""""""
+
+When, for example your main page is `piwik.pro` and you want to track views of `help.piwik.pro` without additional outlink click, you have to confgure tracker to recognize this additional domain. You can do it in two ways.
+
+You can configure it in website settings section of the Administration panel. Go to the Administration > Websites & apps > Settings > General settings > URLs. Add all the domains that should not be treated as outlinks.
+
+.. image:: /_static/images/data_collection/website_settings_urls.jpg
+
+You can use :ref:`setDomains()<ignoring-alias-domains>` function of JS tracker.
+
+.. code-block:: javascript
+
+  _paq(['setDomains', ["help.piwik.pro", "piwik.pro", "*.other-domain.pro"]]);
+  _paq.push(['trackPageView']);
+
+.. note::
+  Using ``setDomains`` will overwrite URLs configured in Administration panel, use it wisely.
+
+Marking links as outlinks in HTML code
+""""""""""""""""""""""""""""""""""""""
+
+Similar as downloads, links can be set to be treated as outlinks manually, but only with CSS classes, you cannot use a HTML attribute.
+
+You can use one of default CSS classes: ``piwik_link`` or ``piwik-link``. eg. 
+
+.. code-block:: javascript
+
+  <a href='https://piwik.pro' class="piwik-link">Piwik PRO</a>
+
+Or you can define your custom CSS classes for outlinks with :ref:`Javascript Tracker API<force-tracking-using-css-class>`. 
+
+.. code-block:: javascript
+
+  // now all clicks on links with the css class "custom-link-class" will be counted as outlinks
+  // you can also pass an array of strings
+  _paq.push(['setLinkClasses', "custom-link-class"]);
+  _paq.push(['trackPageView']);
+
+
+or a list of classes
+
+.. code-block:: javascript
+
+  _paq.push(['setLinkClasses', ["custom-link-class", "other-link-class"]]);
+  _paq.push(['trackPageView']);
+
+and in HTML code
+
+.. code-block:: html
+
+  <a href='https://piwik.pro' class="custom-link-class">Piwik PRO</a>
+
+
+.. _marking-outlinks-inline-calls:
+
+Marking outlinks with inline Javascript
+""""""""""""""""""""""""""""""""""""
+
+Alternatively you can use an inline javascript and onclick attribute to track any link as an outlink.
+
+.. code-block:: html
+
+  <a href="mailto:support@piwik.pro" target="_blank" onClick="_paq.push(['trackLink', 'https://piwik.pro/support-contact-form', 'link']);">Write us a message.</a>
+
+Other related  abilities
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+Changing delay for link tracking
+""""""""""""""""""""""""""""""""
+All link tracking uses a slight delay of click execution, so the browser won't exit the page before a click is tracked. The default value of such delay is 500ms, but you can modify it as you wish. You have to remember that if you set this value too low, it might be not enough to track the click, if you set it too high, the browser might ignore the delay.
+
+.. code-block:: javascript
+
+  _paq.push(['setLinkTrackingTimer', 300]); // 300 milliseconds
+  _paq.push(['trackPageView']);
+
+Disable download and outlink tracking
+"""""""""""""""""""""""""""""""""""""
+
+To explicitly disable link tracking you can use `disableLinkTracking` function. After adding it to tracking code, all of link clicks won't be tracked.
+
+.. code-block:: javascript
+
+  _paq.push(['disableLinkTracking']);
+
+Disabling link tracking with CSS classes
+""""""""""""""""""""""""""""""""""""""""
+
+You can mark links that you do not with to track with CSS classes. JS Tracker will ignore such links and won't track them.
+
+.. code-block:: javascript
+
+  _paq.push(['setIgnoreClasses', "do-not-track"]);
+  _paq.push(['trackPageView']);
+
+or a list of classes:
+
+.. code-block:: javascript
+
+  _paq.push(['setIgnoreClasses', ["dont-track-this", "this-either", "nor-this"]]);
+  _paq.push(['trackPageView']);
+
+and later in HTML code:
+
+.. code-block:: html
+  
+  <a href="https://piwik.pro/document.pdf" class="dont-track-this">A document, that should not be tracked.</a>
+
+Tracking link clicks on pages with dynamically generated content
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+When you want to track clicks on the links, which are dynamically added to the HTML document, you have to call :ref:`enableLinkTracking<tracking-outlink>` every time when the new links are added to the document.
+
+For fully static pages calling :ref:`enableLinkTracking<tracking-outlink>` once is enough, because each call adds listeners only for those links, which are currently present in the HTML document. So if you add new links to the document and you want to track them, you have to call :ref:`enableLinkTracking<tracking-outlink>` multiple times.
+
+.. code-block:: javascript
+
+    // Add click listeners to new links
+    _paq.push(['enableLinkTracking']);
+
+.. note::
+
+  You don't have to call :ref:`enableLinkTracking<tracking-outlink>` if you are :ref:`already adding and inline call to a link.<marking-outlinks-inline-calls>`.
+
+
+A Tip
+"""""
+
+To increase accuracy of download and outlink tracking, you can consider enabling the use of :ref:`navigator.sendBeacon()<navigation-send-beacon>`.
