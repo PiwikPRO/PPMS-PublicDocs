@@ -23,7 +23,7 @@ Content tracking
 ----------------
 
 What is content tracking
-************************
+^^^^^^^^^^^^^^^^^^^^^^^^
 
 Let's talk about a scenario in which simple page-view tracking is not enough. It will just tell you which page was loaded, but it won't point out how visitor interacts with the content on that particular page.
 Content impression and content interaction tracking feature fills that gap.
@@ -39,7 +39,7 @@ JS tracker distinguishes three parts of the content structure: `content name`, `
 * `Content target` - if the content block you want to track is an anchor, content target will contain the url this anchor links to
 
 Enabling automatic content tracking
-***********************************
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Simply use one of:
 
@@ -61,7 +61,7 @@ Although JS Tracker has the ability of auto-detection for name, piece and target
 As you can imagine this may produce inconsistent results, providing those values manually seems like a more desired approach.
 
 Manual content tracking
-***********************
+^^^^^^^^^^^^^^^^^^^^^^^
 
 If for some reason automatic content tracking does not suit you needs you may still trigger `trackContentImpression` and `trackContentInteraction` JS tracker methods manually.
 
@@ -77,7 +77,7 @@ Example:
     });
 
 Half way between automatic and manual content tracking
-******************************************************
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 There is also a third way for successful the content tracking in more complicated situations. Automatic scenario will track clicks as a visitor interaction, but sometimes other activity may interest you more. Hovering the mouse over an element of submiting a form. In such scenario you would like to enable automatic content impression tracking but track interaction manually.
 
@@ -93,7 +93,7 @@ Example:
 .. note:: It may be important that your "custom" interaction tracking is not later on doubled by the automatic one. To disable automatic content interaction tracking you should either apply ``piwikContentIgnoreInteraction`` CSS class or ``data-content-ignoreinteraction`` HTML attribute to the given element.
 
 Examples
-********
+^^^^^^^^
 
 Simple HTML content block may look like this:
 
@@ -159,6 +159,7 @@ In one of following link schemas:
 
 Customizing list of file extensions
 """""""""""""""""""""""""""""""""""
+
 You can customize list of file extensions you want to track as downloads. For example, if you want to track only images as downloads, you can use `setDownloadExtensions` function to replace the list this:
 
 .. code-block:: javascript
@@ -246,6 +247,7 @@ There is another alternative for above methods. You can track a download with in
 
 Outlinks
 ^^^^^^^^
+
 The Piwik PRO `Outlinks` report shows the list of external URLs that were clicked by your visitors. Outlinks are links that have different domain than those configured for your website. For example, if your visitor click on a link to `piwik.pro` and your website domain is `example.org`, this will be reported as an outlink, no matter if the website opens in current tab/window or a new one.
 
 .. code-block:: html
@@ -253,7 +255,7 @@ The Piwik PRO `Outlinks` report shows the list of external URLs that were clicke
   <a href="https://piwik.pro">Piwik PRO</a>
 
 Configuring which domains are outlinks
-"""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""
 
 When, for example your main page is `piwik.pro` and you want to track views of `help.piwik.pro` without additional outlink click, you have to confgure tracker to recognize this additional domain. You can do it in two ways.
 
@@ -309,7 +311,7 @@ and in HTML code
 .. _marking-outlinks-inline-calls:
 
 Marking outlinks with inline Javascript
-""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""
 
 Alternatively you can use an inline javascript and onclick attribute to track any link as an outlink.
 
@@ -322,6 +324,7 @@ Other related  abilities
 
 Changing delay for link tracking
 """"""""""""""""""""""""""""""""
+
 All link tracking uses a slight delay of click execution, so the browser won't exit the page before a click is tracked. The default value of such delay is 500ms, but you can modify it as you wish. You have to remember that if you set this value too low, it might be not enough to track the click, if you set it too high, the browser might ignore the delay.
 
 .. code-block:: javascript
@@ -363,6 +366,7 @@ and later in HTML code:
 
 Tracking link clicks on pages with dynamically generated content
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 When you want to track clicks on the links, which are dynamically added to the HTML document, you have to call :ref:`enableLinkTracking<jtc-api-enableLinkTracking>` every time when the new links are added to the document.
 
 For fully static pages calling :ref:`enableLinkTracking<jtc-api-enableLinkTracking>` once is enough, because each call adds listeners only for those links, which are currently present in the HTML document. So if you add new links to the document and you want to track them, you have to call :ref:`enableLinkTracking<jtc-api-enableLinkTracking>` multiple times.
@@ -381,3 +385,5 @@ A Tip
 """""
 
 To increase accuracy of download and outlink tracking, you can consider enabling the use of :ref:`navigator.sendBeacon<navigation-send-beacon>`.
+
+.. todo:: Beacon is the default method for outlink events. Update/remove this section.
