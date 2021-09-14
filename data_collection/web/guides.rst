@@ -1,3 +1,6 @@
+.. highlight:: js
+.. default-domain:: js
+
 Guides
 ======
 
@@ -25,15 +28,15 @@ Page views
 ----------
 
 Page view is the most basic type of the tracked event. It represents a single page viewing action.
-By default it's triggered only once as soon as the HTML content is loaded to the browser with the :ref:`trackPageView<jtc-api-trackPageView>` method.
+By default it's triggered only once as soon as the HTML content is loaded to the browser with the :ref:`trackPageView<jtc-api-trackPageView>` function.
 
 Example::
 
-    _paq.push(['trackPageView']);
+    _paq.push(["trackPageView"]);
 
 .. note:: It's not required for the session to start with the page view or even involve them in any other way.
 
-.. note:: We recommend to trigger this method more than once for Singe Page Applications (SPA). That way you'll create additional "virtual" page view as the visitor travels across you app.
+.. note:: We recommend to trigger this function more than once for Singe Page Applications (SPA). That way you'll create additional "virtual" page view as the visitor travels across you app.
 
 
 
@@ -42,7 +45,7 @@ Example::
 Custom Events
 -------------
 
-Custom events enable tracking visitor actions that do not have dedicated methods in the existing tracker API, allowing web analysts to accurately measure and analyze any domain. Many integrations, including those offered by Tag Manager, use custom events for tracking actions detectable only on client-side, e.g. scrolling a page, viewing images, interacting with a video player, filling forms etc.
+Custom events enable tracking visitor actions that do not have dedicated functions in the existing tracker API, allowing web analysts to accurately measure and analyze any domain. Many integrations, including those offered by Tag Manager, use custom events for tracking actions detectable only on client-side, e.g. scrolling a page, viewing images, interacting with a video player, filling forms etc.
 
 A custom event consists of the following properties:
 
@@ -55,7 +58,7 @@ A custom event consists of the following properties:
 
     Consider designing categories and actions upfront and documenting them at start and as they change. Follow one naming convention, e.g. *snake_case*, *kebab-case*, *camelCase*. This will minimize the risk of making mistakes and having to debug the tracking implementation.
 
-Tracking a custom event together with a page view is straightforward - simply call :ref:`trackEvent<jtc-api-trackEvent>` method after the page view. ::
+Tracking a custom event together with a page view is straightforward - simply call :ref:`trackEvent<jtc-api-trackEvent>` function after the page view. ::
 
     _paq.push(["trackPageView"]);
     _paq.push(["trackEvent", "assignment", "assignment-submitted", "Math - Trigonometry - assignment 4", 10]);
@@ -113,19 +116,19 @@ JavaScript API supports 3 types of e-commerce interactions: :ref:`Category and p
 Tracking category and product views
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Usually, the first e-commerce-related action a visitor performs on a website is browsing products. :ref:`setEcommerceView<jtc-api-setEcommerceView>` method allows us to track both category views and product views.
+Usually, the first e-commerce-related action a visitor performs on a website is browsing products. :ref:`setEcommerceView<jtc-api-setEcommerceView>` function allows us to track both category views and product views.
 
-To track a category view, use :ref:`setEcommerceView<jtc-api-setEcommerceView>` method **before** tracking the page view, like this::
+To track a category view, use :ref:`setEcommerceView<jtc-api-setEcommerceView>` function **before** tracking the page view, like this::
 
     // set category to "Smartphones"
-    _paq.push(["setEcommerceView", false, false, "Smartphones"]);
+    _paq.push(["setEcommerceView", undefined, undefined, "Smartphones"]);
 
     // track page view
     _paq.push(["trackPageView"]);
 
-The same method can be used for tracking product views. Again, it must be called **before** tracking a page view. Example::
+The same function can be used for tracking product views. Again, it must be called **before** tracking a page view. Example::
 
-    // set product
+    // set product with...
     _paq.push(["setEcommerceView",
         "71253029",              // SKU (stock-keeping unit)
         "SUPER Phone A40 White", // name
@@ -136,10 +139,15 @@ The same method can be used for tracking product views. Again, it must be called
     // track page view
     _paq.push(["trackPageView"]);
 
-``category`` parameter of the :ref:`setEcommerceView<jtc-api-setEcommerceView>` method accepts not only string values, but also arrays of strings. This is useful for tracking products that belong to more than one category, or tracking pages that list products from multiple categories. ::
+``category`` parameter of the :ref:`setEcommerceView<jtc-api-setEcommerceView>` function accepts not only string values, but also arrays of strings. This is useful for tracking products that belong to more than one category, or tracking pages that list products from multiple categories. ::
 
-    // set product to "SUPER Watch B20 Silver" belonging to 2 categories
-    _paq.push(["setEcommerceView", "00492710", "SUPER Watch B20 Silver", ["New offer", "Smartwatches"], 700.00]);
+    // set product with...
+    _paq.push(["setEcommerceView",
+        "00492710",                    // SKU (stock-keeping unit)
+        "SUPER Watch B20 Silver",      // name
+        ["New offer", "Smartwatches"], // categories
+        700.00                         // price
+    ]);
 
     // track page view
     _paq.push(["trackPageView"]);
@@ -149,16 +157,22 @@ The same method can be used for tracking product views. Again, it must be called
 Tracking cart updates
 ^^^^^^^^^^^^^^^^^^^^^
 
-Another type of e-commerce activity you can track is an update to a shopping cart. With it, we are able to measure how often visitors don't complete the ordering process and what products stay in abandoned carts.
+Another type of e-commerce activity you can track is an update of a shopping cart. With it, we are able to measure how often visitors don't complete the ordering process and what products stay in abandoned carts.
 
-Tracking a cart update has two steps: registering items from the cart and sending them. The following example uses two methods - :ref:`addEcommerceItem<jtc-api-addEcommerceItem>` and :ref:`trackEcommerceCartUpdate<jtc-api-trackEcommerceCartUpdate>` - to achieve exactly that. ::
+Tracking a cart update has two steps: registering items from the cart and sending them. The following example uses two functions - :ref:`addEcommerceItem<jtc-api-addEcommerceItem>` and :ref:`trackEcommerceCartUpdate<jtc-api-trackEcommerceCartUpdate>` - to achieve exactly that. ::
 
     // visitor added one chocolate bar to an empty shopping cart
 
-    // register chocolate bar
-    _paq.push(["addEcommerceItem", "82775027", "MEGA Milk Chocolate 200g", "Candy", 6.00, 1]);
+    // register chocolate bar with...
+    _paq.push(["addEcommerceItem",
+        "82775027",                 // SKU (stock-keeping unit)
+        "MEGA Milk Chocolate 200g", // name
+        "Candy",                    // category
+        6.00,                       // price
+        1                           // quantity
+    ]);
 
-    // track cart update
+    // track cart update with a total value of 6.00
     _paq.push(["trackEcommerceCartUpdate", 6.00]);
 
 This code snippet sends a cart update event with a cart containing one item (SKU *candy-12837*, name *MEGA Milk Chocolate 200g*, category *Candy*, price *6.00*) and having total value of *6.00*.
@@ -173,12 +187,14 @@ The list of registered items is stored only in memory. **Reloading the page will
     // register the new item
     _paq.push(["addEcommerceItem", "01809926", "FRUTASTIC Mango", "Fruits & vegetables", 4.00, 1]);
 
-    // track cart update
+    // track cart update with a total value of 10.00
     _paq.push(["trackEcommerceCartUpdate", 10.00]);
 
-If you are not sure what items have been registered, use :ref:`getEcommerceCart<jtc-api-getEcommerceItems>` method. ::
+.. note::
 
-    _paq.push([function() { console.log(this.getEcommerceItems()); }]);
+    If you are not sure what items have been registered, use :ref:`getEcommerceCart<jtc-api-getEcommerceItems>` function. ::
+
+        _paq.push([function() { console.log(this.getEcommerceItems()); }]);
 
 Because single page applications do not refresh the page when a visitor manipulates the cart, an e-commerce implementation in SPAs must either:
 
@@ -200,7 +216,7 @@ Because single page applications do not refresh the page when a visitor manipula
     _paq.push(["addEcommerceItem", "01809926", "FRUTASTIC Mango", "Fruits & vegetables", 4.00, 1]);
     _paq.push(["trackEcommerceCartUpdate", 4.00]);
 
-2. Replicate visitor's interactions with the cart using methods :ref:`addEcommerceItem<jtc-api-addEcommerceItem>`, :ref:`removeEcommerceItem<jtc-api-addEcommerceItem>`, :ref:`clearEcommerceCart<jtc-api-clearEcommerceCart>`. ::
+2. Replicate visitor's interactions with the cart using functions :ref:`addEcommerceItem<jtc-api-addEcommerceItem>`, :ref:`removeEcommerceItem<jtc-api-addEcommerceItem>`, :ref:`clearEcommerceCart<jtc-api-clearEcommerceCart>`. ::
 
     // visitor added one chocolate bar to an empty shopping cart
     _paq.push(["addEcommerceItem", "82775027", "MEGA Milk Chocolate 200g", "Candy", 6.00, 1]);
@@ -219,7 +235,7 @@ Because single page applications do not refresh the page when a visitor manipula
 Tracking orders
 ^^^^^^^^^^^^^^^
 
-Perhaps the most important element of an e-commerce implementation is tracking orders. Just like with :ref:`cart updates<guide_tracking_cart_updates>`, tracking orders has two steps: registering items that have been purchased and tracking the order. Registering items looks exactly the same - we use :ref:`addEcommerceItem<jtc-api-addEcommerceItem>`, :ref:`removeEcommerceItem<jtc-api-addEcommerceItem>` and :ref:`clearEcommerceCart<jtc-api-clearEcommerceCart>`. The actual tracking of an order is done with a call to :ref:`trackEcommerceOrder<jtc-api-trackEcommerceOrder>` method. ::
+Perhaps the most important element of an e-commerce implementation is tracking orders. Just like with :ref:`cart updates<guide_tracking_cart_updates>`, tracking orders has two steps: registering items that have been purchased and tracking the order. Registering items looks exactly the same - we use :ref:`addEcommerceItem<jtc-api-addEcommerceItem>`, :ref:`removeEcommerceItem<jtc-api-addEcommerceItem>` and :ref:`clearEcommerceCart<jtc-api-clearEcommerceCart>`. The actual tracking of an order is done with a call to :ref:`trackEcommerceOrder<jtc-api-trackEcommerceOrder>` function. ::
 
     // register all purchased items
 
@@ -249,9 +265,9 @@ Perhaps the most important element of an e-commerce implementation is tracking o
         2.00                      // discount
     ]);
 
-.. note::
+.. warning::
 
-    ``trackEcommerceOrder`` method clears the list with registered e-commerce items
+    :ref:`trackEcommerceOrder<jtc-api-trackEcommerceOrder>` function clears the list with registered e-commerce items.
 
 
 
@@ -281,8 +297,8 @@ Enabling automatic content tracking
 
 Simply use one of:
 
-* track all content blocks: ``_paq.push(['trackAllContentImpressions']);``
-* track only the visible blocks: ``_paq.push(['trackVisibleContentImpressions']);`` (generally visible, not only the ones currently visible on the screen)
+* track all content blocks: ``_paq.push(["trackAllContentImpressions"]);``
+* track only the visible blocks: ``_paq.push(["trackVisibleContentImpressions"]);`` (generally visible, not only the ones currently visible on the screen)
 
 For more information visit the :ref:`Content tracking<jtc-api-content-tracking>` section of the JavaScript Tracking Client API documentation.
 
@@ -301,17 +317,17 @@ As you can imagine this may produce inconsistent results, providing those values
 Manual content tracking
 ^^^^^^^^^^^^^^^^^^^^^^^
 
-If for some reason automatic content tracking does not suit you needs you may still trigger `trackContentImpression` and `trackContentInteraction` JS tracker methods manually.
+If for some reason automatic content tracking does not suit you needs you may still trigger :ref:`trackContentImpression<jtc-api-trackContentImpression>` and :ref:`trackContentInteraction<jtc-api-trackContentInteraction>` JS tracker functions manually.
 
 Example:
 
 .. code-block:: javascript
    :linenos:
 
-    _paq.push(['trackContentImpression', 'Ads', 'Partner banner', 'http://some-company.tld']);
+    _paq.push(["trackContentImpression", "Ads", "Partner banner", "http://some-company.tld"]);
 
-    some_dom_node.addEventListener('click', function () {
-        _paq.push(['trackContentInteraction', 'bannerClicked', 'Ads', 'Partner banner', 'http://some-company.tld']);
+    some_dom_node.addEventListener("click", function () {
+        _paq.push(["trackContentInteraction", "bannerClicked", "Ads", "Partner banner", "http://some-company.tld"]);
     });
 
 Half way between automatic and manual content tracking
@@ -324,8 +340,8 @@ Example:
 .. code-block:: javascript
    :linenos:
 
-    some_image_node.addEventListener('dblclick', function () {
-        _paq.push(['trackContentInteractionNode', this, 'imageDoubleClick']);
+    some_image_node.addEventListener("dblclick", function () {
+        _paq.push(["trackContentInteractionNode", this, "imageDoubleClick"]);
     });
 
 .. note:: It may be important that your "custom" interaction tracking is not later on doubled by the automatic one. To disable automatic content interaction tracking you should either apply ``piwikContentIgnoreInteraction`` CSS class or ``data-content-ignoreinteraction`` HTML attribute to the given element.
@@ -407,20 +423,20 @@ You can customize list of file extensions you want to track as downloads. For ex
 .. code-block:: javascript
 
   // track clicks on images links (eg. <a href="image.png">) only
-  _paq.push(['setDownloadExtensions', "png|jpg|webp|gif"]);
+  _paq.push(["setDownloadExtensions", "png|jpg|webp|gif"]);
 
 You can add new extensions, to an existing list with `addDownloadExtensions`:
 
 .. code-block:: javascript
 
   // add other image formats
-  _paq.push(['setDownloadExtensions', "svg|xcf"]);
+  _paq.push(["setDownloadExtensions", "svg|xcf"]);
 
 Or remove some of extenstions from the existing list with `removeDownloadExtensions`:
 
 .. code-block:: javascript
 
-  _paq.push(['removeDownloadExtensions', "jpg|jpeg"]);
+  _paq.push(["removeDownloadExtensions", "jpg|jpeg"]);
 
 
 Manually marking links as downloads
@@ -432,7 +448,7 @@ Manually marking links as downloads
   .. code-block:: javascript
 
     // Enable Download & Outlink tracking
-    _paq.push(['enableLinkTracking']);
+    _paq.push(["enableLinkTracking"]);
 
 If your case of download links does not fall in above cases you still have options to use, to tell tracker that link should be tracked as a download.
 
@@ -452,15 +468,15 @@ Additionally you can define your custom CSS classes for download links with our 
 
 .. code-block:: javascript
 
-  _paq.push(['setDownloadClasses', "custom-download-class"]);
-  _paq.push(['trackPageView']);
+  _paq.push(["setDownloadClasses", "custom-download-class"]);
+  _paq.push(["trackPageView"]);
 
 or you can define a list of classes at once, by passing an array list of CSS classes:
 
 .. code-block:: javascript
 
-  _paq.push(['setDownloadClasses', ["custom-download-class", "other-download-class", "another-class"]]);
-  _paq.push(['trackPageView']);
+  _paq.push(["setDownloadClasses", ["custom-download-class", "other-download-class", "another-class"]]);
+  _paq.push(["trackPageView"]);
 
 and in HTML code:
 
@@ -475,7 +491,7 @@ and in HTML code:
 Tracking downloads with inline Javascript
 """""""""""""""""""""""""""""""""""""""""
 
-There is another alternative for above methods. You can track a download with inline javascript. Insert inline javascript to HTML tag with onclick attribute:
+There is another alternative for above methods. You can track a download with inline javascript. Insert inline javascript to HTML tag with ``onclick`` attribute:
 
 .. code-block:: html
 
@@ -509,8 +525,8 @@ You can use :ref:`setDomains<jtc-api-setDomains>` function of JavaScript Trackin
 
 .. code-block:: javascript
 
-  _paq.push(['setDomains', ["help.piwik.pro", "piwik.pro", "*.other-domain.pro"]]);
-  _paq.push(['trackPageView']);
+  _paq.push(["setDomains", ["help.piwik.pro", "piwik.pro", "*.other-domain.pro"]]);
+  _paq.push(["trackPageView"]);
 
 .. note::
   Using ``setDomains`` will overwrite URLs configured in Administration panel, use it wisely.
@@ -524,7 +540,7 @@ You can use one of default CSS classes: ``piwik_link`` or ``piwik-link``. eg.
 
 .. code-block:: html
 
-  <a href='https://piwik.pro' class="piwik-link">Piwik PRO</a>
+  <a href="https://piwik.pro" class="piwik-link">Piwik PRO</a>
 
 Or you can define your custom CSS classes for outlinks with :ref:`JavaScript Tracking Client API<jtc-api-setLinkClasses>`.
 
@@ -532,22 +548,22 @@ Or you can define your custom CSS classes for outlinks with :ref:`JavaScript Tra
 
   // now all clicks on links with the css class "custom-link-class" will be counted as outlinks
   // you can also pass an array of strings
-  _paq.push(['setLinkClasses', "custom-link-class"]);
-  _paq.push(['trackPageView']);
+  _paq.push(["setLinkClasses", "custom-link-class"]);
+  _paq.push(["trackPageView"]);
 
 
 or a list of classes
 
 .. code-block:: javascript
 
-  _paq.push(['setLinkClasses', ["custom-link-class", "other-link-class"]]);
-  _paq.push(['trackPageView']);
+  _paq.push(["setLinkClasses", ["custom-link-class", "other-link-class"]]);
+  _paq.push(["trackPageView"]);
 
 and in HTML code
 
 .. code-block:: html
 
-  <a href='https://piwik.pro' class="custom-link-class">Piwik PRO</a>
+  <a href="https://piwik.pro" class="custom-link-class">Piwik PRO</a>
 
 
 .. _marking-outlinks-inline-calls:
@@ -571,8 +587,8 @@ All link tracking uses a slight delay of click execution, so the browser won't e
 
 .. code-block:: javascript
 
-  _paq.push(['setLinkTrackingTimer', 300]); // 300 milliseconds
-  _paq.push(['trackPageView']);
+  _paq.push(["setLinkTrackingTimer", 300]); // 300 milliseconds
+  _paq.push(["trackPageView"]);
 
 Disable download and outlink tracking
 """""""""""""""""""""""""""""""""""""
@@ -581,7 +597,7 @@ To explicitly disable link tracking you can use `disableLinkTracking` function. 
 
 .. code-block:: javascript
 
-  _paq.push(['disableLinkTracking']);
+  _paq.push(["disableLinkTracking"]);
 
 Disabling link tracking with CSS classes
 """"""""""""""""""""""""""""""""""""""""
@@ -590,15 +606,15 @@ You can mark links that you do not with to track with CSS classes. JS Tracker wi
 
 .. code-block:: javascript
 
-  _paq.push(['setIgnoreClasses', "do-not-track"]);
-  _paq.push(['trackPageView']);
+  _paq.push(["setIgnoreClasses", "do-not-track"]);
+  _paq.push(["trackPageView"]);
 
 or a list of classes:
 
 .. code-block:: javascript
 
-  _paq.push(['setIgnoreClasses', ["dont-track-this", "this-either", "nor-this"]]);
-  _paq.push(['trackPageView']);
+  _paq.push(["setIgnoreClasses", ["dont-track-this", "this-either", "nor-this"]]);
+  _paq.push(["trackPageView"]);
 
 and later in HTML code:
 
@@ -616,7 +632,7 @@ For fully static pages calling :ref:`enableLinkTracking<jtc-api-enableLinkTracki
 .. code-block:: javascript
 
     // Add click listeners to new links
-    _paq.push(['enableLinkTracking']);
+    _paq.push(["enableLinkTracking"]);
 
 .. note::
 

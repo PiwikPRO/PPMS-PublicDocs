@@ -1,3 +1,6 @@
+.. highlight:: js
+.. default-domain:: js
+
 .. _data-collection-javascript-tracking-client-reserved-names:
 
 Reserved names
