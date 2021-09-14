@@ -314,7 +314,7 @@ E-commerce
         The state of the virtual shopping cart is not persisted in browser
         storage. You must add all products again after a page reload.
 
-.. _jtc-api-clearEcommerceItems:
+.. _jtc-api-clearEcommerceCart:
 
 .. function:: clearEcommerceCart()
 
@@ -450,6 +450,10 @@ E-commerce
         _paq.push(["trackEcommerceOrder", "3352", 499, 399, 0, 100]);
         [tracker object]
         tracker.trackEcommerceOrder("3352", 499, 399, 0, 100);
+
+.. warning::
+
+    ``trackEcommerceOrder`` function clears the list with registered e-commerce items.
 
 
 
@@ -835,12 +839,12 @@ Interactions
     Example of usage::
 
         [command queue]
-        var domNode = document.querySelector('#add-image');
-        _paq.push(['trackContentInteractionNode', domNode, 'clicked']);
+        var domNode = document.querySelector("#add-image");
+        _paq.push(["trackContentInteractionNode", domNode, "clicked"]);
 
         [tracker object]
-        var domNode = document.querySelector('#add-image');
-        tracker.trackContentInteractionNode(domNode, 'clicked');
+        var domNode = document.querySelector("#add-image");
+        tracker.trackContentInteractionNode(domNode, "clicked");
 
     Example of usage in ``onclick`` attribute:
 
@@ -1742,12 +1746,12 @@ Miscellaneous
 
         [command queue]
         _paq.push(["setCustomRequestProcessing", function (query) {
-            var modifiedQuery = query.replace('rec=1', 'rec=0');
+            var modifiedQuery = query.replace("rec=1", "rec=0");
             return modifiedQuery;
         }]);
         [tracker object]
         tracker.setCustomRequestProcessing(function (query) {
-            var modifiedQuery = query.replace('rec=1', 'rec=0');
+            var modifiedQuery = query.replace("rec=1", "rec=0");
             return modifiedQuery;
         });
 
