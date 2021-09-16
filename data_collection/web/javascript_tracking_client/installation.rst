@@ -87,6 +87,10 @@ To set up tracking between multiple domains, you must use multiple functions: :r
     // enable cross domains linking
     _paq.push(["enableCrossDomainLinking"]);
 
+.. note::
+
+  For cross-domain linking to work, you have to enable link tracking using :ref:`enableLinkTracking<jtc-api-enableLinkTracking>` function. Remember that links added dynamically to the HTML document won't be tracked unless you call :ref:`enableLinkTracking<jtc-api-enableLinkTracking>` again. You can learn more about tracking dynamically added links :ref:`here<guide_tracking_link_clicks_on_pages_with_dynamically_generated_content>`.
+
 Tracking subdirectories of domain as separate websites
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
