@@ -390,7 +390,7 @@ Form submission:
 
 
 
-
+.. _guide_downloads_and_outlinks:
 
 Downloads and Outlinks
 ----------------------
@@ -621,6 +621,8 @@ and later in HTML code:
 .. code-block:: html
 
   <a href="https://piwik.pro/document.pdf" class="dont-track-this">A document, that should not be tracked.</a>
+
+.. _guide_tracking_link_clicks_on_pages_with_dynamically_generated_content:
 
 Tracking link clicks on pages with dynamically generated content
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
