@@ -649,8 +649,8 @@ To increase accuracy of download and outlink tracking, you can consider enabling
 Goal tracking
 -------------
 
-At this point we have tracked lot's of various typose of events. We have regular page views, we have downloads, outlinks custom events and others. Above them all there's one more event type we can track: conversion.
-And goal tracking is about tracking conversions. If you can point out parts of your website/application more important from your bisness perspective, you could define those parts as goals.
+At this point we have tracked lot's of various typose of events. We have regular page views, we have downloads, outlinks, custom events and others. Above them all there's one more event type we can track: a conversion.
+And goal tracking is about tracking conversions. If you can point out parts of your website/application more important from your bisness perspective, you could :ref:`define those parts as goals<https://help.piwik.pro/support/analytics-new/goals/>`.
 Visiting a specific landing page, submitting a contact form, downloading a PDF file with your product manual - these are popular examples of goal definitions. You can even define a goal based on the custom event you are tracking.
 
 Once the goal is defined, every time a tracked event fits it's definition, an additional conversion event will be created. We call this procedure an "automatic conversion".
