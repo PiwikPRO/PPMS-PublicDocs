@@ -38,6 +38,7 @@ Example::
 
 .. note:: We recommend to trigger this function more than once for Singe Page Applications (SPA). That way you'll create additional "virtual" page view as the visitor travels across your app.
 
+.. todo:: Explain how to change page URL and title for virtual page views or link to SPA instructions page.
 
 
 
@@ -73,7 +74,7 @@ Custom event name and custom event value are optional. You can skip them if they
     _paq.push(["trackEvent", "category", "action", undefined, 10.0]); // skip only name
 
 
-Very often we want to track actions triggered by visitors some time after the page has loaded. One way to do that, is adding tracking code to event handling attributes of HTML elements, e.g. ``onclick`` attribute of ``button`` element.
+Often we want to track actions triggered by visitors action, some time after the page has loaded. One way to do that, is to add tracking code to event handling attributes of HTML elements, e.g. ``onclick`` attribute of ``button`` element.
 
 .. code-block:: html
 
@@ -344,8 +345,10 @@ Enabling automatic content tracking
 
 Simply use one of:
 
-* track all content blocks: ``_paq.push(["trackAllContentImpressions"]);``
-* track only the visible blocks: ``_paq.push(["trackVisibleContentImpressions"]);`` (generally visible, not only the ones currently visible on the screen)
+* track all content blocks present on page (visible and not visible): ``_paq.push(["trackAllContentImpressions"]);``
+* track only the visible blocks: ``_paq.push(["trackVisibleContentImpressions"]);``
+
+.. note:: ``trackVisibleContentImpressions`` will watch displayed content continuously and will send updates when new content will show up on screen
 
 For more information visit the :ref:`Content tracking<jtc-api-content-tracking>` section of the JavaScript Tracking Client API documentation.
 
@@ -377,18 +380,18 @@ Example:
         _paq.push(["trackContentInteraction", "bannerClicked", "Ads", "Partner banner", "http://some-company.tld"]);
     });
 
-Half way between automatic and manual content tracking
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Custom interaction tracking
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-There is also a third way for successful the content tracking in more complicated situations. Automatic scenario will track clicks as a visitor interaction, but sometimes other activity may interest you more. Hovering the mouse over an element of submiting a form. In such scenario you would like to enable automatic content impression tracking but track interaction manually.
+There is also a third way to track content in more complicated situations. Automatic scenario will track clicks as a visitor interaction, but sometimes other activity may interest you more (e.g. hovering the mouse over a submit button of a form). In such scenarios you would like to enable automatic content impression tracking but trigger interaction tracking manually. Function ``trackContentInteractionNode`` lets you do that without the need to provide content name, piece and target in the call (it generates those values in the same way as the automatic method).
 
 Example:
 
 .. code-block:: javascript
    :linenos:
 
-    some_image_node.addEventListener("dblclick", function () {
-        _paq.push(["trackContentInteractionNode", this, "imageDoubleClick"]);
+    some_image_node.addEventListener("hover", function () {
+        _paq.push(["trackContentInteractionNode", this, "submit-hover"]);
     });
 
 .. note:: It may be important that your "custom" interaction tracking is not later on doubled by the automatic one. To disable automatic content interaction tracking you should either apply ``piwikContentIgnoreInteraction`` CSS class or ``data-content-ignoreinteraction`` HTML attribute to the given element.
@@ -441,45 +444,51 @@ Form submission:
 
 Downloads and Outlinks
 ----------------------
+Download and outlinks are links on your site that point to content that normally can't be tracked (e.g. non-HTML files - downloads or pages outside your domain - outlinks). JS tracker allows you to track clicks on such links to let you know how popular they are.
+
+.. note::
+  If you have modified default JS snippet provided by Tag Manager and still want to track download and/or outlinks, make sure that :ref:`enableLinkTracking<jtc-api-enableLinkTracking>` is called. It is enabled in default snippet, but if you use a custom one, then you have to enable it by yourself.
+
+  .. code-block:: javascript
+
+    // Enable Download & Outlink tracking
+    _paq.push(["enableLinkTracking"]);
+
 
 Downloads
 ^^^^^^^^^
 
-Download data helps you learn which files people pick from your site — be it a white paper, a case study, or a guide in PDF. Piwik PRO will automatically track clicks on such links as `Downloads`, and reports them in `Downloads` report.
+Download data helps you learn which files are most popular on your site — be it a white paper, a case study, or a guide in PDF. Piwik PRO will automatically track clicks on such links as `Downloads`, and reports them in `Downloads` report.
 
-Our JS Tracking Client is able to recognize when a click on a link is a download.
-
-It will automatically recognize such when a clicked link contains one of following file extensions (extensions starts with "``.``" character and one of following character sets):
+JS Tracking Client will automatically recognize download link by checking target file extension.
 
 .. note::
-  7z, aac, apk, arc, arj, asf, asx, avi, azw3, bin, bz, bz2, csv, deb, dmg, doc, docx, epub, exe, flv, gif, gz, gzip, hqx, ibooks, jar, jpg, jpeg, js, mp2, mp3, mp4, mpg, mpeg, mobi, mov, movie, msi, msp, odb, odf, odg, ods, odt, ogg, ogv, pdf, phps, png, ppt, pptx, qt, qtm, ra, ram, rar, rpm, sea, sit, tar, tbz, tbz2, tgz, torrent, txt, wav, wma, wmv, wpd, xls, xlsx, xml, z, zip
+   These are file extensions watched by default (they may be customized): 7z, aac, apk, arc, arj, asf, asx, avi, azw3, bin, bz, bz2, csv, deb, dmg, doc, docx, epub, exe, flv, gif, gz, gzip, hqx, ibooks, jar, jpg, jpeg, js, mp2, mp3, mp4, mpg, mpeg, mobi, mov, movie, msi, msp, odb, odf, odg, ods, odt, ogg, ogv, pdf, phps, png, ppt, pptx, qt, qtm, ra, ram, rar, rpm, sea, sit, tar, tbz, tbz2, tgz, torrent, txt, wav, wma, wmv, wpd, xls, xlsx, xml, z, zip
 
 
-In one of following link schemas:
+Examples of download link URL:
 
- - file extension is at the very end of a link eg. ``http://example.com/file.7z`` or ``http://example.com/article?click=file.7z``
- - file extension directly proceeds query part (``?``), eg. ``http://example.com/article/file.7z?source=user#how-to``
- - file extension directly proceeds fragment part (``#``) ``http://example.com/article?target=file.7z#how-to``
- - file extension is at the end of query param, eg. ``http://example.com/article?click=file.7z&page=3``
+ - file extension is at the very end of path (eg. ``http://example.com/file.7z`` or ``http://example.com/article/file.7z?source=user#how-to``)
+ - file extension is at the end of query param value (eg. ``http://example.com/article?click=file.7z&page=3`` or ``http://example.com/article?target=file.7z#how-to``)
 
 Customizing list of file extensions
 """""""""""""""""""""""""""""""""""
 
-You can customize list of file extensions you want to track as downloads. For example, if you want to track only images as downloads, you can use `setDownloadExtensions` function to replace the list this:
+You can customize list of file extensions you want to track as downloads. For example, if you want to track only images as downloads, you can use ``setDownloadExtensions`` function to replace the list like this:
 
 .. code-block:: javascript
 
   // track clicks on images links (eg. <a href="image.png">) only
   _paq.push(["setDownloadExtensions", "png|jpg|webp|gif"]);
 
-You can add new extensions, to an existing list with `addDownloadExtensions`:
+You can add new extensions, to an existing list with ``addDownloadExtensions``:
 
 .. code-block:: javascript
 
   // add other image formats
   _paq.push(["addDownloadExtensions", "svg|xcf"]);
 
-Or remove some of extenstions from the existing list with `removeDownloadExtensions`:
+Or remove some of extensions from the existing list with ``removeDownloadExtensions``:
 
 .. code-block:: javascript
 
@@ -489,17 +498,9 @@ Or remove some of extenstions from the existing list with `removeDownloadExtensi
 Manually marking links as downloads
 """""""""""""""""""""""""""""""""""
 
-.. note::
-  If you want to use CSS classes or HTML attributes to mark links as download or outlink and you have modified default JS snippet, make sure that :ref:`enableLinkTracking<jtc-api-enableLinkTracking>` is called. It is enabled in default snippet, but if you use a custom one, then you have to enable it by yourself.
+If your download link can't be detected by extension, you still can tell tracker that link should be tracked as a download.
 
-  .. code-block:: javascript
-
-    // Enable Download & Outlink tracking
-    _paq.push(["enableLinkTracking"]);
-
-If your case of download links does not fall in above cases you still have options to use, to tell the tracker that the link should be tracked as a download.
-
-You can add a download attribute to a link HTML tag. eg.
+You can add a ``download`` attribute to a link HTML tag. eg.
 
 .. code-block:: html
 
@@ -525,7 +526,7 @@ or you can define a list of classes at once, by passing an array list of CSS cla
   _paq.push(["setDownloadClasses", ["custom-download-class", "other-download-class", "another-class"]]);
   _paq.push(["trackPageView"]);
 
-and in HTML code:
+and use that class in HTML code:
 
 .. code-block:: html
 
@@ -564,11 +565,13 @@ Configuring which domains are outlinks
 
 When, for example, your main page is `piwik.pro` and you want to track views of `help.piwik.pro` without additional outlink click, you have to confgure JS Tracking Client to recognize this additional domain. You can do it in two ways.
 
-You can configure it in website settings section of the Administration panel. Go to the Administration > Websites & apps > Settings > General settings > URLs. Add all the domains that should not be treated as outlinks.
+If you use default snippet provided by Tag Manager, you can configure it in website settings section of the Administration panel. Go to the Administration > Websites & apps > Settings > General settings > URLs. Add all the domains that should not be treated as outlinks.
 
 .. image:: /_static/images/data_collection/website_settings_urls.jpg
 
-You can use :ref:`setDomains<jtc-api-setDomains>` function of JavaScript Tracking Client API.
+.. todo:: Check if image should be updated. I think tabs look differently in 16.1 version.
+
+If you don't use default snippet, you can use :ref:`setDomains<jtc-api-setDomains>` function of JavaScript Tracking Client API to set it.
 
 .. code-block:: javascript
 
@@ -576,12 +579,12 @@ You can use :ref:`setDomains<jtc-api-setDomains>` function of JavaScript Trackin
   _paq.push(["trackPageView"]);
 
 .. note::
-  Using ``setDomains`` will overwrite URLs configured in Administration panel, use it wisely.
+  Each use of ``setDomains`` will overwrite previous configuration. If you use default snippet, it's safest to use Administration panel to set site domains and avoid using ``setDomains`` in custom tags to avoid race conditions.
 
 Marking links as outlinks in HTML code
 """"""""""""""""""""""""""""""""""""""
 
-Similar as downloads, links can be set to be treated as outlinks manually, but only with CSS classes, you cannot use a HTML attribute.
+Similar to downloads, links can be set to be marked as outlinks manually, but only with CSS classes, you cannot use a HTML attribute to do that.
 
 You can use one of default CSS classes: ``piwik_link`` or ``piwik-link``. eg.
 
@@ -606,7 +609,7 @@ or a list of classes
   _paq.push(["setLinkClasses", ["custom-link-class", "other-link-class"]]);
   _paq.push(["trackPageView"]);
 
-and in HTML code
+and using that class in HTML code
 
 .. code-block:: html
 
@@ -615,8 +618,8 @@ and in HTML code
 
 .. _marking-outlinks-inline-calls:
 
-Marking outlinks with inline Javascript
-"""""""""""""""""""""""""""""""""""""""
+Tracking outlinks with inline Javascript
+""""""""""""""""""""""""""""""""""""""""
 
 Alternatively you can use an inline JavaScript code and ``onclick`` attribute to track any link as an outlink.
 
@@ -624,23 +627,26 @@ Alternatively you can use an inline JavaScript code and ``onclick`` attribute to
 
   <a href="mailto:support@piwik.pro" target="_blank" onClick="_paq.push(['trackLink', 'https://piwik.pro/support-contact-form', 'link']);">Write us a message.</a>
 
-Other related  abilities
-^^^^^^^^^^^^^^^^^^^^^^^^
+Other link tracking options
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Changing delay for link tracking
 """"""""""""""""""""""""""""""""
 
-All link tracking uses a slight delay of click execution, so the browser won't exit the page before a click is tracked. The default value of such delay is 500ms, but you can modify it as you wish. You have to remember that if you set this value too low, it might be not enough to track the click, if you set it too high, a browser may ignore the delay.
+All link tracking introduces a slight delay between link click and click execution, so the browser won't exit the page before a click is tracked. The default value of such delay is 500ms, but you can modify it as you wish. You have to remember that if you set this value too low, it might be not enough to track the click, and if you set it too high, it will become noticable to viewer or the browser might ignore the delay entirely.
 
 .. code-block:: javascript
 
   _paq.push(["setLinkTrackingTimer", 300]); // 300 milliseconds
   _paq.push(["trackPageView"]);
 
+.. note::
+   Link tracking will try to use more reliable `navigator.sendBeacon <https://developer.mozilla.org/en-US/docs/Web/API/Navigator/sendBeacon>`_ method to send tracking requests on modern browsers, but legacy browsers that don't support this API will rely on page exit delay.
+
 Disable download and outlink tracking
 """""""""""""""""""""""""""""""""""""
 
-To explicitly disable link tracking you can use `disableLinkTracking` function. After adding it to tracking code, all of link clicks won't be tracked.
+To explicitly disable link tracking you can use ``disableLinkTracking`` function. After adding it to tracking code, link clicks won't be tracked.
 
 .. code-block:: javascript
 
@@ -663,7 +669,7 @@ or a list of classes:
   _paq.push(["setIgnoreClasses", ["dont-track-this", "this-either", "nor-this"]]);
   _paq.push(["trackPageView"]);
 
-and later in HTML code:
+and using that class in HTML code:
 
 .. code-block:: html
 
@@ -676,7 +682,7 @@ Tracking link clicks on pages with dynamically generated content
 
 When you want to track clicks on the links, which are dynamically added to the HTML document, you have to call :ref:`enableLinkTracking<jtc-api-enableLinkTracking>` every time when the new links are added to the document.
 
-For fully static pages calling :ref:`enableLinkTracking<jtc-api-enableLinkTracking>` once is enough, because each call adds listeners only for those links, which are currently present in the HTML document. So if you add new links to the document and you want to track them, you have to call :ref:`enableLinkTracking<jtc-api-enableLinkTracking>` multiple times.
+For fully static pages calling :ref:`enableLinkTracking<jtc-api-enableLinkTracking>` once is enough, because each call adds listeners only for those links, which are currently present in the HTML document. So if you add new links to the document and you want to track them, you have to call :ref:`enableLinkTracking<jtc-api-enableLinkTracking>` each time that happens.
 
 .. code-block:: javascript
 
@@ -685,15 +691,7 @@ For fully static pages calling :ref:`enableLinkTracking<jtc-api-enableLinkTracki
 
 .. note::
 
-  You don't have to call :ref:`enableLinkTracking<jtc-api-enableLinkTracking>` if you are :ref:`already adding and inline call to a link<marking-outlinks-inline-calls>`.
-
-
-A Tip
-"""""
-
-To increase accuracy of download and outlink tracking, you can consider enabling the use of :ref:`navigator.sendBeacon<navigation-send-beacon>`.
-
-.. todo:: Beacon is the default method for outlink events. Update/remove this section.
+  You don't have to call :ref:`enableLinkTracking<jtc-api-enableLinkTracking>` if you are tracking it with inline JavaScript (with :ref:`trackLink<marking-outlinks-inline-calls>`).
 
 Goal tracking
 -------------
