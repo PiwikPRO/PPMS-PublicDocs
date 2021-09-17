@@ -645,3 +645,26 @@ A Tip
 To increase accuracy of download and outlink tracking, you can consider enabling the use of :ref:`navigator.sendBeacon<navigation-send-beacon>`.
 
 .. todo:: Beacon is the default method for outlink events. Update/remove this section.
+
+Goal tracking
+-------------
+
+At this point we have tracked lot's of various typose of events. We have regular page views, we have downloads, outlinks, custom events and others. Above them all there's one more event type we can track: a conversion.
+And goal tracking is about tracking conversions. If you can point out parts of your website/application more important from your bisness perspective, you could :ref:`define those parts as goals<https://help.piwik.pro/support/analytics-new/goals/>`.
+Visiting a specific landing page, submitting a contact form, downloading a PDF file with your product manual - these are popular examples of goal definitions. You can even define a goal based on the custom event you are tracking.
+
+Once the goal is defined, every time a tracked event fits it's definition, an additional conversion event will be created. We call this procedure an "automatic conversion".
+
+Alternatively, you can trigger a goal manually with the used of
+
+.. code-block:: javascript
+
+    // force conversion of the goal with ID 17 
+    _paq.push(["trackGoal", 17]);
+
+.. note::
+
+before `trackPageView` was triggered.
+
+We call this procedure a "manual conversion". Manual conversion doesn't cause an additional conversion event to be tracked like the automatic conversion does.
+Automatic conversion tracking requires a "source" event that is analyzed and if it fits some goal definition then it causes an addition conversion event.
