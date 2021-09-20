@@ -36,7 +36,7 @@ Example::
 
 .. note:: It's not required for the session to start with the page view or even involve them in any other way.
 
-.. note:: We recommend to trigger this function more than once for Singe Page Applications (SPA). That way you'll create additional "virtual" page view as the visitor travels across you app.
+.. note:: We recommend to trigger this function more than once for Singe Page Applications (SPA). That way you'll create additional "virtual" page view as the visitor travels across your app.
 
 
 
@@ -45,7 +45,7 @@ Example::
 Custom Events
 -------------
 
-Custom events enable tracking visitor actions that do not have dedicated functions in the existing tracker API, allowing web analysts to accurately measure and analyze any domain. Many integrations, including those offered by Tag Manager, use custom events for tracking actions detectable only on client-side, e.g. scrolling a page, viewing images, interacting with a video player, filling forms etc.
+Custom events enable tracking visitor actions that are not predefined in the existing tracker API, allowing web analysts to accurately measure and analyze any domain. Many integrations, including those offered by Tag Manager, use custom events for tracking actions detectable only on client-side, e.g. scrolling a page, interacting with a video player, filling forms, etc.
 
 A custom event consists of the following properties:
 
@@ -66,7 +66,7 @@ Tracking a custom event together with a page view is straightforward - simply ca
 
 The snippet above tracks a custom event with category *assignment*, action *assignment-submitted*, name *Math - Trigonometry - assignment 4* and value *10* (which might indicate the number of pages in a submitted document).
 
-Custom event name and custom event value are optional. You can skip them if there are not meaningful in you use case. ::
+Custom event name and custom event value are optional. You can skip them if they are not meaningful in your use case. ::
 
     _paq.push(["trackEvent", "category", "action"]); // skip both name and value
     _paq.push(["trackEvent", "category", "action", "name"]); // skip only value
@@ -279,14 +279,14 @@ Content tracking
 What is content tracking
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-Let's talk about a scenario in which simple page-view tracking is not enough. It will just tell you which page was loaded, but it won't point out how visitor interacts with the content on that particular page.
+Let's talk about a scenario in which simple page view tracking is not enough. It will just tell you which page was loaded, but it won't point out how visitors interact with the content on that particular page.
 Content impression and content interaction tracking feature fills that gap.
 
-Content impression allows you to track what content is visible to the visitor. On the bigger pages it may tell what particular parts/blocks of it the visitor has reached. When they keep scrolling and new content is presented on the screen it will be tracked automatically. This is useful for ads and banners but may be also attached to a image carousell or other forms of image galleries.
+Content impression allows you to track what content is visible to the visitor. On the bigger pages it may tell what particular parts/blocks of it the visitor has reached. When they keep scrolling and new content is presented on the screen it will be tracked automatically. This is useful for ads and banners, but may be also attached to a image carousell or other forms of image galleries.
 
-Now we know what block became visible on the screen but we would also like to know how the visitor interacted with them. Content interaction tracking completes this feature. After particular block became visible on the viewport JS Tracker will automatically record visitor clicks related to it.
+Now we know what block became visible on the screen, but we would also like to know how the visitor interacted with them. Content interaction tracking completes this feature. After particular block became visible on the viewport JS Tracking Client will automatically record visitor clicks related to it.
 
-JS tracker distinguishes three parts of the content structure: `content name`, `content piece` and `content target`. All together they are called `content block`.
+JS Tracking Client distinguishes three parts of the content structure: `content name`, `content piece` and `content target`. All together they are called `content block`.
 
 * `Content name` - this is the title describing the content block, tracked data will be visible as an entry in the reports under that name
 * `Content piece` - gives us the specific piece that was reached on the page (typically an image or other media)
@@ -302,11 +302,11 @@ Simply use one of:
 
 For more information visit the :ref:`Content tracking<jtc-api-content-tracking>` section of the JavaScript Tracking Client API documentation.
 
-**But how JS tracker will know what blocks you would like to track?**
+**But how JS Tracking Client will know what blocks you would like to track?**
 There are two ways of marking the blocks, you should either use a ``piwikTrackContent`` CSS class or a special html attribute ``data-track-content`` on them.
 Same technique is used for pointing out the content piece (``piwikContentPiece`` CSS class or ``data-content-piece`` attribute) and the content target (``piwikContentTarget`` CSS class or ``data-content-target`` attribute).
 
-Although JS Tracker has the ability of auto-detection for name, piece and target metrics, we still recommend providing those values manually as was described in the previous paragraph. If you don't then JS Tracked will try to fill them as follows:
+Although JS Tracking Client has the ability of auto-detection for name, piece and target metrics, we still recommend providing those values manually as was described in the previous paragraph. If you don't then JS Tracking Client will try to fill them as follows:
 
 * it will read block ``title`` attribute as for the Content name
 * it will read piece from the ``src`` attribute of an image
@@ -317,7 +317,7 @@ As you can imagine this may produce inconsistent results, providing those values
 Manual content tracking
 ^^^^^^^^^^^^^^^^^^^^^^^
 
-If for some reason automatic content tracking does not suit you needs you may still trigger :ref:`trackContentImpression<jtc-api-trackContentImpression>` and :ref:`trackContentInteraction<jtc-api-trackContentInteraction>` JS tracker functions manually.
+If for some reason automatic content tracking does not suit you needs you may still trigger :ref:`trackContentImpression<jtc-api-trackContentImpression>` and :ref:`trackContentInteraction<jtc-api-trackContentInteraction>` JS Tracking Client functions manually.
 
 Example:
 
@@ -398,11 +398,11 @@ Downloads and Outlinks
 Downloads
 ^^^^^^^^^
 
-Download data helps you learn which files people pick from your site — be it a white paper, a case study, or a guide in pdf. Piwik PRO will automatically track clicks on such links as `Downloads`, and reports them in `Downloads` report.
+Download data helps you learn which files people pick from your site — be it a white paper, a case study, or a guide in PDF. Piwik PRO will automatically track clicks on such links as `Downloads`, and reports them in `Downloads` report.
 
-Our JS tracker is able to recognize when a click on a link is a download link.
+Our JS Tracking Client is able to recognize when a click on a link is a download.
 
-It will automatically recognize such when a clicked link contains one of following file extensions (extensions starts with "``.``" character and one of following characters sets):
+It will automatically recognize such when a clicked link contains one of following file extensions (extensions starts with "``.``" character and one of following character sets):
 
 .. note::
   7z, aac, apk, arc, arj, asf, asx, avi, azw3, bin, bz, bz2, csv, deb, dmg, doc, docx, epub, exe, flv, gif, gz, gzip, hqx, ibooks, jar, jpg, jpeg, js, mp2, mp3, mp4, mpg, mpeg, mobi, mov, movie, msi, msp, odb, odf, odg, ods, odt, ogg, ogv, pdf, phps, png, ppt, pptx, qt, qtm, ra, ram, rar, rpm, sea, sit, tar, tbz, tbz2, tgz, torrent, txt, wav, wma, wmv, wpd, xls, xlsx, xml, z, zip
@@ -430,7 +430,7 @@ You can add new extensions, to an existing list with `addDownloadExtensions`:
 .. code-block:: javascript
 
   // add other image formats
-  _paq.push(["setDownloadExtensions", "svg|xcf"]);
+  _paq.push(["addDownloadExtensions", "svg|xcf"]);
 
 Or remove some of extenstions from the existing list with `removeDownloadExtensions`:
 
@@ -450,7 +450,7 @@ Manually marking links as downloads
     // Enable Download & Outlink tracking
     _paq.push(["enableLinkTracking"]);
 
-If your case of download links does not fall in above cases you still have options to use, to tell tracker that link should be tracked as a download.
+If your case of download links does not fall in above cases you still have options to use, to tell the tracker that the link should be tracked as a download.
 
 You can add a download attribute to a link HTML tag. eg.
 
@@ -491,7 +491,7 @@ and in HTML code:
 Tracking downloads with inline Javascript
 """""""""""""""""""""""""""""""""""""""""
 
-There is another alternative for above methods. You can track a download with inline javascript. Insert inline javascript to HTML tag with ``onclick`` attribute:
+There is another alternative for above methods. You can track a download with inline JavaScript code. Insert inline code to HTML tag with ``onclick`` attribute:
 
 .. code-block:: html
 
@@ -506,7 +506,7 @@ There is another alternative for above methods. You can track a download with in
 Outlinks
 ^^^^^^^^
 
-The Piwik PRO `Outlinks` report shows the list of external URLs that were clicked by your visitors. Outlinks are links that have different domain than those configured for your website. For example, if your visitor click on a link to `piwik.pro` and your website domain is `example.org`, this will be reported as an outlink, no matter if the website opens in current tab/window or a new one.
+The Piwik PRO `Outlinks` report shows the list of external URLs that were clicked by your visitors. Outlinks are links that have different domain than those configured for your website. For example, if your visitors click on a link to `piwik.pro` and your website domain is `example.org`, this will be reported as an outlink, no matter if the website opens in current tab/window or a new one.
 
 .. code-block:: html
 
@@ -515,7 +515,7 @@ The Piwik PRO `Outlinks` report shows the list of external URLs that were clicke
 Configuring which domains are outlinks
 """"""""""""""""""""""""""""""""""""""
 
-When, for example your main page is `piwik.pro` and you want to track views of `help.piwik.pro` without additional outlink click, you have to confgure tracker to recognize this additional domain. You can do it in two ways.
+When, for example, your main page is `piwik.pro` and you want to track views of `help.piwik.pro` without additional outlink click, you have to confgure JS Tracking Client to recognize this additional domain. You can do it in two ways.
 
 You can configure it in website settings section of the Administration panel. Go to the Administration > Websites & apps > Settings > General settings > URLs. Add all the domains that should not be treated as outlinks.
 
@@ -571,7 +571,7 @@ and in HTML code
 Marking outlinks with inline Javascript
 """""""""""""""""""""""""""""""""""""""
 
-Alternatively you can use an inline javascript and onclick attribute to track any link as an outlink.
+Alternatively you can use an inline JavaScript code and ``onclick`` attribute to track any link as an outlink.
 
 .. code-block:: html
 
@@ -583,7 +583,7 @@ Other related  abilities
 Changing delay for link tracking
 """"""""""""""""""""""""""""""""
 
-All link tracking uses a slight delay of click execution, so the browser won't exit the page before a click is tracked. The default value of such delay is 500ms, but you can modify it as you wish. You have to remember that if you set this value too low, it might be not enough to track the click, if you set it too high, the browser might ignore the delay.
+All link tracking uses a slight delay of click execution, so the browser won't exit the page before a click is tracked. The default value of such delay is 500ms, but you can modify it as you wish. You have to remember that if you set this value too low, it might be not enough to track the click, if you set it too high, a browser may ignore the delay.
 
 .. code-block:: javascript
 
@@ -602,7 +602,7 @@ To explicitly disable link tracking you can use `disableLinkTracking` function. 
 Disabling link tracking with CSS classes
 """"""""""""""""""""""""""""""""""""""""
 
-You can mark links that you do not with to track with CSS classes. JS Tracker will ignore such links and won't track them.
+You can mark links that you do not with to track with CSS classes. JS Tracking Client will ignore such links and won't track them.
 
 .. code-block:: javascript
 
@@ -649,11 +649,11 @@ To increase accuracy of download and outlink tracking, you can consider enabling
 Goal tracking
 -------------
 
-At this point we have tracked lot's of various typose of events. We have regular page views, we have downloads, outlinks, custom events and others. Above them all there's one more event type we can track: a conversion.
+At this point we have tracked lots of various typose of events. We have regular page views, we have downloads, outlinks, custom events and others. Above them all there's one more event type we can track: a conversion.
 And goal tracking is about tracking conversions. If you can point out parts of your website/application more important from your bisness perspective, you could :ref:`define those parts as goals<https://help.piwik.pro/support/analytics-new/goals/>`.
 Visiting a specific landing page, submitting a contact form, downloading a PDF file with your product manual - these are popular examples of goal definitions. You can even define a goal based on the custom event you are tracking.
 
-Once the goal is defined, every time a tracked event fits it's definition, an additional conversion event will be created. We call this procedure an "automatic conversion".
+Once the goal is defined, every time a tracked event fits its definition, an additional conversion event will be created. We call this procedure an "automatic conversion".
 
 Alternatively, you can trigger a goal manually with the used of
 
