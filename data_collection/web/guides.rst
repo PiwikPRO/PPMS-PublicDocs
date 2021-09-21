@@ -74,7 +74,7 @@ Custom event name and custom event value are optional. You can skip them if they
     _paq.push(["trackEvent", "category", "action", undefined, 10.0]); // skip only name
 
 
-Often we want to track actions triggered by visitors action, some time after the page has loaded. One way to do that, is to add tracking code to event handling attributes of HTML elements, e.g. ``onclick`` attribute of ``button`` element.
+Often we want to track actions triggered by visitor's actions, sometime after the page has loaded. One way to do that is to add tracking code to event handling attributes of HTML elements, e.g. ``onclick`` attribute of ``button`` element.
 
 .. code-block:: html
 
@@ -348,7 +348,7 @@ Simply use one of:
 * track all content blocks present on page (visible and not visible): ``_paq.push(["trackAllContentImpressions"]);``
 * track only the visible blocks: ``_paq.push(["trackVisibleContentImpressions"]);``
 
-.. note:: ``trackVisibleContentImpressions`` will watch displayed content continuously and will send updates when new content will show up on screen
+.. note:: :ref:`trackVisibleContentImpressions<jtc-api-trackVisibleContentImpressions>` will watch displayed content continuously and will send updates when new content shows up on the screen
 
 For more information visit the :ref:`Content tracking<jtc-api-content-tracking>` section of the JavaScript Tracking Client API documentation.
 
@@ -383,7 +383,7 @@ Example:
 Custom interaction tracking
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-There is also a third way to track content in more complicated situations. Automatic scenario will track clicks as a visitor interaction, but sometimes other activity may interest you more (e.g. hovering the mouse over a submit button of a form). In such scenarios you would like to enable automatic content impression tracking but trigger interaction tracking manually. Function ``trackContentInteractionNode`` lets you do that without the need to provide content name, piece and target in the call (it generates those values in the same way as the automatic method).
+There is also a third way to track content in more complicated situations. Automatic scenario will track clicks as a visitor interaction, but sometimes other activity may interest you more (e.g. hovering the mouse over a submit button of a form). In such scenarios you would like to enable automatic content impression tracking but trigger interaction tracking manually. Function :ref:`trackContentInteractionNode<jtc-api-trackContentInteractionNode>` lets you do that without the need to provide content name, piece and target in the call (it generates those values in the same way as the automatic method).
 
 Example:
 
@@ -460,10 +460,10 @@ Downloads
 
 Download data helps you learn which files are most popular on your site — be it a white paper, a case study, or a guide in PDF. Piwik PRO will automatically track clicks on such links as `Downloads`, and reports them in `Downloads` report.
 
-JS Tracking Client will automatically recognize download link by checking target file extension.
+JS Tracking Client will automatically recognize download link by checking its target file extension.
 
 .. note::
-   These are file extensions watched by default (they may be customized): 7z, aac, apk, arc, arj, asf, asx, avi, azw3, bin, bz, bz2, csv, deb, dmg, doc, docx, epub, exe, flv, gif, gz, gzip, hqx, ibooks, jar, jpg, jpeg, js, mp2, mp3, mp4, mpg, mpeg, mobi, mov, movie, msi, msp, odb, odf, odg, ods, odt, ogg, ogv, pdf, phps, png, ppt, pptx, qt, qtm, ra, ram, rar, rpm, sea, sit, tar, tbz, tbz2, tgz, torrent, txt, wav, wma, wmv, wpd, xls, xlsx, xml, z, zip
+   These are default file extensions indicating a download file: 7z, aac, apk, arc, arj, asf, asx, avi, azw3, bin, bz, bz2, csv, deb, dmg, doc, docx, epub, exe, flv, gif, gz, gzip, hqx, ibooks, jar, jpg, jpeg, js, mp2, mp3, mp4, mpg, mpeg, mobi, mov, movie, msi, msp, odb, odf, odg, ods, odt, ogg, ogv, pdf, phps, png, ppt, pptx, qt, qtm, ra, ram, rar, rpm, sea, sit, tar, tbz, tbz2, tgz, torrent, txt, wav, wma, wmv, wpd, xls, xlsx, xml, z, zip
 
 
 Examples of download link URL:
@@ -474,7 +474,7 @@ Examples of download link URL:
 Customizing list of file extensions
 """""""""""""""""""""""""""""""""""
 
-You can customize list of file extensions you want to track as downloads. For example, if you want to track only images as downloads, you can use ``setDownloadExtensions`` function to replace the list like this:
+You can customize list of file extensions you want to track as downloads. For example, if you want to track only images as downloads, you can use :ref:`setDownloadExtension<jtc-api-setDownloadExtension>` function to replace the list like this:
 
 .. code-block:: javascript
 
@@ -691,7 +691,7 @@ For fully static pages calling :ref:`enableLinkTracking<jtc-api-enableLinkTracki
 
 .. note::
 
-  You don't have to call :ref:`enableLinkTracking<jtc-api-enableLinkTracking>` if you are tracking it with inline JavaScript (with :ref:`trackLink<marking-outlinks-inline-calls>`).
+  You don't have to call :ref:`enableLinkTracking<jtc-api-enableLinkTracking>` if you are tracking links with inline JavaScript (with :ref:`trackLink<marking-outlinks-inline-calls>`).
 
 Goal tracking
 -------------
