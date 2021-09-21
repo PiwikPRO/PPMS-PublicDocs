@@ -74,7 +74,7 @@ Custom event name and custom event value are optional. You can skip them if they
     _paq.push(["trackEvent", "category", "action", undefined, 10.0]); // skip only name
 
 
-Often we want to track actions triggered by visitor's actions, sometime after the page has loaded. One way to do that is to add tracking code to event handling attributes of HTML elements, e.g. ``onclick`` attribute of ``button`` element.
+Often we want to track events triggered by visitor's actions, sometime after the page has loaded. One way to do that is to add tracking code to event handling attributes of HTML elements, e.g. ``onclick`` attribute of ``button`` element.
 
 .. code-block:: html
 
