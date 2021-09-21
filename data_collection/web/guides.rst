@@ -116,9 +116,9 @@ get back.
 Our data collecting and processing pipeline automatically converts page views
 into site search events if the URL contains site search query parameters:
 ``q``, ``query``, ``s``, ``search``, ``searchword`` and ``keyword``.  You can
-customize these parameters in on website settings page. Site search events can
+customize these parameters on the website settings page. Site search events can
 also be tracked manually by calling :ref:`trackSiteSearch<js-api-trackSiteSearch>`
-method. It allows to specify not only the keyword and category, but also
+method. It allows specifying not only the keyword and category, but also
 the number of results and additional custom dimensions.
 
 :ref:`trackSiteSearch<js-api-trackSiteSearch>` accepts the following parameters:
@@ -146,7 +146,7 @@ indicate no value. ::
 
     If you can't or don't want to rely on automatic site search detection from
     URL parameters, call ``trackSiteSearch`` method instead of ``trackPageView``
-    on search results page. Using both methods might result in a duplication
+    on the search results page. Using both methods might result in a duplication
     of site search events.
 
 
