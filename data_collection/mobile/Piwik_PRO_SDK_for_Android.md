@@ -79,6 +79,27 @@ Tracker tracker = ((YourApplication) getApplication()).getTracker();
 
 In further examples we will assume usage of the first option.
 
+### Data anonymization
+
+Anonymization is the feature that allows tracking a user's activity for aggregated data analysis even if the user doesn't consent to track the data. If a user does not agree to be tracked, he will not be identified as the same person across multiple sessions.
+
+Personal data will not be tracked during the session (i.e. [user ID](#user-id), [device ID](https://support.google.com/googleplay/android-developer/answer/6048248?hl=en))
+If the anonymization is enabled, a new [visitor ID](#visitor-id) will be created each time the application starts.
+
+Anonymization is enabled by default.
+
+You can turn the anonymization on and off using the ``setAnonymizationState`` method:
+
+```java
+((PiwikApplication) getApplication()).getTracker().setAnonymizationState(false);
+```
+
+You can also check the anonymization status using the ``isAnonymizationOn`` method:
+
+```java
+((PiwikApplication) getApplication()).getTracker().isAnonymizationOn();
+```
+
 ### Tracking screen views
 *Requires Analytics*
 
@@ -397,6 +418,7 @@ To turn off automatic fetch, use the ``setTrackDeviceId(boolean isTracked)`` met
 ```java
 getTracker().setTrackDeviceId(false);
 ```
+After calling the ``setTrackDeviceId`` method, the ``DEVICE_ID`` variable will not be set if the data anonymization is enabled.
 
 Profile attributes for the user that are tracked will be shown on the Audience Manager - Profile Browser tab.
 
