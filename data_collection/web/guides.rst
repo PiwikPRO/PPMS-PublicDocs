@@ -545,9 +545,9 @@ There is another alternative for above methods. You can track a download with in
 
   <a href="https://piwik.pro/document-url" target="_blank" onClick="_paq.push(['trackLink', 'https://piwik.pro/document-url', 'download']);">Download document</a>
 
-.. hide::
-  Tracking downloads when using log importer
-  """"""""""""""""""""""""""""""""""""""""""
+
+Tracking downloads when using log importer
+""""""""""""""""""""""""""""""""""""""""""
 
   When you use the :ref:`Log Importer<data-collection-web-log-analytics>`, files with one of the file extensions listed above will be automatically tracked as downloads in Piwik PRO.
 
@@ -708,8 +708,6 @@ Alternatively, you can trigger a goal manually with the used of
 
     // force conversion of the goal with ID 17
     _paq.push(["trackGoal", 17]);
-
-.. note::
 
 before `trackPageView` was triggered.
 
