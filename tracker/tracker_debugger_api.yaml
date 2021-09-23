@@ -127,29 +127,29 @@ paths:
           in: query
           required: false
       responses:
-        '200':
+        200:
           content:
             application/x-ndjson:
               schema:
                 $ref: '#/components/schemas/Session'
           description: A stream of sessions matching given criteria
-        '400':
+        400:
           content:
             text/plain:
               schema:
                 type: string
                 example: 'Request parameters deserialization error.'
           description: 'Bad request response (eg. missing GET parameter, or parameter value out of bounds)'
-        '401':
+        401:
           $ref: '#/components/responses/UnauthorizedError'
-        '404':
+        404:
           content:
             text/plain:
               schema:
                 type: string
                 example: 404 page not found
           description: Authenticated user doesn't have proper access rights
-        '500':
+        500:
           content:
             text/plain:
               schema:
@@ -180,29 +180,29 @@ paths:
           in: query
           required: true
       responses:
-        '200':
+        200:
           content:
             application/x-ndjson:
               schema:
                 $ref: '#/components/schemas/Log'
           description: A stream of logs matching given criteria
-        '400':
+        400:
           content:
             text/plain:
               schema:
                 type: string
                 example: 'Request parameters deserialization error.'
           description: 'Bad request response (eg. missing GET parameter, or parameter value out of bounds)'
-        '401':
+        401:
           $ref: '#/components/responses/UnauthorizedError'
-        '404':
+        404:
           content:
             text/plain:
               schema:
                 type: string
                 example: ''
           description: Authenticated user doesn't have proper access rights
-        '500':
+        500:
           content:
             text/plain:
               schema:
