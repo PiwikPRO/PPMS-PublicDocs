@@ -932,7 +932,7 @@ To track search requests on your site use the ``trackSiteSearch`` function::
 
 .. describe:: category
 
-    **Optional** ``string`` Category seleted in search engine - you can set it to false when not used.
+    **Optional** ``string|Array<string>`` Category (or categories) selected in search engine - you can set it to false when not used, or send multiple categories using array.
 
 .. describe:: searchCount
 
@@ -1015,3 +1015,14 @@ Example of usage::
 
 .. note::
     If enabled, timing data is collected only when page view lasted longer than the time it takes the page to load no partial information is stored, all metrics or nothing
+
+Setting Site Inspector config
+`````````````````````````````
+`Site Inspector <https://chrome.google.com/webstore/detail/piwik-pro-site-inspector/njcnagohlmamfijimejlnelenhahnoce>`_
+is a Chrome browser extension that helps to visualize analytics data (e.g. click heat map, scroll map) on tracked page.
+Default configuration of JS tracker will add (in a page HTML) configuration for this extension, but it is possible to
+disable this behavior if you don't need it.
+
+Example of usage::
+
+    _paq.push(["setSiteInspectorSetup", false]);

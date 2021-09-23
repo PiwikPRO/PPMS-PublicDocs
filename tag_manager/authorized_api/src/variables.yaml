@@ -1,7 +1,7 @@
 openapi: '3.0.0'
 info:
     title: Tag Manager API
-    description: In order to access those endpoints, you need to **authenticate**. <a href="../../platform/authorized_api_guide.html">Here is a guide on how to do it.</a>
+    description: In order to access those endpoints, you need to **authenticate**. <a href="../../getting_started.html">Here is a guide on how to do it.</a>
     version: '1.0'
 
 servers:

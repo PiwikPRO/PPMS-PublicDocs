@@ -180,10 +180,6 @@ paths:
           description: OK
           schema:
             $ref: '#/definitions/GlobalActions'
-        400:
-          description: Bad Request
-        403:
-          description: Forbidden
   /api/access-control/v2/app/{app_id}/permission/user:
     get:
       summary: Users permissions for a given app
@@ -532,6 +528,7 @@ definitions:
             - publish
             - delete
             - manage
+            - add
   AppsWithGrantedAction:
     type: object
     properties:

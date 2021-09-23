@@ -1,0 +1,735 @@
+openapi: 3.0.3
+info:
+  title: Tracker settings API
+  version: auto
+paths:
+  /api/tracker/v2/settings/app/global:
+    get:
+      summary: Get global tracker settings
+      description: It gets global tracker settings.
+      operationId: api_get_global_tracker_settings_v2
+      responses:
+        200:
+          description: OK
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/GlobalTrackerSettings'
+        401:
+          $ref: "#/components/responses/UnauthorizedError"
+        403:
+          $ref: "#/components/responses/AccessDeniedError"
+    patch:
+      summary: Edit global tracker settings
+      description: It edits global tracker settings.
+      operationId: api_edit_global_tracker_settings_v2
+      requestBody:
+        required: true
+        content:
+          application/vnd.api+json:
+            schema:
+              $ref: '#/components/schemas/GlobalTrackerSettings'
+      responses:
+        204:
+          description: No Content
+        400:
+          $ref: "#/components/responses/InvalidFormBadRequest"
+        401:
+          $ref: "#/components/responses/UnauthorizedError"
+        403:
+          $ref: "#/components/responses/AccessDeniedError"
+  /api/tracker/v2/settings/app/{app_id}:
+    get:
+      summary: Get tracker settings of an app
+      description: It gets tracker settings of an app.
+      operationId: api_get_app_tracker_settings_v2
+      parameters:
+        - $ref: '#/components/parameters/app_id'
+      responses:
+        200:
+          description: OK
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/TrackerAppSettings'
+        400:
+          $ref: "#/components/responses/InvalidUuidBadRequest"
+        401:
+          $ref: "#/components/responses/UnauthorizedError"
+        403:
+          $ref: "#/components/responses/AccessDeniedError"
+    patch:
+      summary: Edit tracker settings of an app
+      description: It edits tracker settings of an app.
+      operationId: api_edit_app_tracker_settings_v2
+      parameters:
+        - $ref: '#/components/parameters/app_id'
+      requestBody:
+        required: true
+        content:
+          application/vnd.api+json:
+            schema:
+              $ref: '#/components/schemas/TrackerAppSettings'
+      responses:
+        204:
+          description: No Content
+        400:
+          $ref: "#/components/responses/InvalidFormBadRequest"
+        401:
+          $ref: "#/components/responses/UnauthorizedError"
+        403:
+          $ref: "#/components/responses/AccessDeniedError"
+  /api/tracker/v2/settings/app/{app_id}/{setting}:
+    delete:
+      summary: Delete given tracker setting of an app
+      description: It deletes given tracker setting of an app. Then global setting will be used instead.
+      operationId: api_delete_app_tracker_setting_v2
+      parameters:
+        - $ref: '#/components/parameters/app_id'
+        - $ref: '#/components/parameters/setting'
+      responses:
+        204:
+          description: No Content
+        400:
+          $ref: "#/components/responses/InvalidUuidBadRequest"
+        401:
+          $ref: "#/components/responses/UnauthorizedError"
+        403:
+          $ref: "#/components/responses/AccessDeniedError"
+components:
+  parameters:
+    app_id:
+      name: app_id
+      in: path
+      description: App UUIDv4
+      required: true
+      schema:
+        type: string
+        format: uuid
+    setting:
+      name: setting
+      in: path
+      description: Tracker setting name
+      required: true
+      schema:
+        type: string
+        enum:
+          - anonymize_visitor_geolocation_level
+          - anonymize_visitor_ip_level
+          - campaign_content_params
+          - campaign_id_params
+          - campaign_keyword_params
+          - campaign_medium_params
+          - campaign_name_params
+          - campaign_source_params
+          - create_new_visit_when_campaign_changes
+          - create_new_visit_when_website_referrer_changes
+          - enable_fingerprinting_across_websites
+          - exclude_crawlers
+          - exclude_unknown_urls
+          - excluded_ips
+          - excluded_user_agents
+          - fingerprint_based_on_anonymized_ip
+          - keep_url_fragment
+          - site_search_category_params
+          - site_search_query_params
+          - strip_site_search_query_parameters
+          - tracking_fingerprint_disabled
+          - trust_visitors_cookies
+          - url_query_parameter_to_exclude_from_url
+          - urls
+  responses:
+    InvalidUuidBadRequest:
+      description: Bad Request
+      content:
+        'application/vnd.api+json':
+          schema:
+            properties:
+              errors:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ErrorObject'
+            example:
+              errors:
+                - status: '400'
+                  code: error.default
+                  title: '"invalid" is not valid UUID.'
+    InvalidFormBadRequest:
+      description: Bad Request
+      content:
+        'application/vnd.api+json':
+          schema:
+            properties:
+              errors:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FormErrorObject'
+            example:
+              errors:
+                - status: '400'
+                  code: error.default
+                  title: Invalid form
+                  detail: "Invalid anonymization level '13.5', available are: [0, 1, 2, 3, 4]"
+                  source:
+                    pointer: /data/attributes/anonymize_visitor_ip_level
+                - status: '400'
+                  code: error.not-blank
+                  title: Invalid form
+                  detail: This value should not be blank.
+                  source:
+                    pointer: /data/type
+    UnauthorizedError:
+      description: Unauthorized
+      content:
+        "application/json":
+          schema:
+            type: object
+            required:
+              - error
+            properties:
+              error:
+                type: string
+                example: access token not authorized
+    AccessDeniedError:
+      description: Forbidden
+      content:
+        "application/vnd.api+json":
+          schema:
+            type: object
+            example:
+              errors:
+              - status: '403'
+                code: not_authenticated
+                title: Authentication credentials were not provided.
+  schemas:
+    TrackerAppSettings:
+      type: object
+      required: [data]
+      properties:
+        data:
+          type: object
+          required: [type, id]
+          properties:
+            type:
+              type: string
+              enum: [tracker/settings/app]
+            id:
+              $ref: '#/components/schemas/Id'
+            attributes:
+              type: object
+              properties:
+                anonymize_visitor_geolocation_level:
+                  $ref: '#/components/schemas/AnonymizeVisitorGeolocationLevel'
+                anonymize_visitor_ip_level:
+                  $ref: '#/components/schemas/AnonymizeVisitorIpLevel'
+                campaign_content_params:
+                  $ref: '#/components/schemas/CampaignContentParams'
+                campaign_id_params:
+                  $ref: '#/components/schemas/CampaignIdParams'
+                campaign_keyword_params:
+                  $ref: '#/components/schemas/CampaignKeywordParams'
+                campaign_medium_params:
+                  $ref: '#/components/schemas/CampaignMediumParams'
+                campaign_name_params:
+                  $ref: '#/components/schemas/CampaignNameParams'
+                campaign_source_params:
+                  $ref: '#/components/schemas/CampaignSourceParams'
+                create_new_visit_when_campaign_changes:
+                  $ref: '#/components/schemas/CreateNewVisitWhenCampaignChanges'
+                create_new_visit_when_website_referrer_changes:
+                  $ref: '#/components/schemas/CreateNewVisitWhenWebsiteReferrerChanges'
+                enable_fingerprinting_across_websites:
+                  $ref: '#/components/schemas/EnableFingerprintingAcrossWebsites'
+                exclude_crawlers:
+                  $ref: '#/components/schemas/ExcludeCrawlers'
+                exclude_unknown_urls:
+                  $ref: '#/components/schemas/ExcludeUnknownUrls'
+                excluded_ips:
+                  $ref: '#/components/schemas/ExcludedIps'
+                excluded_user_agents:
+                  $ref: '#/components/schemas/ExcludedUserAgents'
+                fingerprint_based_on_anonymized_ip:
+                  $ref: '#/components/schemas/FingerprintBasedOnAnonymizedIp'
+                keep_url_fragment:
+                  $ref: '#/components/schemas/KeepUrlFragment'
+                site_search_category_params:
+                  $ref: '#/components/schemas/SiteSearchCategoryParams'
+                site_search_query_params:
+                  $ref: '#/components/schemas/SiteSearchQueryParams'
+                strip_site_search_query_parameters:
+                  $ref: '#/components/schemas/StripSiteSearchQueryParameters'
+                tracking_fingerprint_disabled:
+                  $ref: '#/components/schemas/TrackingFingerprintDisabled'
+                trust_visitors_cookies:
+                  $ref: '#/components/schemas/TrustVisitorsCookies'
+                url_query_parameter_to_exclude_from_url:
+                  $ref: '#/components/schemas/UrlQueryParameterToExcludeFromUrl'
+                urls:
+                  $ref: '#/components/schemas/Urls'
+                updated_at:
+                  $ref: '#/components/schemas/UpdatedAt'
+
+    GlobalTrackerSettings:
+      type: object
+      required: [data]
+      properties:
+        data:
+          type: object
+          required: [type, id, attributes]
+          properties:
+            type:
+              type: string
+              enum: [tracker/settings/app/global]
+            id:
+              type: string
+              enum: [global]
+            attributes:
+              type: object
+              properties:
+                anonymize_visitor_geolocation_level:
+                  $ref: '#/components/schemas/AnonymizeVisitorGeolocationLevel'
+                anonymize_visitor_ip_level:
+                  $ref: '#/components/schemas/AnonymizeVisitorIpLevel'
+                campaign_content_params:
+                  $ref: '#/components/schemas/CampaignContentParams'
+                campaign_id_params:
+                  $ref: '#/components/schemas/CampaignIdParams'
+                campaign_keyword_params:
+                  $ref: '#/components/schemas/CampaignKeywordParams'
+                campaign_medium_params:
+                  $ref: '#/components/schemas/CampaignMediumParams'
+                campaign_name_params:
+                  $ref: '#/components/schemas/CampaignNameParams'
+                campaign_source_params:
+                  $ref: '#/components/schemas/CampaignSourceParams'
+                create_new_visit_when_campaign_changes:
+                  $ref: '#/components/schemas/CreateNewVisitWhenCampaignChanges'
+                create_new_visit_when_website_referrer_changes:
+                  $ref: '#/components/schemas/CreateNewVisitWhenWebsiteReferrerChanges'
+                enable_fingerprinting_across_websites:
+                  $ref: '#/components/schemas/EnableFingerprintingAcrossWebsites'
+                exclude_crawlers:
+                  $ref: '#/components/schemas/ExcludeCrawlers'
+                exclude_unknown_urls:
+                  $ref: '#/components/schemas/ExcludeUnknownUrls'
+                excluded_ips:
+                  $ref: '#/components/schemas/ExcludedIps'
+                excluded_user_agents:
+                  $ref: '#/components/schemas/ExcludedUserAgents'
+                fingerprint_based_on_anonymized_ip:
+                  $ref: '#/components/schemas/FingerprintBasedOnAnonymizedIp'
+                keep_url_fragment:
+                  $ref: '#/components/schemas/KeepUrlFragment'
+                site_search_category_params:
+                  $ref: '#/components/schemas/SiteSearchCategoryParams'
+                site_search_query_params:
+                  $ref: '#/components/schemas/SiteSearchQueryParams'
+                strip_site_search_query_parameters:
+                  $ref: '#/components/schemas/StripSiteSearchQueryParameters'
+                tracking_fingerprint_disabled:
+                  $ref: '#/components/schemas/TrackingFingerprintDisabled'
+                trust_visitors_cookies:
+                  $ref: '#/components/schemas/TrustVisitorsCookies'
+                url_query_parameter_to_exclude_from_url:
+                  $ref: '#/components/schemas/UrlQueryParameterToExcludeFromUrl'
+                updated_at:
+                  $ref: '#/components/schemas/UpdatedAt'
+
+    Id:
+      type: string
+      format: uuid
+      description: UUIDv4 identifier of an object
+      example: 6edb1e3c-4c43-4760-ab76-682ad83146be
+
+    Urls:
+      type: array
+      description: |
+        List of app valid urls.  Used mostly to detect referrers and to exclude traffic if `exclude_unknown_urls` is enabled.
+        ```
+        This value is created when a new website is added.
+        ```
+      items:
+        type: string
+      example:
+        - http://example.com/
+        - http://example.com/app
+
+    ExcludeUnknownUrls:
+      type: boolean
+      description: |
+        When enabled, tracker discards all requests originating from urls absent in `urls` collection
+        ```
+        Initial global value:
+          false
+        ```
+      example: false
+
+    ExcludedIps:
+      type: array
+      description: |
+        List of IPs to blacklist from tracking. You can use wildcards, e.g. ``1.2.3.*`` or ``1.2.*.*``
+        ```
+        Initial global value:
+          []
+        ```
+      items:
+        type: string
+      example:
+        - 192.168.0.0
+        - 172.16.0.0
+        - 1.2.*.*
+
+    UrlQueryParameterToExcludeFromUrl:
+      type: array
+      description: |
+        URL query parameters excluded from tracking, like: ``gclid``, ``fb_xd_fragment``, ``fb_comment_id``. Regular expressions such as ``/^sess.*|.*[dD]ate$/`` are supported.
+        ```
+        Initial global value:
+          [
+            gclid,
+            fbclid,
+            fb_xd_fragment,
+            fb_comment_id,
+            phpsessid,
+            jsessionid,
+            sessionid,
+            aspsessionid,
+            doing_wp_cron,
+            sid,
+            pk_vid
+          ]
+        ```
+      items:
+        type: string
+      example:
+        - pl_medium
+        - pk_source
+        - fb_comment_id
+        - /^sess.*|.*[dD]ate$/
+
+    ExcludedUserAgents:
+      type: array
+      description: |
+        If the visitor's user agent string contains any of the strings you specify, the visitor will be excluded from tracking.
+        ```
+        Initial global value:
+          []
+        ```
+      items:
+        type: string
+      example:
+        - Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0
+        - Opera/9.80 (Windows NT 6.2; Win64; x64) Presto/2.12 Version/12.16
+
+    FingerprintBasedOnAnonymizedIp:
+      type: boolean
+      description: |
+        When enabled, visitor geolocation calculation is based on anonymized IP instead of real one.
+        ```
+        Initial global value:
+          false
+        ```
+      example: true
+
+    KeepUrlFragment:
+      type: boolean
+      description: |
+        When disabled, everything after #, e.g. ``example.org/index.html#first_section`` will be tracked as ``example.org.index.html``
+        ```
+        Initial global value:
+          true
+        ```
+      example: true
+
+    SiteSearchQueryParams:
+      type: array
+      description: |
+        URL query parameters that are used for site search in an app. If you want to have this parameters removed from URLs in reports enable ``strip_site_search_query_parameters`` setting.
+        ```
+        Initial global value:
+          [
+            q,
+            query,
+            s,
+            search,
+            searchword,
+            keyword
+          ]
+        ```
+      items:
+        type: string
+      example:
+        - s
+        - search
+
+    SiteSearchCategoryParams:
+      type: array
+      description: |
+        URL query parameters that are used for site search category in an app. If you want to have this parameters removed from URLs in reports enable ``strip_site_search_query_parameters`` setting.
+        ```
+        Initial global value:
+          []
+        ```
+      items:
+        type: string
+      example:
+        - category
+        - cat
+        - c
+
+    AnonymizeVisitorIpLevel:
+      type: integer
+      description: |
+        Anonymize "n" octets of Visitors IP addresses. All events and sessions that are processed will have ther IP transformed. For example, when you anonymize 2 last octetsm incoming IP 10.76.143.250 will be trasformed to 10.76.0.0. Such transformed IP will be used to aggregate data.
+        ```
+        Initial global value:
+          0
+        ```
+      enum: [0, 1, 2, 3, 4]
+      example: 1
+
+    AnonymizeVisitorGeolocationLevel:
+      type: string
+      description: |
+        When enabled, some geolocation data will be removed from the events an session. For example, if you set to remove data at country level, the geolocation match will be as accurate as possible, but City and Region data will be removed in the process. Country and Continent data will be accurate. This transformed data will be used in aggregation.
+        ```
+        Initial global value:
+          none
+        ```
+      enum: [none, City, Region, Country, Continent]
+      example: Region
+
+    CreateNewVisitWhenWebsiteReferrerChanges:
+      type: boolean
+      description: |
+        When enabled, a new session is created each time when refferrer type or name changes during the session, even if the `visit_standard_length` did not expire.
+        ```
+        Initial global value:
+          false
+        ```
+      example: false
+
+    CreateNewVisitWhenCampaignChanges:
+      type: boolean
+      description: |
+        When enabled, a new session is created each time when campaign type or name changes during the session, even if the `visit_standard_length` did not expire.
+        ```
+        Initial global value:
+          false
+        ```
+      example: false
+
+    TrustVisitorsCookies:
+      type: boolean
+      description: |
+        When enabled, session events wont be matched by a device fingerprint. Only vistor side generated `_id` paramater will be taken into account.
+        ```
+        Initial global value:
+          false
+        ```
+      example: false
+
+    CampaignNameParams:
+      type: array
+      description: |
+        URL query parameters that could contain name of the campaign. Processor will search for the paramters listed in this setting and it will set dimension ``campaign_name`` to the first parameter that matches name.
+        ```
+        Initial global value:
+          [
+            pk_campaign,
+            piwik_campaign,
+            pk_cpn,
+            utm_campaign
+          ]
+        ```
+      items:
+        type: string
+      example:
+        - pk_campaign
+
+    CampaignKeywordParams:
+      type: array
+      description: |
+        URL query parameters that could contain keywords for the campaign. Processor will search for the paramters listed in this setting and it will set dimension ``campaign_keyword`` to the first parameter that matches name.
+        ```
+        Initial global value:
+          [
+            pk_medium,
+            utm_medium
+          ]
+        ```
+      items:
+        type: string
+      example:
+        - pk_medium
+
+    CampaignSourceParams:
+      type: array
+      description: |
+        URL query parameters that could contain sources for the campaign. Processor will search for the paramters listed in this setting and it will set dimension ``campaign_source`` to the first parameter that matches name.
+        ```
+        Initial global value:
+          [
+            pk_source,
+            utm_source
+          ]
+        ```
+      items:
+        type: string
+      example:
+        - pk_source
+
+    CampaignMediumParams:
+      type: array
+      description: |
+        URL query parameters that could contain mediums for the campaign. Processor will search for the paramters listed in this setting and it will set dimension ``campaign_medium`` to the first parameter that matches name.
+        ```
+        Initial global value:
+          [
+            pk_medium,
+            utm_medium
+          ]
+        ```
+      items:
+        type: string
+      example:
+        - pk_medium
+
+    CampaignContentParams:
+      type: array
+      description: |
+        URL query parameters that could contain content of the campaign. Processor will search for the paramters listed in this setting and it will set dimension ``campaign_content`` to the first parameter that matches name.
+        ```
+        Initial global value:
+          [
+            pk_content,
+            utm_content
+          ]
+        ```
+      items:
+        type: string
+      example:
+        - pk_content
+
+    CampaignIdParams:
+      type: array
+      description: |
+        URL query parameters that could contain an ID of the campaign. Processor will search for the paramters listed in this setting and it will set dimension ``campaign_id`` to the first parameter that matches name.
+        ```
+        Initial global value:
+          [
+            pk_cid,
+            utm_id
+          ]
+        ```
+      items:
+        type: string
+      example:
+        - pk_cid
+
+    EnableFingerprintingAcrossWebsites:
+      type: boolean
+      description: |
+        When this option is enabled tracker will try to generate unified visitor_id even when user visits different websites.
+        ```
+        Initial global value:
+          false
+        ```
+      example: false
+
+    TrackingFingerprintDisabled:
+      type: boolean
+      description: |
+        Enabling this, will make tracker to use fingerprint from cookie. If you want to use this setting make sure to enable `trust_visitors_cookies`.
+        ```
+        Initial global value:
+          false
+        ```
+      example: false
+
+    StripSiteSearchQueryParameters:
+      type: boolean
+      description: |
+        When enabled, all of parameters set in `site_search_query_params` and `site_search_category_params` will be removed from report URLs.
+        ```
+        Initial global value:
+          false
+        ```
+      example: false
+
+    ExcludeCrawlers:
+      type: boolean
+      description: |
+        When disabled, crawler bots will be tracked like the regular visitors.
+        ```
+        Initial global value:
+          true
+        ```
+      example: true
+
+    UpdatedAt:
+      type: string
+      format: 'date-time'
+      description: Timestamp of object's last modification
+      readOnly: true
+
+    FormErrorObject:
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/ErrorObject'
+        - required:
+            - status
+            - title
+            - code
+            - source
+            - detail
+          properties:
+            detail:
+              type: string
+              description: >
+                a human-readable explanation specific to this occurrence of the problem.
+                Like `title`, this field’s value can be localized
+              example: This field is invalid
+            source:
+              type: object
+              description: >
+                an object containing references to the source of the error, optionally including any of the
+                following members: [pointer, parameter]
+              properties:
+                pointer:
+                  type: string
+                  example: /data/attributes/name
+                  description: >
+                    a JSON Pointer [RFC6901] to the associated entity in the request document
+                    [e.g. '/data' for a primary data object, or '/data/attributes/name' for a specific attribute]
+                parameter:
+                  type: string
+                  example: offset
+                  description: a string indicating which URI query parameter caused the error
+
+    ErrorObject:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            required:
+              - status
+              - code
+              - title
+            properties:
+              status:
+                type: string
+                description: the HTTP status code applicable to this problem, expressed as a
+                  string value
+                example: "400"
+              code:
+                type: string
+                description: an application-specific error code, expressed as a string value
+                example: error.default
+              title:
+                type: string
+                description: >
+                  a short, human-readable summary of the problem that SHOULD NOT change from occurrence
+                  to occurrence of the problem, except for purposes of localization
