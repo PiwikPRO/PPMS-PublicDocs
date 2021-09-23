@@ -17,7 +17,6 @@ Developer docs and guides
 .. toctree::
    :maxdepth: 2
 
-   getting_started
    custom_reports/index
    tracker/index
    audience_manager/index
@@ -100,7 +99,7 @@ Developer docs and guides
             <div class="popular-links-header">
                 API
             </div>
-            <a class="link link-large" href="getting_started.html">
+            <a class="link link-large" href="platform/getting_started.html">
                 Getting started (API)
             </a>
             <a class="link link-large" href="custom_reports/http_api/http_api.html">

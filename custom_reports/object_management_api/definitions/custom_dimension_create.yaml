@@ -15,7 +15,7 @@ allOf:
             enum:
               - session
               - event
-            readOnly: true
+            readOnly: false
           slot:
             type: integer
             description: Slot number for custom dimension.

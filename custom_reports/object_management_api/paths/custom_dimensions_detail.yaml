@@ -5,18 +5,8 @@ get:
   description: |
     Returns a definition of a specific custom dimension.
   parameters:
-    - name: website_id
-      in: query
-      description: ID of the website.
-      required: true
-      schema:
-        type: string
-    - name: id
-      in: path
-      required: true
-      description: ID of the dimension.
-      schema:
-        type: string
+    - $ref: '#/parameters/Id'
+    - $ref: '#/parameters/WebsiteId'
   responses:
     '200':
       description: OK
@@ -24,12 +14,13 @@ get:
         application/vnd.api+json:
           schema:
             type: object
+            required:
+              - data
             properties:
               data:
-                $ref: '#/definitions/CustomDimensionDetails'
+                $ref: '#/definitions/CustomDimensionDetail'
     '403':
       description: Forbidden
-
 put:
   tags:
     - Custom Dimensions
@@ -37,23 +28,30 @@ put:
   description: |
     Configure existing custom dimension.
   parameters:
-    - name: id
-      in: path
-      required: true
-      description: ID of the custom dimension.
-      schema:
-        type: string
+    - $ref: '#/parameters/Id'
   requestBody:
     content:
       application/vnd.api+json:
         schema:
-          type: object
-          required:
-            - data
-          properties:
-            data:
-              $ref: '#/definitions/CustomDimensionDetails'
-    required: true
+            type: object
+            required:
+              - data
+            properties:
+              data:
+                type: object
+                allOf:
+                  - $ref: '#/definitions/CustomDimensionUpdate'
+                required:
+                  - type
+                  - attributes
+                  - id
+                properties:
+                  id:
+                    type: string
+                    description: ID of a annotation.
+                    format: uuid
+                    readOnly: false
+                    example: 677fe0d3-b4f7-43ed-852d-1a9e7b8e59fb
   responses:
     '200':
       description: OK
@@ -61,9 +59,11 @@ put:
         application/vnd.api+json:
           schema:
             type: object
+            required:
+              - data
             properties:
               data:
-                $ref: '#/definitions/CustomDimensionDetails'
+                $ref: '#/definitions/CustomDimensionDetail'
     '400':
       description: Bad Request
     '403':
