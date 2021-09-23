@@ -10,18 +10,27 @@ Piwik PRO SDK for Android
 
 ### Client
 #### Including the library
-Add dependencies to your app module `build.gradle` file (e.g. `~/git/MyApplication/app/build.gradle`):
+
+Add the JitPack repository to your root `build.gradle` file at the end of repositories:
 
 ```groovy
-dependencies {
+  allprojects {
     repositories {
-        jcenter()
+      ...
+      maven { url 'https://jitpack.io' }
     }
-    compile 'pro.piwik.sdk:piwik-sdk:VERSION'
-}
+  }
 ```
 
-Replace `VERSION` with the latest release name, e.g. ``1.0.0``.
+Then add the dependency to the application module `build.gradle` file:
+
+```groovy
+  dependencies {
+      implementation 'pro.piwik:sdk-framework-android:VERSION'
+  }
+```
+
+Replace `VERSION` with the latest release name, e.g. ``1.0.1``.
 
 
 #### Configuration
