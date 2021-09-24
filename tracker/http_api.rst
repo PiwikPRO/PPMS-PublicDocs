@@ -1,4 +1,10 @@
 HTTP API
 ========
 
-This page was moved here: :ref:`data-collection-tracking-api-http`.
+.. raw:: html
+
+    <script>
+        let locurl = location.href;
+        locurl = locurl.replace('/tracker/', '/data_collection/api/');
+        location.replace(locurl);
+    </script>
