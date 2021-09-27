@@ -133,11 +133,19 @@ Page views
 
     Example of usage:
 
-    .. group-tab:: Command queue
-        _paq.push(["trackPageView"]);
+    .. tabs::
 
-    .. group-tab:: Tracker object
-        tracker.trackPageView();
+        .. group-tab:: Command queue
+
+            .. code-block:: javascript
+
+                _paq.push(["trackPageView"]);
+
+        .. group-tab:: Tracker object
+
+            .. code-block:: javascript
+
+                tracker.trackPageView();
 
     .. note::
 
