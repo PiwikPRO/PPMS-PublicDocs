@@ -1,4 +1,10 @@
 Web Log Analytics
 =================
 
-This page was moved here: :ref:`data-collection-web-log-analytics`.
+.. raw:: html
+
+    <script>
+        let locurl = location.href;
+        locurl = locurl.replace('/tracker/', '/data_collection/other_integrations/');
+        location.replace(locurl);
+    </script>

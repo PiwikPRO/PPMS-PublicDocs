@@ -1,4 +1,10 @@
 Tracker
 =======
 
-This page was moved here: :ref:`data-collection`.
+.. raw:: html
+
+    <script>
+        let locurl = location.href;
+        locurl = locurl.replace('/tracker/', '/data_collection/');
+        location.replace(locurl);
+    </script>

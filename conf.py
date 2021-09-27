@@ -63,7 +63,8 @@ extensions = ['sphinx.ext.autodoc',
     'sphinx.ext.doctest',
     'sphinx.ext.intersphinx',
     'sphinx.ext.todo',
-    'sphinx.ext.mathjax']
+    'sphinx.ext.mathjax',
+    'sphinx_tabs.tabs']
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -236,7 +237,7 @@ html_theme_options = {
 }
 
 def setup(app):
-    app.add_css_file('css/custom_1629786506693.css')
+    app.add_css_file('css/custom_1632479843898.css')
     app.add_js_file('js/unicornDetector.js')
     app.add_js_file('js/custom.js')
 
