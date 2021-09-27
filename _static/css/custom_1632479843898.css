@@ -1295,8 +1295,8 @@ footer {
     display: none;
 }
 
-.codeblock div[class^='highlight'], pre.literal-block div[class^='highlight'], .rst-content .literal-block div[class^='highlight'], div[class^='highlight'] div[class^='highlight'] {
-    background: #242A2E;
+.codeblock div[class^='highlight'], pre.literal-block div[class^='highlight'], .rst-content .literal-block div[class^='highlight'], div[class^='highlight'] div[class^='highlight'], .admonition div[class^='highlight'] {
+    background: #242A2E !important;
 }
 
 div[class^='highlight'] pre {
