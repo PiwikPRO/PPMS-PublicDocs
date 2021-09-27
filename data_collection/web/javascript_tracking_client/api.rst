@@ -131,11 +131,12 @@ Page views
 
     :param string customPageTitle: **Optional** Custom page title, used only for this event
 
-    Example of usage::
+    Example of usage:
 
-        [command queue]
+    .. group-tab:: Command queue
         _paq.push(["trackPageView"]);
-        [tracker object]
+
+    .. group-tab:: Tracker object
         tracker.trackPageView();
 
     .. note::
