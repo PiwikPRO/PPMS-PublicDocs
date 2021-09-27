@@ -230,6 +230,7 @@ source_suffix = ['.rst', '.md']
 
 html_theme = "sphinx_rtd_theme"
 
+html_favicon = 'favicon.png'
 
 html_theme_options = {
     'includehidden': False,
