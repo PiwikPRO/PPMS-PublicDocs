@@ -1,8 +1,16 @@
 .. highlight:: js
 .. default-domain:: js
 
+.. _data-collection-javascript-tracking-client-installation:
+
+Installation
+============
+
+.. _jtc-installation-installing-tracking-code-via-node-snippet:
+
 Installing tracking code via code snippet
-=========================================
+-----------------------------------------
+
 Installation via snippet should only be carried out if the Tag Manager is not available or when options of "Piwik PRO Analytics template" do not let you configure your use case.
 
 .. note::
@@ -11,7 +19,7 @@ Installation via snippet should only be carried out if the Tag Manager is not av
 
 .. note::
     Basic configuration will setup a single domain configuration. For other options, see:
-    :ref:`AN-tracker-alternative-configuration`.
+    :ref:`jtc-installation-alternative-configurations`.
 
 This code should be added in the head section of the page just before the closing ``</head>`` tag.
 Additionally, the snippet must be configured in the following way:
@@ -36,12 +44,9 @@ Additionally, the snippet must be configured in the following way:
       })();
     </script>
 
-.. deprecated:: 5.5.1
-     Older installations using ``piwik.php`` and ``piwik.js`` filenames are deprecated.
-
 This code initializes the Analytics tracker in following ways:
 
-    #. Initializes the global ``_paq.push`` command queue that schedules commands to be run when the Analytics tracker library
+    #. Initializes the global ``_paq`` command queue that schedules commands to be run when the Analytics tracker library
        is loaded.
     #. Schedules basic configuration of Analytics tracker using ``_paq.push``.
     #. Creates a ``<script>`` tag that asynchronously loads the Analytics tracker library.
@@ -49,13 +54,14 @@ This code initializes the Analytics tracker in following ways:
 When loading, the snippet is added on the page. The Analytics tracker will start tracking :term:`user` actions starting with page
 view.
 
-.. _AN-tracker-alternative-configuration:
+.. _jtc-installation-alternative-configurations:
 
-Alternative multi-domain configurations
-=======================================
+Alternative configurations
+--------------------------
 
 Tracking domains and all subdomains
------------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 To track all data between domain and all its subdomains, we must use cookies configured with the following snippet::
 
     _paq.push(["setTrackerUrl", u+"ppms.php"]);
@@ -69,27 +75,25 @@ To track all data between domain and all its subdomains, we must use cookies con
 
     _paq.push(["trackPageView"]);
 
-.. deprecated:: 5.5.1
-    Older installations using ``piwik.php`` and ``piwik.js`` filenames are deprecated.
-
-
 Tracking multiple domains as one site
--------------------------------------
-To set up tracking between multiple domains, you must use multiple functions ``setDomains`` to set a list of domains and
-``enableCrossDomainLinking`` to enable cross domain linking::
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-    _paq.push(["setDomains", domains]);
+To set up tracking between multiple domains, you must use multiple functions: :ref:`setDomains<jtc-api-setDomains>` to set a list of domains and
+:ref:`enableCrossDomainLinking<jtc-api-enableCrossDomainLinking>` to enable cross domain linking::
 
-.. describe:: domains
+    // specify which domains should be linked
+    _paq.push(["setDomains", ["*.example.com", "otherdomain.com"]]);
 
-    **Required** ``array`` Domains array, with wildcards
-
-::
-
+    // enable cross domains linking
     _paq.push(["enableCrossDomainLinking"]);
 
+.. note::
+
+  For cross-domain linking to work, you have to enable link tracking using :ref:`enableLinkTracking<jtc-api-enableLinkTracking>` function. Remember that links added dynamically to the HTML document won't be tracked unless you call :ref:`enableLinkTracking<jtc-api-enableLinkTracking>` again. You can learn more about tracking dynamically added links :ref:`here<guide_tracking_link_clicks_on_pages_with_dynamically_generated_content>`.
+
 Tracking subdirectories of domain as separate websites
-------------------------------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 To differentiate parts of a website as another site, you must configure tracker this way::
 
     _paq.push(["setSiteId", "App1"]);
@@ -107,26 +111,17 @@ Afterwards, you can change configuration for selected paths and track them as an
     _paq.push(["setTrackerUrl", u+"ppms.php"]);
     _paq.push(["trackPageView"]);
 
-In this way, all actions tracked on ``/data/something_useful`` will be tracked for ``App2`` instead of ``App1``.
+This way, all actions tracked on ``/data/something_useful`` will be tracked for ``App2`` instead of ``App1``.
 
-If you wish to track a group of pages as separate site, you can use the wildcard in the ``setDomains`` function.
+If you wish to track a group of pages as separate site, you can use the wildcard in the :ref:`setDomains<jtc-api-setDomains>` function.
 
-.. deprecated:: 5.5.1
-    Older installations using ``piwik.php`` and ``piwik.js`` filenames are deprecated.
+Collecting page performance metrics
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+To set up page performance metrics gathering use the :ref:`setTimingDataSamplingOnPageLoad<jtc-api-setTimingDataSamplingOnPageLoad>` function::
 
-
-Navigation timing page performance metrics
--------------------------------------
-To set up page performance metrics gathering use the
-``setTimingDataSamplingOnPageLoad`` function::
-
-    _paq.push(["setTimingDataSamplingOnPageLoad", updateTimingDataOnPageLoadSampling]);
-
-.. describe:: updateTimingDataOnPageLoadSampling
-
-    **Required** ``integer`` Value between 1 and 100 describing the percentage for data sampling
-
-::
-
+    // measure performance on 33% of page loads
     _paq.push(["setTimingDataSamplingOnPageLoad", 33]);
+
+    // track page view and potentially measure page performance
+    _paq.push(["trackPageView"]);
