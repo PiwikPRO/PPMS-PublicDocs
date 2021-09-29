@@ -76,7 +76,7 @@ More information about log import parameters can be found using the help paramet
 Import data with server log analytics and standard JavaScript simultaneously
 ----------------------------------------------------------------------------
 
-JavaScript Tracking and web server log file analytics can be used at the same time, on the condition that data is recorded for each method in a separate Piwik PRO website.
+JavaScript Tracking Client and web server log file analytics can be used at the same time, on the condition that data is recorded for each method in a separate Piwik PRO website.
 
 To avoid double counts of visits, follow these steps:
 
