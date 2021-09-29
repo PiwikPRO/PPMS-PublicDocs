@@ -16,9 +16,9 @@ If you do not have Tag Manager on your website yet, follow this procedure to ins
 #. Click on the "Websites" position.
 #. Choose the website for which you want to implement a tracking code.
 #. Select the "Installation" tab.
-#. The Tag Manager code snippet for your website is displayed under the "Website code for asynchronous tags" or "Website code for synchronous tags".
+#. The Tag Manager's snippet for your website is displayed under the "Website code for asynchronous tags" or "Website code for synchronous tags".
 
-In case you do not want to install Tag Manager on your website, you can install tracking code via JavaScript Tracking Client snippet. Guide how to do it is available here: :ref:`jtc-installation-installing-tracking-code-via-node-snippet`
+In case you do not want to install Tag Manager on your website, you can install tracking code via JavaScript Tracking Snippet. Guide how to do it is available here: :ref:`jtc-installation-installing-tracking-code-via-node-snippet`
 
 
 
@@ -46,7 +46,7 @@ Example::
 Custom Events
 -------------
 
-Custom events enable tracking visitor actions that are not predefined in the existing tracker API, allowing web analysts to accurately measure and analyze any domain. Many integrations, including those offered by Tag Manager, use custom events for tracking actions detectable only on client-side, e.g. scrolling a page, interacting with a video player, filling forms, etc.
+Custom events enable tracking visitor actions that are not predefined in the existing JavaScript Tracking Client API, allowing web analysts to accurately measure and analyze any domain. Many integrations, including those offered by Tag Manager, use custom events for tracking actions detectable only on client-side, e.g. scrolling a page, interacting with a video player, filling forms, etc.
 
 A custom event consists of the following properties:
 
@@ -444,7 +444,7 @@ Form submission:
 
 Downloads and Outlinks
 ----------------------
-Download and outlinks are links on your site that point to content that normally can't be tracked (e.g. non-HTML files - downloads or pages outside your domain - outlinks). JS tracker allows you to track clicks on such links to let you know how popular they are.
+Download and outlinks are links on your site that point to content that normally can't be tracked (e.g. non-HTML files - downloads or pages outside your domain - outlinks). JavaScript Tracking Client allows you to track clicks on such links to let you know how popular they are.
 
 .. note::
   If you have modified default JS snippet provided by Tag Manager and still want to track download and/or outlinks, make sure that :ref:`enableLinkTracking<jtc-api-enableLinkTracking>` is called. It is enabled in default snippet, but if you use a custom one, then you have to enable it by yourself.
@@ -498,7 +498,7 @@ Or remove some of extensions from the existing list with ``removeDownloadExtensi
 Manually marking links as downloads
 """""""""""""""""""""""""""""""""""
 
-If your download link can't be detected by extension, you still can tell tracker that link should be tracked as a download.
+If your download link can't be detected by extension, you still can tell JavaScript Tracking Client that link should be tracked as a download.
 
 You can add a ``download`` attribute to a link HTML tag. eg.
 

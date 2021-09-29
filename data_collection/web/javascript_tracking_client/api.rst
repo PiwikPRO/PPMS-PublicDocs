@@ -44,66 +44,66 @@ Commands pushed onto the command queue will be executed once the JavaScript
 Tracking Client loads. After that, ``_paq.push`` becomes synchronous, meaning
 each command is executed at the moment of push.
 
-.. _jtc-api-tracker-object:
+.. _jtc-api-jstc-object:
 
-Tracker object
---------------
+JavaScript Tracking Client object
+---------------------------------
 
-Tracker object offers an alternative method of calling tracking functions.
+JavaScript Tracking Client object offers an alternative method of calling tracking functions.
 While it's more difficult to access than the :ref:`command queue<jtc-api-command-queue>`,
 it allows to read the return value of a tracking function and makes
 multi-tracker setups possible.
 
-Tracker object can be accessed using :ref:`Piwik.getTracker<jtc-api-Piwik.getTracker>`
+JavaScript Tracking Client object can be accessed using :ref:`Piwik.getTracker<jtc-api-Piwik.getTracker>`
 or :ref:`Piwik.getAsyncTracker<jtc-api-Piwik.getAsyncTracker>` function.
 
 .. _jtc-api-Piwik.getTracker:
 
 .. function:: Piwik.getTracker(trackerUrl, siteId)
 
-    Getter for Tracker object.
+    Getter for JavaScript Tracking Client object.
 
-    :param string trackerUrl: **Required** URL for Tracker
+    :param string trackerUrl: **Required** URL for JavaScript Tracking Client
     :param string siteId: **Required** Site ID that will be linked to tracked data.
-    :returns: Tracker object
+    :returns: JavaScript Tracking Client object
 
-    Example of usage (accessing Tracker object and tracking a custom event)::
+    Example of usage (accessing JavaScript Tracking Client object and tracking a custom event)::
 
-        var tracker = Piwik.getTracker("https://example.com/", "45e07cbf-c8b3-42f3-a6d6-a5a176f623ef");
-        tracker.trackEvent("video", "video-paused", "intro.mp4", 15.2);
+        var jstc = Piwik.getTracker("https://example.com/", "45e07cbf-c8b3-42f3-a6d6-a5a176f623ef");
+        jstc.trackEvent("video", "video-paused", "intro.mp4", 15.2);
 
 .. _jtc-api-Piwik.getAsyncTracker:
 
-To access internal Tracker object used for asynchronous tracking you must use
+To access internal JavaScript Tracking Client object used for asynchronous tracking you must use
 the ``Piwik.getAsyncTracker``.
 
 .. function:: Piwik.getAsyncTracker(trackerUrl, siteId)
 
-    Getter for Tracker instance.
+    Getter for JavaScript Tracking Client instance.
 
-    :param string trackerUrl: **Required** URL for Tracker
+    :param string trackerUrl: **Required** URL for JavaScript Tracking Client
     :param string siteId: **Required** Site Id that will be linked to tracked data.
-    :returns: Tracker instance
+    :returns: JavaScript Tracking Client instance
 
-    Example of usage (accessing Tracker object and tracking a custom event)::
+    Example of usage (accessing JavaScript Tracking Client object and tracking a custom event)::
 
-        var tracker = Piwik.getAsyncTracker("https://example.com/", "45e07cbf-c8b3-42f3-a6d6-a5a176f623ef");
-        tracker.trackEvent("video", "video-paused", "intro.mp4", 15.2);
+        var jstc = Piwik.getAsyncTracker("https://example.com/", "45e07cbf-c8b3-42f3-a6d6-a5a176f623ef");
+        jstc.trackEvent("video", "video-paused", "intro.mp4", 15.2);
 
-    Tracker object is also accessible through ``this`` keyword in a special
+    JavaScript Tracking Client object is also accessible through ``this`` keyword in a special
     command pushed to command queue, where the first element of the command
     array is a custom function.::
 
         _paq.push([function () {
-            // *this* is a Tracker object
+            // *this* is a JavaScript Tracking Client object
             this.addEcommerceItem("01725334", "USB-C chord")
             console.log(this.getEcommerceItems());
         }]);
 
     .. warning::
 
-        Tracker object can't be accessed before JavaScript Tracking Client
-        loads.
+        JavaScript Tracking Client object can't be accessed before JavaScript Tracking Client file
+        loads (ususally a `ppms.js` file).
 
 .. _jtc-api-tracking-functions:
 
@@ -111,7 +111,7 @@ Tracking functions
 ------------------
 
 Tracking functions collect and send data to tracking backend. They can by
-called on a :ref:`tracker object<jtc-api-tracker-object>` or pushed to
+called on a :ref:`JavaScript Tracking Client object<jtc-api-jstc-object>` or pushed to
 the :ref:`command queue<jtc-api-command-queue>` as commands.
 
 
@@ -141,11 +141,11 @@ Page views
 
                 _paq.push(["trackPageView"]);
 
-        .. group-tab:: Tracker object
+        .. group-tab:: JavaScript Tracking Client object
 
             .. code-block:: javascript
 
-                tracker.trackPageView();
+                jstc.trackPageView();
 
     .. note::
 
@@ -155,7 +155,7 @@ Page views
 
     .. note::
 
-        ``trackPageView`` is included in the default tracker setup snippet.
+        ``trackPageView`` is included in the default JavaScript Tracking Client setup snippet.
         It's likely you're already using it.
 
 
@@ -190,11 +190,11 @@ Custom events
 
                 _paq.push(["trackEvent", "Exit intent", "Click on button", "Cancel"]);
 
-        .. group-tab:: Tracker object
+        .. group-tab:: JavaScript Tracking Client object
 
             .. code-block:: javascript
 
-                tracker.trackEvent("Exit intent", "Click on button", "Cancel");
+                jstc.trackEvent("Exit intent", "Click on button", "Cancel");
 
 .. _jtc-api-goal-conversions:
 
@@ -221,11 +221,11 @@ Goal conversions
 
                 _paq.push(["trackGoal" 1, 15]);
 
-        .. group-tab:: Tracker object
+        .. group-tab:: JavaScript Tracking Client object
 
             .. code-block:: javascript
 
-                tracker.trackGoal(1, 15);
+                jstc.trackGoal(1, 15);
 
 .. _jtc-api-site-search:
 
@@ -253,11 +253,11 @@ Site search
 
                 _paq.push(["trackSiteSearch", "stove", undefined, 20]);
 
-        .. group-tab:: Tracker object
+        .. group-tab:: JavaScript Tracking Client object
 
             .. code-block:: javascript
 
-                tracker.trackSiteSearch("stove", undefined, 20);
+                jstc.trackSiteSearch("stove", undefined, 20);
 
 .. _jtc-api-ecommerce:
 
@@ -288,11 +288,11 @@ E-commerce
 
                 _paq.push(["addEcommerceItem", "craft-311", "Unicorn Iron on Patch", "Crafts & Sewing", 499, 3]);
 
-        .. group-tab:: Tracker object
+        .. group-tab:: JavaScript Tracking Client object
 
             .. code-block:: javascript
 
-                tracker.addEcommerceItem("craft-311", "Unicorn Iron on Patch", "Crafts & Sewing", 499, 3);
+                jstc.addEcommerceItem("craft-311", "Unicorn Iron on Patch", "Crafts & Sewing", 499, 3);
 
     .. note::
 
@@ -320,12 +320,12 @@ E-commerce
                 _paq.push(["addEcommerceItem", "72625151", "Yellow notebook 150 pages", "School supplies", 10.00, 1]); // 1 item with sku 72625151
                 _paq.push(["addEcommerceItem", "72625151", "Yellow notebook 150 pages", "School supplies", 10.00, 2]); // 2 items with sku 72625151, not 3!
 
-        .. group-tab:: Tracker object
+        .. group-tab:: JavaScript Tracking Client object
 
             .. code-block:: javascript
 
-                tracker.addEcommerceItem("72625151", "Yellow notebook 150 pages", "School supplies", 10.00, 1); // 1 item with sku 72625151
-                tracker.addEcommerceItem("72625151", "Yellow notebook 150 pages", "School supplies", 10.00, 2); // 2 items with sku 72625151, not 3!
+                jstc.addEcommerceItem("72625151", "Yellow notebook 150 pages", "School supplies", 10.00, 1); // 1 item with sku 72625151
+                jstc.addEcommerceItem("72625151", "Yellow notebook 150 pages", "School supplies", 10.00, 2); // 2 items with sku 72625151, not 3!
 
 .. _jtc-api-removeEcommerceItem:
 
@@ -347,11 +347,11 @@ E-commerce
 
                 _paq.push(["removeEcommerceItem", "craft-311"]);
 
-        .. group-tab:: Tracker object
+        .. group-tab:: JavaScript Tracking Client object
 
             .. code-block:: javascript
 
-                tracker.removeEcommerceItem("craft-311");
+                jstc.removeEcommerceItem("craft-311");
 
     .. note::
 
@@ -382,11 +382,11 @@ E-commerce
 
                 _paq.push(["clearEcommerceCart"]);
 
-        .. group-tab:: Tracker object
+        .. group-tab:: JavaScript Tracking Client object
 
             .. code-block:: javascript
 
-                tracker.clearEcommerceCart();
+                jstc.clearEcommerceCart();
 
     .. note::
         This function does not send any data to tracker backend. It only
@@ -418,11 +418,11 @@ E-commerce
 
                 _paq.push([function () { console.log(this.getEcommerceItems()); }]);
 
-        .. group-tab:: Tracker object
+        .. group-tab:: JavaScript Tracking Client object
 
             .. code-block:: javascript
 
-                console.log(tracker.getEcommerceItems());
+                console.log(jstc.getEcommerceItems());
 
     Example return value::
 
@@ -468,15 +468,15 @@ E-commerce
                 _paq.push(["setEcommerceView", "craft-311", "Unicorn Iron on Patch", "Crafts & Sewing", 499]); // product view
                 _paq.push(["trackPageView"]);
 
-        .. group-tab:: Tracker object
+        .. group-tab:: JavaScript Tracking Client object
 
             .. code-block:: javascript
 
-                tracker.setEcommerceView(undefined, undefined, "Crafts & Sewing"); // category view
-                tracker.trackPageView();
+                jstc.setEcommerceView(undefined, undefined, "Crafts & Sewing"); // category view
+                jstc.trackPageView();
 
-                tracker.setEcommerceView("craft-311", "Unicorn Iron on Patch", "Crafts & Sewing", 499); // product view
-                tracker.trackPageView();
+                jstc.setEcommerceView("craft-311", "Unicorn Iron on Patch", "Crafts & Sewing", 499); // product view
+                jstc.trackPageView();
 
     .. warning::
 
@@ -501,14 +501,14 @@ E-commerce
 
                 _paq.push(["trackEcommerceCartUpdate", 250]);
 
-        .. group-tab:: Tracker object
+        .. group-tab:: JavaScript Tracking Client object
 
             .. code-block:: javascript
 
-                tracker.trackEcommerceCartUpdate(250);
+                jstc.trackEcommerceCartUpdate(250);
 
     .. todo::
-        Why Tracker doesn't count cartAmount by itself? Why user must do this?
+        Why JavaScript Tracking Client doesn't count cartAmount by itself? Why user must do this?
 
     .. warning::
 
@@ -540,11 +540,11 @@ E-commerce
 
                 _paq.push(["trackEcommerceOrder", "3352", 499, 399, 0, 100]);
 
-        .. group-tab:: Tracker object
+        .. group-tab:: JavaScript Tracking Client object
 
             .. code-block:: javascript
 
-                tracker.trackEcommerceOrder("3352", 499, 399, 0, 100);
+                jstc.trackEcommerceOrder("3352", 499, 399, 0, 100);
 
 .. warning::
 
@@ -583,11 +583,11 @@ Custom Variables
 
                 _paq.push(["setCustomVariable", 1, "AspectRatio", "16:9", "visit"]);
 
-        .. group-tab:: Tracker object
+        .. group-tab:: JavaScript Tracking Client object
 
             .. code-block:: javascript
 
-                tracker.setCustomVariable(1, "AspectRatio", "16:9", "visit");
+                jstc.setCustomVariable(1, "AspectRatio", "16:9", "visit");
 
     .. note::
 
@@ -616,11 +616,11 @@ Custom Variables
 
                 _paq.push(["deleteCustomVariable", 1, "visit"]);
 
-        .. group-tab:: Tracker object
+        .. group-tab:: JavaScript Tracking Client object
 
             .. code-block:: javascript
 
-                tracker.deleteCustomVariable(1, "visit");
+                jstc.deleteCustomVariable(1, "visit");
 
 .. _jtc-api-getCustomVariable:
 
@@ -647,11 +647,11 @@ Custom Variables
                     console.log(customVariable);
                 }]);
 
-        .. group-tab:: Tracker object
+        .. group-tab:: JavaScript Tracking Client object
 
             .. code-block:: javascript
 
-                var customVariable = tracker.getCustomVariable(1, "visit");
+                var customVariable = jstc.getCustomVariable(1, "visit");
                 console.log(customVariable);
 
     Example return value::
@@ -674,11 +674,11 @@ Custom Variables
 
                 _paq.push(["storeCustomVariablesInCookie"]);
 
-        .. group-tab:: Tracker object
+        .. group-tab:: JavaScript Tracking Client object
 
             .. code-block:: javascript
 
-                tracker.storeCustomVariablesInCookie();
+                jstc.storeCustomVariablesInCookie();
 
 .. _jtc-api-custom-dimensions:
 
@@ -706,11 +706,11 @@ Custom Dimensions
 
                 _paq.push(["setCustomDimensionValue", 3, "loginStatus"]);
 
-        .. group-tab:: Tracker object
+        .. group-tab:: JavaScript Tracking Client object
 
             .. code-block:: javascript
 
-                tracker.setCustomDimensionValue(3, "loginStatus");
+                jstc.setCustomDimensionValue(3, "loginStatus");
 
     .. warning::
 
@@ -741,11 +741,11 @@ Custom Dimensions
 
                 _paq.push(["deleteCustomDimension", 3]);
 
-        .. group-tab:: Tracker object
+        .. group-tab:: JavaScript Tracking Client object
 
             .. code-block:: javascript
 
-                tracker.deleteCustomDimension(3);
+                jstc.deleteCustomDimension(3);
 
 .. _jtc-api-getCustomDimensionValue:
 
@@ -772,7 +772,7 @@ Custom Dimensions
                     console.log(customDimension);
                 }]);
 
-        .. group-tab:: Tracker object
+        .. group-tab:: JavaScript Tracking Client object
 
             .. code-block:: javascript
 
@@ -803,11 +803,11 @@ Custom Dimensions
 
                 _paq.push(["setCustomDimension", 3, "loginStatus"]);
 
-        .. group-tab:: Tracker object
+        .. group-tab:: JavaScript Tracking Client object
 
             .. code-block:: javascript
 
-                tracker.setCustomDimension(3, "loginStatus");
+                jstc.setCustomDimension(3, "loginStatus");
 
     .. warning::
 
@@ -848,11 +848,11 @@ Custom Dimensions
                     console.log(customDimension);
                 }]);
 
-        .. group-tab:: Tracker object
+        .. group-tab:: JavaScript Tracking Client object
 
             .. code-block:: javascript
 
-                var customDimension = tracker.getCustomDimension(3);
+                var customDimension = jstc.getCustomDimension(3);
                 console.log(customDimension);
 
 .. _jtc-api-custom-dimensions-object:
@@ -914,11 +914,11 @@ Impressions
 
                 _paq.push(["trackAllContentImpressions"]);
 
-        .. group-tab:: Tracker object
+        .. group-tab:: JavaScript Tracking Client object
 
             .. code-block:: javascript
 
-                tracker.trackAllContentImpressions();
+                jstc.trackAllContentImpressions();
 
 .. _jtc-api-trackVisibleContentImpressions:
 
@@ -939,11 +939,11 @@ Impressions
 
                 _paq.push(["trackVisibleContentImpressions", true, 2000]);
 
-        .. group-tab:: Tracker object
+        .. group-tab:: JavaScript Tracking Client object
 
             .. code-block:: javascript
 
-                tracker.trackVisibleContentImpressions(true, 2000);
+                jstc.trackVisibleContentImpressions(true, 2000);
 
     .. warning::
 
@@ -973,12 +973,12 @@ Impressions
                 var element = document.querySelector("#impressionContainer");
                 _paq.push(["trackContentImpressionsWithinNode", element]);
 
-        .. group-tab:: Tracker object
+        .. group-tab:: JavaScript Tracking Client object
 
             .. code-block:: javascript
 
                 var element = document.querySelector("#impressionContainer");
-                tracker.trackContentImpressionsWithinNode(element);
+                jstc.trackContentImpressionsWithinNode(element);
 
     .. note::
 
@@ -1005,11 +1005,11 @@ Impressions
 
                 _paq.push(["trackContentImpression", "promo-video", "https://example.com/public/promo-01.mp4", "https://example.com/more"]);
 
-        .. group-tab:: Tracker object
+        .. group-tab:: JavaScript Tracking Client object
 
             .. code-block:: javascript
 
-                tracker.trackContentImpression("promo-video", "https://example.com/public/promo-01.mp4", "https://example.com/more");
+                jstc.trackContentImpression("promo-video", "https://example.com/public/promo-01.mp4", "https://example.com/more");
 
 .. _jtc-api-logAllContentBlocksOnPage:
 
@@ -1053,12 +1053,12 @@ Interactions
                 var domNode = document.querySelector("#add-image");
                 _paq.push(["trackContentInteractionNode", domNode, "clicked"]);
 
-        .. group-tab:: Tracker object
+        .. group-tab:: JavaScript Tracking Client object
 
             .. code-block:: javascript
 
                 var domNode = document.querySelector("#add-image");
-                tracker.trackContentInteractionNode(domNode, "clicked");
+                jstc.trackContentInteractionNode(domNode, "clicked");
 
     Example of usage in ``onclick`` attribute:
 
@@ -1087,11 +1087,11 @@ Interactions
 
                 _paq.push(["trackContentInteraction", "clicked", "trackingWhitepaper", "document", "http://cooltracker.tr/whitepaper"]);
 
-        .. group-tab:: Tracker object
+        .. group-tab:: JavaScript Tracking Client object
 
             .. code-block:: javascript
 
-                tracker.trackContentInteraction("clicked", "trackingWhitepaper", "document", "http://cooltracker.tr/whitepaper");
+                jstc.trackContentInteraction("clicked", "trackingWhitepaper", "document", "http://cooltracker.tr/whitepaper");
 
     .. warning::
         Use this function in conjunction with ``trackContentImpression``, as it
@@ -1127,11 +1127,11 @@ Download and Outlink
 
                 _paq.push(["trackLink", "http://www.example.com/example", "link"]);
 
-        .. group-tab:: Tracker object
+        .. group-tab:: JavaScript Tracking Client object
 
             .. code-block:: javascript
 
-                tracker.trackLink("http://www.example.com/example", "link");
+                jstc.trackLink("http://www.example.com/example", "link");
 
     Example of usage in ``onclick`` attribute:
 
@@ -1163,16 +1163,16 @@ Download and Outlink
                 _paq.push(["trackPageView"]);
                 _paq.push(["enableLinkTracking"]);
 
-        .. group-tab:: Tracker object
+        .. group-tab:: JavaScript Tracking Client object
 
             .. code-block:: javascript
 
-                tracker.trackPageView();
-                tracker.enableLinkTracking();
+                jstc.trackPageView();
+                jstc.enableLinkTracking();
 
     .. note::
 
-        ``enableLinkTracking`` is part of the default tracking code snippet.
+        ``enableLinkTracking`` is part of the default Tag Manager's tracking code snippet.
         It's likely your setup already has it.
 
     .. note::
@@ -1205,11 +1205,11 @@ Download and Outlink
 
                 _paq.push(["setIgnoreClasses", ["do-not-track", "ignore-link"]]);
 
-        .. group-tab:: Tracker object
+        .. group-tab:: JavaScript Tracking Client object
 
             .. code-block:: javascript
 
-                tracker.setIgnoreClasses(["do-not-track", "ignore-link"]);
+                jstc.setIgnoreClasses(["do-not-track", "ignore-link"]);
 
     .. note::
 
@@ -1235,11 +1235,11 @@ Download and Outlink
 
                 _paq.push(["setLinkClasses", "this-is-an-outlink"]);
 
-        .. group-tab:: Tracker object
+        .. group-tab:: JavaScript Tracking Client object
 
             .. code-block:: javascript
 
-                tracker.setLinkClasses("this-is-an-outlink");
+                jstc.setLinkClasses("this-is-an-outlink");
 
     .. note::
 
@@ -1265,11 +1265,11 @@ Download and Outlink
 
                 _paq.push(["setDownloadClasses", "this-is-a-download"]);
 
-        .. group-tab:: Tracker object
+        .. group-tab:: JavaScript Tracking Client object
 
             .. code-block:: javascript
 
-                tracker.setDownloadClasses("this-is-a-download");
+                jstc.setDownloadClasses("this-is-a-download");
 
     .. note::
 
@@ -1321,11 +1321,11 @@ Download and Outlink
 
                 _paq.push(["setDownloadExtensions", "mhj|docx"]);
 
-        .. group-tab:: Tracker object
+        .. group-tab:: JavaScript Tracking Client object
 
             .. code-block:: javascript
 
-                tracker.setDownloadExtensions("mhj|docx");
+                jstc.setDownloadExtensions("mhj|docx");
 
     .. warning::
 
@@ -1357,11 +1357,11 @@ Download and Outlink
 
                 _paq.push(["addDownloadExtensions", "mhj|docx"]);
 
-        .. group-tab:: Tracker object
+        .. group-tab:: JavaScript Tracking Client object
 
             .. code-block:: javascript
 
-                tracker.addDownloadExtensions("mhj|docx");
+                jstc.addDownloadExtensions("mhj|docx");
 
 .. _jtc-api-removeDownloadExtensions:
 
@@ -1383,11 +1383,11 @@ Download and Outlink
 
                 _paq.push(["removeDownloadExtensions", "mhj|docx"]);
 
-        .. group-tab:: Tracker object
+        .. group-tab:: JavaScript Tracking Client object
 
             .. code-block:: javascript
 
-                tracker.removeDownloadExtensions("mhj|docx");
+                jstc.removeDownloadExtensions("mhj|docx");
 
     .. warning::
 
@@ -1422,11 +1422,11 @@ User management
 
                 _paq.push(["setUserId", "19283"]);
 
-        .. group-tab:: Tracker object
+        .. group-tab:: JavaScript Tracking Client object
 
             .. code-block:: javascript
 
-                tracker.setUserId("19283");
+                jstc.setUserId("19283");
 
     .. todo:: is user id persistent?
 
@@ -1446,11 +1446,11 @@ User management
 
                 _paq.push(["resetUserId"]);
 
-        .. group-tab:: Tracker object
+        .. group-tab:: JavaScript Tracking Client object
 
             .. code-block:: javascript
 
-                tracker.resetUserId();
+                jstc.resetUserId();
 
 .. _jtc-api-setUserIsAnonymous:
 
@@ -1472,11 +1472,11 @@ User management
 
                 _paq.push(["setUserIsAnonymous", true]);
 
-        .. group-tab:: Tracker object
+        .. group-tab:: JavaScript Tracking Client object
 
             .. code-block:: javascript
 
-                tracker.setUserIsAnonymous(true);
+                jstc.setUserIsAnonymous(true);
 
 .. _jtc-api-deanonymizeUser:
 
@@ -1495,11 +1495,11 @@ User management
 
                 _paq.push(["deanonymizeUser"]);
 
-        .. group-tab:: Tracker object
+        .. group-tab:: JavaScript Tracking Client object
 
             .. code-block:: javascript
 
-                tracker.deanonymizeUser();
+                jstc.deanonymizeUser();
 
 .. _jtc-api-getVisitorId:
 
@@ -1520,11 +1520,11 @@ User management
                     console.log(visitorID);
                 }]);
 
-        .. group-tab:: Tracker object
+        .. group-tab:: JavaScript Tracking Client object
 
             .. code-block:: javascript
 
-                var visitorID = tracker.getVisitorId();
+                var visitorID = jstc.getVisitorId();
                 console.log(visitorID);
 
 .. _jtc-api-getVisitorInfo:
@@ -1557,11 +1557,11 @@ User management
                     console.log(info);
                 }]);
 
-        .. group-tab:: Tracker object
+        .. group-tab:: JavaScript Tracking Client object
 
             .. code-block:: javascript
 
-                var info = tracker.getVisitorInfo();
+                var info = jstc.getVisitorInfo();
                 console.log(info);
 
     Example output::
@@ -1592,7 +1592,7 @@ Cookie management
     Enables all first party cookies. Cookies will be created on the next
     tracking request.
 
-    .. note:: Tracker has cookies enabled by default.
+    .. note:: JavaScript Tracking Client has cookies enabled by default.
 
 .. _jtc-api-disableCookies:
 
@@ -1678,7 +1678,7 @@ Cookie management
 
     .. note::
 
-        It's needed only when tracker instance is created without use of
+        It's needed only when JavaScript Tracking Client instance is created without use of
         :func:`_paq.push` and script needs to know :term:`analytics ID` before
         first tracking request is sent. Make sure that it is called after all
         methods that configure cookie are called (e.g. :func:`setCookieNamePrefix`,
@@ -1741,11 +1741,11 @@ Cross domain linking
                     var parameter = this.getCrossDomainLinkingUrlParameter();
                 }]);
 
-        .. group-tab:: Tracker object
+        .. group-tab:: JavaScript Tracking Client object
 
             .. code-block:: javascript
 
-                var parameter = tracker.getCrossDomainLinkingUrlParameter();
+                var parameter = jstc.getCrossDomainLinkingUrlParameter();
 
     .. note::
 
@@ -1753,7 +1753,7 @@ Cross domain linking
 
         .. code-block:: js
 
-            var url = "http://myotherdomain.com/path/?" + tracker.getCrossDomainLinkingUrlParameter();
+            var url = "http://myotherdomain.com/path/?" + jstc.getCrossDomainLinkingUrlParameter();
             $element.append('<a href="' + url + '">link</a>');
 
 
@@ -1773,7 +1773,7 @@ Cross domain linking
 
         :param string url: **Required** Link URL
         :param string value: **Required** Value of visitor ID that should be passed via URL
-        :param string name: **Required** Name of visitor ID parameter used by tracker (can be customized)
+        :param string name: **Required** Name of visitor ID parameter used by JavaScript Tracking Client (can be customized)
         :return: Decorated URL or ``null`` (no change in URL)
         :rtype: string|null
 
@@ -1792,11 +1792,11 @@ Cross domain linking
                     return parsedUrl.href;
                 }]);
 
-        .. group-tab:: Tracker object
+        .. group-tab:: JavaScript Tracking Client object
 
             .. code-block:: javascript
 
-                tracker.customCrossDomainLinkDecorator(function (url, value, name) {
+                jstc.customCrossDomainLinkDecorator(function (url, value, name) {
                     var parsedUrl = new URL(url);
                     parsedUrl.searchParams.append(name, value);
                     return parsedUrl.href;
@@ -1838,11 +1838,11 @@ Cross domain linking
                     return (new URL(url)).searchParams.get(name) || "";
                 }]);
 
-        .. group-tab:: Tracker object
+        .. group-tab:: JavaScript Tracking Client object
 
             .. code-block:: javascript
 
-                tracker.customCrossDomainLinkVisitorIdGetter(function (url, name) {
+                jstc.customCrossDomainLinkVisitorIdGetter(function (url, name) {
                     return (new URL(url)).searchParams.get(name) || "";
                 });
 
@@ -1852,10 +1852,10 @@ Cross domain linking
 
 
 
-.. _jtc-api-tracker-configuration:
+.. _jtc-api-jstc-configuration:
 
-Tracker configuration
-^^^^^^^^^^^^^^^^^^^^^
+JavaScript Tracking Client configuration
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. _jtc-api-setDomains:
 
@@ -1877,11 +1877,11 @@ Tracker configuration
 
                 _paq.push(["setDomains", ["*.example.com", "*.example.co.uk"]]);
 
-        .. group-tab:: Tracker object
+        .. group-tab:: JavaScript Tracking Client object
 
             .. code-block:: javascript
 
-                tracker.setDomains(["*.example.com", "*.example.co.uk"]);
+                jstc.setDomains(["*.example.com", "*.example.co.uk"]);
 
 .. _jtc-api-setDocumentTitle:
 
@@ -1903,11 +1903,11 @@ Tracker configuration
 
                 _paq.push(["setDocumentTitle", document.title.toLocaleLowerCase()]);
 
-        .. group-tab:: Tracker object
+        .. group-tab:: JavaScript Tracking Client object
 
             .. code-block:: javascript
 
-                tracker.setDocumentTitle(document.title.toLocaleLowerCase());
+                jstc.setDocumentTitle(document.title.toLocaleLowerCase());
 
 .. _jtc-api-setTimingDataSamplingOnPageLoad:
 
@@ -1931,14 +1931,14 @@ Tracker configuration
                 _paq.push(["setTimingDataSamplingOnPageLoad", 30]); // 30% of page views will be followed by a page performance measurement
                 _paq.push(["setTimingDataSamplingOnPageLoad", 100]); // 100% of page views will be followed by a page performance measurement
 
-        .. group-tab:: Tracker object
+        .. group-tab:: JavaScript Tracking Client object
 
             .. code-block:: javascript
 
-                tracker.setTimingDataSamplingOnPageLoad(0); // disables page performance data collection
-                tracker.setTimingDataSamplingOnPageLoad(5); // 5% of page views will by followed by a page performance measurement, this is the default behavior
-                tracker.setTimingDataSamplingOnPageLoad(30); // 30% of page views will be followed by a page performance measurement
-                tracker.setTimingDataSamplingOnPageLoad(100); // 100% of page views will be followed by a page performance measurement
+                jstc.setTimingDataSamplingOnPageLoad(0); // disables page performance data collection
+                jstc.setTimingDataSamplingOnPageLoad(5); // 5% of page views will by followed by a page performance measurement, this is the default behavior
+                jstc.setTimingDataSamplingOnPageLoad(30); // 30% of page views will be followed by a page performance measurement
+                jstc.setTimingDataSamplingOnPageLoad(100); // 100% of page views will be followed by a page performance measurement
 
     .. note::
 
@@ -1972,11 +1972,11 @@ Tracker configuration
                     console.log(this.getTimingDataSamplingOnPageLoad());
                 }]);
 
-        .. group-tab:: Tracker object
+        .. group-tab:: JavaScript Tracking Client object
 
             .. code-block:: javascript
 
-                console.log(tracker.getTimingDataSamplingOnPageLoad());
+                console.log(jstc.getTimingDataSamplingOnPageLoad());
 
     Example output::
 
@@ -2002,11 +2002,11 @@ Tracker configuration
 
                 _paq.push(["enableHeartBeatTimer"]);
 
-        .. group-tab:: Tracker object
+        .. group-tab:: JavaScript Tracking Client object
 
             .. code-block:: javascript
 
-                tracker.enableHeartBeatTimer();
+                jstc.enableHeartBeatTimer();
 
     .. note::
         The first heartbeat will be sent 15 seconds after the page load. The
@@ -2021,7 +2021,7 @@ Tracker configuration
 
     When a visitor produces an events and closes the page immediately afterwards,
     e.g. when opening a link, the request might get cancelled. To avoid loosing
-    the last event this way, Tracker will lock the page for a fraction of a
+    the last event this way, JavaScript Tracking Client will lock the page for a fraction of a
     second (if wait time hasn't passed), giving the request time to reach the
     server.
 
@@ -2039,11 +2039,11 @@ Tracker configuration
 
                 _paq.push(["setLinkTrackingTimer", 100]);
 
-        .. group-tab:: Tracker object
+        .. group-tab:: JavaScript Tracking Client object
 
             .. code-block:: javascript
 
-                tracker.setLinkTrackingTimer(100);
+                jstc.setLinkTrackingTimer(100);
 
     .. note::
 
@@ -2074,11 +2074,11 @@ Tracker configuration
                     console.log(time);
                 }]);
 
-        .. group-tab:: Tracker object
+        .. group-tab:: JavaScript Tracking Client object
 
             .. code-block:: javascript
 
-                var time = tracker.getLinkTrackingTimer();
+                var time = jstc.getLinkTrackingTimer();
                 console.log(time);
 
 .. _jtc-api-setSiteInspectorSetup:
@@ -2088,7 +2088,7 @@ Tracker configuration
     `Site Inspector <https://chrome.google.com/webstore/detail/piwik-pro-site-inspector/njcnagohlmamfijimejlnelenhahnoce>`_
     is a Chrome browser extension that helps visualize analytics data (e.g.
     click heat map, scroll map) on tracked pages. Default configuration of
-    Tracker will add configuration for this extension (in a page HTML), but it
+    JavaScript Tracking Client will add configuration for this extension (in a page HTML), but it
     is possible to disable this behavior if you don't need it.
 
     :param boolean enable: **Required** Whether to enable site inspector support.
@@ -2103,11 +2103,11 @@ Tracker configuration
 
                 _paq.push(["setSiteInspectorSetup", false]);
 
-        .. group-tab:: Tracker object
+        .. group-tab:: JavaScript Tracking Client object
 
             .. code-block:: javascript
 
-                tracker.setSiteInspectorSetup(false);
+                jstc.setSiteInspectorSetup(false);
 
 
 
@@ -2136,11 +2136,11 @@ Miscellaneous
 
                 _paq.push(["ping"]);
 
-        .. group-tab:: Tracker object
+        .. group-tab:: JavaScript Tracking Client object
 
             .. code-block:: javascript
 
-                tracker.ping();
+                jstc.ping();
 
 .. _jtc-api-addListener:
 
@@ -2161,11 +2161,11 @@ Miscellaneous
 
                 _paq.push(["addListener", document.querySelector("#dynamically-added-link")]);
 
-        .. group-tab:: Tracker object
+        .. group-tab:: JavaScript Tracking Client object
 
             .. code-block:: javascript
 
-                tracker.addListener(document.querySelector("#dynamically-added-link"));
+                jstc.addListener(document.querySelector("#dynamically-added-link"));
 
     .. todo:: Shouldn't this function be private? Is it of any use to developers? They can track link manually.
 
@@ -2188,11 +2188,11 @@ Miscellaneous
 
                 _paq.push(["setRequestMethod", "POST"]);
 
-        .. group-tab:: Tracker object
+        .. group-tab:: JavaScript Tracking Client object
 
             .. code-block:: javascript
 
-                tracker.setRequestMethod("POST");
+                jstc.setRequestMethod("POST");
 
     .. todo:: Mention same domain or CORS setup for "POST" method
 
@@ -2215,11 +2215,11 @@ Miscellaneous
 
                 _paq.push(["setRequestContentType", "text/plain"]);
 
-        .. group-tab:: Tracker object
+        .. group-tab:: JavaScript Tracking Client object
 
             .. code-block:: javascript
 
-                tracker.setRequestContentType("text/plain");
+                jstc.setRequestContentType("text/plain");
 
 .. _jtc-api-setCustomRequestProcessing:
 
@@ -2243,11 +2243,11 @@ Miscellaneous
                     return modifiedQuery;
                 }]);
 
-        .. group-tab:: Tracker object
+        .. group-tab:: JavaScript Tracking Client object
 
             .. code-block:: javascript
 
-                tracker.setCustomRequestProcessing(function (query) {
+                jstc.setCustomRequestProcessing(function (query) {
                     var modifiedQuery = query.replace("rec=1", "rec=0");
                     return modifiedQuery;
                 });
@@ -2279,8 +2279,8 @@ Miscellaneous
 
                 _paq.push(["enableJSErrorTracking"]);
 
-        .. group-tab:: Tracker object
+        .. group-tab:: JavaScript Tracking Client object
 
             .. code-block:: javascript
 
-                tracker.enableJSErrorTracking();
+                jstc.enableJSErrorTracking();
