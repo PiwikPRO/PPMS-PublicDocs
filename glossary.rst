@@ -46,7 +46,7 @@ Glossary
         List of :term:`visitor` :term:`attributes<attribute>` that are publicly available via Audience Manager API.
 
         .. note::
-            It is still necessary to identify the :term:`user` with his :term:`analytics ID` to access this information.
+            It is still necessary to identify the :term:`visitor` with his :term:`analytics ID` to access this information.
 
     Audience
         Named set of :term:`attribute` conditions used to define a group of :term:`visitors<visitors>` matching them.
@@ -67,7 +67,7 @@ Glossary
         device. Device IDs are separate from hardware serial numbers.
 
     Identifier
-        Unique identifier of a :term:`user` ID (e.g. :term:`analytics ID`, :term:`user ID`, :term:`device ID` or email).
+        Unique identifier of a :term:`visitor` ID (e.g. :term:`analytics ID`, :term:`user ID`, :term:`device ID` or email).
 
     JavaScript Tracking Client (JSTC)
         A JavaScript object that is able to send requests to CPP. It is loaded and created with download of `ppms.js` file. It has an :ref:`API<data-collection-javascript-tracking-client-api>` that allows to configure what data requests should contain. You can :ref:`learn more about JSTC here<data-collection-javascript-tracking-client-installation>`
