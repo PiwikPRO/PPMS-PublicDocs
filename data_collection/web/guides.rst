@@ -367,7 +367,7 @@ As you can imagine this may produce inconsistent results, providing those values
 Manual content tracking
 ^^^^^^^^^^^^^^^^^^^^^^^
 
-If for some reason automatic content tracking does not suit you needs you may still trigger :ref:`trackContentImpression<jtc-api-trackContentImpression>` and :ref:`trackContentInteraction<jtc-api-trackContentInteraction>` JavaScript Client functions manually.
+If for some reason automatic content tracking does not suit you needs you may still trigger :ref:`trackContentImpression<jtc-api-trackContentImpression>` and :ref:`trackContentInteraction<jtc-api-trackContentInteraction>` JavaScript Tracking Client functions manually.
 
 Example:
 

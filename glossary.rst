@@ -63,7 +63,7 @@ Glossary
             If :term:`analytics attribute` uses the same name - it will be represented as a separate :term:`attribute`.
 
     Collecting & Processing Pipeline (CPP)
-        Formerly a trakcer backend. A set of services that is able to receive, store and process requests from JavaScript Tracking Client. Requests processed by CPP are passed further for Reporting services.
+        Formerly called tracker backend. A set of services that is able to receive, store and process requests from JavaScript Tracking Client. Requests processed by CPP are passed further for Reporting services.
 
     Device ID
         Device ID (device identification) is a distinctive number associated with a smartphone or similar handheld
