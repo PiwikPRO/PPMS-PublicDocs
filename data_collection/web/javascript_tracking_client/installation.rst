@@ -53,7 +53,7 @@ This code initializes the JavaScript Tracking Client in following ways:
     #. Schedules basic configuration of JavaScript Tracking Client using ``_paq.push``.
     #. Creates a ``<script>`` tag that asynchronously loads the JavaScript Tracking Client library.
 
-When loading, the snippet is added on the page. The JavaScript Tracking Client will start tracking :term:`user` actions starting with page
+When loading, the snippet is added on the page. The JavaScript Tracking Client will start tracking :term:`visitor` actions starting with page
 view.
 
 .. _jtc-installation-alternative-configurations:
