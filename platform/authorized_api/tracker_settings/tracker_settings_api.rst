@@ -1,5 +1,5 @@
-Tracker Settings API
-====================
+CPP Settings API
+================
 
 .. raw:: html
 

@@ -1,5 +1,5 @@
-Global reserved names used by JavaScript tracker API
-====================================================
+Global reserved names used by JavaScript Tracking Client API
+============================================================
 
 .. raw:: html
 

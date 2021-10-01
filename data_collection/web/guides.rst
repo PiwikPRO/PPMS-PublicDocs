@@ -16,9 +16,9 @@ If you do not have Tag Manager on your website yet, follow this procedure to ins
 #. Click on the "Websites" position.
 #. Choose the website for which you want to implement a tracking code.
 #. Select the "Installation" tab.
-#. The Tag Manager code snippet for your website is displayed under the "Website code for asynchronous tags" or "Website code for synchronous tags".
+#. The Tag Manager's snippet for your website is displayed under the "Website code for asynchronous tags" or "Website code for synchronous tags".
 
-In case you do not want to install Tag Manager on your website, you can install tracking code via JavaScript Tracking Client snippet. Guide how to do it is available here: :ref:`jtc-installation-installing-tracking-code-via-node-snippet`
+In case you do not want to install Tag Manager on your website, you can install tracking code via JavaScript Tracking Snippet. Guide how to do it is available here: :ref:`jtc-installation-installing-tracking-code-via-node-snippet`
 
 
 
@@ -46,7 +46,7 @@ Example::
 Custom Events
 -------------
 
-Custom events enable tracking visitor actions that are not predefined in the existing tracker API, allowing web analysts to accurately measure and analyze any domain. Many integrations, including those offered by Tag Manager, use custom events for tracking actions detectable only on client-side, e.g. scrolling a page, interacting with a video player, filling forms, etc.
+Custom events enable tracking visitor actions that are not predefined in the existing JavaScript Tracking Client API, allowing web analysts to accurately measure and analyze any domain. Many integrations, including those offered by Tag Manager, use custom events for tracking actions detectable only on client-side, e.g. scrolling a page, interacting with a video player, filling forms, etc.
 
 A custom event consists of the following properties:
 
@@ -332,9 +332,9 @@ Content impression and content interaction tracking feature fills that gap.
 
 Content impression allows you to track what content is visible to the visitor. On the bigger pages it may tell what particular parts/blocks of it the visitor has reached. When they keep scrolling and new content is presented on the screen it will be tracked automatically. This is useful for ads and banners, but may be also attached to a image carousell or other forms of image galleries.
 
-Now we know what block became visible on the screen, but we would also like to know how the visitor interacted with them. Content interaction tracking completes this feature. After particular block became visible on the viewport JS Tracking Client will automatically record visitor clicks related to it.
+Now we know what block became visible on the screen, but we would also like to know how the visitor interacted with them. Content interaction tracking completes this feature. After particular block became visible on the viewport JavaScript Tracking Client will automatically record visitor clicks related to it.
 
-JS Tracking Client distinguishes three parts of the content structure: `content name`, `content piece` and `content target`. All together they are called `content block`.
+JavaScript Tracking Client distinguishes three parts of the content structure: `content name`, `content piece` and `content target`. All together they are called `content block`.
 
 * `Content name` - this is the title describing the content block, tracked data will be visible as an entry in the reports under that name
 * `Content piece` - gives us the specific piece that was reached on the page (typically an image or other media)
@@ -352,11 +352,11 @@ Simply use one of:
 
 For more information visit the :ref:`Content tracking<jtc-api-content-tracking>` section of the JavaScript Tracking Client API documentation.
 
-**But how JS Tracking Client will know what blocks you would like to track?**
+**But how JavaScript Tracking Client will know what blocks you would like to track?**
 There are two ways of marking the blocks, you should either use a ``piwikTrackContent`` CSS class or a special html attribute ``data-track-content`` on them.
 Same technique is used for pointing out the content piece (``piwikContentPiece`` CSS class or ``data-content-piece`` attribute) and the content target (``piwikContentTarget`` CSS class or ``data-content-target`` attribute).
 
-Although JS Tracking Client has the ability of auto-detection for name, piece and target metrics, we still recommend providing those values manually as was described in the previous paragraph. If you don't then JS Tracking Client will try to fill them as follows:
+Although JavaScript Tracking Client has the ability of auto-detection for name, piece and target metrics, we still recommend providing those values manually as was described in the previous paragraph. If you don't then JavaScript Tracking Client will try to fill them as follows:
 
 * it will read block ``title`` attribute as for the Content name
 * it will read piece from the ``src`` attribute of an image
@@ -367,7 +367,7 @@ As you can imagine this may produce inconsistent results, providing those values
 Manual content tracking
 ^^^^^^^^^^^^^^^^^^^^^^^
 
-If for some reason automatic content tracking does not suit you needs you may still trigger :ref:`trackContentImpression<jtc-api-trackContentImpression>` and :ref:`trackContentInteraction<jtc-api-trackContentInteraction>` JS Tracking Client functions manually.
+If for some reason automatic content tracking does not suit you needs you may still trigger :ref:`trackContentImpression<jtc-api-trackContentImpression>` and :ref:`trackContentInteraction<jtc-api-trackContentInteraction>` JavaScript Tracking Client functions manually.
 
 Example:
 
@@ -444,7 +444,7 @@ Form submission:
 
 Downloads and Outlinks
 ----------------------
-Download and outlinks are links on your site that point to content that normally can't be tracked (e.g. non-HTML files - downloads or pages outside your domain - outlinks). JS tracker allows you to track clicks on such links to let you know how popular they are.
+Download and outlinks are links on your site that point to content that normally can't be tracked (e.g. non-HTML files - downloads or pages outside your domain - outlinks). JavaScript Tracking Client allows you to track clicks on such links to let you know how popular they are.
 
 .. note::
   If you have modified default JS snippet provided by Tag Manager and still want to track download and/or outlinks, make sure that :ref:`enableLinkTracking<jtc-api-enableLinkTracking>` is called. It is enabled in default snippet, but if you use a custom one, then you have to enable it by yourself.
@@ -460,7 +460,7 @@ Downloads
 
 Download data helps you learn which files are most popular on your site — be it a white paper, a case study, or a guide in PDF. Piwik PRO will automatically track clicks on such links as `Downloads`, and reports them in `Downloads` report.
 
-JS Tracking Client will automatically recognize download link by checking its target file extension.
+JavaScript Tracking Client will automatically recognize download link by checking its target file extension.
 
 .. note::
    These are default file extensions indicating a download file: 7z, aac, apk, arc, arj, asf, asx, avi, azw3, bin, bz, bz2, csv, deb, dmg, doc, docx, epub, exe, flv, gif, gz, gzip, hqx, ibooks, jar, jpg, jpeg, js, mp2, mp3, mp4, mpg, mpeg, mobi, mov, movie, msi, msp, odb, odf, odg, ods, odt, ogg, ogv, pdf, phps, png, ppt, pptx, qt, qtm, ra, ram, rar, rpm, sea, sit, tar, tbz, tbz2, tgz, torrent, txt, wav, wma, wmv, wpd, xls, xlsx, xml, z, zip
@@ -498,7 +498,7 @@ Or remove some of extensions from the existing list with ``removeDownloadExtensi
 Manually marking links as downloads
 """""""""""""""""""""""""""""""""""
 
-If your download link can't be detected by extension, you still can tell tracker that link should be tracked as a download.
+If your download link can't be detected by extension, you still can tell JavaScript Tracking Client that link should be tracked as a download.
 
 You can add a ``download`` attribute to a link HTML tag. eg.
 
@@ -563,7 +563,7 @@ The Piwik PRO `Outlinks` report shows the list of external URLs that were clicke
 Configuring which domains are outlinks
 """"""""""""""""""""""""""""""""""""""
 
-When, for example, your main page is `piwik.pro` and you want to track views of `help.piwik.pro` without additional outlink click, you have to confgure JS Tracking Client to recognize this additional domain. You can do it in two ways.
+When, for example, your main page is `piwik.pro` and you want to track views of `help.piwik.pro` without additional outlink click, you have to confgure JavaScript Tracking Client to recognize this additional domain. You can do it in two ways.
 
 If you use default snippet provided by Tag Manager, you can configure it in website settings section of the Administration panel. Go to the Administration > Websites & apps > Settings > General settings > URLs. Add all the domains that should not be treated as outlinks.
 
@@ -655,7 +655,7 @@ To explicitly disable link tracking you can use ``disableLinkTracking`` function
 Disabling link tracking with CSS classes
 """"""""""""""""""""""""""""""""""""""""
 
-You can mark links that you do not with to track with CSS classes. JS Tracking Client will ignore such links and won't track them.
+You can mark links that you do not with to track with CSS classes. JavaScript Tracking Client will ignore such links and won't track them.
 
 .. code-block:: javascript
 

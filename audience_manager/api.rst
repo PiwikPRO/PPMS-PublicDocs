@@ -56,12 +56,12 @@ Executing the snippet creates the following global function:
 
 Commands
 --------
-All commands work in context of the current :term:`user`. Additionally they require communication with a PPAS server and are
+All commands work in context of the current :term:`visitor`. Additionally they require communication with a PPAS server and are
 asynchronous. Callback functions are used to provide response value or information about errors.
 
 Get list of audiences user belongs to
 `````````````````````````````````````
-Fetches a list of :term:`audience` IDs the :term:`user` belongs to.
+Fetches a list of :term:`audience` IDs the :term:`visitor` belongs to.
 
 Code::
 
@@ -71,7 +71,7 @@ Code::
 
     The fulfilment handler callback (called with result).
 
-    :param Array<string> audience_list: **Required** Array of :term:`audience` IDs the :term:`user` belongs to.
+    :param Array<string> audience_list: **Required** Array of :term:`audience` IDs the :term:`visitor` belongs to.
 
         Example::
 
@@ -89,7 +89,7 @@ Code::
 
 Check user membership in the audience
 `````````````````````````````````````
-Checks if the :term:`user` belongs to the :term:`audience`.
+Checks if the :term:`visitor` belongs to the :term:`audience`.
 
 Code::
 
@@ -107,7 +107,7 @@ Code::
 
     The fulfilment handler callback (called with result).
 
-    :param boolean in_audience: **Required** *True* when :term:`user` is part of the :term:`audience`, *false*
+    :param boolean in_audience: **Required** *True* when :term:`visitor` is part of the :term:`audience`, *false*
         otherwise.
 
         Example::
@@ -126,13 +126,13 @@ Code::
 
 Get user attributes
 ```````````````````
-Fetches the :term:`user` profile :term:`attributes<attribute>`. The :term:`user` have to be identified by :term:`analytics ID`.
+Fetches the :term:`visitor` profile :term:`attributes<attribute>`. The :term:`visitor` have to be identified by :term:`analytics ID`.
 
 .. note::
     In order to secure the :term:`PII` data, no :term:`attribute` is returned by default. You need to put each
     :term:`attribute` you want to access on :term:`attribute whitelist` before it is returned by this command. In
     order to do that, go to `Audience Manager` > `Attributes` tab and `enable` :term:`attribute` for the public API
-    access. It is your responsibility to make sure no :term:`user` :term:`PII` data will be available via API.
+    access. It is your responsibility to make sure no :term:`visitor` :term:`PII` data will be available via API.
 
 .. todo::
     Check with Data Protection Officer what are restrictions on data provided this way. Maybe we should add here link to
@@ -149,12 +149,12 @@ Code::
     The fulfilment handler callback (called with result).
 
     :param Object<string,Object<string,(string|number|Array<string>)>> attributes: **Required** Object containing
-        :term:`user` :term:`attributes<attribute>` divided by source.
+        :term:`visitor` :term:`attributes<attribute>` divided by source.
 
         - `analytics` - ``Object<string,string>`` Contains :term:`analytics attributes<analytics attribute>` about the
-          :term:`user` (e.g. browser name, browser version, country).
+          :term:`visitor` (e.g. browser name, browser version, country).
         - `attributes` - ``Object<string,(string|number|Array<string>)>``
-          Contains :term:`custom attributes<custom attribute>` about the :term:`user`
+          Contains :term:`custom attributes<custom attribute>` about the :term:`visitor`
           (e.g. first name, last name, email).
 
         Example::
@@ -184,7 +184,7 @@ Code::
 
 Update user attributes
 ``````````````````````
-Creates or updates :term:`user` :term:`custom attributes<custom attribute>`.
+Creates or updates :term:`visitor` :term:`custom attributes<custom attribute>`.
 
 .. note::
     Any :term:`attribute` can be updated this way whether it is on the :term:`attribute whitelist` or not.
@@ -266,7 +266,7 @@ Code::
 
 .. describe:: options
 
-    **Optional** ``object`` Object that can specify additional :term:`user` :term:`identifiers<identifier>` and callback
+    **Optional** ``object`` Object that can specify additional :term:`visitor` :term:`identifiers<identifier>` and callback
     functions.
 
     Example::
@@ -281,7 +281,7 @@ Code::
 
     .. attribute:: user_id
 
-        **Optional** ``string`` If the :term:`application` lets :term:`user` sign in - it is possible to pass a unique
+        **Optional** ``string`` If the :term:`application` lets :term:`visitor` sign in - it is possible to pass a unique
         permanent :term:`user ID` using this parameter. This will let the Audience Manager better identify :term:`users<user>` across
         devices (laptop, phone) and sessions.
 
@@ -300,7 +300,7 @@ Code::
 
     .. attribute:: email
 
-        **Optional** ``string`` If the :term:`application` identifies :term:`user` via his email - it is possible to pass
+        **Optional** ``string`` If the :term:`application` identifies :term:`visitor` via his email - it is possible to pass
         this value using this parameter. This will let the Audience Manager better identify :term:`users<user>` across devices
         (laptop, phone) and sessions.
 

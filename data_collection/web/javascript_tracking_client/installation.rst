@@ -21,6 +21,8 @@ Installation via snippet should only be carried out if the Tag Manager is not av
     Basic configuration will setup a single domain configuration. For other options, see:
     :ref:`jtc-installation-alternative-configurations`.
 
+.. _jtc-installation-jsts-example:
+
 This code should be added in the head section of the page just before the closing ``</head>`` tag.
 Additionally, the snippet must be configured in the following way:
 
@@ -44,14 +46,14 @@ Additionally, the snippet must be configured in the following way:
       })();
     </script>
 
-This code initializes the Analytics tracker in following ways:
+This code initializes the JavaScript Tracking Client in following ways:
 
-    #. Initializes the global ``_paq`` command queue that schedules commands to be run when the Analytics tracker library
+    #. Initializes the global ``_paq`` command queue that schedules commands to be run when the JavaScript Tracking Client library
        is loaded.
-    #. Schedules basic configuration of Analytics tracker using ``_paq.push``.
-    #. Creates a ``<script>`` tag that asynchronously loads the Analytics tracker library.
+    #. Schedules basic configuration of JavaScript Tracking Client using ``_paq.push``.
+    #. Creates a ``<script>`` tag that asynchronously loads the JavaScript Tracking Client library.
 
-When loading, the snippet is added on the page. The Analytics tracker will start tracking :term:`user` actions starting with page
+When loading, the snippet is added on the page. The JavaScript Tracking Client will start tracking :term:`visitor` actions starting with page
 view.
 
 .. _jtc-installation-alternative-configurations:
@@ -94,7 +96,7 @@ To set up tracking between multiple domains, you must use multiple functions: :r
 Tracking subdirectories of domain as separate websites
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-To differentiate parts of a website as another site, you must configure tracker this way::
+To differentiate parts of a website as another site, you must configure JavaScript Tracking Client this way::
 
     _paq.push(["setSiteId", "App1"]);
     _paq.push(["setTrackerUrl", u+"ppms.php"]);
