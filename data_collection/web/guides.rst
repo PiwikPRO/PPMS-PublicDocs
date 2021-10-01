@@ -332,9 +332,9 @@ Content impression and content interaction tracking feature fills that gap.
 
 Content impression allows you to track what content is visible to the visitor. On the bigger pages it may tell what particular parts/blocks of it the visitor has reached. When they keep scrolling and new content is presented on the screen it will be tracked automatically. This is useful for ads and banners, but may be also attached to a image carousell or other forms of image galleries.
 
-Now we know what block became visible on the screen, but we would also like to know how the visitor interacted with them. Content interaction tracking completes this feature. After particular block became visible on the viewport JS Tracking Client will automatically record visitor clicks related to it.
+Now we know what block became visible on the screen, but we would also like to know how the visitor interacted with them. Content interaction tracking completes this feature. After particular block became visible on the viewport JavaScript Tracking Client will automatically record visitor clicks related to it.
 
-JS Tracking Client distinguishes three parts of the content structure: `content name`, `content piece` and `content target`. All together they are called `content block`.
+JavaScript Tracking Client distinguishes three parts of the content structure: `content name`, `content piece` and `content target`. All together they are called `content block`.
 
 * `Content name` - this is the title describing the content block, tracked data will be visible as an entry in the reports under that name
 * `Content piece` - gives us the specific piece that was reached on the page (typically an image or other media)
@@ -352,11 +352,11 @@ Simply use one of:
 
 For more information visit the :ref:`Content tracking<jtc-api-content-tracking>` section of the JavaScript Tracking Client API documentation.
 
-**But how JS Tracking Client will know what blocks you would like to track?**
+**But how JavaScript Tracking Client will know what blocks you would like to track?**
 There are two ways of marking the blocks, you should either use a ``piwikTrackContent`` CSS class or a special html attribute ``data-track-content`` on them.
 Same technique is used for pointing out the content piece (``piwikContentPiece`` CSS class or ``data-content-piece`` attribute) and the content target (``piwikContentTarget`` CSS class or ``data-content-target`` attribute).
 
-Although JS Tracking Client has the ability of auto-detection for name, piece and target metrics, we still recommend providing those values manually as was described in the previous paragraph. If you don't then JS Tracking Client will try to fill them as follows:
+Although JavaScript Tracking Client has the ability of auto-detection for name, piece and target metrics, we still recommend providing those values manually as was described in the previous paragraph. If you don't then JavaScript Tracking Client will try to fill them as follows:
 
 * it will read block ``title`` attribute as for the Content name
 * it will read piece from the ``src`` attribute of an image
@@ -367,7 +367,7 @@ As you can imagine this may produce inconsistent results, providing those values
 Manual content tracking
 ^^^^^^^^^^^^^^^^^^^^^^^
 
-If for some reason automatic content tracking does not suit you needs you may still trigger :ref:`trackContentImpression<jtc-api-trackContentImpression>` and :ref:`trackContentInteraction<jtc-api-trackContentInteraction>` JS Tracking Client functions manually.
+If for some reason automatic content tracking does not suit you needs you may still trigger :ref:`trackContentImpression<jtc-api-trackContentImpression>` and :ref:`trackContentInteraction<jtc-api-trackContentInteraction>` JavaScript Tracking Client functions manually.
 
 Example:
 
@@ -460,7 +460,7 @@ Downloads
 
 Download data helps you learn which files are most popular on your site — be it a white paper, a case study, or a guide in PDF. Piwik PRO will automatically track clicks on such links as `Downloads`, and reports them in `Downloads` report.
 
-JS Tracking Client will automatically recognize download link by checking its target file extension.
+JavaScript Tracking Client will automatically recognize download link by checking its target file extension.
 
 .. note::
    These are default file extensions indicating a download file: 7z, aac, apk, arc, arj, asf, asx, avi, azw3, bin, bz, bz2, csv, deb, dmg, doc, docx, epub, exe, flv, gif, gz, gzip, hqx, ibooks, jar, jpg, jpeg, js, mp2, mp3, mp4, mpg, mpeg, mobi, mov, movie, msi, msp, odb, odf, odg, ods, odt, ogg, ogv, pdf, phps, png, ppt, pptx, qt, qtm, ra, ram, rar, rpm, sea, sit, tar, tbz, tbz2, tgz, torrent, txt, wav, wma, wmv, wpd, xls, xlsx, xml, z, zip
@@ -563,7 +563,7 @@ The Piwik PRO `Outlinks` report shows the list of external URLs that were clicke
 Configuring which domains are outlinks
 """"""""""""""""""""""""""""""""""""""
 
-When, for example, your main page is `piwik.pro` and you want to track views of `help.piwik.pro` without additional outlink click, you have to confgure JS Tracking Client to recognize this additional domain. You can do it in two ways.
+When, for example, your main page is `piwik.pro` and you want to track views of `help.piwik.pro` without additional outlink click, you have to confgure JavaScript Tracking Client to recognize this additional domain. You can do it in two ways.
 
 If you use default snippet provided by Tag Manager, you can configure it in website settings section of the Administration panel. Go to the Administration > Websites & apps > Settings > General settings > URLs. Add all the domains that should not be treated as outlinks.
 
@@ -655,7 +655,7 @@ To explicitly disable link tracking you can use ``disableLinkTracking`` function
 Disabling link tracking with CSS classes
 """"""""""""""""""""""""""""""""""""""""
 
-You can mark links that you do not with to track with CSS classes. JS Tracking Client will ignore such links and won't track them.
+You can mark links that you do not with to track with CSS classes. JavaScript Tracking Client will ignore such links and won't track them.
 
 .. code-block:: javascript
 
