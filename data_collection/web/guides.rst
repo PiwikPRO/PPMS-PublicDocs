@@ -713,3 +713,34 @@ before `trackPageView` was triggered.
 
 We call this procedure a "manual conversion". Manual conversion doesn't cause an additional conversion event to be tracked like the automatic conversion does.
 Automatic conversion tracking requires a "source" event that is analyzed and if it fits some goal definition then it causes an addition conversion event.
+
+Anonymous tracking
+------------------
+
+You can set JavaScript Tracking Client to mark requests to be anonymized. This feature can be useful when you want to use a consent manager on your website and collect full data only from those visitors who gave consent to be tracked.
+
+To set JavaScript Tracking client to mark requests as anonymized call :ref:`setUserIsAnonymous<jtc-api-setUserIsAnonymous>`
+
+.. code-block:: javascript
+
+    _paq.push(["setUserIsAnonymous"]);
+
+From now on all following requests sent by :ref:`trackPageView<jtc-api-trackPageView>` or any other function that sends requests to Collecting and Processing Pipeline (CPP), will be marked as a request that should be anonymized. :ref:`Learn more how Piwik PRO anonymizes visitors data<https://piwik.pro/blog/how-to-do-useful-analytics-without-personal-data/>`.
+
+.. note::
+
+    If your webpage reloads with each action performed by a visitor, eg. when visitor clicks a link or submits a form, then you have to call ``setUserIsAnonymous`` before first ``trackPageView`` on each page load. By default, JavaScript Tracking Client does not mark requests as anonymous.
+
+When a visitor gives consent for tracking or you want to enrich anonymous data that is already sent for current visitor, call :ref:`deanonymizeUser<jtc-api-deanonymizeUser>`
+
+.. code-block:: javascript
+
+    _paq.push(["deanonymizeUser"]);
+
+This will send special deanonymization request to CPP, that will enrich visitor's data with all the information that was stripped from previous requests.
+
+To sum up:
+
+#. You have to set JavaScript Tracking Client to anonymous mode with calling :ref:`setUserIsAnonymous<jtc-api-setUserIsAnonymous>`, at very start of your tracking code for all visitors, that you want to track anonymously (e.g. visitors that did not gave consent for tracking)
+#. Prevent the call of :ref:`setUserIsAnonymous<jtc-api-setUserIsAnonymous>` for all of visitors that should not be anonymized (e.g. visitors that already gave consent)
+#. To enrich already collected anonymous data of a visitor, you have to add a handler that will call :ref:`deanonymizeUser<jtc-api-deanonymizeUser>` when you want to denonymize the visitor (e.g. visitor clicked on a button to agree on tracking)
