@@ -30,7 +30,7 @@ Page views
 Page view is the most basic type of the tracked event. It represents a single page viewing action.
 By default it's triggered only once as soon as the HTML content is loaded to the browser with the :ref:`trackPageView<jtc-api-trackPageView>` function.
 
-Example::
+.. code-block:: javascript
 
     _paq.push(["trackPageView"]);
 
@@ -40,8 +40,51 @@ Example::
 
 .. todo:: Explain how to change page URL and title for virtual page views or link to SPA instructions page.
 
+User ID
+-------
 
+`User ID` is an additional parameter, that allows you to aggregate data. When set you will be 
+able to search through sessions by this parameter, fiter reports through it or create Multi attribution reports
+using `User ID`. You can learn more about User ID `here <https://help.piwik.pro/support/getting-started/userid/>`_.
+To set up `User ID` with your JavaScript Tracking snippet follow this guide.
 
+To set up `User ID` parameter add a call to :ref:`setUserId<jtc-api-setUserId>` to your tracking code:
+
+.. code-block:: javascript
+
+    _paq.push(["setUserId", "user-name@example.com"]);
+
+.. note ::
+
+    #. Invoking ``setUserId`` won't send any tracking request. To add `User ID` to tracked data, you have to call ``setUserId`` before :ref:`trackPageView<jtc-api-trackPageView>`. It does not have to be the first one. Another way is to send ping request with :ref:`ping<jtc-api-ping>`, after setting the `User ID`.
+    #. `User ID` can't be longer than 1024 bytes. It will be 1024 characters if you use only ASCII characters, but Unicode characters may require more bytes per character, so you should make sure that Unicode identifier cut down to 1024 bytes is still unique.
+    #. `User ID` should be a uniquie value for each user. Otherwise metrics for different users might be merged in the reports.
+    #. Usually a `User ID` value is an user email, because this is the identifier that users use to log in to a website and it fulfils above requirements.
+
+It is a good practice to remove value of `User ID`, when the user logs out. Otherwise `User ID` value might affect session of other users, if they share the same device. To remove `User ID` value call :ref:`resetUserId<jtc-api-resetUserId>`.
+
+.. code-block:: javascript
+
+    _paq.push(["resetUserId"]);
+
+Full abstract example, might look like this:
+
+.. code-block:: javascript
+
+    var user = getUserData();
+    if (user.isLogged) {
+      _paq.push(["setUserId", user.login]);
+    } else {
+      _paq.push(["resetUserId"]);
+    }
+
+.. warning::
+
+    Do not unset `User ID` by setting it to some seemingly empty value, like ``_paq.push(["setUserId", " "]);`` or ``_paq.push(["setUserId", ""]);``. This way some value might be still send to Collecting & Processing Pipeline. What seems to be an empty value to a human, might be not true for a machine. Only using ``resetUserId`` will guarantee that no `User ID` value will be send.
+
+.. note::
+
+    Use of ``resetUserId`` is neccessary only when clicking on log out button does not result in a page reload. For example, when your page is a Single Page Application, or user logout is initiated by a widget and the widget does not cause the webpage to reload, then you have to call ``resetUserId``. Otherwise, when page reloads on logout, then a call to ``resetUserId`` is not a neccessity, but sill, a good practice.
 
 Custom Events
 -------------
