@@ -78,7 +78,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 autosectionlabel_prefix_document = True
 # General information about the project.
-project = u'Piwik PRO Marketing Suite'
+project = u'Piwik PRO Analytics Suite'
 copyright = u'{year}, Piwik PRO - Enterprise Analytics and Tag Management Platform'.format(year=datetime.date.today().year)
 author = u'Piwik PRO'
 
@@ -171,7 +171,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, 'PPMS-PDFD.tex', u'Piwik PRO Marketing Suite Documentation',
+    (master_doc, 'PPMS-PDFD.tex', u'Piwik PRO Analytics Suite Documentation',
      u'Piwik PRO', 'manual'),
 ]
 
@@ -181,7 +181,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'Piwik PRO', u'Piwik PRO Marketing Suite Documentation',
+    (master_doc, 'Piwik PRO', u'Piwik PRO Analytics Suite Documentation',
      [author], 1)
 ]
 
@@ -192,7 +192,7 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    (master_doc, 'Piwik PRO Marketing Suite', u'Piwik PRO Marketing Suite Documentation',
+    (master_doc, 'Piwik PRO Analytics Suite', u'Piwik PRO Analytics Suite Documentation',
      author, 'Piwik PRO', 'One line description of project.',
      'Miscellaneous'),
 ]
