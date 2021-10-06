@@ -9,7 +9,7 @@ if "%SPHINXBUILD%" == "" (
 )
 set SOURCEDIR=.
 set BUILDDIR=_build
-set SPHINXPROJ="Piwik PRO Marketing Suite"
+set SPHINXPROJ="Piwik PRO Analytics Suite"
 
 if "%1" == "" goto help
 

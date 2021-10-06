@@ -1,4 +1,10 @@
 Global reserved names used by JavaScript tracker API
 ====================================================
 
-This page was moved here: :ref:`data-collection-javascript-tracking-client-reserved-names`.
+.. raw:: html
+
+    <script>
+        let locurl = location.href;
+        locurl = locurl.replace('/tracker/', '/data_collection/web/javascript_tracking_client/');
+        location.replace(locurl);
+    </script>

@@ -1,4 +1,10 @@
 Accelerated Mobile Pages integration
 ====================================
 
-This page was moved here: :ref:`data-collection-amp-integration`.
+.. raw:: html
+
+    <script>
+        let locurl = location.href;
+        locurl = locurl.replace('/integrations/', '/data_collection/other_integrations/');
+        location.replace(locurl);
+    </script>

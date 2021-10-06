@@ -63,7 +63,8 @@ extensions = ['sphinx.ext.autodoc',
     'sphinx.ext.doctest',
     'sphinx.ext.intersphinx',
     'sphinx.ext.todo',
-    'sphinx.ext.mathjax']
+    'sphinx.ext.mathjax',
+    'sphinx_tabs.tabs']
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -78,7 +79,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 autosectionlabel_prefix_document = True
 # General information about the project.
-project = u'Piwik PRO Marketing Suite'
+project = u'Piwik PRO Analytics Suite'
 copyright = u'{year}, Piwik PRO - Enterprise Analytics and Tag Management Platform'.format(year=datetime.date.today().year)
 author = u'Piwik PRO'
 
@@ -171,7 +172,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, 'PPMS-PDFD.tex', u'Piwik PRO Marketing Suite Documentation',
+    (master_doc, 'PPMS-PDFD.tex', u'Piwik PRO Analytics Suite Documentation',
      u'Piwik PRO', 'manual'),
 ]
 
@@ -181,7 +182,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'Piwik PRO', u'Piwik PRO Marketing Suite Documentation',
+    (master_doc, 'Piwik PRO', u'Piwik PRO Analytics Suite Documentation',
      [author], 1)
 ]
 
@@ -192,7 +193,7 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    (master_doc, 'Piwik PRO Marketing Suite', u'Piwik PRO Marketing Suite Documentation',
+    (master_doc, 'Piwik PRO Analytics Suite', u'Piwik PRO Analytics Suite Documentation',
      author, 'Piwik PRO', 'One line description of project.',
      'Miscellaneous'),
 ]
@@ -229,6 +230,7 @@ source_suffix = ['.rst', '.md']
 
 html_theme = "sphinx_rtd_theme"
 
+html_favicon = 'favicon.png'
 
 html_theme_options = {
     'includehidden': False,
@@ -236,7 +238,7 @@ html_theme_options = {
 }
 
 def setup(app):
-    app.add_css_file('css/custom_1629786506693.css')
+    app.add_css_file('css/custom_1632479843898.css')
     app.add_js_file('js/unicornDetector.js')
     app.add_js_file('js/custom.js')
 

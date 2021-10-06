@@ -1,2 +1,3 @@
+https://github.com/executablebooks/sphinx-tabs/releases/download/v1.1.13/sphinx-tabs-1.1.13.tar.gz
 sphinx-rtd-theme==0.2.5b2
 PyYAML==5.4.1

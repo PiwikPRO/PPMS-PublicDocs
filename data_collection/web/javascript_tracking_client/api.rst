@@ -131,12 +131,21 @@ Page views
 
     :param string customPageTitle: **Optional** Custom page title, used only for this event
 
-    Example of usage::
+    Example of usage:
 
-        [command queue]
-        _paq.push(["trackPageView"]);
-        [tracker object]
-        tracker.trackPageView();
+    .. tabs::
+
+        .. group-tab:: Command queue
+
+            .. code-block:: javascript
+
+                _paq.push(["trackPageView"]);
+
+        .. group-tab:: Tracker object
+
+            .. code-block:: javascript
+
+                tracker.trackPageView();
 
     .. note::
 
@@ -171,16 +180,21 @@ Custom events
     :param object dimensions: **Optional** :ref:`Custom dimensions<jtc-api-custom-dimensions-object>` to pass along with the custom event
 
     Example of usage (tracking when the visitor clicks on the cancel button with
-    exit intent)::
+    exit intent):
 
-        [command queue]
-        _paq.push(["trackEvent", "Exit intent", "Click on button", "Cancel"]);
-        [tracker object]
-        tracker.trackEvent("Exit intent", "Click on button", "Cancel");
+    .. tabs::
 
+        .. group-tab:: Command queue
 
+            .. code-block:: javascript
 
+                _paq.push(["trackEvent", "Exit intent", "Click on button", "Cancel"]);
 
+        .. group-tab:: Tracker object
+
+            .. code-block:: javascript
+
+                tracker.trackEvent("Exit intent", "Click on button", "Cancel");
 
 .. _jtc-api-goal-conversions:
 
@@ -197,16 +211,21 @@ Goal conversions
     :param number conversionValue: **Optional** Conversion value (revenue)
     :param object dimensions: **Optional** :ref:`Custom dimensions<jtc-api-custom-dimensions-object>` to pass along with the conversion
 
-    Example of usage (tracking conversion of goal *1* with value *15*)::
+    Example of usage (tracking conversion of goal *1* with value *15*):
 
-        [command queue]
-        _paq.push(["trackGoal" 1, 15]);
-        [tracker object]
-        tracker.trackGoal(1, 15);
+    .. tabs::
 
+        .. group-tab:: Command queue
 
+            .. code-block:: javascript
 
+                _paq.push(["trackGoal" 1, 15]);
 
+        .. group-tab:: Tracker object
+
+            .. code-block:: javascript
+
+                tracker.trackGoal(1, 15);
 
 .. _jtc-api-site-search:
 
@@ -224,16 +243,21 @@ Site search
     :param number searchCount: **Optional** The number of search results shown
     :param object dimensions: **Optional** :ref:`Custom dimensions<jtc-api-custom-dimensions-object>` to pass along with the site search event
 
-    Example of usage::
+    Example of usage:
 
-        [command queue]
-        _paq.push(["trackSiteSearch", "stove", undefined, 20]);
-        [tracker object]
-        tracker.trackSiteSearch("stove", undefined, 20);
+    .. tabs::
 
+        .. group-tab:: Command queue
 
+            .. code-block:: javascript
 
+                _paq.push(["trackSiteSearch", "stove", undefined, 20]);
 
+        .. group-tab:: Tracker object
+
+            .. code-block:: javascript
+
+                tracker.trackSiteSearch("stove", undefined, 20);
 
 .. _jtc-api-ecommerce:
 
@@ -254,12 +278,21 @@ E-commerce
     :param number productPrice: **Optional** Product price
     :param number productQuantity: **Optional** The number of units
 
-    Example of usage::
+    Example of usage:
 
-        [command queue]
-        _paq.push(["addEcommerceItem", "craft-311", "Unicorn Iron on Patch", "Crafts & Sewing", 499, 3]);
-        [tracker object]
-        tracker.addEcommerceItem("craft-311", "Unicorn Iron on Patch", "Crafts & Sewing", 499, 3);
+    .. tabs::
+
+        .. group-tab:: Command queue
+
+            .. code-block:: javascript
+
+                _paq.push(["addEcommerceItem", "craft-311", "Unicorn Iron on Patch", "Crafts & Sewing", 499, 3]);
+
+        .. group-tab:: Tracker object
+
+            .. code-block:: javascript
+
+                tracker.addEcommerceItem("craft-311", "Unicorn Iron on Patch", "Crafts & Sewing", 499, 3);
 
     .. note::
 
@@ -276,14 +309,23 @@ E-commerce
     .. warning::
 
         Adding a product with a SKU that has been previously added will first
-        remove the old product, e.g.::
+        remove the old product, e.g.:
 
-            [command queue]
-            _paq.push(["addEcommerceItem", "72625151", "Yellow notebook 150 pages", "School supplies", 10.00, 1]); // 1 item with sku 72625151
-            _paq.push(["addEcommerceItem", "72625151", "Yellow notebook 150 pages", "School supplies", 10.00, 2]); // 2 items with sku 72625151, not 3!
-            [tracker object]
-            tracker.addEcommerceItem("72625151", "Yellow notebook 150 pages", "School supplies", 10.00, 1); // 1 item with sku 72625151
-            tracker.addEcommerceItem("72625151", "Yellow notebook 150 pages", "School supplies", 10.00, 2); // 2 items with sku 72625151, not 3!
+    .. tabs::
+
+        .. group-tab:: Command queue
+
+            .. code-block:: javascript
+
+                _paq.push(["addEcommerceItem", "72625151", "Yellow notebook 150 pages", "School supplies", 10.00, 1]); // 1 item with sku 72625151
+                _paq.push(["addEcommerceItem", "72625151", "Yellow notebook 150 pages", "School supplies", 10.00, 2]); // 2 items with sku 72625151, not 3!
+
+        .. group-tab:: Tracker object
+
+            .. code-block:: javascript
+
+                tracker.addEcommerceItem("72625151", "Yellow notebook 150 pages", "School supplies", 10.00, 1); // 1 item with sku 72625151
+                tracker.addEcommerceItem("72625151", "Yellow notebook 150 pages", "School supplies", 10.00, 2); // 2 items with sku 72625151, not 3!
 
 .. _jtc-api-removeEcommerceItem:
 
@@ -295,12 +337,21 @@ E-commerce
 
     :param string productSKU: **Required** stock-keeping unit of a product to remove
 
-    Example of usage::
+    Example of usage:
 
-        [command queue]
-        _paq.push(["removeEcommerceItem", "craft-311"]);
-        [tracker object]
-        tracker.removeEcommerceItem("craft-311");
+    .. tabs::
+
+        .. group-tab:: Command queue
+
+            .. code-block:: javascript
+
+                _paq.push(["removeEcommerceItem", "craft-311"]);
+
+        .. group-tab:: Tracker object
+
+            .. code-block:: javascript
+
+                tracker.removeEcommerceItem("craft-311");
 
     .. note::
 
@@ -321,12 +372,21 @@ E-commerce
     Removes all items from a virtual shopping cart. Does not send any data to
     the tracker backend.
 
-    Example of usage::
+    Example of usage:
 
-        [command queue]
-        _paq.push(["clearEcommerceCart"]);
-        [tracker object]
-        tracker.clearEcommerceCart();
+    .. tabs::
+
+        .. group-tab:: Command queue
+
+            .. code-block:: javascript
+
+                _paq.push(["clearEcommerceCart"]);
+
+        .. group-tab:: Tracker object
+
+            .. code-block:: javascript
+
+                tracker.clearEcommerceCart();
 
     .. note::
         This function does not send any data to tracker backend. It only
@@ -348,12 +408,21 @@ E-commerce
 
     :returns: Object containing all tracked items (format: ``Object<productSKU, Array[productSKU, productName, productCategory, price, quantity]>``)
 
-    Example of usage::
+    Example of usage:
 
-        [command queue]
-        _paq.push([function () { console.log(this.getEcommerceItems()); }]);
-        [tracker object]
-        console.log(tracker.getEcommerceItems());
+    .. tabs::
+
+        .. group-tab:: Command queue
+
+            .. code-block:: javascript
+
+                _paq.push([function () { console.log(this.getEcommerceItems()); }]);
+
+        .. group-tab:: Tracker object
+
+            .. code-block:: javascript
+
+                console.log(tracker.getEcommerceItems());
 
     Example return value::
 
@@ -385,21 +454,29 @@ E-commerce
     ``productSKU``, ``productName`` and ``productPrice`` parameters supplying
     ``undefined`` where necessary.
 
-    Example of usage::
+    Example of usage:
 
-        [command queue]
-        _paq.push(["setEcommerceView", undefined, undefined, "Crafts & Sewing"]); // category view
-        _paq.push(["trackPageView"]);
+    .. tabs::
 
-        _paq.push(["setEcommerceView", "craft-311", "Unicorn Iron on Patch", "Crafts & Sewing", 499]); // product view
-        _paq.push(["trackPageView"]);
+        .. group-tab:: Command queue
 
-        [tracker object]
-        tracker.setEcommerceView(undefined, undefined, "Crafts & Sewing"); // category view
-        tracker.trackPageView();
+            .. code-block:: javascript
 
-        tracker.setEcommerceView("craft-311", "Unicorn Iron on Patch", "Crafts & Sewing", 499); // product view
-        tracker.trackPageView();
+                _paq.push(["setEcommerceView", undefined, undefined, "Crafts & Sewing"]); // category view
+                _paq.push(["trackPageView"]);
+
+                _paq.push(["setEcommerceView", "craft-311", "Unicorn Iron on Patch", "Crafts & Sewing", 499]); // product view
+                _paq.push(["trackPageView"]);
+
+        .. group-tab:: Tracker object
+
+            .. code-block:: javascript
+
+                tracker.setEcommerceView(undefined, undefined, "Crafts & Sewing"); // category view
+                tracker.trackPageView();
+
+                tracker.setEcommerceView("craft-311", "Unicorn Iron on Patch", "Crafts & Sewing", 499); // product view
+                tracker.trackPageView();
 
     .. warning::
 
@@ -414,12 +491,21 @@ E-commerce
 
     :param number cartAmount: **Required** The total value of items in the cart
 
-    Example of usage::
+    Example of usage:
 
-        [command queue]
-        _paq.push(["trackEcommerceCartUpdate", 250]);
-        [tracker object]
-        tracker.trackEcommerceCartUpdate(250);
+    .. tabs::
+
+        .. group-tab:: Command queue
+
+            .. code-block:: javascript
+
+                _paq.push(["trackEcommerceCartUpdate", 250]);
+
+        .. group-tab:: Tracker object
+
+            .. code-block:: javascript
+
+                tracker.trackEcommerceCartUpdate(250);
 
     .. todo::
         Why Tracker doesn't count cartAmount by itself? Why user must do this?
@@ -444,12 +530,21 @@ E-commerce
     :param number orderShipping: **Optional** Order shipping cost
     :param number orderDiscount: **Optional** Order discount amount
 
-    Example of usage::
+    Example of usage:
 
-        [command queue]
-        _paq.push(["trackEcommerceOrder", "3352", 499, 399, 0, 100]);
-        [tracker object]
-        tracker.trackEcommerceOrder("3352", 499, 399, 0, 100);
+    .. tabs::
+
+        .. group-tab:: Command queue
+
+            .. code-block:: javascript
+
+                _paq.push(["trackEcommerceOrder", "3352", 499, 399, 0, 100]);
+
+        .. group-tab:: Tracker object
+
+            .. code-block:: javascript
+
+                tracker.trackEcommerceOrder("3352", 499, 399, 0, 100);
 
 .. warning::
 
@@ -478,12 +573,21 @@ Custom Variables
     :param string value: **Optional** Value of the variable, limited to 200 characters
     :param string scope: **Optional** Scope of the variable, ``"visit"`` or ``"page"``. The default value is ``"visit"``.
 
-    Example of usage::
+    Example of usage:
 
-        [command queue]
-        _paq.push(["setCustomVariable", 1, "AspectRatio", "16:9", "visit"]);
-        [tracker object]
-        tracker.setCustomVariable(1, "AspectRatio", "16:9", "visit");
+    .. tabs::
+
+        .. group-tab:: Command queue
+
+            .. code-block:: javascript
+
+                _paq.push(["setCustomVariable", 1, "AspectRatio", "16:9", "visit"]);
+
+        .. group-tab:: Tracker object
+
+            .. code-block:: javascript
+
+                tracker.setCustomVariable(1, "AspectRatio", "16:9", "visit");
 
     .. note::
 
@@ -502,12 +606,21 @@ Custom Variables
     :param number index: **Required** Number from 1 to 5 where variable is stored
     :param string scope: **Optional** Scope of the variable, ``"visit"`` or ``"page"``. The default value is ``"visit"``.
 
-    Example of usage::
+    Example of usage:
 
-        [command queue]
-        _paq.push(["deleteCustomVariable", 1, "visit"]);
-        [tracker object]
-        tracker.deleteCustomVariable(1, "visit");
+    .. tabs::
+
+        .. group-tab:: Command queue
+
+            .. code-block:: javascript
+
+                _paq.push(["deleteCustomVariable", 1, "visit"]);
+
+        .. group-tab:: Tracker object
+
+            .. code-block:: javascript
+
+                tracker.deleteCustomVariable(1, "visit");
 
 .. _jtc-api-getCustomVariable:
 
@@ -521,16 +634,25 @@ Custom Variables
     :rtype:  Array[string, string]|boolean
     :returns: Custom variable value as an array with name and value if the custom variable exists or ``false`` if it doesn't.
 
-    Example of usage::
+    Example of usage:
 
-        [command queue]
-        _paq.push([function() {
-            var customVariable = this.getCustomVariable(1, "visit");
-            console.log(customVariable);
-        }]);
-        [tracker object]
-        var customVariable = tracker.getCustomVariable(1, "visit");
-        console.log(customVariable);
+    .. tabs::
+
+        .. group-tab:: Command queue
+
+            .. code-block:: javascript
+
+                _paq.push([function() {
+                    var customVariable = this.getCustomVariable(1, "visit");
+                    console.log(customVariable);
+                }]);
+
+        .. group-tab:: Tracker object
+
+            .. code-block:: javascript
+
+                var customVariable = tracker.getCustomVariable(1, "visit");
+                console.log(customVariable);
 
     Example return value::
 
@@ -542,16 +664,21 @@ Custom Variables
 
     Enables storing ``"visit"`` type custom variables in a first party cookie.
 
-    Example of usage::
+    Example of usage:
 
-        [command queue]
-        _paq.push(["storeCustomVariablesInCookie"]);
-        [tracker object]
-        tracker.storeCustomVariablesInCookie();
+    .. tabs::
 
+        .. group-tab:: Command queue
 
+            .. code-block:: javascript
 
+                _paq.push(["storeCustomVariablesInCookie"]);
 
+        .. group-tab:: Tracker object
+
+            .. code-block:: javascript
+
+                tracker.storeCustomVariablesInCookie();
 
 .. _jtc-api-custom-dimensions:
 
@@ -569,12 +696,21 @@ Custom Dimensions
     :param number customDimensionID: **Required** ID of a custom dimension
     :param string customDimensionValue: **Required** Value of a custom dimension
 
-    Example of usage::
+    Example of usage:
 
-        [command queue]
-        _paq.push(["setCustomDimensionValue", 3, "loginStatus"]);
-        [tracker object]
-        tracker.setCustomDimensionValue(3, "loginStatus");
+    .. tabs::
+
+        .. group-tab:: Command queue
+
+            .. code-block:: javascript
+
+                _paq.push(["setCustomDimensionValue", 3, "loginStatus"]);
+
+        .. group-tab:: Tracker object
+
+            .. code-block:: javascript
+
+                tracker.setCustomDimensionValue(3, "loginStatus");
 
     .. warning::
 
@@ -595,12 +731,21 @@ Custom Dimensions
 
     :param number customDimensionID: **Required** ID of a custom dimension
 
-    Example of usage::
+    Example of usage:
 
-        [command queue]
-        _paq.push(["deleteCustomDimension", 3]);
-        [tracker object]
-        tracker.deleteCustomDimension(3);
+    .. tabs::
+
+        .. group-tab:: Command queue
+
+            .. code-block:: javascript
+
+                _paq.push(["deleteCustomDimension", 3]);
+
+        .. group-tab:: Tracker object
+
+            .. code-block:: javascript
+
+                tracker.deleteCustomDimension(3);
 
 .. _jtc-api-getCustomDimensionValue:
 
@@ -614,15 +759,24 @@ Custom Dimensions
     :returns: Value set with :ref:`setCustomDimensionValue<jtc-api-setCustomDimensionValue>`
     :rtype: string
 
-    Example of usage::
+    Example of usage:
 
-        [command queue]
-        _paq.push([function() {
-            var customDimension = this.getCustomDimensionValue(3);
-            console.log(customDimension);
-        }]);
-        [tracker object]
-        var customDimension = this.getCustomDimensionValue(3);
+    .. tabs::
+
+        .. group-tab:: Command queue
+
+            .. code-block:: javascript
+
+                _paq.push([function() {
+                    var customDimension = this.getCustomDimensionValue(3);
+                    console.log(customDimension);
+                }]);
+
+        .. group-tab:: Tracker object
+
+            .. code-block:: javascript
+
+                var customDimension = this.getCustomDimensionValue(3);
 
 .. _jtc-api-setCustomDimension:
 
@@ -639,12 +793,21 @@ Custom Dimensions
     :param number customDimensionID: **Required** ID of a custom dimension
     :param string customDimensionValue: **Required** Value of a custom dimension (should be URL encoded)
 
-    Example of usage::
+    Example of usage:
 
-        [command queue]
-        _paq.push(["setCustomDimension", 3, "loginStatus"]);
-        [tracker object]
-        tracker.setCustomDimension(3, "loginStatus");
+    .. tabs::
+
+        .. group-tab:: Command queue
+
+            .. code-block:: javascript
+
+                _paq.push(["setCustomDimension", 3, "loginStatus"]);
+
+        .. group-tab:: Tracker object
+
+            .. code-block:: javascript
+
+                tracker.setCustomDimension(3, "loginStatus");
 
     .. warning::
 
@@ -672,16 +835,25 @@ Custom Dimensions
     :returns: Value set with :ref:`setCustomDimension<jtc-api-setCustomDimension>`
     :rtype: string
 
-    Example of usage::
+    Example of usage:
 
-        [command queue]
-        _paq.push([ function() {
-            var customDimension = this.getCustomDimension(3);
-            console.log(customDimension);
-        }]);
-        [tracker object]
-        var customDimension = tracker.getCustomDimension(3);
-        console.log(customDimension);
+    .. tabs::
+
+        .. group-tab:: Command queue
+
+            .. code-block:: javascript
+
+                _paq.push([ function() {
+                    var customDimension = this.getCustomDimension(3);
+                    console.log(customDimension);
+                }]);
+
+        .. group-tab:: Tracker object
+
+            .. code-block:: javascript
+
+                var customDimension = tracker.getCustomDimension(3);
+                console.log(customDimension);
 
 .. _jtc-api-custom-dimensions-object:
 
@@ -732,12 +904,21 @@ Impressions
     ``trackPageView`` was called in between ``trackAllContentImpressions``
     invocations.
 
-    Example of usage::
+    Example of usage:
 
-        [command queue]
-        _paq.push(["trackAllContentImpressions"]);
-        [tracker object]
-        tracker.trackAllContentImpressions();
+    .. tabs::
+
+        .. group-tab:: Command queue
+
+            .. code-block:: javascript
+
+                _paq.push(["trackAllContentImpressions"]);
+
+        .. group-tab:: Tracker object
+
+            .. code-block:: javascript
+
+                tracker.trackAllContentImpressions();
 
 .. _jtc-api-trackVisibleContentImpressions:
 
@@ -748,12 +929,21 @@ Impressions
     :param boolean checkOnScroll: **Optional** Whether to scan for visible content on ``scroll`` event. Default value: ``true``.
     :param number watchInterval: **Optional** Delay, in milliseconds, between scans for new visible content. Periodic checks can be disabled by passing ``0``. Default value: ``750``.
 
-    Example of usage::
+    Example of usage:
 
-        [command queue]
-        _paq.push(["trackVisibleContentImpressions", true, 2000]);
-        [tracker object]
-        tracker.trackVisibleContentImpressions(true, 2000);
+    .. tabs::
+
+        .. group-tab:: Command queue
+
+            .. code-block:: javascript
+
+                _paq.push(["trackVisibleContentImpressions", true, 2000]);
+
+        .. group-tab:: Tracker object
+
+            .. code-block:: javascript
+
+                tracker.trackVisibleContentImpressions(true, 2000);
 
     .. warning::
 
@@ -772,15 +962,23 @@ Impressions
 
     :param Node domNode: **Required** DOM node with content blocks (elements with ``data-track-content`` attribute) inside
 
-    Example of usage::
+    Example of usage:
 
-        [command queue]
-        var element = document.querySelector("#impressionContainer");
-        _paq.push(["trackContentImpressionsWithinNode", element]);
+    .. tabs::
 
-        [tracker object]
-        var element = document.querySelector("#impressionContainer");
-        tracker.trackContentImpressionsWithinNode(element);
+        .. group-tab:: Command queue
+
+            .. code-block:: javascript
+
+                var element = document.querySelector("#impressionContainer");
+                _paq.push(["trackContentImpressionsWithinNode", element]);
+
+        .. group-tab:: Tracker object
+
+            .. code-block:: javascript
+
+                var element = document.querySelector("#impressionContainer");
+                tracker.trackContentImpressionsWithinNode(element);
 
     .. note::
 
@@ -797,13 +995,21 @@ Impressions
     :param string contentPiece: **Required** Name of the content that was displayed (e.g. link to an image)
     :param string contentTarget: **Required** Where the content leads to (e.g. URL of some external website)
 
-    Example of usage::
+    Example of usage:
 
-        [command queue]
-        _paq.push(["trackContentImpression", "promo-video", "https://example.com/public/promo-01.mp4", "https://example.com/more"]);
+    .. tabs::
 
-        [tracker object]
-        tracker.trackContentImpression("promo-video", "https://example.com/public/promo-01.mp4", "https://example.com/more");
+        .. group-tab:: Command queue
+
+            .. code-block:: javascript
+
+                _paq.push(["trackContentImpression", "promo-video", "https://example.com/public/promo-01.mp4", "https://example.com/more"]);
+
+        .. group-tab:: Tracker object
+
+            .. code-block:: javascript
+
+                tracker.trackContentImpression("promo-video", "https://example.com/public/promo-01.mp4", "https://example.com/more");
 
 .. _jtc-api-logAllContentBlocksOnPage:
 
@@ -836,15 +1042,23 @@ Interactions
     :param Node domNode: **Required** Node marked as content block or containing content blocks. If content block can't be found, nothing will tracked.
     :param string contentInteraction: **Optional** Name of interaction (e.g. ``"click"``). Default value: ``"Unknown"``.
 
-    Example of usage::
+    Example of usage:
 
-        [command queue]
-        var domNode = document.querySelector("#add-image");
-        _paq.push(["trackContentInteractionNode", domNode, "clicked"]);
+    .. tabs::
 
-        [tracker object]
-        var domNode = document.querySelector("#add-image");
-        tracker.trackContentInteractionNode(domNode, "clicked");
+        .. group-tab:: Command queue
+
+            .. code-block:: javascript
+
+                var domNode = document.querySelector("#add-image");
+                _paq.push(["trackContentInteractionNode", domNode, "clicked"]);
+
+        .. group-tab:: Tracker object
+
+            .. code-block:: javascript
+
+                var domNode = document.querySelector("#add-image");
+                tracker.trackContentInteractionNode(domNode, "clicked");
 
     Example of usage in ``onclick`` attribute:
 
@@ -863,12 +1077,21 @@ Interactions
     :param string contentPiece: **Required** Name of the content that was displayed (e.g. link to an image)
     :param string contentTarget: **Required** Where the content leads to (e.g. URL of some external website)
 
-    Example of usage::
+    Example of usage:
 
-        [command queue]
-        _paq.push(["trackContentImpression", "clicked", "trackingWhitepaper", "document", "http://cooltracker.tr/whitepaper"]);
-        [tracker object]
-        tracker.trackContentImpression("clicked", "trackingWhitepaper", "document", "http://cooltracker.tr/whitepaper");
+    .. tabs::
+
+        .. group-tab:: Command queue
+
+            .. code-block:: javascript
+
+                _paq.push(["trackContentInteraction", "clicked", "trackingWhitepaper", "document", "http://cooltracker.tr/whitepaper"]);
+
+        .. group-tab:: Tracker object
+
+            .. code-block:: javascript
+
+                tracker.trackContentInteraction("clicked", "trackingWhitepaper", "document", "http://cooltracker.tr/whitepaper");
 
     .. warning::
         Use this function in conjunction with ``trackContentImpression``, as it
@@ -894,12 +1117,21 @@ Download and Outlink
     :param object dimensions: **Optional** :ref:`Custom dimensions<jtc-api-custom-dimensions-object>` to pass along with the link event
     :param function callback: **Optional** Function that should be called after tracking the link
 
-    Example of usage::
+    Example of usage:
 
-        [command queue]
-        _paq.push(["trackLink", "http://www.example.com/example", "link"]);
-        [tracker object]
-        tracker.trackLink("http://www.example.com/example", "link");
+    .. tabs::
+
+        .. group-tab:: Command queue
+
+            .. code-block:: javascript
+
+                _paq.push(["trackLink", "http://www.example.com/example", "link"]);
+
+        .. group-tab:: Tracker object
+
+            .. code-block:: javascript
+
+                tracker.trackLink("http://www.example.com/example", "link");
 
     Example of usage in ``onclick`` attribute:
 
@@ -920,15 +1152,23 @@ Download and Outlink
 
     :param boolean enable: **Required** Whether to enable automatic link tracking. The default value is ``true``.
 
-    Example of usage::
+    Example of usage:
 
-        [command queue]
-        _paq.push(["trackPageView"]);
-        _paq.push(["enableLinkTracking"]);
+    .. tabs::
 
-        [tracker object]
-        tracker.trackPageView();
-        tracker.enableLinkTracking();
+        .. group-tab:: Command queue
+
+            .. code-block:: javascript
+
+                _paq.push(["trackPageView"]);
+                _paq.push(["enableLinkTracking"]);
+
+        .. group-tab:: Tracker object
+
+            .. code-block:: javascript
+
+                tracker.trackPageView();
+                tracker.enableLinkTracking();
 
     .. note::
 
@@ -955,12 +1195,21 @@ Download and Outlink
 
     :param string|Array<string> classes: **Required** CSS class name or an array of class names
 
-    Example of usage::
+    Example of usage:
 
-        [command queue]
-        _paq.push(["setIgnoreClasses", ["do-not-track", "ignore-link"]]);
-        [tracker object]
-        tracker.setIgnoreClasses(["do-not-track", "ignore-link"]);
+    .. tabs::
+
+        .. group-tab:: Command queue
+
+            .. code-block:: javascript
+
+                _paq.push(["setIgnoreClasses", ["do-not-track", "ignore-link"]]);
+
+        .. group-tab:: Tracker object
+
+            .. code-block:: javascript
+
+                tracker.setIgnoreClasses(["do-not-track", "ignore-link"]);
 
     .. note::
 
@@ -976,12 +1225,21 @@ Download and Outlink
 
     :param string|Array<string> classes: **Required** CSS class name or an array of class names
 
-    Example of usage::
+    Example of usage:
 
-        [command queue]
-        _paq.push(["setLinkClasses", "this-is-an-outlink"]);
-        [tracker object]
-        tracker.setLinkClasses("this-is-an-outlink");
+    .. tabs::
+
+        .. group-tab:: Command queue
+
+            .. code-block:: javascript
+
+                _paq.push(["setLinkClasses", "this-is-an-outlink"]);
+
+        .. group-tab:: Tracker object
+
+            .. code-block:: javascript
+
+                tracker.setLinkClasses("this-is-an-outlink");
 
     .. note::
 
@@ -997,12 +1255,21 @@ Download and Outlink
 
     :param string|Array<string> classes: **Required** CSS class name or an array of class names
 
-    Example of usage::
+    Example of usage:
 
-        [command queue]
-        _paq.push(["setLinkClasses", "this-is-a-download"]);
-        [tracker object]
-        tracker.setLinkClasses("this-is-a-download");
+    .. tabs::
+
+        .. group-tab:: Command queue
+
+            .. code-block:: javascript
+
+                _paq.push(["setDownloadClasses", "this-is-a-download"]);
+
+        .. group-tab:: Tracker object
+
+            .. code-block:: javascript
+
+                tracker.setDownloadClasses("this-is-a-download");
 
     .. note::
 
@@ -1044,12 +1311,21 @@ Download and Outlink
     ``ram``, ``rar``, ``rpm``, ``sea``, ``sit``, ``tar``, ``tbz``, ``tbz2``, ``bz``, ``bz2``, ``tgz``,
     ``torrent``, ``txt``, ``wav``, ``wma``, ``wmv``, ``wpd``, ``xls``, ``xlsx``, ``xml``, ``z``, ``zip``
 
-    Example of usage::
+    Example of usage:
 
-        [command queue]
-        _paq.push(["addDownloadExtensions", "mhj|docx"]);
-        [tracker object]
-        tracker.addDownloadExtensions("mhj|docx");
+    .. tabs::
+
+        .. group-tab:: Command queue
+
+            .. code-block:: javascript
+
+                _paq.push(["setDownloadExtensions", "mhj|docx"]);
+
+        .. group-tab:: Tracker object
+
+            .. code-block:: javascript
+
+                tracker.setDownloadExtensions("mhj|docx");
 
     .. warning::
 
@@ -1071,6 +1347,22 @@ Download and Outlink
         The list of download extensions is not persisted in the browser. It has
         to be configured on every page load.
 
+    Example of usage:
+
+    .. tabs::
+
+        .. group-tab:: Command queue
+
+            .. code-block:: javascript
+
+                _paq.push(["addDownloadExtensions", "mhj|docx"]);
+
+        .. group-tab:: Tracker object
+
+            .. code-block:: javascript
+
+                tracker.addDownloadExtensions("mhj|docx");
+
 .. _jtc-api-removeDownloadExtensions:
 
 .. function:: removeDownloadExtensions(extensions)
@@ -1081,12 +1373,21 @@ Download and Outlink
         remove. Can be written as string, e.g. ``"zip|rar"``, or an array, e.g.
         ``["zip", "rar"]``.
 
-    Example of usage::
+    Example of usage:
 
-        [command queue]
-        _paq.push(["removeDownloadExtensions", "mhj|docx"]);
-        [tracker object]
-        tracker.removeDownloadExtensions("mhj|docx");
+    .. tabs::
+
+        .. group-tab:: Command queue
+
+            .. code-block:: javascript
+
+                _paq.push(["removeDownloadExtensions", "mhj|docx"]);
+
+        .. group-tab:: Tracker object
+
+            .. code-block:: javascript
+
+                tracker.removeDownloadExtensions("mhj|docx");
 
     .. warning::
 
@@ -1111,12 +1412,21 @@ User management
 
     :param string userID: **Required** Non-empty, unique ID of a user in application
 
-    Example of usage::
+    Example of usage:
 
-        [command queue]
-        _paq.push(["setUserId", "19283"]);
-        [tracker object]
-        tracker.setUserId("19283");
+    .. tabs::
+
+        .. group-tab:: Command queue
+
+            .. code-block:: javascript
+
+                _paq.push(["setUserId", "19283"]);
+
+        .. group-tab:: Tracker object
+
+            .. code-block:: javascript
+
+                tracker.setUserId("19283");
 
     .. todo:: is user id persistent?
 
@@ -1126,12 +1436,21 @@ User management
 
     Clears previously set ``userID``, e.g. when visitor logs out.
 
-    Example of usage::
+    Example of usage:
 
-        [command queue]
-        _paq.push(["resetUserId"]);
-        [tracker object]
-        tracker.resetUserId();
+    .. tabs::
+
+        .. group-tab:: Command queue
+
+            .. code-block:: javascript
+
+                _paq.push(["resetUserId"]);
+
+        .. group-tab:: Tracker object
+
+            .. code-block:: javascript
+
+                tracker.resetUserId();
 
 .. _jtc-api-setUserIsAnonymous:
 
@@ -1143,12 +1462,21 @@ User management
 
     :param boolean isAnonymous: **Required** Whether visitor is anonymous
 
-    Example of usage::
+    Example of usage:
 
-        [command queue]
-        _paq.push(["setUserIsAnonymous", true]);
-        [tracker object]
-        tracker.setUserIsAnonymous(true);
+    .. tabs::
+
+        .. group-tab:: Command queue
+
+            .. code-block:: javascript
+
+                _paq.push(["setUserIsAnonymous", true]);
+
+        .. group-tab:: Tracker object
+
+            .. code-block:: javascript
+
+                tracker.setUserIsAnonymous(true);
 
 .. _jtc-api-deanonymizeUser:
 
@@ -1157,12 +1485,21 @@ User management
     Disables anonymous tracking and sends deanonymization event to the tracking
     server. Recommended method for disabling anonymous tracking.
 
-    Example of usage::
+    Example of usage:
 
-        [command queue]
-        _paq.push(["deanonymizeUser"]);
-        [tracker object]
-        tracker.deanonymizeUser();
+    .. tabs::
+
+        .. group-tab:: Command queue
+
+            .. code-block:: javascript
+
+                _paq.push(["deanonymizeUser"]);
+
+        .. group-tab:: Tracker object
+
+            .. code-block:: javascript
+
+                tracker.deanonymizeUser();
 
 .. _jtc-api-getVisitorId:
 
@@ -1170,16 +1507,25 @@ User management
 
     Returns 16-character hex ID of the visitor.
 
-    Example of usage::
+    Example of usage:
 
-        [command queue]
-        _paq.push([function () {
-            var visitorID = this.getVisitorId();
-            console.log(visitorID);
-        }]);
-        [tracker object]
-        var visitorID = tracker.getVisitorId();
-        console.log(visitorID);
+    .. tabs::
+
+        .. group-tab:: Command queue
+
+            .. code-block:: javascript
+
+                _paq.push([function () {
+                    var visitorID = this.getVisitorId();
+                    console.log(visitorID);
+                }]);
+
+        .. group-tab:: Tracker object
+
+            .. code-block:: javascript
+
+                var visitorID = tracker.getVisitorId();
+                console.log(visitorID);
 
 .. _jtc-api-getVisitorInfo:
 
@@ -1198,16 +1544,25 @@ User management
         5. last visit timestamp (UNIX epoch time or ``""`` if N/A)
         6. last e-commerce order timestamp (UNIX epoch time or ``""`` if N/A)
 
-    Example of usage::
+    Example of usage:
 
-        [command queue]
-        _paq.push([function () {
-            var info = this.getVisitorInfo();
-            console.log(info);
-        }]);
-        [tracker object]
-        var info = tracker.getVisitorInfo();
-        console.log(info);
+    .. tabs::
+
+        .. group-tab:: Command queue
+
+            .. code-block:: javascript
+
+                _paq.push([function () {
+                    var info = this.getVisitorInfo();
+                    console.log(info);
+                }]);
+
+        .. group-tab:: Tracker object
+
+            .. code-block:: javascript
+
+                var info = tracker.getVisitorInfo();
+                console.log(info);
 
     Example output::
 
@@ -1374,14 +1729,23 @@ Cross domain linking
     Returns the name of a cross domain URL parameter (query parameter by
     default) holding visitor ID. This is ``"pk_vid"`` by default.
 
-    Example usage::
+    Example usage:
 
-        [command queue]
-        _paq.push([function () {
-            var parameter = this.getCrossDomainLinkingUrlParameter();
-        }]);
-        [tracker object]
-        var parameter = tracker.getCrossDomainLinkingUrlParameter();
+    .. tabs::
+
+        .. group-tab:: Command queue
+
+            .. code-block:: javascript
+
+                _paq.push([function () {
+                    var parameter = this.getCrossDomainLinkingUrlParameter();
+                }]);
+
+        .. group-tab:: Tracker object
+
+            .. code-block:: javascript
+
+                var parameter = tracker.getCrossDomainLinkingUrlParameter();
 
     .. note::
 
@@ -1414,21 +1778,29 @@ Cross domain linking
         :rtype: string|null
 
     Example of usage (value sent via URL query parameter - equivalent of default
-    implementation)::
+    implementation):
 
-        [command queue]
-        _paq.push(["customCrossDomainLinkDecorator", function (url, value, name) {
-            var parsedUrl = new URL(url);
-            parsedUrl.searchParams.append(name, value);
-            return parsedUrl.href;
-        }]);
+    .. tabs::
 
-        [tracker object]
-        tracker.customCrossDomainLinkDecorator(function (url, value, name) {
-            var parsedUrl = new URL(url);
-            parsedUrl.searchParams.append(name, value);
-            return parsedUrl.href;
-        }]);
+        .. group-tab:: Command queue
+
+            .. code-block:: javascript
+
+                _paq.push(["customCrossDomainLinkDecorator", function (url, value, name) {
+                    var parsedUrl = new URL(url);
+                    parsedUrl.searchParams.append(name, value);
+                    return parsedUrl.href;
+                }]);
+
+        .. group-tab:: Tracker object
+
+            .. code-block:: javascript
+
+                tracker.customCrossDomainLinkDecorator(function (url, value, name) {
+                    var parsedUrl = new URL(url);
+                    parsedUrl.searchParams.append(name, value);
+                    return parsedUrl.href;
+                }]);
 
     .. todo:: Is anyone actually overwriting the default decorator?
 
@@ -1454,16 +1826,25 @@ Cross domain linking
         :rtype: string
 
     Example usage (value sent via URL query parameter - equivalent of default
-    implementation)::
+    implementation):
 
-        [command queue]
-        _paq.push(["customCrossDomainLinkVisitorIdGetter", function (url, name) {
-            return (new URL(url)).searchParams.get(name) || "";
-        }]);
-        [tracker object]
-        tracker.customCrossDomainLinkVisitorIdGetter(function (url, name) {
-            return (new URL(url)).searchParams.get(name) || "";
-        });
+    .. tabs::
+
+        .. group-tab:: Command queue
+
+            .. code-block:: javascript
+
+                _paq.push(["customCrossDomainLinkVisitorIdGetter", function (url, name) {
+                    return (new URL(url)).searchParams.get(name) || "";
+                }]);
+
+        .. group-tab:: Tracker object
+
+            .. code-block:: javascript
+
+                tracker.customCrossDomainLinkVisitorIdGetter(function (url, name) {
+                    return (new URL(url)).searchParams.get(name) || "";
+                });
 
     .. todo:: Is anyone actually overwriting the default visitor ID getter?
 
@@ -1486,12 +1867,21 @@ Tracker configuration
 
     :param Array<string> domains: **Required** A list of internal domains. Domains can contain wildcards: ``"*"``.
 
-    Example of usage::
+    Example of usage:
 
-        [command queue]
-        _paq.push(["setDomains", ["*.example.com", "*.example.co.uk"]]);
-        [tracker object]
-        tracker.setDomains(["*.example.com", "*.example.co.uk"]);
+    .. tabs::
+
+        .. group-tab:: Command queue
+
+            .. code-block:: javascript
+
+                _paq.push(["setDomains", ["*.example.com", "*.example.co.uk"]]);
+
+        .. group-tab:: Tracker object
+
+            .. code-block:: javascript
+
+                tracker.setDomains(["*.example.com", "*.example.co.uk"]);
 
 .. _jtc-api-setDocumentTitle:
 
@@ -1503,12 +1893,21 @@ Tracker configuration
 
     :param string title: **Required** Custom title
 
-    Example of usage::
+    Example of usage:
 
-        [command queue]
-        _paq.push(["setDocumentTitle", document.title.toLocaleLowerCase()]);
-        [tracker object]
-        tracker.setDocumentTitle(document.title.toLocaleLowerCase());
+    .. tabs::
+
+        .. group-tab:: Command queue
+
+            .. code-block:: javascript
+
+                _paq.push(["setDocumentTitle", document.title.toLocaleLowerCase()]);
+
+        .. group-tab:: Tracker object
+
+            .. code-block:: javascript
+
+                tracker.setDocumentTitle(document.title.toLocaleLowerCase());
 
 .. _jtc-api-setTimingDataSamplingOnPageLoad:
 
@@ -1519,19 +1918,27 @@ Tracker configuration
 
     :param number sampling: **Required** Page performance sampling, integer between 0 and 100. 0 disables page performance data collection. 100 measures every page load.
 
-    Example of usage::
+    Example of usage:
 
-        [command queue]
-        _paq.push(["setTimingDataSamplingOnPageLoad", 0]); // disables page performance data collection
-        _paq.push(["setTimingDataSamplingOnPageLoad", 5]); // 5% of page views will by followed by a page performance measurement, this is the default behavior
-        _paq.push(["setTimingDataSamplingOnPageLoad", 30]); // 30% of page views will be followed by a page performance measurement
-        _paq.push(["setTimingDataSamplingOnPageLoad", 100]); // 100% of page views will be followed by a page performance measurement
+    .. tabs::
 
-        [tracker object]
-        tracker.setTimingDataSamplingOnPageLoad(0); // disables page performance data collection
-        tracker.setTimingDataSamplingOnPageLoad(5); // 5% of page views will by followed by a page performance measurement, this is the default behavior
-        tracker.setTimingDataSamplingOnPageLoad(30); // 30% of page views will be followed by a page performance measurement
-        tracker.setTimingDataSamplingOnPageLoad(100); // 100% of page views will be followed by a page performance measurement
+        .. group-tab:: Command queue
+
+            .. code-block:: javascript
+
+                _paq.push(["setTimingDataSamplingOnPageLoad", 0]); // disables page performance data collection
+                _paq.push(["setTimingDataSamplingOnPageLoad", 5]); // 5% of page views will by followed by a page performance measurement, this is the default behavior
+                _paq.push(["setTimingDataSamplingOnPageLoad", 30]); // 30% of page views will be followed by a page performance measurement
+                _paq.push(["setTimingDataSamplingOnPageLoad", 100]); // 100% of page views will be followed by a page performance measurement
+
+        .. group-tab:: Tracker object
+
+            .. code-block:: javascript
+
+                tracker.setTimingDataSamplingOnPageLoad(0); // disables page performance data collection
+                tracker.setTimingDataSamplingOnPageLoad(5); // 5% of page views will by followed by a page performance measurement, this is the default behavior
+                tracker.setTimingDataSamplingOnPageLoad(30); // 30% of page views will be followed by a page performance measurement
+                tracker.setTimingDataSamplingOnPageLoad(100); // 100% of page views will be followed by a page performance measurement
 
     .. note::
 
@@ -1553,14 +1960,23 @@ Tracker configuration
 
     Returns page performance sampling number.
 
-    Example of usage::
+    Example of usage:
 
-        [command queue]
-        _paq.push([function () {
-            console.log(this.getTimingDataSamplingOnPageLoad());
-        }]);
-        [tracker object]
-        console.log(tracker.getTimingDataSamplingOnPageLoad());
+    .. tabs::
+
+        .. group-tab:: Command queue
+
+            .. code-block:: javascript
+
+                _paq.push([function () {
+                    console.log(this.getTimingDataSamplingOnPageLoad());
+                }]);
+
+        .. group-tab:: Tracker object
+
+            .. code-block:: javascript
+
+                console.log(tracker.getTimingDataSamplingOnPageLoad());
 
     Example output::
 
@@ -1576,12 +1992,21 @@ Tracker configuration
     allows us to determine how much time visitors spend on a page by sending
     heartbeats to the server as long as the page is in focus.
 
-    Example of usage::
+    Example of usage:
 
-        [command queue]
-        _paq.push(["enableHeartBeatTimer"]);
-        [tracker object]
-        tracker.enableHeartBeatTimer();
+    .. tabs::
+
+        .. group-tab:: Command queue
+
+            .. code-block:: javascript
+
+                _paq.push(["enableHeartBeatTimer"]);
+
+        .. group-tab:: Tracker object
+
+            .. code-block:: javascript
+
+                tracker.enableHeartBeatTimer();
 
     .. note::
         The first heartbeat will be sent 15 seconds after the page load. The
@@ -1604,12 +2029,21 @@ Tracker configuration
 
     :param number milliseconds: **Required** How many milliseconds a request needs to reach the server.
 
-    Example of usage::
+    Example of usage:
 
-        [command queue]
-        _paq.push(["setLinkTrackingTimer", 100]);
-        [tracker object]
-        tracker.setLinkTrackingTimer(100);
+    .. tabs::
+
+        .. group-tab:: Command queue
+
+            .. code-block:: javascript
+
+                _paq.push(["setLinkTrackingTimer", 100]);
+
+        .. group-tab:: Tracker object
+
+            .. code-block:: javascript
+
+                tracker.setLinkTrackingTimer(100);
 
     .. note::
 
@@ -1627,16 +2061,25 @@ Tracker configuration
 
     Returns lock/wait time after a request set by :ref:`setLinkTrackingTimer<jtc-api-setLinkTrackingTimer>`.
 
-    Example of usage::
+    Example of usage:
 
-        [command queue]
-        _paq.push([function () {
-            var time = this.getLinkTrackingTimer();
-            console.log(time);
-        }]);
-        [tracker object]
-        var time = tracker.getLinkTrackingTimer();
-        console.log(time);
+    .. tabs::
+
+        .. group-tab:: Command queue
+
+            .. code-block:: javascript
+
+                _paq.push([function () {
+                    var time = this.getLinkTrackingTimer();
+                    console.log(time);
+                }]);
+
+        .. group-tab:: Tracker object
+
+            .. code-block:: javascript
+
+                var time = tracker.getLinkTrackingTimer();
+                console.log(time);
 
 .. _jtc-api-setSiteInspectorSetup:
 
@@ -1650,12 +2093,21 @@ Tracker configuration
 
     :param boolean enable: **Required** Whether to enable site inspector support.
 
-    Example of usage::
+    Example of usage:
 
-        [command queue]
-        _paq.push(["setSiteInspectorSetup", false]);
-        [tracker object]
-        tracker.setSiteInspectorSetup(false);
+    .. tabs::
+
+        .. group-tab:: Command queue
+
+            .. code-block:: javascript
+
+                _paq.push(["setSiteInspectorSetup", false]);
+
+        .. group-tab:: Tracker object
+
+            .. code-block:: javascript
+
+                tracker.setSiteInspectorSetup(false);
 
 
 
@@ -1674,12 +2126,21 @@ Miscellaneous
     can still update the session. the most common use for this method is
     updating session custom dimensions or custom variables.
 
-    Example of usage::
+    Example of usage:
 
-        [command queue]
-        _paq.push(["ping"]);
-        [tracker object]
-        tracker.ping();
+    .. tabs::
+
+        .. group-tab:: Command queue
+
+            .. code-block:: javascript
+
+                _paq.push(["ping"]);
+
+        .. group-tab:: Tracker object
+
+            .. code-block:: javascript
+
+                tracker.ping();
 
 .. _jtc-api-addListener:
 
@@ -1690,12 +2151,21 @@ Miscellaneous
 
     :param DOMElement domElement: **Required** Element that should be tracked like a link.
 
-    Example of usage::
+    Example of usage:
 
-        [command queue]
-        _paq.push(["addListener", document.querySelector("#dynamically-added-link")]);
-        [tracker object]
-        tracker.addListener(document.querySelector("#dynamically-added-link"));
+    .. tabs::
+
+        .. group-tab:: Command queue
+
+            .. code-block:: javascript
+
+                _paq.push(["addListener", document.querySelector("#dynamically-added-link")]);
+
+        .. group-tab:: Tracker object
+
+            .. code-block:: javascript
+
+                tracker.addListener(document.querySelector("#dynamically-added-link"));
 
     .. todo:: Shouldn't this function be private? Is it of any use to developers? They can track link manually.
 
@@ -1708,12 +2178,21 @@ Miscellaneous
 
     :param string method: **Required** Method that will be used in requests. Either ``"GET"`` or ``"POST"``.
 
-    Example of usage::
+    Example of usage:
 
-        [command queue]
-        _paq.push(["setRequestMethod", "POST"]);
-        [tracker object]
-        tracker.setRequestMethod("POST");
+    .. tabs::
+
+        .. group-tab:: Command queue
+
+            .. code-block:: javascript
+
+                _paq.push(["setRequestMethod", "POST"]);
+
+        .. group-tab:: Tracker object
+
+            .. code-block:: javascript
+
+                tracker.setRequestMethod("POST");
 
     .. todo:: Mention same domain or CORS setup for "POST" method
 
@@ -1726,12 +2205,21 @@ Miscellaneous
 
     :param string contentType: **Required** Content-Type value to be set.
 
-    Example of usage::
+    Example of usage:
 
-        [command queue]
-        _paq.push(["setRequestContentType", "text/plain"]);
-        [tracker object]
-        tracker.setRequestContentType("text/plain");
+    .. tabs::
+
+        .. group-tab:: Command queue
+
+            .. code-block:: javascript
+
+                _paq.push(["setRequestContentType", "text/plain"]);
+
+        .. group-tab:: Tracker object
+
+            .. code-block:: javascript
+
+                tracker.setRequestContentType("text/plain");
 
 .. _jtc-api-setCustomRequestProcessing:
 
@@ -1742,18 +2230,27 @@ Miscellaneous
 
     :param function function: **Required** Function accepting a query string and returning another query string.
 
-    Example of usage::
+    Example of usage:
 
-        [command queue]
-        _paq.push(["setCustomRequestProcessing", function (query) {
-            var modifiedQuery = query.replace("rec=1", "rec=0");
-            return modifiedQuery;
-        }]);
-        [tracker object]
-        tracker.setCustomRequestProcessing(function (query) {
-            var modifiedQuery = query.replace("rec=1", "rec=0");
-            return modifiedQuery;
-        });
+    .. tabs::
+
+        .. group-tab:: Command queue
+
+            .. code-block:: javascript
+
+                _paq.push(["setCustomRequestProcessing", function (query) {
+                    var modifiedQuery = query.replace("rec=1", "rec=0");
+                    return modifiedQuery;
+                }]);
+
+        .. group-tab:: Tracker object
+
+            .. code-block:: javascript
+
+                tracker.setCustomRequestProcessing(function (query) {
+                    var modifiedQuery = query.replace("rec=1", "rec=0");
+                    return modifiedQuery;
+                });
 
     .. todo::
 
@@ -1773,3 +2270,19 @@ Miscellaneous
 
         Browsers may limit information about error details if it occurs in
         script loaded from different origin (see `details <https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onerror#notes>`_).
+
+    Example of usage:
+
+    .. tabs::
+
+        .. group-tab:: Command queue
+
+            .. code-block:: javascript
+
+                _paq.push(["enableJSErrorTracking"]);
+
+        .. group-tab:: Tracker object
+
+            .. code-block:: javascript
+
+                tracker.enableJSErrorTracking();

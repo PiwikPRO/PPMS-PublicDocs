@@ -1,5 +1,5 @@
-HTTP API
-========
+Tracker debugger API
+====================
 
 .. raw:: html
 
