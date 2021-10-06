@@ -1,8 +1,48 @@
 openapi: '3.0.0'
 info:
     title: Tag Manager API
-    description: In order to access those endpoints, you need to **authenticate**. <a href="../../getting_started.html">Here is a guide on how to do it.</a>
     version: '1.0'
+    description: |
+        # Builtin variables
+
+        <details>
+        <summary>Show builtin variables list</summary>
+
+        | name                      	| variable_id                           	| description                                                                                                                                                                                                                                                                                                                                                            |
+        |---------------------------	|---------------------------------------	|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+        | History source            	| 812fe016-e2fd-47aa-8035-78ae07614f37   	| Contains information about the last method/event that updated the History object. It changes its value when a pushState, replaceState, popState or hashchange event occurs. |
+        | History state             	| 1bd1cd75-d95e-426b-bb8a-3e3712e8c02c  	| Contains the current value of HTML5 history state which is of type any. It changes its value when a history state meets a defined condition. |
+        | Old history state         	| a1e95003-4bf1-4d79-9635-5cca6c924a04  	| Contains the previous value of HTML5 history state which is of type any. It changes its value when a previous history state meets a defined condition. |
+        | History fragment          	| eb8227b2-b177-4162-b488-a1ef2ded01d1  	| Contains the current value of URL fragment identifier (hash). It changes its value when a hash in the page URL meets a defined condition. |
+        | Old history fragment      	| 4f1fc6f3-9a18-4c17-8e13-37da82e61768  	| Contains the previous value of URL fragment identifier (hash). It changes its value when a previous hash in the page URL meets a defined condition. |
+        | Click ID                  	| d9afe18d-0735-4fbc-b13b-344f7d3f27b3  	| Contains the ID of the clicked element. It changes its value when the visitor clicks an element with the chosen ID. |
+        | Click Url                 	| e4269c97-5827-4d6c-8619-fcd8903f08cd  	| Contains the URL of the clicked element. It changes its value when the visitor clicks a link with the chosen URL. |
+        | Click Classes             	| 95e3c748-7fa0-4558-b128-7d737fc7ab8a  	| Contains the class(es) of the clicked element. It changes its value when the visitor clicks an element with the chosen CSS class. |
+        | Click Element             	| 9c63b4a0-db22-4c13-acaf-ef6bafdfecd3  	| Contains DOM object of clicked HTML element. |
+        | Form ID                   	| 50c70f02-b760-4ee7-8cb5-ea932aff0e0c  	| Contains the ID of the submitted form element. It changes its value when the visitor submits a form with the chosen ID. |
+        | Form Url                  	| f6166151-d158-4582-b06d-4e951a4013a2  	| Contains the URL of the submitted form element. It changes its value when the visitor submits a form that sends a request to the chosen URL. |
+        | Form Classes              	| 7d82678e-daee-4573-b9c3-d60d6d618106  	| Contains the class(es) of the submitted form element. It changes its value when the visitor submits a form with the chosen CSS class. |
+        | Form Name                 	| 11e9fab9-249e-40d3-aed8-c71ce225e1e2  	| Contains name of the submitted form. |
+        | Event                     	| f3fdb6fe-c200-4c0b-a1cd-8cc487d5d16c  	| The name of the event emitted on dataLayer. It changes its value when a chosen custom event occurs in dataLayer. |
+        | Time on website           	| f659e33f-4dd6-4c9e-b7e7-609677cf94bd  	| It changes its value when the visitor is on the website or page for a certain amount of time. For example, fires a tag when the visitor spends at least 15 seconds on a page or website. |
+        | Page Scroll               	| db68f452-f594-4c6b-ab84-d42cb060ad69  	| It changes its value when the visitor scrolls to the chosen point on the page. For example, the visitor scrolls 50% of the page or scrolls to 1440 px on the page. |
+        | Leave content             	| bd8c257b-5cc0-4cec-bc1e-a53f94239b2b  	| It changes its value when the cursor leaves a page. You can choose two options for this condition: page exit intent — the cursor leaves page via top edge or cursor leaving the browser's area — the cursor leaves page via any edge. |
+        | Page Url                  	| 6fc9459a-3b0a-4810-a576-7766422ffa44  	| Contains the whole URL of the current page. |
+        | Page Path                 	| 823ec921-df40-48bd-b044-7ed085cb3cfa  	| Contains the path of the URL of the current page. |
+        | Page Hostname             	| 237f291a-b3bc-4cee-b636-6b872a2d8982  	| Contains the hostname of the URL of the current page. |
+        | View within session       	| 039a53aa-0b3a-4728-b1b9-e644ae0daebb  	| Contains time in seconds from last interaction. |
+        | Referrer                  	| e3628205-a73b-4ffa-8bba-da0306b2a6f1  	| The URL of the page that linked to the current page. |
+        | External referrer         	| 0de2221f-955c-4b36-a7d9-f6b99c9b8523  	| The URL of the page from the website with a different hostname that linked to your current website. |
+        | Campaign                  	| ec657587-2f31-452e-a8dd-776f2e1a166b  	| Its value based on the utm_campaign or pk_campaign parameter from URL. |
+        | Traffic source            	| 4afdedb7-0788-4af1-ba73-29f2fc5f630b  	| Contains traffic source: campaign, organic search, social, website, direct. It changes its value when the visitor clicks an element on any page to which they came from the chosen traffic source: campaign, organic search, social, referral, direct. |
+        | Returning Visitor         	| e4345e5e-080e-466e-982e-3e2576aa39ce  	| Logical condition which says if this is the user’s first visit or not. It changes its value when a returning visitor clicks an element on the chosen page (this mechanism is based on the cookie). |
+        | Audience manager audience 	| c20e6f87-eb29-4df3-9355-ebdf15312da3  	| Contains the audience list of the visitor. |
+        | Consents                  	| 93ee1a1f-55f2-4321-8f3f-b92291d4fadf  	| Contains information about the current and previous state of visitor consents. |
+
+        </details>
+
+security:
+    - BearerAuth: []
 
 servers:
     - url: https://example.piwik.pro
