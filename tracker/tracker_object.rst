@@ -1,5 +1,5 @@
-Tracker Object Functions
-========================
+JavaScript Tracking Client Object Functions
+===========================================
 
 .. raw:: html
 

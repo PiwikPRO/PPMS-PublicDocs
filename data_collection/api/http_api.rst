@@ -1,8 +1,8 @@
 .. _data-collection-tracking-api-http:
 
-Tracking HTTP API
-=================
-Tracking HTTP API allows sending to analytics information about Visitors page views, events and visits.
+CPP Tracking HTTP API
+=====================
+CPP Tracking HTTP API allows sending to analytics information about Visitors page views, events and visits.
 
 .. raw:: html
 
