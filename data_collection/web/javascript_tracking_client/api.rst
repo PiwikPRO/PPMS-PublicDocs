@@ -2260,9 +2260,11 @@ Miscellaneous
 
 .. _jtc-api-enableJSErrorTracking:
 
-.. function:: enableJSErrorTracking()
+.. function:: enableJSErrorTracking(unique)
 
     Enables tracking of unhandled JavaScript errors.
+
+    :param boolean unique: **Optional** When set to true, tracker will send only unique errors from a page (duplicated errors will be ignored). Default: ``true``.
 
     .. note::
 
