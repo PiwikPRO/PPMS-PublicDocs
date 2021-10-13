@@ -47,7 +47,7 @@ By default it's triggered only once as soon as the HTML content is loaded to the
 User ID
 -------
 
-`User ID` is an additional parameter, that allows you to aggregate data. When set you will be
+`User ID` is an additional parameter that allows you to aggregate data. When set you will be
 able to search through sessions by this parameter, filter reports through it or create Multi attribution reports
 using `User ID`. You can learn more about User ID `here <https://help.piwik.pro/support/getting-started/userid/>`_.
 To set up `User ID` with your JavaScript Tracking snippet follow this guide.
@@ -84,11 +84,15 @@ Full abstract example, might look like this:
 
 .. warning::
 
-    Do not unset `User ID` by setting it to some seemingly empty value, like ``_paq.push(["setUserId", " "]);`` or ``_paq.push(["setUserId", ""]);``. This way some value might be still send to Collecting & Processing Pipeline. What seems to be an empty value to a human, might be not true for a machine. Only using ``resetUserId`` will guarantee that no `User ID` value will be send.
+    Do not clear `User ID` by setting it to some seemingly empty value, like ``_paq.push(["setUserId", " "]);`` or ``_paq.push(["setUserId", ""]);``. This way some value might be still send to Collecting & Processing Pipeline. What seems to be an empty value to a human, might not be to a machine. Only using ``resetUserId`` will properly clear the `User ID` value.
 
 .. note::
 
     Use of ``resetUserId`` is necessary only when clicking on log out button does not result in a page reload. For example, when your page is a Single Page Application, or user logout is initiated by a widget and the widget does not cause the webpage to reload, then you have to call ``resetUserId``. Otherwise, when page reloads on logout, then a call to ``resetUserId`` is not a necessity, but sill, a good practice.
+
+.. note::
+
+    `Set up a user ID <https://help.piwik.pro/support/getting-started/userid/>`_ article shows an easy way to get `User ID` without modifying the source code of your website.
 
 
 
