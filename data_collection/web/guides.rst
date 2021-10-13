@@ -9,7 +9,7 @@ Installing Tracking code
 
 Using Tag Manager's snippet is the recommended and also the easiest way of installing tracking code on your website. When Tag Manager is added to the site, it automatically starts tracking actions using "Piwik PRO Analytics template".
 
-If you do not have Tag Manager on your website yet, follow this procedure to install it:
+If you do not have Tag Manager on your website yet, follow `Install a container <https://help.piwik.pro/support/getting-started/install-a-tracking-code/>`_ article to install it. In short, you will need to:
 
 #. Sign in to your PPAS with your admin or Super User account.
 #. Click on the menu button on the top left.
@@ -18,7 +18,7 @@ If you do not have Tag Manager on your website yet, follow this procedure to ins
 #. Select the "Installation" tab.
 #. The Tag Manager's snippet for your website is displayed under the "Website code for asynchronous tags" or "Website code for synchronous tags".
 
-In case you do not want to install Tag Manager on your website, you can install tracking code via JavaScript Tracking Snippet. Guide how to do it is available here: :ref:`jtc-installation-installing-tracking-code-via-node-snippet`
+In case you do not want to install Tag Manager on your website, you can install tracking code via JavaScript Tracking Snippet. Guide how to do it is available here: :ref:`jtc-installation-installing-tracking-code-via-node-snippet`.
 
 
 
@@ -40,11 +40,15 @@ By default it's triggered only once as soon as the HTML content is loaded to the
 
 .. todo:: Explain how to change page URL and title for virtual page views or link to SPA instructions page.
 
+
+
+
+
 User ID
 -------
 
-`User ID` is an additional parameter, that allows you to aggregate data. When set you will be 
-able to search through sessions by this parameter, fiter reports through it or create Multi attribution reports
+`User ID` is an additional parameter, that allows you to aggregate data. When set you will be
+able to search through sessions by this parameter, filter reports through it or create Multi attribution reports
 using `User ID`. You can learn more about User ID `here <https://help.piwik.pro/support/getting-started/userid/>`_.
 To set up `User ID` with your JavaScript Tracking snippet follow this guide.
 
@@ -58,7 +62,7 @@ To set up `User ID` parameter add a call to :ref:`setUserId<jtc-api-setUserId>` 
 
     #. Invoking ``setUserId`` won't send any tracking request. To add `User ID` to tracked data, you have to call ``setUserId`` before :ref:`trackPageView<jtc-api-trackPageView>`. It does not have to be the first one. Another way is to send ping request with :ref:`ping<jtc-api-ping>`, after setting the `User ID`.
     #. `User ID` can't be longer than 1024 bytes. It will be 1024 characters if you use only ASCII characters, but Unicode characters may require more bytes per character, so you should make sure that Unicode identifier cut down to 1024 bytes is still unique.
-    #. `User ID` should be a uniquie value for each user. Otherwise metrics for different users might be merged in the reports.
+    #. `User ID` should be a unique value for each user. Otherwise metrics for different users might be merged in the reports.
     #. Usually a `User ID` value is an user email, because this is the identifier that users use to log in to a website and it fulfils above requirements.
 
 It is a good practice to remove value of `User ID`, when the user logs out. Otherwise `User ID` value might affect session of other users, if they share the same device. To remove `User ID` value call :ref:`resetUserId<jtc-api-resetUserId>`.
@@ -84,7 +88,11 @@ Full abstract example, might look like this:
 
 .. note::
 
-    Use of ``resetUserId`` is neccessary only when clicking on log out button does not result in a page reload. For example, when your page is a Single Page Application, or user logout is initiated by a widget and the widget does not cause the webpage to reload, then you have to call ``resetUserId``. Otherwise, when page reloads on logout, then a call to ``resetUserId`` is not a neccessity, but sill, a good practice.
+    Use of ``resetUserId`` is necessary only when clicking on log out button does not result in a page reload. For example, when your page is a Single Page Application, or user logout is initiated by a widget and the widget does not cause the webpage to reload, then you have to call ``resetUserId``. Otherwise, when page reloads on logout, then a call to ``resetUserId`` is not a necessity, but sill, a good practice.
+
+
+
+
 
 Custom Events
 -------------
@@ -102,15 +110,18 @@ A custom event consists of the following properties:
 
     Consider designing categories and actions upfront and documenting them at start and as they change. Follow one naming convention, e.g. *snake_case*, *kebab-case*, *camelCase*. This will minimize the risk of making mistakes and having to debug the tracking implementation.
 
-Tracking a custom event together with a page view is straightforward - simply call :ref:`trackEvent<jtc-api-trackEvent>` function after the page view. ::
+Tracking a custom event together with a page view is straightforward - simply call :ref:`trackEvent<jtc-api-trackEvent>` function after the page view.
+
+.. code-block:: javascript
 
     _paq.push(["trackPageView"]);
     _paq.push(["trackEvent", "assignment", "assignment-submitted", "Math - Trigonometry - assignment 4", 10]);
 
-
 The snippet above tracks a custom event with category *assignment*, action *assignment-submitted*, name *Math - Trigonometry - assignment 4* and value *10* (which might indicate the number of pages in a submitted document).
 
-Custom event name and custom event value are optional. You can skip them if they are not meaningful in your use case. ::
+Custom event name and custom event value are optional. You can skip them if they are not meaningful in your use case.
+
+.. code-block:: javascript
 
     _paq.push(["trackEvent", "category", "action"]); // skip both name and value
     _paq.push(["trackEvent", "category", "action", "name"]); // skip only value
@@ -146,6 +157,12 @@ Tracking more sophisticated events might require attaching listeners to the DOM 
         });
     </script>
 
+.. note::
+
+    `Analytics for advanced analysts <https://help.piwik.pro/guides/analytics-for-advanced/>`_
+    is a series of guides explaining how to track many different actions with
+    custom events in Tag Manager. Check it out if you're looking for some inspiration!
+
 
 
 
@@ -161,18 +178,20 @@ Our data collecting and processing pipeline automatically converts page views
 into site search events if the URL contains site search query parameters:
 ``q``, ``query``, ``s``, ``search``, ``searchword`` and ``keyword``.  You can
 customize these parameters on the website settings page. Site search events can
-also be tracked manually by calling :ref:`trackSiteSearch<js-api-trackSiteSearch>`
-method. It allows specifying not only the keyword and category, but also
+also be tracked manually by calling :ref:`trackSiteSearch<jtc-api-trackSiteSearch>`
+function. It allows specifying not only the keyword and category, but also
 the number of results and additional custom dimensions.
 
-:ref:`trackSiteSearch<js-api-trackSiteSearch>` accepts the following parameters:
+:ref:`trackSiteSearch<jtc-api-trackSiteSearch>` accepts the following parameters:
 
 * **keyword** - what term someone looked for
 * **category** (optional) - which category the search was in
 * **results** (optional) - how many search results were returned
 * **dimensions** (optional) - custom dimensions to send along the site search
 
-It is used like this::
+It is used like this:
+
+.. code-block:: javascript
 
     _paq.push(["trackSiteSearch", "les paul", "electric guitars", 5, { dimension10: "amber" }]);
 
@@ -180,7 +199,9 @@ In this case, we track site search with keyword *les paul*, category *electric
 guitars*, *5* search results and custom dimension *10* with value *amber*.
 
 The optional parameters might be skipped or replaced with ``undefined`` to
-indicate no value. ::
+indicate no value.
+
+.. code-block:: javascript
 
     _paq.push(["trackSiteSearch", "playstation"]); // only keyword provided
     _paq.push(["trackSiteSearch", "playstation", "consoles"]); // only keyword and category provided
@@ -189,7 +210,7 @@ indicate no value. ::
 .. warning::
 
     If you can't or don't want to rely on automatic site search detection from
-    URL parameters, call ``trackSiteSearch`` method instead of ``trackPageView``
+    URL parameters, call ``trackSiteSearch`` function instead of ``trackPageView``
     on the search results page. Using both methods might result in a duplication
     of site search events.
 
@@ -209,7 +230,9 @@ Tracking category and product views
 
 Usually, the first e-commerce-related action a visitor performs on a website is browsing products. :ref:`setEcommerceView<jtc-api-setEcommerceView>` function allows us to track both category views and product views.
 
-To track a category view, use :ref:`setEcommerceView<jtc-api-setEcommerceView>` function **before** tracking the page view, like this::
+To track a category view, use :ref:`setEcommerceView<jtc-api-setEcommerceView>` function **before** tracking the page view, like this:
+
+.. code-block:: javascript
 
     // set category to "Smartphones"
     _paq.push(["setEcommerceView", undefined, undefined, "Smartphones"]);
@@ -217,7 +240,9 @@ To track a category view, use :ref:`setEcommerceView<jtc-api-setEcommerceView>` 
     // track page view
     _paq.push(["trackPageView"]);
 
-The same function can be used for tracking product views. Again, it must be called **before** tracking a page view. Example::
+The same function can be used for tracking product views. Again, it must be called **before** tracking a page view. Example:
+
+.. code-block:: javascript
 
     // set product with...
     _paq.push(["setEcommerceView",
@@ -230,7 +255,9 @@ The same function can be used for tracking product views. Again, it must be call
     // track page view
     _paq.push(["trackPageView"]);
 
-``category`` parameter of the :ref:`setEcommerceView<jtc-api-setEcommerceView>` function accepts not only string values, but also arrays of strings. This is useful for tracking products that belong to more than one category, or tracking pages that list products from multiple categories. ::
+``category`` parameter of the :ref:`setEcommerceView<jtc-api-setEcommerceView>` function accepts not only string values, but also arrays of strings. This is useful for tracking products that belong to more than one category, or tracking pages that list products from multiple categories.
+
+.. code-block:: javascript
 
     // set product with...
     _paq.push(["setEcommerceView",
@@ -250,7 +277,9 @@ Tracking cart updates
 
 Another type of e-commerce activity you can track is an update of a shopping cart. With it, we are able to measure how often visitors don't complete the ordering process and what products stay in abandoned carts.
 
-Tracking a cart update has two steps: registering items from the cart and sending them. The following example uses two functions - :ref:`addEcommerceItem<jtc-api-addEcommerceItem>` and :ref:`trackEcommerceCartUpdate<jtc-api-trackEcommerceCartUpdate>` - to achieve exactly that. ::
+Tracking a cart update has two steps: registering items from the cart and sending them. The following example uses two functions - :ref:`addEcommerceItem<jtc-api-addEcommerceItem>` and :ref:`trackEcommerceCartUpdate<jtc-api-trackEcommerceCartUpdate>` - to achieve exactly that.
+
+.. code-block:: javascript
 
     // visitor added one chocolate bar to an empty shopping cart
 
@@ -268,7 +297,9 @@ Tracking a cart update has two steps: registering items from the cart and sendin
 
 This code snippet sends a cart update event with a cart containing one item (SKU *candy-12837*, name *MEGA Milk Chocolate 200g*, category *Candy*, price *6.00*) and having total value of *6.00*.
 
-The list of registered items is stored only in memory. **Reloading the page will clear the list** and the previously registered items will have to be added again. ::
+The list of registered items is stored only in memory. **Reloading the page will clear the list** and the previously registered items will have to be added again.
+
+.. code-block:: javascript
 
     // visitor added one mango fruit to a shopping cart with one chocolate bar
 
@@ -283,13 +314,17 @@ The list of registered items is stored only in memory. **Reloading the page will
 
 .. note::
 
-    If you are not sure what items have been registered, use :ref:`getEcommerceCart<jtc-api-getEcommerceItems>` function. ::
+    If you are not sure what items have been registered, use :ref:`getEcommerceCart<jtc-api-getEcommerceItems>` function.
+
+    .. code-block:: javascript
 
         _paq.push([function() { console.log(this.getEcommerceItems()); }]);
 
 Because single page applications do not refresh the page when a visitor manipulates the cart, an e-commerce implementation in SPAs must either:
 
-1. Clear the cart using :ref:`clearEcommerceCart<jtc-api-clearEcommerceCart>` and register all items from the cart before tracking cart update, e.g. ::
+1. Clear the cart using :ref:`clearEcommerceCart<jtc-api-clearEcommerceCart>` and register all items from the cart before tracking cart update, e.g.
+
+.. code-block:: javascript
 
     // visitor added one chocolate bar to an empty shopping cart
     _paq.push(["clearEcommerceCart"]);
@@ -307,7 +342,9 @@ Because single page applications do not refresh the page when a visitor manipula
     _paq.push(["addEcommerceItem", "01809926", "FRUTASTIC Mango", "Fruits & vegetables", 4.00, 1]);
     _paq.push(["trackEcommerceCartUpdate", 4.00]);
 
-2. Replicate visitor's interactions with the cart using functions :ref:`addEcommerceItem<jtc-api-addEcommerceItem>`, :ref:`removeEcommerceItem<jtc-api-addEcommerceItem>`, :ref:`clearEcommerceCart<jtc-api-clearEcommerceCart>`. ::
+2. Replicate visitor's interactions with the cart using functions :ref:`addEcommerceItem<jtc-api-addEcommerceItem>`, :ref:`removeEcommerceItem<jtc-api-addEcommerceItem>`, :ref:`clearEcommerceCart<jtc-api-clearEcommerceCart>`.
+
+.. code-block:: javascript
 
     // visitor added one chocolate bar to an empty shopping cart
     _paq.push(["addEcommerceItem", "82775027", "MEGA Milk Chocolate 200g", "Candy", 6.00, 1]);
@@ -326,7 +363,9 @@ Because single page applications do not refresh the page when a visitor manipula
 Tracking orders
 ^^^^^^^^^^^^^^^
 
-Perhaps the most important element of an e-commerce implementation is tracking orders. Just like with :ref:`cart updates<guide_tracking_cart_updates>`, tracking orders has two steps: registering items that have been purchased and tracking the order. Registering items looks exactly the same - we use :ref:`addEcommerceItem<jtc-api-addEcommerceItem>`, :ref:`removeEcommerceItem<jtc-api-addEcommerceItem>` and :ref:`clearEcommerceCart<jtc-api-clearEcommerceCart>`. The actual tracking of an order is done with a call to :ref:`trackEcommerceOrder<jtc-api-trackEcommerceOrder>` function. ::
+Perhaps the most important element of an e-commerce implementation is tracking orders. Just like with :ref:`cart updates<guide_tracking_cart_updates>`, tracking orders has two steps: registering items that have been purchased and tracking the order. Registering items looks exactly the same - we use :ref:`addEcommerceItem<jtc-api-addEcommerceItem>`, :ref:`removeEcommerceItem<jtc-api-addEcommerceItem>` and :ref:`clearEcommerceCart<jtc-api-clearEcommerceCart>`. The actual tracking of an order is done with a call to :ref:`trackEcommerceOrder<jtc-api-trackEcommerceOrder>` function.
+
+.. code-block:: javascript
 
     // register all purchased items
 
@@ -373,7 +412,7 @@ What is content tracking
 Let's talk about a scenario in which simple page view tracking is not enough. It will just tell you which page was loaded, but it won't point out how visitors interact with the content on that particular page.
 Content impression and content interaction tracking feature fills that gap.
 
-Content impression allows you to track what content is visible to the visitor. On the bigger pages it may tell what particular parts/blocks of it the visitor has reached. When they keep scrolling and new content is presented on the screen it will be tracked automatically. This is useful for ads and banners, but may be also attached to a image carousell or other forms of image galleries.
+Content impression allows you to track what content is visible to the visitor. On the bigger pages it may tell what particular parts/blocks of it the visitor has reached. When they keep scrolling and new content is presented on the screen it will be tracked automatically. This is useful for ads and banners, but may be also attached to a image carousel or other forms of image galleries.
 
 Now we know what block became visible on the screen, but we would also like to know how the visitor interacted with them. Content interaction tracking completes this feature. After particular block became visible on the viewport JavaScript Tracking Client will automatically record visitor clicks related to it.
 
@@ -386,31 +425,51 @@ JavaScript Tracking Client distinguishes three parts of the content structure: `
 Enabling automatic content tracking
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Simply use one of:
+To enable automatic content tracking, call one of the following tracking functions:
 
-* track all content blocks present on page (visible and not visible): ``_paq.push(["trackAllContentImpressions"]);``
-* track only the visible blocks: ``_paq.push(["trackVisibleContentImpressions"]);``
+* :ref:`trackAllContentImpressions<jtc-api-trackAllContentImpressions>` - tracks all content blocks present on page (visible and not visible)
+* :ref:`trackVisibleContentImpressions<jtc-api-trackVisibleContentImpressions>` - continuously scans the window for visible blocks and sends an update if a new block shows up on screen
 
-.. note:: :ref:`trackVisibleContentImpressions<jtc-api-trackVisibleContentImpressions>` will watch displayed content continuously and will send updates when new content shows up on the screen
+For more details visit the :ref:`Content tracking<jtc-api-content-tracking>` section of the JavaScript Tracking Client API documentation.
 
-For more information visit the :ref:`Content tracking<jtc-api-content-tracking>` section of the JavaScript Tracking Client API documentation.
+.. note::
 
-**But how JavaScript Tracking Client will know what blocks you would like to track?**
-There are two ways of marking the blocks, you should either use a ``piwikTrackContent`` CSS class or a special html attribute ``data-track-content`` on them.
-Same technique is used for pointing out the content piece (``piwikContentPiece`` CSS class or ``data-content-piece`` attribute) and the content target (``piwikContentTarget`` CSS class or ``data-content-target`` attribute).
+    Automatic content tracking can be enabled in Tag Manager, as shown in
+    `Set up content tracking <https://help.piwik.pro/support/questions/set-up-content-tracking/>`_
+    article.
 
-Although JavaScript Tracking Client has the ability of auto-detection for name, piece and target metrics, we still recommend providing those values manually as was described in the previous paragraph. If you don't then JavaScript Tracking Client will try to fill them as follows:
+**But how does JavaScript Tracking Client know what blocks you would like to track?**
 
-* it will read block ``title`` attribute as for the Content name
-* it will read piece from the ``src`` attribute of an image
-* it will read target from the ``href`` attribute of an anchor wrapping the image
+There are two ways of marking HTML elements as content blocks: you must either add a special attribute ``data-track-content`` or class ``piwikTrackContent``. Example:
 
-As you can imagine this may produce inconsistent results, providing those values manually seems like a more desired approach.
+.. code-block:: html
+    :linenos:
+
+    <a href="http://example.com/image/abc.png" title="abc" data-track-content>
+        first content block
+    </a>
+    <a href="http://example.com/image/def.png" title="def" class="piwikTrackContent">
+        second content block
+    </a>
+
+Content properties will be taken from HTML attributes of the content block element or any of its descendants:
+
+* name comes from ``data-content-name`` attribute
+* piece comes from ``data-content-piece`` attribute
+* target comes from ``data-content-target`` attribute
+
+If any of these attributes is missing, JavaScript Tracking Client will try extracting the value from other sources, using the following logic:
+
+* piece will be taken from ``src`` attribute of an element with ``piwikContentPiece`` class or block element
+* target will be taken from ``href`` attribute of an element with ``piwikContentTarget`` class , block element or piece element
+* name will be a copy of piece value if present, or taken from ``title`` attribute of block element, piece element or target element
+
+However, these sources are sometimes unreliable and we recommend providing name, piece and target values in dedicated HTML attributes.
 
 Manual content tracking
 ^^^^^^^^^^^^^^^^^^^^^^^
 
-If for some reason automatic content tracking does not suit you needs you may still trigger :ref:`trackContentImpression<jtc-api-trackContentImpression>` and :ref:`trackContentInteraction<jtc-api-trackContentInteraction>` JavaScript Tracking Client functions manually.
+If for some reason automatic content tracking does not suit your needs, you may still trigger :ref:`trackContentImpression<jtc-api-trackContentImpression>` and :ref:`trackContentInteraction<jtc-api-trackContentInteraction>` JavaScript Tracking Client functions manually.
 
 Example:
 
@@ -480,8 +539,6 @@ Form submission:
     // content name   = Survey form
     // content piece  = Unknown
     // content target = http://our-company.tld/form-handler
-
-
 
 .. _guide_downloads_and_outlinks:
 
@@ -739,23 +796,30 @@ For fully static pages calling :ref:`enableLinkTracking<jtc-api-enableLinkTracki
 Goal tracking
 -------------
 
-At this point we have tracked lots of various typose of events. We have regular page views, we have downloads, outlinks, custom events and others. Above them all there's one more event type we can track: a conversion.
-And goal tracking is about tracking conversions. If you can point out parts of your website/application more important from your bisness perspective, you could :ref:`define those parts as goals<https://help.piwik.pro/support/analytics-new/goals/>`.
+At this point we have tracked many different types of events. We have regular page views, downloads, outlinks, custom events and others. Above them all there's one more event type we can track: a conversion.
+And goal tracking is about tracking conversions. If you can point out parts of your website/application more important from your business perspective, you could :ref:`define those parts as goals<https://help.piwik.pro/support/analytics-new/goals/>`.
 Visiting a specific landing page, submitting a contact form, downloading a PDF file with your product manual - these are popular examples of goal definitions. You can even define a goal based on the custom event you are tracking.
 
-Once the goal is defined, every time a tracked event fits its definition, an additional conversion event will be created. We call this procedure an "automatic conversion".
+If a goal with automatic tracking is defined in Analytics, every time an events matching the goal's definition is tracked, we create an additional conversion event and save it along the original event. We call this procedure an "automatic conversion".
 
-Alternatively, you can trigger a goal manually with the used of
+.. note::
+
+    `Set up goals <https://help.piwik.pro/support/analytics-new/goals/>`_ article shows how to define a goal triggered by visiting a specific page.
+
+Alternatively, you can trigger a goal manually with the use of :ref:`trackGoal<jtc-api-trackGoal>` function
 
 .. code-block:: javascript
 
     // force conversion of the goal with ID 17
     _paq.push(["trackGoal", 17]);
 
-before `trackPageView` was triggered.
+before triggering :ref:`trackPageView<jtc-api-trackPageView>`.
 
-We call this procedure a "manual conversion". Manual conversion doesn't cause an additional conversion event to be tracked like the automatic conversion does.
-Automatic conversion tracking requires a "source" event that is analyzed and if it fits some goal definition then it causes an addition conversion event.
+We call this procedure a "manual conversion". Manual conversion doesn't create an additional conversion event like the automatic conversion does.
+
+
+
+
 
 Anonymous tracking
 ------------------
