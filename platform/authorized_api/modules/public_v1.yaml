@@ -2,6 +2,8 @@ openapi: 3.0.0
 info:
   version: auto
   title: Modules API
+servers:
+  - url: https://example.piwik.pro
 paths:
   /api/modules/v1:
     get:
