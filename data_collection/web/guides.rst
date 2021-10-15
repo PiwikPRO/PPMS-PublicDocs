@@ -466,7 +466,7 @@ If any of these attributes is missing, JavaScript Tracking Client will try extra
 
 * piece will be taken from ``src`` attribute of an element with ``piwikContentPiece`` class or block element
 * target will be taken from ``href`` attribute of an element with ``piwikContentTarget`` class, block element or piece element
-* name will be a copy of piece value if present, or taken from ``title`` attribute of block element, piece element or target element
+* name will try to use piece value if present, otherwise it'll be taken from ``title`` attribute of block element, piece element or target element
 
 However, these sources are sometimes unreliable and we recommend providing name, piece and target values in dedicated HTML attributes.
 
@@ -817,9 +817,7 @@ Alternatively, you can trigger a goal manually with the use of :ref:`trackGoal<j
     // force conversion of the goal with ID 17
     _paq.push(["trackGoal", 17]);
 
-before triggering :ref:`trackPageView<jtc-api-trackPageView>`.
-
-We call this procedure a "manual conversion". Manual conversion doesn't create an additional conversion event like the automatic conversion does.
+We call this procedure a "manual conversion". Manual conversion will send a standalone conversion event immediately and is not tied to any other event sent by tracker like automatic conversions.
 
 
 
