@@ -464,11 +464,15 @@ Content properties will be taken from HTML attributes of the content block eleme
 
 If any of these attributes is missing, JavaScript Tracking Client will try extracting the value from other sources, using the following logic:
 
-* piece will be taken from ``src`` attribute of an element with ``piwikContentPiece`` class or block element
+* piece will be taken from ``src`` attribute\* of an element with ``piwikContentPiece`` class or block element
 * target will be taken from ``href`` attribute of an element with ``piwikContentTarget`` class, block element or piece element
 * name will try to use piece value if present, otherwise it'll be taken from ``title`` attribute of block element, piece element or target element
 
 However, these sources are sometimes unreliable and we recommend providing name, piece and target values in dedicated HTML attributes.
+
+.. note::
+
+  ``src`` attribute is read when extracting content piece from common media elements: ``img``, ``embed``, ``video``, ``audio``. Other elements, like ``object``, use more complex extraction logic.
 
 Manual content tracking
 ^^^^^^^^^^^^^^^^^^^^^^^
