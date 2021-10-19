@@ -344,7 +344,7 @@ components:
           description: A value of a custom event
           type: number
           minimum: 0
-          maximum: 1.7976931348623157e+308
+          maximum: 100000000000
           example: 7.12
         content_name:
           description: A name of a content there was interaction with
@@ -1669,7 +1669,7 @@ components:
           description: 'Custom event value'
           type: number
           minimum: 0
-          maximum: 1.7976931348623157e+308
+          maximum: 100000000000
           example: 7.12
         cip:
           description: 'Override IP'
