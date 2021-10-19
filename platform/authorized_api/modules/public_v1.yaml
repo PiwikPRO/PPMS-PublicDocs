@@ -104,87 +104,6 @@ paths:
           $ref: '#/components/responses/ConflictUserError'
         "415":
           $ref: '#/components/responses/UnsupportedMediaTypeError'
-  /api/modules/v1/by-user-groups:
-    post:
-      summary: Modules list for given user groups
-      description: List of modules with access for a list of user groups
-      operationId: accessible_modules_for_user_groups_batch
-      requestBody:
-        content:
-          application/vnd.api+json:
-            schema:
-              type: object
-              required:
-                - data
-              properties:
-                data:
-                  type: array
-                  maxItems: 100
-                  items:
-                    $ref: "#/components/schemas/UserGroupIdentifier"
-        description: list of user groups
-      responses:
-        "200":
-          description: OK
-          content:
-            application/vnd.api+json:
-              schema:
-                type: object
-                required:
-                  - data
-                properties:
-                  data:
-                    type: array
-                    maxItems: 100
-                    items:
-                      type: object
-                      required:
-                        - type
-                        - id
-                        - attributes
-                      properties:
-                        type:
-                          type: string
-                          enum:
-                            - ppms/user-group/modules
-                        id:
-                          $ref: "#/components/schemas/Id"
-                        attributes:
-                          type: object
-                          required:
-                            - modules
-                          properties:
-                            modules:
-                              type: array
-                              items:
-                                $ref: "#/components/schemas/ModuleId"
-        "400":
-          description: Bad request
-          content:
-            application/vnd.api+json:
-              schema:
-                type: object
-                required:
-                  - errors
-                properties:
-                  errors:
-                    type: array
-                    items:
-                      $ref: "#/components/schemas/ErrorObject"
-                example:
-                  errors:
-                    - status: "400"
-                      code: modules.error.too-many-user-groups
-                      detail: This collection contains 101 elements. It should have
-                        100 elements or less.
-                      source:
-                        pointer: /data
-        "401":
-          $ref: '#/components/responses/UnauthorizedError'
-        "409":
-          $ref: "#/components/responses/ConflictUserGroupError"
-        "415":
-          $ref: '#/components/responses/UnsupportedMediaTypeError'
   "/api/modules/v1/{module}":
     get:
       summary: Module
@@ -300,84 +219,6 @@ paths:
           $ref: "#/components/responses/ConflictModulesAccessError"
         "415":
           $ref: '#/components/responses/UnsupportedMediaTypeError'
-  "/api/modules/v1/access/user-group/{user_group_id}":
-    get:
-      summary: Modules access list for a given user group
-      description: >
-        Lists all modules to which a given user group has access to.
-      operationId: get_user_group_modules_access_v1
-      parameters:
-        - $ref: "#/components/parameters/UserGroupId"
-      responses:
-        "200":
-          description: OK
-          content:
-            application/vnd.api+json:
-              schema:
-                type: object
-                required:
-                  - data
-                properties:
-                  data:
-                    type: array
-                    items:
-                      $ref: "#/components/schemas/ModulesAccessForUserGroup"
-        "401":
-          $ref: "#/components/responses/UnauthorizedError"
-        "403":
-          $ref: "#/components/responses/NoJWTError"
-        "404":
-          $ref: "#/components/responses/NotFoundUserGroup"
-    put:
-      summary: Set modules access for a given user group
-      description: Sets modules access for a given user group
-      operationId: set_modules_access_v1
-      parameters:
-        - $ref: "#/components/parameters/UserGroupId"
-      requestBody:
-        content:
-          application/vnd.api+json:
-            schema:
-              type: object
-              required:
-                - data
-              properties:
-                data:
-                  type: array
-                  items:
-                    type: object
-                    required:
-                      - type
-                      - id
-                      - attributes
-                    properties:
-                      type:
-                        type: string
-                        description: Resource type
-                        enum:
-                          - module/access
-                      id:
-                        $ref: "#/components/schemas/ModuleId"
-                      attributes:
-                        type: object
-                        required:
-                          - access
-                        properties:
-                          access:
-                            type: boolean
-      responses:
-        "204":
-          description: No Content
-        "401":
-          $ref: "#/components/responses/UnauthorizedError"
-        "403":
-          $ref: "#/components/responses/SetAccessForUnlicensedModuleError"
-        "404":
-          $ref: "#/components/responses/NotFoundUserGroup"
-        "409":
-          $ref: "#/components/responses/ConflictModulesAccessError"
-        "415":
-          $ref: "#/components/responses/UnsupportedMediaTypeError"
 components:
   parameters:
     Module:
@@ -396,14 +237,6 @@ components:
     UserId:
       in: path
       name: user_id
-      required: true
-      description: UUIDv4 identifier of an object
-      schema:
-        type: string
-        format: uuid
-    UserGroupId:
-      in: path
-      name: user_group_id
       required: true
       description: UUIDv4 identifier of an object
       schema:
@@ -436,18 +269,6 @@ components:
                     - status: "404"
                       code: modules.error.user-not-exists
                       detail: User 704a6202-d899-4968-aba3-71758457bec1 does not exist
-    NotFoundUserGroup:
-      description: Not Found
-      content:
-        "application/vnd.api+json":
-          schema:
-            allOf:
-              - $ref: "#/components/schemas/ErrorObject"
-              - example:
-                  errors:
-                    - status: "404"
-                      code: modules.error.user-group-not-exists
-                      detail: User group 704a6202-d899-4968-aba3-71758457bec1 does not exist
     UnauthorizedError:
       description: Unauthorized
       content:
@@ -495,20 +316,6 @@ components:
                       source:
                         pointer: "/data"
                       detail: The resource object's type (INVALID) is not the type that constitute the collection represented by the endpoint (ppms/user).
-    ConflictUserGroupError:
-      description: Conflict
-      content:
-        "application/vnd.api.json":
-          schema:
-            allOf:
-              - $ref: "#/components/schemas/ErrorObject"
-              - example:
-                  errors:
-                    - status: "409"
-                      code: error
-                      source:
-                        pointer: "/data"
-                      detail: The resource object's type (INVALID) is not the type that constitute the collection represented by the endpoint (ppms/user-group).
     ConflictModulesAccessError:
       description: Conflict
       content:
@@ -599,16 +406,6 @@ components:
             - ppms/user
         id:
           $ref: "#/components/schemas/Id"
-    UserGroupIdentifier:
-      type: object
-      properties:
-        type:
-          description: Resource type
-          type: string
-          enum:
-            - ppms/user-group
-        id:
-          $ref: "#/components/schemas/Id"
     ModulesAccessForUser:
       type: object
       required:
@@ -642,27 +439,6 @@ components:
                     example: Managers
                 access:
                   type: boolean
-            access:
-              type: boolean
-    ModulesAccessForUserGroup:
-      type: object
-      required:
-        - id
-        - type
-        - attributes
-      properties:
-        id:
-          $ref: "#/components/schemas/ModuleId"
-        type:
-          type: string
-          description: Resource type
-          enum:
-            - module/access/user-group
-        attributes:
-          type: object
-          required:
-            - access
-          properties:
             access:
               type: boolean
     ErrorObject:
