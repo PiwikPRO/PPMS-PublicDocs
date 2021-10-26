@@ -504,6 +504,7 @@ paths:
           type: number
           format: float
           minimum: 0
+          maximum: 100000000000
           example: 201704
         #TODO: Link to content tracking description.
         - name: c_n

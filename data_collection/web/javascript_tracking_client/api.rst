@@ -951,7 +951,7 @@ Impressions
 
     .. warning::
 
-        It will not detect content blocks placed in a scrollable element.
+        ``trackVisibleContentImpressions`` will not detect content blocks placed in a scrollable element.
 
 .. _jtc-api-trackContentImpressionsWithinNode:
 
