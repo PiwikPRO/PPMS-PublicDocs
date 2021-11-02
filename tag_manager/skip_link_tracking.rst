@@ -17,7 +17,7 @@ As per the `MDN`_ definition:
     or anything else a URL can address.
 
 If you wish to trigger tags, when the anchor element is clicked, they need time
-to execute before the redirect happens. That is why, our container is equiped
+to execute before the redirect happens. That is why our container is equipped
 with a delay mechanism.
 
 
@@ -38,7 +38,7 @@ That is where the ``data-disable-delay`` attribute comes in.
 `data-disable-delay` attribute
 ------------------------------
 ``data-disable-dalay`` is special custom attribute that is recognized by the
-container. Once the anchor element is clicked and the aformentioned attribute
+container. Once the anchor element is clicked and the aforementioned attribute
 is detected on the element, it tells the container to skip the execution of the
 logic responsible for delaying the default action. Listeners attached to the
 element are executed immediatly after clicking.
@@ -47,9 +47,9 @@ element are executed immediatly after clicking.
 Example
 ```````
 
-#.  Lets assume that your Tag Manager setup includes a `Custom code (async)` tag
+#.  Let's assume that your Tag Manager setup includes a `Custom code (async)` tag
     (the contents of the tag does not matter in this case) and a basic `Click
-    trigger` assigned to said tag
+    trigger` assigned to the said tag.
 #.  On your page, the following code is present:
 
     .. code-block:: html
