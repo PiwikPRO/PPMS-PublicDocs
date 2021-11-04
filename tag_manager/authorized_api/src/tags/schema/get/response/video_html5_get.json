@@ -54,7 +54,7 @@
                             "$ref": "../../tag_templates/video_html5_attributes.json#/definitions/template"
                         },
                         "template_options": {
-                            "$ref": "../../tag_templates/video_html5_attributes.json#/definitions/template_options_get"
+                            "$ref": "../../tag_templates/video_html5_attributes.json#/definitions/template_options"
                         },
                         "created_at": {
                             "$ref": "../../../../common/schema/common_types.json#/definitions/datetime"

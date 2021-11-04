@@ -46,7 +46,7 @@
         "template_options_volume_dimension_id": {
             "$ref": "#/definitions/dimension_id"
         },
-        "template_options_create_edit": {
+        "template_options": {
             "description": "[Tag template options](#tag-template-options)",
             "type": "object",
             "properties": {
@@ -64,28 +64,6 @@
                 }
             },
             "additionalProperties": false
-        },
-        "template_options_get": {
-            "description": "[Tag template options](#tag-template-options)",
-            "type": "object",
-            "properties": {
-                "element_selectors": {
-                    "$ref": "#/definitions/template_options_element_selectors"
-                },
-                "title_attribute": {
-                    "$ref": "#/definitions/template_options_title_attribute"
-                },
-                "track_thresholds": {
-                    "$ref": "#/definitions/template_options_track_thresholds"
-                },
-                "volume_dimension_id": {
-                    "$ref": "#/definitions/template_options_volume_dimension_id"
-                }
-            },
-            "additionalProperties": false,
-            "required": [
-                "element_selectors"
-            ]
         }
     }
 }

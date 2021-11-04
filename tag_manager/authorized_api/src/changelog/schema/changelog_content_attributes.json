@@ -196,7 +196,7 @@
                         },
                         {
                             "title": "Video HTML5",
-                            "$ref": "../../tags/schema/tag_templates/video_html5_attributes.json#/definitions/template_options_get"
+                            "$ref": "../../tags/schema/tag_templates/video_html5_attributes.json#/definitions/template_options"
                         },
                         {
                             "title": "Video YouTube",

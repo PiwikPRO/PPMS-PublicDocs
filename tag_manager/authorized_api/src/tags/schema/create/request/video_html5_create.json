@@ -42,7 +42,7 @@
                             "$ref": "../../tag_templates/video_html5_attributes.json#/definitions/template"
                         },
                         "template_options": {
-                            "$ref": "../../tag_templates/video_html5_attributes.json#/definitions/template_options_create_edit"
+                            "$ref": "../../tag_templates/video_html5_attributes.json#/definitions/template_options"
                         }
                     },
                     "additionalProperties": false,
