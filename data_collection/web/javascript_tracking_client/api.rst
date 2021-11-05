@@ -2286,26 +2286,3 @@ Miscellaneous
             .. code-block:: javascript
 
                 jstc.enableJSErrorTracking();
-
-.. function:: trackError(error)
-
-    Attempts to send error tracking request using same format as native errors caught by :js:func:`enableJSErrorTracking`.
-    Such error request will still follow rules set for tracker, so it will be sent only when JS error tracking is enabled (:js:func:`enableJSErrorTracking` function was called before this attempt). It will also respect rules for tracking only unique errors.
-
-    :param Error error: **Required** Error object (e.g. caught with ``try...catch``)
-
-    Example of usage:
-
-    .. tabs::
-
-        .. group-tab:: Command queue
-
-            .. code-block:: javascript
-
-                _paq.push(["trackError", new Error("Uncaught SyntaxError")]);
-
-        .. group-tab:: JavaScript Tracking Client object
-
-            .. code-block:: javascript
-
-                jstc.trackError(new Error("Uncaught SyntaxError"));
