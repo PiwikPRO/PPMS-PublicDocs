@@ -105,6 +105,12 @@
         },
         {
             "$ref": "request/visual_website_optimizer_edit.json"
+        },
+        {
+            "$ref": "request/video_html5_edit.json"
+        },
+        {
+            "$ref": "request/video_youtube_edit.json"
         }
     ]
 }
