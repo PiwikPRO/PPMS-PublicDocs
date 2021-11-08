@@ -1,0 +1,69 @@
+{
+    "definitions": {
+        "consent_type_default": {
+            "$ref": "../tag_attributes.json#/definitions/consent_type",
+            "default": "analytics"
+        },
+        "template": {
+            "$ref": "../tag_attributes.json#/definitions/template",
+            "enum": [
+                "video_html5"
+            ]
+        },
+        "threshold": {
+            "description": "Threshold",
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 100
+        },
+        "dimension_id": {
+            "description": "Custom dimension id",
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 200
+        },
+        "template_options_element_selectors": {
+            "description": "Video element CSS selectors",
+            "type": "array",
+            "items": {
+                "$ref": "../tag_types.json#/definitions/non_empty_string"
+            },
+            "minItems": 1
+        },
+        "template_options_title_attribute": {
+            "description": "Used to store the name of the HTML attribute of the video element that you want to track as the custom event name",
+            "$ref": "../tag_types.json#/definitions/non_empty_string"
+        },
+        "template_options_track_thresholds": {
+            "description": "Percentage thresholds that track how far a visitor viewed a video. All values passed must be unique and within [0 .. 100] range.",
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/threshold"
+            },
+            "minItems": 1,
+            "uniqueItems": true
+        },
+        "template_options_volume_dimension_id": {
+            "$ref": "#/definitions/dimension_id"
+        },
+        "template_options": {
+            "description": "[Tag template options](#tag-template-options)",
+            "type": "object",
+            "properties": {
+                "element_selectors": {
+                    "$ref": "#/definitions/template_options_element_selectors"
+                },
+                "title_attribute": {
+                    "$ref": "#/definitions/template_options_title_attribute"
+                },
+                "track_thresholds": {
+                    "$ref": "#/definitions/template_options_track_thresholds"
+                },
+                "volume_dimension_id": {
+                    "$ref": "#/definitions/template_options_volume_dimension_id"
+                }
+            },
+            "additionalProperties": false
+        }
+    }
+}
