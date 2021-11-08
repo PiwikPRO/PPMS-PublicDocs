@@ -105,6 +105,12 @@
         },
         {
             "$ref": "response/visual_website_optimizer_get.json"
+        },
+        {
+            "$ref": "response/video_html5_get.json"
+        },
+        {
+            "$ref": "response/video_youtube_get.json"
         }
     ]
 }

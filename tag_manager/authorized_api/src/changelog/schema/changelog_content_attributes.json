@@ -193,6 +193,14 @@
                         {
                             "title": "Visual Website Optimizer",
                             "$ref": "../../tags/schema/tag_templates/visual_website_optimizer_attributes.json#/definitions/template_options"
+                        },
+                        {
+                            "title": "Video HTML5",
+                            "$ref": "../../tags/schema/tag_templates/video_html5_attributes.json#/definitions/template_options"
+                        },
+                        {
+                            "title": "Video YouTube",
+                            "$ref": "../../tags/schema/tag_templates/video_youtube_attributes.json#/definitions/template_options"
                         }
                     ]
                 },
