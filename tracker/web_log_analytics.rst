@@ -15,19 +15,23 @@ Sample command:
 
 .. code-block:: bash
 
-    import_logs.py --url=https://demo.piwik.pro --token-auth=XXXXXXXXXXXXXXXXXXXXXXXXXXXXX --enable-static --enable-bots --show-progress --idsite=X --recorders=2 --recorder-max-payload-size=50 sample.log
+    import_logs.py --url=https://demo.piwik.pro --client-id=*** --client-secret=*** --enable-static --enable-bots --show-progress --idsite=*** --recorders=2 --recorder-max-payload-size=50 sample.log
 
 .. option:: --url=https://demo.piwik.pro
 
     This is a mandatory parameter which points to the location of your Piwik instance
 
-.. option:: --token-auth=XXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+.. option:: --client-id=***
 
-    Authentication token with superuser rights
+    Part of API credentials. They can be obtained from PPAS (check `how to do it <https://help.piwik.pro/support/questions/generate-api-credentials/>`_).
 
-.. option:: --idsite=X
+.. option:: --client-secret=***
 
-    Defines the Site ID of the website. It can be either integer (eg. `1`) or UUID (eg. `99e33528-8da4-46d8-be90-a62bfb3a7bba`).
+    Part of API credentials. They can be obtained from PPAS (check `how to do it <https://help.piwik.pro/support/questions/generate-api-credentials/>`_).
+
+.. option:: --idsite=***
+
+    Defines the Site ID of the website (eg. `99e33528-8da4-46d8-be90-a62bfb3a7bba`).
 
 There are many other options that can be added to this script, which are described in the :ref:`Tracker-log-import-add-parameters-to-log-import`.
 
@@ -112,7 +116,7 @@ Technical requirements
 Technical requirements for running Web Log Analytics:
 
 - Access to the server or server logs – for example via SSH
-- Python 2.6 or 2.7 – versions 3.x are not supported. Most often you’ll want to import your data straight from the server where it is created. To do this, you’ll need to be able to run a Python script on the machine that will send the logs to Piwik PRO.
+- Python 3.5+ – older versions (e.g. 2.6 or 2.7) are not supported. Most often you’ll want to import your data straight from the server where it is created. To do this, you’ll need to be able to run a Python script on the machine that will send the logs to Piwik PRO.
 - Log Importer tool – this is a script written in Python ensuring that logs are sent to your Piwik instance.
 
 Supported log formats:
