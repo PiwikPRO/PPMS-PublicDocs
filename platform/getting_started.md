@@ -13,7 +13,7 @@ Our API uses [client credentials](https://www.oauth.com/oauth2-servers/access-to
 To generate API credentials, follow these steps:
 
 1.  Log in to [Piwik PRO](https://piwik.pro/login/).
-2.  Go to Menu &gt; Profile.
+2.  Go to Menu &gt; User panel.
 3.  Navigate to API credentials.
 4.  Click Generate new credentials.
 5.  Enter Name and click OK.
