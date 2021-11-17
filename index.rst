@@ -18,12 +18,11 @@ Developer docs and guides
    :maxdepth: 2
 
    custom_reports/index
-   tracker/index
+   data_collection/index
    audience_manager/index
    consent_manager/index
    tag_manager/index
    platform/index
-   integrations/index
    glossary
 
 .. raw:: html
@@ -109,7 +108,7 @@ Developer docs and guides
                 Tracking javascript API
             </a>
             <a class="link link-large" href="tracker/http_api.html">
-                Tracking HTTP API
+                CPP Tracking HTTP API
             </a>
         </div>
         <div class="popular-links-el">

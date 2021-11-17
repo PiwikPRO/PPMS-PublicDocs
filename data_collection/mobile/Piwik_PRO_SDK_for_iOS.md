@@ -43,6 +43,21 @@ Configure the tracker with your website ID and URL in the application delegate:
 
 SDK supports several different types of actions which can be tracked. If the event dispatch was unsuccessful (network error, server error, etc), the event will be saved in the disk cache and processing will be retried during the next dispatch attempt (in configured dispatch interval). Each event is stored in the disk cache for a specified cache age - the time which defines the maximum time for which event is saved locally.
 
+### Data anonymization
+
+Anonymization is the feature that allows tracking a user's activity for aggregated data analysis even if the user doesn't consent to track the data. If a user does not agree to be tracked, he will not be identified as the same person across multiple sessions.
+
+Personal data will not be tracked during the session (i.e. [user ID](#user-id), [device ID](#device-id))
+If the anonymization is enabled, a new [visitor ID](#visitor-id) will be created each time the application starts.
+
+Anonymization is enabled by default.
+
+You can turn the anonymization on and off by setting the value of the variable ``isAnonymizationEnabled``:
+
+```
+[PiwikTracker sharedInstance].isAnonymizationEnabled = NO;
+```
+
 ### Tracking screen views
 *Requires Analytics*
 
@@ -354,7 +369,9 @@ It is recommended to set the user email to track audience manager profile attrib
 
 ### Visitor ID
 
-SDK uses various IDs for tracking the user. The main one is visitor ID, which is internally randomly generated once by the SDK on the first usage and is then stored locally on the device. The visitor ID will never change unless the user removes the application from the device so that all events sent from his device will always be assigned to the same user in the Piwik PRO web panel. We recommend using userID instead of VisitorID.
+SDK uses various IDs for tracking the user. The main one is visitor ID, which is internally randomly generated once by the SDK on the first usage and is then stored locally on the device. The visitor ID will never change unless the user removes the application from the device so that all events sent from his device will always be assigned to the same user in the Piwik PRO web panel. 
+When the anonymization is enabled, a new visitor id is generated each time the application is started.
+We recommend using userID instead of VisitorID.
 
 ### Sessions
 

@@ -7,7 +7,7 @@ allOf:
         type: object
         required:
           - scope
-          - website_id
+          - slot
         properties:
           scope:
             type: string
@@ -16,8 +16,8 @@ allOf:
               - session
               - event
             readOnly: true
-          website_id:
-            type: string
-            format: uuid
-            description: ID of the website.
-            example: dde2dc68-b6bb-45ee-9ac2-868b6181e33f
+          slot:
+            type: integer
+            description: Slot number for custom dimension.
+            minimum: 1
+            readOnly: true

@@ -1,0 +1,23 @@
+type: object
+allOf:
+  - $ref: '#/definitions/CustomDimension'
+  - type: object
+    properties:
+      attributes:
+        type: object
+        required:
+          - scope
+          - slot
+        properties:
+          scope:
+            type: string
+            description: Scope in which custom dimension is set.
+            enum:
+              - session
+              - event
+            readOnly: false
+          slot:
+            type: integer
+            description: Slot number for custom dimension.
+            minimum: 1
+            readOnly: true

@@ -2,6 +2,8 @@ openapi: 3.0.3
 info:
   title: Tracker settings API
   version: auto
+servers:
+  - url: https://example.piwik.pro
 paths:
   /api/tracker/v2/settings/app/global:
     get:
@@ -96,6 +98,26 @@ paths:
           $ref: "#/components/responses/UnauthorizedError"
         403:
           $ref: "#/components/responses/AccessDeniedError"
+  /api/tracker/v2/settings/app/url:
+    get:
+      summary: Get tracker settings of an app by it's url
+      description: It gets tracker settings of an app that first matched against given url. Used mostly in log analytics for website autorecognition.
+      operationId: api_get_app_by_url_tracker_settings_v2
+      parameters:
+        - $ref: '#/components/parameters/app_url'
+      responses:
+        200:
+          description: OK
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/TrackerAppSettings'
+        401:
+          $ref: "#/components/responses/UnauthorizedError"
+        403:
+          $ref: "#/components/responses/AccessDeniedError"
+        404:
+          $ref: "#/components/responses/NoAppWithSuchUrl"
 components:
   parameters:
     app_id:
@@ -106,6 +128,13 @@ components:
       schema:
         type: string
         format: uuid
+    app_url:
+      name: app_url
+      in: query
+      description: App URL
+      required: true
+      schema:
+        type: string
     setting:
       name: setting
       in: path
@@ -201,6 +230,17 @@ components:
               - status: '403'
                 code: not_authenticated
                 title: Authentication credentials were not provided.
+    NoAppWithSuchUrl:
+      description: Not Found
+      content:
+        "application/vnd.api+json":
+          schema:
+            type: object
+            example:
+              errors:
+              - status: '404'
+                code: error.resource-not-found
+                title: 'App with given url ''http\://example.com'' doesn''t exist'
   schemas:
     TrackerAppSettings:
       type: object

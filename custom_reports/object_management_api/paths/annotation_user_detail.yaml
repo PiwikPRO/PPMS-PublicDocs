@@ -6,7 +6,7 @@ get:
     Returns a definition of a specific user annotation.
     Please note that each request must be authenticated.
   parameters:    
-    - $ref: '#/parameters/AnnotationId'
+    - $ref: '#/parameters/Id'
     - $ref: '#/parameters/WebsiteId'
   responses:
     '200':
@@ -30,12 +30,7 @@ patch:
     Update an existing user annotation.
     Please note that each request must be authenticated.
   parameters:
-    - name: id
-      in: path
-      required: true
-      description: ID of the custom dimension.
-      schema:
-        type: string
+    - $ref: '#/parameters/Id'
   requestBody:
     content:
       application/vnd.api+json:
@@ -83,7 +78,7 @@ delete:
     Delete the specified user annotation.
     Please note that each request must be authenticated.
   parameters:
-    - $ref: '#/parameters/AnnotationId'
+    - $ref: '#/parameters/Id'
     - $ref: '#/parameters/WebsiteId'
   responses:
     '204':

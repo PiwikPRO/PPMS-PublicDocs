@@ -504,6 +504,7 @@ paths:
           type: number
           format: float
           minimum: 0
+          maximum: 100000000000
           example: 201704
         #TODO: Link to content tracking description.
         - name: c_n
@@ -864,16 +865,8 @@ paths:
           schema:
             type: object
             required:
-              - token_auth
               - requests
             properties:
-              token_auth:
-                description: |
-                  Authentication token used by SuperUser or Admin in requests using parameters that require it.
-                type: string
-                minLength: 32
-                maxLength: 32
-                example: caa18074df8347b684d7b943b2484fe9
               requests:
                 type: array
                 description: |
