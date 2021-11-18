@@ -81,6 +81,7 @@ paths:
             - 7 # content interaction
             - 8 # goal conversion
             - 9 # ecommerce conversion
+            - 11 # sharepoint
             - 12 # consent form impression
             - 13 # consent form click
             - 14 # consent decision
@@ -259,7 +260,28 @@ components:
           type: boolean
           example: false
         event_type:
-          description: A type of an event
+          description: |
+            A type of an event.
+            - 1 # page view
+            - 2 # outlink
+            - 3 # download
+            - 4 # search
+            - 5 # custom event
+            - 6 # content impression
+            - 7 # content interaction
+            - 8 # goal conversion
+            - 9 # ecommerce conversion
+            - 11 # sharepoint
+            - 12 # consent form impression
+            - 13 # consent form click
+            - 14 # consent decision
+            - 15 # custom ping
+            - 16 # cart update
+            - 17 # broken event
+            - 18 # excluded event
+            - 19 # heartbeat
+            - 20 # deanonymization
+            - 21 # page performance
           enum:
             - 1 # page view
             - 2 # outlink
@@ -271,7 +293,7 @@ components:
             - 8 # goal conversion
             - 9 # ecommerce conversion
             # - 10 # abandoned cart - hidden
-            # - 11 # share point - not implemented
+            - 11 # share point
             - 12 # consent form impression
             - 13 # consent form click
             - 14 # consent decision
@@ -731,6 +753,80 @@ components:
           enum:
             - 0
             - 1
+        sharepoint_action: 
+          description: |
+            A type of a sharepoint event. Present if event_type is 11 (sharepoint). The allowed values are:
+            - 1 # like
+            - 2 # share
+            - 3 # comment
+            - 4 # promote
+            - 5 # create
+            - 6 # edit
+            - 7 # delete
+            - 8 # open
+            - 9 # upload
+            - 10 # item view
+            - 11 # item attachment view
+            - 12 # item share
+          type: integer
+          example: 1
+          enum:
+            - 1 # like
+            - 2 # share
+            - 3 # comment
+            - 4 # promote
+            - 5 # create
+            - 6 # edit
+            - 7 # delete
+            - 8 # open
+            - 9 # upload
+            - 10 # item view
+            - 11 # item attachment view
+            - 12 # item share
+        sharepoint_object_type: 
+          description: |
+            Sharepoint object type, that visitor acts upon.  Present if event_type is 11 (sharepoint). Allowed values:
+            - 1 # page
+            - 2 # file
+            - 3 # list
+          type: integer
+          example: 1
+          enum:
+            - 1 # page
+            - 2 # file
+            - 3 # list
+        sharepoint_content_type:
+          description: Sharepoint content type, that visitor acts upon. Present if `event_type` is 11 (sharepoint).
+          type: string
+          example: Wiki Page
+        sharepoint_author:
+          description: Identifier of an author of the sharepoint object. Present if `event_type` is 11 (sharepoint).
+          type: string
+          example: jane.doe@example.com
+        sharepoint_author_display_name:
+          description: Display name of an author of the sharepoint object. Present if `event_type` is 11 (sharepoint).
+          type: string
+          example: Jane Doe
+        sharepoint_author_office:
+          description: Office of an author of the sharepoint object. Present if `event_type` is 11 (sharepoint).
+          type: string
+          example: Arrakeen office
+        sharepoint_author_department:
+          description: Department of an author of the sharepoint object. Present if `event_type` is 11 (sharepoint).
+          type: string
+          example: Ministry of truth
+        sharepoint_author_job_title:
+          description: Job title of an author of the sharepoint object. Present if `event_type` is 11 (sharepoint).
+          type: string
+          example: Truthsayer
+        sharepoint_file_url:
+          description: Url of sharepoint file. Present if `event_type` is 11 (sharepoint) and `sharepoint_object_type` is 2 (file).
+          type: string
+          example: http://example.com/files/how-to-say-truth.pdf
+        sharepoint_file_type:
+          description: Type of sharepoint file. Present if `event_type` is 11 (sharepoint) and `sharepoint_object_type` is 2 (file).
+          type: string
+          example: pdf
         error_message:
           description: Message informing why event is removed from event set, if it errored during processing. Present if event type is 17 (broken event)
           type: string
@@ -1453,6 +1549,70 @@ components:
           description: Google Click ID
           type: string
           example: 1237abcdb
+        sharepoint_display_name:
+          description: Display name of a sharepoint visitor.
+          type: string
+          example: John Doe
+        sharepoint_office:
+          description: Office of a sharepoint visitor.
+          type: string
+          example: Corrinis office
+        sharepoint_department:
+          description: Department of a sharepoint visitor.
+          type: string
+          example: Ministry of plenty
+        sharepoint_job_title:
+          description: Job title of a sharepoint visitor.
+          type: string
+          example: creative accountant
+        session_total_sharepoint_likes:
+          description: Total count of `Sharepoint Like` events in session.
+          type: string
+          example: 5
+        session_total_sharepoint_shares:
+          description: Total count of `Sharepoint Share` events in session
+          type: string
+          example: 4
+        session_total_sharepoint_comments:
+          description: Total count of `Sharepoint Comment` events in session
+          type: string
+          example: 8
+        session_total_sharepoint_promotions:
+          description: Total count of `Sharepoint Promote` events in session
+          type: string
+          example: 12
+        session_total_sharepoint_creations:
+          description: Total count of `Sharepoint Create` events in session
+          type: string
+          example: 10
+        session_total_sharepoint_edits:
+          description: Total count of `Sharepoint Edit` events in session
+          type: string
+          example: 23
+        session_total_sharepoint_deletions:
+          description: Total count of `Sharepoint Delete` events in session
+          type: string
+          example: 42
+        session_total_sharepoint_opens:
+          description: Total count of `Sharepoint Open` events in session
+          type: string
+          example: 123
+        session_total_sharepoint_uploads:
+          description: Total count of `Sharepoint Upload` events in session
+          type: string
+          example: 99
+        session_total_sharepoint_item_views:
+          description: Total count of `Sharepoint Item View` events in session
+          type: string
+          example: 55
+        session_total_sharepoint_item_attachment_views:
+          description: Total count of `Sharepoint Item Attachment View` events in session
+          type: string
+          example: 7
+        session_total_sharepoint_item_shares:
+          description: Total count of `Sharepoint Item Share` events in session
+          type: string
+          example: 9
     Log:
       description: A tracking log
       required:
