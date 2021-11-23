@@ -129,7 +129,7 @@ components:
         type: string
         format: uuid
     app_url:
-      name: app_url
+      name: appUrl
       in: query
       description: App URL
       required: true
