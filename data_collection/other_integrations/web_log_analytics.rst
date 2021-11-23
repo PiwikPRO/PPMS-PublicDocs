@@ -113,7 +113,7 @@ Technical requirements
 Technical requirements for running Web Log Analytics:
 
 - Access to the server or server logs – for example via SSH
-- Python 2.6 or 2.7 – versions 3.x are not supported. Most often you’ll want to import your data straight from the server where it is created. To do this, you’ll need to be able to run a Python script on the machine that will send the logs to Piwik PRO.
+- Python 3.5+ – older versions (e.g. 2.6 or 2.7) are not supported. Most often you’ll want to import your data straight from the server where it is created. To do this, you’ll need to be able to run a Python script on the machine that will send the logs to Piwik PRO
 - Log Importer tool – this is a script written in Python ensuring that logs are sent to your Piwik instance.
 
 Supported log formats:
