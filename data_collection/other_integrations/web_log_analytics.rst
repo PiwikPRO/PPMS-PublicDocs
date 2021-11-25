@@ -16,7 +16,7 @@ Sample command:
 
 .. code-block:: bash
 
-    import_logs.py --url=https://demo.piwik.pro --client-id=*** --client-secret=*** --enable-static --enable-bots --show-progress --idsite=*** --recorders=2 --recorder-max-payload-size=50 sample.log
+    import_logs.py --url=https://demo.piwik.pro --client-id=*** --client-secret=*** --enable-static --enable-bots --show-progress --idsite=*** --recorders=2 sample.log
 
 .. option:: --url=https://demo.piwik.pro
 
@@ -69,7 +69,7 @@ Use the following commands to enable tracking of these elements:
 - **--enable-http-redirects** This tracks HTTP redirects as page views, with a custom title and custom variable.
 - **--enable-reverse-dns** Activates reverse DNS, which is used in generating the Visitors > Providers report. NOTE: this may lead to a serious drop in performance as reverse DNS is very slow.
 - **--recorders=N** Sets a specific number of threads. We recommend matching it to the number of CPU cores in the system.
-- **--recorder-max-payload-size=N** The importer can use the Piwik PRO bulk tracking feature in order to boost speed (by using **--enable-bulk-tracking**). Adjust the number of pageviews (or log lines) to see what generates the best performance.
+- **--recorder-max-payload-size=N** When importer uses the Piwik PRO bulk tracking feature in order to boost speed (option **--enable-bulk-tracking**), this option configures max number of tracking requests that bulk request can contain. Adjust the number of pageviews (or log lines) to see what generates the best performance.
 
 More information about log import parameters can be found using the help parameter:
 
