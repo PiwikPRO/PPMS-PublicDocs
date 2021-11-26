@@ -1,6 +1,6 @@
-CPP debugger API
-================
-CPP debugger API exposes sessions in live mode. It's a useful tool for verifying JavaScript Tracking Snippet implementation and observing changes done to it.
+Collecting & Processing Pipeline debugger API
+=============================================
+:term:`Collecting & Processing Pipeline` debugger API exposes sessions in live mode. It's a useful tool for verifying JavaScript Tracking Snippet implementation and observing changes done to it.
 
 .. raw:: html
 

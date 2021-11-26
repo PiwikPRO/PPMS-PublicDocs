@@ -125,7 +125,7 @@ If your website is GDPR compliant then you need to describe ``connect-src``, ``s
 	style-src <your-sources> 'nonce-INSERT_VALID_NONCE_VALUE';
 
 .. note::
-    Please note that we define here CPP domain **client.piwik.pro** for collecting visitor consents and container domain **client.containers.piwik.pro** for fetching consent form assets.
+    Please note that we define here :term:`Collecting & Processing Pipeline` domain **client.piwik.pro** for collecting visitor consents and container domain **client.containers.piwik.pro** for fetching consent form assets.
 
 
 Consent Manager's data subject request widget
@@ -150,10 +150,10 @@ When using a data subject request widget, you need to add a nonce attribute to i
   </div>
 
 
-CPP with custom domain
----------------
+Collecting & Processing Pipeline with custom domain
+---------------------------------------------------
 
-If your domain for CPP is custom, then you need to define it with ``img-src`` and ``script-src`` directives:
+If your domain for :term:`Collecting & Processing Pipeline` is custom, then you need to define it with ``img-src`` and ``script-src`` directives:
 
 .. code-block:: javascript
 
@@ -170,7 +170,7 @@ Following example configuration of CSP assumes:
 - Consent Manager is enabled for the website
 - client's organization name in Piwik PRO: **client**
 - client's container domain: **client.containers.piwik.pro**
-- client has Piwik PRO tag with default CPP domain: **client.piwik.pro**
+- client has Piwik PRO tag with default :term:`Collecting & Processing Pipeline` domain: **client.piwik.pro**
 - nonce value: **nceIOfn39fn3e9h3sd**
 - configuration allows ``'self'`` source which is: **client.com**
 
