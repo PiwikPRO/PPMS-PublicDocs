@@ -70,7 +70,7 @@ paths:
           minLength: 16
           maxLength: 16
           example: 257cc22df0ec483a
-        - name: rand
+        - name: r
           in: query
           description: |
             **Recommended** Cache buster.
@@ -79,7 +79,7 @@ paths:
             read from a cache. Value can be random or sequential (e.g. UNIX timestamp). It is especially useful if
             the visitor is behind some kind of caching proxy.
           type: string
-          example: 1521232150
+          example: '1521232150'
         - name: urlref
           in: query
           #TODO: Check what spelling we're using: referrer vs referrer.
