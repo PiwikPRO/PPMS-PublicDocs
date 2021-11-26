@@ -212,6 +212,8 @@ components:
                 - properties:
                     appType:
                       $ref: "#/components/schemas/App_Type"
+                    id:
+                      $ref: "#/components/schemas/JsonApi_Id"
                 - $ref: "#/components/schemas/App_Editable_Attributes"
 
     App_Permissions_JsonApi:
