@@ -92,7 +92,7 @@ the ``Piwik.getAsyncTracker``.
 
     JavaScript Tracking Client object is also accessible through ``this`` keyword in a special
     command pushed to command queue, where the first element of the command
-    array is a custom function.::
+    array is a custom function. ::
 
         _paq.push([function () {
             // *this* is a JavaScript Tracking Client object
@@ -103,7 +103,7 @@ the ``Piwik.getAsyncTracker``.
     .. warning::
 
         JavaScript Tracking Client object can't be accessed before JavaScript Tracking Client file
-        loads (ususally a `ppms.js` file).
+        loads (usually a `ppms.js` file).
 
 .. _jtc-api-tracking-functions:
 
@@ -1457,7 +1457,7 @@ User management
 .. function:: setUserIsAnonymous(isAnonymous)
 
     Enables or disables anonymous tracking (anonymous = without consent). Does
-    not send any data to tracking :term:`Collecting & Processing Pipeline`. The next emitted event will have
+    not send any data to :term:`Collecting & Processing Pipeline`. The next emitted event will have
     anonymous mode set accordingly.
 
     :param boolean isAnonymous: **Required** Whether visitor is anonymous
