@@ -1,6 +1,6 @@
 openapi: 3.0.3
 info:
-  title: Tracker settings API
+  title: Collecting & Processing Pipeline Settings API
   version: auto
 servers:
   - url: https://example.piwik.pro

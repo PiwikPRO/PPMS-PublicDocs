@@ -108,7 +108,7 @@ Developer docs and guides
                 Tracking javascript API
             </a>
             <a class="link link-large" href="tracker/http_api.html">
-                CPP Tracking HTTP API
+                Tracking HTTP API
             </a>
         </div>
         <div class="popular-links-el">

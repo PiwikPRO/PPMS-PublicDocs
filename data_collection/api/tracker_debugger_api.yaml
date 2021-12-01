@@ -1,6 +1,6 @@
 openapi: 3.0.2
 info:
-  title: Tracker API
+  title: Collecting & Processing Pipeline debugger API
   version: auto
   description: Exposes sessions
 paths:
