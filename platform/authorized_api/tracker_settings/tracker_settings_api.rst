@@ -1,5 +1,5 @@
-CPP Settings API
-================
+Collecting & Processing Pipeline Settings API
+=============================================
 
 .. raw:: html
 
