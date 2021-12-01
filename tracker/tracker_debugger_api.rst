@@ -1,5 +1,5 @@
-CPP debugger API
-================
+Collecting & Processing Pipeline debugger API
+=============================================
 
 .. raw:: html
 
