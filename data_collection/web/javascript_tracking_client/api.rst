@@ -92,7 +92,7 @@ the ``Piwik.getAsyncTracker``.
 
     JavaScript Tracking Client object is also accessible through ``this`` keyword in a special
     command pushed to command queue, where the first element of the command
-    array is a custom function.::
+    array is a custom function. ::
 
         _paq.push([function () {
             // *this* is a JavaScript Tracking Client object
@@ -103,14 +103,14 @@ the ``Piwik.getAsyncTracker``.
     .. warning::
 
         JavaScript Tracking Client object can't be accessed before JavaScript Tracking Client file
-        loads (ususally a `ppms.js` file).
+        loads (usually a `ppms.js` file).
 
 .. _jtc-api-tracking-functions:
 
 Tracking functions
 ------------------
 
-Tracking functions collect and send data to CPP. They can by
+Tracking functions collect and send data to :term:`Collecting & Processing Pipeline`. They can be
 called on a :ref:`JavaScript Tracking Client object<jtc-api-jstc-object>` or pushed to
 the :ref:`command queue<jtc-api-command-queue>` as commands.
 
@@ -270,7 +270,7 @@ E-commerce
 
     Adds a product to a virtual shopping cart. If a product with the same SKU
     is in the cart, it will be removed first. Does not send any data to the
-    CPP.
+    :term:`Collecting & Processing Pipeline`.
 
     :param string productSKU: **Required** Product stock-keeping unit
     :param string productName: **Optional** Product name
@@ -296,7 +296,7 @@ E-commerce
 
     .. note::
 
-        This function does not send any data to CPP. It only
+        This function does not send any data to :term:`Collecting & Processing Pipeline`. It only
         prepares the virtual shopping cart to be sent with
         :ref:`trackEcommerceCartUpdate<jtc-api-trackEcommerceCartUpdate>`
         or :ref:`trackEcommerceOrder<jtc-api-trackEcommerceOrder>`.
@@ -333,7 +333,7 @@ E-commerce
 
     Removes a product with the provided SKU from a virtual shopping cart. If
     multiple units of that product are in the virtual cart, all of them will be
-    removed. Does not send any data to the CPP.
+    removed. Does not send any data to the :term:`Collecting & Processing Pipeline`.
 
     :param string productSKU: **Required** stock-keeping unit of a product to remove
 
@@ -355,7 +355,7 @@ E-commerce
 
     .. note::
 
-        This function does not send any data to CPP. It only
+        This function does not send any data to :term:`Collecting & Processing Pipeline`. It only
         prepares the virtual shopping cart to be sent with
         :ref:`trackEcommerceCartUpdate<jtc-api-trackEcommerceCartUpdate>`
         or :ref:`trackEcommerceOrder<jtc-api-trackEcommerceOrder>`.
@@ -370,7 +370,7 @@ E-commerce
 .. function:: clearEcommerceCart()
 
     Removes all items from a virtual shopping cart. Does not send any data to
-    the CPP.
+    the :term:`Collecting & Processing Pipeline`.
 
     Example of usage:
 
@@ -389,7 +389,7 @@ E-commerce
                 jstc.clearEcommerceCart();
 
     .. note::
-        This function does not send any data to CPP. It only
+        This function does not send any data to :term:`Collecting & Processing Pipeline`. It only
         prepares the virtual shopping cart to be sent with
         :ref:`trackEcommerceCartUpdate<jtc-api-trackEcommerceCartUpdate>`
         or :ref:`trackEcommerceOrder<jtc-api-trackEcommerceOrder>`.
@@ -404,7 +404,7 @@ E-commerce
 .. function:: getEcommerceItems()
 
     Returns a copy of items from a virtual shopping cart. Does not send any
-    data to the CPP.
+    data to the :term:`Collecting & Processing Pipeline`.
 
     :returns: Object containing all tracked items (format: ``Object<productSKU, Array[productSKU, productName, productCategory, price, quantity]>``)
 
@@ -719,7 +719,7 @@ Custom Dimensions
 
     .. warning::
 
-        This function does not send any data to the CPP. It
+        This function does not send any data to the :term:`Collecting & Processing Pipeline`. It
         prepares a custom dimension to be sent with following events, e.g. page
         view, e-commerce events, outlink or download events.
 
@@ -815,7 +815,7 @@ Custom Dimensions
         tracking requests within a page load.
 
     .. warning::
-        This function does not send any data to the CPP. It sets a
+        This function does not send any data to the :term:`Collecting & Processing Pipeline`. It sets a
         Custom Dimension to be sent with following events, e.g. page view,
         e-commerce events, outlink or download events.
 
@@ -1457,7 +1457,7 @@ User management
 .. function:: setUserIsAnonymous(isAnonymous)
 
     Enables or disables anonymous tracking (anonymous = without consent). Does
-    not send any data to tracking CPP. The next emitted event will have
+    not send any data to :term:`Collecting & Processing Pipeline`. The next emitted event will have
     anonymous mode set accordingly.
 
     :param boolean isAnonymous: **Required** Whether visitor is anonymous
@@ -1482,7 +1482,7 @@ User management
 
 .. function:: deanonymizeUser()
 
-    Disables anonymous tracking and sends deanonymization event to the CPP. 
+    Disables anonymous tracking and sends deanonymization event to the :term:`Collecting & Processing Pipeline`.
     Recommended method for disabling anonymous tracking.
 
     Example of usage:
@@ -1990,7 +1990,7 @@ JavaScript Tracking Client configuration
     article or watching a video), we don't know if they are still on the page.
     This might skew page statistics, e.g. *time on page* value. *Heartbeat timer*
     allows us to determine how much time visitors spend on a page by sending
-    heartbeats to the CPP as long as the page is in focus.
+    heartbeats to the :term:`Collecting & Processing Pipeline` as long as the page is in focus.
 
     Example of usage:
 
@@ -2023,11 +2023,11 @@ JavaScript Tracking Client configuration
     e.g. when opening a link, the request might get cancelled. To avoid loosing
     the last event this way, JavaScript Tracking Client will lock the page for a fraction of a
     second (if wait time hasn't passed), giving the request time to reach the
-    CPP.
+    :term:`Collecting & Processing Pipeline`.
 
     ``setLinkTrackingTimer`` allows to change the default lock/wait time of 500ms.
 
-    :param number milliseconds: **Required** How many milliseconds a request needs to reach the CPP.
+    :param number milliseconds: **Required** How many milliseconds a request needs to reach the :term:`Collecting & Processing Pipeline`.
 
     Example of usage:
 

@@ -768,7 +768,7 @@ To set JavaScript Tracking client to mark requests as anonymized call :ref:`setU
 
     _paq.push(["setUserIsAnonymous"]);
 
-From now on all following requests sent by :ref:`trackPageView<jtc-api-trackPageView>` or any other function that sends requests to Collecting and Processing Pipeline (CPP), will be marked as a request that should be anonymized. :ref:`Learn more how Piwik PRO anonymizes visitors data<https://piwik.pro/blog/how-to-do-useful-analytics-without-personal-data/>`.
+From now on all following requests sent by :ref:`trackPageView<jtc-api-trackPageView>` or any other function that sends requests to :term:`Collecting & Processing Pipeline`, will be marked as a request that should be anonymized. :ref:`Learn more how Piwik PRO anonymizes visitors data<https://piwik.pro/blog/how-to-do-useful-analytics-without-personal-data/>`.
 
 .. note::
 
@@ -780,7 +780,7 @@ When a visitor gives consent for tracking or you want to enrich anonymous data t
 
     _paq.push(["deanonymizeUser"]);
 
-This will send special deanonymization request to CPP, that will enrich visitor's data with all the information that was stripped from previous requests.
+This will send special deanonymization request to :term:`Collecting & Processing Pipeline`, that will enrich visitor's data with all the information that was stripped from previous requests.
 
 To sum up:
 
