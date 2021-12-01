@@ -62,8 +62,8 @@ Glossary
         .. note::
             If :term:`analytics attribute` uses the same name - it will be represented as a separate :term:`attribute`.
 
-    Collecting & Processing Pipeline (CPP)
-        Formerly called tracker backend. A set of services that is able to receive, store and process requests from JavaScript Tracking Client. Requests processed by CPP are passed further for Reporting services.
+    Collecting & Processing Pipeline
+        Formerly called tracker backend. A set of services that is able to receive, store and process requests from JavaScript Tracking Client. Requests processed by Collecting & Processing Pipeline are passed further for Reporting services.
 
     Device ID
         Device ID (device identification) is a distinctive number associated with a smartphone or similar handheld
@@ -73,7 +73,7 @@ Glossary
         Unique identifier of a :term:`visitor` ID (e.g. :term:`analytics ID`, :term:`user ID`, :term:`device ID` or email).
 
     JavaScript Tracking Client (JSTC)
-        A JavaScript object that is able to send requests to CPP. It is loaded and created with download of `ppms.js` file. It has an :ref:`API<data-collection-javascript-tracking-client-api>` that allows to configure what data requests should contain. You can :ref:`learn more about JSTC here<data-collection-javascript-tracking-client-installation>`
+        A JavaScript object that is able to send requests to :term:`Collecting & Processing Pipeline`. It is loaded and created with download of `ppms.js` file. It has an :ref:`API<data-collection-javascript-tracking-client-api>` that allows to configure what data requests should contain. You can :ref:`learn more about JSTC here<data-collection-javascript-tracking-client-installation>`
 
     JavaScript Tracking Snippet (JSTS)
         A JavaScript code, usually in form of HTML tag, that initiates JSTC and sends first tracking request. You can see an :ref:`example of JSTS here<jtc-installation-jsts-example>`.
