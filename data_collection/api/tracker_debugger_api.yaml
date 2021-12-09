@@ -1,7 +1,7 @@
 openapi: 3.0.2
 info:
   title: Collecting & Processing Pipeline debugger API
-  version: 0.21.0
+  version: auto
   description: Exposes sessions
 paths:
   /api/tracker/v1/debugger:
@@ -23,7 +23,7 @@ paths:
           schema:
             type: integer
             minimum: 0
-            maximum: 18446744073709552000
+            maximum: 18446744073709551615
             example: 20
           in: query
           required: false
@@ -32,7 +32,7 @@ paths:
           schema:
             type: integer
             minimum: 0
-            maximum: 18446744073709552000
+            maximum: 18446744073709551615
             example: 100
           in: query
           required: false
@@ -50,7 +50,7 @@ paths:
             type: string
             minLength: 16
             maxLength: 16
-            pattern: '^[[:xdigit:]]{16}$'
+            pattern: '^[a-zA-Z0-9]{16}$'
             example: 288f90221c221f81
           in: query
           required: false
@@ -105,6 +105,8 @@ paths:
               - 7 # content interaction
               - 8 # goal conversion
               - 9 # ecommerce conversion
+              # - 10 # abandoned cart - missing in debugger
+              - 11 # sharepoint
               - 12 # consent form impression
               - 13 # consent form click
               - 14 # consent decision
@@ -120,7 +122,7 @@ paths:
         - name: lookup_window
           description: 'Describes how much back in time sessions shall be fetched, takes value in minutes'
           schema:
-            type: number
+            type: integer
             default: 30
             example: 90
             minimum: 1
@@ -132,7 +134,7 @@ paths:
           content:
             application/x-ndjson:
               schema:
-                $ref: '#/components/schemas/Session'
+                $ref: '#/components/schemas/DebugSession'
           description: A stream of sessions matching given criteria
         400:
           content:
@@ -185,8 +187,8 @@ paths:
           content:
             application/x-ndjson:
               schema:
-                $ref: '#/components/schemas/Log'
-          description: A stream of logs matching given criteria
+                $ref: '#/components/schemas/AnonymizedLog'
+          description: A stream of anonymized logs matching given criteria
         400:
           content:
             text/plain:
@@ -226,11 +228,16 @@ components:
       scheme: bearer
       bearerFormat: JWT
   schemas:
-    Event:
+    DebugEvent:
       description: An object representing an event
       required:
         - event_id
+        - event_id_str
+        - event_id_hex
         - log_uuids
+        - session_id
+        - session_id_str
+        - session_id_hex
         - is_exit
         - is_entry
         - event_type
@@ -242,8 +249,20 @@ components:
           description: ID of an event - random value
           type: integer
           minimum: 0
-          maximum: 18446744073709552000
-          example: 16856741104283292000
+          maximum: 18446744073709551615
+          example: 6719694023305478880
+        event_id_str:
+          description: ID of an event - string with a decimal representation of the ID
+          type: string
+          minLength: 1
+          maxLength: 20
+          example: '6719694023305478880'
+        event_id_hex:
+          description: ID of an event - string with a hexadecimal representation of the ID, padded with zeros to 16 characters
+          type: string
+          minLength: 16
+          maxLength: 16
+          example: '5d41261c9a7042e0'
         log_uuids:
           description: IDs of logs used to create the event
           type: array
@@ -251,6 +270,24 @@ components:
             type: string
             format: uuid
             example: 0d454742-0e95-4321-a200-fd9d1c4b8031
+        session_id:
+          description: ID of a session - copied from event_id of the first event in a session
+          type: integer
+          minimum: 0
+          maximum: 18446744073709551615
+          example: 5632530715433106129
+        session_id_str:
+          description: ID of a session - string with a decimal representation of the ID
+          type: string
+          minLength: 1
+          maxLength: 20
+          example: '5632530715433106129'
+        session_id_hex:
+          description: ID of a session - string with a hexadecimal representation of the ID, padded with zeros to 16 characters
+          type: string
+          minLength: 16
+          maxLength: 16
+          example: '4e2ac4d7dfddfad1'
         is_exit:
           description: Is an event the last one in a session
           type: boolean
@@ -260,52 +297,36 @@ components:
           type: boolean
           example: false
         event_type:
-          description: |
-            A type of an event.
-            - 1 # page view
-            - 2 # outlink
-            - 3 # download
-            - 4 # search
-            - 5 # custom event
-            - 6 # content impression
-            - 7 # content interaction
-            - 8 # goal conversion
-            - 9 # ecommerce conversion
-            - 11 # sharepoint
-            - 12 # consent form impression
-            - 13 # consent form click
-            - 14 # consent decision
-            - 15 # custom ping
-            - 16 # cart update
-            - 17 # broken event
-            - 18 # excluded event
-            - 19 # heartbeat
-            - 20 # deanonymization
-            - 21 # page performance
+          description: A type of an event represented as a tuple with integer ID and string name. Type 10 (abandoned cart) is not exposed in debug endpoint.
+          type: array
+          items:
+            oneOf:
+              - type: integer
+              - type: string
+          minItems: 2
+          maxItems: 2
           enum:
-            - 1 # page view
-            - 2 # outlink
-            - 3 # download
-            - 4 # search
-            - 5 # custom event
-            - 6 # content impression
-            - 7 # content interaction
-            - 8 # goal conversion
-            - 9 # ecommerce conversion
-            # - 10 # abandoned cart - hidden
-            - 11 # share point
-            - 12 # consent form impression
-            - 13 # consent form click
-            - 14 # consent decision
-            - 15 # custom ping
-            - 16 # cart update
-            - 17 # broken event
-            - 18 # excluded event
-            - 19 # heartbeat
-            - 20 # deanonymization
-            - 21 # page performance
-          type: integer
-          example: 8
+            - [1, 'Page view']
+            - [2, 'Outlink']
+            - [3, 'Download']
+            - [4, 'Search']
+            - [5, 'Custom event']
+            - [6, 'Content impression']
+            - [7, 'Content interaction']
+            - [8, 'Goal conversion']
+            - [9, 'Ecommerce conversion']
+            - # [10,  'Abandoned cart'] - hidden
+            - [11, 'SharePoint']
+            - [12, 'Consent form impression']
+            - [13, 'Consent form click']
+            - [14, 'Consent decision']
+            - [15, 'Custom ping']
+            - [16, 'Cart update']
+            - [17, 'Broken event']
+            - [18, 'Excluded event']
+            - [19, 'Heartbeat']
+            - [20, 'Deanonymization']
+            - [21, 'Page performance']
         event_url:
           format: url
           description: A URL on which event occurred, human-readable
@@ -362,9 +383,9 @@ components:
           type: string
           example: image loaded
         custom_event_value:
-          format: float
           description: A value of a custom event
           type: number
+          format: double
           minimum: 0
           maximum: 100000000000
           example: 7.12
@@ -410,15 +431,15 @@ components:
           minimum: 0
           maximum: 2147483647
           example: 412
-        goal_name:
-          description: Converted goal name
-          type: string
-          example: User entered contact page
         goal_uuid:
           description: Converted goal UUID
           type: string
           format: uuid
           example: 23724a56-4f12-4743-b4ea-a321e59a521b
+        goal_name:
+          description: Converted goal name
+          type: string
+          example: User entered contact page
         order_id:
           description: Ecommerce order ID
           type: string
@@ -430,39 +451,29 @@ components:
           maximum: 65535
           example: 3
         revenue:
-          format: float
           description: Ecommerce revenue
           type: number
-          minimum: 0
-          maximum: 1.7976931348623157e+308
+          format: double
           example: 89.99
         revenue_subtotal:
-          format: float
           description: Ecommerce revenue subtotal
           type: number
-          minimum: 0
-          maximum: 1.7976931348623157e+308
+          format: double
           example: 122.95
         revenue_tax:
-          format: float
           description: Ecommerce revenue tax
           type: number
-          minimum: 0
-          maximum: 1.7976931348623157e+308
+          format: double
           example: 9.15
         revenue_shipping:
-          format: float
           description: Ecommerce revenue shipping
           type: number
-          minimum: 0
-          maximum: 1.7976931348623157e+308
+          format: double
           example: 12.15
         revenue_discount:
-          format: float
           description: Ecommerce revenue discount
           type: number
-          minimum: 0
-          maximum: 1.7976931348623157e+308
+          format: double
           example: 0.12
         timing_connect_end:
           description: Time between browser navigation start and connection end in milliseconds
@@ -638,16 +649,14 @@ components:
           items:
             $ref: '#/components/schemas/EcommerceItem'
         goal_revenue:
-          format: float
           description: Revenue from a conversion
           type: number
+          format: double
           example: 18.99
         lost_revenue:
-          format: float
           description: Revenue from abandoned cart.
           type: number
-          minimum: 0
-          maximum: 1.7976931348623157e+308
+          format: double
           example: 8.19
         previous_event_url:
           description: A URL of previous event, human-readable
@@ -667,32 +676,56 @@ components:
           example: This was the following event
         consent_source:
           description: How a user viewed consent form. Present if event_type is 12 (consent form impression). 1 - popup, 2 - reminder, 3 - privacy_settings
-          type: integer
+          type: array
+          items:
+            oneOf:
+              - type: integer
+              - type: string
+          minItems: 2
+          maxItems: 2
           enum:
-            - 1
-            - 2
-            - 3
+            - [1, 'Popup or bottom bar']
+            - [2, 'Reminder']
+            - [3, 'Privacy settings on a page']
         consent_form_button:
           description: How a user interacted with consent form. Present if event_type is 13 (consent form click). 1 - agree_to_all, 2 - reject_all, 3 - save_choices, 4 - close
-          type: integer
+          type: array
+          items:
+            oneOf:
+              - type: integer
+              - type: string
+          minItems: 2
+          maxItems: 2
           enum:
-            - 1
-            - 2
-            - 3
-            - 4
+            - [1, 'Agree to all']
+            - [2, 'Reject all']
+            - [3, 'Save choices']
+            - [4, 'Close']
         consent_scope:
           description: Whether a user gave consent to all, some, or none types of tracking. Present if event_type is 14 (consent decision). 1 - full_consent, 2 - any_consent, 3 - no_consent
-          type: integer
+          type: array
+          items:
+            oneOf:
+              - type: integer
+              - type: string
+          minItems: 2
+          maxItems: 2
           enum:
-            - 1
-            - 2
-            - 3
+            - [1, 'Full consent']
+            - [2, 'Any consent']
+            - [3, 'No consent']
         consent_action:
           description: Whether it's the first decision or a modification of previously made consent decision. Present if event_type is 14 (consent decision). 1 - first_consent, 2 - changed_consent
-          type: integer
+          type: array
+          items:
+            oneOf:
+              - type: integer
+              - type: string
+          minItems: 2
+          maxItems: 2
           enum:
-            - 1
-            - 2
+            - [1, 'First consent']
+            - [2, 'Changed consent']
         consent_type_analytics:
           description: Whether a user gave consent for analytics. Present if event_type is 14 (consent decision)
           type: integer
@@ -753,48 +786,41 @@ components:
           enum:
             - 0
             - 1
-        sharepoint_action: 
-          description: |
-            A type of a sharepoint event. Present if event_type is 11 (sharepoint). The allowed values are:
-            - 1 # like
-            - 2 # share
-            - 3 # comment
-            - 4 # promote
-            - 5 # create
-            - 6 # edit
-            - 7 # delete
-            - 8 # open
-            - 9 # upload
-            - 10 # item view
-            - 11 # item attachment view
-            - 12 # item share
-          type: integer
-          example: 1
+        sharepoint_action:
+          description: A type of a sharepoint event. Present if event_type is 11 (sharepoint).
+          type: array
+          items:
+            oneOf:
+              - type: integer
+              - type: string
+          minItems: 2
+          maxItems: 2
           enum:
-            - 1 # like
-            - 2 # share
-            - 3 # comment
-            - 4 # promote
-            - 5 # create
-            - 6 # edit
-            - 7 # delete
-            - 8 # open
-            - 9 # upload
-            - 10 # item view
-            - 11 # item attachment view
-            - 12 # item share
-        sharepoint_object_type: 
-          description: |
-            Sharepoint object type, that visitor acts upon.  Present if event_type is 11 (sharepoint). Allowed values:
-            - 1 # page
-            - 2 # file
-            - 3 # list
-          type: integer
-          example: 1
+            - [1, 'Like']
+            - [2, 'Share']
+            - [3, 'Comment']
+            - [4, 'Promote']
+            - [5, 'Create']
+            - [6, 'Edit']
+            - [7, 'Delete']
+            - [8, 'Open']
+            - [9, 'Upload']
+            - [10, 'Item view']
+            - [11, 'Item attachment view']
+            - [12, 'Item share']
+        sharepoint_object_type:
+          description: Sharepoint object type, that visitor acts upon.  Present if event_type is 11 (sharepoint).
+          type: array
+          items:
+            oneOf:
+              - type: integer
+              - type: string
+          minItems: 2
+          maxItems: 2
           enum:
-            - 1 # page
-            - 2 # file
-            - 3 # list
+            - [1, 'Page']
+            - [2, 'File']
+            - [3, 'List']
         sharepoint_content_type:
           description: Sharepoint content type, that visitor acts upon. Present if `event_type` is 11 (sharepoint).
           type: string
@@ -852,17 +878,15 @@ components:
           type: string
           example: A20078021
         price:
-          format: float
           description: Ecommerce item price
           type: number
-          minimum: 0
-          maximum: 1.7976931348623157e+308
+          format: double
           example: 9.19
         quantity:
           description: Items quantity
           type: integer
-          minimum: 1
-          maximum: 2147483647
+          minimum: 0
+          maximum: 4294967295
           example: 4
         category1:
           description: Category 1
@@ -884,16 +908,22 @@ components:
           description: Category 5
           type: string
           example: Cranks with bashguard
-    Session:
+    DebugSession:
       description: A session
       required:
         - session_id
+        - session_id_str
+        - session_id_hex
         - server_time
         - updated_at
         - app_uuid
         - organization
         - cookie_id
+        - cookie_id_str
+        - cookie_id_hex
         - visitor_id
+        - visitor_id_str
+        - visitor_id_hex
         - visitor_returning
         - session_first_event_time
         - session_last_event_time
@@ -920,7 +950,6 @@ components:
         - referrer_type
         - is_bounce
         - events
-        - fingerprint
         - plugin_pdf
         - plugin_flash
         - plugin_java
@@ -934,11 +963,23 @@ components:
       type: object
       properties:
         session_id:
-          description: ID of session - random value
+          description: ID of a session - copied from event_id of the first event in a session
           type: integer
           minimum: 0
-          maximum: 18446744073709552000
-          example: 12930330323049021000
+          maximum: 18446744073709551615
+          example: 5632530715433106129
+        session_id_str:
+          description: ID of a session - string with a decimal representation of the ID
+          type: string
+          minLength: 1
+          maxLength: 20
+          example: '5632530715433106129'
+        session_id_hex:
+          description: ID of a session - string with a hexadecimal representation of the ID, padded with zeros to 16 characters
+          type: string
+          minLength: 16
+          maxLength: 16
+          example: '4e2ac4d7dfddfad1'
         server_time:
           format: date-time
           description: 'Time of session creation in YYYY-MM-DDTHH:MM:SS format in UTC'
@@ -949,12 +990,6 @@ components:
           description: 'Server time of last update of the session in YYYY-MM-DDTHH:MM:SS format in UTC'
           type: string
           example: '2020-07-14T13:30:19'
-        app_id:
-          description: Legacy App ID
-          type: integer
-          minimum: 0
-          maximum: 4294967295
-          example: 8
         app_uuid:
           format: uuid
           description: UUID of an app
@@ -968,8 +1003,20 @@ components:
           description: Cookie ID
           type: integer
           minimum: 0
-          maximum: 18446744073709552000
-          example: 2701247379086788600
+          maximum: 18446744073709551615
+          example: 6303319015376347268
+        cookie_id_str:
+          description: Cookie ID - string with a decimal representation of the ID
+          type: string
+          minLength: 1
+          maxLength: 20
+          example: '6303319015376347268'
+        cookie_id_hex:
+          description: Cookie ID - string with a hexadecimal representation of the ID, padded with zeros to 16 characters
+          type: string
+          minLength: 16
+          maxLength: 16
+          example: '5779e33f8178e084'
         user_id:
           description: User ID
           type: string
@@ -978,8 +1025,20 @@ components:
           description: 'Visitor identifier, defaults to `cookie_id` value. When `user_id` is available, this field is set to first 16 characters of `user_id` SHA1 hash'
           type: integer
           minimum: 0
-          maximum: 18446744073709552000
-          example: 9601996549342362000
+          maximum: 18446744073709551615
+          example: 6303319015376347268
+        visitor_id_str:
+          description: Visitor ID - string with a decimal representation of the ID
+          type: string
+          minLength: 1
+          maxLength: 20
+          example: '6303319015376347268'
+        visitor_id_hex:
+          description: Visitor ID - string with a hexadecimal representation of the ID, padded with zeros to 16 characters
+          type: string
+          minLength: 16
+          maxLength: 16
+          example: '5779e33f8178e084'
         local_time:
           format: time
           description: 'Local time of first event occurrence in format HH:MM:SS in visitor''s time zone'
@@ -987,13 +1046,18 @@ components:
           example: '12:00:00'
         visitor_returning:
           description: Is returning visitor
+          type: array
+          items:
+            oneOf:
+              - type: integer
+              - type: string
+          minItems: 2
+          maxItems: 2
           enum:
-            - '0'
-            - '1'
-          type: integer
-          minimum: 0
-          maximum: 1
-          example: 0
+            - [0, 'New']
+            - [1, 'Returning']
+            - [2, 'Returning customer']
+          example: [0, 'New']
         visitor_session_number:
           description: Number of visitor's session
           type: integer
@@ -1007,7 +1071,7 @@ components:
           maximum: 65535
           example: 8
         visitor_days_since_first_session:
-          description: Days sice first session
+          description: Days since first session
           type: integer
           minimum: 0
           maximum: 65535
@@ -1059,7 +1123,7 @@ components:
           maximum: 65535
           example: 55
         session_total_site_searches:
-          description: Sum of number of site searches during a session
+          description: Number of site searches during a session
           type: integer
           minimum: 0
           maximum: 65535
@@ -1083,7 +1147,7 @@ components:
           maximum: 65535
           example: 3
         session_total_goal_conversions:
-          description: IDs of unique conversions triggered manually
+          description: Number of goal conversions
           type: integer
           minimum: 0
           maximum: 65535
@@ -1144,31 +1208,39 @@ components:
           example: 8
         session_ecommerce_status:
           description: Was there a commerce conversion during a session?
+          type: array
+          items:
+            oneOf:
+              - type: integer
+              - type: string
+          minItems: 2
+          maxItems: 2
           enum:
-            - 0
-            - 1
-            - 2
-            - 3
-          type: integer
-          minimum: 0
-          maximum: 3
-          example: 2
+            - [0, 'No shopping activity']
+            - [1, 'Ordered']
+            - [2, 'Abandoned cart']
+            - [3, 'Ordered and abandoned cart']
+          example: [2, 'Abandoned cart']
         source:
           description: Source of the session
           type: string
           example: direct
         referrer_type:
           description: 'Referrer type'
+          type: array
+          items:
+            oneOf:
+              - type: integer
+              - type: string
+          minItems: 2
+          maxItems: 2
           enum:
-            - 1
-            - 2
-            - 3
-            - 6
-            - 7
-          type: integer
-          minimum: 1
-          maximum: 7
-          example: 1
+            - [1, 'Direct entry']
+            - [2, 'Search engine']
+            - [3, 'Website']
+            - [6, 'Campaign']
+            - [7, 'Social']
+          example: [1, 'Direct entry']
         referrer_name:
           description: Referrer name
           type: string
@@ -1207,8 +1279,102 @@ components:
           example: left-side-banner
         operating_system:
           description: 'Operating system code'
-          type: string
-          example: FED
+          type: array
+          items:
+            type: string
+          minItems: 2
+          maxItems: 2
+          enum:
+            - ['AIX', 'AIX']
+            - ['AND', 'Android']
+            - ['AMG', 'AmigaOS']
+            - ['ATV', 'Apple TV']
+            - ['ARL', 'Arch Linux']
+            - ['BOT', 'Bot']
+            - ['BTR', 'BackTrack']
+            - ['SBA', 'Bada']
+            - ['BEO', 'BeOS']
+            - ['BLB', 'BlackBerry OS']
+            - ['QNX', 'BlackBerry Tablet OS']
+            - ['BMP', 'Brew']
+            - ['CES', 'CentOS']
+            - ['COS', 'Chrome OS']
+            - ['CYN', 'CyanogenMod']
+            - ['DEB', 'Debian']
+            - ['DFB', 'DragonFly']
+            - ['FED', 'Fedora']
+            - ['FOS', 'Firefox OS']
+            - ['FIR', 'Fire OS']
+            - ['FYD', 'FydeOS']
+            - ['BSD', 'FreeBSD']
+            - ['GNT', 'Gentoo']
+            - ['GTV', 'Google TV']
+            - ['HPX', 'HP-UX']
+            - ['HAI', 'Haiku OS']
+            - ['IRI', 'IRIX']
+            - ['INF', 'Inferno']
+            - ['KOS', 'KaiOS']
+            - ['KNO', 'Knoppix']
+            - ['KBT', 'Kubuntu']
+            - ['LIN', 'GNU/Linux']
+            - ['LBT', 'Lubuntu']
+            - ['VLN', 'VectorLinux']
+            - ['MAC', 'Mac']
+            - ['MAE', 'Maemo']
+            - ['MDR', 'Mandriva']
+            - ['SMG', 'MeeGo']
+            - ['MCD', 'MocorDroid']
+            - ['MIN', 'Mint']
+            - ['MLD', 'MildWild']
+            - ['MOR', 'MorphOS']
+            - ['MRE', 'MRE']
+            - ['NBS', 'NetBSD']
+            - ['MTK', 'MTK / Nucleus']
+            - ['WII', 'Nintendo']
+            - ['NDS', 'Nintendo Mobile']
+            - ['OS2', 'OS/2']
+            - ['T64', 'OSF1']
+            - ['OBS', 'OpenBSD']
+            - ['ORD', 'Ordissimo']
+            - ['PSP', 'PlayStation Portable']
+            - ['PS3', 'PlayStation']
+            - ['RHT', 'Red Hat']
+            - ['ROS', 'RISC OS']
+            - ['RSO', 'Rosa']
+            - ['REM', 'Remix OS']
+            - ['RZD', 'RazoDroiD']
+            - ['SAB', 'Sabayon']
+            - ['SEE', 'SeewoOS']
+            - ['SSE', 'SUSE']
+            - ['SAF', 'Sailfish OS']
+            - ['SLW', 'Slackware']
+            - ['SOS', 'Solaris']
+            - ['SYL', 'Syllable']
+            - ['SYM', 'Symbian']
+            - ['SYS', 'Symbian OS']
+            - ['S40', 'Symbian OS Series 40']
+            - ['S60', 'Symbian OS Series 60']
+            - ['SY3', 'Symbian^3']
+            - ['TDX', 'ThreadX']
+            - ['TIZ', 'Tizen']
+            - ['TOS', 'TmaxOS']
+            - ['UBT', 'Ubuntu']
+            - ['WAS', 'watchOS']
+            - ['WTV', 'WebTV']
+            - ['WHS', 'Whale OS']
+            - ['WIN', 'Windows']
+            - ['WCE', 'Windows CE']
+            - ['WIO', 'Windows IoT']
+            - ['WMO', 'Windows Mobile']
+            - ['WPH', 'Windows Phone']
+            - ['WRT', 'Windows RT']
+            - ['XBX', 'Xbox']
+            - ['XBT', 'Xubuntu']
+            - ['YNS', 'YunOS']
+            - ['IOS', 'iOS']
+            - ['POS', 'palmOS']
+            - ['WOS', 'webOS']
+          example: ['FED', 'Fedora']
         operating_system_version:
           description: Operating system version
           type: string
@@ -1219,32 +1385,1424 @@ components:
           example: Gecko
         browser_name:
           description: 'Browser name code'
-          type: string
-          example: FF
+          type: array
+          items:
+            type: string
+          minItems: 2
+          maxItems: 2
+          enum:
+            - ['1B', '115 Browser']
+            - ['2B', '2345 Browser']
+            - ['36', '360 Phone Browser']
+            - ['3B', '360 Browser']
+            - ['AA', 'Avant Browser']
+            - ['AB', 'ABrowse']
+            - ['AF', 'ANT Fresco']
+            - ['AG', 'ANTGalio']
+            - ['AL', 'Aloha Browser']
+            - ['AH', 'Aloha Browser Lite']
+            - ['AM', 'Amaya']
+            - ['AO', 'Amigo']
+            - ['AN', 'Android Browser']
+            - ['AE', 'AOL Desktop']
+            - ['AD', 'AOL Shield']
+            - ['AR', 'Arora']
+            - ['AX', 'Arctic Fox']
+            - ['AV', 'Amiga Voyager']
+            - ['AW', 'Amiga Aweb']
+            - ['A0', 'Atom']
+            - ['AT', 'Atomic Web Browser']
+            - ['AS', 'Avast Secure Browser']
+            - ['VG', 'AVG Secure Browser']
+            - ['A1', 'AwoX']
+            - ['BA', 'Beaker Browser']
+            - ['BM', 'Beamrise']
+            - ['BB', 'BlackBerry Browser']
+            - ['BD', 'Baidu Browser']
+            - ['BS', 'Baidu Spark']
+            - ['BI', 'Basilisk']
+            - ['BE', 'Beonex']
+            - ['BH', 'BlackHawk']
+            - ['BJ', 'Bunjalloo']
+            - ['BL', 'B-Line']
+            - ['BU', 'Blue Browser']
+            - ['BN', 'Borealis Navigator']
+            - ['BR', 'Brave']
+            - ['BK', 'BriskBard']
+            - ['BX', 'BrowseX']
+            - ['BZ', 'Browzar']
+            - ['BY', 'Biyubi']
+            - ['CA', 'Camino']
+            - ['CL', 'CCleaner']
+            - ['C0', 'Centaury']
+            - ['CC', 'Coc Coc']
+            - ['C2', 'Colibri']
+            - ['CD', 'Comodo Dragon']
+            - ['C1', 'Coast']
+            - ['CX', 'Charon']
+            - ['CE', 'CM Browser']
+            - ['CF', 'Chrome Frame']
+            - ['HC', 'Headless Chrome']
+            - ['CH', 'Chrome']
+            - ['CI', 'Chrome Mobile iOS']
+            - ['CK', 'Conkeror']
+            - ['CM', 'Chrome Mobile']
+            - ['CN', 'CoolNovo']
+            - ['CO', 'CometBird']
+            - ['CB', 'COS Browser']
+            - ['C3', 'Chim Lac']
+            - ['CP', 'ChromePlus']
+            - ['CR', 'Chromium']
+            - ['CY', 'Cyberfox']
+            - ['CS', 'Cheshire']
+            - ['CT', 'Crusta']
+            - ['CZ', 'Crazy Browser']
+            - ['CU', 'Cunaguaro']
+            - ['CV', 'Chrome Webview']
+            - ['DB', 'dbrowser']
+            - ['DE', 'Deepnet Explorer']
+            - ['DT', 'Delta Browser']
+            - ['DF', 'Dolphin']
+            - ['DO', 'Dorado']
+            - ['DL', 'Dooble']
+            - ['DI', 'Dillo']
+            - ['DD', 'DuckDuckGo Privacy Browser']
+            - ['EC', 'Ecosia']
+            - ['EI', 'Epic']
+            - ['EL', 'Elinks']
+            - ['EB', 'Element Browser']
+            - ['EE', 'Elements Browser']
+            - ['EZ', 'eZ Browser']
+            - ['EU', 'EUI Browser']
+            - ['EP', 'GNOME Web']
+            - ['ES', 'Espial TV Browser']
+            - ['FA', 'Falkon']
+            - ['FX', 'Faux Browser']
+            - ['F1', 'Firefox Mobile iOS']
+            - ['FB', 'Firebird']
+            - ['FD', 'Fluid']
+            - ['FE', 'Fennec']
+            - ['FF', 'Firefox']
+            - ['FK', 'Firefox Focus']
+            - ['FY', 'Firefox Reality']
+            - ['FR', 'Firefox Rocket']
+            - ['FL', 'Flock']
+            - ['FM', 'Firefox Mobile']
+            - ['FW', 'Fireweb']
+            - ['FN', 'Fireweb Navigator']
+            - ['FU', 'FreeU']
+            - ['GA', 'Galeon']
+            - ['GH', 'Ghostery Privacy Browser']
+            - ['GB', 'Glass Browser']
+            - ['GE', 'Google Earth']
+            - ['GO', 'GOG Galaxy']
+            - ['HA', 'Hawk Turbo Browser']
+            - ['HO', 'hola! Browser']
+            - ['HJ', 'HotJava']
+            - ['HU', 'Huawei Browser']
+            - ['IB', 'IBrowse']
+            - ['IC', 'iCab']
+            - ['I2', 'iCab Mobile']
+            - ['I1', 'Iridium']
+            - ['I3', 'Iron Mobile']
+            - ['I4', 'IceCat']
+            - ['ID', 'IceDragon']
+            - ['IV', 'Isivioo']
+            - ['IW', 'Iceweasel']
+            - ['IE', 'Internet Explorer']
+            - ['IM', 'IE Mobile']
+            - ['IR', 'Iron']
+            - ['JB', 'Japan Browser']
+            - ['JS', 'Jasmine']
+            - ['JI', 'Jig Browser']
+            - ['JP', 'Jig Browser Plus']
+            - ['JO', 'Jio Browser']
+            - ['KB', 'K.Browser']
+            - ['KI', 'Kindle Browser']
+            - ['KM', 'K-meleon']
+            - ['KO', 'Konqueror']
+            - ['KP', 'Kapiko']
+            - ['KN', 'Kinza']
+            - ['KW', 'Kiwi']
+            - ['KD', 'Kode Browser']
+            - ['KY', 'Kylo']
+            - ['KZ', 'Kazehakase']
+            - ['LB', 'Cheetah Browser']
+            - ['LF', 'LieBaoFast']
+            - ['LG', 'LG Browser']
+            - ['LH', 'Light']
+            - ['LI', 'Links']
+            - ['LO', 'Lovense Browser']
+            - ['LU', 'LuaKit']
+            - ['LL', 'Lulumi']
+            - ['LS', 'Lunascape']
+            - ['LN', 'Lunascape Lite']
+            - ['LX', 'Lynx']
+            - ['M1', 'mCent']
+            - ['MB', 'MicroB']
+            - ['MC', 'NCSA Mosaic']
+            - ['MZ', 'Meizu Browser']
+            - ['ME', 'Mercury']
+            - ['MF', 'Mobile Safari']
+            - ['MI', 'Midori']
+            - ['MO', 'Mobicip']
+            - ['MU', 'MIUI Browser']
+            - ['MS', 'Mobile Silk']
+            - ['MN', 'Minimo']
+            - ['MT', 'Mint Browser']
+            - ['MX', 'Maxthon']
+            - ['NM', 'MxNitro']
+            - ['MY', 'Mypal']
+            - ['MR', 'Monument Browser']
+            - ['MW', 'MAUI WAP Browser']
+            - ['NW', 'Navigateur Web']
+            - ['NR', 'NFS Browser']
+            - ['NB', 'Nokia Browser']
+            - ['NO', 'Nokia OSS Browser']
+            - ['NV', 'Nokia Ovi Browser']
+            - ['NX', 'Nox Browser']
+            - ['NE', 'NetSurf']
+            - ['NF', 'NetFront']
+            - ['NL', 'NetFront Life']
+            - ['NP', 'NetPositive']
+            - ['NS', 'Netscape']
+            - ['NT', 'NTENT Browser']
+            - ['OC', 'Oculus Browser']
+            - ['O1', 'Opera Mini iOS']
+            - ['OB', 'Obigo']
+            - ['O2', 'Odin']
+            - ['OD', 'Odyssey Web Browser']
+            - ['OF', 'Off By One']
+            - ['HH', 'OhHai Browser']
+            - ['OE', 'ONE Browser']
+            - ['OX', 'Opera GX']
+            - ['OG', 'Opera Neon']
+            - ['OH', 'Opera Devices']
+            - ['OI', 'Opera Mini']
+            - ['OM', 'Opera Mobile']
+            - ['OP', 'Opera']
+            - ['ON', 'Opera Next']
+            - ['OO', 'Opera Touch']
+            - ['OS', 'Ordissimo']
+            - ['OR', 'Oregano']
+            - ['O0', 'Origin In-Game Overlay']
+            - ['OY', 'Origyn Web Browser']
+            - ['OV', 'Openwave Mobile Browser']
+            - ['OW', 'OmniWeb']
+            - ['OT', 'Otter Browser']
+            - ['PL', 'Palm Blazer']
+            - ['PM', 'Pale Moon']
+            - ['PY', 'Polypane']
+            - ['PP', 'Oppo Browser']
+            - ['PR', 'Palm Pre']
+            - ['PU', 'Puffin']
+            - ['PW', 'Palm WebPro']
+            - ['PA', 'Palmscape']
+            - ['PE', 'Perfect Browser']
+            - ['PH', 'Phantom Browser']
+            - ['PX', 'Phoenix']
+            - ['PB', 'Phoenix Browser']
+            - ['PF', 'PlayFree Browser']
+            - ['PO', 'Polaris']
+            - ['PT', 'Polarity']
+            - ['PI', 'PrivacyWall']
+            - ['PS', 'Microsoft Edge']
+            - ['Q1', 'QQ Browser Mini']
+            - ['QQ', 'QQ Browser']
+            - ['QT', 'Qutebrowser']
+            - ['QU', 'Quark']
+            - ['QZ', 'QupZilla']
+            - ['QM', 'Qwant Mobile']
+            - ['QW', 'QtWebEngine']
+            - ['RE', 'Realme Browser']
+            - ['RK', 'Rekonq']
+            - ['RM', 'RockMelt']
+            - ['SB', 'Samsung Browser']
+            - ['SA', 'Sailfish Browser']
+            - ['S8', 'Seewo Browser']
+            - ['SC', 'SEMC-Browser']
+            - ['SE', 'Sogou Explorer']
+            - ['SF', 'Safari']
+            - ['S5', 'Safe Exam Browser']
+            - ['SW', 'SalamWeb']
+            - ['SV', 'SFive']
+            - ['SH', 'Shiira']
+            - ['S1', 'SimpleBrowser']
+            - ['SY', 'Sizzy']
+            - ['SK', 'Skyfire']
+            - ['SS', 'Seraphic Sraf']
+            - ['SL', 'Sleipnir']
+            - ['S6', 'Slimjet']
+            - ['7S', '7Star']
+            - ['LE', 'Smart Lenovo Browser']
+            - ['SN', 'Snowshoe']
+            - ['SO', 'Sogou Mobile Browser']
+            - ['S2', 'Splash']
+            - ['SI', 'Sputnik Browser']
+            - ['SR', 'Sunrise']
+            - ['SP', 'SuperBird']
+            - ['SU', 'Super Fast Browser']
+            - ['S3', 'surf']
+            - ['SG', 'Stargon']
+            - ['S0', 'START Internet Browser']
+            - ['S4', 'Steam In-Game Overlay']
+            - ['ST', 'Streamy']
+            - ['SX', 'Swiftfox']
+            - ['SZ', 'Seznam Browser']
+            - ['TR', 'T-Browser']
+            - ['TO', 't-online.de Browser']
+            - ['TA', 'Tao Browser']
+            - ['TF', 'TenFourFox']
+            - ['TB', 'Tenta Browser']
+            - ['TZ', 'Tizen Browser']
+            - ['TU', 'Tungsten']
+            - ['TG', 'ToGate']
+            - ['TS', 'TweakStyle']
+            - ['TV', 'TV Bro']
+            - ['UB', 'UBrowser']
+            - ['UC', 'UC Browser']
+            - ['UM', 'UC Browser Mini']
+            - ['UT', 'UC Browser Turbo']
+            - ['UR', 'UR Browser']
+            - ['UZ', 'Uzbl']
+            - ['VI', 'Vivaldi']
+            - ['VV', 'vivo Browser']
+            - ['VB', 'Vision Mobile Browser']
+            - ['VM', 'VMware AirWatch']
+            - ['WI', 'Wear Internet Browser']
+            - ['WP', 'Web Explorer']
+            - ['WE', 'WebPositive']
+            - ['WF', 'Waterfox']
+            - ['WH', 'Whale Browser']
+            - ['WO', 'wOSBrowser']
+            - ['WT', 'WeTab Browser']
+            - ['YJ', 'Yahoo! Japan Browser']
+            - ['YA', 'Yandex Browser']
+            - ['YL', 'Yandex Browser Lite']
+            - ['YN', 'Yaani Browser']
+            - ['YB', 'Yolo Browser']
+            - ['XI', 'Xiino']
+            - ['XV', 'Xvast']
+            - ['ZE', 'Zetakey']
+            - ['ZV', 'Zvu']
+          example: ['FF', 'Firefox']
         browser_version:
           description: Browser version
           type: string
           example: '88.0'
         browser_language_iso639:
           description: 'Browser language code'
-          type: string
-          example: en
-        fingerprint:
-          description: Visitor's fingerprint
-          type: integer
-          minimum: 0
-          maximum: 18446744073709552000
-          example: 777468334834467100
+          type: array
+          items:
+            type: string
+          minItems: 2
+          maxItems: 2
+          enum:
+            - ['aa', 'Afar']
+            - ['ab', 'Abkhazian']
+            - ['af', 'Afrikaans']
+            - ['ak', 'Akan']
+            - ['sq', 'Albanian']
+            - ['am', 'Amharic']
+            - ['ar', 'Arabic']
+            - ['an', 'Aragonese']
+            - ['hy', 'Armenian']
+            - ['as', 'Assamese']
+            - ['av', 'Avaric']
+            - ['ae', 'Avestan']
+            - ['ay', 'Aymara']
+            - ['az', 'Azerbaijani']
+            - ['ba', 'Bashkir']
+            - ['bm', 'Bambara']
+            - ['eu', 'Basque']
+            - ['be', 'Belarusian']
+            - ['bn', 'Bengali']
+            - ['bh', 'Bihari languages']
+            - ['bi', 'Bislama']
+            - ['bs', 'Bosnian']
+            - ['br', 'Breton']
+            - ['bg', 'Bulgarian']
+            - ['my', 'Burmese']
+            - ['ca', 'Catalan']
+            - ['ch', 'Chamorro']
+            - ['ce', 'Chechen']
+            - ['zh', 'Chinese']
+            - ['cu', 'Church Slavic']
+            - ['cv', 'Chuvash']
+            - ['kw', 'Cornish']
+            - ['co', 'Corsican']
+            - ['cr', 'Cree']
+            - ['cs', 'Czech']
+            - ['da', 'Danish']
+            - ['dv', 'Divehi']
+            - ['nl', 'Dutch']
+            - ['dz', 'Dzongkha']
+            - ['en', 'English']
+            - ['eo', 'Esperanto']
+            - ['et', 'Estonian']
+            - ['ee', 'Ewe']
+            - ['fo', 'Faroese']
+            - ['fj', 'Fijian']
+            - ['fi', 'Finnish']
+            - ['fr', 'French']
+            - ['fy', 'Western Frisian']
+            - ['ff', 'Fulah']
+            - ['ka', 'Georgian']
+            - ['de', 'German']
+            - ['gd', 'Gaelic']
+            - ['ga', 'Irish']
+            - ['gl', 'Galician']
+            - ['gv', 'Manx']
+            - ['el', 'Greek']
+            - ['gn', 'Guarani']
+            - ['gu', 'Gujarati']
+            - ['ht', 'Haitian']
+            - ['ha', 'Hausa']
+            - ['he', 'Hebrew']
+            - ['hz', 'Herero']
+            - ['hi', 'Hindi']
+            - ['ho', 'Hiri Motu']
+            - ['hr', 'Croatian']
+            - ['hu', 'Hungarian']
+            - ['ig', 'Igbo']
+            - ['is', 'Icelandic']
+            - ['io', 'Ido']
+            - ['ii', 'Sichuan Yi']
+            - ['iu', 'Inuktitut']
+            - ['ie', 'Interlingue']
+            - ['ia', 'Interlingua (International Auxiliary Language Association)']
+            - ['id', 'Indonesian']
+            - ['ik', 'Inupiaq']
+            - ['it', 'Italian']
+            - ['jv', 'Javanese']
+            - ['ja', 'Japanese']
+            - ['kl', 'Kalaallisut']
+            - ['kn', 'Kannada']
+            - ['ks', 'Kashmiri']
+            - ['kr', 'Kanuri']
+            - ['kk', 'Kazakh']
+            - ['km', 'Central Khmer']
+            - ['ki', 'Kikuyu']
+            - ['rw', 'Kinyarwanda']
+            - ['ky', 'Kirghiz']
+            - ['kv', 'Komi']
+            - ['kg', 'Kongo']
+            - ['ko', 'Korean']
+            - ['kj', 'Kuanyama']
+            - ['ku', 'Kurdish']
+            - ['lo', 'Lao']
+            - ['la', 'Latin']
+            - ['lv', 'Latvian']
+            - ['li', 'Limburgan']
+            - ['ln', 'Lingala']
+            - ['lt', 'Lithuanian']
+            - ['lb', 'Luxembourgish']
+            - ['lu', 'Luba-Katanga']
+            - ['lg', 'Ganda']
+            - ['mk', 'Macedonian']
+            - ['mh', 'Marshallese']
+            - ['ml', 'Malayalam']
+            - ['mi', 'Maori']
+            - ['mr', 'Marathi']
+            - ['ms', 'Malay']
+            - ['mg', 'Malagasy']
+            - ['mt', 'Maltese']
+            - ['mn', 'Mongolian']
+            - ['na', 'Nauru']
+            - ['nv', 'Navajo']
+            - ['nr', 'Ndebele, South']
+            - ['nd', 'Ndebele, North']
+            - ['ng', 'Ndonga']
+            - ['ne', 'Nepali']
+            - ['nn', 'Norwegian Nynorsk']
+            - ['nb', 'Bokm\u00e5l, Norwegian']
+            - ['no', 'Norwegian']
+            - ['ny', 'Chichewa']
+            - ['oc', 'Occitan (post 1500)']
+            - ['oj', 'Ojibwa']
+            - ['or', 'Oriya']
+            - ['om', 'Oromo']
+            - ['os', 'Ossetian']
+            - ['pa', 'Panjabi']
+            - ['fa', 'Persian']
+            - ['pi', 'Pali']
+            - ['pl', 'Polish']
+            - ['pt', 'Portuguese']
+            - ['ps', 'Pushto']
+            - ['qu', 'Quechua']
+            - ['rc', 'Reunionese']
+            - ['rm', 'Romansh']
+            - ['ro', 'Romanian']
+            - ['rn', 'Rundi']
+            - ['ru', 'Russian']
+            - ['sg', 'Sango']
+            - ['sa', 'Sanskrit']
+            - ['si', 'Sinhala']
+            - ['sk', 'Slovak']
+            - ['sl', 'Slovenian']
+            - ['se', 'Northern Sami']
+            - ['sm', 'Samoan']
+            - ['sn', 'Shona']
+            - ['sd', 'Sindhi']
+            - ['so', 'Somali']
+            - ['st', 'Sotho, Southern']
+            - ['es', 'Spanish']
+            - ['sc', 'Sardinian']
+            - ['sr', 'Serbian']
+            - ['ss', 'Swati']
+            - ['su', 'Sundanese']
+            - ['sw', 'Swahili']
+            - ['sv', 'Swedish']
+            - ['ty', 'Tahitian']
+            - ['ta', 'Tamil']
+            - ['tt', 'Tatar']
+            - ['te', 'Telugu']
+            - ['tg', 'Tajik']
+            - ['tl', 'Tagalog']
+            - ['th', 'Thai']
+            - ['bo', 'Tibetan']
+            - ['ti', 'Tigrinya']
+            - ['to', 'Tonga (Tonga Islands)']
+            - ['tn', 'Tswana']
+            - ['ts', 'Tsonga']
+            - ['tk', 'Turkmen']
+            - ['tr', 'Turkish']
+            - ['tw', 'Twi']
+            - ['ug', 'Uighur']
+            - ['uk', 'Ukrainian']
+            - ['ur', 'Urdu']
+            - ['uz', 'Uzbek']
+            - ['ve', 'Venda']
+            - ['vi', 'Vietnamese']
+            - ['vo', 'Volap\u00fck']
+            - ['cy', 'Welsh']
+            - ['wa', 'Walloon']
+            - ['wo', 'Wolof']
+            - ['xh', 'Xhosa']
+            - ['yi', 'Yiddish']
+            - ['yo', 'Yoruba']
+            - ['za', 'Zhuang']
+            - ['zu', 'Zulu']
+          example: ['en', 'English']
         device_type:
           description: 'Device type code'
-          type: integer
-          minimum: 0
-          maximum: 255
-          example: 1
+          type: array
+          items:
+            oneOf:
+              - type: integer
+              - type: string
+          minItems: 2
+          maxItems: 2
+          enum:
+            - [0, 'Desktop']
+            - [1, 'Smartphone']
+            - [2, 'Tablet']
+            - [3, 'Feature phone']
+            - [4, 'Console']
+            - [5, 'TV']
+            - [6, 'Car browser']
+            - [7, 'Smart display']
+            - [8, 'Camera']
+            - [9, 'Portable media player']
+            - [10, 'Phablet']
+            - [11, 'Smart speaker']
+            - [12, 'Wearable']
+            - [13, 'Peripheral']
+          example: [1, 'Smartphone']
         device_brand:
           description: 'Device brand'
-          type: string
-          example: LE
+          type: array
+          items:
+            type: string
+          minItems: 2
+          maxItems: 2
+          enum:
+            - ['5E', '2E']
+            - ['3Q', '3Q']
+            - ['4G', '4Good']
+            - ['04', '4ife']
+            - ['36', '360']
+            - ['88', '8848']
+            - ['41', 'A1']
+            - ['00', 'Accent']
+            - ['AE', 'Ace']
+            - ['AC', 'Acer']
+            - ['A9', 'Advan']
+            - ['AD', 'Advance']
+            - ['AF', 'AfriOne']
+            - ['A3', 'AGM']
+            - ['AZ', 'Ainol']
+            - ['AI', 'Airness']
+            - ['AT', 'Airties']
+            - ['0A', 'AIS']
+            - ['AW', 'Aiwa']
+            - ['AK', 'Akai']
+            - ['1A', 'Alba']
+            - ['AL', 'Alcatel']
+            - ['20', 'Alcor']
+            - ['6L', 'ALDI SÜD']
+            - ['3L', 'Alfawise']
+            - ['4A', 'Aligator']
+            - ['AA', 'AllCall']
+            - ['3A', 'AllDocube']
+            - ['A2', 'Allview']
+            - ['A7', 'Allwinner']
+            - ['A1', 'Altech UEC']
+            - ['66', 'Altice']
+            - ['A5', 'altron']
+            - ['KN', 'Amazon']
+            - ['AG', 'AMGOO']
+            - ['9A', 'Amigoo']
+            - ['AO', 'Amoi']
+            - ['60', 'Andowl']
+            - ['7A', 'Anry']
+            - ['A0', 'ANS']
+            - ['3N', 'Aoson']
+            - ['AP', 'Apple']
+            - ['AR', 'Archos']
+            - ['AB', 'Arian Space']
+            - ['A6', 'Ark']
+            - ['5A', 'ArmPhone']
+            - ['AN', 'Arnova']
+            - ['AS', 'ARRIS']
+            - ['40', 'Artel']
+            - ['21', 'Artizlee']
+            - ['8A', 'Asano']
+            - ['90', 'Asanzo']
+            - ['A4', 'Ask']
+            - ['A8', 'Assistant']
+            - ['AU', 'Asus']
+            - ['6A', 'AT&T']
+            - ['2A', 'Atom']
+            - ['AX', 'Audiovox']
+            - ['ZA', 'Avenzo']
+            - ['AH', 'AVH']
+            - ['AV', 'Avvio']
+            - ['AY', 'Axxion']
+            - ['AM', 'Azumi Mobile']
+            - ['BO', 'BangOlufsen']
+            - ['BN', 'Barnes & Noble']
+            - ['BB', 'BBK']
+            - ['0B', 'BB Mobile']
+            - ['B6', 'BDF']
+            - ['BE', 'Becker']
+            - ['B5', 'Beeline']
+            - ['B0', 'Beelink']
+            - ['BL', 'Beetel']
+            - ['BQ', 'BenQ']
+            - ['BS', 'BenQ-Siemens']
+            - ['BZ', 'Bezkam']
+            - ['9B', 'Bellphone']
+            - ['BG', 'BGH']
+            - ['6B', 'Bigben']
+            - ['B8', 'BIHEE']
+            - ['1B', 'Billion']
+            - ['BH', 'BioRugged']
+            - ['BI', 'Bird']
+            - ['BT', 'Bitel']
+            - ['B7', 'Bitmore']
+            - ['BK', 'Bkav']
+            - ['5B', 'Black Bear']
+            - ['BF', 'Black Fox']
+            - ['B2', 'Blackview']
+            - ['BP', 'Blaupunkt']
+            - ['BU', 'Blu']
+            - ['B3', 'Bluboo']
+            - ['2B', 'Bluedot']
+            - ['BD', 'Bluegood']
+            - ['LB', 'Bluewave']
+            - ['BM', 'Bmobile']
+            - ['B9', 'Bobarry']
+            - ['B4', 'bogo']
+            - ['BW', 'Boway']
+            - ['BX', 'bq']
+            - ['8B', 'Brandt']
+            - ['BV', 'Bravis']
+            - ['BR', 'Brondi']
+            - ['B1', 'Bush']
+            - ['C9', 'CAGI']
+            - ['CT', 'Capitel']
+            - ['G3', 'CG Mobile']
+            - ['CP', 'Captiva']
+            - ['CF', 'Carrefour']
+            - ['CS', 'Casio']
+            - ['R4', 'Casper']
+            - ['CA', 'Cat']
+            - ['BC', 'Camfone']
+            - ['CJ', 'Cavion']
+            - ['02', 'Cell-C']
+            - ['34', 'CellAllure']
+            - ['7C', 'Celcus']
+            - ['CE', 'Celkon']
+            - ['C2', 'Changhong']
+            - ['CH', 'Cherry Mobile']
+            - ['C3', 'China Mobile']
+            - ['CI', 'Chico Mobile']
+            - ['1C', 'Chuwi']
+            - ['L8', 'Clarmin']
+            - ['25', 'Claresta']
+            - ['CD', 'Cloudfone']
+            - ['6C', 'Cloudpad']
+            - ['C0', 'Clout']
+            - ['CN', 'CnM']
+            - ['CY', 'Coby Kyros']
+            - ['C6', 'Comio']
+            - ['CL', 'Compal']
+            - ['CQ', 'Compaq']
+            - ['C7', 'ComTrade Tesla']
+            - ['C8', 'Concord']
+            - ['CC', 'ConCorde']
+            - ['C5', 'Condor']
+            - ['4C', 'Conquest']
+            - ['3C', 'Contixo']
+            - ['8C', 'Connex']
+            - ['53', 'Connectce']
+            - ['9C', 'Colors']
+            - ['CO', 'Coolpad']
+            - ['CW', 'Cowon']
+            - ['33', 'Clementoni']
+            - ['CR', 'CreNova']
+            - ['CX', 'Crescent']
+            - ['CK', 'Cricket']
+            - ['CM', 'Crius Mea']
+            - ['0C', 'Crony']
+            - ['C1', 'Crosscall']
+            - ['CU', 'Cube']
+            - ['CB', 'CUBOT']
+            - ['CV', 'CVTE']
+            - ['C4', 'Cyrus']
+            - ['D5', 'Daewoo']
+            - ['DA', 'Danew']
+            - ['DT', 'Datang']
+            - ['D7', 'Datawind']
+            - ['D1', 'Datsun']
+            - ['DB', 'Dbtel']
+            - ['DL', 'Dell']
+            - ['DE', 'Denver']
+            - ['DS', 'Desay']
+            - ['DW', 'DeWalt']
+            - ['DX', 'DEXP']
+            - ['DG', 'Dialog']
+            - ['DI', 'Dicam']
+            - ['D4', 'Digi']
+            - ['D3', 'Digicel']
+            - ['DH', 'Digihome']
+            - ['DD', 'Digiland']
+            - ['D2', 'Digma']
+            - ['1D', 'Diva']
+            - ['D6', 'Divisat']
+            - ['DM', 'DMM']
+            - ['DN', 'DNS']
+            - ['DC', 'DoCoMo']
+            - ['DF', 'Doffler']
+            - ['D9', 'Dolamee']
+            - ['DO', 'Doogee']
+            - ['D0', 'Doopro']
+            - ['DV', 'Doov']
+            - ['DP', 'Dopod']
+            - ['DR', 'Doro']
+            - ['D8', 'Droxio']
+            - ['DU', 'Dune HD']
+            - ['EB', 'E-Boda']
+            - ['2E', 'E-Ceros']
+            - ['E8', 'E-tel']
+            - ['EP', 'Easypix']
+            - ['EQ', 'Eagle']
+            - ['EA', 'EBEST']
+            - ['E4', 'Echo Mobiles']
+            - ['ES', 'ECS']
+            - ['E6', 'EE']
+            - ['EK', 'EKO']
+            - ['EY', 'Einstein']
+            - ['EM', 'Eks Mobility']
+            - ['7E', 'ELARI']
+            - ['03', 'Electroneum']
+            - ['L0', 'Element']
+            - ['EG', 'Elenberg']
+            - ['EL', 'Elephone']
+            - ['4E', 'Eltex']
+            - ['ED', 'Energizer']
+            - ['E1', 'Energy Sistem']
+            - ['3E', 'Enot']
+            - ['8E', 'Epik One']
+            - ['E7', 'Ergo']
+            - ['EC', 'Ericsson']
+            - ['ER', 'Ericy']
+            - ['EE', 'Essential']
+            - ['E2', 'Essentielb']
+            - ['6E', 'eSTAR']
+            - ['EN', 'Eton']
+            - ['ET', 'eTouch']
+            - ['1E', 'Etuline']
+            - ['EU', 'Eurostar']
+            - ['E9', 'Evercoss']
+            - ['EV', 'Evertek']
+            - ['E3', 'Evolio']
+            - ['EO', 'Evolveo']
+            - ['E0', 'EvroMedia']
+            - ['XE', 'ExMobile']
+            - ['EH', 'EXO']
+            - ['EX', 'Explay']
+            - ['E5', 'Extrem']
+            - ['EF', 'EXCEED']
+            - ['QE', 'EWIS']
+            - ['EI', 'Ezio']
+            - ['EZ', 'Ezze']
+            - ['FA', 'Fairphone']
+            - ['FM', 'Famoco']
+            - ['17', 'FarEasTone']
+            - ['FE', 'Fengxiang']
+            - ['F7', 'Fero']
+            - ['FI', 'FiGO']
+            - ['F1', 'FinePower']
+            - ['FX', 'Finlux']
+            - ['F3', 'FireFly Mobile']
+            - ['FL', 'Fly']
+            - ['FN', 'FNB']
+            - ['FD', 'Fondi']
+            - ['F0', 'Fonos']
+            - ['F2', 'FORME']
+            - ['FR', 'Forstar']
+            - ['RF', 'Fortis']
+            - ['FO', 'Foxconn']
+            - ['FT', 'Freetel']
+            - ['FU', 'Fujitsu']
+            - ['GT', 'G-TiDE']
+            - ['GM', 'Garmin-Asus']
+            - ['GA', 'Gateway']
+            - ['GD', 'Gemini']
+            - ['GN', 'General Mobile']
+            - ['G2', 'GEOFOX']
+            - ['GE', 'Geotel']
+            - ['GH', 'Ghia']
+            - ['2C', 'Ghong']
+            - ['GG', 'Gigabyte']
+            - ['GS', 'Gigaset']
+            - ['GZ', 'Ginzzu']
+            - ['1G', 'Gini']
+            - ['GI', 'Gionee']
+            - ['G4', 'Globex']
+            - ['GC', 'GOCLEVER']
+            - ['GL', 'Goly']
+            - ['GX', 'GLX']
+            - ['G5', 'Gome']
+            - ['G1', 'GoMobile']
+            - ['GO', 'Google']
+            - ['G0', 'Goophone']
+            - ['GR', 'Gradiente']
+            - ['GP', 'Grape']
+            - ['G6', 'Gree']
+            - ['GU', 'Grundig']
+            - ['HF', 'Hafury']
+            - ['HA', 'Haier']
+            - ['HE', 'HannSpree']
+            - ['HK', 'Hardkernel']
+            - ['HS', 'Hasee']
+            - ['H6', 'Helio']
+            - ['ZH', 'Hezire']
+            - ['HL', 'Hi-Level']
+            - ['H2', 'Highscreen']
+            - ['Q1', 'High Q']
+            - ['1H', 'Hipstreet']
+            - ['HI', 'Hisense']
+            - ['HC', 'Hitachi']
+            - ['H1', 'Hoffmann']
+            - ['H0', 'Hometech']
+            - ['HM', 'Homtom']
+            - ['HZ', 'Hoozo']
+            - ['HO', 'Hosin']
+            - ['H3', 'Hotel']
+            - ['HV', 'Hotwav']
+            - ['HW', 'How']
+            - ['WH', 'Honeywell']
+            - ['HP', 'HP']
+            - ['HT', 'HTC']
+            - ['HD', 'Huadoo']
+            - ['HU', 'Huawei']
+            - ['HX', 'Humax']
+            - ['HR', 'Hurricane']
+            - ['HY', 'Hyrican']
+            - ['HN', 'Hyundai']
+            - ['7H', 'Hyve']
+            - ['3I', 'i-Cherry']
+            - ['IJ', 'i-Joy']
+            - ['IM', 'i-mate']
+            - ['IO', 'i-mobile']
+            - ['IB', 'iBall']
+            - ['IY', 'iBerry']
+            - ['7I', 'iBrit']
+            - ['I2', 'IconBIT']
+            - ['IC', 'iDroid']
+            - ['IG', 'iGet']
+            - ['IH', 'iHunt']
+            - ['IA', 'Ikea']
+            - ['8I', 'IKU Mobile']
+            - ['2K', 'IKI Mobile']
+            - ['IK', 'iKoMo']
+            - ['I7', 'iLA']
+            - ['2I', 'iLife']
+            - ['1I', 'iMars']
+            - ['IL', 'IMO Mobile']
+            - ['I3', 'Impression']
+            - ['6I', 'Inco']
+            - ['IW', 'iNew']
+            - ['IF', 'Infinix']
+            - ['I0', 'InFocus']
+            - ['II', 'Inkti']
+            - ['I5', 'InnJoo']
+            - ['IN', 'Innostream']
+            - ['I4', 'Inoi']
+            - ['IQ', 'INQ']
+            - ['IS', 'Insignia']
+            - ['IT', 'Intek']
+            - ['IX', 'Intex']
+            - ['IV', 'Inverto']
+            - ['32', 'Invens']
+            - ['4I', 'Invin']
+            - ['I1', 'iOcean']
+            - ['IP', 'iPro']
+            - ['8Q', 'IQM']
+            - ['I6', 'Irbis']
+            - ['5I', 'Iris']
+            - ['IR', 'iRola']
+            - ['IU', 'iRulu']
+            - ['9I', 'iSWAG']
+            - ['IZ', 'iTel']
+            - ['0I', 'iTruck']
+            - ['I8', 'iVA']
+            - ['IE', 'iView']
+            - ['0J', 'iVooMi']
+            - ['I9', 'iZotron']
+            - ['JA', 'JAY-Tech']
+            - ['JF', 'JFone']
+            - ['JI', 'Jiayu']
+            - ['JG', 'Jinga']
+            - ['VJ', 'Jivi']
+            - ['JK', 'JKL']
+            - ['JO', 'Jolla']
+            - ['J5', 'Just5']
+            - ['JV', 'JVC']
+            - ['JS', 'Jesy']
+            - ['KT', 'K-Touch']
+            - ['K4', 'Kaan']
+            - ['K7', 'Kaiomy']
+            - ['KL', 'Kalley']
+            - ['K6', 'Kanji']
+            - ['KA', 'Karbonn']
+            - ['K5', 'KATV1']
+            - ['KZ', 'Kazam']
+            - ['KD', 'KDDI']
+            - ['KS', 'Kempler & Strauss']
+            - ['K3', 'Keneksi']
+            - ['KX', 'Kenxinda']
+            - ['K1', 'Kiano']
+            - ['KI', 'Kingsun']
+            - ['KV', 'Kivi']
+            - ['0K', 'Klipad']
+            - ['KC', 'Kocaso']
+            - ['KK', 'Kodak']
+            - ['KG', 'Kogan']
+            - ['KM', 'Komu']
+            - ['KO', 'Konka']
+            - ['KW', 'Konrow']
+            - ['KB', 'Koobee']
+            - ['7K', 'Koolnee']
+            - ['K9', 'Kooper']
+            - ['KP', 'KOPO']
+            - ['KR', 'Koridy']
+            - ['K2', 'KRONO']
+            - ['KE', 'Krüger&Matz']
+            - ['KH', 'KT-Tech']
+            - ['K8', 'Kuliao']
+            - ['8K', 'Kult']
+            - ['KU', 'Kumai']
+            - ['KY', 'Kyocera']
+            - ['1K', 'Kzen']
+            - ['LQ', 'LAIQ']
+            - ['L6', 'Land Rover']
+            - ['L2', 'Landvo']
+            - ['LA', 'Lanix']
+            - ['LK', 'Lark']
+            - ['LV', 'Lava']
+            - ['LC', 'LCT']
+            - ['L5', 'Leagoo']
+            - ['LD', 'Ledstar']
+            - ['L1', 'LeEco']
+            - ['4B', 'Leff']
+            - ['L4', 'Lemhoov']
+            - ['LN', 'Lenco']
+            - ['LE', 'Lenovo']
+            - ['LT', 'Leotec']
+            - ['LP', 'Le Pan']
+            - ['L7', 'Lephone']
+            - ['LZ', 'Lesia']
+            - ['L3', 'Lexand']
+            - ['LX', 'Lexibook']
+            - ['LG', 'LG']
+            - ['LI', 'Lingwin']
+            - ['5L', 'Linsar']
+            - ['LO', 'Loewe']
+            - ['1L', 'Logic']
+            - ['LM', 'Logicom']
+            - ['0L', 'Lumigon']
+            - ['LU', 'Lumus']
+            - ['L9', 'Luna']
+            - ['LR', 'Luxor']
+            - ['LY', 'LYF']
+            - ['LL', 'Leader Phone']
+            - ['MQ', 'M.T.T.']
+            - ['MN', 'M4tel']
+            - ['XM', 'Macoox']
+            - ['MJ', 'Majestic']
+            - ['23', 'Magnus']
+            - ['5M', 'Mann']
+            - ['MA', 'Manta Multimedia']
+            - ['2M', 'Masstel']
+            - ['50', 'Matrix']
+            - ['7M', 'Maxcom']
+            - ['6X', 'Maxtron']
+            - ['0D', 'MAXVI']
+            - ['MW', 'Maxwest']
+            - ['M0', 'Maze']
+            - ['09', 'meanIT']
+            - ['M3', 'Mecer']
+            - ['0M', 'Mecool']
+            - ['MC', 'Mediacom']
+            - ['MK', 'MediaTek']
+            - ['MD', 'Medion']
+            - ['M2', 'MEEG']
+            - ['MP', 'MegaFon']
+            - ['3M', 'Meitu']
+            - ['M1', 'Meizu']
+            - ['0E', 'Melrose']
+            - ['MU', 'Memup']
+            - ['ME', 'Metz']
+            - ['MX', 'MEU']
+            - ['MI', 'MicroMax']
+            - ['MS', 'Microsoft']
+            - ['1X', 'Minix']
+            - ['OM', 'Mintt']
+            - ['MO', 'Mio']
+            - ['M7', 'Miray']
+            - ['8M', 'Mito']
+            - ['MT', 'Mitsubishi']
+            - ['M5', 'MIXC']
+            - ['2D', 'MIVO']
+            - ['1Z', 'MiXzo']
+            - ['ML', 'MLLED']
+            - ['LS', 'MLS']
+            - ['4M', 'Mobicel']
+            - ['M6', 'Mobiistar']
+            - ['MH', 'Mobiola']
+            - ['MB', 'Mobistel']
+            - ['6W', 'MobiWire']
+            - ['9M', 'Mobo']
+            - ['M4', 'Modecom']
+            - ['MF', 'Mofut']
+            - ['MR', 'Motorola']
+            - ['MV', 'Movic']
+            - ['MM', 'Mpman']
+            - ['MZ', 'MSI']
+            - ['M9', 'MTC']
+            - ['N4', 'MTN']
+            - ['1R', 'Multilaser']
+            - ['1M', 'MYFON']
+            - ['MY', 'MyPhone']
+            - ['51', 'Myros']
+            - ['M8', 'Myria']
+            - ['6M', 'Mystery']
+            - ['3T', 'MyTab']
+            - ['MG', 'MyWigo']
+            - ['N7', 'National']
+            - ['6N', 'Navitech']
+            - ['N3', 'Navon']
+            - ['NE', 'NEC']
+            - ['8N', 'Necnot']
+            - ['NF', 'Neffos']
+            - ['1N', 'Neomi']
+            - ['NA', 'Netgear']
+            - ['NU', 'NeuImage']
+            - ['NW', 'Newgen']
+            - ['N9', 'Newland']
+            - ['0N', 'Newman']
+            - ['NS', 'NewsMy']
+            - ['XB', 'NEXBOX']
+            - ['NX', 'Nexian']
+            - ['N8', 'NEXON']
+            - ['N2', 'Nextbit']
+            - ['NT', 'NextBook']
+            - ['4N', 'NextTab']
+            - ['NG', 'NGM']
+            - ['NZ', 'NG Optics']
+            - ['NN', 'Nikon']
+            - ['NI', 'Nintendo']
+            - ['N5', 'NOA']
+            - ['N1', 'Noain']
+            - ['N6', 'Nobby']
+            - ['NB', 'Noblex']
+            - ['NK', 'Nokia']
+            - ['NM', 'Nomi']
+            - ['2N', 'Nomu']
+            - ['NR', 'Nordmende']
+            - ['7N', 'NorthTech']
+            - ['5N', 'Nos']
+            - ['NO', 'Nous']
+            - ['NJ', 'NuAns']
+            - ['NL', 'NUU Mobile']
+            - ['N0', 'Nuvo']
+            - ['NV', 'Nvidia']
+            - ['NY', 'NYX Mobile']
+            - ['O3', 'O+']
+            - ['OT', 'O2']
+            - ['O7', 'Oale']
+            - ['OB', 'Obi']
+            - ['O1', 'Odys']
+            - ['OA', 'Okapia']
+            - ['OD', 'Onda']
+            - ['ON', 'OnePlus']
+            - ['OX', 'Onix']
+            - ['O4', 'ONN']
+            - ['2O', 'OpelMobile']
+            - ['OH', 'Openbox']
+            - ['OP', 'OPPO']
+            - ['OO', 'Opsson']
+            - ['OR', 'Orange']
+            - ['O5', 'Orbic']
+            - ['OS', 'Ordissimo']
+            - ['OK', 'Ouki']
+            - ['QK', 'OKWU']
+            - ['OE', 'Oukitel']
+            - ['OU', 'OUYA']
+            - ['OV', 'Overmax']
+            - ['30', 'Ovvi']
+            - ['O2', 'Owwo']
+            - ['OY', 'Oysters']
+            - ['O6', 'Oyyu']
+            - ['OZ', 'OzoneHD']
+            - ['7P', 'P-UP']
+            - ['PM', 'Palm']
+            - ['PN', 'Panacom']
+            - ['PA', 'Panasonic']
+            - ['PT', 'Pantech']
+            - ['PB', 'PCBOX']
+            - ['PC', 'PCD']
+            - ['PD', 'PCD Argentina']
+            - ['PE', 'PEAQ']
+            - ['PG', 'Pentagram']
+            - ['1P', 'Phicomm']
+            - ['4P', 'Philco']
+            - ['PH', 'Philips']
+            - ['5P', 'Phonemax']
+            - ['PO', 'phoneOne']
+            - ['PI', 'Pioneer']
+            - ['8P', 'Pixelphone']
+            - ['PX', 'Pixus']
+            - ['9P', 'Planet Computers']
+            - ['PY', 'Ployer']
+            - ['P4', 'Plum']
+            - ['22', 'Pluzz']
+            - ['P8', 'PocketBook']
+            - ['0P', 'POCO']
+            - ['PV', 'Point of View']
+            - ['PL', 'Polaroid']
+            - ['PP', 'PolyPad']
+            - ['P5', 'Polytron']
+            - ['P2', 'Pomp']
+            - ['P0', 'Poppox']
+            - ['PS', 'Positivo']
+            - ['3P', 'Positivo BGH']
+            - ['P3', 'PPTV']
+            - ['FP', 'Premio']
+            - ['PR', 'Prestigio']
+            - ['P9', 'Primepad']
+            - ['6P', 'Primux']
+            - ['2P', 'Prixton']
+            - ['P6', 'Proline']
+            - ['P1', 'ProScan']
+            - ['P7', 'Protruly']
+            - ['PU', 'PULID']
+            - ['QH', 'Q-Touch']
+            - ['QB', 'Q.Bell']
+            - ['QI', 'Qilive']
+            - ['QM', 'QMobile']
+            - ['QT', 'Qtek']
+            - ['QA', 'Quantum']
+            - ['QU', 'Quechua']
+            - ['QO', 'Qumo']
+            - ['R2', 'R-TV']
+            - ['RA', 'Ramos']
+            - ['R9', 'Ravoz']
+            - ['RZ', 'Razer']
+            - ['RC', 'RCA Tablets']
+            - ['2R', 'Reach']
+            - ['RB', 'Readboy']
+            - ['RE', 'Realme']
+            - ['R8', 'RED']
+            - ['RD', 'Reeder']
+            - ['RI', 'Rikomagic']
+            - ['RM', 'RIM']
+            - ['RN', 'Rinno']
+            - ['RX', 'Ritmix']
+            - ['R7', 'Ritzviva']
+            - ['RV', 'Riviera']
+            - ['RR', 'Roadrover']
+            - ['R1', 'Rokit']
+            - ['RK', 'Roku']
+            - ['R3', 'Rombica']
+            - ['R5', 'Ross&Moor']
+            - ['RO', 'Rover']
+            - ['R6', 'RoverPad']
+            - ['RT', 'RT Project']
+            - ['RG', 'RugGear']
+            - ['RU', 'Runbo']
+            - ['RL', 'Ruio']
+            - ['RY', 'Ryte']
+            - ['X1', 'Safaricom']
+            - ['SG', 'Sagem']
+            - ['4L', 'Salora']
+            - ['SA', 'Samsung']
+            - ['S0', 'Sanei']
+            - ['12', 'Sansui']
+            - ['SQ', 'Santin']
+            - ['SY', 'Sanyo']
+            - ['S9', 'Savio']
+            - ['CZ', 'Schneider']
+            - ['SD', 'Sega']
+            - ['9G', 'Selenga']
+            - ['SV', 'Selevision']
+            - ['SL', 'Selfix']
+            - ['0S', 'SEMP TCL']
+            - ['S1', 'Sencor']
+            - ['SN', 'Sendo']
+            - ['01', 'Senkatel']
+            - ['S6', 'Senseit']
+            - ['EW', 'Senwa']
+            - ['24', 'Seeken']
+            - ['SX', 'SFR']
+            - ['SH', 'Sharp']
+            - ['7S', 'Shift Phones']
+            - ['RS', 'Shtrikh-M']
+            - ['3S', 'Shuttle']
+            - ['13', 'Sico']
+            - ['SI', 'Siemens']
+            - ['1S', 'Sigma']
+            - ['70', 'Silelis']
+            - ['SJ', 'Silent Circle']
+            - ['10', 'Simbans']
+            - ['31', 'Siragon']
+            - ['SW', 'Sky']
+            - ['SK', 'Skyworth']
+            - ['14', 'Smadl']
+            - ['19', 'Smailo']
+            - ['SR', 'Smart']
+            - ['80', 'SMARTEC']
+            - ['SC', 'Smartfren']
+            - ['S7', 'Smartisan']
+            - ['SF', 'Softbank']
+            - ['16', 'Solone']
+            - ['OI', 'Sonim']
+            - ['SO', 'Sony']
+            - ['SE', 'Sony Ericsson']
+            - ['X2', 'Soundmax']
+            - ['8S', 'Soyes']
+            - ['FS', 'SPC']
+            - ['6S', 'Spectrum']
+            - ['SP', 'Spice']
+            - ['QS', 'SQOOL']
+            - ['S4', 'Star']
+            - ['OL', 'Starlight']
+            - ['18', 'Starmobile']
+            - ['2S', 'Starway']
+            - ['SB', 'STF Mobile']
+            - ['S8', 'STK']
+            - ['S2', 'Stonex']
+            - ['ST', 'Storex']
+            - ['9S', 'Sugar']
+            - ['SZ', 'Sumvision']
+            - ['0H', 'Sunstech']
+            - ['S3', 'SunVan']
+            - ['5S', 'Sunvell']
+            - ['SU', 'SuperSonic']
+            - ['S5', 'Supra']
+            - ['0W', 'Swipe']
+            - ['SS', 'SWISSMOBILITY']
+            - ['1W', 'Swisstone']
+            - ['SM', 'Symphony']
+            - ['4S', 'Syrox']
+            - ['TM', 'T-Mobile']
+            - ['TK', 'Takara']
+            - ['9N', 'Tanix']
+            - ['T5', 'TB Touch']
+            - ['TC', 'TCL']
+            - ['T0', 'TD Systems']
+            - ['TX', 'TechniSat']
+            - ['TT', 'TechnoTrend']
+            - ['TP', 'TechPad']
+            - ['9E', 'Techwood']
+            - ['T7', 'Teclast']
+            - ['TB', 'Tecno Mobile']
+            - ['2L', 'Tele2']
+            - ['TL', 'Telefunken']
+            - ['TG', 'Telego']
+            - ['T2', 'Telenor']
+            - ['TE', 'Telit']
+            - ['TD', 'Tesco']
+            - ['TA', 'Tesla']
+            - ['9T', 'Tetratab']
+            - ['TZ', 'teXet']
+            - ['29', 'Teknosa']
+            - ['T4', 'ThL']
+            - ['TN', 'Thomson']
+            - ['O0', 'Thuraya']
+            - ['TI', 'TIANYU']
+            - ['8T', 'Time2']
+            - ['TQ', 'Timovi']
+            - ['2T', 'Tinai']
+            - ['TF', 'Tinmo']
+            - ['TH', 'TiPhone']
+            - ['T1', 'Tolino']
+            - ['0T', 'Tone']
+            - ['TY', 'Tooky']
+            - ['T9', 'Top House']
+            - ['TO', 'Toplux']
+            - ['7T', 'Torex']
+            - ['TS', 'Toshiba']
+            - ['T8', 'Touchmate']
+            - ['5R', 'Transpeed']
+            - ['T6', 'TrekStor']
+            - ['T3', 'Trevi']
+            - ['TJ', 'Trifone']
+            - ['4T', 'Tronsmart']
+            - ['11', 'True']
+            - ['5C', 'TTEC']
+            - ['TU', 'Tunisie Telecom']
+            - ['1T', 'Turbo']
+            - ['TR', 'Turbo-X']
+            - ['5T', 'TurboKids']
+            - ['TV', 'TVC']
+            - ['TW', 'TWM']
+            - ['6T', 'Twoe']
+            - ['15', 'Tymes']
+            - ['UC', 'U.S. Cellular']
+            - ['UG', 'Ugoos']
+            - ['U1', 'Uhans']
+            - ['UH', 'Uhappy']
+            - ['UL', 'Ulefone']
+            - ['UA', 'Umax']
+            - ['UM', 'UMIDIGI']
+            - ['UZ', 'Unihertz']
+            - ['UX', 'Unimax']
+            - ['US', 'Uniscope']
+            - ['U2', 'UNIWA']
+            - ['UO', 'Unnecto']
+            - ['UU', 'Unonu']
+            - ['UN', 'Unowhy']
+            - ['UK', 'UTOK']
+            - ['3U', 'IUNI']
+            - ['UT', 'UTStarcom']
+            - ['5V', 'VAIO']
+            - ['VA', 'Vastking']
+            - ['VB', 'VC']
+            - ['VN', 'Venso']
+            - ['4V', 'Verico']
+            - ['V4', 'Verizon']
+            - ['VR', 'Vernee']
+            - ['VX', 'Vertex']
+            - ['VE', 'Vertu']
+            - ['VL', 'Verykool']
+            - ['V8', 'Vesta']
+            - ['VT', 'Vestel']
+            - ['V6', 'VGO TEL']
+            - ['VD', 'Videocon']
+            - ['VW', 'Videoweb']
+            - ['VS', 'ViewSonic']
+            - ['V7', 'Vinga']
+            - ['V3', 'Vinsoc']
+            - ['0V', 'Vipro']
+            - ['VI', 'Vitelcom']
+            - ['8V', 'Viumee']
+            - ['V5', 'Vivax']
+            - ['VV', 'Vivo']
+            - ['VZ', 'Vizio']
+            - ['VK', 'VK Mobile']
+            - ['V0', 'VKworld']
+            - ['VM', 'Vodacom']
+            - ['VF', 'Vodafone']
+            - ['V2', 'Vonino']
+            - ['1V', 'Vontar']
+            - ['VG', 'Vorago']
+            - ['2V', 'Vorke']
+            - ['V1', 'Voto']
+            - ['VO', 'Voxtel']
+            - ['VY', 'Voyo']
+            - ['VH', 'Vsmart']
+            - ['V9', 'Vsun']
+            - ['VU', 'Vulcan']
+            - ['3V', 'VVETIME']
+            - ['WA', 'Walton']
+            - ['WM', 'Weimei']
+            - ['WE', 'WellcoM']
+            - ['WT', 'Westpoint']
+            - ['WY', 'Wexler']
+            - ['3W', 'WE']
+            - ['WP', 'Wieppo']
+            - ['W2', 'Wigor']
+            - ['WI', 'Wiko']
+            - ['WF', 'Wileyfox']
+            - ['WS', 'Winds']
+            - ['WN', 'Wink']
+            - ['9W', 'Winmax']
+            - ['W0', 'Wiseasy']
+            - ['2W', 'Wizz']
+            - ['WL', 'Wolder']
+            - ['WG', 'Wolfgang']
+            - ['WO', 'Wonu']
+            - ['W1', 'Woo']
+            - ['WR', 'Wortmann']
+            - ['WX', 'Woxter']
+            - ['X3', 'X-BO']
+            - ['XT', 'X-TIGI']
+            - ['XV', 'X-View']
+            - ['X4', 'X.Vision']
+            - ['XG', 'Xgody']
+            - ['XL', 'Xiaolajiao']
+            - ['XI', 'Xiaomi']
+            - ['XN', 'Xion']
+            - ['XO', 'Xolo']
+            - ['XR', 'Xoro']
+            - ['XS', 'Xshitou']
+            - ['4X', 'Xtouch']
+            - ['YD', 'Yandex']
+            - ['YA', 'Yarvik']
+            - ['Y2', 'Yes']
+            - ['YE', 'Yezz']
+            - ['YK', 'Yoka TV']
+            - ['YO', 'Yota']
+            - ['YT', 'Ytone']
+            - ['Y1', 'Yu']
+            - ['YU', 'Yuandao']
+            - ['YS', 'Yusun']
+            - ['YX', 'Yxtel']
+            - ['0Z', 'Zatec']
+            - ['PZ', 'Zebra']
+            - ['ZE', 'Zeemi']
+            - ['ZN', 'Zen']
+            - ['ZK', 'Zenek']
+            - ['ZL', 'Zentality']
+            - ['ZF', 'Zfiner']
+            - ['ZI', 'Zidoo']
+            - ['ZX', 'Ziox']
+            - ['ZO', 'Zonda']
+            - ['ZP', 'Zopo']
+            - ['ZT', 'ZTE']
+            - ['ZU', 'Zuum']
+            - ['ZY', 'Zync']
+            - ['ZQ', 'ZYQ']
+            - ['Z4', 'ZH&K']
+            - ['OW', 'öwn']
+            - ['WB', 'Web TV']
+            - ['XX', 'Unknown']
+          example: ['LE', 'Lenovo']
         device_model:
           description: Device model
           type: string
@@ -1307,8 +2865,20 @@ components:
           example: 'c84e:9d52:49d4:271d:0a7e:6313:0098:c7f0'
         location_continent_iso_code:
           description: 'Continent ISO code - click [here](https://datahub.io/core/continent-codes/r/0.html) for more information'
-          type: string
-          example: NA
+          type: array
+          items:
+            type: string
+          minItems: 2
+          maxItems: 2
+          enum:
+            - ['AF', 'Africa']
+            - ['AN', 'Antarctica']
+            - ['AS', 'Asia']
+            - ['EU', 'Europe']
+            - ['NA', 'North America']
+            - ['OC', 'Oceania']
+            - ['SA', 'South America']
+          example: ['NA', 'North America']
         location_country_iso_code:
           description: 'Country ISO code - click [here](https://en.wikipedia.org/wiki/List_of_ISO_3166_country_codes) for more information'
           type: string
@@ -1348,19 +2918,19 @@ components:
           type: string
           example: L3C
         location_latitude:
-          format: float
           description: Latitude
           type: number
+          format: double
           minimum: -90
           maximum: 90
-          example: '42.9883961'
+          example: 42.9883961
         location_longitude:
-          format: float
           description: Longitude
           type: number
+          format: double
           minimum: -180
           maximum: 180
-          example: '-79.2555634'
+          example: -79.2555634
         location_provider:
           description: Provider
           type: string
@@ -1481,7 +3051,7 @@ components:
           description: Events that occurred during the session
           type: array
           items:
-            $ref: '#/components/schemas/Event'
+            $ref: '#/components/schemas/DebugEvent'
         session_goals:
           description: IDs of goals converted during session
           type: array
@@ -1502,10 +3072,10 @@ components:
           items:
             type: string
             format: uuid
-          example:
-            - 60cda3ca-0e76-4fa2-9167-7a6159a9be82
-            - 99329e7a-efae-4ad7-b423-ccccbc46cdf8
-            - 76485d34-26f5-420c-afd2-2a96ecff8b42
+            example:
+              - 60cda3ca-0e76-4fa2-9167-7a6159a9be82
+              - 99329e7a-efae-4ad7-b423-ccccbc46cdf8
+              - 76485d34-26f5-420c-afd2-2a96ecff8b42
         session_total_revenue:
           format: float
           description: Revenue from ecommerce in a session
@@ -1567,54 +3137,78 @@ components:
           example: creative accountant
         session_total_sharepoint_likes:
           description: Total count of `Sharepoint Like` events in session.
-          type: string
+          type: integer
+          minimum: 0
+          maximum: 65535
           example: 5
         session_total_sharepoint_shares:
           description: Total count of `Sharepoint Share` events in session
-          type: string
+          type: integer
+          minimum: 0
+          maximum: 65535
           example: 4
         session_total_sharepoint_comments:
           description: Total count of `Sharepoint Comment` events in session
-          type: string
+          type: integer
+          minimum: 0
+          maximum: 65535
           example: 8
         session_total_sharepoint_promotions:
           description: Total count of `Sharepoint Promote` events in session
-          type: string
+          type: integer
+          minimum: 0
+          maximum: 65535
           example: 12
         session_total_sharepoint_creations:
           description: Total count of `Sharepoint Create` events in session
-          type: string
+          type: integer
+          minimum: 0
+          maximum: 65535
           example: 10
         session_total_sharepoint_edits:
           description: Total count of `Sharepoint Edit` events in session
-          type: string
+          type: integer
+          minimum: 0
+          maximum: 65535
           example: 23
         session_total_sharepoint_deletions:
           description: Total count of `Sharepoint Delete` events in session
-          type: string
+          type: integer
+          minimum: 0
+          maximum: 65535
           example: 42
         session_total_sharepoint_opens:
           description: Total count of `Sharepoint Open` events in session
-          type: string
+          type: integer
+          minimum: 0
+          maximum: 65535
           example: 123
         session_total_sharepoint_uploads:
           description: Total count of `Sharepoint Upload` events in session
-          type: string
+          type: integer
+          minimum: 0
+          maximum: 65535
           example: 99
         session_total_sharepoint_item_views:
           description: Total count of `Sharepoint Item View` events in session
-          type: string
+          type: integer
+          minimum: 0
+          maximum: 65535
           example: 55
         session_total_sharepoint_item_attachment_views:
           description: Total count of `Sharepoint Item Attachment View` events in session
-          type: string
+          type: integer
+          minimum: 0
+          maximum: 65535
           example: 7
         session_total_sharepoint_item_shares:
           description: Total count of `Sharepoint Item Share` events in session
-          type: string
+          type: integer
+          minimum: 0
+          maximum: 65535
           example: 9
-    Log:
-      description: A tracking log
+    AnonymizedLog:
+      description: An anonymized tracking log
       required:
         - id
         - time
@@ -1629,17 +3223,17 @@ components:
           description: UUID of the log
           type: string
           format: uuid
-          example: 76d1b36e-c2d5-44e8-ad60-028cb0bf17f6
+          example: '76d1b36e-c2d5-44e8-ad60-028cb0bf17f6'
         time:
           description: 'Time when the request was received by a tracker (in UTC)'
           type: string
           format: date-time
           example: '2020-02-01T00:00:00.000000000Z'
         ip:
-          description: 'Tracker client IP (real value can be provided in headers or `cip` parameter)'
+          description: 'Tracker client IP (real value can be provided in headers or `cip` parameter), anonymized'
           type: string
-          format: ip
-          example: 75.13.13.87
+          enum:
+            - '<anonymized>'
         host:
           description: 'A host under which app is available'
           type: string
@@ -1653,12 +3247,14 @@ components:
           type: string
           example: GET
         headers:
-          description: Request HTTP headers
+          description: Request HTTP headers, some values will be anonymized
           type: array
           items:
             type: array
             items:
               type: string
+            minItems: 2
+            maxItems: 2
           example:
             - - 'x-forwarded-for'
               - '172.18.0.15'
@@ -1666,10 +3262,14 @@ components:
               - 'en-US,en;q=0.9'
             - - 'user-agent'
               - 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.117 Safari/537.36'
+            - - 'x-geoip-longitude'
+              - '<anonymized>'
+            - - 'x-geoip-latitude'
+              - '<anonymized>'
         query_params:
           description: 'Tracking request parameters'
           type: object
-          $ref: '#/components/schemas/TrackingParameters'
+          $ref: '#/components/schemas/AnonymizedTrackingParameters'
         cookie_id:
           description: 'Cookie ID sent in the _id parameter'
           type: string
@@ -1678,17 +3278,13 @@ components:
           description: 'User ID sent in the uid parameter'
           type: string
           example: 'particular-user_login'
-        body:
-          description: 'Request body payload'
-          type: string
-          example: "idsite=1&rec=0&action_name=This%20won%27t%20be%20recorded"
         debug:
           description: 'States whether request is used for debugging'
           type: boolean
           default: false
           example: true
-    TrackingParameters:
-      description: Parameters of a tracking request
+    AnonymizedTrackingParameters:
+      description: Anonymized parameters of a tracking request
       required:
         - idsite
       type: object
@@ -1696,25 +3292,19 @@ components:
         idsite:
           description: ID of the tracked app/website - can be UUID or legacy integer.
           type: string
-          example: '4'
+          example: '99ba73f6-79b8-432c-a8fe-62f5fa0fc6aa'
         _idts:
           description: 'Time of first visit'
-          type: integer
-          minimum: 0
-          maximum: 4294967295
-          example: 1577836800
+          type: string
+          example: '1577836800'
         _viewts:
           description: 'Time of previous visit'
-          type: integer
-          minimum: 0
-          maximum: 4294967295
-          example: 1580342400
+          type: string
+          example: '1580342400'
         _idvc:
           description: 'Visit counter'
-          type: integer
-          minimum: 0
-          maximum: 4294967295
-          example: 2
+          type: string
+          example: '2'
         url:
           description: 'URL of the action'
           type: string
@@ -1733,20 +3323,16 @@ components:
           example: '12'
         revenue:
           description: Revenue value of achieved goal
-          type: number
-          minimum: -1.0e+28
-          maximum: 1.0e+28
-          example: 7.12
+          type: string
+          example: '7.12'
         ping:
           description: 'Enables a special heartbeat mode for the tracking request'
-          type: integer
-          minimum: 0
-          maximum: 255
-          example: 1
+          type: string
+          example: '1'
         send_image:
           description: 'Request response content'
-          type: boolean
-          example: true
+          type: string
+          example: 'true'
         _cvar:
           description: '[Custom variables](https://help.piwik.pro/analytics/custom-variables/) set on the ``visit`` scope.'
           type: string
@@ -1757,62 +3343,52 @@ components:
           example: '{"1":["AspectRatio","16:9"],"2":["Height","1080"],"3":["Width","1920"]}'
         bots:
           description: 'Bots tracking enabled / disabled'
-          type: boolean
-          example: true
+          type: string
+          example: '0'
         rec:
           description: 'Consent to tracking (value "1" allows it)'
-          type: boolean
-          example: true
+          type: string
+          example: '1'
         new_visit:
           description: 'Forces new session'
-          type: boolean
-          example: true
+          type: string
+          example: '0'
         token_auth:
           description: 'Authentication token used by SuperUser or Admin in requests using parameters that require it'
           type: string
           example: 'caa18074df8347b684d7b943b2484fe9'
         debug:
           description: 'States whether request is used for debugging'
-          type: boolean
-          example: true
+          type: string
+          example: '0'
         ec_id:
           description: 'Ecommerce order ID'
           type: string
           example: 'order-123-customer-321'
         ec_st:
           description: 'Ecommerce order sub-total (order cost without shipping)'
-          type: number
-          minimum: -1.0e+28
-          maximum: 1.0e+28
-          example: 7.99
+          type: string
+          example: '7.99'
         ec_tx:
           description: 'Ecommerce order tax'
-          type: number
-          minimum: -1.0e+28
-          maximum: 1.0e+28
-          example: 1.00
+          type: string
+          example: '1.00'
         ec_sh:
           description: 'Ecommerce order shipping'
-          type: number
-          minimum: -1.0e+28
-          maximum: 1.0e+28
-          example: 1.95
+          type: string
+          example: '1.95'
         ec_dt:
           description: Ecommerce order discount
-          type: number
-          minimum: -1.0e+28
-          maximum: 1.0e+28
-          example: 0.05
+          type: string
+          example: '0.05'
         ec_items:
           description: 'Ecommerce order item list in the form of two dimensional JSON array'
           type: string
-          example: '[[\"craft-311\",\"Unicorn Iron on Patch\",\"Crafts & Sewing\",4.99,3],[\"craft-312\",\"Unicorn Lamp\",\"Crafts & Sewing\",13.25,1]]'
+          example: '[["craft-311","Unicorn Iron on Patch","Crafts & Sewing",4.99,3],["craft-312","Unicorn Lamp","Crafts & Sewing",13.25,1]]'
         _ects:
           description: 'Timestamp of last Ecommerce order'
-          type: integer
-          minimum: 0
-          maximum: 4294967295
-          example: 122
+          type: string
+          example: '122'
         e_c:
           description: 'Custom event category'
           type: string
@@ -1827,15 +3403,13 @@ components:
           example: 'CE Name'
         e_v:
           description: 'Custom event value'
-          type: number
-          minimum: 0
-          maximum: 100000000000
-          example: 7.12
-        cip:
-          description: 'Override IP'
           type: string
-          format: IPv4|IPv6
-          example: '172.16.254.1'
+          example: '7.12'
+        cip:
+          description: 'Override IP, anonymized'
+          type: string
+          enum:
+            - '<anonymized>'
         cdt:
           description: 'Override request time'
           type: string
@@ -1844,19 +3418,15 @@ components:
         cid:
           description: 'Configuration ID'
           type: string
-          minLength: 16
-          maxLength: 16
           example: '257cc22df0ec483a'
         _id:
           description: 'Visitor ID'
           type: string
-          minLength: 16
-          maxLength: 16
           example: 'dcce8b9ea5d80b52'
         uia:
           description: 'Allows to track user anonymously'
-          type: boolean
-          example: true
+          type: string
+          example: '1'
         ua:
           description: 'Override User-Agent header'
           type: string
@@ -1870,26 +3440,30 @@ components:
           type: string
           example: 'username-of-some-user'
         country:
-          description: 'Override GeoIP country'
+          description: 'Override GeoIP country, anonymized'
           type: string
-          format: ISO 3166-1
-          example: 'pl'
+          enum:
+            - '<anonymized>'
         region:
-          description: 'Override GeoIP region'
+          description: 'Override GeoIP region, anonymized'
           type: string
-          example: '85'
+          enum:
+            - '<anonymized>'
         city:
-          description: 'Override GeoIP city'
+          description: 'Override GeoIP city, anonymized'
           type: string
-          example: 'Olsztyn'
+          enum:
+            - '<anonymized>'
         long:
-          description: 'Override GeoIP longitude'
+          description: 'Override GeoIP longitude, anonymized'
           type: string
-          example: '20.4952105'
+          enum:
+            - '<anonymized>'
         lat:
-          description: 'Override GeoIP latitude'
+          description: 'Override GeoIP latitude, anonymized'
           type: string
-          example: '53.7683212'
+          enum:
+            - '<anonymized>'
         cs:
           description: 'Page charset'
           type: string
@@ -1920,78 +3494,68 @@ components:
           example: '["res cat 1","res cat 2"]'
         search_count:
           description: 'Number of results of internal search'
-          type: integer
-          minimum: 0
-          maximum: 65535
-          example: 0
+          type: string
+          example: '0'
         pv_id:
           description: 'Unique page view ID generated when the page is loaded'
           type: string
           example: '1ViMbH'
         gt_ms:
           description: 'Page generation and load time in milliseconds'
-          type: integer
-          minimum: 0
-          maximum: 4294967295
-          example: 448
+          type: string
+          example: '448'
         h:
           description: 'Hour when the request was made in the visitor''s local time'
-          type: integer
-          minimum: 0
-          maximum: 4294967295
-          example: 12
+          type: string
+          example: '12'
         m:
           description: 'Minute when the request was made in the visitor''s local time'
-          type: integer
-          minimum: 0
-          maximum: 4294967295
-          example: 39
+          type: string
+          example: '39'
         s:
           description: 'Second when the request was made in the visitor''s local time'
-          type: integer
-          minimum: 0
-          maximum: 4294967295
-          example: 28
+          type: string
+          example: '28'
         fla:
           description: 'Status of Flash plugin in Visitor browser'
-          type: boolean
-          example: true
+          type: string
+          example: '1'
         java:
           description: 'Status of Java plugin in Visitor browser'
-          type: boolean
-          example: true
+          type: string
+          example: '1'
         dir:
           description: 'Status of Adobe Director plugin in Visitor browser'
-          type: boolean
-          example: true
+          type: string
+          example: '1'
         qt:
           description: 'Status of QuickTime plugin in Visitor browser'
-          type: boolean
-          example: true
+          type: string
+          example: '1'
         realp:
           description: 'Status of RealPlayer plugin in Visitor browser'
-          type: boolean
-          example: true
+          type: string
+          example: '1'
         pdf:
           description: 'Status of PDF plugin in Visitor browser'
-          type: boolean
-          example: true
+          type: string
+          example: '1'
         wma:
           description: 'Status of Windows Media Player plugin in Visitor browser'
-          type: boolean
-          example: true
+          type: string
+          example: '1'
         gears:
           description: 'Status of Gears plugin in Visitor browser'
-          type: boolean
-          example: true
+          type: string
+          example: '1'
         ag:
           description: 'Status of Silverlight plugin in Visitor browser'
-          type: boolean
-          example: true
+          type: string
+          example: '1'
         cookie:
           description: 'Status of Cookie capability in Visitor browser'
-          type: boolean
-          example: true
+          type: string
+          example: '1'
         c_p:
           description: 'Content piece'
           type: string
@@ -2010,120 +3574,86 @@ components:
           example: 'show details'
         t_us:
           description: 'Unload Event Start - one of the Page Performance Metrics'
-          type: integer
-          minimum: 0
-          maximum: 65535
-          example: 566
+          type: string
+          example: '566'
         t_ue:
           description: 'Unload Event End - one of the Page Performance Metrics'
-          type: integer
-          minimum: 0
-          maximum: 65535
-          example: 566
+          type: string
+          example: '566'
         t_rs:
           description: 'Redirect Start - one of the Page Performance Metrics'
-          type: integer
-          minimum: 0
-          maximum: 65535
-          example: 7
+          type: string
+          example: '7'
         t_re:
           description: 'Redirect End - one of the Page Performance Metrics'
-          type: integer
-          minimum: 0
-          maximum: 65535
-          example: 7
+          type: string
+          example: '7'
         t_fs:
           description: 'Fetch Start - one of the Page Performance Metrics'
-          type: integer
-          minimum: 0
-          maximum: 65535
-          example: 7
+          type: string
+          example: '7'
         t_ss:
           description: 'Secure Connection Start - one of the Page Performance Metrics'
-          type: integer
-          minimum: 0
-          maximum: 65535
-          example: 69
+          type: string
+          example: '69'
         t_ds:
           description: 'Domain Lookup Start - one of the Page Performance Metrics'
-          type: integer
-          minimum: 0
-          maximum: 65535
-          example: 9
+          type: string
+          example: '9'
         t_cs:
           description: 'Connect Start - one of the Page Performance Metrics'
-          type: integer
-          minimum: 0
-          maximum: 65535
-          example: 11
+          type: string
+          example: '11'
         t_ce:
           description: 'Connect End - one of the Page Performance Metrics'
-          type: integer
-          minimum: 0
-          maximum: 65535
-          example: 121
+          type: string
+          example: '121'
         t_qs:
           description: 'Request Start - one of the Page Performance Metrics'
-          type: integer
-          minimum: 0
-          maximum: 65535
-          example: 121
+          type: string
+          example: '121'
         t_as:
           description: 'Response Start - one of the Page Performance Metrics'
-          type: integer
-          minimum: 0
-          maximum: 65535
-          example: 557
+          type: string
+          example: '557'
         t_ae:
           description: 'Response End - one of the Page Performance Metrics'
-          type: integer
-          minimum: 0
-          maximum: 65535
-          example: 569
+          type: string
+          example: '569'
         t_dl:
           description: 'DOM Loading - one of the Page Performance Metrics'
-          type: integer
-          minimum: 0
-          maximum: 65535
-          example: 579
+          type: string
+          example: '579'
         t_di:
           description: 'DOM Interactive - one of the Page Performance Metrics'
-          type: integer
-          minimum: 0
-          maximum: 4294967295
-          example: 974
+          type: string
+          example: '974'
         t_ls:
           description: 'DOM Content Loaded Event Start - one of the Page Performance Metrics'
-          type: integer
-          minimum: 0
-          maximum: 4294967295
-          example: 974
+          type: string
+          example: '974'
         t_le:
           description: 'DOM Content Loaded Event End - one of the Page Performance Metrics'
-          type: integer
-          minimum: 0
-          maximum: 4294967295
-          example: 975
+          type: string
+          example: '975'
         t_dc:
           description: 'DOM Complete - one of the Page Performance Metrics'
-          type: integer
-          minimum: 0
-          maximum: 4294967295
-          example: 3822
+          type: string
+          example: '3822'
         t_ee:
           description: 'Load Event End - one of the Page Performance Metrics'
-          type: integer
-          minimum: 0
-          maximum: 4294967295
-          example: 3923
+          type: string
+          example: '3923'
         _rcn:
           description: 'The Campaign name'
           type: string
           example: 'deprecated campaign name parameter'
+          deprecated: true
         _rck:
           description: 'The Campaign Keyword'
           type: string
           example: 'deprecated keyword parameter'
+          deprecated: true
         dimension1:
           description: Custom dimension 1
           type: string
@@ -2144,383 +3674,3 @@ components:
           description: Custom dimension 5
           type: string
           example: 'custom_dimension_5_value'
-        dimension6:
-          description: Custom dimension 6
-          type: string
-          example: 'custom_dimension_6_value'
-        dimension7:
-          description: Custom dimension 7
-          type: string
-          example: 'custom_dimension_7_value'
-        dimension8:
-          description: Custom dimension 8
-          type: string
-          example: 'custom_dimension_8_value'
-        dimension9:
-          description: Custom dimension 9
-          type: string
-          example: 'custom_dimension_9_value'
-        dimension10:
-          description: Custom dimension 10
-          type: string
-          example: 'custom_dimension_10_value'
-        dimension11:
-          description: Custom dimension 11
-          type: string
-          example: 'custom_dimension_11_value'
-        dimension12:
-          description: Custom dimension 12
-          type: string
-          example: 'custom_dimension_12_value'
-        dimension13:
-          description: Custom dimension 13
-          type: string
-          example: 'custom_dimension_13_value'
-        dimension14:
-          description: Custom dimension 14
-          type: string
-          example: 'custom_dimension_14_value'
-        dimension15:
-          description: Custom dimension 15
-          type: string
-          example: 'custom_dimension_15_value'
-        dimension16:
-          description: Custom dimension 16
-          type: string
-          example: 'custom_dimension_16_value'
-        dimension17:
-          description: Custom dimension 17
-          type: string
-          example: 'custom_dimension_17_value'
-        dimension18:
-          description: Custom dimension 18
-          type: string
-          example: 'custom_dimension_18_value'
-        dimension19:
-          description: Custom dimension 19
-          type: string
-          example: 'custom_dimension_19_value'
-        dimension20:
-          description: Custom dimension 20
-          type: string
-          example: 'custom_dimension_20_value'
-        dimension21:
-          description: Custom dimension 21
-          type: string
-          example: 'custom_dimension_21_value'
-        dimension22:
-          description: Custom dimension 22
-          type: string
-          example: 'custom_dimension_22_value'
-        dimension23:
-          description: Custom dimension 23
-          type: string
-          example: 'custom_dimension_23_value'
-        dimension24:
-          description: Custom dimension 24
-          type: string
-          example: 'custom_dimension_24_value'
-        dimension25:
-          description: Custom dimension 25
-          type: string
-          example: 'custom_dimension_25_value'
-        dimension26:
-          description: Custom dimension 26
-          type: string
-          example: 'custom_dimension_26_value'
-        dimension27:
-          description: Custom dimension 27
-          type: string
-          example: 'custom_dimension_27_value'
-        dimension28:
-          description: Custom dimension 28
-          type: string
-          example: 'custom_dimension_28_value'
-        dimension29:
-          description: Custom dimension 29
-          type: string
-          example: 'custom_dimension_29_value'
-        dimension30:
-          description: Custom dimension 30
-          type: string
-          example: 'custom_dimension_30_value'
-        dimension31:
-          description: Custom dimension 31
-          type: string
-          example: 'custom_dimension_31_value'
-        dimension32:
-          description: Custom dimension 32
-          type: string
-          example: 'custom_dimension_32_value'
-        dimension33:
-          description: Custom dimension 33
-          type: string
-          example: 'custom_dimension_33_value'
-        dimension34:
-          description: Custom dimension 34
-          type: string
-          example: 'custom_dimension_34_value'
-        dimension35:
-          description: Custom dimension 35
-          type: string
-          example: 'custom_dimension_35_value'
-        dimension36:
-          description: Custom dimension 36
-          type: string
-          example: 'custom_dimension_36_value'
-        dimension37:
-          description: Custom dimension 37
-          type: string
-          example: 'custom_dimension_37_value'
-        dimension38:
-          description: Custom dimension 38
-          type: string
-          example: 'custom_dimension_38_value'
-        dimension39:
-          description: Custom dimension 39
-          type: string
-          example: 'custom_dimension_39_value'
-        dimension40:
-          description: Custom dimension 40
-          type: string
-          example: 'custom_dimension_40_value'
-        dimension41:
-          description: Custom dimension 41
-          type: string
-          example: 'custom_dimension_41_value'
-        dimension42:
-          description: Custom dimension 42
-          type: string
-          example: 'custom_dimension_42_value'
-        dimension43:
-          description: Custom dimension 43
-          type: string
-          example: 'custom_dimension_43_value'
-        dimension44:
-          description: Custom dimension 44
-          type: string
-          example: 'custom_dimension_44_value'
-        dimension45:
-          description: Custom dimension 45
-          type: string
-          example: 'custom_dimension_45_value'
-        dimension46:
-          description: Custom dimension 46
-          type: string
-          example: 'custom_dimension_46_value'
-        dimension47:
-          description: Custom dimension 47
-          type: string
-          example: 'custom_dimension_47_value'
-        dimension48:
-          description: Custom dimension 48
-          type: string
-          example: 'custom_dimension_48_value'
-        dimension49:
-          description: Custom dimension 49
-          type: string
-          example: 'custom_dimension_49_value'
-        dimension50:
-          description: Custom dimension 50
-          type: string
-          example: 'custom_dimension_50_value'
-        dimension51:
-          description: Custom dimension 51
-          type: string
-          example: 'custom_dimension_51_value'
-        dimension52:
-          description: Custom dimension 52
-          type: string
-          example: 'custom_dimension_52_value'
-        dimension53:
-          description: Custom dimension 53
-          type: string
-          example: 'custom_dimension_53_value'
-        dimension54:
-          description: Custom dimension 54
-          type: string
-          example: 'custom_dimension_54_value'
-        dimension55:
-          description: Custom dimension 55
-          type: string
-          example: 'custom_dimension_55_value'
-        dimension56:
-          description: Custom dimension 56
-          type: string
-          example: 'custom_dimension_56_value'
-        dimension57:
-          description: Custom dimension 57
-          type: string
-          example: 'custom_dimension_57_value'
-        dimension58:
-          description: Custom dimension 58
-          type: string
-          example: 'custom_dimension_58_value'
-        dimension59:
-          description: Custom dimension 59
-          type: string
-          example: 'custom_dimension_59_value'
-        dimension60:
-          description: Custom dimension 60
-          type: string
-          example: 'custom_dimension_60_value'
-        dimension61:
-          description: Custom dimension 61
-          type: string
-          example: 'custom_dimension_61_value'
-        dimension62:
-          description: Custom dimension 62
-          type: string
-          example: 'custom_dimension_62_value'
-        dimension63:
-          description: Custom dimension 63
-          type: string
-          example: 'custom_dimension_63_value'
-        dimension64:
-          description: Custom dimension 64
-          type: string
-          example: 'custom_dimension_64_value'
-        dimension65:
-          description: Custom dimension 65
-          type: string
-          example: 'custom_dimension_65_value'
-        dimension66:
-          description: Custom dimension 66
-          type: string
-          example: 'custom_dimension_66_value'
-        dimension67:
-          description: Custom dimension 67
-          type: string
-          example: 'custom_dimension_67_value'
-        dimension68:
-          description: Custom dimension 68
-          type: string
-          example: 'custom_dimension_68_value'
-        dimension69:
-          description: Custom dimension 69
-          type: string
-          example: 'custom_dimension_69_value'
-        dimension70:
-          description: Custom dimension 70
-          type: string
-          example: 'custom_dimension_70_value'
-        dimension71:
-          description: Custom dimension 71
-          type: string
-          example: 'custom_dimension_71_value'
-        dimension72:
-          description: Custom dimension 72
-          type: string
-          example: 'custom_dimension_72_value'
-        dimension73:
-          description: Custom dimension 73
-          type: string
-          example: 'custom_dimension_73_value'
-        dimension74:
-          description: Custom dimension 74
-          type: string
-          example: 'custom_dimension_74_value'
-        dimension75:
-          description: Custom dimension 75
-          type: string
-          example: 'custom_dimension_75_value'
-        dimension76:
-          description: Custom dimension 76
-          type: string
-          example: 'custom_dimension_76_value'
-        dimension77:
-          description: Custom dimension 77
-          type: string
-          example: 'custom_dimension_77_value'
-        dimension78:
-          description: Custom dimension 78
-          type: string
-          example: 'custom_dimension_78_value'
-        dimension79:
-          description: Custom dimension 79
-          type: string
-          example: 'custom_dimension_79_value'
-        dimension80:
-          description: Custom dimension 80
-          type: string
-          example: 'custom_dimension_80_value'
-        dimension81:
-          description: Custom dimension 81
-          type: string
-          example: 'custom_dimension_81_value'
-        dimension82:
-          description: Custom dimension 82
-          type: string
-          example: 'custom_dimension_82_value'
-        dimension83:
-          description: Custom dimension 83
-          type: string
-          example: 'custom_dimension_83_value'
-        dimension84:
-          description: Custom dimension 84
-          type: string
-          example: 'custom_dimension_84_value'
-        dimension85:
-          description: Custom dimension 85
-          type: string
-          example: 'custom_dimension_85_value'
-        dimension86:
-          description: Custom dimension 86
-          type: string
-          example: 'custom_dimension_86_value'
-        dimension87:
-          description: Custom dimension 87
-          type: string
-          example: 'custom_dimension_87_value'
-        dimension88:
-          description: Custom dimension 88
-          type: string
-          example: 'custom_dimension_88_value'
-        dimension89:
-          description: Custom dimension 89
-          type: string
-          example: 'custom_dimension_89_value'
-        dimension90:
-          description: Custom dimension 90
-          type: string
-          example: 'custom_dimension_90_value'
-        dimension91:
-          description: Custom dimension 91
-          type: string
-          example: 'custom_dimension_91_value'
-        dimension92:
-          description: Custom dimension 92
-          type: string
-          example: 'custom_dimension_92_value'
-        dimension93:
-          description: Custom dimension 93
-          type: string
-          example: 'custom_dimension_93_value'
-        dimension94:
-          description: Custom dimension 94
-          type: string
-          example: 'custom_dimension_94_value'
-        dimension95:
-          description: Custom dimension 95
-          type: string
-          example: 'custom_dimension_95_value'
-        dimension96:
-          description: Custom dimension 96
-          type: string
-          example: 'custom_dimension_96_value'
-        dimension97:
-          description: Custom dimension 97
-          type: string
-          example: 'custom_dimension_97_value'
-        dimension98:
-          description: Custom dimension 98
-          type: string
-          example: 'custom_dimension_98_value'
-        dimension99:
-          description: Custom dimension 99
-          type: string
-          example: 'custom_dimension_99_value'
-        dimension100:
-          description: Custom dimension 100
-          type: string
-          example: 'custom_dimension_100_value'
