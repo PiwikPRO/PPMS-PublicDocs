@@ -2312,8 +2312,8 @@ Miscellaneous
 
 .. function:: getTrackingSource()
 
-    Returns tracking source data identifying the library and passed in ``ts_n`` and ``ts_v`` tracking parameters.
-    The default tracking source can be overwritten using :ref:`setTrackingSource<jtc-api-setTrackingSource>` function.
+    Returns tracking source name and version that identifies the library sending tracking requests.
+    The default tracking source is ``jstc`` and can be overwritten using :ref:`setTrackingSource<jtc-api-setTrackingSource>` function.
 
     :returns: A tuple with tracking source name and version, e.g. ``["jstc", "2.3.1"]``
 
