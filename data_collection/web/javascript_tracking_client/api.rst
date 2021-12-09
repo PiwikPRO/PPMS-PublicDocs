@@ -2346,7 +2346,7 @@ Miscellaneous
     Overwrites the default tracking source.
 
     :param string name: **Required** Tracking source name, e.g. ``"custom-source"``
-    :param string version: Tracking source version, e.g. ``"1.0.0"``. If skipped, the version will not change.
+    :param string version: **Optional** Tracking source version, e.g. ``"1.0.0"``. If skipped, the version will not change.
 
     Example of usage:
 
