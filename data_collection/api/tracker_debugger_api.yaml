@@ -3207,6 +3207,11 @@ components:
           minimum: 0
           maximum: 65535
           example: 9
+        tracking_sources:
+          description: Tracking sources (e.g. JSTC) that were used to collect events in this session
+          type: array
+          items:
+            $ref: '#/components/schemas/TrackingSource'
     AnonymizedLog:
       description: An anonymized tracking log
       required:
@@ -3674,3 +3679,37 @@ components:
           description: Custom dimension 5
           type: string
           example: 'custom_dimension_5_value'
+    TrackingSource:
+      description: An object representing tracking source
+      required:
+        - name
+      type: object
+      properties:
+        name:
+          description: Symbol of tracking source and its human-readable name
+          type: array
+          items:
+            type: string
+          minItems: 2
+          maxItems: 2
+          enum:
+            - ['jstc', 'JavaScript Tracking Client']
+            - ['jstc_tm', 'JavaScript Tracking Client using Tag Manager']
+            - ['wla', 'Web Log Analytics']
+            - ['and', 'Android SDK']
+            - ['ios', 'iOS SDK']
+            - ['react_native', 'React Native']
+            - ['sharepoint', 'SharePoint']
+            - ['confluence', 'Confluence']
+            - ['amp', 'Google AMP']
+            - ['php', 'PHP Tracking client']
+            - ['', 'Empty']
+            - ['unk', 'Unknown']
+        orig_name:
+          description: Name of tracking source - original string from tracking request
+          type: string
+          example: jstc
+        version:
+          description: Version of tracking source - original string from tracking request
+          type: string
+          example: 2.1.0
