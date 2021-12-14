@@ -3,7 +3,7 @@ info:
   title: Object management HTTP API for Analytics.
   description: |
     **Authentication is required** to access any of the
-    following endpoints. Please see [Authorization](../../getting_started.html)
+    following endpoints. Please see [Authorization](../../platform/getting_started.html)
     documentation for more details.
 
   version: 'auto'
