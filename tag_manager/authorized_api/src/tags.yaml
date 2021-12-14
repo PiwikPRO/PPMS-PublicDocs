@@ -2,7 +2,7 @@ openapi: '3.0.0'
 info:
     title: Tag Manager API
     description: |
-        - In order to access those endpoints, you need to **authenticate**. <a href="../../getting_started.html">Here is a guide on how to do it.</a>
+        - In order to access those endpoints, you need to **authenticate**. <a href="../../platform/getting_started.html">Here is a guide on how to do it.</a>
         - <span id="tag-template-options">Tag template options</span> - one should send all attributes he wants to be set when using PATCH request
     version: '1.0'
 
