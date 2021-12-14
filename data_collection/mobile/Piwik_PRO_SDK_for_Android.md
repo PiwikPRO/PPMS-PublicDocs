@@ -339,6 +339,7 @@ TrackHelper.track().campaign(new URL("http://example.org/offer.html?pk_campaign=
 
 ### Tracking custom variables 
 *The feature will soon be disabled. We recommend using [custom dimensions](#tracking-custom-dimensions) instead.*
+
 *Requires Analytics*
 
 A custom variable is a custom name-value pair that you can assign to your users or screen views, and then visualize the reports of how many visits, conversions, etc. for each custom variable. A custom variable is defined by a name — for example, "User status" — and a value – for example, "LoggedIn" or "Anonymous". It is required for names and values to be encoded in UTF-8.

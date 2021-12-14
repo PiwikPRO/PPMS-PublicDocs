@@ -255,6 +255,7 @@ Tracking campaign URLs created with the online [Campaign URL Builder tool](https
 
 ### Tracking with custom variables
 *The feature will soon be disabled. We recommend using [custom dimensions](#tracking-with-custom-dimensions) instead.*
+
 *Requires Analytics*
 
 To track custom name-value pairs assigned to your users or screen views, you can use custom variables. A custom variable can have a visit scope, which means that they are assigned to the whole visit of the user or action scope meaning that they are assigned only to the next tracked action such as screen view. You can find more information about custom variables [here](https://help.piwik.pro/analytics/custom-variables/):
