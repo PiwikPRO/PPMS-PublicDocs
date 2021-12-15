@@ -201,6 +201,10 @@
                         {
                             "title": "Video YouTube",
                             "$ref": "../../tags/schema/tag_templates/video_youtube_attributes.json#/definitions/template_options"
+                        },
+                        {
+                            "title": "Heatmaps",
+                            "$ref": "../../tags/schema/tag_templates/heatmaps_attributes.json#/definitions/template_options"
                         }
                     ]
                 },
