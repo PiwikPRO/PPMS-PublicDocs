@@ -41,8 +41,8 @@ Configure the tracker with your website ID and URL in the application delegate:
 
 #### Using Piwik PRO SDK with the Swift programming language
 
-The Piwik PRO SDK is entirely created using the Objective-C programming language. After installing the library from cocoapods, Xcode automatically generates Swift syntax for Objective-C calls.
-When you edit a Swift file and type in an Objective-C class name, the Swift version of the header file will be displayed.
+The Piwik PRO SDK is written in the Objective-C programming language. However, after installing the library from cocoapods, Xcode automatically generates Swift syntax for Objective-C calls.
+When you edit a Swift file and type in an Objective-C class name, Swift version of the header file will be displayed.
 
 Example of using the method to track a view in Objective-c:
 ```
@@ -272,8 +272,9 @@ Tracking campaign URLs created with the online [Campaign URL Builder tool](https
 * A URL (required) – the campaign URL. HTTPS, HTTP and FTP are valid - the URL must contain a campaign name and keyword parameters.
 
 ### Tracking with custom variables
-*The feature will soon be disabled. We recommend using [custom dimensions](#tracking-with-custom-dimensions) instead.
-Requires Analytics*
+*The feature will soon be disabled. We recommend using [custom dimensions](#tracking-with-custom-dimensions) instead.*
+
+*Requires Analytics*
 
 To track custom name-value pairs assigned to your users or screen views, you can use custom variables. A custom variable can have a visit scope, which means that they are assigned to the whole visit of the user or action scope meaning that they are assigned only to the next tracked action such as screen view. You can find more information about custom variables [here](https://help.piwik.pro/analytics/custom-variables/):
 
