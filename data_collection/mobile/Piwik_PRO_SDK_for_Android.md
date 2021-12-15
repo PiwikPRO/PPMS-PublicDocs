@@ -30,8 +30,7 @@ Then add the dependency to the application module `build.gradle` file:
   }
 ```
 
-Replace `VERSION` with the latest release name, e.g. ``1.0.1``.
-
+Replace `VERSION` with the latest release name, e.g. ``1.0.3``.
 
 #### Configuration
 
@@ -69,6 +68,23 @@ Tracker tracker = ((PiwikApplication) getApplication()).getTracker();
 
 The application is ready to use Piwik PRO SDK.
 
+#### Using Piwik PRO SDK with the Kotlin programming language
+
+The Piwik PRO SDK is entirely created using the Java programming language. Nevertheless calling Piwik PRO SDK interface elements in classes written in Kotlin will not be an issue as the code written in Java can be called from Kotlin in a natural way.
+When we edit a Kotlin class file and type in a reference to the Piwik PRO SDK component, a Kotlin syntax interface will be shown in the code completion.
+
+Example of using the method to track a view in Java:
+```java
+Tracker tracker = ((PiwikApplication) getApplication()).getTracker();
+TrackHelper.track().screen("your_activity_path").title("Title").with(tracker);
+```
+Same example in Kotlin:
+```java
+val tracker: Tracker = (application as PiwikApplication).tracker
+TrackHelper.track().screen("your_activity_path").title("Title").with(tracker)
+```
+
+For more on using existing Java code in Kotlin files, see the documentation ["Calling Java from Kotlin﻿"](https://kotlinlang.org/docs/java-interop.html).
 
 ## Using Piwik PRO SDK
 
@@ -338,9 +354,8 @@ TrackHelper.track().campaign(new URL("http://example.org/offer.html?pk_campaign=
 * A URL (required) – the campaign URL. HTTPS, HTTP and FTP are valid, however, the URL must contain campaign name and keyword parameters.
 
 ### Tracking custom variables 
-*The feature will soon be disabled. We recommend using [custom dimensions](#tracking-custom-dimensions) instead.*
-
-*Requires Analytics*
+*The feature will soon be disabled. We recommend using [custom dimensions](#tracking-custom-dimensions) instead.
+Requires Analytics*
 
 A custom variable is a custom name-value pair that you can assign to your users or screen views, and then visualize the reports of how many visits, conversions, etc. for each custom variable. A custom variable is defined by a name — for example, "User status" — and a value – for example, "LoggedIn" or "Anonymous". It is required for names and values to be encoded in UTF-8.
 

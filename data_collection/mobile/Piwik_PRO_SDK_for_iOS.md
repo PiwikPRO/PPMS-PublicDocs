@@ -16,7 +16,7 @@ Use the following in your Podfile:
 pod 'PiwikPROSDK', '~> VERSION'
 ```
 
-Replace `VERSION` with the latest release name, e.g. ``'~> 1.0.0'``.
+Replace `VERSION` with the latest release name, e.g. ``'~> 1.0.7'``.
 
 Then run ``pod install``. In every file you wish to use the PiwikPROSDK, don't forget to import it.
 
@@ -38,6 +38,24 @@ Configure the tracker with your website ID and URL in the application delegate:
     return YES;
 }
 ```
+
+#### Using Piwik PRO SDK with the Swift programming language
+
+The Piwik PRO SDK is entirely created using the Objective-C programming language. After installing the library from cocoapods, Xcode automatically generates Swift syntax for Objective-C calls.
+When you edit a Swift file and type in an Objective-C class name, the Swift version of the header file will be displayed.
+
+Example of using the method to track a view in Objective-c:
+```
+[[PiwikTracker sharedInstance] sendView:@"Menu"];
+```
+Same example in Swift:
+```
+import PiwikPROSDK
+
+PiwikTracker.sharedInstance()?.sendView(view: "Menu")
+```
+
+If there is a need to create the bridging header, see the apple tutorial ["Importing Objective-C into Swift"](https://developer.apple.com/documentation/swift/imported_c_and_objective-c_apis/importing_objective-c_into_swift) for additional information.
 
 ## Using Piwik PRO SDK
 
@@ -254,9 +272,8 @@ Tracking campaign URLs created with the online [Campaign URL Builder tool](https
 * A URL (required) – the campaign URL. HTTPS, HTTP and FTP are valid - the URL must contain a campaign name and keyword parameters.
 
 ### Tracking with custom variables
-*The feature will soon be disabled. We recommend using [custom dimensions](#tracking-with-custom-dimensions) instead.*
-
-*Requires Analytics*
+*The feature will soon be disabled. We recommend using [custom dimensions](#tracking-with-custom-dimensions) instead.
+Requires Analytics*
 
 To track custom name-value pairs assigned to your users or screen views, you can use custom variables. A custom variable can have a visit scope, which means that they are assigned to the whole visit of the user or action scope meaning that they are assigned only to the next tracked action such as screen view. You can find more information about custom variables [here](https://help.piwik.pro/analytics/custom-variables/):
 
