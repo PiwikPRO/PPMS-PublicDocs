@@ -1,0 +1,20 @@
+{
+    "definitions": {
+        "consent_type_default": {
+            "$ref": "../tag_attributes.json#/definitions/consent_type",
+            "default": "analytics"
+        },
+        "template": {
+            "$ref": "../tag_attributes.json#/definitions/template",
+            "enum": [
+                "heatmaps"
+            ]
+        },
+        "template_options": {
+            "description": "[Tag template options](#tag-template-options)",
+            "type": "object",
+            "properties": {},
+            "additionalProperties": false
+        }
+    }
+}

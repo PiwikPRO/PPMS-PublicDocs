@@ -202,7 +202,8 @@
                 "salesforce_pardot",
                 "visual_website_optimizer",
                 "video_html5",
-                "video_youtube"
+                "video_youtube",
+                "heatmaps"
             ]
         },
         "template_options_empty": {
