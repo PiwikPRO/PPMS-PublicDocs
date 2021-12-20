@@ -111,6 +111,9 @@
         },
         {
             "$ref": "request/video_youtube_create.json"
+        },
+        {
+            "$ref": "request/heatmaps_create.json"
         }
     ]
 }
