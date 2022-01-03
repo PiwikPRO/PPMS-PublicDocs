@@ -841,6 +841,18 @@ paths:
           minimum: 0
           maximum: 16777215
           example: 7
+        - name: ts_n
+          in: query
+          description: |
+            Name of a library used for tracking.
+          type: string
+          example: ios
+        - name: ts_v
+          in: query
+          description: |
+            Version of a library used for tracking.
+          type: string
+          example: 3.4.1
       responses:
         200:
           description: OK
