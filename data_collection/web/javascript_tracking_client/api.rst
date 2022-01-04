@@ -219,7 +219,7 @@ Goal conversions
 
             .. code-block:: javascript
 
-                _paq.push(["trackGoal" 1, 15]);
+                _paq.push(["trackGoal", 1, 15]);
 
         .. group-tab:: JavaScript Tracking Client object
 
