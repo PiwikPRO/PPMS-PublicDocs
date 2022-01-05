@@ -1501,6 +1501,31 @@ User management
 
                 jstc.deanonymizeUser();
 
+.. function:: setSessionIdStrictPrivacyMode(isStrict)
+
+    Enables or disables strict privacy option in the tracker. When enabled tracker will not send information that can be
+    used to fully or partially identify individual client browser even when persistent cookies are disabled.
+    The information about browser that is blocked by this setting: screen resolution and installed browser plugins
+    (e.g. PDF, Flash, Silverlight, Java, QuickTime, RealAudio, etc.).
+
+    :param boolean isStrict: **Required** Defines if tracker should use strict privacy mode.
+
+    Example of usage:
+
+    .. tabs::
+
+        .. group-tab:: Command queue
+
+            .. code-block:: javascript
+
+                _paq.push(["setSessionIdStrictPrivacyMode", true]);
+
+        .. group-tab:: JavaScript Tracking Client object
+
+            .. code-block:: javascript
+
+                jstc.setSessionIdStrictPrivacyMode(true);
+
 .. _jtc-api-getVisitorId:
 
 .. function:: getVisitorId()

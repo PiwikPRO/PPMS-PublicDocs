@@ -30,8 +30,7 @@ Then add the dependency to the application module `build.gradle` file:
   }
 ```
 
-Replace `VERSION` with the latest release name, e.g. ``1.0.1``.
-
+Replace `VERSION` with the latest release name, e.g. ``1.0.3``.
 
 #### Configuration
 
@@ -69,6 +68,23 @@ Tracker tracker = ((PiwikApplication) getApplication()).getTracker();
 
 The application is ready to use Piwik PRO SDK.
 
+#### Using Piwik PRO SDK with the Kotlin programming language
+
+The Piwik PRO SDK is written in the Java programming language. Nevertheless calling Piwik PRO SDK interface elements in classes written in Kotlin will not be an issue as the code written in Java can be called from Kotlin in a natural way.
+When we edit a Kotlin class file and type in a reference to the Piwik PRO SDK component, a Kotlin syntax interface will be shown in the code completion.
+
+Example of using the method to track a view in Java:
+```java
+Tracker tracker = ((PiwikApplication) getApplication()).getTracker();
+TrackHelper.track().screen("your_activity_path").title("Title").with(tracker);
+```
+Same example in Kotlin:
+```java
+val tracker: Tracker = (application as PiwikApplication).tracker
+TrackHelper.track().screen("your_activity_path").title("Title").with(tracker)
+```
+
+For more on using existing Java code in Kotlin files, see the documentation ["Calling Java from Kotlin﻿"](https://kotlinlang.org/docs/java-interop.html).
 
 ## Using Piwik PRO SDK
 
@@ -92,7 +108,7 @@ In further examples we will assume usage of the first option.
 
 Anonymization is the feature that allows tracking a user's activity for aggregated data analysis even if the user doesn't consent to track the data. If a user does not agree to be tracked, he will not be identified as the same person across multiple sessions.
 
-Personal data will not be tracked during the session (i.e. [user ID](#user-id), [device ID](https://support.google.com/googleplay/android-developer/answer/6048248?hl=en))
+Personal data will not be tracked during the session (i.e. [user ID](#user-id), [device ID](https://support.google.com/googleplay/android-developer/answer/6048248?hl=en)).
 If the anonymization is enabled, a new [visitor ID](#visitor-id) will be created each time the application starts.
 
 Anonymization is enabled by default.
@@ -166,7 +182,7 @@ The ``track`` method allows the specification of the following parameters:
 * A path (optional) – the path under which this event occurred.
 
 For more resources, please visit:
-* [Custom Events Overview](https://help.piwik.pro/analytics/custom-events-overview/)
+* [Custom Events Overview](https://help.piwik.pro/support/getting-started/custom-event/)
 * [Ultimate guide to event tracking](https://piwik.pro/blog/event-tracking-ultimate-guide/).
 
 ### Tracking exceptions
@@ -283,7 +299,7 @@ TrackHelper.track().impression("Android content impression").piece("banner").tar
 ### Tracking goals
 *Requires Analytics*
 
-By default, goals are defined as "matching" parts of the screen path or screen title. If you want to trigger a conversion manually or track some user interaction, call the method ``goal``. Read further about what a goal is in [Goal in Piwik PRO](https://help.piwik.pro/analytics/creating-managing-goals/).
+By default, goals are defined as "matching" parts of the screen path or screen title. If you want to trigger a conversion manually or track some user interaction, call the method ``goal``. [Read more about what a goal is in the Help Center.](https://help.piwik.pro/support/reports/goals/)
 
 ```java
 TrackHelper.track().goal(1).revenue(revenue).with(tracker)
@@ -337,10 +353,12 @@ TrackHelper.track().campaign(new URL("http://example.org/offer.html?pk_campaign=
 
 * A URL (required) – the campaign URL. HTTPS, HTTP and FTP are valid, however, the URL must contain campaign name and keyword parameters.
 
-### Tracking custom variables
+### Tracking custom variables 
+*The feature will soon be disabled. We recommend using [custom dimensions](#tracking-custom-dimensions) instead.*
+
 *Requires Analytics*
 
-A [custom variable](https://help.piwik.pro/analytics/custom-variables/) is a custom name-value pair that you can assign to your users or screen views, and then visualize the reports of how many visits, conversions, etc. for each custom variable. A custom variable is defined by a name — for example, "User status" — and a value – for example, "LoggedIn" or "Anonymous". It is required for names and values to be encoded in UTF-8.
+A custom variable is a custom name-value pair that you can assign to your users or screen views, and then visualize the reports of how many visits, conversions, etc. for each custom variable. A custom variable is defined by a name — for example, "User status" — and a value – for example, "LoggedIn" or "Anonymous". It is required for names and values to be encoded in UTF-8.
 
 Each custom variable has a scope. There are two types of custom variables scope - _visit scope_ and _screen scope_. The visit scope can be used for any tracking action, and the screen scope can only be applied to tracking screen views.
 
@@ -363,7 +381,9 @@ TrackHelper.track()
        .event("category", "action")
        .with(tracker);
 ```
-Please note that for the [Default custom variables](#default-custom-variables) option, use the custom variables of the visit scope with indexes 1-3.
+Please note that the [Default custom variables](#default-custom-variables) option is enabled by default. With this option turned on, use the custom variables with indexes greater than 3 or the visit scope custom variables with indexes 1-3.
+
+In case you don't need the default custom variable, you can disable it. See below the section regarding default custom variables and how to disable them.
 
 Custom variable is defined by three parameters:
 
@@ -491,7 +511,7 @@ getTracker().checkAudienceMembership(audienceId, new Tracker.OnCheckAudienceMemb
 
 ### User ID
 
-UserID will allow the association of events from various sources to the same user. Each time a new visitor enters your page, Piwik PRO assigns a cookie containing a random string of characters. The purpose of this cookie is for Piwik PRO to be able to recognize the same visitor whenever the website is visited again. However, instead of a random string, you can assign your visitors with your own human-friendly name (ex. visitor email). More about [UserID](https://help.piwik.pro/tag-manager/userid/). In order to set UserID, use the ``setUserId`` method:
+UserID will allow the association of events from various sources to the same user. Each time a new visitor enters your page, Piwik PRO assigns a cookie containing a random string of characters. The purpose of this cookie is for Piwik PRO to be able to recognize the same visitor whenever the website is visited again. However, instead of a random string, you can assign your visitors with your own human-friendly name (ex. visitor email). [Learn more about the user ID here](https://help.piwik.pro/support/getting-started/userid/). In order to set UserID, use the ``setUserId`` method:
 
 ```java
 getTracker().setUserId("John Doe");
@@ -635,38 +655,3 @@ getTracker().setDryRunTarget(Collections.synchronizedList(new ArrayList<Packet>(
 ```
 * A dryRunTarget (required) – a data structure the data should be passed into ``List<Packet>`` type. Set it to null to disable dry run.
 
-
-## License
-
-_Piwik PRO Android SDK is released under the BSD-3 Clause license._
-
-Copyright 2018 Piwik PRO team
-
-All rights reserved.
-
-Redistribution and use in source and binary forms, with or without
-modification, are permitted provided that the following conditions are
-met:
-
-* Redistributions of source code must retain the above copyright
-  notice, this list of conditions and the following disclaimer.
-
-* Redistributions in binary form must reproduce the above copyright
-  notice, this list of conditions and the following disclaimer in the
-  documentation and/or other materials provided with the distribution.
-
-* Neither the name of Piwik team nor the names of its contributors
-  may be used to endorse or promote products derived from this
-  software without specific prior written permission.
-
-THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
-"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
-LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
-A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
-OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
-SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
-LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
-DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
