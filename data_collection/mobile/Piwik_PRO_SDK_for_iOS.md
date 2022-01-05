@@ -16,7 +16,7 @@ Use the following in your Podfile:
 pod 'PiwikPROSDK', '~> VERSION'
 ```
 
-Replace `VERSION` with the latest release name, e.g. ``'~> 1.0.0'``.
+Replace `VERSION` with the latest release name, e.g. ``'~> 1.0.7'``.
 
 Then run ``pod install``. In every file you wish to use the PiwikPROSDK, don't forget to import it.
 
@@ -38,6 +38,24 @@ Configure the tracker with your website ID and URL in the application delegate:
     return YES;
 }
 ```
+
+#### Using Piwik PRO SDK with the Swift programming language
+
+The Piwik PRO SDK is written in the Objective-C programming language. However, after installing the library from cocoapods, Xcode automatically generates Swift syntax for Objective-C calls.
+When you edit a Swift file and type in an Objective-C class name, Swift version of the header file will be displayed.
+
+Example of using the method to track a view in Objective-c:
+```
+[[PiwikTracker sharedInstance] sendView:@"Menu"];
+```
+Same example in Swift:
+```
+import PiwikPROSDK
+
+PiwikTracker.sharedInstance()?.sendView(view: "Menu")
+```
+
+If there is a need to create the bridging header, see the apple tutorial ["Importing Objective-C into Swift"](https://developer.apple.com/documentation/swift/imported_c_and_objective-c_apis/importing_objective-c_into_swift) for additional information.
 
 ## Using Piwik PRO SDK
 
@@ -254,6 +272,8 @@ Tracking campaign URLs created with the online [Campaign URL Builder tool](https
 * A URL (required) – the campaign URL. HTTPS, HTTP and FTP are valid - the URL must contain a campaign name and keyword parameters.
 
 ### Tracking with custom variables
+*The feature will soon be disabled. We recommend using [custom dimensions](#tracking-with-custom-dimensions) instead.*
+
 *Requires Analytics*
 
 To track custom name-value pairs assigned to your users or screen views, you can use custom variables. A custom variable can have a visit scope, which means that they are assigned to the whole visit of the user or action scope meaning that they are assigned only to the next tracked action such as screen view. You can find more information about custom variables [here](https://help.piwik.pro/analytics/custom-variables/):
@@ -274,16 +294,16 @@ It is required for names and values to be encoded in UTF-8.
 ### Tracking with custom dimensions
 *Requires Analytics*
 
-You can also use custom dimensions to track custom values as below. Custom dimensions can also can have a visit or action scope but first have to be defined on the server in your web panel. More details about custom dimensions can be found in the [documentation](https://help.piwik.pro/analytics/custom-dimensions/):
+You can also use custom dimensions to track custom values as below. Custom dimensions first have to be defined on the server in your web panel. More details about custom dimensions can be found in the [documentation](https://help.piwik.pro/analytics/custom-dimensions/):
 ```
-[[PiwikTracker sharedInstance] setCustomDimensionForIndex:1 value:@"english" scope:CustomDimensionScopeVisit];
+[[PiwikTracker sharedInstance] setCustomDimensionForID:1 value:@"english"];
 ```
 
 * An index (required) – a given custom dimension must always be stored in the same "index" per session, similar to custom variables. In example ``1`` is our dimension slot.
 
-* A value (required) – this String defines the value of a specific custom dimension such as "English". Limited to 200 characters.
+* A value (required) – this String defines the value of a specific custom dimension such as "English". Limited to 200 characters. 
 
-* A scope (required) – this String allows the specification of the tracking event type - "visit", "action", etc. Scope is the value from enum ``CustomDimensionScope`` and could be ``CustomDimensionScopeVisit`` or ``CustomDimensionScopeAction``.
+Assigning a value to an already used index will overwrite the previously assigned value.
 
 ### Tracking profile attributes
 *Requires Audience Manager*
@@ -437,16 +457,3 @@ You can disable all tracking in the application by using the opt-out feature. No
 [PiwikTracker sharedInstance].optOut = YES;
 ```
 
-## License
-
-_Piwik PRO iOS SDK is available under the MIT license._
-
-Copyright 2018 Piwik PRO team
-
-All rights reserved.
-
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
