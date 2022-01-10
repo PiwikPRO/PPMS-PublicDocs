@@ -2,3 +2,4 @@ https://github.com/executablebooks/sphinx-tabs/releases/download/v1.1.13/sphinx-
 sphinx-rtd-theme==0.2.5b2
 PyYAML==5.4.1
 docutils==0.17
+sphinxext-opengraph==0.5.1
