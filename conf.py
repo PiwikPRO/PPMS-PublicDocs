@@ -238,6 +238,8 @@ html_theme_options = {
     'navigation_depth': 4,
 }
 
+ogp_image = "https://developers.piwik.pro/en/latest/_static/images/pp-logo_white.svg"
+
 def setup(app):
     app.add_css_file('css/custom_1632479843898.css')
     app.add_js_file('js/unicornDetector.js')
