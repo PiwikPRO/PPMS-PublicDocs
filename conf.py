@@ -64,7 +64,7 @@ extensions = ['sphinx.ext.autodoc',
     'sphinx.ext.intersphinx',
     'sphinx.ext.todo',
     'sphinx.ext.mathjax',
-    'sphinxext.opengraph',
+    'opengraphext',
     'sphinx_tabs.tabs']
 
 # Add any paths that contain templates here, relative to this directory.
