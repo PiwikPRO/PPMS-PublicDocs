@@ -5,7 +5,7 @@ WORKDIR /app
 COPY requirements.local.txt .
 COPY requirements.txt .
 
-RUN python -m pip install --requirement requirements.local.txt --no-deps && \
+RUN python -m pip install --requirement requirements.local.txt && \
     python -m pip install sphinx-autobuild && \
     rm requirements.local.txt && \
     rm requirements.txt
