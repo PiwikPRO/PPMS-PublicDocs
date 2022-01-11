@@ -238,7 +238,7 @@ html_theme_options = {
     'navigation_depth': 4,
 }
 
-ogp_image = "https://developers.piwik.pro/en/latest/_static/images/pp-logo_black.svg"
+ogp_image = "https://developers.piwik.pro/en/latest/_static/images/image-thumb.png"
 
 def setup(app):
     app.add_css_file('css/custom_1632479843898.css')
