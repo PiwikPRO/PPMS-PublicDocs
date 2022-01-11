@@ -64,6 +64,7 @@ extensions = ['sphinx.ext.autodoc',
     'sphinx.ext.intersphinx',
     'sphinx.ext.todo',
     'sphinx.ext.mathjax',
+    'opengraphext',
     'sphinx_tabs.tabs']
 
 # Add any paths that contain templates here, relative to this directory.
@@ -236,6 +237,8 @@ html_theme_options = {
     'includehidden': False,
     'navigation_depth': 4,
 }
+
+ogp_image = "https://developers.piwik.pro/en/latest/_static/images/pp-logo_black.svg"
 
 def setup(app):
     app.add_css_file('css/custom_1632479843898.css')
