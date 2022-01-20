@@ -850,8 +850,9 @@ paths:
         - name: ts_v
           in: query
           description: |
-            Version of a library used for tracking.
+            Version of a library used for tracking. [Semantic Versioning](https://semver.org) format required.
           type: string
+          format: SemVer
           example: 3.4.1
       responses:
         200:
