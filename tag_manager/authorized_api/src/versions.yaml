@@ -1,8 +1,10 @@
 openapi: '3.0.0'
 info:
     title: Tag Manager API
-    description: In order to access those endpoints, you need to **authenticate**. <a href="../../platform/getting_started.html">Here is a guide on how to do it.</a>
     version: '1.0'
+
+security:
+    - BearerAuth: []
 
 servers:
     - url: https://example.piwik.pro
@@ -14,6 +16,18 @@ paths:
 
         get:
             summary: List of versions
+            description: |
+                ### JSON API compatibility divergence
+
+                #### Filters
+                In JSON API standard (https://jsonapi.org/recommendations/#filtering) one can request elements with multiple
+                filter values by simply providing them separated by coma:
+
+                `versions?filter[version_type][]=published,draft`
+
+                This notation will not work here. You can achieve this functionality by providing multiple filters for the same parameter:
+
+                `versions?filter[version_type][]=published&filter[version_type][]=draft`
             parameters:
                 - $ref: 'common/api/common_request_parameters.json#/components/parameters/page[limit]'
                 - $ref: 'common/api/common_request_parameters.json#/components/parameters/page[offset]'
@@ -358,3 +372,6 @@ paths:
                                     type: string
                                     format: application/json
 
+components:
+    securitySchemes:
+        $ref: 'common/api/common_security_schemes.json#/components/securitySchemes'

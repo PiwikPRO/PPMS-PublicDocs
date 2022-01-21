@@ -1,8 +1,10 @@
 openapi: '3.0.0'
 info:
     title: Tag Manager API
-    description: In order to access those endpoints, you need to **authenticate**. <a href="../../platform/getting_started.html">Here is a guide on how to do it.</a>
     version: '1.0'
+
+security:
+    - BearerAuth: []
 
 servers:
     - url: https://example.piwik.pro
@@ -14,6 +16,16 @@ paths:
 
         get:
             summary: List of triggers
+            description: |
+                ### JSON API compatibility divergence
+
+                #### Filters
+                In JSON API standard (https://jsonapi.org/recommendations/#filtering) one can request elements with multiple
+                filter values by simply providing them separated by coma:
+
+                `triggers?filter[trigger_type]=click,event`
+
+                Unfortunately it is not possible in this endpoint.
             parameters:
                 - $ref: 'common/api/common_request_parameters.json#/components/parameters/page[limit]'
                 - $ref: 'common/api/common_request_parameters.json#/components/parameters/page[offset]'
@@ -160,3 +172,6 @@ paths:
                         example:
                             $ref: 'triggers/example/copy/triggers_copy_request_example.json'
 
+components:
+    securitySchemes:
+        $ref: 'common/api/common_security_schemes.json#/components/securitySchemes'
