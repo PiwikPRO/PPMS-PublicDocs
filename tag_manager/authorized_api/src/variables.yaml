@@ -56,6 +56,18 @@ paths:
 
         get:
             summary: List of variables
+            description: |
+                ### JSON API compatibility divergence
+
+                #### Filters
+                In JSON API standard (https://jsonapi.org/recommendations/#filtering) one can request elements with multiple
+                filter values by simply providing them separated by coma:
+
+                `variables?filter[variable_type]=url,constant`
+
+                This notation will not work here. You can achieve this functionality by providing multiple filters for the same parameter:
+
+                `variables?filter[variable_type][]=url&filter[variable_type][]=constant`
             parameters:
                 - $ref: 'common/api/common_request_parameters.json#/components/parameters/page[limit]'
                 - $ref: 'common/api/common_request_parameters.json#/components/parameters/page[offset]'
