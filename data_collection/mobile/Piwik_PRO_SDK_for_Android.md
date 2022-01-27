@@ -345,7 +345,7 @@ TrackHelper.track().order("orderId",124144).subTotal(33110).tax(9890).shipping(1
 ### Tracking campaigns
 *Requires Analytics*
 
-Tracking [campaigns](https://help.piwik.pro/analytics/campaigns-report/) URLs configured with the online *Campaign URL Builder tool*, allow you to measure how different campaigns (for example with Facebook ads or direct emails) bring traffic to your application. You can track these URLs from the application via the ``campaign`` method:
+Tracking [campaigns](https://help.piwik.pro/support/reports/campaign-report/) URLs configured with the online *Campaign URL Builder tool*, allow you to measure how different campaigns (for example with Facebook ads or direct emails) bring traffic to your application. You can track these URLs from the application via the ``campaign`` method:
 
 ```java
 TrackHelper.track().campaign(new URL("http://example.org/offer.html?pk_campaign=Email-SummerDeals&pk_keyword=LearnMore")).with(getTracker());
