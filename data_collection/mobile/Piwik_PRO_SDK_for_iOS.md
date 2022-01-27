@@ -243,7 +243,7 @@ Ecommerce transactions (in-app purchases) can be tracked to help you improve you
 ### Tracking campaigns
 *Requires Analytics*
 
-Tracking campaign URLs created with the online [Campaign URL Builder tool](https://piwik.pro/url-builder-tool/) allow you to measure how different campaigns (for example with Facebook ads or direct emails) bring traffic to your application. You can register a custom URL schema in your project settings to launch your application when users tap on the campaign link. You can track these URLs from the application delegate as below. The campaign information will be sent to the server together with the next analytics event. More details about campaigns can be found in the [documentation](https://help.piwik.pro/analytics/campaigns-report/).
+Tracking campaign URLs created with the online [Campaign URL Builder tool](https://piwik.pro/url-builder-tool/) allow you to measure how different campaigns (for example with Facebook ads or direct emails) bring traffic to your application. You can register a custom URL schema in your project settings to launch your application when users tap on the campaign link. You can track these URLs from the application delegate as below. The campaign information will be sent to the server together with the next analytics event. More details about campaigns can be found in the [documentation](https://help.piwik.pro/support/reports/campaign-report/).
 
 ```
 - (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary *)options
