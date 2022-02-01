@@ -3679,6 +3679,27 @@ components:
           description: Custom dimension 5
           type: string
           example: 'custom_dimension_5_value'
+        ts_n:
+          description: Symbol of tracking source
+          type: string
+          example: jstc
+          enum:
+            - jstc
+            - jstc_tm
+            - wla
+            - and
+            - ios
+            - react_native
+            - sharepoint
+            - confluence
+            - amp
+            - php
+            - ''
+            - unk
+        ts_v:
+          description: Version of tracking source in [Semantic Versioning](https://semver.org) format
+          type: string
+          example: 1.0.2
     TrackingSource:
       description: An object representing tracking source
       required:
@@ -3710,6 +3731,7 @@ components:
           type: string
           example: jstc
         version:
-          description: Version of tracking source - original string from tracking request
+          description: Version of tracking source - original string from tracking request in [Semantic Versioning](https://semver.org) format.
           type: string
+          format: SemVer
           example: 2.1.0
