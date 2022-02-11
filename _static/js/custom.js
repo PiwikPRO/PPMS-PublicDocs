@@ -14,6 +14,9 @@
         }
     };
     head.appendChild(style.cloneNode());
+    //REMEMBER TO CHANGE THIS VERSION NUMBER BEFORE DEPLOY
+    document.querySelector('.rst-current-version').innerHTML = document.querySelector('.rst-current-version').innerHTML.replace('v: latest', 'v: latest (16.11)')
+    document.querySelector('.rtd-current-item a').innerText = 'latest (16.11)';
     if(typeof window.detectionOfStuff !== 'undefined' && typeof unicornDetector !== 'undefined') {
         window.unicornDetector.onDetected(detectedUnicorn);
     }
