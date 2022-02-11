@@ -101,9 +101,8 @@
     if(document.location.pathname.indexOf('/en/latest') === 0) {
         document.querySelector('.rst-current-version').innerHTML = document.querySelector('.rst-current-version').innerHTML.replace('v: latest', 'v: latest (16.11)')
     } else {
-        console.warn(document.querySelector('.rst-current-version').innerHTML)
-        console.warn(document.querySelector('.rst-versions').innerHTML);
-        console.warn(document.querySelector('.rst-versions > div > div > dl:nth-child(1) > dd:nth-child(2) > a'));
+        console.warn(document.querySelector('.rst-versions > div > dl:nth-child(1) > dd:nth-child(2) > a').innerHTML);
+        console.warn(document.querySelector('.rst-versions > div > dl:nth-child(1) > dd:nth-child(2) > a'));
     }
     document.querySelector('.rst-versions > div > div > dl:nth-child(1) > dd:nth-child(2) > a').innerText = 'latest (16.11)';
 </script>
