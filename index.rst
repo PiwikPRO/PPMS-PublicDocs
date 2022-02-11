@@ -55,7 +55,7 @@ Developer docs and guides
                     <img src="_static/images/setup.png" />
                 </div>
                 <div class="started-block-text">
-                    Setup tracking
+                    Set up tracking
                 </div>
             </div>
         </a>
