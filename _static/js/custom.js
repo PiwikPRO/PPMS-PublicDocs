@@ -15,8 +15,10 @@
     };
     head.appendChild(style.cloneNode());
     //REMEMBER TO CHANGE THIS VERSION NUMBER BEFORE DEPLOY
-    document.querySelector('.rst-current-version').innerHTML = document.querySelector('.rst-current-version').innerHTML.replace('v: latest', 'v: latest (16.11)')
-    document.querySelector('.rtd-current-item a').innerText = 'latest (16.11)';
+    if(document.location.pathname.indexOf('/en/latest') === 0) {
+        document.querySelector('.rst-current-version').innerHTML = document.querySelector('.rst-current-version').innerHTML.replace('v: latest', 'v: latest (16.11)')
+    }
+    document.querySelector('body > div.rst-versions.shift-up > div > div > dl:nth-child(1) > dd:nth-child(2) > a').innerText = 'latest (16.11)';
     if(typeof window.detectionOfStuff !== 'undefined' && typeof unicornDetector !== 'undefined') {
         window.unicornDetector.onDetected(detectedUnicorn);
     }
