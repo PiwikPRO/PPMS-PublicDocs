@@ -9,7 +9,7 @@
         <dl>
             <dt>{{ _('Versions') }}</dt>
             {% for slug, url in versions %}
-            <dd><a href="{{ url }}">{{ slug }}</a></dd>
+            <dd class="versions-version"><a href="{{ url }}">{{ slug }}</a></dd>
             {% endfor %}
         </dl>
         <dl>
@@ -29,7 +29,12 @@
         </dl>
         <hr/>
         {% trans %}Free document hosting provided by <a href="http://www.readthedocs.org">Read the Docs</a>.{% endtrans %}
-
+        <script>
+            if(document.location.pathname.indexOf('/en/latest') !== 0) {
+                document.querySelector('.rst-current-version').innerHTML = document.querySelector('.rst-current-version').innerHTML.replace('v: latest', 'v: latest (16.11)')
+            }
+            document.querySelector('versions-version a').innerText = 'latest (16.11)';
+        </script>
     </div>
 </div>
 {% endif %}
