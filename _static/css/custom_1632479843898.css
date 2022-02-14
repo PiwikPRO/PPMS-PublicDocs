@@ -1519,3 +1519,15 @@ body {
 body {
     display: initial;
 }
+
+.rst-current-version {
+    text-align: left !important;
+}
+
+.rst-current-version  .fa.fa-caret-down{
+        padding-left: 4px;
+}
+
+.rst-current-version .fa.fa-book {
+    display: none;
+}
