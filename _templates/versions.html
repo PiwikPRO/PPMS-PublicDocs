@@ -5,7 +5,7 @@
       v: {{ current_version }}
       <span class="fa fa-caret-down"></span>
     </span>
-    <div class="rst-other-versionss">
+    <div class="rst-other-versions">
         <dl>
             <dt>{{ _('Versions') }}</dt>
             {% for slug, url in versions %}
@@ -31,9 +31,9 @@
         {% trans %}Free document hosting provided by <a href="http://www.readthedocs.org">Read the Docs</a>.{% endtrans %}
         <script>
             if(document.location.pathname.indexOf('/en/latest') !== 0) {
-                document.querySelector('.rst-current-version').innerHTML = document.querySelector('.rst-current-version').innerHTML.replace('v: latest', 'v: latest (16.11)')
+                document.querySelector('.rst-current-version').innerHTML = document.querySelector('.rst-current-version').innerHTML.replace('v: ', 'v: latest (16.11)')
             }
-            document.querySelector('versions-version a').innerText = 'latest (16.11)';
+            document.querySelector('.rst-versions > div > div > dl:nth-child(1) > dd:nth-child(2) > a').innerText = 'latest (16.11)';
         </script>
     </div>
 </div>
