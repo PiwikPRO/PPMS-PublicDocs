@@ -46,7 +46,7 @@
                     console.warn('injected from observer')
                 }
             });
-            observer.observe(document.querySelector('.rst-versions.lower-menu', {childList : true}));
+            observer.observe(document.querySelector('.rst-versions.lower-menu'), {childList : true});
         }
 
     </script>
