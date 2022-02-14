@@ -1,0 +1,78 @@
+type: object
+required:
+  - type
+  - attributes
+  - id
+properties:
+  type:
+    type: string
+    description: Type of the object.
+    enum:
+      - Goal
+  id:
+    type: string
+    description: Id of a goal.
+    readOnly: true
+    format: uuid
+    example: dde2dc68-b6bb-45ee-9ac2-868b6181e33f
+  attributes:
+    type: object
+    required:
+      - name
+      - trigger
+      - revenue
+      - website_id
+    properties:
+      website_id:
+        type: string
+        format: uuid
+        description: ID of the website.
+        example: dde2dc68-b6bb-45ee-9ac2-868b6181e33f
+      name:
+        type: string
+        description: Name of the goal.
+        example: User entered contact page
+      description:
+        type: string
+        description: Description of the goal.
+        example: Goal is triggered when user enters contact page
+      trigger:
+        type: string
+        enum:
+          - url
+          - title
+          - event_name
+          - event_category
+          - event_action
+          - file
+          - external_website
+          - manually
+        description: Trigger for the goal.
+        example: url
+      pattern_type:
+        type: string
+        enum:
+          - contains
+          - exact
+          - regex
+        description: Condition operator for goal trigger. Required for non-manual triggers.
+        example: contains
+      pattern:
+        type: string
+        description: Condition value for goal trigger. Required for non-manual triggers.
+        example: Contact
+      allow_multiple:
+        type: bool
+        description: Specifies if goal can be converted more than once per visit.
+        example: false
+      case_sensitive:
+        type: bool
+        description: Specifies if goal can be converted more than once per visit.
+        example: false
+      revenue:
+        type: string
+        format: monetary
+        description: Goal revenue value.
+        example: '10.22'
+
+

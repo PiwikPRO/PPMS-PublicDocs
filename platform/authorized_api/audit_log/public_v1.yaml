@@ -2,6 +2,8 @@ openapi: 3.0.2
 info:
   title: Audit Log Api
   version: auto
+servers:
+  - url: https://example.piwik.pro
 paths:
   /api/audit-log/v1/entries:
     get:

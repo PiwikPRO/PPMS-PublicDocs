@@ -1,0 +1,62 @@
+type: object
+required:
+  - type
+  - attributes
+  - id
+properties:
+  type:
+    type: string
+    description: Type of the object.
+    enum:
+      - CustomDimension
+  id:
+    type: string
+    description: ID of a Custom Dimension.
+    readOnly: true
+    format: uuid
+    example: 677fe0d3-b4f7-43ed-852d-1a9e7b8e59fb
+  attributes:
+    required:
+      - name
+      - active
+      - case_sensitive
+      - scope
+      - website_id
+      - tracking_id
+    properties:
+      website_id:
+        type: string
+        format: uuid
+        description: ID of the website.
+        example: dde2dc68-b6bb-45ee-9ac2-868b6181e33f
+      name:
+        type: string
+        description: Name of the custom dimension.
+        example: Visitor hair color
+      active:
+        type: boolean
+        description: Specifies if custom dimension is active or not.
+      case_sensitive:
+        type: boolean
+        description: Specifies if custom dimension is case sensitive or not.
+      tracking_id:
+        type: integer
+        description: Tracking id of custom dimension.
+        minimum: 1
+        readOnly: true
+      extractions:
+        type: array
+        items:
+          type: object
+          properties:
+            target:
+              type: string
+              description: What value should be extracted.
+              enum:
+                - page_title_regex
+                - page_url_regex
+                - page_query_parameter
+            pattern:
+              type: string
+              description: Pattern for regexes or exact match on query param.
+              example: /foo/(.*)/bar

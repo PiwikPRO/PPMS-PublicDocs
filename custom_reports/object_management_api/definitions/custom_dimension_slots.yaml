@@ -1,0 +1,19 @@
+type: object
+properties:
+  type:
+    type: string
+    description: Type of the object.
+    enum:
+      - CustomDimensionSlots
+  id:
+    type: string
+    readOnly: true
+    format: uuid
+    description: ID of the website.
+    example: dde2dc68-b6bb-45ee-9ac2-868b6181e33f
+  attributes:
+    properties:
+      event:
+        $ref: '#/definitions/CustomDimensionSlot'
+      session:
+        $ref: '#/definitions/CustomDimensionSlot'

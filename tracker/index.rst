@@ -1,11 +1,10 @@
 Tracker
 =======
 
-.. toctree::
-    :maxdepth: 2
+.. raw:: html
 
-    reserved_names
-    js_tracking_api
-    tracker_object
-    http_api
-    web_log_analytics
+    <script>
+        let locurl = location.href;
+        locurl = locurl.replace('/tracker/', '/data_collection/');
+        location.replace(locurl);
+    </script>

@@ -2,7 +2,7 @@ openapi: '3.0.0'
 info:
     title: Tag Manager API
     description: |
-        - In order to access those endpoints, you need to **authenticate**. <a href="../../platform/authorized_api_guide.html">Here is a guide on how to do it.</a>
+        - In order to access those endpoints, you need to **authenticate**. <a href="../../platform/getting_started.html">Here is a guide on how to do it.</a>
         - <span id="tag-template-options">Tag template options</span> - one should send all attributes he wants to be set when using PATCH request
     version: '1.0'
 
@@ -16,6 +16,18 @@ paths:
 
         get:
             summary: List of tags
+            description: |
+                ### JSON API compatibility divergence
+
+                #### Filters
+                In JSON API standard (https://jsonapi.org/recommendations/#filtering) one can request elements with multiple
+                filter values by simply providing them separated by coma:
+
+                `tags?filter[template]=piwik,adroll`
+
+                This notation will not work here. You can achieve this functionality by providing multiple filters for the same parameter:
+
+                `tags?filter[template][]=piwik&filter[template][]=adroll`
             parameters:
                 - $ref: 'common/api/common_request_parameters.json#/components/parameters/page[limit]'
                 - $ref: 'common/api/common_request_parameters.json#/components/parameters/page[offset]'

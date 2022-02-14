@@ -13,7 +13,7 @@
     ],
     [
         "ATV",
-        "Apple TV"
+        "tvOS"
     ],
     [
         "ARL",
@@ -44,6 +44,10 @@
         "Brew"
     ],
     [
+        "CAI",
+        "Caixa M\u00e1gica"
+    ],
+    [
         "CES",
         "CentOS"
     ],
@@ -60,24 +64,52 @@
         "Debian"
     ],
     [
+        "DEE",
+        "Deepin"
+    ],
+    [
         "DFB",
         "DragonFly"
+    ],
+    [
+        "DVK",
+        "DVKBuntu"
     ],
     [
         "FED",
         "Fedora"
     ],
     [
+        "FEN",
+        "Fenix"
+    ],
+    [
         "FOS",
         "Firefox OS"
+    ],
+    [
+        "FIR",
+        "Fire OS"
+    ],
+    [
+        "FRE",
+        "Freebox"
     ],
     [
         "BSD",
         "FreeBSD"
     ],
     [
+        "FYD",
+        "FydeOS"
+    ],
+    [
         "GNT",
         "Gentoo"
+    ],
+    [
+        "GRI",
+        "GridOS"
     ],
     [
         "GTV",
@@ -92,12 +124,32 @@
         "Haiku OS"
     ],
     [
+        "IPA",
+        "iPadOS"
+    ],
+    [
+        "HAR",
+        "HarmonyOS"
+    ],
+    [
+        "HAS",
+        "HasCodingOS"
+    ],
+    [
         "IRI",
         "IRIX"
     ],
     [
         "INF",
         "Inferno"
+    ],
+    [
+        "JME",
+        "Java ME"
+    ],
+    [
+        "KOS",
+        "KaiOS"
     ],
     [
         "KNO",
@@ -116,6 +168,10 @@
         "Lubuntu"
     ],
     [
+        "LOS",
+        "Lumin OS"
+    ],
+    [
         "VLN",
         "VectorLinux"
     ],
@@ -126,6 +182,10 @@
     [
         "MAE",
         "Maemo"
+    ],
+    [
+        "MAG",
+        "Mageia"
     ],
     [
         "MDR",
@@ -160,6 +220,10 @@
         "MTK / Nucleus"
     ],
     [
+        "MRE",
+        "MRE"
+    ],
+    [
         "WII",
         "Nintendo"
     ],
@@ -180,6 +244,18 @@
         "OpenBSD"
     ],
     [
+        "OWR",
+        "OpenWrt"
+    ],
+    [
+        "ORD",
+        "Ordissimo"
+    ],
+    [
+        "PCL",
+        "PCLinuxOS"
+    ],
+    [
         "PSP",
         "PlayStation Portable"
     ],
@@ -196,8 +272,20 @@
         "RISC OS"
     ],
     [
+        "ROK",
+        "Roku OS"
+    ],
+    [
+        "RSO",
+        "Rosa"
+    ],
+    [
         "REM",
         "Remix OS"
+    ],
+    [
+        "REX",
+        "REX"
     ],
     [
         "RZD",
@@ -214,6 +302,10 @@
     [
         "SAF",
         "Sailfish OS"
+    ],
+    [
+        "SEE",
+        "SeewoOS"
     ],
     [
         "SLW",
@@ -256,12 +348,24 @@
         "Tizen"
     ],
     [
+        "TOS",
+        "TmaxOS"
+    ],
+    [
         "UBT",
         "Ubuntu"
     ],
     [
+        "WAS",
+        "watchOS"
+    ],
+    [
         "WTV",
         "WebTV"
+    ],
+    [
+        "WHS",
+        "Whale OS"
     ],
     [
         "WIN",
@@ -297,7 +401,7 @@
     ],
     [
         "YNS",
-        "YunOs"
+        "YunOS"
     ],
     [
         "IOS",

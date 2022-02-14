@@ -1,0 +1,21 @@
+type: object
+allOf:
+  - $ref: '#/definitions/Goal'
+required:
+  - type
+  - attributes
+properties:
+  attributes:
+    required:
+      - website_id
+      - description
+      - pattern_type
+      - pattern
+      - allow_multiple
+      - case_sensitive
+    properties:
+      website_id:
+        type: string
+        format: uuid
+        description: ID of the website.
+        example: dde2dc68-b6bb-45ee-9ac2-868b6181e33f

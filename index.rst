@@ -3,32 +3,48 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to the Piwik PRO documentation for developers!
-======================================================
+Developer docs and guides
+=========================
 
-*Version: 15.5 (see* |changelog|_\ *)*
+|changelog|_\
 
-.. |changelog| replace:: *changelog*
-.. _changelog: https://piwik.pro/changelog/version-15/15-5-0/
+.. |changelog| replace:: *Changelog*
+.. _changelog: https://piwik.pro/changelog/
 
 .. meta::
 	:google-site-verification: MbvqEqLW68SvZYkp04VIPXk85GYi1xlMmZimeIePJv8
 
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 2
 
    custom_reports/index
-   analytics/index
-   tracker/index
+   data_collection/index
    audience_manager/index
    consent_manager/index
    tag_manager/index
    platform/index
-   integrations/index
    glossary
 
 .. raw:: html
 
+    <script>
+        if(document.querySelector('#developer-docs-and-guides')) {
+            let footer = document.querySelector('.rst-footer-buttons');
+            let anchor = document.querySelector('#developer-docs-and-guides .headerlink');
+            if(footer){
+                footer.style.display = 'none';
+            }
+            if (anchor) {
+                anchor.style.display = 'none';
+            }
+            let menuBar = document.querySelector('.wy-nav-side');
+            let content = document.querySelector('.wy-nav-content-wrap');
+            if(menuBar) {
+                menuBar.style.display = 'none';
+                content.style.marginLeft = '0';
+            }
+        }
+    </script>
     <div class="main-subheader">
         Getting started
     </div>
@@ -36,17 +52,17 @@ Welcome to the Piwik PRO documentation for developers!
         <a href="https://help.piwik.pro/support/getting-started/#install-a-container" target="_blank" class="started-block">
             <div>
                 <div class="started-block-icon">
-                    <img src="_static/images/setup-tracking.svg" />
+                    <img src="_static/images/setup.png" />
                 </div>
                 <div class="started-block-text">
-                    Setup tracking
+                    Set up tracking
                 </div>
             </div>
         </a>
         <a href="https://help.piwik.pro/support/account/#users-and-groups" target="_blank" class="started-block">
             <div>
                 <div class="started-block-icon">
-                    <img src="_static/images/user-and-groups.svg" />
+                    <img src="_static/images/users.png" />
                 </div>
                 <div class="started-block-text">
                     Users
@@ -56,7 +72,7 @@ Welcome to the Piwik PRO documentation for developers!
         <a href="https://help.piwik.pro/support/account/#security" target="_blank" class="started-block">
             <div>
                 <div class="started-block-icon">
-                    <img src="_static/images/security.svg" />
+                    <img src="_static/images/security.png" />
                 </div>
                 <div class="started-block-text">
                     Security
@@ -66,7 +82,7 @@ Welcome to the Piwik PRO documentation for developers!
         <a href="https://help.piwik.pro/support/privacy/#data-and-cookies" target="_blank" class="started-block">
             <div>
                 <div class="started-block-icon">
-                    <img src="_static/images/data-and-cookies.svg" />
+                    <img src="_static/images/cookies.png" />
                 </div>
                 <div class="started-block-text">
                     Data and cookies
@@ -82,7 +98,7 @@ Welcome to the Piwik PRO documentation for developers!
             <div class="popular-links-header">
                 API
             </div>
-            <a class="link link-large" href="platform/authorized_api_guide.html#authorized-api-guide">
+            <a class="link link-large" href="platform/getting_started.html">
                 Getting started (API)
             </a>
             <a class="link link-large" href="custom_reports/http_api/http_api.html">

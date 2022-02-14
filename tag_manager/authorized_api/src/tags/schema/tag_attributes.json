@@ -200,7 +200,10 @@
                 "qualaroo",
                 "sales_manago",
                 "salesforce_pardot",
-                "visual_website_optimizer"
+                "visual_website_optimizer",
+                "video_html5",
+                "video_youtube",
+                "heatmaps"
             ]
         },
         "template_options_empty": {

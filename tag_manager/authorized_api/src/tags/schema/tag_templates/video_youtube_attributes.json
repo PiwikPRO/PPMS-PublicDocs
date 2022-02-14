@@ -1,0 +1,39 @@
+{
+    "definitions": {
+        "consent_type_default": {
+            "$ref": "../tag_attributes.json#/definitions/consent_type",
+            "default": "analytics"
+        },
+        "template": {
+            "$ref": "../tag_attributes.json#/definitions/template",
+            "enum": [
+                "video_youtube"
+            ]
+        },
+        "threshold": {
+            "description": "Threshold",
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 100
+        },
+        "template_options_track_thresholds": {
+            "description": "Percentage thresholds that track how far a visitor viewed a video. All values passed must be unique and within [0 .. 100] range.",
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/threshold"
+            },
+            "minItems": 1,
+            "uniqueItems": true
+        },
+        "template_options": {
+            "description": "[Tag template options](#tag-template-options)",
+            "type": "object",
+            "properties": {
+                "track_thresholds": {
+                    "$ref": "#/definitions/template_options_track_thresholds"
+                }
+            },
+            "additionalProperties": false
+        }
+    }
+}

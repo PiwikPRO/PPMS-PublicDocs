@@ -3,5 +3,10 @@ Tags
 
 .. raw:: html
 
-    <redoc spec-url="../../_static/api/tag_manager_authorized_api_tags.json" expand-responses="" sticky-sidebar="">
-    </redoc>
+    <div id='redoc-container'>
+    </div>
+    <script>
+        (function() {
+            Redoc.init('../../_static/api/tag_manager_authorized_api_tags.json', {}, document.getElementById('redoc-container'), () => {window.prepareRedocMenu ? window.prepareRedocMenu() : setTimeout(()=>{window.prepareRedocMenu()}, 2000)});
+        })();
+    </script>
