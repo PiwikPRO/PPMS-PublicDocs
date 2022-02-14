@@ -30,6 +30,12 @@
         <hr/>
         {% trans %}Free document hosting provided by <a href="http://www.readthedocs.org">Read the Docs</a>.{% endtrans %}
     </div>
-    <script src="https://developers.piwik.pro/en/latest/_static/js/versionlinks.js"/>
+    <script>
+        let verMenuScript = document.createElement('script');
+
+        verMenuScript.setAttribute('src',`https://developers.piwik.pro/en/latest/_static/js/versionlinks.js?${new Date().getTime()}`);
+
+        document.head.appendChild(verMenuScript);
+    </script>
 </div>
 {% endif %}
