@@ -118,7 +118,7 @@ p {
     border-top: none;
 }
 
-div .rst-other-versions a, div .rst-other-versions a:hover, div .rst-other-versions a:visited {
+div .rst-other-versionss a, div .rst-other-versionss a:hover, div .rst-other-versionss a:visited {
     color: #006bd6 !important;
 }
 
@@ -1270,7 +1270,7 @@ footer {
     width: 276px;
 }
 
-.rst-other-versions {
+.rst-other-versionss {
     width: 276px;
 }
 
@@ -1278,7 +1278,7 @@ footer {
     color: #0C0F12 !important;
 }
 
-.rst-other-versions, .rst-current-version, .rst-versions {
+.rst-other-versionss, .rst-current-version, .rst-versions {
     background: #F2F4F8 !important;
     color: #0C0F12 !important;
 }
@@ -1287,7 +1287,7 @@ footer {
     border: 1px solid #B9BFC7;
 }
 
-.rst-versions a, .rst-current-version a, .rst-other-versions a {
+.rst-versions a, .rst-current-version a, .rst-other-versionss a {
     color: #006bd6 !important;
 }
 
@@ -1503,7 +1503,7 @@ body {
         width: 100%;
     }
 
-    .rst-current-version, .rst-other-versions {
+    .rst-current-version, .rst-other-versionss {
         width: 100%;
     }
 
