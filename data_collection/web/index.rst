@@ -6,3 +6,4 @@ Web
 
   guides.rst
   javascript_tracking_client/index.rst
+  frameworks/index.rst
