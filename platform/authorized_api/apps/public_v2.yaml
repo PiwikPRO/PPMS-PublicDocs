@@ -32,7 +32,7 @@ components:
       required: false
       schema:
         type: integer
-        default: 10000
+        default: 1000
     permissions_limit:
       name: limit
       in: query
@@ -139,6 +139,12 @@ components:
       type: string
       description: Organization to which an app belongs to
       example: default
+    New_App_App_Type:
+      type: string
+      description: App type
+      example: web
+      enum: [ web, sharepoint ]
+      default: web
     App_Type:
       type: string
       description: App type
@@ -189,7 +195,7 @@ components:
               allOf:
                 - properties:
                     appType:
-                      $ref: "#/components/schemas/App_Type"
+                      $ref: "#/components/schemas/New_App_App_Type"
                 - $ref: "#/components/schemas/App_Editable_Attributes"
     App_Permissions_JsonApi:
       type: object
@@ -430,6 +436,16 @@ components:
           type: boolean
           description: Use fingerprinting to recognize new and returning visitors
           default: true
+        cnil:
+          type: boolean
+          description: Enable CNIL integration
+          default: false
+          example: false
+        sessionIdStrictPrivacyMode:
+          type: boolean
+          description: Don't collect visitor’s device data (compliace with the German Data Protection Act - TTDSG)
+          default: false
+          example: false
     App_Attributes:
       type: object
       allOf:
@@ -440,6 +456,8 @@ components:
               $ref: "#/components/schemas/App_Type"
             addedAt:
               $ref: "#/components/schemas/App_AddedAt"
+            updatedAt:
+              $ref: "#/components/schemas/App_UpdatedAt"
         - $ref: "#/components/schemas/App_Editable_Attributes"
     Total:
       type: object
