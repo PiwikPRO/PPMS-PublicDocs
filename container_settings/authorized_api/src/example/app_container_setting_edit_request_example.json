@@ -1,0 +1,9 @@
+{
+    "data": {
+        "id": "custom_domain",
+        "type": "container\/app\/setting",
+        "attributes": {
+            "value": "test.domain.org"
+        }
+    }
+}

@@ -41,6 +41,7 @@ api_definitions = {
     'audience_manager_authorized_api.json': 'audience_manager/authorized_api/index.yaml',
     'custom_reports_http_api.json': 'custom_reports/http_api/index.yaml',
     'custom_reports_object_management_api.json': 'custom_reports/object_management_api/index.yaml',
+    'container_settings_authorized_api_settings.json': 'container_settings/authorized_api/src/settings.yaml',
     'tag_manager_authorized_api_tags.json': 'tag_manager/authorized_api/src/tags.yaml',
     'tag_manager_authorized_api_triggers.json': 'tag_manager/authorized_api/src/triggers.yaml',
     'tag_manager_authorized_api_variables.json': 'tag_manager/authorized_api/src/variables.yaml',

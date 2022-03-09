@@ -22,6 +22,7 @@ Developer docs and guides
    audience_manager/index
    consent_manager/index
    tag_manager/index
+   container_settings/index
    platform/index
    glossary
 
@@ -143,6 +144,9 @@ Developer docs and guides
             </a>
             <a class="link" href="tag_manager/authorized_api/index.html">
                 Tag Manager authorized API
+            </a>
+            <a class="link" href="container_settings/authorized_api/index.html">
+                Container Settings authorized API
             </a>
         </div>
         <div class="popular-links-el-filler"/>

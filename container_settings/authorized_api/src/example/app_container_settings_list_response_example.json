@@ -1,0 +1,27 @@
+{
+    "links": {
+        "self": "http:\/\/localhost:8000\/api\/container-settings\/v1\/app\/1ec83458-1e3c-6bf4-8a9e-0242b03927ed\/settings?page%5Boffset%5D=0&page%5Blimit%5D=100",
+        "first": "http:\/\/localhost:8000\/api\/container-settings\/v1\/app\/1ec83458-1e3c-6bf4-8a9e-0242b03927ed\/settings?page%5Boffset%5D=0&page%5Blimit%5D=100",
+        "last": "http:\/\/localhost:8000\/api\/container-settings\/v1\/app\/1ec83458-1e3c-6bf4-8a9e-0242b03927ed\/settings?page%5Boffset%5D=0&page%5Blimit%5D=100",
+        "prev": null,
+        "next": null
+    },
+    "data": [
+        {
+            "type": "container\/app\/setting",
+            "id": "custom_domain",
+            "attributes": {
+                "value": "test.domain.org",
+                "is_custom": false
+            }
+        },
+        {
+            "type": "container\/app\/setting",
+            "id": "custom_static_domain",
+            "attributes": {
+                "value": "cdn.test.domain.org",
+                "is_custom": true
+            }
+        }
+    ]
+}

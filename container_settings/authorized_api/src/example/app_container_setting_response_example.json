@@ -1,0 +1,10 @@
+{
+    "data": {
+        "type": "container\/app\/setting",
+        "id": "custom_ststic_domain",
+        "attributes": {
+            "value": "setting_value",
+            "is_custom": true
+        }
+    }
+}

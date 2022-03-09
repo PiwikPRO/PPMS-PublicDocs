@@ -1,0 +1,36 @@
+{
+    "components": {
+        "parameters": {
+            "app_id": {
+                "in": "path",
+                "name": "app_id",
+                "required": true,
+                "description": "App identifier",
+                "schema": {
+                    "$ref": "../common/schema/common_types.json#/definitions/uuid"
+                },
+                "example": "1f74dda5-b598-41d6-a9e4-f501ef4379e1"
+            },
+            "setting_name": {
+                "in": "path",
+                "name": "setting_name",
+                "required": true,
+                "description": "Container setting name",
+                "schema": {
+                    "$ref": "../common/schema/common_types.json#/definitions/name"
+                },
+                "example": "custom_domain"
+            },
+            "organization": {
+                "in": "path",
+                "name": "organization",
+                "required": true,
+                "description": "Organization name",
+                "schema": {
+                    "$ref": "../common/schema/common_types.json#/definitions/name"
+                },
+                "example": "my_organization"
+            }
+        }
+    }
+}

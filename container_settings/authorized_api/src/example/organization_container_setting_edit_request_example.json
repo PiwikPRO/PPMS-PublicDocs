@@ -1,0 +1,9 @@
+{
+    "data": {
+        "id": "custom_domain",
+        "type": "container\/organization\/setting",
+        "attributes": {
+            "value": "test.domain.org"
+        }
+    }
+}

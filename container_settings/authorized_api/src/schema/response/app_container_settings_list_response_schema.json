@@ -1,0 +1,47 @@
+{
+    "description": "App's container settings response",
+    "type": "object",
+    "properties": {
+        "data": {
+            "title": "List of container settings for App",
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "$ref": "../common_types.json#/definitions/setting_name"
+                    },
+                    "type": {
+                        "$ref": "../common_types.json#/definitions/app_container_setting_resource_type"
+                    },
+                    "attributes": {
+                        "description": "Container setting value for App",
+                        "type": "object",
+                        "properties": {
+                            "value": {
+                                "$ref": "../common_types.json#/definitions/setting_value"
+                            },
+                            "is_custom": {
+                                "$ref": "../common_types.json#/definitions/is_custom"
+                            }
+                        },
+                        "required": [
+                            "value",
+                            "is_custom"
+                        ],
+                        "additionalProperties": false
+                    }
+                },
+                "additionalProperties": false,
+                "required": [
+                    "id",
+                    "type",
+                    "attributes"
+                ]
+            }
+        }
+    },
+    "required": [
+        "data"
+    ]
+}

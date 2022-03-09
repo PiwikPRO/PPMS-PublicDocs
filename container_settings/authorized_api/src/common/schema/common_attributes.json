@@ -1,0 +1,57 @@
+{
+    "definitions": {
+        "pagination_links_attributes": {
+            "type": "object",
+            "description": "Pagination links",
+            "properties": {
+                "self": {
+                    "description": "Link to current page",
+                    "$ref": "common_types.json#/definitions/uri"
+                },
+                "first": {
+                    "description": "Link to first page",
+                    "oneOf": [
+                        {"$ref": "common_types.json#/definitions/uri"},
+                        {"$ref": "common_types.json#/definitions/nullable"}
+                    ]
+                },
+                "last": {
+                    "description": "Link to last page",
+                    "oneOf": [
+                        {"$ref": "common_types.json#/definitions/uri"},
+                        {"$ref": "common_types.json#/definitions/nullable"}
+                    ]
+                },
+                "prev": {
+                    "description": "Link to previous page",
+                    "oneOf": [
+                        {"$ref": "common_types.json#/definitions/uri"},
+                        {"$ref": "common_types.json#/definitions/nullable"}
+                    ]
+                },
+                "next": {
+                    "description": "Link to next page",
+                    "oneOf": [
+                        {"$ref": "common_types.json#/definitions/uri"},
+                        {"$ref": "common_types.json#/definitions/nullable"}
+                    ]
+                }
+            },
+            "additionalProperties": false,
+            "required": ["self"]
+        },
+        "pagination_meta_attributes": {
+            "type": "object",
+            "description": "Meta information about resources",
+            "properties": {
+                "total": {
+                    "description": "Total number of elements",
+                    "type": "integer",
+                    "minimum": 0
+                }
+            },
+            "additionalProperties": false,
+            "required": ["total"]
+        }
+    }
+}
