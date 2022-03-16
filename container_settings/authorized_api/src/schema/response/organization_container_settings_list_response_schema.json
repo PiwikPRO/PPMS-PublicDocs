@@ -6,33 +6,10 @@
             "title": "List of container settings for organization",
             "type": "array",
             "items": {
-                "type": "object",
-                "properties": {
-                    "id": {
-                        "$ref": "../common_types.json#/definitions/setting_name"
-                    },
-                    "type": {
-                        "$ref": "../common_types.json#/definitions/organization_container_setting_resource_type"
-                    },
-                    "attributes": {
-                        "description": "Container setting value for organization",
-                        "type": "object",
-                        "properties": {
-                            "value": {
-                                "$ref": "../common_types.json#/definitions/setting_value"
-                            }
-                        },
-                        "required": [
-                            "value"
-                        ],
-                        "additionalProperties": false
+                "oneOf": [
+                    {
+                        "$ref": "../settings/automatic_scroll_tracking/automatic_scroll_tracking_organization_response_schema.json"
                     }
-                },
-                "additionalProperties": false,
-                "required": [
-                    "id",
-                    "type",
-                    "attributes"
                 ]
             }
         }

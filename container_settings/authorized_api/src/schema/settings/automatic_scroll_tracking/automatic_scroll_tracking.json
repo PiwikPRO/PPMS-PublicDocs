@@ -1,0 +1,28 @@
+{
+    "definitions": {
+        "automatic_scroll_tracking_id": {
+            "description": "Container setting name",
+            "type": "string",
+            "enum": ["automatic_scroll_tracking"]
+        },
+        "automatic_scroll_tracking_value": {
+            "type": "object",
+            "properties": {
+                "is_enabled": {
+                    "type": "boolean"
+                },
+                "thresholds": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 100,
+                        "minItems": 1
+                    },
+                    "uniqueItems": true
+                }
+            },
+            "required": ["is_enabled", "thresholds"]
+        }
+    }
+}

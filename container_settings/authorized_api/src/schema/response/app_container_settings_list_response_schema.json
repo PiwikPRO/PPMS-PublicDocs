@@ -6,37 +6,10 @@
             "title": "List of container settings for App",
             "type": "array",
             "items": {
-                "type": "object",
-                "properties": {
-                    "id": {
-                        "$ref": "../common_types.json#/definitions/setting_name"
-                    },
-                    "type": {
-                        "$ref": "../common_types.json#/definitions/app_container_setting_resource_type"
-                    },
-                    "attributes": {
-                        "description": "Container setting value for App",
-                        "type": "object",
-                        "properties": {
-                            "value": {
-                                "$ref": "../common_types.json#/definitions/setting_value"
-                            },
-                            "is_custom": {
-                                "$ref": "../common_types.json#/definitions/is_custom"
-                            }
-                        },
-                        "required": [
-                            "value",
-                            "is_custom"
-                        ],
-                        "additionalProperties": false
+                "oneOf": [
+                    {
+                        "$ref": "../settings/automatic_scroll_tracking/automatic_scroll_tracking_app_response_schema.json"
                     }
-                },
-                "additionalProperties": false,
-                "required": [
-                    "id",
-                    "type",
-                    "attributes"
                 ]
             }
         }

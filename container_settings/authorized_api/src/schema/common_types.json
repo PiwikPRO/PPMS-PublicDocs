@@ -5,17 +5,6 @@
             "type": "string",
             "example": "test.example.org"
         },
-        "setting_name": {
-            "description": "Container setting name",
-            "type": "string",
-            "enum": [
-                "custom_domain",
-                "custom_static_domain",
-                "secure_cookie",
-                "automatic_scroll_tracing",
-                "spa_tracing"
-            ]
-        },
         "is_custom": {
             "description": "Flag informing, that setting is a custom App setting",
             "type": "boolean"

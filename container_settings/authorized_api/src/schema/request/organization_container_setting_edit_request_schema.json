@@ -1,36 +1,12 @@
 {
-    "description": "Update organization's container setting request",
+    "description": "Edit organization's container setting request",
     "type": "object",
     "properties": {
         "data": {
-            "title": "Update organization's container setting",
-            "type": "object",
-            "properties": {
-                "id": {
-                    "$ref": "../common_types.json#/definitions/setting_name"
-                },
-                "type": {
-                    "$ref": "../common_types.json#/definitions/organization_container_setting_resource_type"
-                },
-                "attributes": {
-                    "description": "Container setting for organization",
-                    "type": "object",
-                    "properties": {
-                        "value": {
-                            "$ref": "../common_types.json#/definitions/setting_value"
-                        }
-                    },
-                    "required": [
-                        "value"
-                    ],
-                    "additionalProperties": false
+            "oneOf": [
+                {
+                    "$ref": "../settings/automatic_scroll_tracking/automatic_scroll_tracking_organization_request_schema.json"
                 }
-            },
-            "additionalProperties": false,
-            "required": [
-                "id",
-                "type",
-                "attributes"
             ]
         }
     },
