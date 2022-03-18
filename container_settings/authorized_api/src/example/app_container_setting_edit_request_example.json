@@ -1,9 +1,12 @@
 {
     "data": {
-        "id": "custom_domain",
+        "id": "automatic_scroll_tracking",
         "type": "container\/app\/setting",
         "attributes": {
-            "value": "test.domain.org"
+            "value": {
+                "is_enabled": true,
+                "thresholds": [25, 50, 75]
+            }
         }
     }
 }

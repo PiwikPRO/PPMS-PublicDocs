@@ -1,16 +1,13 @@
 {
     "data": [
         {
-            "id": "custom_domain",
+            "id": "automatic_scroll_tracking",
             "type": "container\/organization\/setting",
             "attributes": {
-                "value": "test.domain.org"
-            }
-        }, {
-            "id": "custom_static_domain",
-            "type": "container\/organization\/setting",
-            "attributes": {
-                "value": "cdn.test.domain.org"
+                "value": {
+                    "is_enabled": true,
+                    "thresholds": [5, 50, 95]
+                }
             }
         }
     ]

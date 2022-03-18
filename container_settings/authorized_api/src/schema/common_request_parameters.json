@@ -19,7 +19,7 @@
                 "schema": {
                     "$ref": "../common/schema/common_types.json#/definitions/name"
                 },
-                "example": "custom_domain"
+                "example": "automatic_scroll_tracking"
             },
             "organization": {
                 "in": "path",

@@ -9,18 +9,13 @@
     "data": [
         {
             "type": "container\/app\/setting",
-            "id": "custom_domain",
+            "id": "automatic_scroll_tracking",
             "attributes": {
-                "value": "test.domain.org",
+                "value": {
+                    "is_enabled": true,
+                    "thresholds": [5, 50, 95]
+                },
                 "is_custom": false
-            }
-        },
-        {
-            "type": "container\/app\/setting",
-            "id": "custom_static_domain",
-            "attributes": {
-                "value": "cdn.test.domain.org",
-                "is_custom": true
             }
         }
     ]
