@@ -616,20 +616,10 @@ paths:
             maximum: 1
             default: 0
           example: 0
-        - name: token_auth
-          in: query
-          description: Authentication token used by SuperUser or Admin in requests using parameters that require it.
-          schema:
-            type: string
-            minLength: 32
-            maxLength: 32
-          example: caa18074df8347b684d7b943b2484fe9
         - name: cip
           in: query
           description: |
             Override IP.
-
-            This parameter requires authentication using the ``token_auth`` parameter.
           schema:
             type: string
             format: IPv4|IPv6
@@ -646,7 +636,7 @@ paths:
             otherwise such requests will not be included in the reports.
 
             It is possible to override request time without authentication if the difference between set time and current
-            one is less than or equal to 24h. Setting time earlier than this requires authentication using the ``token_auth`` parameter.
+            one is less than or equal to 24h.
           schema:
             type: string
             format: UNIX timestamp|UTC DateTime<YYYY-MM-DD hh:mm:ss>
@@ -655,8 +645,6 @@ paths:
           in: query
           description: |
             Override country.
-
-            This parameter requires authentication using the ``token_auth`` parameter.
           schema:
             type: string
             format: ISO 3166-1 alpha-2 code (lowercase)
@@ -668,8 +656,6 @@ paths:
 
             Format of [region codes](https://www.maxmind.com/download/geoip/misc/region_codes.csv) is defined in
             [MaxMind's](https://www.maxmind.com/) GeoIP database.
-
-            This parameter requires authentication using the ``token_auth`` parameter.
           schema:
             type: string
             #TODO: Check if Maxmind uses codes defined in any standard.
@@ -681,8 +667,6 @@ paths:
           in: query
           description: |
             Override city.
-
-            This parameter requires authentication using the ``token_auth`` parameter.
           schema:
             type: string
           example: New York
@@ -690,8 +674,6 @@ paths:
           in: query
           description: |
             Override latitude.
-
-            This parameter requires authentication using the ``token_auth`` parameter.
           schema:
             type: number
             #TODO: Check if there's a limit to the number of decimal places.
@@ -704,8 +686,6 @@ paths:
           in: query
           description: |
             Override longitude.
-
-            This parameter requires authentication using the ``token_auth`` parameter.
           schema:
             type: number
             format: Decimal degrees
@@ -966,8 +946,6 @@ paths:
                   type: array
                   description: |
                     List of requests to track (bulk processing).
-
-                    This parameter require authentication using ``token_auth`` parameter.
                   items:
                     type: string
                   example:

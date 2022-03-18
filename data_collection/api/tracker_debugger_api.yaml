@@ -3358,10 +3358,6 @@ components:
           description: 'Forces new session'
           type: string
           example: '0'
-        token_auth:
-          description: 'Authentication token used by SuperUser or Admin in requests using parameters that require it'
-          type: string
-          example: 'caa18074df8347b684d7b943b2484fe9'
         debug:
           description: 'States whether request is used for debugging'
           type: string
