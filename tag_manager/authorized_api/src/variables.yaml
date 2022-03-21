@@ -40,6 +40,7 @@ info:
         | Returning Visitor         	| d76335ca-0ae1-4540-8b7e-5ff7acb0d14f  	| Logical condition which says if this is the user’s first visit or not. It changes its value when a returning visitor clicks an element on the chosen page (this mechanism is based on the cookie). |
         | Audience manager audience 	| 86068b14-804c-4b44-8a48-68ab37244ffc  	| Contains the audience list of the visitor |
         | Consents                  	| 67f49c79-bab6-4b0f-95c8-3bf624b6398f  	| Contains information about the current and previous state of visitor consents. |
+        | Found elements               	| 7dead2a9-5804-4cdd-8d73-b04d338952e9  	| Variable used in Element presence trigger. It contains the class name of the found elements that the trigger was set to look for. |
 
         </details>
 

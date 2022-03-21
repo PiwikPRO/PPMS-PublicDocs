@@ -17,7 +17,8 @@
                 "history",
                 "debounced_history",
                 "form_submission",
-                "click"
+                "click",
+                "element_presence"
             ],
             "description": "Trigger type"
         },
