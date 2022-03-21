@@ -20,7 +20,6 @@ paths:
       parameters:
         - name: idsite
           in: query
-          #TODO: Make sure we're already using new name in docs.
           description: Application ID (previously Website ID).
           required: true
           schema:
@@ -37,9 +36,9 @@ paths:
             *IMPORTANT*: Requests should contain rec=1 parameter, otherwise they won't appear in reports.
           schema:
             type: integer
-            #TODO: Confirm that those are only valid options.
-            minimum: 0
-            maximum: 1
+            enum:
+              - 0
+              - 1
           example: 1
         - name: url
           in: query
@@ -51,8 +50,6 @@ paths:
           example: http://example.com/path/to/page.html
         - name: action_name
           in: query
-          #TODO: Link to more info about categories
-          #TODO: Check if recommended parameters are still most important
           description: |
             **Recommended** Name of action. Could be page title or custom-built path expressing the location in application.
           schema:
@@ -84,7 +81,6 @@ paths:
           example: '1521232150'
         - name: urlref
           in: query
-          #TODO: Check what spelling we're using: referrer vs referrer.
           description: |
             HTTP referrer.
 
@@ -95,10 +91,8 @@ paths:
           example: http://example.com/path/to/previous/page.html
         - name: _cvar
           in: query
-          #TODO: Confirm description of item format.
-          #TODO: Link to a definition of scopes.
           description: |
-            [Custom variables](https://help.piwik.pro/analytics/custom-variables/) set on the ``visit`` scope.
+            [Custom variables](https://help.piwik.pro/analytics/custom-variables/) set in the ``session`` scope.
 
             Format: Object serialized with JSON:
 
@@ -110,16 +104,12 @@ paths:
             *IMPORTANT:* value should be urlencoded - example presented here is not encoded for readability reasons.
           schema:
             type: string
-            #TODO: See JSON comment.
             format: JSON
-          #TODO: Look for better example of custom variable.
           example: '{"1":["AspectRatio","16:9"],"2":["Height","1080"],"3":["Width","1920"]}'
         - name: cvar
           in: query
-          #TODO: Confirm description of item format.
-          #TODO: Link to a definition of scopes.
           description: |
-            [Custom variables](https://help.piwik.pro/analytics/custom-variables/) set on the ``page`` scope.
+            [Custom variables](https://help.piwik.pro/analytics/custom-variables/) set in the ``event`` scope.
 
             Format: Object serialized with JSON:
 
@@ -131,40 +121,30 @@ paths:
             *IMPORTANT:* value should be urlencoded - example presented here is not encoded for readability reasons.
           schema:
             type: string
-            #TODO: See JSON comment.
             format: JSON
-          #TODO: Look for better example of custom variable.
           example: '{"1":["AspectRatio","16:9"],"2":["Height","1080"],"3":["Width","1920"]}'
         - name: _idvc
           in: query
-          #TODO: Link to definition of a visit.
           description: |
             Visit counter.
 
             It sets the visit number of the visitor. It should be used when the application already tracks how many times the visitor
             used it and you want to override default visit counter.
-
-            Used in `Visitors` > `Engagement` > `Visits by visit number` report.
           schema:
             type: integer
           example: 42
         - name: _viewts
           in: query
           description: |
-            Time of previous visit.
-
-            Used in `Visitors` > `Engagement` > `Visits by days since last visit` report.
+            Time of previous visit in UNIX timestamp format (number of seconds since 1970-01-01).
           schema:
             type: integer
             format: UNIX timestamp
-          #TODO: Confirm that it doesn't include milliseconds.
           example: 1521232150
         - name: _idts
           in: query
           description: |
             Time of first visit.
-
-            Used in `Goals` > `Days to Conversion` report.
           schema:
             type: integer
             format: UNIX timestamp
@@ -226,7 +206,6 @@ paths:
 
             Can be used to identify Visitor by the application (e.g. login name, email address or internal
             user ID). See: [Recognizing Visitors](https://help.piwik.pro/analytics/recognizing-visitors/).
-
           schema:
             type: string
             minLength: 1
@@ -245,26 +224,27 @@ paths:
             format: hexadecimal
             minLength: 16
             maxLength: 16
-          #TODO: Check if hexadecimal string is case sensitive.
           example: 257cc22df0ec483a
         - name: new_visit
           in: query
           description: Force start of new visit when value is ``1``.
           schema:
             type: integer
-            minimum: 0
-            maximum: 1
+            enum:
+              - 0
+              - 1
+            default: 0
           example: 1
         - name: dimensionID
           in: query
           description: |
             [Custom dimension](https://help.piwik.pro/analytics/custom-dimensions/) value for specific ID.
-            Assigns arbitrary value to specific `visit` or `action` dimension.
+            Assigns arbitrary value to specific `session` or `event` dimension.
 
             ``ID`` in the parameter name should be replaced with its integer value (e.g. `dimension1`, `dimension2`,
             `dimension999`).
 
-            It is possible to override action custom dimension by sending ping request with changed value right after tracking request with updated action was sent.
+            It is possible to override page view's event custom dimension by sending ping request with updated dimension value.
           schema:
             type: string
           example: blue
@@ -346,9 +326,8 @@ paths:
           example: ff5c6d
         - name: idgoal
           in: query
-          #TODO: Unify E-commerce naming scheme. Rest of parameters refer to E-commerce order, not cart.
           description: |
-            ID of the converted goal. Value `0` indicates that it's an E-commerce event.
+            Goal ID. Signifies that a goal has been reached and tracks its conversion.
 
             Value ``0`` is reserved for E-commerce cart tracking.
           schema:
@@ -371,18 +350,19 @@ paths:
           example: order-123-customer-321
         - name: ec_items
           in: query
-          #TODO: Add limits to the item attributes (e.g. string max length).
           description: |
             Contents of the E-commerce cart in form of two dimensional JSON array.
 
             Each item on the list can contain:
 
-              - sku: `string` (required) Stock keeping unit.
-              - name: `string` (optional) Name of an item.
-              - category: `string|Array<string>` (optional) Category of an item.
+              - sku: `string` (required) Stock keeping unit. Max 1024 bytes long.
+              - name: `string` (optional) Name of an item. Max 1024 bytes long.
+              - category: `string|Array<string>` (optional) Category of an item. Max 100 items, each 1024 bytes long.
               - price: `number` (optional) Price of an item.
                 Currency of this value does not matter, but only one should be used by the application (e.g. USD).
               - quantity: `integer` (optional, default to 1) Quantity of an item.
+
+            E-commerce cart must not contain more than 100 items.
 
             *IMPORTANT:* value should be urlencoded - example presented here is not encoded for readability reasons.
           schema:
@@ -428,20 +408,15 @@ paths:
         - name: _ects
           in: query
           description: |
-            Time of last E-commerce order.
-
-            Used in `Days since last order` report.
+            Time of the last E-commerce order in UNIX timestamp format (number of seconds since 1970-01-01).
           schema:
             type: integer
-            format: Unix timestamp
+            format: UNIX timestamp
           example: 1521232150
         - name: gt_ms
           in: query
-          #TODO: Previously it was specified as generation time with mention that JavaScript tracker includes in it also loading time. Can we simplify this to always recommend that interpretation?
           description: |
             Page generation and load time in milliseconds.
-
-            Used for example in `Page speed` report.
           schema:
             type: integer
           example: 264
@@ -450,7 +425,7 @@ paths:
           description: |
             Page charset.
 
-            Used to decode text data sent in request.
+            Used for decoding parameters in event URL.
           schema:
             type: string
             default: UTF-8
@@ -460,188 +435,195 @@ paths:
           description: Status of Cookie capability in Visitor browser (value "1" indicates that it is enabled).
           schema:
             type: integer
-            minimum: 0
-            maximum: 1
+            enum:
+              - 0
+              - 1
+            default: 0
           example: 1
         - name: fla
           in: query
           description: Status of Flash plugin in Visitor browser (value "1" indicates that it is installed).
           schema:
             type: integer
-            minimum: 0
-            maximum: 1
+            enum:
+              - 0
+              - 1
+            default: 0
           example: 1
         - name: java
           in: query
           description: Status of Java plugin in Visitor browser (value "1" indicates that it is installed).
           schema:
             type: integer
-            minimum: 0
-            maximum: 1
+            enum:
+              - 0
+              - 1
+            default: 0
           example: 1
         - name: dir
           in: query
-          #TODO: Confirm name of plugin.
           description: Status of Adobe Director plugin in Visitor browser (value "1" indicates that it is installed).
           schema:
             type: integer
-            minimum: 0
-            maximum: 1
+            enum:
+              - 0
+              - 1
+            default: 0
           example: 1
         - name: qt
           in: query
           description: Status of QuickTime plugin in Visitor browser (value "1" indicates that it is installed).
           schema:
             type: integer
-            minimum: 0
-            maximum: 1
+            enum:
+              - 0
+              - 1
           example: 1
         - name: realp
           in: query
           description: Status of RealPlayer plugin in Visitor browser (value "1" indicates that it is installed).
           schema:
             type: integer
-            minimum: 0
-            maximum: 1
+            enum:
+              - 0
+              - 1
+            default: 0
           example: 1
         - name: pdf
           in: query
-          #TODO: Confirm name of plugin.
           description: Status of PDF plugin in Visitor browser (value "1" indicates that it is installed).
           schema:
             type: integer
-            minimum: 0
-            maximum: 1
+            enum:
+              - 0
+              - 1
+            default: 0
           example: 1
         - name: wma
           in: query
-          #TODO: Confirm name of plugin.
           description: |
             Status of Windows Media Player plugin in Visitor browser (value "1" indicates that it is installed).
           schema:
             type: integer
-            minimum: 0
-            maximum: 1
+            enum:
+              - 0
+              - 1
+            default: 0
           example: 1
         - name: gears
           in: query
-          #TODO: Confirm name of plugin.
           description: Status of (Google) Gears plugin in Visitor browser (value "1" indicates that it is installed).
           schema:
             type: integer
-            minimum: 0
-            maximum: 1
+            enum:
+              - 0
+              - 1
+            default: 0
           example: 1
         - name: ag
           in: query
           description: Status of Silverlight plugin in Visitor browser (value "1" indicates that it is installed).
           schema:
             type: integer
-            minimum: 0
-            maximum: 1
+            enum:
+              - 0
+              - 1
+            default: 0
           example: 1
-        #TODO: Link to custom event description.
         - name: e_c
           in: query
-          description: Custom event category.
+          description: '[Custom event](https://help.piwik.pro/support/reports/custom-event-report/) category.'
           schema:
             type: string
             minLength: 1
-            #TODO: Specify maximal allowed length.
+            maxLength: 16384
           example: graph
         - name: e_a
           in: query
-          description: Custom event action.
+          description: '[Custom event](https://help.piwik.pro/support/reports/custom-event-report/) action.'
           schema:
             type: string
             minLength: 1
-            #TODO: Specify maximal allowed length.
+            maxLength: 16384
           example: start-date
         - name: e_n
           in: query
-          description: Custom event name.
+          description: '[Custom event](https://help.piwik.pro/support/reports/custom-event-report/) name.'
           schema:
             type: string
             minLength: 1
-            #TODO: Specify maximal allowed length.
+            maxLength: 16384
           example: finantial-report
         - name: e_v
           in: query
-          description: Custom event value.
+          description: '[Custom event](https://help.piwik.pro/support/reports/custom-event-report/) value.'
           schema:
             type: number
             format: float
             minimum: 0
             maximum: 100000000000
           example: 201704
-        #TODO: Link to content tracking description.
         - name: c_n
           in: query
-          description: Content name.
+          description: '[Content](https://help.piwik.pro/support/reports/content-performance-report/) name.'
           schema:
             type: string
             minLength: 1
-            #TODO: Specify maximal allowed length.
+            maxLength: 1024
           example: recommended-products
         - name: c_p
           in: query
-          description: Content piece.
+          description: '[Content](https://help.piwik.pro/support/reports/content-performance-report/) piece.'
           schema:
             type: string
             minLength: 1
-            #TODO: Specify maximal allowed length.
+            maxLength: 1024
           example: Unicorn Iron on Patch
         - name: c_t
           in: query
-          description: Content target.
+          description: '[Content](https://help.piwik.pro/support/reports/content-performance-report/) target.'
           schema:
             type: string
             minLength: 1
-            #TODO: Specify maximal allowed length.
+            maxLength: 1024
           example: http://example.com/product/unicorn-iron-on-path.html
         - name: c_i
           in: query
-          description: Content interaction.
+          description: '[Content](https://help.piwik.pro/support/reports/content-performance-report/) interaction.'
           schema:
             type: string
             minLength: 1
-            #TODO: Specify maximal allowed length.
+            maxLength: 1024
           example: show details
-        #TODO: Decide if media analytics should be described in separate document and link to it if yes. For now those parameters are not included in this specification.
         - name: send_image
           in: query
           description: |
-            Request response content:
+            Whether the server should respond with a 1 pixel GIF:
 
-            - ``0`` - HTTP 204 [No content]
-            - ``1`` - HTTP 200 [1 pixel GIF]
+            - ``0`` - return text/html [No content]
+            - ``1`` - return image/gif [1 pixel GIF]
           schema:
             type: integer
-            minimum: 0
-            maximum: 1
-            default: 1
+            enum:
+              - 0
+              - 1
+            default: 0
           example: 0
         - name: cip
           in: query
           description: |
             Override IP.
           schema:
-            type: string
-            format: IPv4|IPv6
-          example: 172.16.254.1
+            oneOf:
+              - type: string
+                format: ipv4
+              - type: string
+                format: ipv6
+          example: '172.16.254.1'
         - name: cdt
           in: query
-          #TODO: Link to page describing how to force re-processing of a report.
           description: |
-            Override request time. You can use it when importing archive HTTP logs.
-
-            If time set this way is from the future, override will be ignored and the current time will be used instead.
-
-            If this parameter is used it is necessary to re-process the report for time range containing overridden time,
-            otherwise such requests will not be included in the reports.
-
-            It is possible to override request time without authentication if the difference between set time and current
-            one is less than or equal to 24h.
+            Override request time. You can use it when importing HTTP logs.
           schema:
             type: string
             format: UNIX timestamp|UTC DateTime<YYYY-MM-DD hh:mm:ss>
@@ -681,9 +663,6 @@ paths:
             Override latitude.
           schema:
             type: number
-            #TODO: Check if there's a limit to the number of decimal places.
-            format: Decimal degrees
-            #TODO: Check if it's possible to set minimum below zero. Redoc doesn't render this correctly.
             minimum: -90
             maximum: 90
           example: 40.7629659
@@ -693,31 +672,29 @@ paths:
             Override longitude.
           schema:
             type: number
-            format: Decimal degrees
             minimum: -180
             maximum: 180
           example: -74.0023705
         - name: uia
           in: query
           description: |
-            Allows to track user anonymously.
+            Whether the user should be tracked anonymously.
 
             - ``1`` - all IP bytes will be masked (0.0.0.0), no GeoIP data will be stored and visits won't be matched by the fingerprinting process
             - ``0`` - all available visitor data will be enriched if anonymized previously
           schema:
             type: integer
-            minimum: 0
-            maximum: 1
+            enum:
+              - 0
+              - 1
+            default: 0
           example: 1
         - name: ping
           in: query
           description: |
-            Enables a special ping mode for the tracking request.
-            Such a request won't track any new action but rather will update time metrics for the last page view.
-            This parameter was designed to prolong the session when no new actions are coming in, while a user is still on the website.
-            Now, ping also updates Custom Variables and Custom Dimensions and Page Performance Metrics.
-            Each type of ping request updates all dimensions, types of pings are used for statistics only.
-            You can also use it for debugging, to determine which kind of `ping` and when updated the dimensions.
+            Indicator of a ping event. Pings update custom variables, custom
+            dimensions and time metrics of the last page view. They help us
+            determine time spent on a page.
 
             - ``1`` - Periodic heartbeat request (sent every X seconds)
             - ``2`` - Last heartbeat (sent on page unload event)
@@ -727,8 +704,13 @@ paths:
             - ``6`` - Request sent by the user (using ping command)
           schema:
             type: integer
-            minimum: 1
-            maximum: 6
+            enum:
+              - 1
+              - 2
+              - 3
+              - 4
+              - 5
+              - 6
           example: 1
         - name: t_us
           in: query
