@@ -1143,14 +1143,14 @@ Download and Outlink
 
 .. _jtc-api-enableLinkTracking:
 
-.. function:: enableLinkTracking(enable)
+.. function:: enableLinkTracking([trackMiddleAndRightClicks])
 
-    Enables or disables automatic link tracking. If enabled, left, right and
-    middle clicks on links will be treated as opening a link. Opening a links
-    to an external site (different domain) creates an outlink event. Opening a
-    link to a downloadable file creates a download event.
+    Enables automatic link tracking. By default, left, right and middle clicks
+    on links will be treated as opening a link. Opening a link to an external
+    site (different domain) creates an outlink event. Opening a link to a
+    downloadable file creates a download event.
 
-    :param boolean enable: **Required** Whether to enable automatic link tracking. The default value is ``true``.
+    :param boolean trackMiddleAndRightClicks: **Optional** Whether to treat middle and right clicks as opening a link. The default value is ``true``.
 
     Example of usage:
 
@@ -1172,12 +1172,12 @@ Download and Outlink
 
     .. note::
 
-        ``enableLinkTracking`` is part of the default Tag Manager's tracking code snippet.
+        ``enableLinkTracking`` is a part of the default Tag Manager's tracking code snippet.
         It's likely your setup already has it.
 
     .. note::
 
-        Outlinks events are tracked only when a link points to a different
+        Outlink events are tracked only when a link points to a different
         (external) domain. If that domain belongs to you and you don't want to
         track outlinks when visitors open it, use :ref:`setDomains<jtc-api-setDomains>`
         function to define internal domains and subdomains.
