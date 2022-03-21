@@ -1939,7 +1939,7 @@ JavaScript Tracking Client configuration
 .. function:: setTimingDataSamplingOnPageLoad(sampling)
 
     Configures page performance data collection. With non-zero sampling
-    (5 by default), some page views will issue a page performance measurement.
+    (10 by default), some page views will issue a page performance measurement.
 
     :param number sampling: **Required** Page performance sampling, integer between 0 and 100. 0 disables page performance data collection. 100 measures every page load.
 
@@ -1952,7 +1952,7 @@ JavaScript Tracking Client configuration
             .. code-block:: javascript
 
                 _paq.push(["setTimingDataSamplingOnPageLoad", 0]); // disables page performance data collection
-                _paq.push(["setTimingDataSamplingOnPageLoad", 5]); // 5% of page views will by followed by a page performance measurement, this is the default behavior
+                _paq.push(["setTimingDataSamplingOnPageLoad", 10]); // 10% of page views will by followed by a page performance measurement, this is the default behavior
                 _paq.push(["setTimingDataSamplingOnPageLoad", 30]); // 30% of page views will be followed by a page performance measurement
                 _paq.push(["setTimingDataSamplingOnPageLoad", 100]); // 100% of page views will be followed by a page performance measurement
 
@@ -1961,13 +1961,13 @@ JavaScript Tracking Client configuration
             .. code-block:: javascript
 
                 jstc.setTimingDataSamplingOnPageLoad(0); // disables page performance data collection
-                jstc.setTimingDataSamplingOnPageLoad(5); // 5% of page views will by followed by a page performance measurement, this is the default behavior
+                jstc.setTimingDataSamplingOnPageLoad(10); // 10% of page views will by followed by a page performance measurement, this is the default behavior
                 jstc.setTimingDataSamplingOnPageLoad(30); // 30% of page views will be followed by a page performance measurement
                 jstc.setTimingDataSamplingOnPageLoad(100); // 100% of page views will be followed by a page performance measurement
 
     .. note::
 
-        The default sampling value is 5, meaning 5% of page loads will be measured.
+        The default sampling value is 10, meaning 10% of page loads will be measured.
 
     .. warning::
 
