@@ -3346,10 +3346,6 @@ components:
           description: '[Custom variables](https://help.piwik.pro/analytics/custom-variables/) set on the ``page`` scope.'
           type: string
           example: '{"1":["AspectRatio","16:9"],"2":["Height","1080"],"3":["Width","1920"]}'
-        bots:
-          description: 'Bots tracking enabled / disabled'
-          type: string
-          example: '0'
         rec:
           description: 'Consent to tracking (value "1" allows it)'
           type: string

@@ -603,19 +603,6 @@ paths:
             maximum: 1
             default: 1
           example: 0
-        - name: bots
-          in: query
-          description: |
-            Bots tracking:
-
-            - ``0`` - disabled
-            - ``1`` - enabled
-          schema:
-            type: integer
-            minimum: 0
-            maximum: 1
-            default: 0
-          example: 0
         - name: cip
           in: query
           description: |
