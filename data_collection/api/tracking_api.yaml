@@ -31,8 +31,10 @@ paths:
           example: 892d04bd-6e2b-4914-bfb4-bac721b37235
         - name: rec
           in: query
-          description: Consent to tracking (value "1" allows it).
-          required: true
+          description: |
+            **Recommended** Whether the request should be recorded.
+
+            *IMPORTANT*: Requests should contain rec=1 parameter, otherwise they won't appear in reports.
           schema:
             type: integer
             #TODO: Confirm that those are only valid options.
@@ -41,8 +43,8 @@ paths:
           example: 1
         - name: url
           in: query
-          description: URL of action.
-          required: true
+          description: |
+            **Recommended** URL of action.
           schema:
             type: string
             format: URL
@@ -52,10 +54,7 @@ paths:
           #TODO: Link to more info about categories
           #TODO: Check if recommended parameters are still most important
           description: |
-            **Recommended** Name of action.
-
-            It is possible to categorize actions by preceding them with one or more category names separated by a slash
-            character (``/``).
+            **Recommended** Name of action. Could be page title or custom-built path expressing the location in application.
           schema:
             type: string
           example: help/delivery/shipping
@@ -347,11 +346,11 @@ paths:
           example: ff5c6d
         - name: idgoal
           in: query
-          #TODO: Unify Ecommerce naming scheme. Rest of parameters refer to Ecommerce order, not cart.
+          #TODO: Unify E-commerce naming scheme. Rest of parameters refer to E-commerce order, not cart.
           description: |
-            Goal ID. Signifies that a goal has been reached and tracks its conversion.
+            ID of the converted goal. Value `0` indicates that it's an E-commerce event.
 
-            Value ``0`` is reserved for Ecommerce cart tracking.
+            Value ``0`` is reserved for E-commerce cart tracking.
           schema:
             type: integer
           example: 15
@@ -366,7 +365,7 @@ paths:
           example: 4.99
         - name: ec_id
           in: query
-          description: Ecommerce order ID.
+          description: E-commerce order ID.
           schema:
             type: string
           example: order-123-customer-321
@@ -374,13 +373,13 @@ paths:
           in: query
           #TODO: Add limits to the item attributes (e.g. string max length).
           description: |
-            Ecommerce order item list in the form of two dimensional JSON array.
+            Contents of the E-commerce cart in form of two dimensional JSON array.
 
             Each item on the list can contain:
 
               - sku: `string` (required) Stock keeping unit.
               - name: `string` (optional) Name of an item.
-              - category: `string` (optional) Category of an item.
+              - category: `string|Array<string>` (optional) Category of an item.
               - price: `number` (optional) Price of an item.
                 Currency of this value does not matter, but only one should be used by the application (e.g. USD).
               - quantity: `integer` (optional, default to 1) Quantity of an item.
@@ -388,12 +387,12 @@ paths:
             *IMPORTANT:* value should be urlencoded - example presented here is not encoded for readability reasons.
           schema:
             type: string
-            format: Array
-          example: "[[\"craft-311\",\"Unicorn Iron on Patch\",\"Crafts & Sewing\",4.99,3],[\"craft-312\",\"Unicorn Lamp\",\"Crafts & Sewing\",13.25,1]]"
+            format: JSON
+          example: '[["craft-311","Unicorn Iron on Patch","Crafts & Sewing",4.99,3],["craft-312","Unicorn Lamp","Crafts & Sewing",13.25,1]]'
         - name: ec_st
           in: query
           description: |
-            Ecommerce order sub-total (order cost without shipping).
+            E-commerce order sub-total (order cost without shipping).
 
             Currency of the value does not matter, but only one should be used by the application (e.g. USD).
           schema:
@@ -402,7 +401,7 @@ paths:
         - name: ec_tx
           in: query
           description: |
-            Ecommerce order tax.
+            E-commerce order tax.
 
             Currency of the value does not matter, but only one should be used by the application (e.g. USD).
           schema:
@@ -411,7 +410,7 @@ paths:
         - name: ec_sh
           in: query
           description: |
-            Ecommerce order shipping.
+            E-commerce order shipping.
 
             Currency of the value does not matter, but only one should be used by the application (e.g. USD).
           schema:
@@ -420,7 +419,7 @@ paths:
         - name: ec_dt
           in: query
           description: |
-            Ecommerce order discount.
+            E-commerce order discount.
 
             Currency of the value does not matter, but only one should be used by the application (e.g. USD).
           schema:
@@ -429,7 +428,7 @@ paths:
         - name: _ects
           in: query
           description: |
-            Time of last Ecommerce order.
+            Time of last E-commerce order.
 
             Used in `Days since last order` report.
           schema:
@@ -927,10 +926,8 @@ paths:
             format: SemVer
           example: 3.4.1
       responses:
-        200:
-          description: OK
-        204:
-          description: No content
+        202:
+          description: Request accepted and waiting for processing
         400:
           description: Bad Request
     post:
@@ -958,9 +955,7 @@ paths:
                     - "?idsite=892d04bd-6e2b-4914-bfb4-bac721b37235&url=http%3A%2F%2Fexample.com%2F&action_name=pageview&rec=1"
                     - "?idsite=892d04bd-6e2b-4914-bfb4-bac721b37235&url=http%3A%2F%2Fexample.com%2Fsub%2Fpage.html&action_name=pageview&rec=1"
       responses:
-        200:
-          description: OK
-        204:
-          description: No content
+        202:
+          description: Request accepted and waiting for processing
         400:
           description: Bad Request
