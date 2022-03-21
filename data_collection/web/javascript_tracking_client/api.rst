@@ -239,7 +239,7 @@ Site search
     Tracks search requests on a website.
 
     :param string keyword: **Required** What keyword the visitor entered into the search box
-    :param string category: **Optional** Category selected in the search engine, can be set ``undefined`` if not applicable
+    :param string|Array<string> category: **Optional** Category selected in the search engine
     :param number searchCount: **Optional** The number of search results shown
     :param object dimensions: **Optional** :ref:`Custom dimensions<jtc-api-custom-dimensions-object>` to pass along with the site search event
 
@@ -445,7 +445,7 @@ E-commerce
     :param string productSKU: **Optional** Product stock-keeping unit.
     :param string productName: **Optional** Product name.
     :param string|Array<string> productCategory: **Optional** Category or an array of up to 5 categories.
-    :param number productPrice: **Optional** Category or an array of up to 5 categories.
+    :param number productPrice: **Optional** Product price.
 
     When tracking **product views**, provide ``productSKU`` and optionally
     other parameters.

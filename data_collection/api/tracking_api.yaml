@@ -287,29 +287,48 @@ paths:
         - name: search
           in: query
           description: |
-            Internal search query. This is used to track what was searched by a visitor in the application. See:
-            [Site search](https://help.piwik.pro/analytics/site-search/).
+            Internal search query. Used for tracking keyword the visitor searched for in the application.
+            See: [Site search](https://help.piwik.pro/support/reports/internal-search-report/).
 
-            Requests using this parameter are excluded from the general page view statistics.
+            Requests with this parameter create Search events.
           schema:
             type: string
           example: sherlock holmes
         - name: search_cat
           in: query
+          deprecated: true
           description: |
-            Internal search category. This is used to track if visitor specified a category during a search of the application.
-            See: [Site search](https://help.piwik.pro/analytics/site-search/).
+            Internal search category. Used for tracking category the visitor specified during a search in the application.
+            See: [Site search](https://help.piwik.pro/support/reports/internal-search-report/).
 
-            Requests using this parameter are excluded from the general page view statistics.
+            Requests with this parameter create Search events.
+
+            Deprecated in favor of `search_cats` parameter.
           schema:
             type: string
           example: Movies & TV
+        - name: search_cats
+          in: query
+          description: |
+            Internal search categories. Used for tracking categories the visitor specified during a search in the application.
+            See: [Site search](https://help.piwik.pro/support/reports/internal-search-report/).
+
+            Requests with this parameter create Search events.
+
+            The provided value must be a JSON-serialized array of strings.
+
+            *IMPORTANT:* value should be urlencoded - example presented here is not encoded for readability reasons.
+          schema:
+            type: string
+            format: JSON
+          example: '["Movies & TV","Cartoons","Video games"]'
         - name: search_count
           in: query
           description: |
-            Number of results of internal search.
+            Internal search result count. Number of results found in a search.
+            See: [Site search](https://help.piwik.pro/support/reports/internal-search-report/).
 
-            Used to track number of results found by the visitor.
+            Requests with this parameter create Search events.
           schema:
             type: integer
           example: 2218
