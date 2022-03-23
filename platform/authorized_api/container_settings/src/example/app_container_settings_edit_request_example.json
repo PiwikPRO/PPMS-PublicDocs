@@ -2,7 +2,7 @@
     "data": [
         {
             "id": "automatic_scroll_tracking",
-            "type": "container\/organization\/setting",
+            "type": "container/app/setting",
             "attributes": {
                 "value": {
                     "is_enabled": true,

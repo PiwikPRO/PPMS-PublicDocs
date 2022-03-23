@@ -1,11 +1,11 @@
 {
     "data": {
-        "type": "container\/organization\/setting",
         "id": "automatic_scroll_tracking",
+        "type": "container/app/setting",
         "attributes": {
             "value": {
                 "is_enabled": true,
-                "thresholds": [5, 50, 95]
+                "thresholds": [25, 50, 75]
             }
         }
     }
