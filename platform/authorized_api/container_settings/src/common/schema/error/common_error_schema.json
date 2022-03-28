@@ -1,0 +1,22 @@
+{
+    "type": "object",
+    "properties": {
+        "errors": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "code": {"$ref": "common_error_types.json#/definitions/code"},
+                    "detail": {"$ref": "common_error_types.json#/definitions/detail"},
+                    "source": {"$ref": "common_error_types.json#/definitions/source"},
+                    "meta": {"$ref": "common_error_types.json#/definitions/meta"}
+                },
+                "additionalProperties": false,
+                "required": ["code", "detail"]
+            },
+            "minItems": 1
+        }
+    },
+    "additionalProperties": false,
+    "required": ["errors"]
+}

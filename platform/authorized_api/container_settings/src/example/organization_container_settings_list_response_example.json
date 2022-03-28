@@ -1,0 +1,21 @@
+{
+    "links": {
+        "self": "/api/container-settings/v1/organization/test/settings?page[offset]=0&page[limit]=100",
+        "first": "/api/container-settings/v1/organization/test/settings?page[offset]=0&page[limit]=100",
+        "last": "/api/container-settings/v1/organization/test/settings?page[offset]=0&page[limit]=100",
+        "prev": null,
+        "next": null
+    },
+    "data": [
+        {
+            "type": "container/organization/setting",
+            "id": "automatic_scroll_tracking",
+            "attributes": {
+                "value": {
+                    "is_enabled": true,
+                    "thresholds": [5, 50, 95]
+                }
+            }
+        }
+    ]
+}

@@ -1,0 +1,40 @@
+{
+    "definitions": {
+        "code": {
+            "type": "string",
+            "description": "An application-specific error code, expressed as a string value."
+        },
+        "detail": {
+            "type": "string",
+            "description": "A human-readable explanation specific to this occurrence of the problem."
+        },
+        "source": {
+            "type": "object",
+            "description": "An object containing references to the source of the error.",
+            "properties": {
+                "pointer": {
+                    "type": "string",
+                    "description": "A JSON Pointer [RFC6901] to the associated entity in the request document."
+                },
+                "parameter": {
+                    "type": "string",
+                    "description": "A string indicating which URI parameter caused the error."
+                }
+            },
+            "additionalProperties": false
+        },
+        "meta": {
+            "type": "object",
+            "description": "An object containing additional application-specific information about error.",
+            "properties": {
+                "keyword": {
+                    "type": "string"
+                },
+                "keyword_args": {
+                    "type": "object"
+                }
+            },
+            "additionalProperties": false
+        }
+    }
+}

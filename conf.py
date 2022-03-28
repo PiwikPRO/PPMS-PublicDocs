@@ -33,6 +33,7 @@ api_definitions = {
     'platform_access_control_authorized_api.json': 'platform/authorized_api/access_control/public_v2.yaml',
     'platform_apps_authorized_api.json': 'platform/authorized_api/apps/public_v2.yaml',
     'platform_audit_log_authorized_api.json': 'platform/authorized_api/audit_log/public_v1.yaml',
+    'platform_container_settings_authorized_api.json': 'platform/authorized_api/container_settings/src/settings.yaml',
     'platform_meta_sites_authorized_api.json': 'platform/authorized_api/meta_sites/public_v1.yaml',
     'platform_modules_authorized_api.json': 'platform/authorized_api/modules/public_v1.yaml',
     'platform_tracker_settings_authorized_api.json': 'platform/authorized_api/tracker_settings/public_v2.yaml',

@@ -1,0 +1,32 @@
+{
+    "title": "Automatic scroll tracking for App",
+    "type": "object",
+    "properties": {
+        "id": {
+            "$ref": "./automatic_scroll_tracking.json#/definitions/automatic_scroll_tracking_id"
+        },
+        "type": {
+            "$ref": "../../common_types.json#/definitions/app_container_setting_resource_type"
+        },
+        "attributes": {
+            "description": "Container setting for App",
+            "type": "object",
+            "properties": {
+                "value": {
+                    "$ref": "./automatic_scroll_tracking.json#/definitions/automatic_scroll_tracking_value"
+                },
+                "is_custom": {
+                    "$ref": "../../common_types.json#/definitions/is_custom"
+                }
+            },
+            "required": ["value", "is_custom"],
+            "additionalProperties": false
+        }
+    },
+    "additionalProperties": false,
+    "required": [
+        "id",
+        "type",
+        "attributes"
+    ]
+}

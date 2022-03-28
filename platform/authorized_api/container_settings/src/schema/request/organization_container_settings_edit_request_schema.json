@@ -1,0 +1,21 @@
+{
+    "description": "Edit organization's container settings request",
+    "type": "object",
+    "properties": {
+        "data": {
+            "title": "Organization's container settings list to be edited",
+            "type": "array",
+            "items": {
+                "oneOf": [
+                    {
+                        "$ref": "../settings/automatic_scroll_tracking/automatic_scroll_tracking_organization_request_schema.json"
+                    }
+                ]
+            }
+        }
+    },
+    "additionalProperties": false,
+    "required": [
+        "data"
+    ]
+}

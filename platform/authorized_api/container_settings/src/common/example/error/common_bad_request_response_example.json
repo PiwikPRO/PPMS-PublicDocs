@@ -1,0 +1,18 @@
+{
+    "errors": [
+        {
+            "code": "INVALID_JSON_ERROR",
+            "detail": "The attribute expected to be of type string but integer given.",
+            "source": {
+                "pointer": "/data/attributes/trigger_type"
+            },
+            "meta": {
+                "keyword": "type",
+                "keyword_args": {
+                    "expected": "string",
+                    "used": "integer"
+                }
+            }
+        }
+    ]
+}
