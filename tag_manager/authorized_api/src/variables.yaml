@@ -58,6 +58,8 @@ paths:
                     $ref: 'common/api/common_error_responses.json#/components/responses/not_found'
                 '500':
                     $ref: 'common/api/common_error_responses.json#/components/responses/internal_server_error'
+                '503':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/service_unavailable'
             requestBody:
                 required: true
                 content:
@@ -106,6 +108,8 @@ paths:
                     $ref: 'common/api/common_error_responses.json#/components/responses/not_found'
                 '500':
                     $ref: 'common/api/common_error_responses.json#/components/responses/internal_server_error'
+                '503':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/service_unavailable'
             requestBody:
                 required: true
                 content:
@@ -128,6 +132,8 @@ paths:
                     $ref: 'common/api/common_error_responses.json#/components/responses/not_found'
                 '500':
                     $ref: 'common/api/common_error_responses.json#/components/responses/internal_server_error'
+                '503':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/service_unavailable'
 
     /api/tag/v1/{app_id}/variables/{variable_id}/copy:
         parameters:
@@ -153,6 +159,8 @@ paths:
                     $ref: 'common/api/common_error_responses.json#/components/responses/not_found'
                 '500':
                     $ref: 'common/api/common_error_responses.json#/components/responses/internal_server_error'
+                '503':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/service_unavailable'
             requestBody:
                 required: true
                 content:
