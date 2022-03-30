@@ -239,7 +239,7 @@ Site search
     Tracks search requests on a website.
 
     :param string keyword: **Required** What keyword the visitor entered into the search box
-    :param string category: **Optional** Category selected in the search engine, can be set ``undefined`` if not applicable
+    :param string|Array<string> category: **Optional** Category selected in the search engine
     :param number searchCount: **Optional** The number of search results shown
     :param object dimensions: **Optional** :ref:`Custom dimensions<jtc-api-custom-dimensions-object>` to pass along with the site search event
 
@@ -445,7 +445,7 @@ E-commerce
     :param string productSKU: **Optional** Product stock-keeping unit.
     :param string productName: **Optional** Product name.
     :param string|Array<string> productCategory: **Optional** Category or an array of up to 5 categories.
-    :param number productPrice: **Optional** Category or an array of up to 5 categories.
+    :param number productPrice: **Optional** Product price.
 
     When tracking **product views**, provide ``productSKU`` and optionally
     other parameters.
@@ -1143,14 +1143,14 @@ Download and Outlink
 
 .. _jtc-api-enableLinkTracking:
 
-.. function:: enableLinkTracking(enable)
+.. function:: enableLinkTracking([trackMiddleAndRightClicks])
 
-    Enables or disables automatic link tracking. If enabled, left, right and
-    middle clicks on links will be treated as opening a link. Opening a links
-    to an external site (different domain) creates an outlink event. Opening a
-    link to a downloadable file creates a download event.
+    Enables automatic link tracking. By default, left, right and middle clicks
+    on links will be treated as opening a link. Opening a link to an external
+    site (different domain) creates an outlink event. Opening a link to a
+    downloadable file creates a download event.
 
-    :param boolean enable: **Required** Whether to enable automatic link tracking. The default value is ``true``.
+    :param boolean trackMiddleAndRightClicks: **Optional** Whether to treat middle and right clicks as opening a link. The default value is ``true``.
 
     Example of usage:
 
@@ -1172,12 +1172,12 @@ Download and Outlink
 
     .. note::
 
-        ``enableLinkTracking`` is part of the default Tag Manager's tracking code snippet.
+        ``enableLinkTracking`` is a part of the default Tag Manager's tracking code snippet.
         It's likely your setup already has it.
 
     .. note::
 
-        Outlinks events are tracked only when a link points to a different
+        Outlink events are tracked only when a link points to a different
         (external) domain. If that domain belongs to you and you don't want to
         track outlinks when visitors open it, use :ref:`setDomains<jtc-api-setDomains>`
         function to define internal domains and subdomains.
@@ -1939,7 +1939,7 @@ JavaScript Tracking Client configuration
 .. function:: setTimingDataSamplingOnPageLoad(sampling)
 
     Configures page performance data collection. With non-zero sampling
-    (5 by default), some page views will issue a page performance measurement.
+    (10 by default), some page views will issue a page performance measurement.
 
     :param number sampling: **Required** Page performance sampling, integer between 0 and 100. 0 disables page performance data collection. 100 measures every page load.
 
@@ -1952,7 +1952,7 @@ JavaScript Tracking Client configuration
             .. code-block:: javascript
 
                 _paq.push(["setTimingDataSamplingOnPageLoad", 0]); // disables page performance data collection
-                _paq.push(["setTimingDataSamplingOnPageLoad", 5]); // 5% of page views will by followed by a page performance measurement, this is the default behavior
+                _paq.push(["setTimingDataSamplingOnPageLoad", 10]); // 10% of page views will by followed by a page performance measurement, this is the default behavior
                 _paq.push(["setTimingDataSamplingOnPageLoad", 30]); // 30% of page views will be followed by a page performance measurement
                 _paq.push(["setTimingDataSamplingOnPageLoad", 100]); // 100% of page views will be followed by a page performance measurement
 
@@ -1961,13 +1961,13 @@ JavaScript Tracking Client configuration
             .. code-block:: javascript
 
                 jstc.setTimingDataSamplingOnPageLoad(0); // disables page performance data collection
-                jstc.setTimingDataSamplingOnPageLoad(5); // 5% of page views will by followed by a page performance measurement, this is the default behavior
+                jstc.setTimingDataSamplingOnPageLoad(10); // 10% of page views will by followed by a page performance measurement, this is the default behavior
                 jstc.setTimingDataSamplingOnPageLoad(30); // 30% of page views will be followed by a page performance measurement
                 jstc.setTimingDataSamplingOnPageLoad(100); // 100% of page views will be followed by a page performance measurement
 
     .. note::
 
-        The default sampling value is 5, meaning 5% of page loads will be measured.
+        The default sampling value is 10, meaning 10% of page loads will be measured.
 
     .. warning::
 
