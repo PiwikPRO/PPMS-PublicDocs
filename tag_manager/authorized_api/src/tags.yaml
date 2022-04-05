@@ -63,6 +63,8 @@ paths:
                     $ref: 'common/api/common_error_responses.json#/components/responses/not_found'
                 '500':
                     $ref: 'common/api/common_error_responses.json#/components/responses/internal_server_error'
+                '503':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/service_unavailable'
 
         post:
             summary: Create tag
@@ -99,6 +101,8 @@ paths:
                     $ref: 'common/api/common_error_responses.json#/components/responses/not_found'
                 '500':
                     $ref: 'common/api/common_error_responses.json#/components/responses/internal_server_error'
+                '503':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/service_unavailable'
 
     /api/tag/v1/{appId}/tags/{tag_id}:
         parameters:
@@ -145,6 +149,8 @@ paths:
                     $ref: 'common/api/common_error_responses.json#/components/responses/not_found'
                 '500':
                     $ref: 'common/api/common_error_responses.json#/components/responses/internal_server_error'
+                '503':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/service_unavailable'
 
         delete:
             summary: Delete tag
@@ -159,6 +165,8 @@ paths:
                     $ref: 'common/api/common_error_responses.json#/components/responses/not_found'
                 '500':
                     $ref: 'common/api/common_error_responses.json#/components/responses/internal_server_error'
+                '503':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/service_unavailable'
 
     /api/tag/v1/{app_id}/tags/{tag_id}/copy:
         parameters:
@@ -184,6 +192,8 @@ paths:
                     $ref: 'common/api/common_error_responses.json#/components/responses/not_found'
                 '500':
                     $ref: 'common/api/common_error_responses.json#/components/responses/internal_server_error'
+                '503':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/service_unavailable'
             requestBody:
                 required: true
                 content:

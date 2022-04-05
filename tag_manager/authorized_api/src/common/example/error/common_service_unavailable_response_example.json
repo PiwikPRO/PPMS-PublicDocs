@@ -1,0 +1,8 @@
+{
+    "errors": [
+        {
+            "code": "SERVICE_UNAVAILABLE",
+            "detail": "Maintenance mode enabled for organization (organization: default)"
+        }
+    ]
+}
