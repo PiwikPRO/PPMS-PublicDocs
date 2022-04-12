@@ -65,28 +65,6 @@
                         }
                     }
                 }
-            },
-            "service_unavailable": {
-                "description": "Service unavailable",
-                "content": {
-                    "application/vnd.api+json": {
-                        "schema": {
-                            "$ref": "../schema/error/common_error_schema.json"
-                        },
-                        "example": {
-                            "$ref": "../example/error/common_service_unavailable_response_example.json"
-                        }
-                    }
-                },
-                "headers": {
-                    "X-Reason": {
-                        "schema": {
-                            "type": "string"
-                        },
-                        "description": "Reason for service being unavailable",
-                        "example": "maintenance-mode"
-                    }
-                }
             }
         }
     }

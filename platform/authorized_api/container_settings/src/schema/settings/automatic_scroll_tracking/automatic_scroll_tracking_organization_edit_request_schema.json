@@ -1,0 +1,13 @@
+{
+    "description": "Edit automatic scroll tracking request for Organization",
+    "type": "object",
+    "properties": {
+        "data": {
+            "$ref": "./automatic_scroll_tracking_organization_request_schema.json"
+        }
+    },
+    "additionalProperties": false,
+    "required": [
+        "data"
+    ]
+}

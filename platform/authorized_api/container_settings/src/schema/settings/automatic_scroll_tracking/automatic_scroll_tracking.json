@@ -1,0 +1,31 @@
+{
+    "definitions": {
+        "automatic_scroll_tracking_id": {
+            "description": "Container setting name",
+            "type": "string",
+            "enum": ["automatic_scroll_tracking"]
+        },
+        "automatic_scroll_tracking_value": {
+            "type": "object",
+            "description": "Automatic scroll tracking setting value",
+            "properties": {
+                "is_enabled": {
+                    "type": "boolean",
+                    "description": "It determines if the setting is enabled"
+                },
+                "thresholds": {
+                    "type": "array",
+                    "description": "Scroll tracking thresholds as a collection of positive unique integers from 0 to 100",
+                    "items": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 100,
+                        "minItems": 1
+                    },
+                    "uniqueItems": true
+                }
+            },
+            "required": ["is_enabled", "thresholds"]
+        }
+    }
+}

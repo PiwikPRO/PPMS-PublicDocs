@@ -1,0 +1,8 @@
+{
+    "errors": [
+        {
+            "code": "INTERNAL_SERVER_ERROR",
+            "detail": "MySQL server has gone away"
+        }
+    ]
+}
