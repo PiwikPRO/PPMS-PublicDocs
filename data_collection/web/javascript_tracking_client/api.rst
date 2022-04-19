@@ -82,7 +82,7 @@ the ``Piwik.getAsyncTracker``.
     Getter for JavaScript Tracking Client instance.
 
     :param string trackerUrl: **Required** URL for JavaScript Tracking Client
-    :param string siteId: **Required** Site Id that will be linked to tracked data.
+    :param string siteId: **Required** Site ID that will be linked to tracked data.
     :returns: JavaScript Tracking Client instance
 
     Example of usage (accessing JavaScript Tracking Client object and tracking a custom event)::
@@ -407,6 +407,7 @@ E-commerce
     data to the :term:`Collecting & Processing Pipeline`.
 
     :returns: Object containing all tracked items (format: ``Object<productSKU, Array[productSKU, productName, productCategory, price, quantity]>``)
+    :rtype: object
 
     Example of usage:
 
@@ -416,7 +417,9 @@ E-commerce
 
             .. code-block:: javascript
 
-                _paq.push([function () { console.log(this.getEcommerceItems()); }]);
+                _paq.push([function () {
+                    console.log(this.getEcommerceItems());
+                }]);
 
         .. group-tab:: JavaScript Tracking Client object
 
@@ -632,7 +635,7 @@ Custom Variables
     :param string scope: **Optional** Scope of the variable, ``"visit"`` or ``"page"``. The default value is ``"visit"``.
 
     :rtype:  Array[string, string]|boolean
-    :returns: Custom variable value as an array with name and value if the custom variable exists or ``false`` if it doesn't.
+    :returns: Custom variable value as an array with name and value if the custom variable exists (e.g. ``["theme", "dark-01"]``) or ``false`` if it doesn't.
 
     Example of usage:
 
@@ -643,20 +646,14 @@ Custom Variables
             .. code-block:: javascript
 
                 _paq.push([function() {
-                    var customVariable = this.getCustomVariable(1, "visit");
-                    console.log(customVariable);
+                    console.log(this.getCustomVariable(1, "visit"));
                 }]);
 
         .. group-tab:: JavaScript Tracking Client object
 
             .. code-block:: javascript
 
-                var customVariable = jstc.getCustomVariable(1, "visit");
-                console.log(customVariable);
-
-    Example return value::
-
-        ["theme", "dark-01"]
+                console.log(jstc.getCustomVariable(1, "visit"));
 
 .. _jtc-api-storeCustomVariablesInCookie:
 
@@ -756,7 +753,7 @@ Custom Dimensions
     Returns the value of a custom dimension with the specified ID.
 
     :param number customDimensionID: **Required** ID of a custom dimension
-    :returns: Value set with :ref:`setCustomDimensionValue<jtc-api-setCustomDimensionValue>`
+    :returns: Value set with :ref:`setCustomDimensionValue<jtc-api-setCustomDimensionValue>` (e.g. ``"loginStatus"``)
     :rtype: string
 
     Example of usage:
@@ -768,15 +765,14 @@ Custom Dimensions
             .. code-block:: javascript
 
                 _paq.push([function() {
-                    var customDimension = this.getCustomDimensionValue(3);
-                    console.log(customDimension);
+                    console.log(this.getCustomDimensionValue(3));
                 }]);
 
         .. group-tab:: JavaScript Tracking Client object
 
             .. code-block:: javascript
 
-                var customDimension = this.getCustomDimensionValue(3);
+                console.log(this.getCustomDimensionValue(3));
 
 .. _jtc-api-setCustomDimension:
 
@@ -832,7 +828,7 @@ Custom Dimensions
     Returns the value of a custom dimension.
 
     :param number customDimensionID: **Required** ID of a custom dimension
-    :returns: Value set with :ref:`setCustomDimension<jtc-api-setCustomDimension>`
+    :returns: Value set with :ref:`setCustomDimension<jtc-api-setCustomDimension>` (e.g. ``"loginStatus"``)
     :rtype: string
 
     Example of usage:
@@ -844,16 +840,14 @@ Custom Dimensions
             .. code-block:: javascript
 
                 _paq.push([ function() {
-                    var customDimension = this.getCustomDimension(3);
-                    console.log(customDimension);
+                    console.log(this.getCustomDimension(3));
                 }]);
 
         .. group-tab:: JavaScript Tracking Client object
 
             .. code-block:: javascript
 
-                var customDimension = jstc.getCustomDimension(3);
-                console.log(customDimension);
+                console.log(jstc.getCustomDimension(3));
 
 .. _jtc-api-custom-dimensions-object:
 
@@ -1016,6 +1010,22 @@ Impressions
 .. function:: logAllContentBlocksOnPage()
 
     Print all content blocks to the console for debugging purposes.
+
+    Example of usage:
+
+    .. tabs::
+
+        .. group-tab:: Command queue
+
+            .. code-block:: javascript
+
+                _paq.push(["logAllContentBlocksOnPage"]);
+
+        .. group-tab:: JavaScript Tracking Client object
+
+            .. code-block:: javascript
+
+                jstc.logAllContentBlocksOnPage();
 
     Example output::
 
@@ -1186,6 +1196,26 @@ Download and Outlink
 
         ``enableLinkTracking`` should be called right after the first
         ``trackPageView`` or ``trackEvent``.
+
+.. function:: disableLinkTracking()
+
+    Disables automatic link tracking (if it was enabled previously with :func:`enableLinkTracking`).
+
+    Example of usage:
+
+    .. tabs::
+
+        .. group-tab:: Command queue
+
+            .. code-block:: javascript
+
+                _paq.push(["disableLinkTracking"]);
+
+        .. group-tab:: JavaScript Tracking Client object
+
+            .. code-block:: javascript
+
+                jstc.disableLinkTracking();
 
 .. _jtc-api-setIgnoreClasses:
 
@@ -1394,9 +1424,30 @@ Download and Outlink
         The list of download extensions is not persisted in the browser. It has
         to be configured on every page load.
 
+.. function:: getConfigDownloadExtensions()
 
+    Returns current download extensions list used by the JSTC.
 
+    :return: List of download extensions (e.g.``["mhj", "docx"]``).
+    :rtype: array<string>
 
+    Example of usage:
+
+    .. tabs::
+
+        .. group-tab:: Command queue
+
+            .. code-block:: javascript
+
+                _paq.push([function () {
+                    console.log(this.getConfigDownloadExtensions());
+                }]);
+
+        .. group-tab:: JavaScript Tracking Client object
+
+            .. code-block:: javascript
+
+                console.log(jstc.getConfigDownloadExtensions());
 
 .. _jtc-api-user-management:
 
@@ -1429,6 +1480,31 @@ User management
                 jstc.setUserId("19283");
 
     .. todo:: is user id persistent?
+
+.. function:: getUserId()
+
+    Returns currently used user ID value (set with :func:`setUserId`).
+
+    :return: User ID value (e.g. ``"19283"``)
+    :rtype: string
+
+    Example of usage:
+
+    .. tabs::
+
+        .. group-tab:: Command queue
+
+            .. code-block:: javascript
+
+                _paq.push([function () {
+                    console.log(this.getUserId());
+                }]);
+
+        .. group-tab:: JavaScript Tracking Client object
+
+            .. code-block:: javascript
+
+                jstc.getUserId();
 
 .. _jtc-api-resetUserId:
 
@@ -1532,6 +1608,9 @@ User management
 
     Returns 16-character hex ID of the visitor.
 
+    :return: Visitor ID (e.g. ``"0123456789abcdef"``
+    :rtype: string
+
     Example of usage:
 
     .. tabs::
@@ -1541,16 +1620,14 @@ User management
             .. code-block:: javascript
 
                 _paq.push([function () {
-                    var visitorID = this.getVisitorId();
-                    console.log(visitorID);
+                    console.log(this.getVisitorId());
                 }]);
 
         .. group-tab:: JavaScript Tracking Client object
 
             .. code-block:: javascript
 
-                var visitorID = jstc.getVisitorId();
-                console.log(visitorID);
+                console.log(jstc.getVisitorId());
 
 .. _jtc-api-getVisitorInfo:
 
@@ -1578,16 +1655,14 @@ User management
             .. code-block:: javascript
 
                 _paq.push([function () {
-                    var info = this.getVisitorInfo();
-                    console.log(info);
+                    console.log(this.getVisitorInfo());
                 }]);
 
         .. group-tab:: JavaScript Tracking Client object
 
             .. code-block:: javascript
 
-                var info = jstc.getVisitorInfo();
-                console.log(info);
+                console.log(jstc.getVisitorInfo());
 
     Example output::
 
@@ -1617,6 +1692,22 @@ Cookie management
     Enables all first party cookies. Cookies will be created on the next
     tracking request.
 
+    Example of usage:
+
+    .. tabs::
+
+        .. group-tab:: Command queue
+
+            .. code-block:: javascript
+
+                _paq.push(["enableCookies"]);
+
+        .. group-tab:: JavaScript Tracking Client object
+
+            .. code-block:: javascript
+
+                jstc.enableCookies();
+
     .. note:: JavaScript Tracking Client has cookies enabled by default.
 
 .. _jtc-api-disableCookies:
@@ -1626,17 +1717,70 @@ Cookie management
     Disables all first party cookies. Existing cookies will be deleted in the
     next page view.
 
+    Example of usage:
+
+    .. tabs::
+
+        .. group-tab:: Command queue
+
+            .. code-block:: javascript
+
+                _paq.push(["disableCookies"]);
+
+        .. group-tab:: JavaScript Tracking Client object
+
+            .. code-block:: javascript
+
+                jstc.disableCookies();
+
 .. _jtc-api-deleteCookies:
 
 .. function:: deleteCookies()
 
     Deletes existing tracking cookies on the next page view.
 
+    Example of usage:
+
+    .. tabs::
+
+        .. group-tab:: Command queue
+
+            .. code-block:: javascript
+
+                _paq.push(["deleteCookies"]);
+
+        .. group-tab:: JavaScript Tracking Client object
+
+            .. code-block:: javascript
+
+                jstc.deleteCookies();
+
 .. _jtc-api-hasCookies:
 
 .. function:: hasCookies()
 
     Returns ``true`` if cookies are enabled in this browser.
+
+    :return: Status of cookies support by the browser (e.g. ``true``)
+    :rtype: boolean
+
+    Example of usage:
+
+    .. tabs::
+
+        .. group-tab:: Command queue
+
+            .. code-block:: javascript
+
+                _paq.push([function () {
+                    console.log(this.hasCookies());
+                }]);
+
+        .. group-tab:: JavaScript Tracking Client object
+
+            .. code-block:: javascript
+
+                console.log(jstc.hasCookies());
 
 .. _jtc-api-setCookieNamePrefix:
 
@@ -1646,6 +1790,22 @@ Cookie management
 
     :param string prefix: **Required** String that will replace default analytics tracking cookies prefix.
 
+    Example of usage:
+
+    .. tabs::
+
+        .. group-tab:: Command queue
+
+            .. code-block:: javascript
+
+                _paq.push(["setCookieNamePrefix", "_examplePrefix_"]);
+
+        .. group-tab:: JavaScript Tracking Client object
+
+            .. code-block:: javascript
+
+                jstc.setCookieNamePrefix("_examplePrefix_");
+
 .. _jtc-api-setCookieDomain:
 
 .. function:: setCookieDomain(domain)
@@ -1654,6 +1814,47 @@ Cookie management
 
     :param string domain: **Required** Domain that will be set as cookie domain. For enabling subdomain you can use wildcard sign or dot.
 
+    Example of usage:
+
+    .. tabs::
+
+        .. group-tab:: Command queue
+
+            .. code-block:: javascript
+
+                _paq.push(["setCookieDomain", "*.example.com"]);
+
+        .. group-tab:: JavaScript Tracking Client object
+
+            .. code-block:: javascript
+
+                jstc.setCookieDomain("*.example.com");
+
+.. function:: getCookieDomain()
+
+    Returns domain of the analytics tracking cookies (set with :func:`setCookieDomain`).
+
+    :return: Domain of the analytics tracking cookies (e.g. ``"*.example.com"``)
+    :rtype: string
+
+    Example of usage:
+
+    .. tabs::
+
+        .. group-tab:: Command queue
+
+            .. code-block:: javascript
+
+                _paq.push([function () {
+                    console.log(this.getCookieDomain());
+                }]);
+
+        .. group-tab:: JavaScript Tracking Client object
+
+            .. code-block:: javascript
+
+                console.log(jstc.getCookieDomain());
+
 .. _jtc-api-setCookiePath:
 
 .. function:: setCookiePath(path)
@@ -1661,6 +1862,47 @@ Cookie management
     Sets the analytics tracking cookies path.
 
     :param string path: **Required** Path that will be set, default is ``"/"``.
+
+    Example of usage:
+
+    .. tabs::
+
+        .. group-tab:: Command queue
+
+            .. code-block:: javascript
+
+                _paq.push(["setCookiePath", "/blog/"]);
+
+        .. group-tab:: JavaScript Tracking Client object
+
+            .. code-block:: javascript
+
+                jstc.setCookiePath("/blog/");
+
+.. function:: getCookiePath()
+
+    Returns the analytics tracking cookies path.
+
+    :return: Analytics tracking cookies path (e.g. ``"/blog/"``).
+    :rtype: string
+
+    Example of usage:
+
+    .. tabs::
+
+        .. group-tab:: Command queue
+
+            .. code-block:: javascript
+
+                _paq.push([function () {
+                    console.log(this.getCookiePath());
+                }]);
+
+        .. group-tab:: JavaScript Tracking Client object
+
+            .. code-block:: javascript
+
+                console.log(jstc.getCookiePath());
 
 .. _jtc-api-setSecureCookie:
 
@@ -1671,6 +1913,22 @@ Cookie management
 
     :param boolean secure: **Required** Whether to add secure flag to cookies.
 
+    Example of usage:
+
+    .. tabs::
+
+        .. group-tab:: Command queue
+
+            .. code-block:: javascript
+
+                _paq.push(["setSecureCookie", true]);
+
+        .. group-tab:: JavaScript Tracking Client object
+
+            .. code-block:: javascript
+
+                jstc.setSecureCookie(true);
+
 .. _jtc-api-setVisitorCookieTimeout:
 
 .. function:: setVisitorCookieTimeout(seconds)
@@ -1678,6 +1936,47 @@ Cookie management
     Sets the expiration time of visitor cookies.
 
     :param number seconds: **Required** Number of seconds after which the cookie will expire. Default is 13 months.
+
+    Example of usage:
+
+    .. tabs::
+
+        .. group-tab:: Command queue
+
+            .. code-block:: javascript
+
+                _paq.push(["setVisitorCookieTimeout", 33955200]);
+
+        .. group-tab:: JavaScript Tracking Client object
+
+            .. code-block:: javascript
+
+                jstc.setVisitorCookieTimeout(33955200);
+
+.. function:: getConfigVisitorCookieTimeout()
+
+    Returns expiration time of visitor cookies (in milliseconds).
+
+    :return: Expiration time of visitor cookies in milliseconds (e.g. ``33955200000``)
+    :rtype: number
+
+    Example of usage:
+
+    .. tabs::
+
+        .. group-tab:: Command queue
+
+            .. code-block:: javascript
+
+                _paq.push([function () {
+                    console.log(this.getConfigVisitorCookieTimeout());
+                }]);
+
+        .. group-tab:: JavaScript Tracking Client object
+
+            .. code-block:: javascript
+
+                console.log(jstc.getConfigVisitorCookieTimeout());
 
 .. _jtc-api-setReferralCookieTimeout:
 
@@ -1687,6 +1986,22 @@ Cookie management
 
     :param number seconds: **Required** Number of seconds after which the cookie will expire. Default is 6 months.
 
+    Example of usage:
+
+    .. tabs::
+
+        .. group-tab:: Command queue
+
+            .. code-block:: javascript
+
+                _paq.push(["setReferralCookieTimeout", 15768000]);
+
+        .. group-tab:: JavaScript Tracking Client object
+
+            .. code-block:: javascript
+
+                jstc.setReferralCookieTimeout(15768000);
+
 .. _jtc-api-setSessionCookieTimeout:
 
 .. function:: setSessionCookieTimeout(seconds)
@@ -1695,11 +2010,68 @@ Cookie management
 
     :param number seconds: **Required** Number of seconds after which the cookie will expire. Default is 30 minutes.
 
+    Example of usage:
+
+    .. tabs::
+
+        .. group-tab:: Command queue
+
+            .. code-block:: javascript
+
+                _paq.push(["setSessionCookieTimeout", 1800000]);
+
+        .. group-tab:: JavaScript Tracking Client object
+
+            .. code-block:: javascript
+
+                jstc.setSessionCookieTimeout(1800000);
+
+.. function:: getSessionCookieTimeout()
+
+    Returns expiration time of session cookies.
+
+    :return: Expiration time of session cookies
+    :rtype: number
+
+    Example of usage:
+
+    .. tabs::
+
+        .. group-tab:: Command queue
+
+            .. code-block:: javascript
+
+                _paq.push([function () {
+                    console.log(this.getSessionCookieTimeout());
+                }]);
+
+        .. group-tab:: JavaScript Tracking Client object
+
+            .. code-block:: javascript
+
+                console.log(jstc.getSessionCookieTimeout());
+
 .. _jtc-api-setVisitorIdCookie:
 
 .. function:: setVisitorIdCookie()
 
-    Sets cookie containing :term:`analytics ID`.
+    Sets cookie containing :term:`analytics ID` in browser.
+
+    Example of usage:
+
+    .. tabs::
+
+        .. group-tab:: Command queue
+
+            .. code-block:: javascript
+
+                _paq.push(["setVisitorIdCookie"]);
+
+        .. group-tab:: JavaScript Tracking Client object
+
+            .. code-block:: javascript
+
+                jstc.setVisitorIdCookie();
 
     .. note::
 
@@ -1726,17 +2098,70 @@ Cross domain linking
     :ref:`setDomains<jtc-api-setDomains>` function will be linked by
     passing visitor ID parameter in links.
 
+    Example of usage:
+
+    .. tabs::
+
+        .. group-tab:: Command queue
+
+            .. code-block:: javascript
+
+                _paq.push(["enableCrossDomainLinking"]);
+
+        .. group-tab:: JavaScript Tracking Client object
+
+            .. code-block:: javascript
+
+                jstc.enableCrossDomainLinking();
+
 .. _jtc-api-disableCrossDomainLinking:
 
 .. function:: disableCrossDomainLinking()
 
     Disables cross domain linking.
 
+    Example of usage:
+
+    .. tabs::
+
+        .. group-tab:: Command queue
+
+            .. code-block:: javascript
+
+                _paq.push(["disableCrossDomainLinking"]);
+
+        .. group-tab:: JavaScript Tracking Client object
+
+            .. code-block:: javascript
+
+                jstc.disableCrossDomainLinking();
+
 .. _jtc-api-isCrossDomainLinkingEnabled:
 
 .. function:: isCrossDomainLinkingEnabled()
 
     Returns boolean telling whether cross domain linking is enabled.
+
+    :return: Status of cross domain linking (e.g. ``true``)
+    :rtype: boolean
+
+    Example of usage:
+
+    .. tabs::
+
+        .. group-tab:: Command queue
+
+            .. code-block:: javascript
+
+                _paq.push([function () {
+                    console.log(this.isCrossDomainLinkingEnabled());
+                }]);
+
+        .. group-tab:: JavaScript Tracking Client object
+
+            .. code-block:: javascript
+
+                console.log(jstc.isCrossDomainLinkingEnabled());
 
 .. _jtc-api-setCrossDomainLinkingTimeout:
 
@@ -1747,12 +2172,31 @@ Cross domain linking
 
     :param number seconds: **Required** Number of seconds in which two visits across domains will be linked
 
+    Example of usage:
+
+    .. tabs::
+
+        .. group-tab:: Command queue
+
+            .. code-block:: javascript
+
+                _paq.push(["setCrossDomainLinkingTimeout", 180]);
+
+        .. group-tab:: JavaScript Tracking Client object
+
+            .. code-block:: javascript
+
+                jstc.setCrossDomainLinkingTimeout(180);
+
 .. _jtc-api-getCrossDomainLinkingUrlParameter:
 
 .. function:: getCrossDomainLinkingUrlParameter()
 
     Returns the name of a cross domain URL parameter (query parameter by
     default) holding visitor ID. This is ``"pk_vid"`` by default.
+
+    :return: Name of a cross domain URL parameter (e.g. ``"pk_vid"``)
+    :rtype: string
 
     Example usage:
 
@@ -1763,14 +2207,14 @@ Cross domain linking
             .. code-block:: javascript
 
                 _paq.push([function () {
-                    var parameter = this.getCrossDomainLinkingUrlParameter();
+                    console.log(this.getCrossDomainLinkingUrlParameter());
                 }]);
 
         .. group-tab:: JavaScript Tracking Client object
 
             .. code-block:: javascript
 
-                var parameter = jstc.getCrossDomainLinkingUrlParameter();
+                console.log(jstc.getCrossDomainLinkingUrlParameter());
 
     .. note::
 
@@ -1882,6 +2326,188 @@ Cross domain linking
 JavaScript Tracking Client configuration
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+.. function:: addTracker(trackerUrl, siteId)
+
+    Creates new JavaScript Tracking Client instance.
+
+    :param string trackerUrl: **Required** URL for JavaScript Tracking Client
+    :param string siteId: **Required** Site ID that will be linked to tracked data.
+    :return: Created JavaScript Tracking Client instance
+    :rtype: JSTC object
+
+    Example of usage:
+
+    .. tabs::
+
+        .. group-tab:: Command queue
+
+            .. code-block:: javascript
+
+                _paq.push(["addTracker", "https://example.piwik.pro/piwik.php", "45e07cbf-c8b3-42f3-a6d6-a5a176f623ef"]);
+
+        .. group-tab:: JavaScript Tracking Client object
+
+            .. code-block:: javascript
+
+                jstc.addTracker("https://example.piwik.pro/piwik.php", "45e07cbf-c8b3-42f3-a6d6-a5a176f623ef");
+
+.. function:: setTrackerUrl(url)
+
+    Overrides Piwik tracking URL set at the JSTC initiation.
+
+    :param string url: **Required** Path to Piwik tracking URL (e.g. ``"https://example.piwik.pro/piwik.php"``)
+
+    Example of usage:
+
+    .. tabs::
+
+        .. group-tab:: Command queue
+
+            .. code-block:: javascript
+
+                _paq.push(["setTrackerUrl", "https://example.piwik.pro/piwik.php"]);
+
+        .. group-tab:: JavaScript Tracking Client object
+
+            .. code-block:: javascript
+
+                jstc.setTrackerUrl("https://example.piwik.pro/piwik.php");
+
+.. function:: getTrackerUrl()
+
+    Returns the Piwik tracking URL used by tracker (either default, set during tracker initiation or override value set
+    with :func:`setTrackerUrl`).
+
+    :return: Piwik tracking URL (e.g. ``"https://example.piwik.pro/piwik.php"``)
+    :rtype: string
+
+    Example of usage:
+
+    .. tabs::
+
+        .. group-tab:: Command queue
+
+            .. code-block:: javascript
+
+                _paq.push([function () {
+                    console.log(this.getTrackerUrl());
+                }]);
+
+        .. group-tab:: JavaScript Tracking Client object
+
+            .. code-block:: javascript
+
+                console.log(jstc.getTrackerUrl());
+
+    :return: Currently used Piwik tracking URL (e.g. ``"https://example.piwik.pro/"``)
+    :rtype: string
+
+.. function:: setApiUrl(url)
+
+    Overrides HTTP API URL for tracking endpoint that was set at the tracker initiation.
+    Usually there is no need to use this function since standard setup should use correct URL.
+
+    .. deprecated:: 16.17
+
+        Use :func:`setTrackerUrl` instead. Previously this method was useful when "Overlay" report didn't work, but that
+        report was removed some time ago.
+
+    :param string url: **Required** Path to HTTP API URL (e.g. "https://example.piwik.pro")
+
+    Example of usage:
+
+    .. tabs::
+
+        .. group-tab:: Command queue
+
+            .. code-block:: javascript
+
+                _paq.push(["setApiUrl", "https://example.piwik.pro/piwik.php"]);
+
+        .. group-tab:: JavaScript Tracking Client object
+
+            .. code-block:: javascript
+
+                jstc.setApiUrl("https://example.piwik.pro/piwik.php");
+
+.. function:: getPiwikUrl()
+
+    Returns the HTTP API URL used by tracker (either default, set during tracker initiation or override value set with
+    :func:`setApiUrl`).
+
+    :return: Currently used HTTP API URL (e.g. ``"https://example.piwik.pro/piwik.php"``)
+    :rtype: string
+
+    .. deprecated:: 16.17
+
+        Use :func:`getTrackerUrl` instead. This getter returns URL used for "Overlay" report, but that report was
+        removed some time ago.
+
+    Example of usage:
+
+    .. tabs::
+
+        .. group-tab:: Command queue
+
+            .. code-block:: javascript
+
+                _paq.push([function () {
+                    console.log(this.getPiwikUrl());
+                }]);
+
+        .. group-tab:: JavaScript Tracking Client object
+
+            .. code-block:: javascript
+
+                console.log(jstc.getPiwikUrl());
+
+.. function:: setSiteId(siteId)
+
+    Sets site ID that wil be linked to tracked data.
+
+    :param string siteId: **Required** Site ID that will be linked to tracked data.
+
+    Example of usage:
+
+    .. tabs::
+
+        .. group-tab:: Command queue
+
+            .. code-block:: javascript
+
+                _paq.push(["setSiteId", "45e07cbf-c8b3-42f3-a6d6-a5a176f623ef"]);
+
+        .. group-tab:: JavaScript Tracking Client object
+
+            .. code-block:: javascript
+
+                jstc.setSiteId("45e07cbf-c8b3-42f3-a6d6-a5a176f623ef");
+
+.. function:: getSiteId()
+
+    Returns site ID linked to tracked data.
+
+    :return: Site ID linked to tracked data (e.g. ``"45e07cbf-c8b3-42f3-a6d6-a5a176f623ef"``)
+    :rtype: string
+
+    Example of usage:
+
+    .. tabs::
+
+        .. group-tab:: Command queue
+
+            .. code-block:: javascript
+
+                _paq.push([function () {
+                    console.log(this.getSiteId());
+                }]);
+
+        .. group-tab:: JavaScript Tracking Client object
+
+            .. code-block:: javascript
+
+                console.log(jstc.getSiteId());
+
 .. _jtc-api-setDomains:
 
 .. function:: setDomains(domains)
@@ -1907,6 +2533,123 @@ JavaScript Tracking Client configuration
             .. code-block:: javascript
 
                 jstc.setDomains(["*.example.com", "*.example.co.uk"]);
+
+.. function:: getDomains()
+
+    Returns list of internal domains (set with :func:`setDomains` and used in :ref:`outlink tracking<jtc-api-download-and-outlink>`).
+
+    :return: List of internal domains (e.g. ``["*.example.com", "*.example.co.uk"]``
+    :rtype: Array<string>
+
+    Example of usage:
+
+    .. tabs::
+
+        .. group-tab:: Command queue
+
+            .. code-block:: javascript
+
+                _paq.push([function () {
+                    console.log(this.getDomains());
+                }]);
+
+        .. group-tab:: JavaScript Tracking Client object
+
+            .. code-block:: javascript
+
+                console.log(jstc.getDomains());
+
+.. function:: setCustomUrl(customUrl)
+
+    The function that will override tracked page URL. Tracker will use current page URL if custom URL was not set.
+
+    :param string customUrl: **Required** Value that will override default URL of the tracked page.
+
+    Example of usage:
+
+    .. tabs::
+
+        .. group-tab:: Command queue
+
+            .. code-block:: javascript
+
+                _paq.push(["setCustomUrl", "https://example.com/virtual-page"]);
+
+        .. group-tab:: JavaScript Tracking Client object
+
+            .. code-block:: javascript
+
+                jstc.setCustomUrl("https://example.com/virtual-page");
+
+.. function:: getCurrentUrl()
+
+    Returns the current URL of the page. The custom URL will be returned if set with :func:`setCustomUrl`.
+
+    :return: Currently tracked page URL (e.g. ``"https://example.com/virtual-page"``)
+    :rtype: string
+
+    Example of usage:
+
+    .. tabs::
+
+        .. group-tab:: Command queue
+
+            .. code-block:: javascript
+
+                _paq.push([function () {
+                    console.log(this.getCurrentUrl());
+                }]);
+
+        .. group-tab:: JavaScript Tracking Client object
+
+            .. code-block:: javascript
+
+                console.log(jstc.getCurrentUrl());
+
+.. function:: setReferrerUrl(url)
+
+    The function that will override the detected HTTP referrer.
+
+    :param string url: **Required** Value that will override HTTP referrer.
+
+    Example of usage:
+
+    .. tabs::
+
+        .. group-tab:: Command queue
+
+            .. code-block:: javascript
+
+                _paq.push(["setReferrerUrl", "https://example.com/previous-page"]);
+
+        .. group-tab:: JavaScript Tracking Client object
+
+            .. code-block:: javascript
+
+                jstc.setReferrerUrl("https://example.com/previous-page");
+
+.. function:: discardHashTag(enableFilter)
+
+    When enabled, JSTC will remove `URL fragment identifier <https://en.wikipedia.org/wiki/Fragment_identifier>`_ from
+    all tracked URLs (e.g. current page URL, referer URL, etc.).
+
+    :param boolean enableFilter: **Required** If set to true, URL fragment identifier will be removed from tracked URLs.
+
+    Example of usage:
+
+    .. tabs::
+
+        .. group-tab:: Command queue
+
+            .. code-block:: javascript
+
+                _paq.push(["discardHashTag"]);
+
+        .. group-tab:: JavaScript Tracking Client object
+
+            .. code-block:: javascript
+
+                jstc.discardHashTag();
 
 .. _jtc-api-setDocumentTitle:
 
@@ -1979,11 +2722,37 @@ JavaScript Tracking Client configuration
         immediately after opening the page), page performance data will not be
         collected.
 
+.. function:: disablePerformanceTracking()
+
+    Disables sending page performance metrics for page views. Page performance metrics are enabled by default, but on
+    SPA pages they are correct only for the first page view. All following page views in SPA don't reload whole page so
+    in such cases it's better to disable page performance tracking to avoid reporting invalid loading times for such
+    pages.
+
+    Example of usage:
+
+    .. tabs::
+
+        .. group-tab:: Command queue
+
+            .. code-block:: javascript
+
+                _paq.push(["disablePerformanceTracking"]);
+
+        .. group-tab:: JavaScript Tracking Client object
+
+            .. code-block:: javascript
+
+                jstc.disablePerformanceTracking();
+
 .. _jtc-api-getTimingDataSamplingOnPageLoad:
 
 .. function:: getTimingDataSamplingOnPageLoad()
 
     Returns page performance sampling number.
+
+    :return: Percentage of page performance sampling (e.g. ``10``)
+    :rtype: number
 
     Example of usage:
 
@@ -2002,10 +2771,6 @@ JavaScript Tracking Client configuration
             .. code-block:: javascript
 
                 console.log(jstc.getTimingDataSamplingOnPageLoad());
-
-    Example output::
-
-        5
 
 .. _jtc-api-enableHeartBeatTimer:
 
@@ -2039,6 +2804,26 @@ JavaScript Tracking Client configuration
         and stops at 5 minutes. When a page looses focus, heartbeats will be
         paused until the focus is restored. The last heartbeat is sent 30
         minutes after the page view.
+
+.. function:: disableHeartBeatTimer()
+
+    Disables sending heartbeats if they were previously enabled by :func:`enableHeartBeatTimer`.
+
+    Example of usage:
+
+    .. tabs::
+
+        .. group-tab:: Command queue
+
+            .. code-block:: javascript
+
+                _paq.push(["disableHeartBeatTimer"]);
+
+        .. group-tab:: JavaScript Tracking Client object
+
+            .. code-block:: javascript
+
+                jstc.disableHeartBeatTimer();
 
 .. _jtc-api-setLinkTrackingTimer:
 
@@ -2084,7 +2869,9 @@ JavaScript Tracking Client configuration
 
 .. function:: getLinkTrackingTimer()
 
-    Returns lock/wait time after a request set by :ref:`setLinkTrackingTimer<jtc-api-setLinkTrackingTimer>`.
+    Returns page exit delay (in milliseconds). Default delay can be changed with :ref:`setLinkTrackingTimer<jtc-api-setLinkTrackingTimer>`.
+
+    :return: Page exit delay (e.g. ``500``)
 
     Example of usage:
 
@@ -2095,16 +2882,14 @@ JavaScript Tracking Client configuration
             .. code-block:: javascript
 
                 _paq.push([function () {
-                    var time = this.getLinkTrackingTimer();
-                    console.log(time);
+                    console.log(this.getLinkTrackingTimer());
                 }]);
 
         .. group-tab:: JavaScript Tracking Client object
 
             .. code-block:: javascript
 
-                var time = jstc.getLinkTrackingTimer();
-                console.log(time);
+                console.log(jstc.getLinkTrackingTimer());
 
 .. _jtc-api-setSiteInspectorSetup:
 
@@ -2340,7 +3125,8 @@ Miscellaneous
     Returns tracking source name and version that identifies the library sending tracking requests.
     The default tracking source is ``jstc`` and can be overwritten using :ref:`setTrackingSource<jtc-api-setTrackingSource>` function.
 
-    :returns: A tuple with tracking source name and version, e.g. ``["jstc", "2.3.1"]``
+    :returns: An array with tracking source name and version, e.g. ``["jstc", "2.3.1"]``
+    :rtype: array<string>
 
     Example of usage:
 
@@ -2388,3 +3174,233 @@ Miscellaneous
             .. code-block:: javascript
 
                 jstc.setTrackingSource("custom-source", "1.0.0");
+
+.. function:: setGenerationTimeMs(generationTime)
+
+    Overrides reported time needed to download current page (by default this value is fetched from DOM Timing API).
+
+    .. deprecated:: 16.17
+
+        Server generation time is phased out in favor of page performance metrics.
+
+    :param number generationTime: **Required** Time that server took to generate current page (in milliseconds).
+
+    Example of usage:
+
+    .. tabs::
+
+        .. group-tab:: Command queue
+
+            .. code-block:: javascript
+
+                _paq.push(["setGenerationTimeMs", 2546]);
+
+        .. group-tab:: JavaScript Tracking Client object
+
+            .. code-block:: javascript
+
+                jstc.setGenerationTimeMs(2546);
+
+.. function:: appendToTrackingUrl(appendToUrl)
+
+    Appends provided query string to each tracking request.
+
+    :param string appendToUrl: **Required** Custom query string that will be attached to each tracking request (e.g. ``"lat=140&long=100"``).
+        Parameter names and values should be already URL encoded.
+
+    Example of usage:
+
+    .. tabs::
+
+        .. group-tab:: Command queue
+
+            .. code-block:: javascript
+
+                _paq.push(["appendToTrackingUrl", "lat=140&long=100"]);
+
+        .. group-tab:: JavaScript Tracking Client object
+
+            .. code-block:: javascript
+
+                jstc.appendToTrackingUrl("lat=140&long=100");
+
+.. function:: setDoNotTrack(enable)
+
+    When enabled it will disable sending tracking requests.
+
+    .. deprecated:: 16.17
+
+        This mechanism is phased out in favor of anonymous tracking. You can check how to set it up
+        `here <https://piwik.pro/blog/how-to-do-useful-analytics-without-personal-data/>`_.
+
+    :param boolean enable: **Required** When set to true, no tracking tracking requests will be sent.
+
+    Example of usage:
+
+    .. tabs::
+
+        .. group-tab:: Command queue
+
+            .. code-block:: javascript
+
+                _paq.push(["setDoNotTrack", true]);
+
+        .. group-tab:: JavaScript Tracking Client object
+
+            .. code-block:: javascript
+
+                jstc.setDoNotTrack(true);
+
+.. function:: killFrame()
+
+    Checks if tracked page is displayed from inside of a `frame <https://en.wikipedia.org/wiki/Frame_(World_Wide_Web)>`_
+    and it'll replace browser URL with tracked page URL in such cases (displaying page inside a frame can be a phishing scam).
+
+    .. deprecated:: 16.17
+
+        It'll be removed in future versions since it falls outside of JSTC main use case (page tracking).
+
+    Example of usage:
+
+    .. tabs::
+
+        .. group-tab:: Command queue
+
+            .. code-block:: javascript
+
+                _paq.push(["killFrame"]);
+
+        .. group-tab:: JavaScript Tracking Client object
+
+            .. code-block:: javascript
+
+                jstc.killFrame();
+
+.. function:: redirectFile(url)
+
+    Checks if tracked page is displayed from a local file (URL displayed by browser starts with ``file:///``) and
+    replaces browser URL with provided URL in such cases.
+
+    .. deprecated:: 16.17
+
+        It'll be removed in future versions since it falls outside of JSTC main use case (page tracking).
+
+    :param string url: **Required** URL that should be loaded.
+
+    Example of usage:
+
+    .. tabs::
+
+        .. group-tab:: Command queue
+
+            .. code-block:: javascript
+
+                _paq.push(["redirectFile"]);
+
+        .. group-tab:: JavaScript Tracking Client object
+
+            .. code-block:: javascript
+
+                jstc.redirectFile();
+
+.. function:: getNumTrackedPageViews()
+
+    Returns a number of page views tracked so far without loading new page. Traditional sites will always show ``1``
+    so it's mostly useful on SPA pages that use :func:`trackPageView` without loading a new page.
+
+    :return: Number of page views tracked so far without loading new page
+    :rtype: number
+
+    Example of usage:
+
+    .. tabs::
+
+        .. group-tab:: Command queue
+
+            .. code-block:: javascript
+
+                _paq.push([function() {
+                    console.log(this.getNumTrackedPageViews());
+                }]);
+
+        .. group-tab:: JavaScript Tracking Client object
+
+            .. code-block:: javascript
+
+                console.log(jstc.getNumTrackedPageViews());
+
+.. function:: getConfigIdPageView()
+
+    Returns current page view ID. This value is generated with each use of :func:`trackPageView`. If new value is
+    different ten last value, then JSTC is currently tracking a new page.
+
+    :return: Page view ID (e.g. ``"abCdE1"``)
+    :rtype: number
+
+    Example of usage:
+
+    .. tabs::
+
+        .. group-tab:: Command queue
+
+            .. code-block:: javascript
+
+                _paq.push([function() {
+                    console.log(this.getConfigIdPageView());
+                }]);
+
+        .. group-tab:: JavaScript Tracking Client object
+
+            .. code-block:: javascript
+
+                console.log(jstc.getConfigIdPageView());
+
+.. function:: trackHeartBeat()
+
+    Sends heartbeat event manually. This heartbeat event will follow rules that are used in other heartbeat events
+    (e.g. it'll be sent only if tracked page has focus).
+
+    .. deprecated:: 16.17
+
+        It was used to sent event that would extend visitor session but internal rules on when heartbeat could be sent
+        could cause confusion when event was or wasn't sent. Since introduction of the :func:`ping` method, you should
+        use that instead.
+
+    Example of usage:
+
+    .. tabs::
+
+        .. group-tab:: Command queue
+
+            .. code-block:: javascript
+
+                _paq.push(["trackHeartBeat"]);
+
+        .. group-tab:: JavaScript Tracking Client object
+
+            .. code-block:: javascript
+
+                this.trackHeartBeat();
+
+.. function:: setCountPreRendered(enable)
+
+    Sets prerender event sending policy. If enabled, the `prerender <https://developer.mozilla.org/en-US/docs/Glossary/prerender>`_
+    will send events immediately. Otherwise sending events will be delayed until the page will be displayed to the viewer.
+
+    :param boolean enable: **Required** Prerender event sending policy (e.g. ``true``)
+
+    Example of usage:
+
+    .. tabs::
+
+        .. group-tab:: Command queue
+
+            .. code-block:: javascript
+
+                _paq.push(["setCountPreRendered", true]);
+
+        .. group-tab:: JavaScript Tracking Client object
+
+            .. code-block:: javascript
+
+                jstc.setCountPreRendered(true);
