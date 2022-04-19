@@ -65,7 +65,8 @@ or :ref:`Piwik.getAsyncTracker<jtc-api-Piwik.getAsyncTracker>` function.
 
     :param string trackerUrl: **Required** URL for JavaScript Tracking Client
     :param string siteId: **Required** Site ID that will be linked to tracked data.
-    :returns: JavaScript Tracking Client object
+    :returns: JavaScript Tracking Client instance
+    :rtype: object
 
     Example of usage (accessing JavaScript Tracking Client object and tracking a custom event)::
 
@@ -84,6 +85,7 @@ the ``Piwik.getAsyncTracker``.
     :param string trackerUrl: **Required** URL for JavaScript Tracking Client
     :param string siteId: **Required** Site ID that will be linked to tracked data.
     :returns: JavaScript Tracking Client instance
+    :rtype: object
 
     Example of usage (accessing JavaScript Tracking Client object and tracking a custom event)::
 
@@ -634,8 +636,8 @@ Custom Variables
     :param number index: **Required** Number from 1 to 5 where variable is stored
     :param string scope: **Optional** Scope of the variable, ``"visit"`` or ``"page"``. The default value is ``"visit"``.
 
-    :rtype:  Array[string, string]|boolean
     :returns: Custom variable value as an array with name and value if the custom variable exists (e.g. ``["theme", "dark-01"]``) or ``false`` if it doesn't.
+    :rtype:  Array[string, string]|boolean
 
     Example of usage:
 
@@ -772,7 +774,7 @@ Custom Dimensions
 
             .. code-block:: javascript
 
-                console.log(this.getCustomDimensionValue(3));
+                console.log(jstc.getCustomDimensionValue(3));
 
 .. _jtc-api-setCustomDimension:
 
@@ -1504,7 +1506,7 @@ User management
 
             .. code-block:: javascript
 
-                jstc.getUserId();
+                console.log(jstc.getUserId());
 
 .. _jtc-api-resetUserId:
 
@@ -2332,8 +2334,8 @@ JavaScript Tracking Client configuration
 
     :param string trackerUrl: **Required** URL for JavaScript Tracking Client
     :param string siteId: **Required** Site ID that will be linked to tracked data.
-    :return: Created JavaScript Tracking Client instance
-    :rtype: JSTC object
+    :return: JavaScript Tracking Client instance
+    :rtype: object
 
     Example of usage:
 
@@ -2872,6 +2874,7 @@ JavaScript Tracking Client configuration
     Returns page exit delay (in milliseconds). Default delay can be changed with :ref:`setLinkTrackingTimer<jtc-api-setLinkTrackingTimer>`.
 
     :return: Page exit delay (e.g. ``500``)
+    :rtype: number
 
     Example of usage:
 
