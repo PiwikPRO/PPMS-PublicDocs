@@ -637,7 +637,7 @@ Custom Variables
     :param string scope: **Optional** Scope of the variable, ``"visit"`` or ``"page"``. The default value is ``"visit"``.
 
     :returns: Custom variable value as an array with name and value if the custom variable exists (e.g. ``["theme", "dark-01"]``) or ``false`` if it doesn't.
-    :rtype:  Array[string, string]|boolean
+    :rtype:  string[]|boolean
 
     Example of usage:
 
@@ -1431,7 +1431,7 @@ Download and Outlink
     Returns current download extensions list used by the JSTC.
 
     :return: List of download extensions (e.g.``["mhj", "docx"]``).
-    :rtype: array<string>
+    :rtype: string[]
 
     Example of usage:
 
@@ -1637,7 +1637,7 @@ User management
 
     Returns visitor information.
 
-    :rtype: Array<string>
+    :rtype: string[]
     :returns: String array with the following visitor info:
 
         0. new visitor flag indicating new (``"1"``) or returning (``"0"``) visitor
@@ -1824,19 +1824,19 @@ Cookie management
 
             .. code-block:: javascript
 
-                _paq.push(["setCookieDomain", "*.example.com"]);
+                _paq.push(["setCookieDomain", ".example.com"]);
 
         .. group-tab:: JavaScript Tracking Client object
 
             .. code-block:: javascript
 
-                jstc.setCookieDomain("*.example.com");
+                jstc.setCookieDomain(".example.com");
 
 .. function:: getCookieDomain()
 
     Returns domain of the analytics tracking cookies (set with :func:`setCookieDomain`).
 
-    :return: Domain of the analytics tracking cookies (e.g. ``"*.example.com"``)
+    :return: Domain of the analytics tracking cookies (e.g. ``".example.com"``)
     :rtype: string
 
     Example of usage:
@@ -2518,7 +2518,7 @@ JavaScript Tracking Client configuration
     for determining whether a link is an outlink and in :ref:`cross domain linking<jtc-api-cross-domain-linking>`
     for determining which links should have visitor ID parameter injected.
 
-    :param Array<string> domains: **Required** A list of internal domains. Domains can contain wildcards: ``"*"``.
+    :param Array<string> domains: **Required** A list of internal domains. Domains can contain wildcard character (``"*"``) or leading dot.
 
     Example of usage:
 
@@ -2528,20 +2528,20 @@ JavaScript Tracking Client configuration
 
             .. code-block:: javascript
 
-                _paq.push(["setDomains", ["*.example.com", "*.example.co.uk"]]);
+                _paq.push(["setDomains", [".example.com", ".example.co.uk"]]);
 
         .. group-tab:: JavaScript Tracking Client object
 
             .. code-block:: javascript
 
-                jstc.setDomains(["*.example.com", "*.example.co.uk"]);
+                jstc.setDomains([".example.com", ".example.co.uk"]);
 
 .. function:: getDomains()
 
     Returns list of internal domains (set with :func:`setDomains` and used in :ref:`outlink tracking<jtc-api-download-and-outlink>`).
 
-    :return: List of internal domains (e.g. ``["*.example.com", "*.example.co.uk"]``
-    :rtype: Array<string>
+    :return: List of internal domains (e.g. ``[".example.com", ".example.co.uk"]``
+    :rtype: string[]
 
     Example of usage:
 
@@ -2645,13 +2645,13 @@ JavaScript Tracking Client configuration
 
             .. code-block:: javascript
 
-                _paq.push(["discardHashTag"]);
+                _paq.push(["discardHashTag", true]);
 
         .. group-tab:: JavaScript Tracking Client object
 
             .. code-block:: javascript
 
-                jstc.discardHashTag();
+                jstc.discardHashTag(true);
 
 .. _jtc-api-setDocumentTitle:
 
@@ -3129,7 +3129,7 @@ Miscellaneous
     The default tracking source is ``jstc`` and can be overwritten using :ref:`setTrackingSource<jtc-api-setTrackingSource>` function.
 
     :returns: An array with tracking source name and version, e.g. ``["jstc", "2.3.1"]``
-    :rtype: array<string>
+    :rtype: string[]
 
     Example of usage:
 
@@ -3338,7 +3338,7 @@ Miscellaneous
     different ten last value, then JSTC is currently tracking a new page.
 
     :return: Page view ID (e.g. ``"abCdE1"``)
-    :rtype: number
+    :rtype: string
 
     Example of usage:
 
