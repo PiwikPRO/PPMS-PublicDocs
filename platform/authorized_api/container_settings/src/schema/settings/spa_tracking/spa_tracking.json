@@ -1,0 +1,20 @@
+{
+    "definitions": {
+        "spa_tracking_id": {
+            "description": "Container setting name",
+            "type": "string",
+            "enum": ["spa_tracking"]
+        },
+        "spa_tracking_value": {
+            "type": "object",
+            "description": "SPA tracking setting value",
+            "properties": {
+                "is_enabled": {
+                    "type": "boolean",
+                    "description": "It determines if the setting is enabled"
+                }
+            },
+            "required": ["is_enabled"]
+        }
+    }
+}

@@ -6,6 +6,9 @@
             "oneOf": [
                 {
                     "$ref": "../settings/automatic_scroll_tracking/automatic_scroll_tracking_app_response_schema.json"
+                },
+                {
+                    "$ref": "../settings/spa_tracking/spa_tracking_app_response_schema.json"
                 }
             ]
         }
