@@ -2407,12 +2407,11 @@ JavaScript Tracking Client configuration
 .. function:: setApiUrl(url)
 
     Overrides HTTP API URL for tracking endpoint that was set at the tracker initiation.
-    Usually there is no need to use this function since standard setup should use correct URL.
+    It's outdated function since standard setup should use correct URL.
 
     .. deprecated:: 16.17
 
-        Use :func:`setTrackerUrl` instead. Previously this method was useful when "Overlay" report didn't work, but that
-        report was removed some time ago.
+        This method is outdated, use :func:`setTrackerUrl` instead.
 
     :param string url: **Required** Path to HTTP API URL (e.g. "https://example.piwik.pro")
 
@@ -2442,8 +2441,7 @@ JavaScript Tracking Client configuration
 
     .. deprecated:: 16.17
 
-        Use :func:`getTrackerUrl` instead. This getter returns URL used for "Overlay" report, but that report was
-        removed some time ago.
+        This method is outdated, use :func:`getTrackerUrl` instead.
 
     Example of usage:
 
