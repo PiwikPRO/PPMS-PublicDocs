@@ -2407,7 +2407,7 @@ JavaScript Tracking Client configuration
 .. function:: setApiUrl(url)
 
     Overrides HTTP API URL for tracking endpoint that was set at the tracker initiation.
-    It's outdated function since standard setup should use correct URL.
+    The use of this function is discouraged, as JavaScript Tracking Client should select the correct URL.
 
     .. deprecated:: 16.17
 
