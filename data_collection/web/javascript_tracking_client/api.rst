@@ -2404,7 +2404,7 @@ JavaScript Tracking Client configuration
     :return: Currently used Piwik tracking URL (e.g. ``"https://example.piwik.pro/"``)
     :rtype: string
 
-.. function:: setApiUrl(url)
+.. function:: setAPIUrl(url)
 
     Overrides HTTP API URL for tracking endpoint that was set at the tracker initiation.
     It's outdated function since standard setup should use correct URL.
@@ -2423,18 +2423,18 @@ JavaScript Tracking Client configuration
 
             .. code-block:: javascript
 
-                _paq.push(["setApiUrl", "https://example.piwik.pro/piwik.php"]);
+                _paq.push(["setAPIUrl", "https://example.piwik.pro/piwik.php"]);
 
         .. group-tab:: JavaScript Tracking Client object
 
             .. code-block:: javascript
 
-                jstc.setApiUrl("https://example.piwik.pro/piwik.php");
+                jstc.setAPIUrl("https://example.piwik.pro/piwik.php");
 
 .. function:: getPiwikUrl()
 
     Returns the HTTP API URL used by tracker (either default, set during tracker initiation or override value set with
-    :func:`setApiUrl`).
+    :func:`setAPIUrl`).
 
     :return: Currently used HTTP API URL (e.g. ``"https://example.piwik.pro/piwik.php"``)
     :rtype: string
