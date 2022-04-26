@@ -1,0 +1,22 @@
+{
+    "links": {
+        "self": "/api/container-settings/v1/app/1ec83458-1e3c-6bf4-8a9e-0242b03927ed/settings?page[offset]=0&page[limit]=100",
+        "first": "/api/container-settings/v1/app/1ec83458-1e3c-6bf4-8a9e-0242b03927ed/settings?page[offset]=0&page[limit]=100",
+        "last": "/api/container-settings/v1/app/1ec83458-1e3c-6bf4-8a9e-0242b03927ed/settings?page[offset]=0&page[limit]=100",
+        "prev": null,
+        "next": null
+    },
+    "data": [
+        {
+            "type": "container/app/setting",
+            "id": "automatic_scroll_tracking",
+            "attributes": {
+                "value": {
+                    "is_enabled": true,
+                    "thresholds": [5, 50, 95]
+                },
+                "is_custom": false
+            }
+        }
+    ]
+}

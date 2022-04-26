@@ -1,0 +1,27 @@
+{
+    "definitions": {
+        "setting_value": {
+            "description": "Container setting value",
+            "type": "string",
+            "example": "test.example.org"
+        },
+        "is_custom": {
+            "description": "Flag informing, that setting is a custom App setting",
+            "type": "boolean"
+        },
+        "app_container_setting_resource_type": {
+            "description": "Container setting for App resource type",
+            "type": "string",
+            "enum": [
+                "container/app/setting"
+            ]
+        },
+        "organization_container_setting_resource_type": {
+            "description": "Container setting for organization resource type",
+            "type": "string",
+            "enum": [
+                "container/organization/setting"
+            ]
+        }
+    }
+}

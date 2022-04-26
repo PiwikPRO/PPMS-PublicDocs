@@ -1,0 +1,20 @@
+{
+    "description": "Organization's container settings response",
+    "type": "object",
+    "properties": {
+        "data": {
+            "title": "List of container settings for organization",
+            "type": "array",
+            "items": {
+                "oneOf": [
+                    {
+                        "$ref": "../settings/automatic_scroll_tracking/automatic_scroll_tracking_organization_response_schema.json"
+                    }
+                ]
+            }
+        }
+    },
+    "required": [
+        "data"
+    ]
+}

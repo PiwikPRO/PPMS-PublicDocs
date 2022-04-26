@@ -1,0 +1,8 @@
+{
+    "errors": [
+        {
+            "code": "UNAUTHORIZED_ERROR",
+            "detail": "Access token not authorized"
+        }
+    ]
+}
