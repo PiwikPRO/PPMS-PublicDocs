@@ -36,10 +36,6 @@ Sample command:
 
 There are many other options that can be added to this script, which are described in the :ref:`Tracker-log-import-add-parameters-to-log-import`.
 
-Once the log importer tool finishes parsing and uploading logs to your Piwik instance, you will have to wait for the archiving process to populate the Piwik reports with new data.
-
-The time needed for this process depends on the amount of the data you’ve uploaded and in rare cases may even take a couple of days (for example, uploading years of historical data), but usually it is a matter of around an hour.
-
 If you plan to import logs on a regular basis it is advised to setup a scheduled job using a tool such as CRON.
 
 Exclude log lines
@@ -88,29 +84,6 @@ To avoid double counts of visits, follow these steps:
 #. Create a new website in Piwik PRO with a name, for example, example.com (log files).
 #. Record the website ID of this new website. The website ID will be used for importing log file data.
 #. In the command line, force all requests from log files to be recorded in a specific website ID via the command --idsite=X.
-
-Reprocess reports after the log import
---------------------------------------
-
-.. note::
-
-    Information in this section doesn't apply to Piwik PRO cloud, only to the on-premises Piwik PRO web analytics stack.
-
-Your first run of Log Analytics will potentially import a very large amount of historical data, even months or years worth.
-
-After this first process is completed, run this command to archive all historical reporting data:
-
-.. code-block:: bash
-
-    ./console core:archive --force-all-websites --force-all-periods=31557600 --force-date-last-n=1000 --piwik-domain=demo.piwik.pro
-
-Next, place the following command into a cron to process archives of logs imported at hourly or daily intervals:
-
-.. code-block:: bash
-
-    ./console core:archive --piwik-domain=demo.piwik.pro
-
-If you are planning to process a very large volume of initial data in your first run, please contact us at support@piwik.pro for help.
 
 Technical requirements
 ----------------------
