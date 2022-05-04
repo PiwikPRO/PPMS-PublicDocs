@@ -1,6 +1,6 @@
 openapi: 3.0.3
 info:
-  title: Collecting & Processing Pipeline Settings API
+  title: Tracker settings API
   version: auto
 servers:
   - url: https://example.piwik.pro
@@ -240,7 +240,7 @@ components:
               errors:
               - status: '404'
                 code: error.resource-not-found
-                title: 'App with given url ''http\://example.com'' doesn''t exist'
+                title: 'App with given url ''http://example.com'' doesn''t exist'
   schemas:
     TrackerAppSettings:
       type: object
