@@ -25,11 +25,14 @@ paths:
                 type: object
                 required:
                   - data
+                  - meta
                 properties:
                   data:
                     type: array
                     items:
                       $ref: "#/components/schemas/Entry"
+                  meta:
+                    $ref: "#/components/schemas/Meta"
             text/csv:
               example: |
                 author_email,author_id,created_at,id,ip,payload,subject_id,type,version
