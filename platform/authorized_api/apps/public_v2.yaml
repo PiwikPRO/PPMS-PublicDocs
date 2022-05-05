@@ -149,7 +149,7 @@ components:
       type: string
       description: App type
       example: web
-      enum: [ web, sharepoint ]
+      enum: [ web, sharepoint, demo ]
       default: web
     JsonApi_Id:
       type: string
