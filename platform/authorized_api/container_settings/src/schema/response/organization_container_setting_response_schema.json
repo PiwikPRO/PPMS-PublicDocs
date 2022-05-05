@@ -1,0 +1,16 @@
+{
+    "description": "Organization's container setting response",
+    "type": "object",
+    "properties": {
+        "data": {
+            "oneOf": [
+                {
+                    "$ref": "../settings/automatic_scroll_tracking/automatic_scroll_tracking_organization_response_schema.json"
+                }
+            ]
+        }
+    },
+    "required": [
+        "data"
+    ]
+}

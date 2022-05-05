@@ -1,0 +1,199 @@
+openapi: '3.0.0'
+info:
+    title: Container Settings API
+    version: '1.0'
+
+security:
+    - BearerAuth: []
+
+servers:
+    - url: https://example.piwik.pro
+
+paths:
+    /api/container-settings/v1/app/{app_id}/settings:
+        parameters:
+            - $ref : 'schema/common_request_parameters.json#/components/parameters/app_id'
+        get:
+            summary: Get App's container settings
+            responses:
+                '200':
+                    description: OK
+                    content:
+                        application/vnd.api+json:
+                            schema:
+                                $ref: 'schema/response/app_container_settings_list_response_schema.json'
+                            example:
+                                $ref: 'example/app_container_settings_list_response_example.json'
+                '400':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/bad_request_uri_parameter'
+                '401':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/unauthorized'
+                '404':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/not_found'
+                '500':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/internal_server_error'
+        patch:
+            summary: Modify App's container settings
+            requestBody:
+                required: true
+                content:
+                    application/vnd.api+json:
+                        schema:
+                            $ref: 'schema/request/app_container_settings_edit_request_schema.json'
+                        example:
+                            $ref: 'example/app_container_settings_edit_request_example.json'
+            responses:
+                '204':
+                    description: No content
+                '400':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/bad_request_uri_parameter'
+                '401':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/unauthorized'
+                '404':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/not_found'
+                '500':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/internal_server_error'
+    /api/container-settings/v1/app/{app_id}/settings/{setting_name}:
+        parameters:
+            - $ref : 'schema/common_request_parameters.json#/components/parameters/app_id'
+            - $ref : 'schema/common_request_parameters.json#/components/parameters/setting_name'
+        get:
+            summary: Get the App's container setting
+            responses:
+                '200':
+                    description: OK
+                    content:
+                        application/vnd.api+json:
+                            schema:
+                                $ref: 'schema/response/app_container_setting_response_schema.json'
+                            example:
+                                $ref: 'example/app_container_setting_response_example.json'
+                '400':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/bad_request_uri_parameter'
+                '401':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/unauthorized'
+                '404':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/not_found'
+                '500':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/internal_server_error'
+        delete:
+            summary: Remove the App's container setting
+            responses:
+                '204':
+                    description: No content
+                '400':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/bad_request_uri_parameter'
+                '401':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/unauthorized'
+                '404':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/not_found'
+                '500':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/internal_server_error'
+        put:
+            summary: Modify App's container setting
+            requestBody:
+                required: true
+                content:
+                    application/vnd.api+json:
+                        schema:
+                            $ref: 'schema/request/app_container_setting_edit_request_schema.json'
+                        example:
+                            $ref: 'example/app_container_setting_edit_request_example.json'
+            responses:
+                '204':
+                    description: No content
+                '400':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/bad_request_uri_parameter'
+                '401':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/unauthorized'
+                '404':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/not_found'
+                '500':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/internal_server_error'
+    /api/container-settings/v1/organization/{organization}/settings:
+        parameters:
+            - $ref : 'schema/common_request_parameters.json#/components/parameters/organization'
+        get:
+            summary: Get list of organization's container settings
+            responses:
+                '200':
+                    description: OK
+                    content:
+                        application/vnd.api+json:
+                            schema:
+                                $ref: 'schema/response/organization_container_settings_list_response_schema.json'
+                            example:
+                                $ref: 'example/organization_container_settings_list_response_example.json'
+                '400':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/bad_request_uri_parameter'
+                '401':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/unauthorized'
+                '404':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/not_found'
+                '500':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/internal_server_error'
+        patch:
+            summary: Modify Organization's container settings
+            requestBody:
+                required: true
+                content:
+                    application/vnd.api+json:
+                        schema:
+                            $ref: 'schema/request/organization_container_settings_edit_request_schema.json'
+                        example:
+                            $ref: 'example/organization_container_settings_edit_request_example.json'
+            responses:
+                '204':
+                    description: No content
+                '400':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/bad_request_uri_parameter'
+                '401':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/unauthorized'
+                '404':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/not_found'
+                '500':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/internal_server_error'
+    /api/container-settings/v1/organization/{organization}/settings/{setting_name}:
+        parameters:
+            - $ref : 'schema/common_request_parameters.json#/components/parameters/organization'
+            - $ref : 'schema/common_request_parameters.json#/components/parameters/setting_name'
+        get:
+            summary: Fetch organization's container setting
+            responses:
+                '200':
+                    description: OK
+                    content:
+                        application/vnd.api+json:
+                            schema:
+                                $ref: 'schema/response/organization_container_setting_response_schema.json'
+                            example:
+                                $ref: 'example/organization_container_setting_response_example.json'
+                '400':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/bad_request_uri_parameter'
+                '401':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/unauthorized'
+                '404':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/not_found'
+                '500':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/internal_server_error'
+        put:
+            summary: Modify organization\'s container setting
+            requestBody:
+                required: true
+                content:
+                    application/vnd.api+json:
+                        schema:
+                            $ref: 'schema/request/organization_container_setting_edit_request_schema.json'
+                        example:
+                            $ref: 'example/organization_container_setting_edit_request_example.json'
+            responses:
+                '204':
+                    description: No content
+                '400':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/bad_request_uri_parameter'
+                '401':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/unauthorized'
+                '404':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/not_found'
+                '500':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/internal_server_error'

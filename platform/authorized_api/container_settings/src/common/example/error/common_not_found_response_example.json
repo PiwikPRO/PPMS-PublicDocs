@@ -1,0 +1,11 @@
+{
+    "errors": [
+        {
+            "code": "NOT_FOUND_ERROR",
+            "detail": "There is no application with given identifier: 5c39070d-9e0b-40a2-ae56-392f05711f74",
+            "source": {
+                "parameter": "app_id"
+            }
+        }
+    ]
+}

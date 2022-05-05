@@ -1,0 +1,11 @@
+{
+    "errors": [
+        {
+            "code": "INVALID_URI_PARAMETER_ERROR",
+            "detail": "Application identifier should be of type UUID",
+            "source": {
+                "parameter": "app_id"
+            }
+        }
+    ]
+}
