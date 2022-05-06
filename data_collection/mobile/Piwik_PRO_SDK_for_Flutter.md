@@ -38,7 +38,7 @@ import 'package:flutter_piwikpro/flutter_piwikpro.dart';
 You'll need to configure the tracker before using any other methods - for that you will need the base URL address of your tracking server and website ID (you can find it in Administration > Websites & apps > Installation on the web interface).
 
 ```dart
-await FlutterPiwikPro.sharedInstance.configureTracker(baseURL: '01234567-89ab-cdef-0123-456789abcdef', siteId: 'https://your.piwik.pro.server.com');
+await FlutterPiwikPro.sharedInstance.configureTracker(baseURL: 'https://your.piwik.pro.server.com', siteId: '01234567-89ab-cdef-0123-456789abcdef');
 ```
 
 ##### iOS and Android parameters:
