@@ -17,7 +17,10 @@ To enable collecting data from your PWAs using Piwik PRO Analytics, call the ini
 ```javascript
 import PiwikPro from '@piwikpro/pwa-piwik-pro';
 
-PiwikPro.initialize();
+PiwikPro.initialize({
+    containerURL: 'example.com',
+    containerId: '12345678-1234-1234-1234-1234567890ab'
+});
 ```
 
 This is all that's required to queue and retry failed requests to Piwik PRO, and it's the simplest way to get Piwik PRO working offline.
@@ -25,6 +28,8 @@ This is all that's required to queue and retry failed requests to Piwik PRO, and
 However, if using only the code above, the retried requests are indistinguishable from requests that succeed on the first try. This means you'll receive all the interaction data from offline users, but you won't be able to tell which interactions occurred while the user was offline.
 
 To address this concern, you can use one of the optional methods described below.
+
+
 
 ## Enable automatic tracking of the status of the user's Internet connection
 
