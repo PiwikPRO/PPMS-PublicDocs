@@ -43,7 +43,10 @@ paths:
         - name: url
           in: query
           description: |
-            **Recommended** URL of event.
+            **Recommended** URL of an event.
+
+            *IMPORTANT*: URL/URI has to have authority or `mailto` scheme.
+            You can lean more about authority and scheme [here](https://en.wikipedia.org/wiki/Uniform_Resource_Identifier#Example_URIs).
           schema:
             type: string
             format: URL
@@ -85,6 +88,9 @@ paths:
             HTTP referrer.
 
             The URL of the previous page that linked to current one.
+
+            *IMPORTANT*: URL/URI has to have authority or `mailto` scheme.
+            You can lean more about authority and scheme [here](https://en.wikipedia.org/wiki/Uniform_Resource_Identifier#Example_URIs).
           schema:
             type: string
             format: URL
@@ -250,7 +256,11 @@ paths:
           example: blue
         - name: link
           in: query
-          description: External URL opened by the Visitor. It is recommended to set ``url`` parameter to same value.
+          description: |
+            External URL opened by the Visitor. It is recommended to set ``url`` parameter to same value.
+            
+            *IMPORTANT*: URL/URI has to have authority or `mailto` scheme.
+            You can lean more about authority and scheme [here](https://en.wikipedia.org/wiki/Uniform_Resource_Identifier#Example_URIs).
           schema:
             type: string
             format: URL
@@ -258,7 +268,11 @@ paths:
         - name: download
           in: query
           #TODO: Should we recommend setting url parameter to same value?
-          description: URL of downloaded file.
+          description: |
+            URL of downloaded file.
+
+            *IMPORTANT*: URL/URI has to have authority or `mailto` scheme.
+            You can lean more about authority and scheme [here](https://en.wikipedia.org/wiki/Uniform_Resource_Identifier#Example_URIs).
           schema:
             type: string
             format: URL
