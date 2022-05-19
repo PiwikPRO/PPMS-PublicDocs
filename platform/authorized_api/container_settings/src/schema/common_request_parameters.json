@@ -17,9 +17,9 @@
                 "required": true,
                 "description": "Container setting name",
                 "schema": {
-                    "$ref": "../common/schema/common_types.json#/definitions/name"
-                },
-                "example": "automatic_scroll_tracking"
+                    "type": "string",
+                    "enum": ["automatic_scroll_tracking", "spa_tracking"]
+                }
             },
             "organization": {
                 "in": "path",

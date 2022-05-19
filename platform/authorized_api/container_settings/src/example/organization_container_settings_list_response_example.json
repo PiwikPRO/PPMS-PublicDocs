@@ -16,6 +16,15 @@
                     "thresholds": [5, 50, 95]
                 }
             }
+        },
+        {
+            "type": "container/organization/setting",
+            "id": "spa_tracking",
+            "attributes": {
+                "value": {
+                    "is_enabled": true
+                }
+            }
         }
     ]
 }

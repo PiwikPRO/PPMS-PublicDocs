@@ -17,6 +17,16 @@
                 },
                 "is_custom": false
             }
+        },
+        {
+            "type": "container/app/setting",
+            "id": "spa_tracking",
+            "attributes": {
+                "value": {
+                    "is_enabled": true
+                },
+                "is_custom": true
+            }
         }
     ]
 }

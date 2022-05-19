@@ -1,0 +1,13 @@
+{
+    "description": "Edit SPA tracking request for App",
+    "type": "object",
+    "properties": {
+        "data": {
+            "$ref": "./spa_tracking_app_request_schema.json"
+        }
+    },
+    "additionalProperties": false,
+    "required": [
+        "data"
+    ]
+}
