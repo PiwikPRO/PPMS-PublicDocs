@@ -51,7 +51,7 @@ Then the `ping` parameter is analyzed. Depending on it's value one of the follow
 - value of `5` results in `PagePerformance` ping type
 - value of `6` results in `CustomPing` ping type
 
-Values outside of that range will cause an error which results in broken event.
+Values outside of that range will cause an error which results in BrokenEvent.
 
 Download
 ~~~~~~~~~~~~~~~~~~
@@ -142,6 +142,7 @@ Excluded Event
 
 There are several ways of excluding an event (e.g. by blacklisting source IP or User-Agent header matching).
 If an event matches given criteria it will be excluded from the reports but is still tracked and receives `ExcludedEvent` type.
+If you experien any report abnormalities you may check Tracker Debugger if any of the legitimate traffic is not excluded by mistake.
 
 Broken Event
 ~~~~~~~~~~~~~~~~~~
