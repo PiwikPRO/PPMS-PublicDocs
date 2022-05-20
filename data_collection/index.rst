@@ -10,3 +10,4 @@ Data Collection
   mobile/index.rst
   api/index.rst
   other_integrations/index.rst
+  processing/index.rst
