@@ -1,530 +1,595 @@
-swagger: '2.0'
+openapi: 3.0.3
 info:
-  title: Users Api
   version: auto
-
-host: example.piwik.pro
-schemes: [ https ]
-
+  title: Users API
+servers:
+  - url: https://example.piwik.pro
 paths:
   /api/users/v2/invite:
     post:
       summary: Invite user
       operationId: api_users_invited_v2
-      produces:
-        - application/vnd.api+json
-      parameters:
-        - in: body
-          name: user data
-          required: true
-          schema:
-            $ref: '#/definitions/JsonApi_User_Invite'
+      requestBody:
+        content:
+          application/vnd.api+json:
+            schema:
+              $ref: '#/components/schemas/JsonApi_User_Invite'
       responses:
         201:
           description: Created
-          schema:
-            type: object
-            properties:
-              data:
+          content:
+            application/vnd.api+json:
+              schema:
                 type: object
                 properties:
-                  id:
-                    $ref: '#/definitions/JsonApi_Id'
-                  type:
-                    $ref: '#/definitions/JsonApi_Type'
-                  attributes:
+                  data:
                     type: object
                     properties:
-                      email:
-                        $ref: '#/definitions/User_Email'
-                      role:
-                        $ref: '#/definitions/User_Role'
-                      addedAt:
-                        $ref: '#/definitions/Date'
-                      language:
-                        $ref: '#/definitions/Language'
+                      id:
+                        $ref: '#/components/schemas/JsonApi_Id'
+                      type:
+                        $ref: '#/components/schemas/JsonApi_Type'
+                      attributes:
+                        type: object
+                        properties:
+                          email:
+                            $ref: '#/components/schemas/User_Email'
+                          role:
+                            $ref: '#/components/schemas/User_Role'
+                          addedAt:
+                            $ref: '#/components/schemas/Date'
+                          language:
+                            $ref: '#/components/schemas/Language'
         400:
-          $ref: '#/responses/Bad_Request'
+          $ref: '#/components/schemas/Bad_Request'
         403:
-          $ref: '#/responses/Forbidden'
+          $ref: '#/components/schemas/Forbidden'
   /api/users/v2:
     post:
       summary: Create user
       operationId: api_users_add_v2
-      produces:
-        - application/vnd.api+json
-      parameters:
-        - in: body
-          name: user data
-          required: true
-          schema:
-            $ref: '#/definitions/JsonApi_User_Create'
+      requestBody:
+        content:
+          application/vnd.api+json:
+            schema:
+              $ref: '#/components/schemas/JsonApi_User_Create'
       responses:
         201:
           description: Created
-          schema:
-            $ref: '#/definitions/JsonApi_User_Object'
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/JsonApi_User_Object'
         400:
-          $ref: '#/responses/Bad_Request'
+          description: Bad Request
+          content:
+            application/vnd.api+json:
+              schema:
+                allOf:
+                  - $ref: "#/components/schemas/ErrorObject"
+              examples:
+                Required characters missing in password:
+                  value:
+                    errors:
+                      - status: '400'
+                        title: Invalid form
+                        detail: Password is invalid. It must contain at least one numeric digit, one uppercase, and one lowercase letter
+                        code: users.error.invalid-new-password
+                        source:
+                          pointer: /password
         403:
-          $ref: '#/responses/Forbidden'
+          $ref: '#/components/schemas/Forbidden'
     get:
       summary: Get users list
       operationId: api_users_list_v2
       parameters:
-        - $ref: '#/parameters/Offset'
-        - $ref: '#/parameters/Limit'
-        - $ref: '#/parameters/search_query'
-        - $ref: '#/parameters/sort'
-        - $ref: '#/parameters/search'
-      produces:
-        - application/vnd.api+json
+        - $ref: '#/components/parameters/Offset'
+        - $ref: '#/components/parameters/Limit'
+        - $ref: '#/components/parameters/search_query'
+        - $ref: '#/components/parameters/sort'
+        - $ref: '#/components/parameters/search'
       responses:
         200:
           description: OK
-          schema:
-            type: object
-            properties:
-              meta:
-                $ref: '#/definitions/ListMetadata'
-              data:
-                type: array
-                items:
-                  $ref: '#/definitions/JsonApi_User'
+          content:
+            application/vnd.api+json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/ListMetadata'
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/JsonApi_User'
 
   /api/users/v2/{userId}:
-    parameters:
-      - name: userId
-        in: path
-        type: string
-        format: uuid
-        required: true
-
     get:
       summary: Get details of an user
       operationId: api_users_user_details_v2
-      produces:
-        - application/vnd.api+json
+      parameters:
+        - in: path
+          name: userId
+          required: true
+          schema:
+            type: string
+            format: uuid
       responses:
         200:
           description: OK
-          schema:
-            $ref: '#/definitions/JsonApi_User_Object'
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/JsonApi_User_Object'
 
     delete:
       summary: Delete user
       operationId: api_users_delete_v2
       responses:
         204:
-          $ref: '#/responses/No_Content'
+          $ref: '#/components/schemas/No_Content'
         400:
-          $ref: '#/responses/Bad_Request'
+          $ref: '#/components/schemas/Bad_Request'
         403:
-          $ref: '#/responses/Forbidden'
+          $ref: '#/components/schemas/Forbidden'
         404:
-          $ref: '#/responses/Not_Found'
+          $ref: '#/components/schemas/Not_Found'
 
     patch:
       summary: Edit user
       operationId: api_users_edit_v2
-      consumes:
-        - application/vnd.api+json
-      parameters:
-        - name: User with values to edit
-          in: body
-          required: true
-          schema:
-            $ref: '#/definitions/JsonApi_Edit_User'
+      requestBody:
+        content:
+          application/vnd.api+json:
+            schema:
+              $ref: '#/components/schemas/JsonApi_Edit_User'
       responses:
         204:
-          $ref: '#/responses/No_Content'
+          $ref: '#/components/schemas/No_Content'
         400:
-          $ref: '#/responses/Bad_Request'
+          $ref: '#/components/schemas/Bad_Request'
         403:
-          $ref: '#/responses/Forbidden'
+          $ref: '#/components/schemas/Forbidden'
         404:
-          $ref: '#/responses/Not_Found'
+          $ref: '#/components/schemas/Not_Found'
 
   /api/users/v2/{userId}/change-role:
-    parameters:
-      - name: userId
-        in: path
-        type: string
-        format: uuid
-        required: true
-
     patch:
       summary: Change user role
       operationId: api_users_change_role_v2
-      consumes:
-        - application/vnd.api+json
       parameters:
-        - name: User with role
-          in: body
+        - in: path
+          name: userId
           required: true
           schema:
-            $ref: '#/definitions/JsonApi_Change_Role'
+            type: string
+            format: uuid
+      requestBody:
+        content:
+          application/vnd.api+json:
+            schema:
+              $ref: '#/components/schemas/JsonApi_Change_Role'
       responses:
         204:
-          $ref: '#/responses/No_Content'
+          $ref: '#/components/schemas/No_Content'
         400:
-          $ref: '#/responses/Bad_Request'
+          $ref: '#/components/schemas/Bad_Request'
         403:
-          $ref: '#/responses/Forbidden'
+          $ref: '#/components/schemas/Forbidden'
         404:
-          $ref: '#/responses/Not_Found'
+          $ref: '#/components/schemas/Not_Found'
 
   /api/users/v2/me/change-password:
     patch:
       summary: Change my password
       operationId: api_users_me_change_password_v2
-      consumes:
-        - application/json
-      parameters:
-        - name: User with new password
-          in: body
-          required: true
-          schema:
-            $ref: '#/definitions/JsonApi_Change_Password'
+      requestBody:
+        content:
+          application/vnd.api+json:
+            schema:
+              $ref: '#/components/schemas/JsonApi_Change_Password'
       responses:
         204:
-          $ref: '#/responses/No_Content'
+          $ref: '#/components/schemas/No_Content'
         400:
-          $ref: '#/responses/Bad_Request'
+          description: Bad Request
+          content:
+            application/vnd.api+json:
+              schema:
+                allOf:
+                  - $ref: "#/components/schemas/ErrorObject"
+              examples:
+                Required characters missing in password:
+                  value:
+                    errors:
+                      - status: '400'
+                        title: Invalid form
+                        detail: Password is invalid. It must contain at least one numeric digit, one uppercase, and one lowercase letter
+                        code: users.error.invalid-new-password
+                        source:
+                          pointer: /newPassword
         404:
-          $ref: '#/responses/Not_Found'
-
+          $ref: '#/components/schemas/Not_Found'
   /api/users/v2/me/details:
     get:
       deprecated: true
       description: Use GET /api/users/v2/me
       summary: Current user details
       operationId: deprecated_api_user_details_v2
-      produces:
-        - application/vnd.api+json
       responses:
         200:
           description: OK
-          schema:
-            type: object
-            properties:
-              data:
-                $ref: '#/definitions/JsonApi_User'
+          content:
+            application/vnd.api+json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/JsonApi_User'
 
   /api/users/v2/me:
     get:
       summary: Current user details
       operationId: api_users_me_details_v2
-      produces:
-        - application/vnd.api+json
       responses:
         200:
           description: OK
-          schema:
-            type: object
-            properties:
-              data:
-                $ref: '#/definitions/JsonApi_User'
+          content:
+            application/vnd.api+json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/JsonApi_User'
 
     patch:
       summary: Edit own account
       operationId: api_users_me_edit_v2
-      consumes:
-        - application/vnd.api+json
-      parameters:
-        - name: User with values to edit
-          in: body
-          required: true
-          schema:
-            $ref: '#/definitions/JsonApi_Edit_User'
+      requestBody:
+        content:
+          application/vnd.api+json:
+            schema:
+              $ref: '#/components/schemas/JsonApi_Edit_User'
       responses:
         204:
-          $ref: '#/responses/No_Content'
+          $ref: '#/components/schemas/No_Content'
         400:
-          $ref: '#/responses/Bad_Request'
+          $ref: '#/components/schemas/Bad_Request'
         403:
-          $ref: '#/responses/Forbidden'
+          $ref: '#/components/schemas/Forbidden'
         404:
-          $ref: '#/responses/Not_Found'
+          $ref: '#/components/schemas/Not_Found'
 
-parameters:
-  Offset:
-    in: query
-    name: offset
-    description: Sets offset for list of items
-    default: 0
-    type: integer
-    minimum: 0
-    required: false
-
-  Limit:
-    in: query
-    name: limit
-    description: Limits the number of returned items
-    type: integer
-    default: 10
-    minimum: 0
-    maximum: 1000
-    required: false
-
-  search:
-    name: search
-    in: query
-    description: User search query
-    required: false
-    type: string
-    default: ''
-
-  search_query:
-    name: search_query
-    in: query
-    description: (deprecated) Use `search` param instead
-    type: string
-    required: false
-    default: ''
-
-  sort:
-    in: query
-    name: sort
-    description: Sort field - can be reversed by adding dash before field name e.g (-email)
-    type: string
-    default: -addedAt
-    required: false
-    enum:
-      - email
-      - addedAt
-      - role
-      - -email
-      - -addedAt
-      - -role
-
-definitions:
-  User_Role:
-    type: string
-    description: User role
-    example: USER
-    enum: [ OWNER, USER ]
-
-  User_Email:
-    type: string
-    description: Valid user email
-    format: email
-    example: john@doe.com
-
-  User_Organization:
-    type: string
-    example: organization_name
-
-  User_Password:
-    type: string
-    description: Valid password (it must contain at least one digit, one uppercase and one lowercase letter)
-    example: Secret1337
-
-  Date:
-    type: string
-    format: 'date-time'
-    description: Datetime with time zone in ISO-8601 format
-    example: '2018-06-25T07:28:52+01:00'
-
-  Language:
-    type: string
-    format: 'IETF-language-tag'
-    description: User Interface language with IETF language tag format
-    example: 'en-US'
-
-  JsonApi_Id:
-    type: string
-    format: uuid
-    description: Resource ID
-    example: 985ed9d7-b652-47b8-b9cf-c17d62735261
-
-  JsonApi_Type:
-    type: string
-    description: Resource type, unique across whole PPAS
-    example: ppms/user
-
-  JsonApi_User_Type:
-    type: string
-    enum: [ ppms/user ]
-    description: PPAS user resource type
-
-  JsonApi_Resource_Object:
-    type: object
-    properties:
-      id:
-        $ref: '#/definitions/JsonApi_Id'
-      type:
-        $ref: '#/definitions/JsonApi_Type'
-      attributes:
-        type: object
-
-  JsonApi_User:
-    allOf:
-      - $ref: '#/definitions/JsonApi_Resource_Object'
-      - properties:
-          type:
-            allOf:
-              - $ref: '#/definitions/JsonApi_User_Type'
-          attributes:
-            type: object
-            properties:
-              email:
-                $ref: '#/definitions/User_Email'
-              role:
-                $ref: '#/definitions/User_Role'
-              organization:
-                $ref: '#/definitions/User_Organization'
-              addedAt:
-                $ref: '#/definitions/Date'
-              language:
-                $ref: '#/definitions/Language'
-
-  JsonApi_User_Object:
-    type: object
-    properties:
-      data:
-        $ref: '#/definitions/JsonApi_User'
-
-  JsonApi_User_Create:
-    type: object
-    required:
-      - data
-    properties:
-      data:
-        type: object
-        required:
-          - type
-          - attributes
-        properties:
-          type:
-            type: string
-            enum: [ ppms/user ]
-            description: Resource type, unique across whole PPAS
-          attributes:
-            type: object
-            properties:
-              password:
-                $ref: '#/definitions/User_Password'
-              email:
-                $ref: '#/definitions/User_Email'
-              role:
-                allOf:
-                  - $ref: '#/definitions/User_Role'
-                default: USER
-              language:
-                $ref: '#/definitions/Language'
-            required:
-              - email
-              - password
-
-  JsonApi_User_Invite:
-    type: object
-    required:
-      - data
-    properties:
-      data:
-        type: object
-        required:
-          - type
-          - attributes
-        properties:
-          type:
-            type: string
-            enum: [ ppms/user ]
-            description: Resource type, unique across whole PPAS
-          attributes:
-            type: object
-            properties:
-              email:
-                $ref: '#/definitions/User_Email'
-              language:
-                $ref: '#/definitions/Language'
-            required:
-              - email
-              - language
-
-  JsonApi_Edit_User:
-    type: object
-    required:
-      - data
-    properties:
-      data:
-        type: object
-        allOf:
-          - $ref: '#/definitions/JsonApi_Resource_Object'
-          - properties:
-              type:
-                allOf:
-                  - $ref: '#/definitions/JsonApi_User_Type'
-              attributes:
-                type: object
-                properties:
-                  role:
-                    $ref: '#/definitions/User_Role'
-                  language:
-                    $ref: '#/definitions/Language'
-
-  JsonApi_Change_Role:
-    type: object
-    required:
-      - data
-    properties:
-      data:
-        type: object
-        allOf:
-          - $ref: '#/definitions/JsonApi_Resource_Object'
-          - properties:
-              type:
-                allOf:
-                  - $ref: '#/definitions/JsonApi_User_Type'
-              attributes:
-                type: object
-                properties:
-                  role:
-                    $ref: '#/definitions/User_Role'
-                required:
-                  - role
-
-  JsonApi_Change_Password:
-    type: object
-    required:
-      - data
-    properties:
-      data:
-        type: object
-        allOf:
-          - $ref: '#/definitions/JsonApi_Resource_Object'
-          - properties:
-              type:
-                allOf:
-                  - $ref: '#/definitions/JsonApi_User_Type'
-              attributes:
-                type: object
-                properties:
-                  currentPassword:
-                    allOf:
-                      - description: Current password of given user
-                      - $ref: '#/definitions/User_Password'
-                  newPassword:
-                    $ref: '#/definitions/User_Password'
-
-  ListMetadata:
-    type: object
-    description: Metadata of a listing
-    required:
-      - total
-    properties:
-      total:
+components:
+  parameters:
+    Offset:
+      in: query
+      name: offset
+      description: Sets offset for list of items
+      schema:
         type: integer
-        description: Total number of items
-        example: 1
+        minimum: 0
+        default: 0
+      required: false
+  
+    Limit:
+      in: query
+      name: limit
+      description: Limits the number of returned items
+      schema:
+        type: integer
+        default: 10
+        minimum: 0
+        maximum: 1000
+      required: false
+  
+    search:
+      name: search
+      in: query
+      description: User search query
+      required: false
+      schema:
+        type: string
+        default: ''
+  
+    search_query:
+      name: search_query
+      in: query
+      description: (deprecated) Use `search` param instead
+      schema:
+        type: string
+        default: ''
+      required: false
 
-responses:
-  Bad_Request:
-    description: Bad Request
-  Forbidden:
-    description: Forbidden
-  Not_Found:
-    description: Not Found
-  No_Content:
-    description: No content
+    sort:
+      in: query
+      name: sort
+      description: Sort field - can be reversed by adding dash before field name e.g (-email)
+      schema:
+        type: string
+        default: -addedAt
+        enum:
+          - email
+          - addedAt
+          - role
+          - -email
+          - -addedAt
+          - -role
+      required: false
+
+  schemas:
+    User_Role:
+      type: string
+      description: User role
+      example: USER
+      enum: [ OWNER, USER ]
+
+    User_Email:
+      type: string
+      description: Valid user email
+      format: email
+      example: john@doe.com
+
+    User_Organization:
+      type: string
+      example: organization_name
+
+    User_Password:
+      type: string
+      description: Valid password (length between 8 and 128 chars, it must contain at least one digit, one uppercase and one lowercase letter)
+      example: Secret1337
+
+    Date:
+      type: string
+      format: 'date-time'
+      description: Datetime with time zone in ISO-8601 format
+      example: '2018-06-25T07:28:52+01:00'
+
+    Language:
+      type: string
+      format: 'IETF-language-tag'
+      description: User Interface language with IETF language tag format
+      example: 'en-US'
+
+    JsonApi_Id:
+      type: string
+      format: uuid
+      description: Resource ID
+      example: 985ed9d7-b652-47b8-b9cf-c17d62735261
+
+    JsonApi_Type:
+      type: string
+      description: Resource type, unique across whole PPAS
+      example: ppms/user
+
+    JsonApi_User_Type:
+      type: string
+      enum: [ ppms/user ]
+      description: PPAS user resource type
+
+    JsonApi_Resource_Object:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/JsonApi_Id'
+        type:
+          $ref: '#/components/schemas/JsonApi_Type'
+        attributes:
+          type: object
+
+    JsonApi_User:
+      allOf:
+        - $ref: '#/components/schemas/JsonApi_Resource_Object'
+        - properties:
+            type:
+              allOf:
+                - $ref: '#/components/schemas/JsonApi_User_Type'
+            attributes:
+              type: object
+              properties:
+                email:
+                  $ref: '#/components/schemas/User_Email'
+                role:
+                  $ref: '#/components/schemas/User_Role'
+                organization:
+                  $ref: '#/components/schemas/User_Organization'
+                addedAt:
+                  $ref: '#/components/schemas/Date'
+                language:
+                  $ref: '#/components/schemas/Language'
+
+    JsonApi_User_Object:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/JsonApi_User'
+
+    JsonApi_User_Create:
+      type: object
+      required:
+        - data
+      properties:
+        data:
+          type: object
+          required:
+            - type
+            - attributes
+          properties:
+            type:
+              type: string
+              enum: [ ppms/user ]
+              description: Resource type, unique across whole PPAS
+            attributes:
+              type: object
+              properties:
+                password:
+                  $ref: '#/components/schemas/User_Password'
+                email:
+                  $ref: '#/components/schemas/User_Email'
+                role:
+                  allOf:
+                    - $ref: '#/components/schemas/User_Role'
+                  default: USER
+                language:
+                  $ref: '#/components/schemas/Language'
+              required:
+                - email
+                - password
+
+    JsonApi_User_Invite:
+      type: object
+      required:
+        - data
+      properties:
+        data:
+          type: object
+          required:
+            - type
+            - attributes
+          properties:
+            type:
+              type: string
+              enum: [ ppms/user ]
+              description: Resource type, unique across whole PPAS
+            attributes:
+              type: object
+              properties:
+                email:
+                  $ref: '#/components/schemas/User_Email'
+                language:
+                  $ref: '#/components/schemas/Language'
+              required:
+                - email
+                - language
+
+    JsonApi_Edit_User:
+      type: object
+      required:
+        - data
+      properties:
+        data:
+          type: object
+          allOf:
+            - $ref: '#/components/schemas/JsonApi_Resource_Object'
+            - properties:
+                type:
+                  allOf:
+                    - $ref: '#/components/schemas/JsonApi_User_Type'
+                attributes:
+                  type: object
+                  properties:
+                    role:
+                      $ref: '#/components/schemas/User_Role'
+                    language:
+                      $ref: '#/components/schemas/Language'
+
+    JsonApi_Change_Role:
+      type: object
+      required:
+        - data
+      properties:
+        data:
+          type: object
+          allOf:
+            - $ref: '#/components/schemas/JsonApi_Resource_Object'
+            - properties:
+                type:
+                  allOf:
+                    - $ref: '#/components/schemas/JsonApi_User_Type'
+                attributes:
+                  type: object
+                  properties:
+                    role:
+                      $ref: '#/components/schemas/User_Role'
+                  required:
+                    - role
+
+    JsonApi_Change_Password:
+      type: object
+      required:
+        - data
+      properties:
+        data:
+          type: object
+          allOf:
+            - $ref: '#/components/schemas/JsonApi_Resource_Object'
+            - properties:
+                type:
+                  allOf:
+                    - $ref: '#/components/schemas/JsonApi_User_Type'
+                attributes:
+                  type: object
+                  properties:
+                    currentPassword:
+                      allOf:
+                        - description: Current password of given user
+                        - $ref: '#/components/schemas/User_Password'
+                    newPassword:
+                      $ref: '#/components/schemas/User_Password'
+
+    ListMetadata:
+      type: object
+      description: Metadata of a listing
+      required:
+        - total
+      properties:
+        total:
+          type: integer
+          description: Total number of items
+          example: 1
+
+    Bad_Request:
+      description: Bad Request
+    Forbidden:
+      description: Forbidden
+    Not_Found:
+      description: Not Found
+    No_Content:
+      description: No content
+
+    ErrorObject:
+      type: object
+      required:
+        - status
+        - title
+      properties:
+        status:
+          type: string
+          description: the HTTP status code applicable to this problem, expressed as a
+            string value
+          example: "400"
+        code:
+          type: string
+          description: an application-specific error code, expressed as a string value
+          example: error.default
+        title:
+          type: string
+          description: >
+            a short, human-readable summary of the problem that SHOULD NOT
+            change from occurrence to occurrence of the problem, except for
+            purposes of localization
+          example: Invalid form
+        detail:
+          type: string
+          description: >
+            a human-readable explanation specific to this occurrence of the
+            problem. Like `title`, this field’s value can be localized
+          example: This field is invalid
+        source:
+          type: object
+          description: >
+            an object containing references to the source of the error,
+            optionally including any of the following members: [pointer,
+            parameter]
+          properties:
+            pointer:
+              type: string
+              example: /data/attributes/name
+              description: >
+                a JSON Pointer [RFC6901] to the associated entity in the request
+                document [e.g. "/data" for a primary data object, or
+                "/data/attributes/name" for a specific attribute]
+            parameter:
+              type: string
+              example: offset
+              description: a string indicating which URI query parameter caused the error
