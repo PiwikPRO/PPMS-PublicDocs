@@ -244,7 +244,7 @@ ogp_image = "https://developers.piwik.pro/en/latest/_static/images/image-thumb.p
 def setup(app):
     app.add_css_file('css/custom_1653024076375.css')
     app.add_js_file('js/unicornDetector.js')
-    app.add_js_file('js/custom.js')
+    app.add_js_file('js/custom1653024076375.js')
 
 # Example configuration for intersphinx: refer to the Python standard library.
 intersphinx_mapping = {'https://docs.python.org/': None}
