@@ -25,14 +25,6 @@ components:
         type: integer
         minimum: 0
         default: 0
-    limit_list_apps:
-      name: limit
-      in: query
-      description: Limit for pagination
-      required: false
-      schema:
-        type: integer
-        default: 1000
     permissions_limit:
       name: limit
       in: query
@@ -480,7 +472,7 @@ paths:
       operationId: api_app_list_v2
       parameters:
         - $ref: "#/components/parameters/Offset"
-        - $ref: "#/components/parameters/limit_list_apps"
+        - $ref: "#/components/parameters/Limit"
         - $ref: "#/components/parameters/search_query"
         - $ref: "#/components/parameters/sort"
         - $ref: "#/components/parameters/search"
