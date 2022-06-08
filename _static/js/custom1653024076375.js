@@ -13,7 +13,9 @@
             injectTo[0].parentElement.insertBefore(element, injectTo[0]);
         }
     };
-    head.appendChild(style.cloneNode());
+    if(style) {
+        head.appendChild(style.cloneNode());
+    }
     if(typeof window.detectionOfStuff !== 'undefined' && typeof unicornDetector !== 'undefined') {
         window.unicornDetector.onDetected(detectedUnicorn);
     }
