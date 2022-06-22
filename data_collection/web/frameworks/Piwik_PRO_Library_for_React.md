@@ -195,3 +195,11 @@ import { CustomDimensions } from '@piwikpro/react-piwik-pro'
 * `deleteCustomDimension(customDimensionId: string)` - Removes a custom dimension with the specified ID.
 * `getCustomDimensionValue(customDimensionId: string | number)` - Returns the value of a custom dimension with the specified ID.
 
+### Data Layer
+A data layer is a data structure on your site or app where you can store data and access it with tools like Tag Manager. You can include any data you want in your data layer.
+#### Import
+```ts
+import { DataLayer } from '@piwikpro/react-piwik-pro';
+```
+#### Methods
+* `push(dataLayerObject: Object)`  - Adds an event to a data layer.
