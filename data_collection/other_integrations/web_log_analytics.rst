@@ -1,14 +1,18 @@
 .. highlight:: bash
 .. default-domain:: bash
 .. _data-collection-web-log-analytics:
+.. _GitHub: https://github.com/PiwikPRO/log-analytics/
+
 
 Web Log Analytics
 =================
 
+
+Log analytics is a python script, that allows you to import logs of common web servers (nginx, apache, iss and more) directly to Piwik PRO. It's a free software available under GPLv3 license, available on `GitHub`_
+
 Set up log import
 -----------------
 
-This step requires a little more familiarity with Bash, and around 4 to 10 hours of time depending on the volume of data.
 
 You need to run the Log Importer tool with the correct parameters. Some of them must be present, while others are optional.
 
@@ -44,7 +48,7 @@ Exclude log lines
 There are several methods allowing you to exclude particular log lines or visitors from being tracked:
 
 - You can exclude specific IP addresses or IP ranges from being tracked. To configure excluded IPs, log into Piwik as a superuser, then click Administration > Websites.
-- Excluding lines from specific IP or IP ranges – this can be done the same way as in the default tracking method in Piwik (by adding an excluded IP or IP range in the Administration -> Websites menu)
+- Excluding lines from specific IP or IP ranges - this can be done the same way as in the default tracking method in Piwik (by adding an excluded IP or IP range in the Administration -> Websites menu)
 - You can exclude visitors based on their User Agent HTTP headers by using **--useragent-exclude**
 - You can also provide a sole hostname that you would like to import from. This means that all the logs from other hosts will be ignored. The parameter allowing this is: **--hostname**
 - It is also possible to exclude specific log lines where the URL path matches a particular URL path. See the option **--exclude-path**
@@ -90,9 +94,9 @@ Technical requirements
 
 Technical requirements for running Web Log Analytics:
 
-- Access to the server or server logs – for example via SSH
-- Python 3.5+ – older versions (e.g. 2.6 or 2.7) are not supported. Most often you’ll want to import your data straight from the server where it is created. To do this, you’ll need to be able to run a Python script on the machine that will send the logs to Piwik PRO.
-- Log Importer tool – this is a script written in Python ensuring that logs are sent to your Piwik instance.
+- Access to the server or server logs - for example via SSH
+- Python 3.6+ - older versions (e.g. 2.6, 2.7 or 3.5) are not supported. Most often you'll want to import your data straight from the server where it is created. To do this, you’ll need to be able to run a Python script on the machine that will send the logs to Piwik PRO.
+- Log Analytics script - this is a script written in Python ensuring that logs are sent to your Piwik PRO instance,  available on `GitHub`_
 
 Supported log formats:
 
@@ -101,3 +105,15 @@ Supported log formats:
 - log files of some popular Cloud Saas services: Amazon CloudFront logs, Amazon S3 logs
 - streaming media server log files such as: Icecast
 - log files with and without the virtual host will be imported
+
+This script does not directly support importing logs from log aggregation tools, like Grafana Loki or ELK. If you'd like to import logs from one of those, you need to download them to the disk first.
+
+
+Performance considerations & rate limiting
+----------------------
+
+The script needs CPU to read and parse the log files, but it is usually Piwik PRO server itself which will limit the import speed due to network latency.
+To improve performance, you can use the **--recorders** option to specify the number of parallel threads which will import hits into Piwik PRO. By default we are using one recorder, but you can increase this value until you receive satisfying speed.
+
+If you are Piwik PRO Core user, please make sure, that you are not hitting rate limits, by using **--sleep-between-requests-ms** flag to slow down the import process.
+
