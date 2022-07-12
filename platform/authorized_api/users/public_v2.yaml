@@ -46,6 +46,10 @@ paths:
           $ref: '#/components/schemas/Forbidden'
   /api/users/v2:
     post:
+      deprecated: true
+      description: |
+        Please use <a href="#operation/api_users_invited_v2">Invite user</a> instead.<br><br>
+        It adds user.
       summary: Create user
       operationId: api_users_add_v2
       requestBody:
@@ -213,7 +217,9 @@ paths:
   /api/users/v2/me/details:
     get:
       deprecated: true
-      description: Use GET /api/users/v2/me
+      description: |
+        Please use <a href="#operation/api_users_me_details_v2">Current user details</a> instead.<br><br>
+        It gets current user details.
       summary: Current user details
       operationId: deprecated_api_user_details_v2
       responses:
