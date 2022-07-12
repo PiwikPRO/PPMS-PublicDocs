@@ -2,13 +2,38 @@
 .. default-domain:: bash
 .. _data-collection-web-log-analytics:
 .. _GitHub: https://github.com/PiwikPRO/log-analytics/
+.. _PyPi: https://pypi.org/project/piwik-pro-log-analytics/
 
 
 Web Log Analytics
 =================
 
 
-Log analytics is a python script, that allows you to import logs of common web servers (nginx, apache, iss and more) directly to Piwik PRO. It's a free software available under GPLv3 license, available on `GitHub`_
+Log analytics is a python script, that allows you to import logs of common web servers (nginx, apache, iss and more) directly to Piwik PRO. It's a free software available under GPLv3 license, available on `GitHub`_ and `PyPi`_
+
+Install log analytics script
+-----------------
+
+You can install the script in one of two ways:
+
+- By using Python's package manager - `pip` - this is the preferred method
+- By downloading the script to your machine manually
+
+
+.. tabs::
+
+    .. group-tab:: Python package
+
+        .. code-block:: bash
+
+            pip install piwik-pro-log-analytics
+
+    .. group-tab:: Python script
+
+        .. code-block:: bash
+
+            curl https://raw.githubusercontent.com/PiwikPRO/log-analytics/master/piwik_pro_log_analytics/import_logs.py > import_logs.py
+            chmod +x import_logs.py
 
 Set up log import
 -----------------
@@ -16,11 +41,23 @@ Set up log import
 
 You need to run the Log Importer tool with the correct parameters. Some of them must be present, while others are optional.
 
+
 Sample command:
 
-.. code-block:: bash
+.. tabs::
 
-    import_logs.py --url=https://demo.piwik.pro --client-id=*** --client-secret=*** --enable-static --enable-bots --show-progress --idsite=*** --recorders=2 sample.log
+    .. group-tab:: Python package
+
+        .. code-block:: bash
+
+            piwik_pro_log_analytics --url=https://demo.piwik.pro --client-id=*** --client-secret=*** --enable-static --enable-bots --show-progress --idsite=*** --recorders=2 sample.log
+
+    .. group-tab:: Python script
+
+        .. code-block:: bash
+
+            ./import_logs.py --url=https://demo.piwik.pro --client-id=*** --client-secret=*** --enable-static --enable-bots --show-progress --idsite=*** --recorders=2 sample.log
+
 
 .. option:: --url=https://demo.piwik.pro
 
@@ -74,9 +111,21 @@ Use the following commands to enable tracking of these elements:
 
 More information about log import parameters can be found using the help parameter:
 
-.. code-block:: bash
+.. tabs::
 
-    import_logs.py --help
+    .. group-tab:: Python package
+
+        .. code-block:: bash
+
+            piwik_pro_log_analytics --help
+
+    .. group-tab:: Python script
+
+        .. code-block:: bash
+
+            ./import_logs.py --help
+
+
 
 Import data with server log analytics and standard JavaScript simultaneously
 ----------------------------------------------------------------------------
@@ -113,7 +162,7 @@ Performance considerations & rate limiting
 ----------------------
 
 The script needs CPU to read and parse the log files, but it is usually Piwik PRO server itself which will limit the import speed due to network latency.
-To improve performance, you can use the **--recorders** option to specify the number of parallel threads which will import hits into Piwik PRO. By default we are using one recorder, but you can increase this value until you receive satisfying speed.
+To improve performance, you can use the **--recorders** option to specify the number of parallel threads which will import hits into Piwik PRO. By default we are using one recorder, but you can increase this value until you achieve satisfying speed.
 
 If you are Piwik PRO Core user, please make sure, that you are not hitting rate limits, by using **--sleep-between-requests-ms** flag to slow down the import process.
 
