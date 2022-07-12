@@ -11,7 +11,7 @@ Web Log Analytics
 
 Log analytics is a python script, that allows you to import logs of common web servers (nginx, apache, iss and more) directly to Piwik PRO. It's a free software available under GPLv3 license, available on `GitHub`_ and `PyPi`_
 
-Install log analytics script
+Installation of the log analytics script
 -----------------
 
 You can install the script in one of two ways:
