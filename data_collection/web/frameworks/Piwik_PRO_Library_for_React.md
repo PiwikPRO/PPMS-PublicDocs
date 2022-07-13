@@ -26,7 +26,7 @@ Dedicated Piwik PRO library that helps with implementing Piwik PRO Tag Manager a
 To use this package in your project, run the following command.
 
 ```
-npm install @piwik-pro/react-piwik-pro
+npm install @piwikpro/react-piwik-pro
 ```
 
 
@@ -37,7 +37,7 @@ In your React Project, include the default `PiwikPro` in the highest level appli
 In the arguments, pass your app ID and your account URL as parameters (marked 'container-id' and 'container-url' in the example below).
 
 ```ts
-import PiwikPro from '@piwik-pro/react-piwik-pro';
+import PiwikPro from '@piwikpro/react-piwik-pro';
 
 PiwikPro.initialize('container-id', 'container-url');
 
@@ -74,7 +74,7 @@ export class TestFormComponent {
 ### Send page views and virtual page views
 
 ```ts
-import { PageViews } from '@piwik-pro/react-piwik-pro';
+import { PageViews } from '@piwikpro/react-piwik-pro';
 ...
 
 const App = () => {
