@@ -17,7 +17,7 @@
                         "$ref": "piwik_base_attributes.json#/definitions/custom_dimensions_item"
                     },
                     "minItems": 1,
-                    "maxItems": 200
+                    "maxItems": 400
                 }
             },
             "additionalProperties": false,
