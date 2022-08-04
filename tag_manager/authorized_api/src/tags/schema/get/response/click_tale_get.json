@@ -1,10 +1,12 @@
 {
-    "title": "Clicktale tag",
+    "title": "Clicktale tag [DEPRECATED]",
     "description": "Clicktale tag response",
+    "deprecated": true,
     "type": "object",
     "properties": {
         "data": {
             "title": "JSON:API 1.0 response data",
+            "deprecated": true,
             "type": "object",
             "properties": {
                 "id": {

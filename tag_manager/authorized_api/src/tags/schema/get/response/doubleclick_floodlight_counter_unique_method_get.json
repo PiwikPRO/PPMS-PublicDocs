@@ -1,6 +1,6 @@
 {
-    "title": "DoubleClick Floodlight Counter (unique_method) tag",
-    "description": "DoubleClick Floodlight Counter (unique_method) tag response",
+    "title": "Floodlight Counter (unique_method) tag",
+    "description": "Floodlight Counter (unique_method) tag response. (Rebranded from DoubleClick Floodlight Counter)",
     "type": "object",
     "properties": {
         "data": {
@@ -14,7 +14,7 @@
                     "$ref": "../../tag_types.json#/definitions/tag_resource_type"
                 },
                 "attributes": {
-                    "description": "DoubleClick Floodlight Counter (unique_method) tag attributes",
+                    "description": "Floodlight Counter (unique_method) tag attributes",
                     "type": "object",
                     "properties": {
                         "code": {

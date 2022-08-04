@@ -6,6 +6,7 @@
         },
         "template": {
             "$ref": "../tag_attributes.json#/definitions/template",
+            "description": "Tag template. Despite rebranding the tag name, the template value remained the same due to maintaining backward compatibility.",
             "enum": [
                 "facebook_retargeting_pixel"
             ]
