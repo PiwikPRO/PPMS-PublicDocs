@@ -1,8 +1,10 @@
 openapi: '3.0.0'
 info:
     title: Tag Manager API
-    description: In order to access those endpoints, you need to **authenticate**. <a href="../../platform/getting_started.html">Here is a guide on how to do it.</a>
     version: '1.0'
+
+security:
+    - BearerAuth: []
 
 servers:
     - url: https://example.piwik.pro
@@ -178,3 +180,6 @@ paths:
                         example:
                             $ref: 'triggers/example/copy/triggers_copy_request_example.json'
 
+components:
+    securitySchemes:
+        $ref: 'common/api/common_security_schemes.json#/components/securitySchemes'
