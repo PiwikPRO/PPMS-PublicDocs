@@ -3178,7 +3178,8 @@ Miscellaneous
 
 .. function:: setGenerationTimeMs(generationTime)
 
-    Overrides reported time needed to download current page (by default this value is fetched from DOM Timing API).
+    Overrides reported time needed to download current page (by default this value is fetched from
+    `DOM Timing API <https://developer.mozilla.org/en-US/docs/Web/API/Performance>`_).
 
     .. deprecated:: 16.17
 
