@@ -3,8 +3,6 @@ info:
     title: Tag Manager API
     version: '1.0'
     description: |
-        In order to access those endpoints, you need to **authenticate**. <a href="../../platform/getting_started.html">Here is a guide on how to do it.</a>
-
         # Builtin variables
 
         <details>
@@ -225,3 +223,6 @@ paths:
                         example:
                             $ref: 'variables/example/copy/variables_copy_request_example.json'
 
+components:
+    securitySchemes:
+        $ref: 'common/api/common_security_schemes.json#/components/securitySchemes'

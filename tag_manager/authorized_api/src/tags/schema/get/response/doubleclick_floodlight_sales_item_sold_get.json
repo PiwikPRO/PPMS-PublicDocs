@@ -1,6 +1,6 @@
 {
-    "title": "DoubleClick Floodlight Sales (item_sold) tag",
-    "description": "DoubleClick Floodlight Sales (item_sold) tag response",
+    "title": "Floodlight Sales (item_sold) tag",
+    "description": "Floodlight Sales (item_sold) tag response. (Rebranded from DoubleClick Floodlight Sales)",
     "type": "object",
     "properties": {
         "data": {
@@ -14,7 +14,7 @@
                     "$ref": "../../tag_types.json#/definitions/tag_resource_type"
                 },
                 "attributes": {
-                    "description": "DoubleClick Floodlight Sales (item_sold) tag attributes",
+                    "description": "Floodlight Sales (item_sold) tag attributes",
                     "type": "object",
                     "properties": {
                         "code": {

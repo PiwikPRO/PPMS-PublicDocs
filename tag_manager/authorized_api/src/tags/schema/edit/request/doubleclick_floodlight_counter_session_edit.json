@@ -1,6 +1,6 @@
 {
-    "title": "DoubleClick Floodlight Counter (session) tag",
-    "description": "DoubleClick Floodlight Counter (session) tag edit request",
+    "title": "Floodlight Counter (session) tag",
+    "description": "Floodlight Counter (session) tag edit request. (Rebranded from DoubleClick Floodlight Counter)",
     "type": "object",
     "properties": {
         "data": {
@@ -14,7 +14,7 @@
                     "$ref": "../../tag_types.json#/definitions/tag_resource_type"
                 },
                 "attributes": {
-                    "description": "DoubleClick Floodlight Counter (session) tag attributes",
+                    "description": "Floodlight Counter (session) tag attributes",
                     "type": "object",
                     "properties": {
                         "disable_in_debug_mode": {

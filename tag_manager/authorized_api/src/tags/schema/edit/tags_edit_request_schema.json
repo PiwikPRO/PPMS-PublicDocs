@@ -41,9 +41,6 @@
             "$ref": "request/bing_ads_edit.json"
         },
         {
-            "$ref": "request/click_tale_edit.json"
-        },
-        {
             "$ref": "request/crazy_egg_edit.json"
         },
         {
@@ -60,9 +57,6 @@
         },
         {
             "$ref": "request/doubleclick_floodlight_counter_unique_method_edit.json"
-        },
-        {
-            "$ref": "request/google_adwords_doubleclick_edit.json"
         },
         {
             "$ref": "request/facebook_retargeting_pixel_edit.json"
@@ -114,6 +108,12 @@
         },
         {
             "$ref": "request/heatmaps_edit.json"
+        },
+        {
+            "$ref": "request/click_tale_edit.json"
+        },
+        {
+            "$ref": "request/google_adwords_doubleclick_edit.json"
         }
     ]
 }
