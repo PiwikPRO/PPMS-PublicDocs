@@ -24,6 +24,7 @@ Developer docs and guides
    tag_manager/index
    platform/index
    glossary
+   js_api
 
 .. raw:: html
 
