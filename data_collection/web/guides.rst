@@ -4,7 +4,7 @@
 Guides
 ======
 
-Installing Tracking code
+Installing tracking code
 ------------------------
 
 Using Tag Manager's snippet is the recommended and also the easiest way of installing tracking code on your website. When Tag Manager is added to the site, it automatically starts tracking actions using "Piwik PRO Analytics template".
