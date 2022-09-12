@@ -1,6 +1,6 @@
 # Piwik PRO Library for Angular
 
-Dedicated Piwik PRO library that helps with implementing Piwik PRO Tag Manager and the Piwik PRO tracking client in Angular 8+ applications.
+Dedicated Piwik PRO library that helps with implementing and the Piwik PRO tracking client in Angular 8+ applications.
 
 * [Installation](#installation)
   * [NPM](#npm)
@@ -34,13 +34,13 @@ npm install @piwikpro/ngx-piwik-pro
 
 ### Basic setup
 
-In your Angular Project, include the `NgxPiwikProModule` in the highest level application module. ie `AddModule`. 
-To set up the Piwik PRO Tag Manager container in the app, the easiest way is to call the `forRoot()` method. 
+In your Angular Project, include the `NgxPiwikProModule` in the highest level application module. ie `AddModule`.
+To set up the Piwik PRO Tag Manager container in the app, the easiest way is to call the `forRoot()` method.
 In the arguments, pass your app ID and your account URL as parameters (marked 'container-id' and 'container-url' in the example below).
 
 ```ts  
 import { NgxPiwikProModule } from '@piwikpro/ngx-piwik-pro';  
-  
+
 @NgModule({  
   declarations: [  
     AppComponent  
@@ -68,7 +68,7 @@ Add ```NgxPiwikProRouterModule``` on AppModule to enable auto track `Router` eve
 ```ts  
 import { NgxPiwikProModule, NgxPiwikProRouterModule } from '@piwikpro/ngx-piwik-pro';  
 ...  
-  
+
 @NgModule({  
   ...  
   imports: [  
@@ -91,7 +91,7 @@ You can customize some rules to include/exclude routes on `NgxPiwikProRouterModu
 ```ts  
 import { NgxPiwikProModule, NgxPiwikProRouterModule } from '@piwikpro/ngx-piwik-pro';  
 ...  
-  
+
 @NgModule({  
   ...  
   imports: [  
@@ -111,21 +111,21 @@ export class AppModule {}
 ```ts  
 @Component( ... )  
 export class TestFormComponent {  
-  
+
   constructor(  
     private customEventsService: CustomEventsService  
   ) {}  
-  
+
   onUserInputName() {  
     ...  
     this.customEventsService.trackEvent('user_register_form', 'enter_name', 'Name', 'Value');   
   }  
-  
+
   onUserInputEmail() {  
     ...
     this.customEventsService.trackEvent('user_register_form', 'enter_email', 'Email', 'Value');    
   }  
-  
+
   onSubmit() {  
     ...  
     this.customEventsService.trackEvent('user_register_form', 'submit', 'Sent');  
@@ -139,15 +139,15 @@ export class TestFormComponent {
 ```ts  
 @Component(...)  
 export class TestPageComponent implements OnInit {  
-  
+
   constructor(  
     protected pageViewsService: PageViewsService  
   ) {}  
-  
+
   ngOnInit() {  
     this.pageViewsService.trackPageView('Title')  
   }  
-  
+
 }  
 ```
 
@@ -220,4 +220,3 @@ Goals let you define important actions registered in your application and track 
 * `setCustomDimensionValue(customDimensionId: string | number, customDimensionValue: string)`  - Sets a custom dimension value to be used later.
 * `deleteCustomDimension(customDimensionId: string)` - Removes a custom dimension with the specified ID.
 * `getCustomDimensionValue(customDimensionId: string | number)` - Returns the value of a custom dimension with the specified ID.
-
