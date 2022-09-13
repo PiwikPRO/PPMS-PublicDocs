@@ -99,6 +99,8 @@ h6 {
 
 p {
     font-size: 14px;
+    max-width: 760px;
+    padding-left: 20px;
 }
 
 .wy-plain-list-disc, .rst-content .section ul, .rst-content .toctree-wrapper ul, article ul, .wy-plain-list-decimal, .rst-content .section ol, .rst-content ol.arabic, article ol {
@@ -1095,12 +1097,12 @@ footer {
 }
 
 #glossary {
-    max-width: 500px;
+    max-width: 760px;
     margin: auto;
 }
 
 #developer-docs-and-guides {
-    max-width: 500px;
+    max-width: 760px;
     margin: auto;
 }
 
