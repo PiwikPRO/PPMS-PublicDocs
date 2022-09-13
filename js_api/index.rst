@@ -1,6 +1,17 @@
 =====
-Getting started
+JS API
 =====
+
+.. toctree::
+   :maxdepth: 0
+
+   getting_started.str
+   javascript.str
+
+
+Getting started
+---------------
+
 Our JavaScript library has methods that let you send data from your site or web app to Piwik PRO. You can use these methods in JavaScript or within our dedicated libraries for Angular and React.
 
 In short, our JavaScript library lets you collect data like:
