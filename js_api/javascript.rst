@@ -22,38 +22,35 @@ For more, see our installation guides:
 
 
 
-Methods used in calls
+Methods used for calls
 ---------------
 
 In JavaScript, our methods can be called in a few ways:
 
+* **JS (queue):** After installing our container's code, it'll create the **_paq** object (a queue). You can use the       **push()** method to add methods to the queue. Our tracker will then access and proceed these methods. With this method, you can also use **this** keyword to send a few methods within one call.
 
-=====================  =====================================================================================================
-Call method            Description
-=====================  =====================================================================================================
-**JS (queue)           After installing our container's code, it'll create the **_paq** object (a queue). You can use the       **push()** method to add methods to the queue. Our tracker will then access and proceed these methods. With this method, you can also use **this** keyword to send a few methods within one call.
-
-**JS (direct):**       After installing our container's code, you can access our tracker directly (and don't use the queue) with the **getTracker()** or **getAsyncTracker()** method.
-
-============================================================================================================================
+* **JS (direct):** After installing our container's code, you can access our tracker directly (and don't use the queue) with the **getTracker()** or **getAsyncTracker()** method.
 
 push()
 ^^^^^^
 
 The **push()** method adds methods to the **_paq** object (a queue). The methods are called after the container's code (or a tracking code) loads on a page. They are called synchronously (one by one).
 
-**Syntax**
+Syntax
+######
 
 .. code-block:: javascript
 
     _paq.push(command)
 
-**Parameters**
+Parameters
+##########
 
 **command** (string, required)
   An array containing our JavaScript methods.
 
-**Examples**
+Examples
+########
 
 To send a page view:
 
@@ -67,12 +64,16 @@ To send a custom event:
 
     _paq.push(["trackEvent", "Button", "Sign up"]);
 
+
+
+
 JS this keyword
 ^^^^^^^^^^^^^^^
 
 The JavaScript **this** keyword lets you add a few methods to the **_paq** object (a queue) in a single call.
 
-**Examples**
+Examples
+########
 
 To send a page view and a custom event at once:
 
@@ -82,6 +83,10 @@ To send a page view and a custom event at once:
         this.trackPageView();
         this.trackEvent("Button", "Sign up");
     }]);
+
+
+
+
 
 getTracker()
 ^^^^^^^^^^^^
@@ -94,7 +99,8 @@ The **getTracker()** method gives you a direct access to an async tracker. An as
 
     Piwik.getTracker(account-address, site-id)
 
-**Parameters**
+Parameters
+##########
 
 **account-address** (string, required)
   Account address in Piwik PRO. Example: \https://example.piwik.pro/
@@ -102,13 +108,15 @@ The **getTracker()** method gives you a direct access to an async tracker. An as
 **site-id** (string, required)
   Your site or app ID in Piwik PRO where you want to send data. Where to find it?
 
-**Return value**
+Return value
+############
 
 An object with account details in Piwik PRO.
   Format:
   Type:
 
-**Examples**
+Examples
+########
 
 To send a page view:
 
@@ -124,18 +132,24 @@ To send a custom event:
     var jstc = Piwik.getTracker("https://example.com/", "45e07cbf-c8b3-42f3-a6d6-a5a176f623ef");
     jstc.trackEvent("trackEvent", "Button", "Sign up");
 
+
+
+
+
 getAsyncTracker()
 ^^^^^^^^^^^^^^^^^
 
 The **getAsyncTracker()** method gives you a direct access to an async tracker. An async tracker is used additionally if you've installed the async container on your site. This method lets you read the return value of the sent method. It also lets you send methods for a few sites or apps at once.
 
-**Syntax**
+Syntax
+######
 
 .. code-block:: javascript
 
     Piwik.getTracker(account-address, site-id)
 
-**Parameters**
+Parameters
+##########
 
 **account-address** (string, required)::
   Account address in Piwik PRO. Example: \https://example.piwik.pro/
@@ -143,11 +157,13 @@ The **getAsyncTracker()** method gives you a direct access to an async tracker. 
 **site-id** (string, required)::
 Your site or app ID in Piwik PRO where you want to send data. Where to find it?
 
-**Return value**
+Return value
+############
 
 | An object with account details in Piwik PRO.
 
-**Examples**
+Examples
+########
 
 To send a page view:
 
@@ -162,6 +178,8 @@ To send a custom event:
 
     var jstc = Piwik.getAsyncTracker("https://example.com/", "45e07cbf-c8b3-42f3-a6d6-a5a176f623ef");
     jstc.trackEvent("trackEvent", "Button", "Sign up");
+
+
 
 
 
