@@ -92,7 +92,8 @@ getTracker()
 
 The **getTracker()** method gives you a direct access to an async tracker. An async tracker is the basic one used for collecting data and using async tags. This method lets you read the return value of the sent method. It also lets you send methods for a few sites or apps at once.
 
-**Syntax**
+Syntax
+######
 
 .. code-block:: javascript
 
