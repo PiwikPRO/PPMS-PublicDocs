@@ -428,7 +428,7 @@ thead  {
 }
 
 .codeblock, pre.literal-block, .rst-content .literal-block, .rst-content pre.literal-block, div[class^='highlight'] {
-    border: 1px solid #14171A;
+    border: 0px solid #F2F4F8;
 }
 .wy-nav-content-wrap .unicorn-found {
     background: #FFD000;
@@ -1298,7 +1298,7 @@ footer {
 }
 
 .codeblock div[class^='highlight'], pre.literal-block div[class^='highlight'], .rst-content .literal-block div[class^='highlight'], div[class^='highlight'] div[class^='highlight'], .admonition div[class^='highlight'] {
-    background: #242A2E !important;
+    background: #F2F4F8 !important;
 }
 
 div[class^='highlight'] pre {
