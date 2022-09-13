@@ -36,7 +36,7 @@ With this method, you can also use **this** keyword to send a few methods within
 
 
 push()
-------
+^^^^^^
 
 The **push()** method adds methods to the **_paq** object (a queue). The methods are called after the container's code (or a tracking code) loads on a page. They are called synchronously (one by one).
 
@@ -65,7 +65,8 @@ To send a custom event:
 
     _paq.push(["trackEvent", "Button", "Sign up"]);
 
-**JS this keyword**
+JS this keyword
+^^^^^^^^^^^^^^^
 
 The JavaScript **this** keyword lets you add a few methods to the **_paq** object (a queue) in a single call.
 
@@ -81,7 +82,7 @@ To send a page view and a custom event at once:
     }]);
 
 getTracker()
-------------
+^^^^^^^^^^^^
 
 The **getTracker()** method gives you a direct access to an async tracker. An async tracker is the basic one used for collecting data and using async tags. This method lets you read the return value of the sent method. It also lets you send methods for a few sites or apps at once.
 
@@ -94,7 +95,7 @@ The **getTracker()** method gives you a direct access to an async tracker. An as
 **Parameters**
 
 **account-address** (string, required)
-Account address in Piwik PRO. Example: https://example.piwik.pro/
+Account address in Piwik PRO. Example: \https://example.piwik.pro/
 
 **site-id** (string, required)
 Your site or app ID in Piwik PRO where you want to send data. Where to find it?
@@ -122,7 +123,7 @@ To send a custom event:
     jstc.trackEvent("trackEvent", "Button", "Sign up");
 
 getAsyncTracker()
------------------
+^^^^^^^^^^^^^^^^^
 
 The **getAsyncTracker()** method gives you a direct access to an async tracker. An async tracker is used additionally if you've installed the async container on your site. This method lets you read the return value of the sent method. It also lets you send methods for a few sites or apps at once.
 
@@ -135,7 +136,7 @@ The **getAsyncTracker()** method gives you a direct access to an async tracker. 
 **Parameters**
 
 **account-address** (string, required)
-Account address in Piwik PRO. Example: https://example.piwik.pro/
+Account address in Piwik PRO. Example: \https://example.piwik.pro/
 
 **site-id** (string, required)
 Your site or app ID in Piwik PRO where you want to send data. Where to find it?
