@@ -46,9 +46,7 @@ Syntax
 Parameters
 ##########
 
-**command** (string, required)
-
-An array containing our JavaScript methods.
+command (string, required) // An array containing our JavaScript methods.
 
 Examples
 ########
@@ -103,13 +101,9 @@ The **getTracker()** method gives you a direct access to an async tracker. An as
 Parameters
 ##########
 
-**account-address** (string, required)
-:raw-html:`<br />`
-Account address in Piwik PRO. Example: \https://example.piwik.pro/
+account-address (string, required) // Account address in Piwik PRO. Example: \https://example.piwik.pro/
 
-**site-id** (string, required)
-:raw-html:`<br />`
-Your site or app ID in Piwik PRO where you want to send data. Where to find it?
+site-id (string, required) // Your site or app ID in Piwik PRO where you want to send data. Where to find it?
 
 Return value
 ############
@@ -156,13 +150,10 @@ Syntax
 Parameters
 ##########
 
-+------------------------------------+----------------------------------------------------------------------------------+
-|Parameter                           |Description                                                                       |
-+====================================+==================================================================================+
-|account-address (string, required)  |Account address in Piwik PRO. Example: \https://example.piwik.pro/                |
-+-----------------------------------------------------------------------------------------------------------------------+
-| site-id (string, required)         |Your site or app ID in Piwik PRO where you want to send data. Where to find it?   |
-+------------------------------------+----------------------------------------------------------------------------------+
+account-address (string, required) // Account address in Piwik PRO. Example: \https://example.piwik.pro/
+
+site-id (string, required) // Your site or app ID in Piwik PRO where you want to send data. Where to find it?
+
 
 Return value
 ############
