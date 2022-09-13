@@ -156,18 +156,18 @@ Syntax
 Parameters
 ##########
 
-+------------+-------------------------------------------------------------------------------------------------+
-| Parameter  | Description                                                                                     |
-+============+=================================================================================================+
-| account-address (string, required) | Account address in Piwik PRO. Example: \https://example.piwik.pro/      |
-+------------+-------------------------------------------------------------------------------------------------+
-| site-id (string, required) | Your site or app ID in Piwik PRO where you want to send data. Where to find it? |
-+------------+-------------------------------------------------------------------------------------------------+
++------------------------------------+----------------------------------------------------------------------------------+
+| Parameter                          | Description                                                                      |
++====================================+==================================================================================+
+| account-address (string, required) | Account address in Piwik PRO. Example: \https://example.piwik.pro/               |
++------------+----------------------------------------------------------------------------------------------------------+
+| site-id (string, required)         | Your site or app ID in Piwik PRO where you want to send data. Where to find it?  |
++------------------------------------+----------------------------------------------------------------------------------+
 
 Return value
 ############
 
-| An object with account details in Piwik PRO.
+An object with account details in Piwik PRO.
 
 Examples
 ########
