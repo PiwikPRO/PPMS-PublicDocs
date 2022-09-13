@@ -1,5 +1,5 @@
 =====
-Getting started
+JavaScript
 =====
 Here are some guidelines on how to use our JavaScript library in Java Script.
 

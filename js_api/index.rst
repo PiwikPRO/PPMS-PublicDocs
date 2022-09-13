@@ -4,5 +4,5 @@ JS API
 .. toctree::
   :maxdepth: 2
 
-  getting_started
-  javascript
+  getting_started.rst
+  javascript.rst
