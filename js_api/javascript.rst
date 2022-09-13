@@ -11,6 +11,7 @@ Our JavaScript library can be used only after you installed our container's code
 If you haven't installed the code yet, you can find it directly in Piwik PRO in **Menu** > **Administration** > **Sites & apps** > **Installation**.
 
 For more, see our installation guides:
+
 * `Install a container (with a tracking code) <https://help.piwik.pro/support/getting-started/install-a-tracking-code/>`_
 * `Google Tag Manager: install a container (with a tracking code) <https://help.piwik.pro/support/getting-started/google-tag-manager-install-a-container-with-a-tracking-code/>`_
 * `Google Tag Manager: install only a tracking code <https://help.piwik.pro/support/getting-started/google-tag-manager-install-a-tracking-code/>`_
@@ -56,13 +57,13 @@ To send a page view:
 
 .. code-block:: javascript
 
-_paq.push(["trackPageView"]);
+    _paq.push(["trackPageView"]);
 
 To send a custom event:
 
 .. code-block:: javascript
 
-_paq.push(["trackEvent", "Button", "Sign up"]);
+    _paq.push(["trackEvent", "Button", "Sign up"]);
 
 **JS this keyword**
 
@@ -74,10 +75,10 @@ To send a page view and a custom event at once:
 
 .. code-block:: javascript
 
-_paq.push([function () {
-    this.trackPageView();
-    this.trackEvent("Button", "Sign up");
-}]);
+    _paq.push([function () {
+        this.trackPageView();
+        this.trackEvent("Button", "Sign up");
+    }]);
 
 getTracker()
 ------------
@@ -88,7 +89,7 @@ The **getTracker()** method gives you a direct access to an async tracker. An as
 
 .. code-block:: javascript
 
-Piwik.getTracker(account-address, site-id)
+    Piwik.getTracker(account-address, site-id)
 
 **Parameters**
 
@@ -110,15 +111,15 @@ To send a page view:
 
 .. code-block:: javascript
 
-var jstc = Piwik.getTracker("https://example.com/", "45e07cbf-c8b3-42f3-a6d6-a5a176f623ef");
-jstc.trackPageView();
+    var jstc = Piwik.getTracker("https://example.com/", "45e07cbf-c8b3-42f3-a6d6-a5a176f623ef");
+    jstc.trackPageView();
 
 To send a custom event:
 
 .. code-block:: javascript
 
-var jstc = Piwik.getTracker("https://example.com/", "45e07cbf-c8b3-42f3-a6d6-a5a176f623ef");
-jstc.trackEvent("trackEvent", "Button", "Sign up");
+    var jstc = Piwik.getTracker("https://example.com/", "45e07cbf-c8b3-42f3-a6d6-a5a176f623ef");
+    jstc.trackEvent("trackEvent", "Button", "Sign up");
 
 getAsyncTracker()
 -----------------
@@ -129,7 +130,7 @@ The **getAsyncTracker()** method gives you a direct access to an async tracker. 
 
 .. code-block:: javascript
 
-Piwik.getTracker(account-address, site-id)
+    Piwik.getTracker(account-address, site-id)
 
 **Parameters**
 
@@ -149,15 +150,15 @@ To send a page view:
 
 .. code-block:: javascript
 
-var jstc = Piwik.getAsyncTracker("https://example.com/", "45e07cbf-c8b3-42f3-a6d6-a5a176f623ef");
-jstc.trackPageView();
+    var jstc = Piwik.getAsyncTracker("https://example.com/", "45e07cbf-c8b3-42f3-a6d6-a5a176f623ef");
+    jstc.trackPageView();
 
 To send a custom event:
 
 .. code-block:: javascript
 
-var jstc = Piwik.getAsyncTracker("https://example.com/", "45e07cbf-c8b3-42f3-a6d6-a5a176f623ef");
-jstc.trackEvent("trackEvent", "Button", "Sign up");
+    var jstc = Piwik.getAsyncTracker("https://example.com/", "45e07cbf-c8b3-42f3-a6d6-a5a176f623ef");
+    jstc.trackEvent("trackEvent", "Button", "Sign up");
 
 
 
