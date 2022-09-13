@@ -22,15 +22,13 @@ For more, see our installation guides:
 
 
 
-Calling methods
+Methods used in calls
 ---------------
 
 In JavaScript, our methods can be called in a few ways:
 
 
-* **JS (queue):** After installing our container's code, it'll create the **_paq** object (a queue). You can use the **push()** method to add methods to the queue. Our tracker will then access and proceed these methods.
-
-With this method, you can also use **this** keyword to send a few methods within one call.
+* **JS (queue):** After installing our container's code, it'll create the **_paq** object (a queue). You can use the **push()** method to add methods to the queue. Our tracker will then access and proceed these methods. With this method, you can also use **this** keyword to send a few methods within one call.
 
 * **JS (direct):** After installing our container's code, you can access our tracker directly (and don't use the queue) with the **getTracker()** or **getAsyncTracker()** method.
 
@@ -48,8 +46,8 @@ The **push()** method adds methods to the **_paq** object (a queue). The methods
 
 **Parameters**
 
-**command** (string, required)
-An array containing our JavaScript methods.
+| **command** (string, required)
+| An array containing our JavaScript methods.
 
 **Examples**
 
@@ -94,17 +92,17 @@ The **getTracker()** method gives you a direct access to an async tracker. An as
 
 **Parameters**
 
-**account-address** (string, required)
-Account address in Piwik PRO. Example: \https://example.piwik.pro/
+| **account-address** (string, required)
+| Account address in Piwik PRO. Example: \https://example.piwik.pro/
 
-**site-id** (string, required)
-Your site or app ID in Piwik PRO where you want to send data. Where to find it?
+| **site-id** (string, required)
+| Your site or app ID in Piwik PRO where you want to send data. Where to find it?
 
 **Return value**
 
-An object with account details in Piwik PRO.
-Format:
-Type:
+| An object with account details in Piwik PRO.
+| Format:
+| Type:
 
 **Examples**
 
@@ -135,15 +133,15 @@ The **getAsyncTracker()** method gives you a direct access to an async tracker. 
 
 **Parameters**
 
-**account-address** (string, required)
-Account address in Piwik PRO. Example: \https://example.piwik.pro/
+| **account-address** (string, required)
+| Account address in Piwik PRO. Example: \https://example.piwik.pro/
 
-**site-id** (string, required)
-Your site or app ID in Piwik PRO where you want to send data. Where to find it?
+| **site-id** (string, required)
+| Your site or app ID in Piwik PRO where you want to send data. Where to find it?
 
 **Return value**
 
-An object with account details in Piwik PRO.
+| An object with account details in Piwik PRO.
 
 **Examples**
 

@@ -1,8 +1,8 @@
 JS API
 ================
 
-.. toctree::
-  :maxdepth: 2
+  .. toctree::
+     :maxdepth: 2
+     :glob:
 
-  getting_started.rst
-  javascript.rst
+     *
