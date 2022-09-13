@@ -3,30 +3,9 @@ JS API
 =====
 
 .. toctree::
-   :maxdepth: 0
+   :maxdepth: 2
+   :glob:
 
-   getting_started.str
-   javascript.str
+   *
 
-
-Getting started
----------------
-
-Our JavaScript library has methods that let you send data from your site or web app to Piwik PRO. You can use these methods in JavaScript or within our dedicated libraries for Angular and React.
-
-In short, our JavaScript library lets you collect data like:
-
-* Page views
-* Goals
-* Internal searches
-* Downloads and outlinks
-* Custom events
-* Ecommerce events
-* And more
-
-**Next steps**
-
-* JavaScript
-* Angular
-* React
-* Methods
+   Monocle ipsum dolor sit amet handsome Helsinki Toto, airport signature soft power smart. Craftsmanship hub impeccable business class K-pop Ginza delightful. Global sharp airport cosy extraordinary, Nordic Porter vibrant smart Boeing 787 premium Lufthansa St Moritz. Singapore remarkable destination Swiss Ginza impeccable. Global handsome signature flat white, uniforms Winkreative lovely craftsmanship. Marylebone bulletin Nordic Porter vibrant Scandinavian liveable remarkable artisanal global Winkreative joy alluring. Joy essential quality of life delightful, bespoke espresso sophisticated hand-crafted the best izakaya business class Marylebone.
