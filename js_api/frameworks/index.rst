@@ -7,3 +7,4 @@ Frameworks
 
    frameworks.rst
    angular.rst
+   react.rst
