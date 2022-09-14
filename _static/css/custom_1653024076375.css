@@ -110,7 +110,7 @@ p {
 }
 
 .wy-plain-list-disc, .rst-content .section ul, .rst-content .toctree-wrapper ul, article ul, .wy-plain-list-decimal, .rst-content .section ol, .rst-content ol.arabic, article ol {
-    font-size: 14px;
+    font-size: 14px; padding-left: 60px;
 }
 
 .deprecated .versionmodified {
@@ -416,7 +416,7 @@ thead  {
 
 .rst-content tt.literal, .rst-content tt.literal, .rst-content code.literal{
     color: #D2302F;
-    border: 1px solid #D5D9E0;
+    border: none;
     border-radius: 2px;
     background-color: #F2F4F8;
 }
