@@ -42,7 +42,7 @@ or
         })
         export class AppModule { }
 
-**Note:** This method makes sure that collected data is sent to the your account in Piwik PRO and is reported as a corresponding site or app.
+Note: This method makes sure that collected data is sent to the your account in Piwik PRO and is reported as a corresponding site or app.
 
 3. Add tracking methods like page views or custom events to your application.
 4. Data will appear in reports in about an hour. Data in the tracker debugger will appear instantly.
@@ -74,7 +74,7 @@ Example:
       })
       export class AppModule {}
 
-**Note:** The NgxPiwikProRouterModule module subscribes to Router events when the bootstrap component is created. After that, it cleans up any subscriptions related to the previous component when it is destroyed. If you use this module with server-side rendering or multiple bootstrap components, you may get some issues. In that case, we recommend subscribing to the page view events manually.
+Note: The ``NgxPiwikProRouterModule`` module subscribes to Router events when the bootstrap component is created. After that, it cleans up any subscriptions related to the previous component when it is destroyed. If you use this module with server-side rendering or multiple bootstrap components, you may get some issues. In that case, we recommend subscribing to the page view events manually.
 
 
 2. Additionally, you can use the following include/exclude settings:
