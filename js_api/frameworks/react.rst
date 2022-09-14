@@ -55,12 +55,12 @@ Here's a list of all JS methods you can use in your React project. Descriptions 
 
 A
 
-* addDownloadExtensions()
-* addEcommerceItem()
+* addDownloadExtensions()_
+* addEcommerceItem()_
 
 C
 
-* clearEcommerceCart()
+* clearEcommerceCart()_
 
 D
 
