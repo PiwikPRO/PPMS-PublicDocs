@@ -11,35 +11,41 @@ Installation
 
 To install JS library for Angular, follow these steps:
 
-In your project folder, run the following command:
+#. In your project folder, run the following command:
 
-npm install @piwik-pro/ngx-piwik-pro
+.. code-block:: javascript
+
+    npm install @piwik-pro/ngx-piwik-pro
 
 or
 
-yarn add @piwikpro/ngx-piwik-pro
+.. code-block:: javascript
 
-Add the NgxPiwikProModule module in your highest level app module. Call the forRoot() method by passing your account address (Example: https://example.piwik.pro/) and the site ID (Where to find it?):
+    yarn add @piwikpro/ngx-piwik-pro
 
-import { NgxPiwikProModule } from '@piwik-pro/ngx-piwik-pro';
+#. Add the NgxPiwikProModule module in your highest level app module. Call the forRoot() method by passing your account address (Example: /https://example.piwik.pro/) and the site ID (Where to find it?):
 
-@NgModule({
-  declarations: [
-    AppComponent
-  ],
-  imports: [
-    BrowserModule,
-    NgxPiwikProModule.forRoot('site-id', 'account-address')
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
-})
-export class AppModule { }
+.. code-block:: javascript
+
+    import { NgxPiwikProModule } from '@piwik-pro/ngx-piwik-pro';
+
+      @NgModule({
+        declarations: [
+          AppComponent
+          ],
+        imports: [
+          BrowserModule,
+          NgxPiwikProModule.forRoot('site-id', 'account-address')
+          ],
+        providers: [],
+        bootstrap: [AppComponent]
+        })
+        export class AppModule { }
 
 Note: This method makes sure that collected data is sent to the your account in Piwik PRO and is reported as a corresponding site or app.
 
-Add tracking methods like page views or custom events to your application.
-Data will appear in reports in about an hour. Data in the tracker debugger will appear instantly.
+# Add tracking methods like page views or custom events to your application.
+# Data will appear in reports in about an hour. Data in the tracker debugger will appear instantly.
 
 Additional setup for SPA
 ------------------------
@@ -48,48 +54,52 @@ If your web app is built as a single-page application (SPA), you need to track v
 
 To automatically track virtual page views in Angular projects, you need to follow these steps:
 
-Add NgxPiwikProRouterModule on AppModule to enable automatic tracking of Router events.
+# Add NgxPiwikProRouterModule on AppModule to enable automatic tracking of Router events.
 
 Example:
 
-import { NgxPiwikProModule, NgxPiwikProRouterModule } from '@piwik-pro/ngx-piwik-pro';
-...
+.. code-block:: javascript
 
-@NgModule({
-  ...
-  imports: [
+    import { NgxPiwikProModule, NgxPiwikProRouterModule } from '@piwik-pro/ngx-piwik-pro';
     ...
-    NgxPiwikProModule.forRoot('account-address'),
-    NgxPiwikProRouterModule
-//  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  ]
-})
-export class AppModule {}
+
+    @NgModule({
+    ...
+      imports: [
+      ...
+      NgxPiwikProModule.forRoot('account-address'),
+      NgxPiwikProRouterModule
+      //  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+      ]
+      })
+      export class AppModule {}
 
 Note: The NgxPiwikProRouterModule module subscribes to Router events when the bootstrap component is created. After that, it cleans up any subscriptions related to the previous component when it is destroyed. If you use this module with server-side rendering or multiple bootstrap components, you may get some issues. In that case, we recommend subscribing to the page view events manually.
 
 
-Additionally, you can use the following include/exclude settings:
+#. Additionally, you can use the following include/exclude settings:
 
- { include: [ '/full-uri-match' ] } – simple route matching
- { include: [ '*/public/*' ] } – wildcard route matching
- { include: [ /^\/public\/.*/ ] } – regular expression route matching
+ * { include: [ '/full-uri-match' ] } – simple route matching
+ * { include: [ '*/public/*' ] } – wildcard route matching
+ * { include: [ /^\/public\/.*/ ] } – regular expression route matching
 
 Example:
 
-import { NgxPiwikProModule, NgxPiwikProRouterModule } from '@piwik-pro/ngx-piwik-pro';
-...
+.. code-block:: javascript
 
-@NgModule({
-  ...
-  imports: [
-    ...
-    NgxPiwikProModule.forRoot('account-address'),
-    NgxPiwikProRouterModule.forRoot({ include: [...], exclude: [...] })
-//  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  ]
-})
-export class AppModule {}
+    import { NgxPiwikProModule, NgxPiwikProRouterModule } from '@piwik-pro/ngx-piwik-pro';
+      ...
+
+    @NgModule({
+      ...
+      imports: [
+        ...
+        NgxPiwikProModule.forRoot('account-address'),
+        NgxPiwikProRouterModule.forRoot({ include: [...], exclude: [...] })
+    //  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+      ]
+    })
+    export class AppModule {}
 
 
 
@@ -101,29 +111,29 @@ Here's a list of all JS methods you can use in your Angular project. Description
 
 A
 
-addDownloadExtensions()
-addEcommerceItem()
+* addDownloadExtensions()
+* addEcommerceItem()
 
 C
 
-clearEcommerceCart()
+* clearEcommerceCart()
 
 D
 
-deleteCustomDimension()
+* deleteCustomDimension()
 
 E
 
-enableLinkTracking()
+* enableLinkTracking()
 
 G
 
-getCustomDimensionValue()
-getEcommerceItems()
-getLinkTrackingTimer()
-getUserId()
-getVisitorId()
-getVisitorInfo()
+* getCustomDimensionValue()
+* getEcommerceItems()
+* getLinkTrackingTimer()
+* getUserId()
+* getVisitorId()
+* getVisitorInfo()
 
 R
 

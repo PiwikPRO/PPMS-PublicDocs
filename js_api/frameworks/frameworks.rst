@@ -10,5 +10,6 @@ Here is a list of the supported frameworks together with the links to their dedi
 | Framework  | Library                                 |
 +============+=========================================+
 | Angular    | @piwikpro/ngx-piwik-pro (NPM / Yarn)    |
++------------+-----------------------------------------+
 | React      | @piwikpro/react-piwik-pro (NPM / Yarn)  |
 +------------+-----------------------------------------+
