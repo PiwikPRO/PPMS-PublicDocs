@@ -110,7 +110,7 @@ p {
 }
 
 .wy-plain-list-disc, .rst-content .section ul, .rst-content .toctree-wrapper ul, article ul, .wy-plain-list-decimal, .rst-content .section ol, .rst-content ol.arabic, article ol {
-    font-size: 14px; padding-left: 60px;
+    font-size: 14px; padding-left: 60px; max-width: 760px;
 }
 
 .deprecated .versionmodified {
@@ -237,7 +237,7 @@ ul.react-tabs__tab-list {
 }
 
 body {
-    overflow-x: initial !important;
+    overflow-x: initial !important; max-width: 760px;
 }
 
 #redoc-container .redoc-json code {
