@@ -55,24 +55,24 @@ Methods
 
 Here's a list of all JS methods you can use in your React project. Descriptions and other information are available after clicking on links.
 
-A
+**A**
 
 * `addDownloadExtensions() <https://help.piwik.pro>`_
 * `addEcommerceItem() <https://help.piwik.pro>`_
 
-C
+**C**
 
 * `clearEcommerceCart() <https://help.piwik.pro>`_
 
-D
+**D**
 
 * `deleteCustomDimension() <https://help.piwik.pro>`_
 
-E
+**E**
 
 * `enableLinkTracking() <https://help.piwik.pro>`_
 
-G
+**G**
 
 * `getCustomDimensionValue() <https://help.piwik.pro>`_
 * `getEcommerceItems() <https://help.piwik.pro>`_
@@ -81,13 +81,13 @@ G
 * `getVisitorId() <https://help.piwik.pro>`_
 * `getVisitorInfo() <https://help.piwik.pro>`_
 
-R
+**R**
 
 * `removeDownloadExtensions() <https://help.piwik.pro>`_
 * `removeEcommerceItem() <https://help.piwik.pro>`_
 * `resetUserId() <https://help.piwik.pro>`_
 
-S
+**S**
 
 * `setCustomDimensionValue() <https://help.piwik.pro>`_
 * `setDownloadClasses() <https://help.piwik.pro>`_
@@ -98,7 +98,7 @@ S
 * `setLinkTrackingTimer() <https://help.piwik.pro>`_
 * `setUserId() <https://help.piwik.pro>`_
 
-T
+**T**
 
 * `trackContentImpression() <https://help.piwik.pro>`_
 * `trackContentInteraction() <https://help.piwik.pro>`_
