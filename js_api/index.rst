@@ -7,3 +7,4 @@ JS API
 
    getting-started.rst
    javascript.rst
+   frameworks/index.rst
