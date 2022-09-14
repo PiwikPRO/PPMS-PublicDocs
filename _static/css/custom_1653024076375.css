@@ -1306,7 +1306,7 @@ footer {
 }
 
 .codeblock div[class^='highlight'], pre.literal-block div[class^='highlight'], .rst-content .literal-block div[class^='highlight'], div[class^='highlight'] div[class^='highlight'], .admonition div[class^='highlight'] {
-    background: #F2F4F8 !important; border: none !important; max-width: 760px !important; padding-left: 60px !important;
+    background: #F2F4F8 !important;
 }
 
 div[class^='highlight'] pre {
