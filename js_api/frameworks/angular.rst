@@ -111,55 +111,55 @@ Here's a list of all JS methods you can use in your Angular project. Description
 
 **A**
 
-* addDownloadExtensions()
-* addEcommerceItem()
+* `addDownloadExtensions() <https://help.piwik.pro>`_
+* `addEcommerceItem() <https://help.piwik.pro>`_
 
 **C**
 
-* clearEcommerceCart()
+* `clearEcommerceCart() <https://help.piwik.pro>`_
 
 **D**
 
-* deleteCustomDimension()
+* `deleteCustomDimension() <https://help.piwik.pro>`_
 
 **E**
 
-* enableLinkTracking()
+* `enableLinkTracking() <https://help.piwik.pro>`_
 
 **G**
 
-* getCustomDimensionValue()
-* getEcommerceItems()
-* getLinkTrackingTimer()
-* getUserId()
-* getVisitorId()
-* getVisitorInfo()
+* `getCustomDimensionValue() <https://help.piwik.pro>`_
+* `getEcommerceItems() <https://help.piwik.pro>`_
+* `getLinkTrackingTimer() <https://help.piwik.pro>`_
+* `getUserId() <https://help.piwik.pro>`_
+* `getVisitorId() <https://help.piwik.pro>`_
+* `getVisitorInfo() <https://help.piwik.pro>`_
 
 **R**
 
-* removeDownloadExtensions()
-* removeEcommerceItem()
-* resetUserId()
+* `removeDownloadExtensions() <https://help.piwik.pro>`_
+* `removeEcommerceItem() <https://help.piwik.pro>`_
+* `resetUserId() <https://help.piwik.pro>`_
 
 **S**
 
-* setCustomDimensionValue()
-* setDownloadClasses()
-* setDownloadExtensions()
-* setEcommerceView()
-* setIgnoreClasses()
-* setLinkClasses()
-* setLinkTrackingTimer()
-* setUserId()
+* `setCustomDimensionValue() <https://help.piwik.pro>`_
+* `setDownloadClasses() <https://help.piwik.pro>`_
+* `setDownloadExtensions() <https://help.piwik.pro>`_
+* `setEcommerceView() <https://help.piwik.pro>`_
+* `setIgnoreClasses() <https://help.piwik.pro>`_
+* `setLinkClasses() <https://help.piwik.pro>`_
+* `setLinkTrackingTimer() <https://help.piwik.pro>`_
+* `setUserId() <https://help.piwik.pro>`_
 
 **T**
 
-* trackContentImpression()
-* trackContentInteraction()
-* trackEcommerceCartUpdate()
-* trackEcommerceOrder()
-* trackEvent()
-* trackGoal()
-* trackLink()
-* trackPageView()
-* trackSiteSearch()
+* `trackContentImpression() <https://help.piwik.pro>`_
+* `trackContentInteraction() <https://help.piwik.pro>`_
+* `trackEcommerceCartUpdate() <https://help.piwik.pro>`_
+* `trackEcommerceOrder() <https://help.piwik.pro>`_
+* `trackEvent() <https://help.piwik.pro>`_
+* `trackGoal() <https://help.piwik.pro>`_
+* `trackLink() <https://help.piwik.pro>`_
+* `trackPageView() <https://help.piwik.pro>`_
+* `trackSiteSearch() <https://help.piwik.pro>`_
