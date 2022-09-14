@@ -22,7 +22,7 @@ or
 
   yarn add ​​@piwikpro/react-piwik-pro
 
-2. Add the PiwikPro module to your project files. Call the **initialize()** method by passing your account address (Example: \https://example.piwik.pro/) and the site ID (`Where to find it? <https://help.piwik.pro/support/questions/find-website-id/>`_):
+2. Add the ``PiwikPro`` module to your project files. Call the **initialize()** method by passing your account address (Example: \https://example.piwik.pro/) and the site ID (`Where to find it? <https://help.piwik.pro/support/questions/find-website-id/>`_):
 
 .. code-block:: javascript
 
@@ -44,9 +44,9 @@ If your web app is built as a single-page application (SPA), you need to track v
 
 To automatically track virtual page views in React projects, you need to follow these steps:
 
-1.
-2.
-3.
+1. Something
+2. Something
+3. Something
 
 
 
