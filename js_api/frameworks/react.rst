@@ -32,7 +32,7 @@ or
 
   ReactDOM.render(<App />, document.getElementById('root'))
 
-  Note: This method makes sure that collected data is sent to the your account in Piwik PRO and is reported as a corresponding site or app.
+Note: This method makes sure that collected data is sent to the your account in Piwik PRO and is reported as a corresponding site or app.
 
 3. Add tracking methods like screen views or custom events to your application.
 4. Data will appear in reports in about an hour. Data in the tracker debugger will appear instantly.
