@@ -422,13 +422,13 @@ thead  {
 }
 
 .rst-content dl:not(.docutils) dt{
-    border: 1px solid #0D95FD;
+    border: none;
     border-left: 4px solid #0D95FD;
     background-color: #FFFFFF;
 }
 
 .rst-content dl:not(.docutils) dl dt {
-    border: 1px solid #D5D9E0;
+    border: none;
     border-left: 4px solid #D5D9E0;
     background-color: #FFFFFF;
 }
