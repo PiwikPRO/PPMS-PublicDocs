@@ -11,7 +11,7 @@ Installation
 
 To install JS library for Angular, follow these steps:
 
-#. In your project folder, run the following command:
+1. In your project folder, run the following command:
 
 .. code-block:: javascript
 
@@ -23,7 +23,7 @@ or
 
     yarn add @piwikpro/ngx-piwik-pro
 
-#. Add the NgxPiwikProModule module in your highest level app module. Call the forRoot() method by passing your account address (Example: /https://example.piwik.pro/) and the site ID (Where to find it?):
+2. Add the NgxPiwikProModule module in your highest level app module. Call the forRoot() method by passing your account address (Example: \https://example.piwik.pro/) and the site ID (Where to find it?):
 
 .. code-block:: javascript
 
@@ -44,8 +44,8 @@ or
 
 Note: This method makes sure that collected data is sent to the your account in Piwik PRO and is reported as a corresponding site or app.
 
-# Add tracking methods like page views or custom events to your application.
-# Data will appear in reports in about an hour. Data in the tracker debugger will appear instantly.
+3. Add tracking methods like page views or custom events to your application.
+4. Data will appear in reports in about an hour. Data in the tracker debugger will appear instantly.
 
 Additional setup for SPA
 ------------------------
@@ -54,7 +54,7 @@ If your web app is built as a single-page application (SPA), you need to track v
 
 To automatically track virtual page views in Angular projects, you need to follow these steps:
 
-# Add NgxPiwikProRouterModule on AppModule to enable automatic tracking of Router events.
+1. Add NgxPiwikProRouterModule on AppModule to enable automatic tracking of Router events.
 
 Example:
 
@@ -77,7 +77,7 @@ Example:
 Note: The NgxPiwikProRouterModule module subscribes to Router events when the bootstrap component is created. After that, it cleans up any subscriptions related to the previous component when it is destroyed. If you use this module with server-side rendering or multiple bootstrap components, you may get some issues. In that case, we recommend subscribing to the page view events manually.
 
 
-#. Additionally, you can use the following include/exclude settings:
+2. Additionally, you can use the following include/exclude settings:
 
  * { include: [ '/full-uri-match' ] } – simple route matching
  * { include: [ '*/public/*' ] } – wildcard route matching
@@ -137,29 +137,29 @@ G
 
 R
 
-removeDownloadExtensions()
-removeEcommerceItem()
-resetUserId()
+* removeDownloadExtensions()
+* removeEcommerceItem()
+* resetUserId()
 
 S
 
-setCustomDimensionValue()
-setDownloadClasses()
-setDownloadExtensions()
-setEcommerceView()
-setIgnoreClasses()
-setLinkClasses()
-setLinkTrackingTimer()
-setUserId()
+* setCustomDimensionValue()
+* setDownloadClasses()
+* setDownloadExtensions()
+* setEcommerceView()
+* setIgnoreClasses()
+* setLinkClasses()
+* setLinkTrackingTimer()
+* setUserId()
 
 T
 
-trackContentImpression()
-trackContentInteraction()
-trackEcommerceCartUpdate()
-trackEcommerceOrder()
-trackEvent()
-trackGoal()
-trackLink()
-trackPageView()
-trackSiteSearch()
+* trackContentImpression()
+* trackContentInteraction()
+* trackEcommerceCartUpdate()
+* trackEcommerceOrder()
+* trackEvent()
+* trackGoal()
+* trackLink()
+* trackPageView()
+* trackSiteSearch()
