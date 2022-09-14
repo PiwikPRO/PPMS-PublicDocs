@@ -420,6 +420,7 @@ thead  {
     color: #24292f;
     border: none;
     background-color: #F2F4F8;
+    font-size: 14px;
 }
 
 .rst-content dl:not(.docutils) dt{
@@ -435,7 +436,7 @@ thead  {
 }
 
 .codeblock, pre.literal-block, .rst-content .literal-block, .rst-content pre.literal-block, div[class^='highlight'] {
-    border: none; padding-left: 60px;
+    border: none; max-width: 760px; padding-left: 60px;
 }
 .wy-nav-content-wrap .unicorn-found {
     background: #FFD000;
@@ -1305,7 +1306,7 @@ footer {
 }
 
 .codeblock div[class^='highlight'], pre.literal-block div[class^='highlight'], .rst-content .literal-block div[class^='highlight'], div[class^='highlight'] div[class^='highlight'], .admonition div[class^='highlight'] {
-    background: #F2F4F8 !important;
+    background: #F2F4F8 !important; border: none; max-width: 760px; padding-left: 60px;
 }
 
 div[class^='highlight'] pre {
@@ -1451,6 +1452,9 @@ body {
 
 .wy-table-responsive table{
     width: 100%;
+    max-width: 760px;
+    padding-left: 60px; 
+
 }
 
 .bStedS path {
