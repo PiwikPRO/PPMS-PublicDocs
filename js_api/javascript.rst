@@ -107,7 +107,7 @@ Parameters
 | Account address in Piwik PRO. Example: \https://example.piwik.pro/
 
 | **site-id** (string, required)
-| Your site or app ID in Piwik PRO where you want to send data. Where to find it?
+| Your site or app ID in Piwik PRO where you want to send data. `Where to find it? <https://help.piwik.pro/support/questions/find-website-id/>`_
 
 Return value
 ############

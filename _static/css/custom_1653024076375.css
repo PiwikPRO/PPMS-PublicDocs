@@ -65,6 +65,7 @@ h1 {
     font-family: "Inter";
     font-weight: 800;
     font-size: 36px;
+    padding-left: 60px;
 }
 
 .rst-content .toctree-wrapper p.caption, body, h2, h3, h4, h5, h6, legend {
@@ -75,32 +76,37 @@ h1 {
 h2 {
     font-size: 22px;
     font-weight: 800;
+    padding-left: 60px;
 }
 
 h3 {
     font-size: 18px;
     font-weight: 800;
+    padding-left: 60px;
 }
 
 h4 {
     font-size: 16px;
     font-weight: 800;
+    padding-left: 60px;
 }
 
 h5 {
     font-size: 14px;
     font-weight: 800;
+    padding-left: 60px;
 }
 
 h6 {
     font-size: 14px;
     font-weight: 800;
+    padding-left: 60px;
 }
 
 p {
     font-size: 14px;
     max-width: 760px;
-    padding-left: 20px;
+    padding-left: 60px;
 }
 
 .wy-plain-list-disc, .rst-content .section ul, .rst-content .toctree-wrapper ul, article ul, .wy-plain-list-decimal, .rst-content .section ol, .rst-content ol.arabic, article ol {
@@ -428,7 +434,7 @@ thead  {
 }
 
 .codeblock, pre.literal-block, .rst-content .literal-block, .rst-content pre.literal-block, div[class^='highlight'] {
-    border: 0px solid #F2F4F8;
+    border: none;
 }
 .wy-nav-content-wrap .unicorn-found {
     background: #FFD000;
@@ -644,35 +650,35 @@ thead  {
 }
 
 .sb {
-    color: #E47373
+    color: #23649E
 }
 
 .sc {
-    color: #E47373
+    color: #23649E
 }
 
 .sd {
-    color: #E47373
+    color: #23649E
 }
 
 .s2 {
-    color: #E47373
+    color: #23649E
 }
 
 .se {
-    color: #E47373
+    color: #23649E
 }
 
 .sh {
-    color: #E47373
+    color: #23649E
 }
 
 .si {
-    color: #E47373
+    color: #23649E
 }
 
 .sx {
-    color: #E47373
+    color: #23649E
 }
 
 .sr {
@@ -1302,7 +1308,7 @@ footer {
 }
 
 div[class^='highlight'] pre {
-    color: #F2F4F8;
+    color: #2a363b;
 }
 
 body {
