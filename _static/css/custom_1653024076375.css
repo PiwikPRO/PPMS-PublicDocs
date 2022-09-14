@@ -417,24 +417,23 @@ thead  {
 .rst-content tt.literal, .rst-content tt.literal, .rst-content code.literal{
     color: #D2302F;
     border: none;
-    border-radius: 2px;
     background-color: #F2F4F8;
 }
 
 .rst-content dl:not(.docutils) dt{
     border: none;
-    border-left: 4px solid #0D95FD;
+    border-left: none;
     background-color: #FFFFFF;
 }
 
 .rst-content dl:not(.docutils) dl dt {
     border: none;
-    border-left: 4px solid #D5D9E0;
+    border-left: none;
     background-color: #FFFFFF;
 }
 
 .codeblock, pre.literal-block, .rst-content .literal-block, .rst-content pre.literal-block, div[class^='highlight'] {
-    border: none;
+    border: none; padding-left: 60px;
 }
 .wy-nav-content-wrap .unicorn-found {
     background: #FFD000;
