@@ -6,4 +6,4 @@ JS API
    :maxdepth: 1
 
    getting-started.rst
-   javascript/index.rst
+   javascript.rst
