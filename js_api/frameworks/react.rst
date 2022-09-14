@@ -14,25 +14,25 @@ To install JS library for React, follow these steps:
 
 .. code-block:: javascript
 
-    npm install @piwik-pro/react-piwik-pro
+  npm install @piwik-pro/react-piwik-pro
 
 or
 
 .. code-block:: javascript
 
-    yarn add ​​@piwikpro/react-piwik-pro
+  yarn add ​​@piwikpro/react-piwik-pro
 
 2. Add the PiwikPro module to your project files. Call the **initialize()** method by passing your account address (Example: \https://example.piwik.pro/) and the site ID (`Where to find it? <https://help.piwik.pro/support/questions/find-website-id/>`_):
 
 .. code-block:: javascript
 
-	 import PiwikPro from '@piwik-pro/react-piwik-pro';
+  import PiwikPro from '@piwik-pro/react-piwik-pro';
 
-      PiwikPro.initialize('site-id', 'account-address');
+  PiwikPro.initialize('site-id', 'account-address');
 
-      ReactDOM.render(<App />, document.getElementById('root'))
+  ReactDOM.render(<App />, document.getElementById('root'))
 
-Note: This method makes sure that collected data is sent to the your account in Piwik PRO and is reported as a corresponding site or app.
+  Note: This method makes sure that collected data is sent to the your account in Piwik PRO and is reported as a corresponding site or app.
 
 3. Add tracking methods like screen views or custom events to your application.
 4. Data will appear in reports in about an hour. Data in the tracker debugger will appear instantly.
