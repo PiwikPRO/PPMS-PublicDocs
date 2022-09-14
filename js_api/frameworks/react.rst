@@ -44,7 +44,9 @@ If your web app is built as a single-page application (SPA), you need to track v
 
 To automatically track virtual page views in React projects, you need to follow these steps:
 
-___________________
+1.
+2.
+3.
 
 
 
