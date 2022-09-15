@@ -1309,12 +1309,21 @@ footer {
     background: #F2F4F8 !important;
 }
 
+pre{
+  padding-left: 60px;
+  border: none;
+}
+
 div[class^='highlight'] pre {
     color: #2a363b;
 }
 
 body {
     color: #0C0F12;
+}
+
+.line-block{
+  font-size:14px;
 }
 
 .wy-menu.wy-menu-vertical code{
@@ -1453,7 +1462,7 @@ body {
 .wy-table-responsive table{
     width: 100%;
     max-width: 760px;
-    padding-left: 60px !important; 
+    margin-left: 60px !important; 
 
 }
 
