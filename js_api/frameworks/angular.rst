@@ -111,7 +111,7 @@ Here's a list of all JS methods you can use in your Angular project. Description
 
 **A**
 
-* `addDownloadExtensions() <https://help.piwik.pro>`_
+* :ref:`addDownloadExtensions() <addDownloadExtensions()>`
 * `addEcommerceItem() <https://help.piwik.pro>`_
 
 **C**
