@@ -1309,8 +1309,9 @@ footer {
     background: #F2F4F8 !important;
 }
 
-pre{
+pre {
   padding-left: 60px;
+  margin-left: 60px;
   border: none;
 }
 
@@ -1324,6 +1325,8 @@ body {
 
 .line-block{
   font-size:14px;
+  padding-left: 60px;
+  max-width: 760px;
 }
 
 .wy-menu.wy-menu-vertical code{
