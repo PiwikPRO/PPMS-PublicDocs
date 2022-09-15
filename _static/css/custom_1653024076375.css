@@ -1420,6 +1420,7 @@ body {
 
 .sphinx-tab {
     border: none !important;
+    margin-left: 60px !important;
 }
 
 .sphinx-tabs .ui {
@@ -1437,6 +1438,7 @@ body {
     padding: 8px 12px !important;
     color: #006bd6 !important;
     background-color: #fef8f1;
+    margin-left: 60px !important;
 }
 
 .sphinx-tabs .ui.top .active.item {
