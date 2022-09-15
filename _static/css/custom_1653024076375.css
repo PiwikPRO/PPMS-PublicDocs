@@ -1323,6 +1323,7 @@ body {
 
 .line-block{
   font-size:14px;
+  line-height: 24px;
   padding-left: 60px;
   max-width: 760px;
 }
