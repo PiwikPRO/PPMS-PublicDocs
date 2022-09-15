@@ -1310,9 +1310,8 @@ footer {
 }
 
 pre {
-  padding-left: 60px;
-  margin-left: 60px;
-  border: none;
+  margin-left: 60px !important;
+  border: none !important;
 }
 
 div[class^='highlight'] pre {
