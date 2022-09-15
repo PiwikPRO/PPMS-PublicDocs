@@ -23,8 +23,9 @@ Developer docs and guides
    consent_manager/index
    tag_manager/index
    platform/index
-   glossary
    js_api/index
+   changelog
+
 
 .. raw:: html
 
