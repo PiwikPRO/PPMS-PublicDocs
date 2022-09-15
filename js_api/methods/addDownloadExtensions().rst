@@ -46,8 +46,6 @@ To add a mhj|docx extensions to the existing list of file extensions:
 
           _paq.push(["addDownloadExtensions", "mhj|docx"]);
 
-.. tabs::
-
     .. group-tab:: JS (direct)
 
         .. code-block:: javascript
@@ -58,13 +56,9 @@ To add a mhj|docx extensions to the existing list of file extensions:
           );
           jstc.addDownloadExtensions("mhj|docx");
 
-.. tabs::
-
     .. group-tab:: Angular
 
         .. code-block:: javascript
-
-.. tabs::
 
     .. group-tab:: React
 
