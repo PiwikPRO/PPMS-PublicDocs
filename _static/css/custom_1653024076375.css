@@ -239,7 +239,7 @@ ul.react-tabs__tab-list {
 }
 
 body {
-    overflow-x: initial !important; max-width: 760px; padding-left: 60px;
+    overflow-x: initial !important;
 }
 
 #redoc-container .redoc-json code {
