@@ -275,8 +275,6 @@ To add two products to the cart and send a cart update:
 
 To track a confirmed order:
 
-JS (queue)
-
 .. tabs::
 
     .. group-tab:: JS (queue)
@@ -365,8 +363,8 @@ Notes
 -----
 
 * The cart with added items is not stored in the browser storage. Make sure that you add all items again after the page reloads.
-* If a product with the same SKU is already in the cart, it'll be removed and replaced with the one added with the **addEcommerceItem()** method.
-* This method doesn't send any data to Piwik PRO. It just creates a cart. You can use the **trackEcommerceCartUpdate()** or **trackEcommerceOrder()** method to send cart data to Piwik PRO.
+* If a product with the same SKU is already in the cart, it'll be removed and replaced with the one added with the addEcommerceItem() method.
+* This method doesn't send any data to Piwik PRO. It just creates a cart. You can use the trackEcommerceCartUpdate() or trackEcommerceOrder() method to send cart data to Piwik PRO.
 
 Related methods
 ---------------
