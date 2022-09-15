@@ -1310,7 +1310,6 @@ footer {
 }
 
 .rst-content pre.literal-block, .rst-content div[class^='highlight']  {
-  margin-left: 60px !important;
   border: none !important;
 }
 

@@ -11,5 +11,5 @@ Here is a list of the supported frameworks together with the links to their dedi
 +============+================================================================================================================================================================+
 | Angular    | @piwikpro/ngx-piwik-pro (`NPM <https://www.npmjs.com/package/@piwikpro/ngx-piwik-pro>`_ / `Yarn <https://yarnpkg.com/package/@piwikpro/ngx-piwik-pro>`_)       |
 +------------+----------------------------------------------------------------------------------------------------============================================================+
-| React      | @piwikpro/react-piwik-pro (`NPM <https://www.npmjs.com/package/@piwikpro/react-piwik-pro>`_ / `Yarn <https://yarnpkg.com/package/@piwikpro/react-piwik-pro>`_) |                                                            |
+| React      | @piwikpro/react-piwik-pro (`NPM <https://www.npmjs.com/package/@piwikpro/react-piwik-pro>`_ / `Yarn <https://yarnpkg.com/package/@piwikpro/react-piwik-pro>`_) |
 +------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------+
