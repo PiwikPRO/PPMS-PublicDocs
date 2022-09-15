@@ -9,7 +9,7 @@ Here is a list of the supported frameworks together with the links to their dedi
 +------------+-----------------------------------------+
 | Framework  | Library                                 |
 +============+=========================================+
-| Angular    | @piwikpro/ngx-piwik-pro (NPM / Yarn)    |
+| Angular    | @piwikpro/ngx-piwik-pro (`NPM <https://www.npmjs.com/package/@piwikpro/ngx-piwik-pro>`_ / Yarn)    |
 +------------+-----------------------------------------+
 | React      | @piwikpro/react-piwik-pro (NPM / Yarn)  |
 +------------+-----------------------------------------+
