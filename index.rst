@@ -144,3 +144,91 @@ Developer docs and guides
         </div>
         <div class="popular-links-el-filler"/>
     </div>
+
+    <div class="tx-4 tx-md-6 tx-sm-10">
+								<div class="content">
+									<h3><a href="https://help.piwik.pro/support/getting-started/">Getting started</a></h3>
+																			<p class="mb3">Learn how to add a container or tracking code to your site or app, collect additional data, organize data and use settings.</p>
+																		<a class="link" href="https://help.piwik.pro/support/getting-started/">Read more</a>
+								</div>
+							</div>
+													<div class="tx-4 tx-md-6 tx-sm-10">
+								<div class="content">
+									<h3><a href="https://help.piwik.pro/support/account/">Account</a></h3>
+																			<p class="mb3">Learn how to add users, groups and manage permissions in Piwik PRO.</p>
+																		<a class="link" href="https://help.piwik.pro/support/account/">Read more</a>
+								</div>
+							</div>
+													<div class="tx-4 tx-md-6 tx-sm-10">
+								<div class="content">
+									<h3><a href="https://help.piwik.pro/support/privacy/">Privacy</a></h3>
+																			<p class="mb3">Learn about collected data, used cookies and privacy laws that you need to comply with, like GDPR, CCPA, CNIL and more.</p>
+																		<a class="link" href="https://help.piwik.pro/support/privacy/">Read more</a>
+								</div>
+							</div>
+													<div class="tx-4 tx-md-6 tx-sm-10">
+								<div class="content">
+									<h3><a href="https://help.piwik.pro/support/collecting-data/">Collecting data</a></h3>
+																			<p class="mb3">Learn how to collect basic and additional data like custom dimensions, custom events, videos and more.</p>
+																		<a class="link" href="https://help.piwik.pro/support/collecting-data/">Read more</a>
+								</div>
+							</div>
+													<div class="tx-4 tx-md-6 tx-sm-10">
+								<div class="content">
+									<h3><a href="https://help.piwik.pro/support/reports/">Reports</a></h3>
+																			<p class="mb3">Learn how to use core reports, custom reports, goals, funnels, user flow, dashboards and segments in Analytics.</p>
+																		<a class="link" href="https://help.piwik.pro/support/reports/">Read more</a>
+								</div>
+							</div>
+													<div class="tx-4 tx-md-6 tx-sm-10">
+								<div class="content">
+									<h3><a href="https://help.piwik.pro/support/tag-manager/">Tags, triggers & variables</a></h3>
+																			<p class="mb3">Learn how to set up tags and triggers, create custom variables, use data layer and more.</p>
+																		<a class="link" href="https://help.piwik.pro/support/tag-manager/">Read more</a>
+								</div>
+							</div>
+													<div class="tx-4 tx-md-6 tx-sm-10">
+								<div class="content">
+									<h3><a href="https://help.piwik.pro/support/audiences/">Audiences</a></h3>
+																			<p class="mb3">Learn how to build and set up audiences, work with attributes and connect to third-party tools.</p>
+																		<a class="link" href="https://help.piwik.pro/support/audiences/">Read more</a>
+								</div>
+							</div>
+													<div class="tx-4 tx-md-6 tx-sm-10">
+								<div class="content">
+									<h3><a href="https://help.piwik.pro/support/integrations/">Integrations</a></h3>
+																			<p class="mb3">Learn how to connect Piwik PRO with tools like Google Ads, Google Search Console, SharePoint and more.</p>
+																		<a class="link" href="https://help.piwik.pro/support/integrations/">Read more</a>
+								</div>
+							</div>
+													<div class="tx-4 tx-md-6 tx-sm-10">
+								<div class="content">
+									<h3><a href="https://help.piwik.pro/support/questions/">Questions</a></h3>
+																			<p class="mb3">Basic and technical questions and answers about Piwik PRO.</p>
+																		<a class="link" href="https://help.piwik.pro/support/questions/">Read more</a>
+								</div>
+							</div>
+													<div class="tx-4 tx-md-6 tx-sm-10">
+								<div class="content">
+									<h3><a href="https://help.piwik.pro/support/migrating-from-ga3-gtm/">Migrating from GA3/GTM</a></h3>
+																			<p class="mb3">Learn how to set up Piwik PRO after using Google Universal Analytics (GA3) and Google Tag Manager</p>
+																		<a class="link" href="https://help.piwik.pro/support/migrating-from-ga3-gtm/">Read more</a>
+								</div>
+							</div>
+													<div class="tx-4 tx-md-6 tx-sm-10">
+								<div class="content">
+									<h3><a href="https://help.piwik.pro/support/video-tutorials/">Video tutorials</a></h3>
+																			<p class="mb3">Learn how to use Piwik PRO by watching video tutorials on YouTube.</p>
+																		<a class="link" href="https://help.piwik.pro/support/video-tutorials/">Read more</a>
+								</div>
+							</div>
+													<div class="tx-4 tx-md-6 tx-sm-10">
+								<div class="content">
+									<h3><a href="https://help.piwik.pro/support/developers-api/">Developers & API</a></h3>
+																			<p class="mb3">Learn about our APIs, access raw data and build custom features.</p>
+																		<a class="link" href="https://help.piwik.pro/support/developers-api/">Read more</a>
+								</div>
+							</div>
+											</div>
+				</div>
+					</div>
