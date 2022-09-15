@@ -1309,7 +1309,7 @@ footer {
     background: #F2F4F8 !important; margin-left: 60px !important; border: none !important;
 }
 
-pre {
+.rst-content pre.literal-block, .rst-content div[class^='highlight']  {
   margin-left: 60px !important;
   border: none !important;
 }
