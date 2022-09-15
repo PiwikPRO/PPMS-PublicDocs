@@ -38,21 +38,39 @@ Examples
 
 To add a mhj|docx extensions to the existing list of file extensions:
 
-JS (queue)
+.. tabs::
 
-_paq.push(["addDownloadExtensions", "mhj|docx"]);
+    .. group-tab:: JS (queue)
 
-JS (direct)
+        .. code-block:: javascript
 
-var jstc = Piwik.getTracker(
-  "https://example.com/",
-  "45e07cbf-c8b3-42f3-a6d6-a5a176f623ef"
-);
-jstc.addDownloadExtensions("mhj|docx");
+          _paq.push(["addDownloadExtensions", "mhj|docx"]);
 
-React
+.. tabs::
 
-Angular
+    .. group-tab:: JS (direct)
+
+        .. code-block:: javascript
+
+          var jstc = Piwik.getTracker(
+            "https://example.com/",
+            "45e07cbf-c8b3-42f3-a6d6-a5a176f623ef"
+          );
+          jstc.addDownloadExtensions("mhj|docx");
+
+.. tabs::
+
+    .. group-tab:: Angular
+
+        .. code-block:: javascript
+
+.. tabs::
+
+    .. group-tab:: React
+
+        .. code-block:: javascript
+
+
 
 Notes
 -----
