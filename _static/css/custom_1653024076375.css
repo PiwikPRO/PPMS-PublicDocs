@@ -110,17 +110,17 @@ h6 {
 }
 
 p {
-    font-size: 14px;
+    font-size: 16px;
     max-width: 760px;
     padding-left: 60px;
 }
 
 .wy-plain-list-disc, .rst-content .section ul, .rst-content .toctree-wrapper ul, article ul, .wy-plain-list-decimal, .rst-content .section ol, .rst-content ol.arabic, article ol {
-    font-size: 14px; padding-left: 60px; max-width: 760px;
+    font-size: 16px; padding-left: 60px; max-width: 760px;
 }
 
 .deprecated .versionmodified {
-    font-size: 14px !important;
+    font-size: 16px !important;
 }
 
 .rst-content dl:not(.docutils) dt {
@@ -430,7 +430,7 @@ thead  {
     color: #24292f;
     border: none;
     background-color: #F2F4F8;
-    font-size: 14px;
+    font-size: 16px;
 }
 
 .rst-content dl:not(.docutils) dt{
@@ -841,7 +841,7 @@ thead  {
 
 a.link {
     display: block;
-    font-size: 14px;
+    font-size: 16px;
     padding-bottom: 14px;
     margin-left: 60px;
 }
@@ -1334,7 +1334,7 @@ body {
 }
 
 .line-block{
-  font-size:14px;
+  font-size:16px;
   line-height: 24px;
   padding-left: 60px;
   max-width: 760px;
