@@ -14,10 +14,10 @@ Here is a list of the supported frameworks together with the links to their dedi
 | React      | @piwikpro/react-piwik-pro (`NPM <https://www.npmjs.com/package/@piwikpro/react-piwik-pro>`_ / `Yarn <https://yarnpkg.com/package/@piwikpro/react-piwik-pro>`_) |
 +------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
+See detailed descriptions:
 
 .. toctree::
    :maxdepth: 1
 
-   frameworks.rst
    angular.rst
    react.rst
