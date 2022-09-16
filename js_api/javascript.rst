@@ -6,7 +6,7 @@ Here are some guidelines on how to use our JavaScript library in Java Script.
 Installation
 ------------
 
-Our JavaScript library can be used only after you installed our container's code (or only a tracking code) on your site. The code creates a <script> tag that asynchronously loads the JavaScript library in the website's body section.
+Our JavaScript library can be used only after you installed our container's code (or only a tracking code) on your site. The code creates a ``<script>`` tag that asynchronously loads the JavaScript library in the website's body section.
 
 If you haven't installed the code yet, you can find it directly in Piwik PRO in **Menu** > **Administration** > **Sites & apps** > **Installation**.
 
@@ -27,9 +27,9 @@ Methods used for calls
 
 In JavaScript, our methods can be called in a few ways:
 
-* **JS (queue):** After installing our container's code, it'll create the **_paq** object (a queue). You can use the **push()** method to add methods to the queue. Our tracker will then access and proceed these methods. With this method, you can also use **this** keyword to send a few methods within one call.
+* **JS (queue):** After installing our container's code, it'll create the ``_paq`` object (a queue). You can use the :ref:`push()` method to add methods to the queue. Our tracker will then access and proceed these methods. With this method, you can also use ``this`` keyword to send a few methods within one call.
 
-* **JS (direct):** After installing our container's code, you can access our tracker directly (and don't use the queue) with the **getTracker()** or **getAsyncTracker()** method.
+* **JS (direct):** After installing our container's code, you can access our tracker directly (and don't use the queue) with the :ref:`getTracker()` or :ref:`getAsyncTracker()` method.
 
 push()
 ^^^^^^
@@ -70,7 +70,7 @@ To send a custom event:
 JS this keyword
 ^^^^^^^^^^^^^^^
 
-The JavaScript **this** keyword lets you add a few methods to the **_paq** object (a queue) in a single call.
+The JavaScript ``this`` keyword lets you add a few methods to the ``_paq`` object (a queue) in a single call.
 
 Examples
 ########

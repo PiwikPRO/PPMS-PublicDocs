@@ -2,7 +2,7 @@
 addListener()
 =============
 
-The addListener() method adds automatic link tracking to an HTML element. You can use it to track links added to a document after a page load.
+The **addListener()** method adds automatic link tracking to an HTML element. You can use it to track links added to a document after a page load.
 
 Syntax
 ------
