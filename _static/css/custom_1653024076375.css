@@ -65,7 +65,7 @@ h1 {
     font-family: "Inter";
     font-weight: 800;
     font-size: 36px;
-    padding-left: 60px;
+    padding-left: 80px;
     padding-top: 16px;
 }
 
@@ -77,46 +77,46 @@ h1 {
 h2 {
     font-size: 22px;
     font-weight: 800;
-    padding-left: 60px;
+    padding-left: 80px;
     padding-top: 16px;
 }
 
 h3 {
     font-size: 18px;
     font-weight: 800;
-    padding-left: 60px;
+    padding-left: 80px;
     padding-top: 16px;
 }
 
 h4 {
     font-size: 16px;
     font-weight: 800;
-    padding-left: 60px;
+    padding-left: 80px;
     padding-top: 16px;
 }
 
 h5 {
     font-size: 14px;
     font-weight: 800;
-    padding-left: 60px;
+    padding-left: 80px;
     padding-top: 16px;
 }
 
 h6 {
     font-size: 14px;
     font-weight: 800;
-    padding-left: 60px;
+    padding-left: 80px;
     padding-top: 16px;
 }
 
 p {
     font-size: 16px;
     max-width: 760px;
-    padding-left: 60px;
+    padding-left: 80px;
 }
 
 .wy-plain-list-disc, .rst-content .section ul, .rst-content .toctree-wrapper ul, article ul, .wy-plain-list-decimal, .rst-content .section ol, .rst-content ol.arabic, article ol {
-    font-size: 16px; padding-left: 60px; max-width: 760px; margin-bottom: 24px;
+    font-size: 16px; padding-left: 80px; max-width: 760px; margin-bottom: 24px;
 }
 
 .deprecated .versionmodified {
@@ -230,7 +230,7 @@ ul.react-tabs__tab-list {
 
 #redoc-container table {
 	table-layout: fixed;
-  padding-left: 60px;
+  padding-left: 80px;
   max-width: 760px;
 }
 
@@ -388,7 +388,7 @@ thead  {
     background-color: #E2F2FD;
     border-top: 2px solid #006BD6;
     border-bottom: 2px solid #006BD6;
-    margin-left: 60px;
+    margin-left: 80px;
     max-width: 760px;
 }
 
@@ -396,7 +396,7 @@ thead  {
     background-color: #FFFBEB;
     border-top: 2px solid #ED8E00;
     border-bottom: 2px solid #ED8E00;
-    margin-left: 60px;
+    margin-left: 80px;
     max-width: 760px;
 }
 
@@ -843,7 +843,7 @@ a.link {
     display: block;
     font-size: 16px;
     padding-bottom: 14px;
-    margin-left: 60px;
+    margin-left: 80px;
 }
 
 a.link-large {
@@ -1317,7 +1317,7 @@ footer {
 }
 
 .codeblock div[class^='highlight'], pre.literal-block div[class^='highlight'], .rst-content .literal-block div[class^='highlight'], div[class^='highlight'] div[class^='highlight'], .admonition div[class^='highlight'] {
-    background: #F2F4F8 !important; margin-left: 60px !important; border: none !important;
+    background: #F2F4F8 !important; margin-left: 80px !important; border: none !important;
 }
 
 .rst-content pre.literal-block, .rst-content div[class^='highlight']  {
@@ -1336,7 +1336,7 @@ body {
 .line-block{
   font-size:16px;
   line-height: 24px;
-  padding-left: 60px;
+  padding-left: 80px;
   max-width: 760px;
 }
 
@@ -1441,7 +1441,7 @@ body {
 .sphinx-tabs .ui.top {
     min-height: 0 !important;
     font-family: "Inter" !important;
-    margin-left: 60px !important;
+    margin-left: 80px !important;
 }
 
 .sphinx-tabs .ui.top .item {
@@ -1478,7 +1478,7 @@ body {
 .wy-table-responsive table{
     width: 100%;
     max-width: 760px;
-    margin-left: 60px !important; 
+    margin-left: 80px !important; 
 
 }
 
