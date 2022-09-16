@@ -116,11 +116,11 @@ p {
 }
 
 .wy-plain-list-disc, .rst-content .section ul, .rst-content .toctree-wrapper ul, article ul, .wy-plain-list-decimal, .rst-content .section ol, .rst-content ol.arabic, article ol {
-    font-size: 16px; padding-left: 80px; max-width: 760px; margin-bottom: 24px;
+    font-size: 16px; padding-left: 80px; max-width: 760px; margin-bottom: 12px;
 }
 
 .wy-plain-list-disc li {
-  margin-bottom: 24px;
+  margin-bottom: 12px;
 }
 
 .deprecated .versionmodified {
