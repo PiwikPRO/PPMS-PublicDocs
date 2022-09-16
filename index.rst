@@ -46,43 +46,38 @@ Developer docs and guides
 													<div class="tx-4 tx-md-6 tx-sm-10">
 								<div class="content">
 									<h3><a href="https://help.piwik.pro/support/getting-started/">Web API</a></h3>
-																			<p class="mb3">Monocle ipsum dolor sit amet cutting-edge ex tempor, finest emerging cillum elegant Fast Lane irure eu qui incididunt. <a class="link" href="https://help.piwik.pro/support/getting-started/">Read more</a></p>
+																			<p class="mb3">Monocle ipsum dolor sit amet cutting-edge ex tempor, finest emerging cillum elegant Fast Lane irure eu qui incididunt. <a href="https://help.piwik.pro/support/getting-started/">Read more</a></p>
 
 								</div>
 							</div>
 													<div class="tx-4 tx-md-6 tx-sm-10">
 								<div class="content">
 									<h3><a href="https://help.piwik.pro/support/account/">JS API</a></h3>
-																			<p class="mb3">Monocle ipsum dolor sit amet cutting-edge ex tempor, finest emerging cillum elegant Fast Lane irure eu qui incididunt.</p>
-																		<a class="link" href="https://help.piwik.pro/support/account/">Read more</a>
+																			<p class="mb3">Monocle ipsum dolor sit amet cutting-edge ex tempor, finest emerging cillum elegant Fast Lane irure eu qui incididunt. <a href="https://help.piwik.pro/support/getting-started/">Read more</a></p>
 								</div>
 							</div>
 													<div class="tx-4 tx-md-6 tx-sm-10">
 								<div class="content">
 									<h3><a href="https://help.piwik.pro/support/privacy/">SDKs</a></h3>
-																			<p class="mb3">Monocle ipsum dolor sit amet cutting-edge ex tempor, finest emerging cillum elegant Fast Lane irure eu qui incididunt.</p>
-																		<a class="link" href="https://help.piwik.pro/support/privacy/">Read more</a>
+																			<p class="mb3">Monocle ipsum dolor sit amet cutting-edge ex tempor, finest emerging cillum elegant Fast Lane irure eu qui incididunt. <a href="https://help.piwik.pro/support/getting-started/">Read more</a></p>
 								</div>
 							</div>
 													<div class="tx-4 tx-md-6 tx-sm-10">
 								<div class="content">
 									<h3><a href="https://help.piwik.pro/support/collecting-data/">FAQ</a></h3>
-																			<p class="mb3">Monocle ipsum dolor sit amet cutting-edge ex tempor, finest emerging cillum elegant Fast Lane irure eu qui incididunt.</p>
-																		<a class="link" href="https://help.piwik.pro/support/collecting-data/">Read more</a>
+																			<p class="mb3">Monocle ipsum dolor sit amet cutting-edge ex tempor, finest emerging cillum elegant Fast Lane irure eu qui incididunt. <a href="https://help.piwik.pro/support/getting-started/">Read more</a></p>
 								</div>
 							</div>
 													<div class="tx-4 tx-md-6 tx-sm-10">
 								<div class="content">
 									<h3><a href="https://help.piwik.pro/support/reports/">Other</a></h3>
-																			<p class="mb3">Monocle ipsum dolor sit amet cutting-edge ex tempor, finest emerging cillum elegant Fast Lane irure eu qui incididunt.</p>
-																		<a class="link" href="https://help.piwik.pro/support/reports/">Read more</a>
+																			<p class="mb3">Monocle ipsum dolor sit amet cutting-edge ex tempor, finest emerging cillum elegant Fast Lane irure eu qui incididunt. <a href="https://help.piwik.pro/support/getting-started/">Read more</a></p>
 								</div>
 							</div>
 													<div class="tx-4 tx-md-6 tx-sm-10">
 								<div class="content">
 									<h3><a href="https://help.piwik.pro/support/tag-manager/">Changelog</a></h3>
-																			<p class="mb3">Monocle ipsum dolor sit amet cutting-edge ex tempor, finest emerging cillum elegant Fast Lane irure eu qui incididunt.</p>
-																		<a class="link" href="https://help.piwik.pro/support/tag-manager/">Read more</a>
+																			<p class="mb3">Monocle ipsum dolor sit amet cutting-edge ex tempor, finest emerging cillum elegant Fast Lane irure eu qui incididunt. <a href="https://help.piwik.pro/support/getting-started/">Read more</a></p>
 								</div>
 							</div>
 
