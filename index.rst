@@ -46,8 +46,8 @@ Developer docs and guides
 													<div class="tx-4 tx-md-6 tx-sm-10">
 								<div class="content">
 									<h3><a href="https://help.piwik.pro/support/getting-started/">Web API</a></h3>
-																			<p class="mb3">Monocle ipsum dolor sit amet cutting-edge ex tempor, finest emerging cillum elegant Fast Lane irure eu qui incididunt.</p>
-																		<a class="link" href="https://help.piwik.pro/support/getting-started/">Read more</a>
+																			<p class="mb3">Monocle ipsum dolor sit amet cutting-edge ex tempor, finest emerging cillum elegant Fast Lane irure eu qui incididunt. <a class="link" href="https://help.piwik.pro/support/getting-started/">Read more</a></p>
+
 								</div>
 							</div>
 													<div class="tx-4 tx-md-6 tx-sm-10">
@@ -85,7 +85,7 @@ Developer docs and guides
 																		<a class="link" href="https://help.piwik.pro/support/tag-manager/">Read more</a>
 								</div>
 							</div>
-																							
+
 											</div>
 				</div>
 					</div>
