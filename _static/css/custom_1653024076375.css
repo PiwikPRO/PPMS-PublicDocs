@@ -382,12 +382,16 @@ thead  {
     background-color: #E2F2FD;
     border-top: 2px solid #006BD6;
     border-bottom: 2px solid #006BD6;
+    margin-left: 60px;
+    max-width: 760px;
 }
 
 .admonition.warning {
     background-color: #FFFBEB;
     border-top: 2px solid #ED8E00;
     border-bottom: 2px solid #ED8E00;
+    margin-left: 60px;
+    max-width: 760px;
 }
 
 .note .first.admonition-title {
