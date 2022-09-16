@@ -66,6 +66,7 @@ h1 {
     font-weight: 800;
     font-size: 36px;
     padding-left: 60px;
+    padding-top: 16px;
 }
 
 .rst-content .toctree-wrapper p.caption, body, h2, h3, h4, h5, h6, legend {
@@ -77,30 +78,35 @@ h2 {
     font-size: 22px;
     font-weight: 800;
     padding-left: 60px;
+    padding-top: 16px;
 }
 
 h3 {
     font-size: 18px;
     font-weight: 800;
     padding-left: 60px;
+    padding-top: 16px;
 }
 
 h4 {
     font-size: 16px;
     font-weight: 800;
     padding-left: 60px;
+    padding-top: 16px;
 }
 
 h5 {
     font-size: 14px;
     font-weight: 800;
     padding-left: 60px;
+    padding-top: 16px;
 }
 
 h6 {
     font-size: 14px;
     font-weight: 800;
     padding-left: 60px;
+    padding-top: 16px;
 }
 
 p {
