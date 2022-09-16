@@ -27,14 +27,14 @@ Methods used for calls
 
 In JavaScript, our methods can be called in a few ways:
 
-* **JS (queue):** After installing our container's code, it'll create the ``_paq`` object (a queue). You can use the :ref:`push()` method to add methods to the queue. Our tracker will then access and proceed these methods. With this method, you can also use ``this`` keyword to send a few methods within one call.
+* **JS (queue):** After installing our container's code, it'll create the ``_paq`` object (a queue). You can use the `push() <#push()>` method to add methods to the queue. Our tracker will then access and proceed these methods. With this method, you can also use ``this`` keyword to send a few methods within one call.
 
-* **JS (direct):** After installing our container's code, you can access our tracker directly (and don't use the queue) with the :ref:`getTracker()` or :ref:`getAsyncTracker()` method.
+* **JS (direct):** After installing our container's code, you can access our tracker directly (and don't use the queue) with the `getTracker() <#getTracker()>` or :ref:`getAsyncTracker() <#getAsyncTracker()>` method.
 
 push()
 ^^^^^^
 
-The **push()** method adds methods to the **_paq** object (a queue). The methods are called after the container's code (or a tracking code) loads on a page. They are called synchronously (one by one).
+The **push()** method adds methods to the ``_paq`` object (a queue). The methods are called after the container's code (or a tracking code) loads on a page. They are called synchronously (one by one).
 
 Syntax
 ######
