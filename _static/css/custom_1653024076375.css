@@ -120,7 +120,7 @@ p {
 }
 
 .wy-plain-list-disc li {
-  margin-bottom: 12px;
+  margin-bottom: 12px !important;
 }
 
 .deprecated .versionmodified {
