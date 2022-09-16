@@ -15,7 +15,7 @@
 @font-face {
     font-family: 'Inter';
     font-style:  normal;
-    font-weight: 300;
+    font-weight: 400;
     src: url("../font/Inter-Light.ttf") format("truetype");
 }
 
@@ -71,7 +71,7 @@ h1 {
 
 .rst-content .toctree-wrapper p.caption, body, h2, h3, h4, h5, h6, legend {
     font-family: "Inter" !important;
-    font-weight: 300;
+    font-weight: 400;
 }
 
 h2 {
@@ -1142,11 +1142,11 @@ footer {
 }
 
 .wy-menu-vertical li.toctree-l3>a {
-    font-weight: 300;
+    font-weight: 400;
 }
 
 .wy-menu-vertical li.toctree-l4>a {
-    font-weight: 300;
+    font-weight: 400;
 }
 
 .wy-menu-vertical li.toctree-l2.current>a{
@@ -1329,7 +1329,8 @@ div[class^='highlight'] pre {
 }
 
 body {
-    color: #0C0F12;
+    color: #13171A;
+    font-weight: 400px;
 }
 
 .line-block{
