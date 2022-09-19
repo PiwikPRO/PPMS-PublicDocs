@@ -82,6 +82,7 @@ h2 {
     font-size: 1.375rem;
     line-height:1.182;
     margin-left: 80px;
+    margin-top: 40px;
     max-width: 760px;
 }
 
@@ -90,6 +91,7 @@ h3 {
     font-size: 1.125rem;
     line-height:1.222;
     margin-left: 80px;
+    margin-top: 40px;
     max-width: 760px;
 }
 
@@ -98,6 +100,7 @@ h4 {
     font-size: 1rem;
     line-height:1.25;
     margin-left: 80px;
+    margin-top: 40px;
     max-width: 760px;
 }
 
@@ -106,6 +109,7 @@ h5 {
     font-size: .875rem;
     line-height:1.286;
     margin-left: 80px;
+    margin-top: 40px;
     max-width: 760px;
 }
 
@@ -114,7 +118,12 @@ h6 {
     font-size: .675rem;
     line-height:1;
     margin-left: 80px;
+    margin-top: 40px;
     max-width: 760px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  padding-top: 0.7rem;
 }
 
 p {

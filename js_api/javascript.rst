@@ -31,6 +31,8 @@ In JavaScript, our methods can be called in a few ways:
 
 * **JS (direct):** After installing our container's code, you can access our tracker directly (and don't use the queue) with the `getTracker() <#getTracker()>`_ or `getAsyncTracker() <#getAsyncTracker()>`_ method.
 
+.. _push():
+
 push()
 ^^^^^^
 
