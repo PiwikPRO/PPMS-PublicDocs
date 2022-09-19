@@ -68,7 +68,7 @@ h1 {
     line-height:1.111;
     margin-bottom: 1.5rem;
     margin-left: 100px;
-    margin-top: 40px;
+    margin-top: 20px;
     max-width: 630px;
 }
 
@@ -473,7 +473,7 @@ thead  {
 }
 
 .codeblock, pre.literal-block, .rst-content .literal-block, .rst-content pre.literal-block, div[class^='highlight'] {
-    border: none; max-width: 630px; font-size: 14px !important;
+    border: none; max-width: 700px; font-size: 14px !important;
 }
 .wy-nav-content-wrap .unicorn-found {
     background: #FFD000;
@@ -924,7 +924,6 @@ a.link-large {
 .topbar-menu {
     border-bottom: none;
     background-color: #F2F4F8;
-    box-shadow: 0 1px 1px 0 rgba(0,0,0,0.2);
 }
 
 .topbar-menu a {
@@ -1075,6 +1074,10 @@ div[role="main"] {
 footer {
     font-family: "Inter";
     padding-bottom: 38px;
+    margin-left: 100px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: #bac4d1;
 }
 
 #redoc-container .menu-content {
@@ -1318,9 +1321,8 @@ footer {
 }
 
 .rst-current-version {
-    border-bottom: 1px solid #B9BFC7;
+    border-bottom: none;
     background-color: #F2F4F8;
-    box-shadow: 0 1px 1px 0 rgba(0,0,0,0.2);
     width: 276px;
 }
 
@@ -1373,6 +1375,10 @@ body {
   max-width: 630px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.rst-content dl dt {
+  font-weight: normal;
 }
 
 .wy-menu.wy-menu-vertical code{

@@ -82,7 +82,7 @@ master_doc = 'index'
 autosectionlabel_prefix_document = True
 # General information about the project.
 project = u'Piwik PRO Analytics Suite'
-copyright = u'{year}, Piwik PRO - Enterprise Analytics and Tag Management Platform'.format(year=datetime.date.today().year)
+copyright = u'{year}, Piwik PRO | Take control of your data'.format(year=datetime.date.today().year)
 author = u'Piwik PRO'
 
 # The version info for the project you're documenting, acts as replacement for
