@@ -1,9 +1,9 @@
 ===================================
-deleteCustomVariable() (deprecated)
+deleteCustomVariable()
 ===================================
 
 .. deprecated::
-    This method is no longer recommended. Use the setCustomDimensionValue() and deleteCustomDimension() method instead.
+    0.0.0 This method is no longer recommended. Use the setCustomDimensionValue() and deleteCustomDimension() method instead.
 
 The **deleteCustomDimension()** method removes a custom variable.
 
