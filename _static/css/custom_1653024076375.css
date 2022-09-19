@@ -64,8 +64,9 @@
 h1 {
     font-family: "Inter";
     font-weight: 800;
-    font-size: 3rem;
-    line-height: 1.083;
+    font-size: 2.25rem;
+    line-height:1.111;
+    margin-bottom: 1.5rem;
     margin-left: 80px;
 }
 
@@ -76,36 +77,36 @@ h1 {
 
 h2 {
     font-weight: 800;
-    font-size: 2.25rem;
-    line-height:1.111;
+    font-size: 1.375rem;
+    line-height:1.182
     margin-left: 80px;
 }
 
 h3 {
     font-weight: 800;
-    font-size: 1.375rem;
-    line-height:1.182;
+    font-size: 1.125rem;
+    line-height:1.222
     margin-left: 80px;
 }
 
 h4 {
     font-weight: 800;
-    font-size: 1.125rem;
-    line-height:1.222;
+    font-size: 1rem;
+    line-height:1.25
     margin-left: 80px;
 }
 
 h5 {
     font-weight: 800;
-    font-size: 1rem;
-    line-height:1.25;
+    font-size: .875rem;
+    line-height:1.286
     margin-left: 80px;
 }
 
 h6 {
     font-weight: 800;
-    font-size: .875rem;
-    line-height:1.286;
+    font-size: .675rem;
+    line-height:1;
     margin-left: 80px;
 }
 
@@ -1341,7 +1342,7 @@ body {
 .line-block{
   font-size:16px;
   line-height: 24px;
-  margin-left: 80px;
+  margin-left: 80px !important;
   max-width: 760px;
 }
 
