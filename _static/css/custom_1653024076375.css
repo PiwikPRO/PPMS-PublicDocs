@@ -1366,6 +1366,8 @@ body {
   line-height: 24px;
   margin-left: 100px !important;
   max-width: 630px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .wy-menu.wy-menu-vertical code{
