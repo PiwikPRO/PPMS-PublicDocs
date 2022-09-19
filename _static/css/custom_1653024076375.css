@@ -458,7 +458,7 @@ thead  {
 }
 
 .codeblock, pre.literal-block, .rst-content .literal-block, .rst-content pre.literal-block, div[class^='highlight'] {
-    border: none; max-width: 760px; font-size: 14px;
+    border: none; max-width: 760px; font-size: 14px !important;
 }
 .wy-nav-content-wrap .unicorn-found {
     background: #FFD000;
