@@ -69,7 +69,7 @@ h1 {
     margin-bottom: 1.5rem;
     margin-left: 100px;
     margin-top: 40px;
-    max-width: 600px;
+    max-width: 700px;
 }
 
 .rst-content .toctree-wrapper p.caption, body, h2, h3, h4, h5, h6, legend {
@@ -87,7 +87,7 @@ h2 {
     font-size: 1.375rem;
     line-height:1.182;
     margin-left: 100px;
-    max-width: 600px;
+    max-width: 700px;
 }
 
 h3 {
@@ -95,7 +95,7 @@ h3 {
     font-size: 1.125rem;
     line-height:1.222;
     margin-left: 100px;
-    max-width: 600px;
+    max-width: 700px;
 }
 
 h4 {
@@ -103,7 +103,7 @@ h4 {
     font-size: 1rem;
     line-height:1.25;
     margin-left: 100px;
-    max-width: 600px;
+    max-width: 700px;
 }
 
 h5 {
@@ -111,7 +111,7 @@ h5 {
     font-size: .875rem;
     line-height:1.286;
     margin-left: 100px;
-    max-width: 600px;
+    max-width: 700px;
 }
 
 h6 {
@@ -119,7 +119,7 @@ h6 {
     font-size: .675rem;
     line-height:1;
     margin-left: 100px;
-    max-width: 600px;
+    max-width: 700px;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -129,18 +129,20 @@ h1, h2, h3, h4, h5, h6 {
 p {
     font-size: 1rem;
     line-height: 1.5;
-    max-width: 600px;
+    max-width: 700px;
     margin-left: 100px;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
 
 .wy-plain-list-disc, .rst-content .section ul, .rst-content .toctree-wrapper ul, article ul, .wy-plain-list-decimal, .rst-content .section ol, .rst-content ol.arabic, article ol {
-    font-size: 1rem; margin-left: 100px; max-width: 600px;
+    font-size: 1rem; margin-left: 100px; max-width: 700px;
 }
 
 li {
   margin-bottom: 8px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .deprecated .versionmodified {
@@ -255,7 +257,7 @@ ul.react-tabs__tab-list {
 #redoc-container table {
 	table-layout: fixed;
   margin-left: 100px;
-  max-width: 600px;
+  max-width: 700px;
 }
 
 #redoc-container td {
@@ -413,7 +415,7 @@ thead  {
     border-top: 2px solid #006BD6;
     border-bottom: 2px solid #006BD6;
     margin-left: 100px;
-    max-width: 600px;
+    max-width: 700px;
 }
 
 .admonition.warning {
@@ -421,7 +423,7 @@ thead  {
     border-top: 2px solid #ED8E00;
     border-bottom: 2px solid #ED8E00;
     margin-left: 100px;
-    max-width: 600px;
+    max-width: 700px;
 }
 
 .note .first.admonition-title {
@@ -470,7 +472,7 @@ thead  {
 }
 
 .codeblock, pre.literal-block, .rst-content .literal-block, .rst-content pre.literal-block, div[class^='highlight'] {
-    border: none; max-width: 600px; font-size: 14px !important;
+    border: none; max-width: 700px; font-size: 14px !important;
 }
 .wy-nav-content-wrap .unicorn-found {
     background: #FFD000;
@@ -1140,12 +1142,12 @@ footer {
 }
 
 #glossary {
-    max-width: 600px;
+    max-width: 700px;
     margin: auto;
 }
 
 #developer-docs-and-guides {
-    max-width: 600px;
+    max-width: 700px;
     margin: auto;
 }
 
@@ -1361,7 +1363,7 @@ body {
   font-size:16px;
   line-height: 24px;
   margin-left: 100px !important;
-  max-width: 600px;
+  max-width: 700px;
 }
 
 .wy-menu.wy-menu-vertical code{
@@ -1501,7 +1503,7 @@ body {
 
 .wy-table-responsive table{
     width: 100%;
-    max-width: 600px;
+    max-width: 700px;
     margin-left: 100px !important; 
 
 }
