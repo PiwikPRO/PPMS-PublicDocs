@@ -67,9 +67,9 @@ h1 {
     font-size: 2.25rem;
     line-height:1.111;
     margin-bottom: 1.5rem;
-    margin-left: 80px;
+    margin-left: 100px;
     margin-top: 60px;
-    max-width: 760px;
+    max-width: 600px;
 }
 
 .rst-content .toctree-wrapper p.caption, body, h2, h3, h4, h5, h6, legend {
@@ -81,60 +81,55 @@ h2 {
     font-weight: 800;
     font-size: 1.375rem;
     line-height:1.182;
-    margin-left: 80px;
-    margin-top: 40px;
-    max-width: 760px;
+    margin-left: 100px;
+    max-width: 600px;
 }
 
 h3 {
     font-weight: 800;
     font-size: 1.125rem;
     line-height:1.222;
-    margin-left: 80px;
-    margin-top: 40px;
-    max-width: 760px;
+    margin-left: 100px;
+    max-width: 600px;
 }
 
 h4 {
     font-weight: 800;
     font-size: 1rem;
     line-height:1.25;
-    margin-left: 80px;
-    margin-top: 40px;
-    max-width: 760px;
+    margin-left: 100px;
+    max-width: 600px;
 }
 
 h5 {
     font-weight: 800;
     font-size: .875rem;
     line-height:1.286;
-    margin-left: 80px;
-    margin-top: 40px;
-    max-width: 760px;
+    margin-left: 100px;
+    max-width: 600px;
 }
 
 h6 {
     font-weight: 800;
     font-size: .675rem;
     line-height:1;
-    margin-left: 80px;
-    margin-top: 40px;
-    max-width: 760px;
+    margin-left: 100px;
+    max-width: 600px;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  padding-top: 0.7rem;
+  padding-top: 1.75rem;
 }
 
 p {
     font-size: 1rem;
     line-height: 1.5;
     max-width: 600px;
-    margin-left: 80px;
+    margin-left: 100px;
 }
 
 .wy-plain-list-disc, .rst-content .section ul, .rst-content .toctree-wrapper ul, article ul, .wy-plain-list-decimal, .rst-content .section ol, .rst-content ol.arabic, article ol {
-    font-size: 1rem; margin-left: 80px; max-width: 600px;
+    font-size: 1rem; margin-left: 100px; max-width: 600px;
 }
 
 li {
@@ -252,7 +247,7 @@ ul.react-tabs__tab-list {
 
 #redoc-container table {
 	table-layout: fixed;
-  margin-left: 80px;
+  margin-left: 100px;
   max-width: 600px;
 }
 
@@ -410,7 +405,7 @@ thead  {
     background-color: #E2F2FD;
     border-top: 2px solid #006BD6;
     border-bottom: 2px solid #006BD6;
-    margin-left: 80px;
+    margin-left: 100px;
     max-width: 600px;
 }
 
@@ -418,7 +413,7 @@ thead  {
     background-color: #FFFBEB;
     border-top: 2px solid #ED8E00;
     border-bottom: 2px solid #ED8E00;
-    margin-left: 80px;
+    margin-left: 100px;
     max-width: 600px;
 }
 
@@ -865,7 +860,7 @@ a.link {
     display: block;
     font-size: 16px;
     padding-bottom: 14px;
-    margin-left: 80px;
+    margin-left: 100px;
 }
 
 a.link-large {
@@ -1339,7 +1334,7 @@ footer {
 }
 
 .codeblock div[class^='highlight'], pre.literal-block div[class^='highlight'], .rst-content .literal-block div[class^='highlight'], div[class^='highlight'] div[class^='highlight'], .admonition div[class^='highlight'] {
-    background: #F2F4F8 !important; margin-left: 80px !important; border: none !important;
+    background: #F2F4F8 !important; margin-left: 100px !important; border: none !important;
 }
 
 .rst-content pre.literal-block, .rst-content div[class^='highlight']  {
@@ -1358,7 +1353,7 @@ body {
 .line-block{
   font-size:16px;
   line-height: 24px;
-  margin-left: 80px !important;
+  margin-left: 100px !important;
   max-width: 600px;
 }
 
@@ -1463,7 +1458,7 @@ body {
 .sphinx-tabs .ui.top {
     min-height: 0 !important;
     font-family: "Inter" !important;
-    margin-left: 80px !important;
+    margin-left: 100px !important;
 }
 
 .sphinx-tabs .ui.top .item {
@@ -1500,7 +1495,7 @@ body {
 .wy-table-responsive table{
     width: 100%;
     max-width: 600px;
-    margin-left: 80px !important; 
+    margin-left: 100px !important; 
 
 }
 
