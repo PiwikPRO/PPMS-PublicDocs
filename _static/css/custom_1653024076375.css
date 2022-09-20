@@ -1340,7 +1340,7 @@ footer {
 }
 
 .rst-versions {
-    border-top: 1px solid #B9BFC7;
+    border-top: none;
 }
 
 .rst-versions a, .rst-current-version a, .rst-other-versions a {
