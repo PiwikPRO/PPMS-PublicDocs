@@ -201,11 +201,11 @@ dl.post, dl.patch, dl.delete, dl.get, dl.put {
 }
 
 .wy-nav-content a {
-    color: #bac4d1;
+    color: #006bd6;
 }
 
 .wy-nav-content a:hover, .wy-nav-content a:visited {
-    color: #bac4d1;
+    color: #006bd6;
 }
 
 a.icon.icon-home {
@@ -1082,14 +1082,6 @@ footer {
 
 footer p {
     margin-left: none !important;
-}
-
-footer a {
-    color: #bac4d1;
-}
-
-footer span.commit code, footer span.commit .rst-content tt, .rst-content footer span.commit tt {
-    color: #bac4d1;
 }
 
 #redoc-container .menu-content {
