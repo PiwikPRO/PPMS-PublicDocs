@@ -31,7 +31,7 @@ In JavaScript, our methods can be called in a few ways:
 
 * **JS (queue):** After installing our container's code, it'll create the ``_paq`` object (a queue). You can use the :ref:`push()` method to add methods to the queue. Our tracker will then access and proceed these methods. With this method, you can also use ``this`` keyword to send a few methods within one call.
 
-* **JS (direct):** After installing our container's code, you can access our tracker directly (and don't use the queue) with the `getTracker() <#getTracker()>`_ or `getAsyncTracker() <#getAsyncTracker()>`_ method.
+* **JS (direct):** After installing our container's code, you can access our tracker directly (and don't use the queue) with the :ref:`getTracker()` or :ref:`getAsyncTracker()` method.
 
 .. _push():
 
@@ -70,6 +70,7 @@ To send a custom event:
 
 
 
+.. _JS-this-keyword:
 
 JS this keyword
 ^^^^^^^^^^^^^^^
@@ -90,7 +91,7 @@ To send a page view and a custom event at once:
 
 
 
-
+.. _getTracker():
 
 getTracker()
 ^^^^^^^^^^^^
@@ -137,7 +138,7 @@ To send a custom event:
 
 
 
-
+.. getAsyncTracker():
 
 getAsyncTracker()
 ^^^^^^^^^^^^^^^^^
