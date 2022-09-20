@@ -201,11 +201,11 @@ dl.post, dl.patch, dl.delete, dl.get, dl.put {
 }
 
 .wy-nav-content a {
-    color: #006bd6;
+    color: #bac4d1;
 }
 
 .wy-nav-content a:hover, .wy-nav-content a:visited {
-    color: #006bd6;
+    color: #bac4d1;
 }
 
 a.icon.icon-home {
