@@ -1,10 +1,11 @@
 .. _data-collection-mobile:
 
-Mobile
-======
+====
+SDKs
+====
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
    :glob:
 
    *
