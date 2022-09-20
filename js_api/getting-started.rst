@@ -1,3 +1,5 @@
+.. _getting-started:
+
 =====
 Getting started
 =====
@@ -15,7 +17,7 @@ In short, our JavaScript library lets you collect data like:
 
 **Next steps**
 
-* JavaScript
-* Angular
-* React
-* Methods
+* :ref:`java-script`
+* :ref:`angular`
+* :ref:`react`
+* :ref:`methods`

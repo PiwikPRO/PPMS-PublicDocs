@@ -1,5 +1,7 @@
+.. _deleteCustomVariable():
+
 ===================================
-deleteCustomVariable()
+deleteCustomVariable() •
 ===================================
 
 .. deprecated::

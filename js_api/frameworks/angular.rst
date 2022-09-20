@@ -1,3 +1,5 @@
+.. _angular:
+
 =======
 Angular
 =======
@@ -111,55 +113,55 @@ Here's a list of all JS methods you can use in your Angular project. Description
 
 **A**
 
-* :ref:`JS API methods addDownloadExtensions()`
-* `addEcommerceItem() <https://help.piwik.pro>`_
+* :ref:`addDownloadExtensions()`
+* :ref:`addEcommerceItem()`
 
 **C**
 
-* `clearEcommerceCart() <https://help.piwik.pro>`_
+* :ref:`clearEcommerceCart()`
 
 **D**
 
-* `deleteCustomDimension() <https://help.piwik.pro>`_
+* :ref:`deleteCustomDimension()`
 
 **E**
 
-* `enableLinkTracking() <https://help.piwik.pro>`_
+* enableLinkTracking()
 
 **G**
 
-* `getCustomDimensionValue() <https://help.piwik.pro>`_
-* `getEcommerceItems() <https://help.piwik.pro>`_
-* `getLinkTrackingTimer() <https://help.piwik.pro>`_
-* `getUserId() <https://help.piwik.pro>`_
-* `getVisitorId() <https://help.piwik.pro>`_
-* `getVisitorInfo() <https://help.piwik.pro>`_
+* getCustomDimensionValue()
+* getEcommerceItems()
+* getLinkTrackingTimer()
+* getUserId()
+* getVisitorId()
+* getVisitorInfo()
 
 **R**
 
-* `removeDownloadExtensions() <https://help.piwik.pro>`_
-* `removeEcommerceItem() <https://help.piwik.pro>`_
-* `resetUserId() <https://help.piwik.pro>`_
+* removeDownloadExtensions()
+* removeEcommerceItem()
+* resetUserId()
 
 **S**
 
-* `setCustomDimensionValue() <https://help.piwik.pro>`_
-* `setDownloadClasses() <https://help.piwik.pro>`_
-* `setDownloadExtensions() <https://help.piwik.pro>`_
-* `setEcommerceView() <https://help.piwik.pro>`_
-* `setIgnoreClasses() <https://help.piwik.pro>`_
-* `setLinkClasses() <https://help.piwik.pro>`_
-* `setLinkTrackingTimer() <https://help.piwik.pro>`_
-* `setUserId() <https://help.piwik.pro>`_
+* setCustomDimensionValue()
+* setDownloadClasses()
+* setDownloadExtensions()
+* setEcommerceView()
+* setIgnoreClasses()
+* setLinkClasses()
+* setLinkTrackingTimer()
+* setUserId()
 
 **T**
 
-* `trackContentImpression() <https://help.piwik.pro>`_
-* `trackContentInteraction() <https://help.piwik.pro>`_
-* `trackEcommerceCartUpdate() <https://help.piwik.pro>`_
-* `trackEcommerceOrder() <https://help.piwik.pro>`_
-* `trackEvent() <https://help.piwik.pro>`_
-* `trackGoal() <https://help.piwik.pro>`_
-* `trackLink() <https://help.piwik.pro>`_
-* `trackPageView() <https://help.piwik.pro>`_
-* `trackSiteSearch() <https://help.piwik.pro>`_
+* trackContentImpression()
+* trackContentInteraction()
+* trackEcommerceCartUpdate()
+* trackEcommerceOrder()
+* trackEvent()
+* trackGoal()
+* trackLink()
+* trackPageView()
+* trackSiteSearch()

@@ -1,3 +1,5 @@
+.. _customCrossDomainLinkDecorator():
+
 ================================
 customCrossDomainLinkDecorator()
 ================================
@@ -41,7 +43,7 @@ Returns
 -------
 
 | A decorated URL or null.
-| Format: Example: https://example.com?pk_vid=36
+| Format: Example: \https://example.com?pk_vid=36
 | Type: string | null
 
 Examples

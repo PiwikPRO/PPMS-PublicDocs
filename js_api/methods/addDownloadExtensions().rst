@@ -1,4 +1,4 @@
-.. _JS API methods addDownloadExtensions():
+.. _addDownloadExtensions():
 
 =======================
 addDownloadExtensions()

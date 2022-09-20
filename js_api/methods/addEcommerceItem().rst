@@ -1,3 +1,5 @@
+.. _addEcommerceItem():
+
 ==================
 addEcommerceItem()
 ==================
