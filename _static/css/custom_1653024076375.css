@@ -1080,10 +1080,6 @@ footer {
     color: #bac4d1;
 }
 
-footer p {
-    margin-left: none !important;
-}
-
 #redoc-container .menu-content {
     display: none;
 }
