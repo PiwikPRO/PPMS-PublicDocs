@@ -15,8 +15,8 @@ Developer docs and guides
    web_api/index
    js_api/index
    sdks/index
-   faq
    other/index
+   faq
    changelog
 
 
@@ -43,8 +43,8 @@ Developer docs and guides
     <div class="turbobox td_stretch td_left">
 													<div class="tx-4 tx-md-6 tx-sm-10">
 								<div class="content">
-									<h3><a href="https://help.piwik.pro/support/getting-started/">Web API</a></h3>
-																			<p class="mb3">Monocle ipsum dolor sit amet cutting-edge ex tempor, finest emerging cillum elegant Fast Lane irure eu qui incididunt. <a href="https://help.piwik.pro/support/getting-started/">Read more</a></p>
+									<h3><a href="https://developers.piwik.pro/en/feature-pptechdoc-90-copyright/web_api/index.html">Web API</a></h3>
+																			<p class="mb3">Monocle ipsum dolor sit amet cutting-edge ex tempor, finest emerging cillum elegant Fast Lane irure eu qui incididunt. <a href="https://developers.piwik.pro/en/feature-pptechdoc-90-copyright/web_api/index.html">Read more</a></p>
 
 								</div>
 							</div>
@@ -56,21 +56,22 @@ Developer docs and guides
 							</div>
 													<div class="tx-4 tx-md-6 tx-sm-10">
 								<div class="content">
-									<h3><a href="https://help.piwik.pro/support/privacy/">SDKs</a></h3>
-																			<p class="mb3">Monocle ipsum dolor sit amet cutting-edge ex tempor, finest emerging cillum elegant Fast Lane irure eu qui incididunt. <a href="https://help.piwik.pro/support/getting-started/">Read more</a></p>
+									<h3><a href="https://developers.piwik.pro/en/feature-pptechdoc-90-copyright/sdks/index.html">SDKs</a></h3>
+																			<p class="mb3">Monocle ipsum dolor sit amet cutting-edge ex tempor, finest emerging cillum elegant Fast Lane irure eu qui incididunt. <a href="https://developers.piwik.pro/en/feature-pptechdoc-90-copyright/sdks/index.html">Read more</a></p>
 								</div>
+
 							</div>
 													<div class="tx-4 tx-md-6 tx-sm-10">
 								<div class="content">
-									<h3><a href="https://help.piwik.pro/support/collecting-data/">FAQ</a></h3>
-																			<p class="mb3">Monocle ipsum dolor sit amet cutting-edge ex tempor, finest emerging cillum elegant Fast Lane irure eu qui incididunt. <a href="https://help.piwik.pro/support/getting-started/">Read more</a></p>
+									<h3><a href="https://developers.piwik.pro/en/feature-pptechdoc-90-copyright/other/index.html">Other</a></h3>
+																			<p class="mb3">Monocle ipsum dolor sit amet cutting-edge ex tempor, finest emerging cillum elegant Fast Lane irure eu qui incididunt. <a href="https://developers.piwik.pro/en/feature-pptechdoc-90-copyright/other/index.html">Read more</a></p>
 								</div>
-							</div>
-													<div class="tx-4 tx-md-6 tx-sm-10">
-								<div class="content">
-									<h3><a href="https://help.piwik.pro/support/reports/">Other</a></h3>
-																			<p class="mb3">Monocle ipsum dolor sit amet cutting-edge ex tempor, finest emerging cillum elegant Fast Lane irure eu qui incididunt. <a href="https://help.piwik.pro/support/getting-started/">Read more</a></p>
-								</div>
+                </div>
+                            <div class="tx-4 tx-md-6 tx-sm-10">
+                  <div class="content">
+                    <h3><a href="https://developers.piwik.pro/en/feature-pptechdoc-90-copyright/faq.html">FAQ</a></h3>
+                                        <p class="mb3">Monocle ipsum dolor sit amet cutting-edge ex tempor, finest emerging cillum elegant Fast Lane irure eu qui incididunt. <a href="https://developers.piwik.pro/en/feature-pptechdoc-90-copyright/faq.html">Read more</a></p>
+                  </div>
 							</div>
 													<div class="tx-4 tx-md-6 tx-sm-10">
 								<div class="content">
