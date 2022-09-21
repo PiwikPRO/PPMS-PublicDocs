@@ -1,4 +1,4 @@
-# Piwik PRO SDK for Flutter
+# Flutter SDK
 
 ## SDK Configuration
 

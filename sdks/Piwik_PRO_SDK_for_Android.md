@@ -1,5 +1,6 @@
-Piwik PRO SDK for Android
-========================
+===========
+Android SDK
+===========
 
 ## SDK configuration
 
@@ -353,7 +354,7 @@ TrackHelper.track().campaign(new URL("http://example.org/offer.html?pk_campaign=
 
 * A URL (required) – the campaign URL. HTTPS, HTTP and FTP are valid, however, the URL must contain campaign name and keyword parameters.
 
-### Tracking custom variables 
+### Tracking custom variables
 *The feature will soon be disabled. We recommend using [custom dimensions](#tracking-custom-dimensions) instead.*
 
 *Requires Analytics*
@@ -654,4 +655,3 @@ The SDK provides a dryRun flag that, when set, prevents any data from being sent
 getTracker().setDryRunTarget(Collections.synchronizedList(new ArrayList<Packet>()));
 ```
 * A dryRunTarget (required) – a data structure the data should be passed into ``List<Packet>`` type. Set it to null to disable dry run.
-

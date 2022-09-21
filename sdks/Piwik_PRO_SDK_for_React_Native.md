@@ -1,4 +1,4 @@
-# Piwik PRO SDK for React Native
+# React Native SDK
 
 Piwik PRO SDK for React Native
 
@@ -489,7 +489,7 @@ Parameters:
 You can obtain current user ID value with `getUserId`:
 
 ```js
-const currentUserId = await PiwikProSdk.getUserId(); 
+const currentUserId = await PiwikProSdk.getUserId();
 ```
 Returns:
 - `userId: string` – current user ID.
@@ -512,7 +512,7 @@ Setting up an email helps the Audience Manager to enrich existing profiles or me
 You can obtain current user email value with `getUserEmail`:
 
 ```js
-const currentUserEmail = await PiwikProSdk.getUserEmail(); 
+const currentUserEmail = await PiwikProSdk.getUserEmail();
 ```
 Returns:
 - `email: string` – current user email.
@@ -533,7 +533,7 @@ Every unique visitor must be assigned a different ID and this ID must not change
 You can check current visitor ID value with `getVisitorId`:
 
 ```js
-const currentVisitorId = await PiwikProSdk.getVisitorId(); 
+const currentVisitorId = await PiwikProSdk.getVisitorId();
 ```
 Returns:
 - `visitorId: string` – current visitor ID.
@@ -587,7 +587,7 @@ await PiwikProSdk.dispatch();
 You can obtain current `dispatchInterval` value with `getDispatchInterval`:
 
 ```js
-const currentDispatchInterval = await PiwikProSdk.getDispatchInterval(); 
+const currentDispatchInterval = await PiwikProSdk.getDispatchInterval();
 ```
 Returns:
 - `dispatchInterval: number` – current dispatch interval (in seconds) or negative number if automatic dispatch has been disabled.

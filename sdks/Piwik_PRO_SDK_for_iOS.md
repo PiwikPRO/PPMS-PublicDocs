@@ -1,5 +1,6 @@
-Piwik PRO SDK for iOS
-========================
+=======
+iOS SDK
+=======
 
 ## SDK configuration
 
@@ -301,7 +302,7 @@ You can also use custom dimensions to track custom values as below. Custom dimen
 
 * An index (required) – a given custom dimension must always be stored in the same "index" per session, similar to custom variables. In example ``1`` is our dimension slot.
 
-* A value (required) – this String defines the value of a specific custom dimension such as "English". Limited to 200 characters. 
+* A value (required) – this String defines the value of a specific custom dimension such as "English". Limited to 200 characters.
 
 Assigning a value to an already used index will overwrite the previously assigned value.
 
@@ -389,7 +390,7 @@ It is recommended to set the user email to track audience manager profile attrib
 
 ### Visitor ID
 
-SDK uses various IDs for tracking the user. The main one is visitor ID, which is internally randomly generated once by the SDK on the first usage and is then stored locally on the device. The visitor ID will never change unless the user removes the application from the device so that all events sent from his device will always be assigned to the same user in the Piwik PRO web panel. 
+SDK uses various IDs for tracking the user. The main one is visitor ID, which is internally randomly generated once by the SDK on the first usage and is then stored locally on the device. The visitor ID will never change unless the user removes the application from the device so that all events sent from his device will always be assigned to the same user in the Piwik PRO web panel.
 When the anonymization is enabled, a new visitor id is generated each time the application is started.
 We recommend using userID instead of VisitorID.
 
@@ -456,4 +457,3 @@ You can disable all tracking in the application by using the opt-out feature. No
 ```
 [PiwikTracker sharedInstance].optOut = YES;
 ```
-

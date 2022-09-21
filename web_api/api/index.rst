@@ -1,5 +1,6 @@
-API
-===
+================
+Tracker debugger
+================
 
 .. toctree::
    :maxdepth: 2
