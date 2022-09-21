@@ -12,13 +12,11 @@ Developer docs and guides
 .. toctree::
    :maxdepth: 2
 
-   custom_reports/index
-   data_collection/index
-   audience_manager/index
-   consent_manager/index
-   tag_manager/index
-   platform/index
+   web_api/index
    js_api/index
+   sdks/index
+   faq
+   other/index
    changelog
 
 

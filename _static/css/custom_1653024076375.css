@@ -1080,18 +1080,6 @@ footer {
     color: #bac4d1;
 }
 
-footer p {
-    margin-left: none !important;
-}
-
-footer a {
-    color: #bac4d1;
-}
-
-footer span.commit code, footer span.commit .rst-content tt, .rst-content footer span.commit tt {
-    color: #bac4d1;
-}
-
 #redoc-container .menu-content {
     display: none;
 }
