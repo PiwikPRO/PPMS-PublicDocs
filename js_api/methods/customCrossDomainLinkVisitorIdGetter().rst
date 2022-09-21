@@ -4,7 +4,7 @@
 customCrossDomainLinkVisitorIdGetter()
 ======================================
 
-The customCrossDomainLinkVisitorIdGetter() method gets a visitor ID from a page URL if customCrossDomainLinkDecorator() was set. The visitor ID is held in a query parameter and passed between domains when they are linked with enableCrossDomainLinking().
+The **customCrossDomainLinkVisitorIdGetter()** method gets a visitor ID from a page URL if customCrossDomainLinkDecorator() was set. The visitor ID is held in a query parameter and passed between domains when they are linked with enableCrossDomainLinking().
 
 Syntax
 ------

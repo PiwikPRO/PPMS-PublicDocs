@@ -473,7 +473,7 @@ thead  {
 }
 
 .codeblock, pre.literal-block, .rst-content .literal-block, .rst-content pre.literal-block, div[class^='highlight'] {
-    border: none; max-width: 700px; font-size: 14px !important;
+    border: none; max-width: 750px; font-size: 14px !important;
 }
 .wy-nav-content-wrap .unicorn-found {
     background: #FFD000;
