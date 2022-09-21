@@ -15,6 +15,6 @@ Tracking HTTP API collects events such as page views, custom events and content 
     </div>
     <script>
         (function() {
-            Redoc.init('../../_static/api/tracker_tracking_api.json', {}, document.getElementById('redoc-container'), () => {window.prepareRedocMenu ? window.prepareRedocMenu() : setTimeout(()=>{window.prepareRedocMenu()}, 2000)});
+            Redoc.init('../../../_static/api/tracker_tracking_api.json', {}, document.getElementById('redoc-container'), () => {window.prepareRedocMenu ? window.prepareRedocMenu() : setTimeout(()=>{window.prepareRedocMenu()}, 2000)});
         })();
     </script>
