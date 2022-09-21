@@ -4,6 +4,7 @@ Other
 
 .. toctree::
    :maxdepth: 1
-   :glob:
 
-   *
+   consent_manager/index.rst
+   other_integrations/index.rst
+   processing/index.rst

@@ -15,7 +15,7 @@ Developer docs and guides
    web_api/index
    js_api/index
    sdks/index
-   faq/index
+   faq
    other/index
    changelog
 
