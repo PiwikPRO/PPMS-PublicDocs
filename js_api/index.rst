@@ -12,6 +12,8 @@ JS API
    frameworks/index.rst
    methods/index.rst
 
+.. raw:: html
+
    <script>
        let url = document.location.href.split('/');
        url.pop();
