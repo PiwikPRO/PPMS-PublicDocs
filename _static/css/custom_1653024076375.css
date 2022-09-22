@@ -522,7 +522,6 @@ thead  {
 
 .c1 {
     color: #998;
-    font-style: italic
 }
 
 .cs {
@@ -618,7 +617,7 @@ thead  {
 }
 
 .n {
-    color: #F2F4F8
+    color: #2a363b
 }
 
 .na {
@@ -673,19 +672,19 @@ thead  {
 }
 
 .mf {
-    color: #80C783
+    color: #008080
 }
 
 .mh {
-    color: #80C783
+    color: #008080
 }
 
 .mi {
-    color: #80C783
+    color: #008080
 }
 
 .mo {
-    color: #80C783
+    color: #008080
 }
 
 .sb {
