@@ -1,4 +1,4 @@
-Access to modules
+Module access
 =================
 
 .. raw:: html
