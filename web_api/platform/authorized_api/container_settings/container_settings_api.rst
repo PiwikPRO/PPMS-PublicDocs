@@ -1,4 +1,4 @@
-Container Settings API
+Container settings
 ====
 
 .. raw:: html

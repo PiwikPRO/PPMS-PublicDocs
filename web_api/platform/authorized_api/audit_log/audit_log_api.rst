@@ -1,5 +1,5 @@
-Audit log API
-====================
+Audit log
+=========
 
 .. raw:: html
 

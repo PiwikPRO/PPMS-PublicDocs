@@ -1,4 +1,4 @@
-Apps API
+Sites/Apps
 ==========
 
 .. raw:: html

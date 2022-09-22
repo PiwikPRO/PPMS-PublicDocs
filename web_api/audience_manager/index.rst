@@ -1,6 +1,8 @@
 Audience Manager
 ================
 
+Deprecated: We plan to replace Audience Manager with a new solution.
+
 .. toctree::
   :maxdepth: 2
 

@@ -1,5 +1,5 @@
-Modules API
-==============
+Access to modules
+=================
 
 .. raw:: html
 

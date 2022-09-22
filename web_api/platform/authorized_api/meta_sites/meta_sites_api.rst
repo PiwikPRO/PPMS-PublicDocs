@@ -1,4 +1,4 @@
-Meta Sites API
+Meta sites/apps
 ==============
 
 .. raw:: html

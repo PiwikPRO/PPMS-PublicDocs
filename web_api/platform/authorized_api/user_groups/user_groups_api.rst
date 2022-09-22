@@ -1,4 +1,4 @@
-User Groups API
+Groups
 ===================
 
 .. raw:: html

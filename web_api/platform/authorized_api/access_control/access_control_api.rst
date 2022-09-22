@@ -1,4 +1,4 @@
-Access Control API
+Permissions
 ===================
 
 .. raw:: html

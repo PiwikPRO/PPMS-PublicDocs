@@ -1,5 +1,5 @@
-Users API
-==========
+Users
+=====
 
 .. raw:: html
 
