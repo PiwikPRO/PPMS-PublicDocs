@@ -9,6 +9,6 @@ Web API
 
    platfotm/index.rst
    custom_reports/index.rst
-   tag_manager/index/rst
+   tag_manager/index.rst
    api/index.rst
    audience_manager/index.rst
