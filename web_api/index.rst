@@ -7,7 +7,7 @@ Web API
 .. toctree::
    :maxdepth: 1
 
-   platfotm/index.rst
+   platform/index.rst
    custom_reports/index.rst
    tag_manager/index.rst
    api/index.rst
