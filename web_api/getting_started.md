@@ -1,14 +1,11 @@
 Getting started
 ===============
 
-Create API credentials and an access token
-------------------------------------------
-
 If you want to access API for the first time, you need to generate your API credentials and use them to create an access token. The token is needed to authenticate API calls.
 
 Our API uses [client credentials](https://www.oauth.com/oauth2-servers/access-tokens/client-credentials/) (OAuth grant type) for obtaining a user token. All data is sent and received as JSON and is compliant with the [JSON API](http://jsonapi.org/) specification.
 
-### Generate API credentials
+## Generate API credentials
 
 To generate API credentials, follow these steps:
 
@@ -21,7 +18,7 @@ To generate API credentials, follow these steps:
 
 Note: Credentials are valid until they are deleted in the Profile.
 
-### Create an access token
+## Create an access token
 
 To create an access token, follow these steps:
 
@@ -47,7 +44,7 @@ To create an access token, follow these steps:
     ```
     Note: Every token is valid for 30 minutes. expires_in shows the expiration time in seconds.
 
-### Delete API credentials
+## Delete API credentials
 
 If you no longer want to use generated API credentials in access tokens, you need to delete them.
 
@@ -63,7 +60,7 @@ Examples of using API
 
 Note: To use any API call, you need to have API credentials (see above).
 
-### Using API with curl
+## Using API with curl
 
 In this example, we want to perform some basic operations on a user. We'll do the following operations:
 
@@ -74,7 +71,7 @@ In this example, we want to perform some basic operations on a user. We'll do th
 
 Note: In our example, we use https://&lt;example&gt; as an account address. An account address has this format: https://example.piwik.pro.
 
-### Generate your access token
+## Generate your access token
 
 Example of a request:
 
@@ -97,7 +94,7 @@ Response example:
 ```
 Note: access_token contains your token. You'll need it for all API calls. Every token is valid for 30 minutes.
 
-#### Invite a user
+### Invite a user
 
 Request example:
 
@@ -133,7 +130,7 @@ Example of a response:
   }
 }
 ```
-#### Get a user
+### Get a user
 
 After inviting a user, you can get a user.
 
@@ -160,7 +157,7 @@ Response example:
   }
 }
 ```
-#### Change the user's language
+### Change the user's language
 
 If you want to change the user's language after adding a user, you can use the following method.
 
@@ -189,7 +186,7 @@ Here are some things to know:
 
 API will return 204 No Content status code with an empty response.
 
-#### Delete a user
+### Delete a user
 
 When you want to remove a user, you can use the following method.
 
@@ -226,18 +223,18 @@ To use Postman, follow these steps:
 FAQ
 ---
 
-#### API returns "application/json" is not a valid JSON API Content-Type header, use "application/vnd.api+json" instead"
+**API returns "application/json" is not a valid JSON API Content-Type header, use "application/vnd.api+json" instead"**
 
 All API calls need to be created with the Content-Type: application/vnd.api+json header. If you use curl, you need to use the -H "Content-Type: application/vnd.api+json" flag. Postman allows configuring headers with the Header tab.
 
-#### API returns JWT not found
+**API returns JWT not found**
 
 You need to use your API token with every API call. Always send your API token within the Authorization: Bearer &lt;your_access_token&gt; header. If you use curl, you need to use the -H "Authorization: Bearer &lt;your_access_token&gt;" flag. Postman allows configuring tokens in the authorization tab. Choose the Bearer Token type and paste the token there. Remember to keep your token secure because it gives access to sensitive data.
 
-#### API returns Expired JWT Token
+**API returns Expired JWT Token**
 
 Every token is valid for 30 minutes. After the token expires, you can create it again.
 
-#### API returns access token not authorized
+**API returns access token not authorized**
 
 This message means that you sent an access token within a correct Authorization: Bearer field, but the token is invalid. Check your token and try again.
