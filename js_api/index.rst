@@ -11,3 +11,10 @@ JS API
    javascript.rst
    frameworks/index.rst
    methods/index.rst
+
+   <script>
+       let url = document.location.href.split('/');
+       url.pop();
+       url.push('getting-started.html');
+       location.replace(url.join('/'));
+   </script>
