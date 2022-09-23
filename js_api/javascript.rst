@@ -138,7 +138,7 @@ To send a custom event:
 
 
 
-.. getAsyncTracker():
+.. _getAsyncTracker():
 
 getAsyncTracker()
 ^^^^^^^^^^^^^^^^^
