@@ -29,7 +29,6 @@ API_PATH = os.path.join(os.path.dirname(__file__), '_static/api')
 api_definitions = {
     'tracker_tracking_api.json': 'web-api/api/tracking_api.yaml',
     'tracker_debugger_api.json': 'web-api/api/tracker_debugger_api.yaml',
-    'audience_manager_public_api.json': 'web-api/audience_manager/public_api/index.yaml',
     'platform_access_control_authorized_api.json': 'web-api/platform/authorized_api/access_control/public_v2.yaml',
     'platform_apps_authorized_api.json': 'web-api/platform/authorized_api/apps/public_v2.yaml',
     'platform_audit_log_authorized_api.json': 'web-api/platform/authorized_api/audit_log/public_v1.yaml',
@@ -39,7 +38,6 @@ api_definitions = {
     'platform_tracker_settings_authorized_api.json': 'web-api/platform/authorized_api/tracker_settings/public_v2.yaml',
     'platform_users_authorized_api.json': 'web-api/platform/authorized_api/users/public_v2.yaml',
     'platform_user_groups_authorized_api.json': 'web-api/platform/authorized_api/user_groups/public_v1.yaml',
-    'audience_manager_authorized_api.json': 'web-api/audience_manager/authorized_api/index.yaml',
     'custom_reports_http_api.json': 'web-api/analytics/http_api/index.yaml',
     'custom_reports_object_management_api.json': 'web-api/analytics/object_management_api/index.yaml',
     'tag_manager_authorized_api_tags.json': 'web-api/tag_manager/authorized_api/src/tags.yaml',
