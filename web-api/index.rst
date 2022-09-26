@@ -9,6 +9,6 @@ Web API
 
    getting_started.md
    platform/index.rst
-   custom_reports/index.rst
+   analytics/index.rst
    tag_manager/index.rst
    api/index.rst
