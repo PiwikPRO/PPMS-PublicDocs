@@ -15,7 +15,7 @@ JS API for Consent Manager contain methods that let you:
 
 In JavaScript, our methods can be called in this way:
 
-* JS (queue):  After installing our container’s code, it’ll create the ``_paq`` object (a queue). You can use the ``ppms.cm.api`` method to add methods to the queue. Our tracker will then access and proceed these methods.
+* **JS (queue)**:  After installing our container’s code, it’ll create the ``_paq`` object (a queue). You can use the ``ppms.cm.api`` method to add methods to the queue. Our tracker will then access and proceed these methods.
 
 ppms.cm.api
 -----------

@@ -10,7 +10,7 @@ Names of metrics used in API are different in Analytics classic and Analytics ne
 
    <a href="https://help.piwik.pro/support/questions/why-cant-i-combine-some-dimensions-and-metrics" target="_blank">Read more.</a>
 
-Simple Metrics
+Simple metrics
 --------------
 
 +----------------------------------+---------------------------------------------+-----------------------------------------------------+
@@ -99,7 +99,7 @@ Simple Metrics
 | Unique purchases                 | \-                                          | ``{"column_id": "unique_purchases"}``               |
 +----------------------------------+---------------------------------------------+-----------------------------------------------------+
 
-Calculated Metrics
+Calculated metrics
 ------------------
 
 .. warning::

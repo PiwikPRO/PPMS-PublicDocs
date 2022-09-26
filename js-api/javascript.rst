@@ -1,8 +1,8 @@
 .. _java-script:
 
-=====
+==========
 JavaScript
-=====
+==========
 Here are some guidelines on how to use our JavaScript library in Java Script.
 
 Installation
@@ -25,7 +25,7 @@ For more, see our installation guides:
 
 
 Methods used for calls
----------------
+----------------------
 
 In JavaScript, our methods can be called in a few ways:
 
