@@ -76,9 +76,10 @@ Consequently, default container code requires following modifications to work:
 Adjusting tags to work with Content Security Policy
 ---------------
 
-- **Asynchronous tags** - in most cases there should not be any change required to make asynchronous tags work. Tag Manager will automatically insert nonce attribute to all fired tags. Only exceptions is when Your tag adds other scripts/styles on page by itself - in such case, You should add nonce attribute manually.
-- **Synchronous tags** - since synchronous tags have to fire before whole page is loaded, following procedure is recommended:
+* **Asynchronous tags**: in most cases there should not be any change required to make asynchronous tags work. Tag Manager will automatically insert nonce attribute to all fired tags. Only exceptions is when Your tag adds other scripts/styles on page by itself - in such case, You should add nonce attribute manually.
+* **Synchronous tags**: since synchronous tags have to fire before whole page is loaded, following procedure is recommended.
 
+This procedure is recommended:
 
 1. Create new variable with value of nonce parameter. It is not required to create nonce variable in admin panel. Just pushing it on dataLayer before script is executed is enough.
 
@@ -166,13 +167,13 @@ Example Content Security Policy definition
 
 Following example configuration of CSP assumes:
 
-- client's website address: **client.com**
-- Consent Manager is enabled for the website
-- client's organization name in Piwik PRO: **client**
-- client's container domain: **client.containers.piwik.pro**
-- client has Piwik PRO tag with default tracking domain: **client.piwik.pro**
-- nonce value: **nceIOfn39fn3e9h3sd**
-- configuration allows ``'self'`` source which is: **client.com**
+* Client's website address: **client.com**
+* Consent Manager is enabled for the website
+* Client's organization name in Piwik PRO: **client**
+* Client's container domain: **client.containers.piwik.pro**
+* Client has Piwik PRO tag with default tracking domain: **client.piwik.pro**
+* Nonce value: **nceIOfn39fn3e9h3sd**
+* Configuration allows ``'self'`` source which is: **client.com**
 
 .. code-block:: text
 
