@@ -13,7 +13,7 @@ Developer docs and guides
    :maxdepth: 2
 
    web-api/index
-   js_api/index
+   js-api/index
    sdks/index
    other/index
    faq
