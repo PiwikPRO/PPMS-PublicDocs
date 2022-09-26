@@ -11,6 +11,7 @@ JS API
    javascript.rst
    frameworks/index.rst
    methods/index.rst
+   methods-consent-manager/index.rst
 
 .. raw:: html
 
