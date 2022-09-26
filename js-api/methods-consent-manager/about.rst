@@ -1,5 +1,5 @@
-About JS API for Consent Manager
-================================
+About
+=====
 
 JS API for Consent Manager contain methods that let you:
 

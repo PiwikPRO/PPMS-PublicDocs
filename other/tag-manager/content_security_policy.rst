@@ -89,7 +89,7 @@ Adjusting tags to work with Content Security Policy
             });
 
 
-2.  Use created variable as value for nonce attribute like follows:
+2. Use created variable as value for nonce attribute like follows:
 
         .. code-block:: html
 
