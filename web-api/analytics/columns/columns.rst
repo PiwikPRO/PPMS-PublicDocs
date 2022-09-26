@@ -1,27 +1,15 @@
-Columns
-=======
-
-This article documents core columns available in the :ref:`custom-reports-http-api`.
-Additional columns may become available through
-:ref:`custom-reports-integrations`.
-
-.. note::
-    Each column listed in this document defines a *Scope* attribute.
-    If you request a query that includes at least one column which requires
-    *event* scope, the entire query will be calculated using events,
-    instead of sessions. This might distort some custom metrics such as
-    averages of a *session* dimension (e.g. average session time).
+Core metrics and dimensions
+===========================
 
 Metrics
 -------
 
-The table below lists core metrics that may be used in queries.
-Additional metrics may be created using dimension transformations.
+Here's a list of core metrics that you can use in API calls. You can create additional metrics using transformations.
 
-.. table:: Base Metrics
+.. table:: Core metrics
 
     +------------------------------------+-----------------------------------+-------+-----+
-    |            Metric Name             |             Column ID             | Scope |Type |
+    |            Metric name             |             Column ID             | Scope |Type |
     +====================================+===================================+=======+=====+
     |Events                              |events                             |session|int  |
     +------------------------------------+-----------------------------------+-------+-----+
@@ -128,17 +116,15 @@ Additional metrics may be created using dimension transformations.
     |Events per session                  |events_per_session                 |session|float|
     +------------------------------------+-----------------------------------+-------+-----+
 
-Dimensions
-----------
+Core dimensions
+---------------
 
-The table below lists core dimensions that may be used in queries.
+Here's a list of core dimensions that you can use in API calls.
 
-Note: "Database type" column presents the type of source column of the dimension (in case of enum - type of the ID, in case of dynamic dimensions - not applicable).
-
-.. table:: Base Dimensions
+.. table:: Core dimensions
 
     +--------------------------------------+---------------------------------------+-------+----------+--------------+--------+--------------------------------------------------------------------------------------------------+
-    |            Dimension Name            |               Column ID               | Scope |   Type   |Database Type |Nullable|                                              Notes                                               |
+    |            Dimension name            |               Column ID               | Scope |   Type   |Database type |Nullable|                                              Notes                                               |
     +======================================+=======================================+=======+==========+==============+========+==================================================================================================+
     |Visitor ID                            |visitor_id                             |session|hex       |uint64        |False   |by default in Raw data API                                                                        |
     +--------------------------------------+---------------------------------------+-------+----------+--------------+--------+--------------------------------------------------------------------------------------------------+
@@ -480,16 +466,15 @@ Note: "Database type" column presents the type of source column of the dimension
     +--------------------------------------+---------------------------------------+-------+----------+--------------+--------+--------------------------------------------------------------------------------------------------+
 
 .. note::
-    Please note that the number of available custom slots (dimensions,
-    variables) depends on your organisation's configuration.
+    * "Database type" is the source column of a dimension. ``Enum`` shows the ID type. ``Not applicable`` shows a dymamic dimension.
+    * The number of slots for custom dimensions and variables depend on your account type.
 
 Transformations
 ---------------
 
-The tables below list all transformations that may be used to transform
-dimensions to metrics or different dimensions.
+Here's a list of all transformations that you can use.
 
-.. table:: Dimension To Metric Transformations
+.. table:: Transformation: dimension to metric
 
     +-------------------+-----------------+------------+-----------+
     |Transformation Name|Transformation ID|Source Types|Result Type|
@@ -506,7 +491,8 @@ dimensions to metrics or different dimensions.
     +-------------------+-----------------+------------+-----------+
     |Sum                |sum              |int, float  |(as source)|
     +-------------------+-----------------+------------+-----------+
-.. table:: Dimension To Dimension Transformations
+
+.. table:: Transformation: dimension to dimension
 
     +------------------------+-------------------+--------------+-----------+
     |  Transformation Name   | Transformation ID | Source Types |Result Type|

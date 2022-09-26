@@ -29,7 +29,7 @@ Adding nonce to container code
 ```````````````````````````````````
 Consequently, default container code requires following modifications to work:
 
--   **asynchronous snippet** - given container code following changes (highlighted) are required:
+- **Asynchronous snippet** - given container code following changes (highlighted) are required:
 
     .. code-block:: html
         :emphasize-lines: 1
@@ -53,7 +53,7 @@ Consequently, default container code requires following modifications to work:
             <iframe src="//client.containers.piwik.pro/feacd61d-0232-40a1-96c3-7e469f7bfa7f/noscript.html" height="0" width="0" style="display:none;visibility:hidden"></iframe>
         </noscript>
 
--   **synchronous snippet** - following changes (highlighted) are required:
+- **Synchronous snippet** - following changes (highlighted) are required:
 
     .. code-block:: html
         :emphasize-lines: 1, 8
@@ -76,11 +76,11 @@ Consequently, default container code requires following modifications to work:
 Adjusting tags to work with Content Security Policy
 ---------------
 
--   **asynchronous tags** - in most cases there should not be any change required to make asynchronous tags work. Tag Manager will automatically insert nonce attribute to all fired tags. Only exceptions is when Your tag adds other scripts/styles on page by itself - in such case, You should add nonce attribute manually.
--   **synchronous tags** - since synchronous tags have to fire before whole page is loaded, following procedure is recommended:
+- **Asynchronous tags** - in most cases there should not be any change required to make asynchronous tags work. Tag Manager will automatically insert nonce attribute to all fired tags. Only exceptions is when Your tag adds other scripts/styles on page by itself - in such case, You should add nonce attribute manually.
+- **Synchronous tags** - since synchronous tags have to fire before whole page is loaded, following procedure is recommended:
 
 
-    1.  Create new variable with value of nonce parameter. It is not required to create nonce variable in admin panel. Just pushing it on dataLayer before script is executed is enough.
+1. Create new variable with value of nonce parameter. It is not required to create nonce variable in admin panel. Just pushing it on dataLayer before script is executed is enough.
 
         .. code-block:: javascript
 
@@ -89,7 +89,7 @@ Adjusting tags to work with Content Security Policy
             });
 
 
-    2.  Use created variable as value for nonce attribute like follows:
+2.  Use created variable as value for nonce attribute like follows:
 
         .. code-block:: html
 

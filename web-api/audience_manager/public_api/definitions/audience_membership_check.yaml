@@ -1,6 +1,0 @@
-type: object
-properties:
-  result:
-    type: boolean
-    description: Specifies if user belongs to the audience.
-    example: false

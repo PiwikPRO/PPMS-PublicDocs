@@ -12,9 +12,9 @@ Introduction
 ------------
 As per the `MDN`_ definition:
 
-    The <a> HTML element (or anchor element), with its href attribute, creates
-    a hyperlink to web pages, files, email addresses, locations in the same page,
-    or anything else a URL can address.
+The <a> HTML element (or anchor element), with its href attribute, creates
+a hyperlink to web pages, files, email addresses, locations in the same page,
+or anything else a URL can address.
 
 If you wish to trigger tags, when the anchor element is clicked, they need time
 to execute before the redirect happens. That is why our container is equipped
@@ -47,10 +47,10 @@ element are executed immediatly after clicking.
 Example
 ```````
 
-#.  Let's assume that your Tag Manager setup includes a `Custom code (async)` tag
+1. Let's assume that your Tag Manager setup includes a `Custom code (async)` tag
     (the contents of the tag does not matter in this case) and a basic `Click
     trigger` assigned to the said tag.
-#.  On your page, the following code is present:
+2. On your page, the following code is present:
 
     .. code-block:: html
 
@@ -70,9 +70,9 @@ Example
             }, 1000)
         </script>
 
-#.  Once the visitor clicks the link, a redirect happens. This is not desired,
+3. Once the visitor clicks the link, a redirect happens. This is not desired,
     since the listener performs a `preventDefault` action.
-#.  Now let's modify the anchor element to look like this:
+4. Now let's modify the anchor element to look like this:
 
     .. code-block:: html
 
@@ -84,5 +84,5 @@ Example
             link
         </a>
 
-#.  After the modification is done, clicking the link no longer performs
+5. After the modification is done, clicking the link no longer performs
     a redirect and fires the click listener immediately.

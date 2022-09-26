@@ -1,5 +1,5 @@
-Google Ads
-==========
+Google Ads metrics and dimensions
+=================================
 
 The :ref:`custom-reports-http-api` supports querying Google Ads
 data just like the internal analytics data.
@@ -80,7 +80,7 @@ Note: "Database type" column presents the type of source column of the dimension
     +----------------------------------------+-----------------------------+--------+----------+--------------+--------+-------------------------------------------------------------------------------------------------------------------------------------+
 
 
-Mixed Queries
+Mixed queries
 -------------
 
 It is possible to request both internal analytics and Google Ads
@@ -132,4 +132,3 @@ Note: "Database type" column presents the type of source column of the dimension
   Using dimensions that are not explicitly listed in the table above in such
   queries (either as query columns or as filters) will result in a **Bad
   Request** response.
-
