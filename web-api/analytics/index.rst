@@ -2,10 +2,9 @@ Analytics
 =========
 
 .. toctree::
-  :maxdepth: 2
+  :maxdepth: 1
 
-  columns
-  integrations/index.rst
+  columns/index.rst
   http_api/http_api
   object_management_api/object_management_api
   metrics_mapping
