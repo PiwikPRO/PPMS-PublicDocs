@@ -1,6 +1,6 @@
-============================
-setInitialComplianceSettings
-============================
+==============================
+setInitialComplianceSettings()
+==============================
 
 Sets initial compliance settings (no decision signal for each consent type) in the cookie.
 Use this command to save "no decision" for the available consent types, to further know that a visitor has seen the form.
