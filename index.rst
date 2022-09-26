@@ -12,7 +12,7 @@ Developer docs and guides
 .. toctree::
    :maxdepth: 2
 
-   web_api/index
+   web-api/index
    js_api/index
    sdks/index
    other/index
