@@ -32,5 +32,7 @@ Parameters
  | **error** (string | object, required)
  | Error code or exception
 
- Examples
- --------
+Examples
+--------
+
+See `custom consent form example <https://piwikpro.github.io/ConsentManager-CustomConsentFormExample/>`_.
