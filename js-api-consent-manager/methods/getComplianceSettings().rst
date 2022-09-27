@@ -36,4 +36,4 @@ Parameters
 Examples
 --------
 
-See `Piwik PRO - Custom consent form example`_
+See `custom consent form example <https://piwikpro.github.io/ConsentManager-CustomConsentFormExample/`_

@@ -16,7 +16,7 @@ Syntax
 Parameters
 ----------
 
-| **settings**(object, required)
+| **settings** (object, required)
 | The consent settings object. Example: ``{consents: ['analytics']}`` or ``['analytics']``.
 
 | **onFulfilled()** (function, required)
