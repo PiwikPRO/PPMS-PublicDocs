@@ -34,7 +34,7 @@ In JavaScript, our methods can be called in this way:
 
 
 ppms.cm.api
------------
+^^^^^^^^^^^
 
 The ``ppms.cm.api`` method adds methods to the ``_paq`` object (a queue). The methods are called after the container’s code (or a tracking code) loads on a page. They are called synchronously (one by one).
 
