@@ -1,4 +1,4 @@
-.. _java-script:
+.. _cm-java-script:
 
 ==========
 JavaScript

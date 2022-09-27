@@ -17,5 +17,5 @@ In short, our JavaScript library lets you:
 
 **Next steps**
 
-* :ref:`java-script`
-* :ref:`methods`
+* :ref:`cm-java-script`
+* :ref:`methods-consent-manager`
