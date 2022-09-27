@@ -4,6 +4,7 @@ Integrations
 ============
 
 .. toctree::
+   :maxdepth: 1
 
    PWA_Integration.md
    AMP_integration.rst

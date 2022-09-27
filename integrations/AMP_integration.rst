@@ -80,14 +80,14 @@ This example will send custom event when page element using "mybutton" ID will b
 
 These are parameters used by custom event:
 
-* “`selector <https://www.ampproject.org/docs/reference/components/amp-analytics#element-selector>`_” - CSS selector for element that should be watched
-* “on” - HTML event type
-* “vars” - Variables that should be used by this event. Custom events expect:
+* ``selector``: CSS selector for element that should be watched. `Read more <https://www.ampproject.org/docs/reference/components/amp-analytics#element-selector>`_
+* ``on``: HTML event type
+* ``vars``: Variables that should be used by this event. Custom events expect:
 
-    * “event_category” - required
-    * “event_action” - required
-    * “event_name” - optional
-    * “event_value” - optional
+    * ``event_category`` (required)
+    * ``event_action`` (required)
+    * ``event_name`` (optional)
+    * ``event_value`` (optional)
 
 
 Tracking download events
