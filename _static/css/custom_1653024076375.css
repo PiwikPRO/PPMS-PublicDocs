@@ -275,10 +275,7 @@ body {
     overflow-x: initial !important;
 }
 
-img {
-    border: 0;
-    -ms-interpolation-mode: bicubic;
-    vertical-align: middle;
+.rst-content .section>img, .rst-content .section>a>img {
     max-width:700 px;
     margin-left: 100 px;
 }

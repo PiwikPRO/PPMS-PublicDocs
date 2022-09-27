@@ -160,9 +160,9 @@ This example will send outlink event when page element using "myoutlink" ID will
 
 These are parameters used by outlink event:
 
-* ``selector`` CSS selector for element that should be watched. `Read more <https://www.ampproject.org/docs/reference/components/amp-analytics#element-selector>`_
-* ``on`` HTML event type
-* ``vars`` Variables that should be used by this event. Custom events expect:
+* ``selector`` -- CSS selector for element that should be watched. `Read more <https://www.ampproject.org/docs/reference/components/amp-analytics#element-selector>`_
+* ``on`` -- HTML event type
+* ``vars`` -- Variables that should be used by this event. Custom events expect:
   * ``outlink_url`` (required)
 
 Tracking goal conversions
