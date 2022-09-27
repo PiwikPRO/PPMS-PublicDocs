@@ -1,4 +1,10 @@
+.. _other_integrations:
+
 Integrations
 ============
 
-This page was moved here: :ref:`data-collection`.
+.. toctree::
+
+   PWA_Integration.md
+   AMP_integration.rst
+   web_log_analytics.rst

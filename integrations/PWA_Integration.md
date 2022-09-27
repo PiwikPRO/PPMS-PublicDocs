@@ -1,4 +1,4 @@
-# Progressive Web Applications integration
+# Progressive web app integration
 
 If you're building an application that works offline, then understanding how users are interacting with your app when they don't have connectivity is crucial to optimizing that experience.
 
@@ -10,7 +10,7 @@ Piwik PRO receives all data via HTTP requests to the Analytics, which means a Se
 
 The PWA module for Piwik PRO does exactly this. It also adds fetch handlers to cache the ppms.js and the container scripts, so they can also be run offline. Lastly, when failed requests are retried, the module also automatically sets (or updates) the `cdt` in the request payload to ensure timestamps in Piwik PRO reflect the time of the original user interaction.
 
-## Enabling the Piwik PRO module for Progressive web applications
+## Enable Piwik PRO for progressive web apps
 
 To enable collecting data from your PWAs using Piwik PRO Analytics, call the initialize() method in your service worker:
 
@@ -31,7 +31,7 @@ To address this concern, you can use one of the optional methods described below
 
 
 
-## Enable automatic tracking of the status of the user's Internet connection
+## Enable automatic tracking of the user's internet connection status
 
 If you want to be able to differentiate retried requests from non-retried requests, you can use a command that will start automatic tracing of the internet connection status. With this solution, when the internet is lost, a Custom Event will be generated containing information about the status of the internet connection.
 

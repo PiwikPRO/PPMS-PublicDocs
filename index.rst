@@ -16,6 +16,7 @@ Developer docs and guides
    js-api/index
    js-api-consent-manager/index
    sdks/index
+   integrations/index
    other/index
    faq
    changelog

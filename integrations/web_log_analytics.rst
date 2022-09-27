@@ -5,7 +5,7 @@
 .. _PyPi: https://pypi.org/project/piwik-pro-log-analytics/
 
 
-Web Log Analytics
+Web log analytics
 =================
 
 
@@ -165,4 +165,3 @@ The script needs CPU to read and parse the log files, but it is usually Piwik PR
 To improve performance, you can use the **--recorders** option to specify the number of parallel threads which will import hits into Piwik PRO. By default we are using one recorder, but you can increase this value until you achieve satisfying speed.
 
 If you are Piwik PRO Core user, please make sure, that you are not hitting rate limits, by using **--sleep-between-requests-ms** flag to slow down the import process.
-
