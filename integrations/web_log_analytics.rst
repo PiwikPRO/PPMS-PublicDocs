@@ -59,21 +59,17 @@ Sample command:
             ./import_logs.py --url=https://demo.piwik.pro --client-id=*** --client-secret=*** --enable-static --enable-bots --show-progress --idsite=*** --recorders=2 sample.log
 
 
-.. option:: --url=https://demo.piwik.pro
+| **--url=https://demo.piwik.pro**
+| This is a mandatory parameter which points to the location of your Piwik instance
 
-    This is a mandatory parameter which points to the location of your Piwik instance
+| **--client-id=*****
+| Part of API credentials. They can be obtained from PPAS (check `how to do it <https://help.piwik.pro/support/questions/generate-api-credentials/>`_).
 
-.. option:: --client-id=***
+| **--client-secret=*****
+| Part of API credentials. They can be obtained from PPAS (check `how to do it <https://help.piwik.pro/support/questions/generate-api-credentials/>`_).
 
-    Part of API credentials. They can be obtained from PPAS (check `how to do it <https://help.piwik.pro/support/questions/generate-api-credentials/>`_).
-
-.. option:: --client-secret=***
-
-    Part of API credentials. They can be obtained from PPAS (check `how to do it <https://help.piwik.pro/support/questions/generate-api-credentials/>`_).
-
-.. option:: --idsite=***
-
-    Defines the Site ID of the website (eg. `99e33528-8da4-46d8-be90-a62bfb3a7bba`).
+|**--idsite=*****
+| Defines the Site ID of the website (eg. `99e33528-8da4-46d8-be90-a62bfb3a7bba`).
 
 There are many other options that can be added to this script, which are described in the :ref:`Tracker-log-import-add-parameters-to-log-import`.
 
