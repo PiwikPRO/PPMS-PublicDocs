@@ -61,4 +61,6 @@ Notes
 ^^^^^
 
 * All commands work in the context of the current visitor and website. Additionally, they sometimes require communication with a Piwik PRO's server and are asynchronous.
-* Callback functions are used to provide response value or information about errors. ``onSuccess(...args)`` callback is required, with the exception of ``openConsentForm`` command where it is optional. ``onFailure(exception)`` callback is optional and if is specified, any error object occurred will be passed as an argument. If not specified, an error is reported directly on the console output.
+* Callback functions are used to provide response value or information about errors.
+* ``onSuccess(...args)`` callback is required, with the exception of ``openConsentForm`` command where it is optional.
+* ``onFailure(exception)`` callback is optional and if is specified, any error object occurred will be passed as an argument. If not specified, an error is reported directly on the console output.
