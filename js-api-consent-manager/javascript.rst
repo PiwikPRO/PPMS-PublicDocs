@@ -39,13 +39,13 @@ ppms.cm.api
 The ``ppms.cm.api`` method adds methods to the ``_paq`` object (a queue). The methods are called after the container’s code (or a tracking code) loads on a page. They are called synchronously (one by one).
 
 Syntax
-^^^^^^
+######
 .. code-block:: javascript
 
     ppms.cm.api(command, ...args)
 
 Parameters
-^^^^^^^^^^
+##########
 | **command** (string, required)
 | Command name
 
@@ -53,12 +53,12 @@ Parameters
 | Command arguments. The number of arguments and their function depend on command.
 
 Returns
-^^^^^^^
+########
 Commands are expected to be run asynchronously and return no value.
 Type: undefined
 
 Notes
-^^^^^
+#####
 
 * All commands work in the context of the current visitor and website. Additionally, they sometimes require communication with a Piwik PRO's server and are asynchronous.
 * Callback functions are used to provide response value or information about errors.
