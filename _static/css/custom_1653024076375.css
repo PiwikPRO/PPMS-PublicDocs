@@ -276,8 +276,8 @@ body {
 }
 
 .rst-content .section>img, .rst-content .section>a>img {
-    max-width:700 px;
-    margin-left: 100 px;
+    max-width:700px !important;
+    margin-left: 100px !important;
 }
 
 #redoc-container .redoc-json code {
