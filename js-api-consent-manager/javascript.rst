@@ -3,7 +3,7 @@
 ==========
 JavaScript
 ==========
-Here are some guidelines on how to use our JavaScript library in Java Script.
+Here are some guidelines on how to use our Consent Manager JS API in Java Script.
 
 Installation
 ------------
@@ -64,3 +64,18 @@ Notes
 * Callback functions are used to provide response value or information about errors.
 * ``onSuccess(...args)`` callback is required, with the exception of ``openConsentForm`` command where it is optional.
 * ``onFailure(exception)`` callback is optional and if is specified, any error object occurred will be passed as an argument. If not specified, an error is reported directly on the console output.
+
+
+Custom consent form
+-------------------
+
+Our Consent Manager JS API lets you build a custom consent form in place of the default one.
+
+To turn on custom consent form, follow these steps:
+
+1. Log in to Piwik PRO.
+2. Go to **Menu**.
+3. Go to **Administration** > **Sites & apps**.
+4. Navigate to **Privacy**.
+5. Turn on **Ask visitors for consent**.
+6. Turn on **Use a custom consent form**.
