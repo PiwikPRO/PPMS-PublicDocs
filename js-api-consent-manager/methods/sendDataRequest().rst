@@ -18,9 +18,9 @@ Parameters
 | **request** (object, required)
 | The subject data request. Example: ``{content: 'user input', email: 'example@example.org', type: 'delete_data'}``
 | Where ``type`` is request type, and can be one of:
-  * ``change_data`` for data alteration request
-  * ``view_data`` for view data request
-  * ``delete_data`` for delete data request
+* ``change_data`` for data alteration request
+* ``view_data`` for view data request
+* ``delete_data`` for delete data request
 
 | **onFulfilled()** (function, required)
 | The fulfillment handler callback (called with result).
@@ -28,7 +28,7 @@ Parameters
 | **onRejected(error)**
 | The rejection handler callback (called with error code). If not specified, the exception will be thrown in the main stack trace.
 
-  | **error** (string|object, required)
+  | **error** (string | object, required)
   | Error code or exception
 
 

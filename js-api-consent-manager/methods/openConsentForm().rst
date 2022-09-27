@@ -24,13 +24,13 @@ Parameters
   | Array of consent types. Example: ``["analytics", "conversion_tracking", "remarketing"]``
 
   | **consents** (string)
-  | Array list of all given consents. Example: ["analytics", "remarketing"]
+  | Array list of all given consents. Example: ``["analytics", "remarketing"]``
 
 
 | **onRejected(error)**
 | The rejection handler callback (called with error code). If not specified, the exception will be thrown in the main stack trace.
 
-  | **error** (string|object, required)
+  | **error** (string | object, required)
   | Error code or exception
 
 Examples

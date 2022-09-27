@@ -17,11 +17,11 @@ Syntax
 Parameters
 ----------
 
-|**settings** (object, required)
+| **settings** (object, required)
 | The consent settings object. Example: ``{consents: {analytics: {status: 1}}}``
 | Where ``consent.analytics`` is consent type and status indicate:
-  * ``0``: A visitor rejected the consent.
-  * ``1``: A visitor approved the consent.
+* ``0``: A visitor rejected consent.
+* ``1``: A visitor approved consent.
 
 | **onFulfilled()** (function, required)
 | The fulfillment handler callback (called with result).
@@ -29,7 +29,7 @@ Parameters
 | **onRejected(error)**
 | The rejection handler callback (called with error code). If not specified, the exception will be thrown in the main stack trace.
 
- | **error** (string|object, required)
+ | **error** (string | object, required)
  | Error code or exception
 
  Examples

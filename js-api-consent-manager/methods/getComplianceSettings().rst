@@ -22,16 +22,18 @@ Parameters
   | The consent setting object
   | Example: ``{consents: {analytics: {status: -1, updatedAt: '2018-07-03T12:18:19.957Z'}}}``
   | Where ``consent.analytics`` is consent type and status indicate:
-  * ``-1``: A vistior hasn't interacted. For example, they closed a consent popup without any decision.
+  * ``-1``: A vistior didn't interact. For example, they closed a consent popup without any decision.
   * ``0``: A visitor rejected consent.
   * ``1``: A vistior approved consent.
 
 | **onRejected(error)**
 | The rejection handler callback (called with error code). If not specified, the exception will be thrown in the main stack trace.
 
-  | **error** (string|object, required)
+  | **error** (string | object, required)
   | Error code or exception
 
 
 Examples
 --------
+
+See `Piwik PRO - Custom consent form example`_

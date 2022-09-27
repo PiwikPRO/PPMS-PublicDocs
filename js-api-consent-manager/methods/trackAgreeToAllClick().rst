@@ -2,7 +2,7 @@
 trackAgreeToAllClick()
 ======================
 
-Command used to track clicks on the `Agree to all` button.
+Command used to track clicks on the ``Agree to all`` button.
 
 Syntax
 ------

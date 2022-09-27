@@ -2,7 +2,7 @@
 trackRejectAllClick()
 =====================
 
-Command used to track clicks on the `Reject all` button.
+Command used to track clicks on the ``Reject all`` button.
 
 Syntax
 ------
@@ -20,7 +20,7 @@ Parameters
 | **onRejected(error)**
 | The rejection handler callback (called with error code). If not specified, the exception will be thrown in the main stack trace.
 
-  | **error** (string|object, required)
+  | **error** (string | object, required)
   | Error code or exception
 
 Examples

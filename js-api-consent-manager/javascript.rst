@@ -31,6 +31,7 @@ In JavaScript, our methods can be called in this way:
 
 * **JS (queue)**:  After installing our container’s code, it’ll create the ``_paq`` object (a queue). You can use the ``ppms.cm.api`` method to add methods to the queue. Our tracker will then access and proceed these methods.
 
+All commands work in the context of the current visitor and website. Additionally, they sometimes require communication with a Piwik PRO's server and are asynchronous. Callback functions are used to provide response value or information about errors. ``onSuccess(...args)`` callback is required, with the exception of ``openConsentForm`` command where it is optional. ``onFailure(exception)`` callback is optional and if is specified, any error object occurred will be passed as an argument. If not specified, an error is reported directly on the console output.
 
 ppms.cm.api
 -----------
@@ -58,12 +59,3 @@ Type: undefined
 
 
 .. _`Piwik PRO - Custom consent form example`: https://piwikpro.github.io/ConsentManager-CustomConsentFormExample/
-
-Commands
---------
-All commands work in the context of the current visitor and website. Additionally, they sometimes require communication with a PPAS server and are asynchronous. Callback functions are used to provide response value or information about errors. ``onSuccess(...args)`` callback is required, with the exception of ``openConsentForm`` command where it is optional. ``onFailure(exception)`` callback is optional and if is specified, any error object occurred will be passed as an argument. If not specified, an error is reported directly on the console output.
-
-.. note::
-    For examples of how to use a specific command in your custom consent form
-    implementation (including how to track consent stats), reffer to the
-    `Piwik PRO - Custom consent form example`_
