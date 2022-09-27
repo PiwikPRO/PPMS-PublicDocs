@@ -68,7 +68,7 @@ Sample command:
 | **--client-secret=*****
 | Part of API credentials. They can be obtained from PPAS (check `how to do it <https://help.piwik.pro/support/questions/generate-api-credentials/>`_).
 
-|**--idsite=*****
+| **--idsite=*****
 | Defines the Site ID of the website (eg. `99e33528-8da4-46d8-be90-a62bfb3a7bba`).
 
 There are many other options that can be added to this script, which are described in the :ref:`Tracker-log-import-add-parameters-to-log-import`.
