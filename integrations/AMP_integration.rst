@@ -80,13 +80,13 @@ This example will send custom event when page element using "mybutton" ID will b
 
 These are parameters used by custom event:
 
-* ``selector`` CSS selector for element that should be watched. `Read more <https://www.ampproject.org/docs/reference/components/amp-analytics#element-selector>`_
-* ``on`` HTML event type
-* ``vars`` Variables that should be used by this event. Custom events expect:
-  * ``event_category`` (required)
-  * ``event_action`` (required)
-  * ``event_name`` (optional)
-  * ``event_value`` (optional)
+* ``selector`` -- CSS selector for element that should be watched. `Read more <https://www.ampproject.org/docs/reference/components/amp-analytics#element-selector>`_
+* ``on`` -- HTML event type
+* ``vars`` -- Variables that should be used by this event. Custom events expect:
+ * ``event_category`` (required)
+ * ``event_action`` (required)
+ * ``event_name`` (optional)
+ * ``event_value`` (optional)
 
 
 Tracking download events
@@ -122,10 +122,10 @@ This example will send download event when page element using "mydownload" ID wi
 
 These are parameters used by download event:
 
-* ``selector`` CSS selector for element that should be watched. `Read more <https://www.ampproject.org/docs/reference/components/amp-analytics#element-selector>`_
-* ``on`` HTML event type
-* ``vars`` Variables that should be used by this event. Custom events expect:
-  * ``download_url`` (required)
+* ``selector`` -- CSS selector for element that should be watched. `Read more <https://www.ampproject.org/docs/reference/components/amp-analytics#element-selector>`_
+* ``on`` -- HTML event type
+* ``vars`` -- Variables that should be used by this event. Custom events expect:
+ * ``download_url`` (required)
 
 Tracking outlink events
 -----------------------
@@ -163,7 +163,7 @@ These are parameters used by outlink event:
 * ``selector`` -- CSS selector for element that should be watched. `Read more <https://www.ampproject.org/docs/reference/components/amp-analytics#element-selector>`_
 * ``on`` -- HTML event type
 * ``vars`` -- Variables that should be used by this event. Custom events expect:
-  * ``outlink_url`` (required)
+ * ``outlink_url`` (required)
 
 Tracking goal conversions
 -------------------------
@@ -199,9 +199,9 @@ This example will send goal conversion when page element using "mygoal" ID will 
 
 These are parameters used by goal event:
 
-* ``selector`` CSS selector for element that should be watched. `Read more <https://www.ampproject.org/docs/reference/components/amp-analytics#element-selector>`_
-* ``on`` HTML event type
-* ``vars`` Variables that should be used by this event. Custom events expect:
+* ``selector`` -- CSS selector for element that should be watched. `Read more <https://www.ampproject.org/docs/reference/components/amp-analytics#element-selector>`_
+* ``on`` -- HTML event type
+* ``vars`` -- Variables that should be used by this event. Custom events expect:
  * “goal_id” (required)
  * "revenue" (optional)
 
@@ -240,12 +240,12 @@ This example will send internal search event when page element using "mysearch" 
 
 These are parameters used by internal search event:
 
-* ``selector`` CSS selector for element that should be watched. `Read more <https://www.ampproject.org/docs/reference/components/amp-analytics#element-selector>`_
-* ``on`` HTML event type
-* ``vars`` Variables that should be used by this event. Custom events expect:
-  * ``search_keyword`` (required)
-  * ``search_category`` (required)
-  * ``search_result_count`` (optional)
+* ``selector`` -- CSS selector for element that should be watched. `Read more <https://www.ampproject.org/docs/reference/components/amp-analytics#element-selector>`_
+* ``on`` -- HTML event type
+* ``vars`` -- Variables that should be used by this event. Custom events expect:
+ * ``search_keyword`` (required)
+ * ``search_category`` (required)
+ * ``search_result_count`` (optional)
 
 Complete page example
 ---------------------
