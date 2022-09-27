@@ -15,26 +15,22 @@ Syntax
 Parameters
 ----------
 
-.. object:: settings
 
-     **required** The consent settings object
+| **onFulfilled(settings)** (function, required)
+| The fulfillment handler callback (called with result).
 
-        Example::
+  | **settings** (object, required)
+  | The consent setting object
+  | Example:: ``{consents: {analytics: {status: -1, updatedAt: '2018-07-03T12:18:19.957Z'}}}``
+  | Where ``consent.analytics`` is consent type and status indicate:
+  * ``-1`` - user has not interacted, e.g. has closed a consent popup without any decision
+  * ``0`` - user reject consent
+  * ``1`` - user approve consent
 
-            {consents: {analytics: {status: -1, updatedAt: '2018-07-03T12:18:19.957Z'}}}
+| **onRejected(error)**
+| The rejection handler callback (called with error code). If not specified, the exception will be thrown in the main stack trace.
+| Parameters: error (string | object, required) Error code or exception
 
-    Where ``consent.analytics`` is consent type and status indicate:
 
-    * ``-1`` - user has not interacted, e.g. has closed a consent popup without any decision
-    * ``0`` - user reject consent
-    * ``1`` - user approve consent
-
-.. function:: onFulfilled(settings)
-
-    **required** The fulfillment handler callback (called with result)
-
-.. function:: onRejected(error)
-
-    The rejection handler callback (called with error code). If not specified, the exception will be thrown in the main stack trace.
-
-    :param string|object error: **Required** Error code or exception
+Examples
+--------
