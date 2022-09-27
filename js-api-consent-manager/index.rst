@@ -1,7 +1,7 @@
 .. _js_api:
 
 =====
-JS API
+JS API (Consent Manager)
 =====
 
 .. toctree::
@@ -9,7 +9,6 @@ JS API
 
    getting-started.rst
    javascript.rst
-   frameworks/index.rst
    methods/index.rst
 
 .. raw:: html

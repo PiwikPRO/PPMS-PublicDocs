@@ -1,21 +1,36 @@
-About
-=====
+.. _java-script:
 
-JS API for Consent Manager contain methods that let you:
+==========
+JavaScript
+==========
+Here are some guidelines on how to use our JavaScript library in Java Script.
 
-* Get compliance types
-* Get new compliance types
-* Set initial compliance settings
-* Set compliance settings
-* Get compliance settings
-* Send a data subject request
-* Open a consent form
-* Track consent stats
+Installation
+------------
 
+Our JavaScript library can be used only after you installed our container's code (or only a tracking code) on your site. The code creates a ``<script>`` tag that asynchronously loads the JavaScript library in the website's body section.
+
+If you haven't installed the code yet, you can find it directly in Piwik PRO in **Menu** > **Administration** > **Sites & apps** > **Installation**.
+
+For more, see our installation guides:
+
+* `Install a container (with a tracking code) <https://help.piwik.pro/support/getting-started/install-a-tracking-code/>`_
+* `Google Tag Manager: install a container (with a tracking code) <https://help.piwik.pro/support/getting-started/google-tag-manager-install-a-container-with-a-tracking-code/>`_
+* `Google Tag Manager: install only a tracking code <https://help.piwik.pro/support/getting-started/google-tag-manager-install-a-tracking-code/>`_
+* `Instapage: install a container (with a tracking code) <https://help.piwik.pro/support/getting-started/instapage-install-a-container-with-a-tracking-code/>`_
+* `No Piwik PRO Tag Manager: install a tracking code <https://help.piwik.pro/support/getting-started/no-piwik-pro-tag-manager-install-a-tracking-code/>`_
+* `Squarespace: install a container (with a tracking code) <https://help.piwik.pro/support/getting-started/squarespace-install-a-container-with-a-tracking-code/>`_
+* `WordPress: install a container (with a tracking code) <https://help.piwik.pro/support/getting-started/wordpress-install-a-tracking-code/>`_
+
+
+
+Methods used for calls
+----------------------
 
 In JavaScript, our methods can be called in this way:
 
 * **JS (queue)**:  After installing our container’s code, it’ll create the ``_paq`` object (a queue). You can use the ``ppms.cm.api`` method to add methods to the queue. Our tracker will then access and proceed these methods.
+
 
 ppms.cm.api
 -----------
