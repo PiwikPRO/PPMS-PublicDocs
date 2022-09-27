@@ -16,26 +16,17 @@ Syntax
 Parameters
 ----------
 
-.. object:: settings
+| **settings**(object, required)
+| The consent settings object. Example: ``{consents: ['analytics']}`` or ``['analytics']``.
 
-    **required** The consent settings object
+| **onFulfilled()** (function, required)
+| The fulfillment handler callback (called with result).
 
-        Example::
+| **onRejected(error)**
+| The rejection handler callback (called with error code). If not specified, the exception will be thrown in the main stack trace.
 
-            {consents: ['analytics']}
+  | **error** (string|object, required)
+  | Error code or exception
 
-        or
-
-        Example::
-
-            ['analytics']
-
-.. function:: onFulfilled()
-
-     **required** The fulfillment handler callback
-
-.. function:: onRejected(error)
-
-    The rejection handler callback (called with error code). If not specified, the exception will be thrown in the main stack trace.
-
-    :param string|object error: **Required** Error code or exception
+Examples
+--------

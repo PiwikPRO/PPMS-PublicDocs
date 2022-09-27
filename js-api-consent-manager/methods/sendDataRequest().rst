@@ -15,26 +15,22 @@ Syntax
 Parameters
 ----------
 
-.. object:: request
+| **request** (object, required)
+| The subject data request. Example: ``{content: 'user input', email: 'example@example.org', type: 'delete_data'}``
+| Where ``type`` is request type, and can be one of:
+  * ``change_data`` for data alteration request
+  * ``view_data`` for view data request
+  * ``delete_data`` for delete data request
 
-    **required** The subject data request.
+| **onFulfilled()** (function, required)
+| The fulfillment handler callback (called with result).
 
-        Example::
+| **onRejected(error)**
+| The rejection handler callback (called with error code). If not specified, the exception will be thrown in the main stack trace.
 
-            {content: 'user input', email: 'example@example.org', type: 'delete_data'}
+  | **error** (string|object, required)
+  | Error code or exception
 
-    Where ``type`` is request type, and can be one of:
 
-    * ``change_data`` for data alteration request
-    * ``view_data`` for view data request
-    * ``delete_data`` for delete data request
-
-.. function:: onFulfilled()
-
-    **required** The fulfillment handler callback
-
-.. function:: onRejected(error)
-
-    The rejection handler callback (called with error code). If not specified, the exception will be thrown in the main stack trace.
-
-    :param string|object error: **Required** Error code or exception
+Examples
+--------

@@ -15,12 +15,14 @@ Syntax
 Parameters
 ----------
 
-.. function:: onFulfilled()
+| **onFulfilled()** (function, required)
+| The fulfillment handler callback (called with result).
 
-    The fulfillment handler callback
+| **onRejected(error)**
+| The rejection handler callback (called with error code). If not specified, the exception will be thrown in the main stack trace.
 
-.. function:: onRejected(error)
+  | **error** (string|object, required)
+  | Error code or exception
 
-    The rejection handler callback (called with error code). If not specified, the exception will be thrown in the main stack trace.
-
-    :param string|object error: **Required** Error code or exception
+Examples
+--------
