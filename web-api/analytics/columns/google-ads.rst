@@ -1,13 +1,5 @@
-Google Ads metrics and dimensions
+Google Ads: metrics & dimensions
 =================================
-
-The :ref:`custom-reports-http-api` supports querying Google Ads
-data just like the internal analytics data.
-
-.. note::
-    You must configure the Google Ads integration before any data
-    from it will become available. This can be done in the **Settings / Integrations**
-    application's section.
 
 Metrics
 -------
@@ -17,7 +9,7 @@ The table below lists metrics provided by Google Ads integration.
 .. table:: Google Ads Metrics
 
     +------------------------+----------------------+--------+-----+
-    |      Metric Name       |      Column ID       | Scope  |Type |
+    |      Metric name       |      Column ID       | Scope  |Type |
     +========================+======================+========+=====+
     |Impressions (Google Ads)|google_ads_impressions|external|int  |
     +------------------------+----------------------+--------+-----+
@@ -37,12 +29,8 @@ Dimensions
 
 The table below lists dimensions provided by Google Ads integration.
 
-Note: "Database type" column presents the type of source column of the dimension (in case of enum - type of the ID, in case of dynamic dimensions - not applicable).
-
-.. table:: Google Ads Dimensions
-
     +----------------------------------------+-----------------------------+--------+----------+--------------+--------+-------------------------------------------------------------------------------------------------------------------------------------+
-    |             Dimension Name             |          Column ID          | Scope  |   Type   |Database Type |Nullable|                                                                Notes                                                                |
+    |             Dimension name             |          Column ID          | Scope  |   Type   |Database type |Nullable|                                                                Notes                                                                |
     +========================================+=============================+========+==========+==============+========+=====================================================================================================================================+
     |Source                                  |source                       |session |str       |string        |False   |                                                                                                                                     |
     +----------------------------------------+-----------------------------+--------+----------+--------------+--------+-------------------------------------------------------------------------------------------------------------------------------------+
@@ -79,21 +67,18 @@ Note: "Database type" column presents the type of source column of the dimension
     |Ad Group Keyword Match Type (Google Ads)|google_ads_keyword_match_type|external|[str, str]|string        |False   |:download:`google_ads_keyword_match_type.json </_static/json/enum/google_ads_keyword_match_type.json>`, not available in Raw data API|
     +----------------------------------------+-----------------------------+--------+----------+--------------+--------+-------------------------------------------------------------------------------------------------------------------------------------+
 
+    .. note::
+        * "Database type" is the source column of a dimension. ``Enum`` shows the ID type. ``Not applicable`` shows a dymamic dimension.
+
 
 Mixed queries
 -------------
 
-It is possible to request both internal analytics and Google Ads
-metrics in a single query (for example: "Sessions" and "Clicks (Google
-Ads)"), however **only the common dimensions listed below** may be used in
-such queries.
-
-Note: "Database type" column presents the type of source column of the dimension (in case of enum - type of the ID, in case of dynamic dimensions - not applicable).
-
-.. table:: Common Dimensions
+It is possible to request both internal analytics and Google Ads metrics in a single query (for example: "Sessions" and "Clicks (Google
+Ads)"), however **only the common dimensions listed below** may be used in such queries.
 
     +-------------------------------------+--------------------------+-------+----------+--------------+--------+------------------------------------------------------------------------------------------------+
-    |           Dimension Name            |        Column ID         | Scope |   Type   |Database Type |Nullable|                                             Notes                                              |
+    |           Dimension name            |        Column ID         | Scope |   Type   |Database type |Nullable|                                             Notes                                              |
     +=====================================+==========================+=======+==========+==============+========+================================================================================================+
     |Source                               |source                    |session|str       |string        |False   |                                                                                                |
     +-------------------------------------+--------------------------+-------+----------+--------------+--------+------------------------------------------------------------------------------------------------+
@@ -127,6 +112,10 @@ Note: "Database type" column presents the type of source column of the dimension
     +-------------------------------------+--------------------------+-------+----------+--------------+--------+------------------------------------------------------------------------------------------------+
     |Ad Group Ad Network Type (Google Ads)|google_ads_ad_network_type|session|[str, str]|string        |False   |:download:`google_ads_ad_network_type.json </_static/json/enum/google_ads_ad_network_type.json>`|
     +-------------------------------------+--------------------------+-------+----------+--------------+--------+------------------------------------------------------------------------------------------------+
+
+    .. note::
+        * "Database type" is the source column of a dimension. ``Enum`` shows the ID type. ``Not applicable`` shows a dymamic dimension.
+
 
 .. warning::
   Using dimensions that are not explicitly listed in the table above in such

@@ -1,18 +1,13 @@
-SharePoint
+SharePoint: metrics and dimensions
 ==========
-
-Once SharePoint integration is enabled, additional metrics and dimensions will
-become available in the :ref:`custom-reports-http-api`.
 
 Metrics
 -------
 
 The table below lists metrics available with SharePoint integration.
 
-.. table:: SharePoint Metrics
-
     +--------------------------------+--------------------------------+-------+----+
-    |          Metric Name           |           Column ID            | Scope |Type|
+    |          Metric name           |           Column ID            | Scope |Type|
     +================================+================================+=======+====+
     |SharePoint shares               |sharepoint_shares               |session|int |
     +--------------------------------+--------------------------------+-------+----+
@@ -44,12 +39,8 @@ Dimensions
 
 The table below lists dimensions available with SharePoint integration.
 
-Note: "Database type" column presents the type of source column of the dimension (in case of enum - type of the ID, in case of dynamic dimensions - not applicable).
-
-.. table:: SharePoint Dimensions
-
     +-------------------------------------------+----------------------------------------------+-------+----------+-------------+--------+----------------------------------------------------------------------------------------+
-    |              Dimension Name               |                  Column ID                   | Scope |   Type   |Database Type|Nullable|                                         Notes                                          |
+    |              Dimension name               |                  Column ID                   | Scope |   Type   |Database type|Nullable|                                         Notes                                          |
     +===========================================+==============================================+=======+==========+=============+========+========================================================================================+
     |SharePoint display name                    |sharepoint_display_name                       |session|str       |string       |True    |                                                                                        |
     +-------------------------------------------+----------------------------------------------+-------+----------+-------------+--------+----------------------------------------------------------------------------------------+
@@ -103,3 +94,6 @@ Note: "Database type" column presents the type of source column of the dimension
     +-------------------------------------------+----------------------------------------------+-------+----------+-------------+--------+----------------------------------------------------------------------------------------+
     |SharePoint file type                       |sharepoint_file_type                          |event  |str       |string       |True    |                                                                                        |
     +-------------------------------------------+----------------------------------------------+-------+----------+-------------+--------+----------------------------------------------------------------------------------------+
+
+    .. note::
+        * "Database type" is the source column of a dimension. ``Enum`` shows the ID type. ``Not applicable`` shows a dymamic dimension.

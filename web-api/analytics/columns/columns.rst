@@ -1,12 +1,10 @@
-Core metrics and dimensions
+Piwik PRO: metrics and dimensions
 ===========================
 
 Metrics
 -------
 
 Here's a list of core metrics that you can use in API calls. You can create additional metrics using transformations.
-
-.. table:: Core metrics
 
     +------------------------------------+-----------------------------------+-------+-----+
     |            Metric name             |             Column ID             | Scope |Type |
@@ -116,12 +114,10 @@ Here's a list of core metrics that you can use in API calls. You can create addi
     |Events per session                  |events_per_session                 |session|float|
     +------------------------------------+-----------------------------------+-------+-----+
 
-Core dimensions
+Dimensions
 ---------------
 
 Here's a list of core dimensions that you can use in API calls.
-
-.. table:: Core dimensions
 
     +--------------------------------------+---------------------------------------+-------+----------+--------------+--------+--------------------------------------------------------------------------------------------------+
     |            Dimension name            |               Column ID               | Scope |   Type   |Database type |Nullable|                                              Notes                                               |
@@ -469,15 +465,13 @@ Here's a list of core dimensions that you can use in API calls.
     * "Database type" is the source column of a dimension. ``Enum`` shows the ID type. ``Not applicable`` shows a dymamic dimension.
     * The number of slots for custom dimensions and variables depend on your account type.
 
-Transformations
----------------
+Transformation: dimension to metric
+-----------------------------------
 
-Here's a list of all transformations that you can use.
-
-.. table:: Transformation: dimension to metric
+Here's a list of transformations that you can use.
 
     +-------------------+-----------------+------------+-----------+
-    |Transformation Name|Transformation ID|Source Types|Result Type|
+    |Transformation name|Transformation ID|Source types|Result type|
     +===================+=================+============+===========+
     |Unique Count       |unique_count     |int, str    |int        |
     +-------------------+-----------------+------------+-----------+
@@ -492,10 +486,13 @@ Here's a list of all transformations that you can use.
     |Sum                |sum              |int, float  |(as source)|
     +-------------------+-----------------+------------+-----------+
 
-.. table:: Transformation: dimension to dimension
+Transformation: dimension to dimension
+--------------------------------------
+
+Here's a list of transformations that you can use.
 
     +------------------------+-------------------+--------------+-----------+
-    |  Transformation Name   | Transformation ID | Source Types |Result Type|
+    |  Transformation name   | Transformation ID | Source types |Result type|
     +========================+===================+==============+===========+
     |Date To Day             |to_date            |datetime, date|date       |
     +------------------------+-------------------+--------------+-----------+
