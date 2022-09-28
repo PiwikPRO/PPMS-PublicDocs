@@ -1,7 +1,7 @@
 .. _js_api:
 
 =====
-JS API (Consent Manager)
+JS API: Consent Manager
 =====
 
 .. toctree::
