@@ -3,12 +3,6 @@ Legacy vs. new metrics
 
 Names of metrics used in API are different in Analytics classic and Analytics new. If you’re migrating to the Analytics new API then below metrics mapping table will be helpful to you. You can find there a list of metrics used in Analytics classic and their corresponding names in the Analytics new.
 
-.. note::
-    Event dimensions can only be used with metrics calculated for an event dimension. |docs_link|
-
-.. |docs_link| raw:: html
-
-   <a href="https://help.piwik.pro/support/questions/why-cant-i-combine-some-dimensions-and-metrics" target="_blank">Read more.</a>
 
 Simple metrics
 --------------
@@ -99,11 +93,17 @@ Simple metrics
 | Unique purchases                 | \-                                          | ``{"column_id": "unique_purchases"}``               |
 +----------------------------------+---------------------------------------------+-----------------------------------------------------+
 
+.. note::
+    Event dimensions can only be used with metrics calculated for an event dimension. |docs_link|
+
+.. |docs_link| raw:: html
+
+   <a href="https://help.piwik.pro/support/questions/why-cant-i-combine-some-dimensions-and-metrics" target="_blank">Read more.</a>
+
+
+
 Calculated metrics
 ------------------
-
-.. warning::
-     This table does not include every single possible combination of a dimension and a transformation, just some common examples.
 
 +-------------------------------------+---------------------------------+-----------------------------------------------------------------------------+
 | Metric name                         | Legacy API                      | New API                                                                     |
@@ -132,6 +132,18 @@ Calculated metrics
 +-------------------------------------+---------------------------------+-----------------------------------------------------------------------------+
 | Average custom events value         | avg_event_value                 | ``{"column_id": "custom_event_value", "transformation_id": "average"}``     |
 +-------------------------------------+---------------------------------+-----------------------------------------------------------------------------+
+
+.. note::
+    Event dimensions can only be used with metrics calculated for an event dimension. |docs_link|
+
+.. |docs_link| raw:: html
+
+   <a href="https://help.piwik.pro/support/questions/why-cant-i-combine-some-dimensions-and-metrics" target="_blank">Read more.</a>
+
+
+.. warning::
+     This table does not include every single possible combination of a dimension and a transformation, just some common examples.
+
 
 Not available
 -------------
