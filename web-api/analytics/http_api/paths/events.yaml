@@ -4,14 +4,7 @@ post:
   summary:
     /events
   description: |
-    API that allows fetching raw events from the database. Please note that
-    each request must be authenticated.
-
-    #### Compression
-
-    When requesting large amount of data, make sure to include
-    an **Accept-Encoding: gzip** header to enable
-    compression.
+    API that allows fetching raw events from the database.
   parameters:
   - name: body
     in: body

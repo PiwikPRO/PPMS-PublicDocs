@@ -5,14 +5,7 @@ post:
     /sessions
   description: |
     API that allows fetching raw sessions from the database (event-level data
-    is not available in this API). Please note that each request must be
-    authenticated.
-
-    #### Compression
-
-    When requesting large amount of data, make sure to include
-    an **Accept-Encoding: gzip** header to enable
-    compression.
+    is not available in this API).
   parameters:
   - name: body
     in: body
