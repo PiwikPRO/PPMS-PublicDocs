@@ -11,7 +11,7 @@ Here are some things to know before you start working with our API:
 * You can use automaticaly generated API call deinition for each report in Piwik PRO. `Read more <https://help.piwik.pro/support/questions/how-can-i-fetch-report-data-using-api/>`_
 * When requesting large amount of data, make sure to include an **Accept-Encoding: gzip** header to enable compression.
 * All query results are cached for 10 minutes.
-* Columns and transformations are listed in: Dimensions & metrics.
+* Columns and transformations are listed in: :ref:`metrics-dimensions`.
 
 .. raw:: html
 
