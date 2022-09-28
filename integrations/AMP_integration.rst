@@ -205,7 +205,7 @@ These are parameters used by goal event:
  * ``goal_id`` (required)
  * ``revenue`` (optional)
 
-Internal search
+Internal searches
 ----------------------------
 
 To track :ref:`internal search event<jtc-api-site-search>` attach trigger to a link in a similar way to :ref:`custom event <ampCustomEvent>`.
