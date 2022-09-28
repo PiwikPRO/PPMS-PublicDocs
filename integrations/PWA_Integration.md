@@ -10,7 +10,7 @@ Piwik PRO receives all data via HTTP requests to the Analytics, which means a Se
 
 The PWA module for Piwik PRO does exactly this. It also adds fetch handlers to cache the ppms.js and the container scripts, so they can also be run offline. Lastly, when failed requests are retried, the module also automatically sets (or updates) the `cdt` in the request payload to ensure timestamps in Piwik PRO reflect the time of the original user interaction.
 
-## Enable Piwik PRO for progressive web apps
+## initialize()
 
 To enable collecting data from your PWAs using Piwik PRO Analytics, call the initialize() method in your service worker:
 
@@ -31,7 +31,7 @@ To address this concern, you can use one of the optional methods described below
 
 
 
-## Enable automatic tracking of the user's internet connection status
+## enableInternetConnectionTracking()
 
 If you want to be able to differentiate retried requests from non-retried requests, you can use a command that will start automatic tracing of the internet connection status. With this solution, when the internet is lost, a Custom Event will be generated containing information about the status of the internet connection.
 
@@ -43,7 +43,7 @@ import PiwikPro from '@piwikpro/pwa-piwik-pro';
 PiwikPro.enableInternetConnectionTracking();
 ```
 
-## Enable automatic tracking of the app install event
+## enableInstallTracking()
 
 If you want to additionally track as a Custom Event the information about when your customers have installed the application, you can do so using the method:
 
