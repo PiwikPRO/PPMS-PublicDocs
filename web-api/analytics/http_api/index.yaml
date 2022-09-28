@@ -1,15 +1,9 @@
 swagger: '2.0'
 info:
-  title: Analytics HTTP API
-  description: |
-    **Authentication is required** to access any of the
-    following endpoints. Please see [Authorization](../../platform/getting_started.html)
-    documentation for more details.
-
-    Available columns and transformations are listed in the
-    [Columns](../columns.html) documentation.
+  title: Reporting
+  description:
   version: 'auto'
-host: your-instance-name.piwik.pro
+host: account-name.piwik.pro
 basePath: /
 schemes:
   - https
@@ -29,4 +23,3 @@ definitions:
     $ref: ./definitions/query_request.yaml
   RawDataRequest:
     $ref: ./definitions/raw_data_request.yaml
-
