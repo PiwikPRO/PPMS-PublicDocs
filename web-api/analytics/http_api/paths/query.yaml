@@ -2,7 +2,7 @@ post:
   tags:
   - Queries
   summary:
-    Execute query
+    /query
   description: |
     API that allows querying the database directly. Please note that each
     request must be authenticated.

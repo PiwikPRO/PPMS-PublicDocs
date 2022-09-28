@@ -2,7 +2,7 @@ post:
   tags:
   - Raw data
   summary:
-    Fetch events
+    /events
   description: |
     API that allows fetching raw events from the database. Please note that
     each request must be authenticated.

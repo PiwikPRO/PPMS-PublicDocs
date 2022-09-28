@@ -1,7 +1,7 @@
 .. _custom-reports-http-api:
 
-HTTP API
-========
+Reporting
+=========
 
 .. raw:: html
 
