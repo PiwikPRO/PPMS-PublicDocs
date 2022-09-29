@@ -1,6 +1,5 @@
 post:
   tags:
-    - Goals
   summary: Create goal
   description: |
     Create a new goal.

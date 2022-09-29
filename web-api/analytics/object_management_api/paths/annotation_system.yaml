@@ -1,7 +1,6 @@
 get:
   tags:
-    - System Annotations
-  summary: List System Annotations
+  summary: List system annotations
   description: |
     Returns a list all System Annotations available for a website.
     Please note that each request must be authenticated.

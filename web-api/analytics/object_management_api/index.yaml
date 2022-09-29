@@ -1,6 +1,6 @@
 swagger: '2.0'
 info:
-  title: Object management HTTP API for Analytics.
+  title: Settings
   description: |
     **Authentication is required** to access any of the
     following endpoints. Please see [Authorization](../../platform/getting_started.html)

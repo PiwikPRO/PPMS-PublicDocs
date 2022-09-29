@@ -1,6 +1,5 @@
 post:
   tags:
-    - Custom Dimensions
   summary: Create custom dimension
   description: |
     Configure new custom dimension.

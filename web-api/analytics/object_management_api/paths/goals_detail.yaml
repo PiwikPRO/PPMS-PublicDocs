@@ -1,6 +1,5 @@
 get:
   tags:
-    - Goals
   summary: Get goal
   description: |
     Returns a definition of a specific goal.

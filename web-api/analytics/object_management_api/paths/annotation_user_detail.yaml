@@ -1,11 +1,10 @@
 get:
   tags:
-    - User Annotations
   summary: Get user annotation
   description: |
     Returns a definition of a specific user annotation.
     Please note that each request must be authenticated.
-  parameters:    
+  parameters:
     - $ref: '#/parameters/Id'
     - $ref: '#/parameters/WebsiteId'
   responses:

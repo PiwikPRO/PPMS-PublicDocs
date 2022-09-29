@@ -1,6 +1,6 @@
 .. _custom-reports-object-management-api:
 
-Object management API
+Settings
 =====================
 
 .. raw:: html

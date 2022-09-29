@@ -1,6 +1,5 @@
 get:
   tags:
-    - Custom Dimensions
   summary: Get custom dimension slots
   description: |
     Returns statistics about available custom dimension slots.

@@ -1,6 +1,5 @@
 post:
   tags:
-    -  User Annotations
   summary: Create user annotation
   description: |
     Create a new user annotation.

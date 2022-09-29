@@ -1,6 +1,5 @@
 get:
   tags:
-    - Custom Dimensions
   summary: Get custom dimension
   description: |
     Returns a definition of a specific custom dimension.
