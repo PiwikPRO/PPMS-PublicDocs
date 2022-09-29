@@ -1,7 +1,7 @@
 FAQ
 ===
 
-**API returns ``application/json`` is not a valid JSON API Content-Type header, use ``application/vnd.api+json`` instead"**
+**API returns application/json is not a valid JSON API Content-Type header, use application/vnd.api+json instead"**
 
 All API calls need to be created with the ``Content-Type: application/vnd.api+json`` header. If you use curl, you need to use the ``-H "Content-Type: application/vnd.api+json"`` flag. Postman allows configuring headers with the header tab.
 
@@ -15,4 +15,4 @@ Every token is valid for 30 minutes. After the token expires, you can create it 
 
 **API returns access token not authorized**
 
-This message means that you sent an access token within a correct ``Authorization: Bearer`` field, but the token is invalid. Check your token and try again.
+This message means that you sent an access token within a correct Authorization: Bearer field, but the token is invalid. Check your token and try again.
