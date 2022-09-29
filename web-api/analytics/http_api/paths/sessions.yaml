@@ -4,8 +4,9 @@ post:
   summary:
     Get sessions
   description: |
-    Get raw sessions from a database. Event-level data
-    is not available in this API.
+    **POST /api/analytics/v1/sessions/**
+
+    Get raw sessions from a database. Event-level data is not available in this API.
   parameters:
   - name: body
     in: body

@@ -4,7 +4,8 @@ post:
   summary:
     Get events
   description: |
-    **POST** /api/analytics/v1/events/
+    **POST /api/analytics/v1/events/**
+
     Get raw events from a database.
   parameters:
   - name: body
