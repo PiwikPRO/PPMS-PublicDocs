@@ -1,6 +1,5 @@
 post:
   tags:
-  - Queries
   summary:
     Run query
   description: |
