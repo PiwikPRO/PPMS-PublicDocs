@@ -2,9 +2,10 @@ post:
   tags:
   - Queries
   summary:
-    /query
+    Run query
   description: |
-    API that allows querying the database directly.
+    **POST** /api/analytics/v1/query/
+    Send a query to a database.
   parameters:
   - name: body
     in: body

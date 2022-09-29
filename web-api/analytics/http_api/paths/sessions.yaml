@@ -2,10 +2,10 @@ post:
   tags:
   - Raw data
   summary:
-    /sessions
+    Get sessions
   description: |
-    API that allows fetching raw sessions from the database (event-level data
-    is not available in this API).
+    Get raw sessions from a database. Event-level data
+    is not available in this API.
   parameters:
   - name: body
     in: body

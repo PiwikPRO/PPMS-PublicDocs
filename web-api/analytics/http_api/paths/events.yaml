@@ -2,9 +2,10 @@ post:
   tags:
   - Raw data
   summary:
-    /events
+    Get events
   description: |
-    API that allows fetching raw events from the database.
+    **POST** /api/analytics/v1/events/
+    Get raw events from a database.
   parameters:
   - name: body
     in: body
