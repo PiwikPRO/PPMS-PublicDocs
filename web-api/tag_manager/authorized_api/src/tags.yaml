@@ -5,34 +5,33 @@ info:
     description: |
         # Tag template options
         One should send all attributes he wants to be set when using PATCH request.
-        
+
         # Deprecations and changes
-        
+
         <details>
         <summary>Deprecated tags</summary>
-        The tags listed below are marked as deprecated and will not be supported soon. 
+        The tags listed below are marked as deprecated and will not be supported soon.
         We strongly discourage using them.
-            
-        | Deprecated tags               |      
+
+        | Deprecated tags               |
         |---                            |
         | Clicktale Tracking Code tag   |
         | DoubleClick Conversion tag    |
-        
+
         </details>
-        
+
         <details>
         <summary>Renamed tags</summary>
         The following tags have been rebranded. However, their template attribute value remained the same due to maintaining backward compatibility.
-        
+
         | Old tag name                      | New tag name          |
         |---                                |---                    |
         | Facebook Retargeting Pixel tag    | Meta Pixel tag        |
         | DoubleClick Floodlight Sales tag  | Floodlight Sales tag  |
         | DoubleClick Floodlight Counter tag| Floodlight Counter tag|
-        
+
         </details>
-security:
-    - BearerAuth: []
+security: User token
 
 servers:
     - url: https://example.piwik.pro
