@@ -30,16 +30,16 @@ To create an access token, follow these steps:
         "client_id": "<client_id>",
         "client_secret": "<client_secret>"
     }'
-    ```
+```
 Note: If you are the [Core plan](https://piwik.pro/core-plan/) user, replace &lt;example&gt; with &lt;your_account_name&gt;.piwik.pro.
 3. Response example:
 ```
    {"token_type":"Bearer","expires_in":1800,"access_token":"<your_access_token>"}
-   ```
+```
 4. Now you can use &lt;your_access_token&gt; to communicate with Piwik PRO API. The token is a Bearer type, so you need to include it within the header in every API call.  
 ```
     Authorization: Bearer <your_access_token>
-    ```
+```
 Note: Every token is valid for 30 minutes. expires_in shows the expiration time in seconds.
 
 ## Delete API keys
