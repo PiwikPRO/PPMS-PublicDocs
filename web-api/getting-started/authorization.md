@@ -22,6 +22,9 @@ Note: Credentials are valid until they are deleted in **Profile**.
 
 To create an access token, follow these steps:
 
+1. one
+2. two
+
 1. Piwik PRO API tokens use [JWT](https://jwt.io/) format.
 2. Make a call:
     ```shell

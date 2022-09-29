@@ -33,7 +33,7 @@ Response example:
 ```
 Note: access_token contains your token. You'll need it for all API calls. Every token is valid for 30 minutes.
 
-### Invite a user
+## Invite a user
 
 Request example:
 
@@ -69,7 +69,7 @@ Example of a response:
   }
 }
 ```
-### Get a user
+## Get a user
 
 After inviting a user, you can get a user.
 
@@ -96,7 +96,7 @@ Response example:
   }
 }
 ```
-### Change the user's language
+## Change the user's language
 
 If you want to change the user's language after adding a user, you can use the following method.
 
@@ -125,7 +125,7 @@ Here are some things to know:
 
 API will return 204 No Content status code with an empty response.
 
-### Delete a user
+## Delete a user
 
 When you want to remove a user, you can use the following method.
 
