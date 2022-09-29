@@ -32,7 +32,6 @@ post:
       description: Forbidden
 get:
   tags:
-    - Custom Dimensions
   summary: List custom dimensions
   description: |
     Returns a list all custom dimensions available for a website.

@@ -22,7 +22,6 @@ get:
       description: Forbidden
 put:
   tags:
-    - Custom Dimensions
   summary: Update custom dimension
   description: |
     Configure existing custom dimension.

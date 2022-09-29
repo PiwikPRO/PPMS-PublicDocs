@@ -33,7 +33,6 @@ post:
       description: Forbidden
 get:
   tags:
-    -  User Annotations
   summary: List user annotations
   description: |
     Returns a list all user annotations available for a website.

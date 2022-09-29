@@ -23,7 +23,6 @@ get:
       description: Forbidden
 put:
   tags:
-    - Goals
   summary: Update goal
   description: |
     Update an existing goal.
@@ -72,7 +71,6 @@ put:
       description: Forbidden
 delete:
   tags:
-    - Goals
   summary: Delete goal
   description: |
     Delete the specified goal.

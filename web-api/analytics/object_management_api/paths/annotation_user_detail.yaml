@@ -23,7 +23,6 @@ get:
       description: Forbidden
 patch:
   tags:
-    - User Annotations
   summary: Update user annotation
   description: |
     Update an existing user annotation.
@@ -71,7 +70,6 @@ patch:
       description: Forbidden
 delete:
   tags:
-    - User Annotations
   summary: Delete user annotation
   description: |
     Delete the specified user annotation.
