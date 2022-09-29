@@ -31,7 +31,8 @@ info:
         | DoubleClick Floodlight Counter tag| Floodlight Counter tag|
 
         </details>
-security: User token
+security: |
+        User token
 
 servers:
     - url: https://example.piwik.pro
