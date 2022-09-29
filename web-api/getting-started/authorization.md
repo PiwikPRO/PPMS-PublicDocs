@@ -22,30 +22,8 @@ Note: Credentials are valid until they are deleted in **Profile**.
 
 To create an access token, follow these steps:
 
-1. one
-2. two
-
-1. Piwik PRO API tokens use [JWT](https://jwt.io/) format.
-2. Make a call:
-    ```shell
-    curl -X POST 'https://<example>/auth/token' -H "Content-Type: application/json" --data '{
-        "grant_type": "client_credentials",
-        "client_id": "<client_id>",
-        "client_secret": "<client_secret>"
-    }'
-    ```
-  Note: If you are the [Core plan](https://piwik.pro/core-plan/) user, replace &lt;example&gt; with &lt;your_account_name&gt;.piwik.pro.
-
-
-3. Response example:
-    ```
-    {"token_type":"Bearer","expires_in":1800,"access_token":"<your_access_token>"}
-    ```
-4. Now you can use &lt;your_access_token&gt; to communicate with Piwik PRO API. The token is a Bearer type, so you need to include it within the header in every API call.  
-    ```
-    Authorization: Bearer <your_access_token>
-    ```
-    Note: Every token is valid for 30 minutes. expires_in shows the expiration time in seconds.
+1. longer
+2. shorter
 
 ## Delete API keys
 
