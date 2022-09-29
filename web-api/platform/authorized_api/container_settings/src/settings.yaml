@@ -1,10 +1,9 @@
 openapi: '3.0.0'
 info:
-    title: Container Settings API
+    title: Container settings API
     version: '1.0'
 
-security:
-    - BearerAuth: []
+security: User token
 
 servers:
     - url: https://example.piwik.pro
