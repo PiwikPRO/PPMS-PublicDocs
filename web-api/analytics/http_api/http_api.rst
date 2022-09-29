@@ -3,8 +3,6 @@
 Reporting
 =========
 
-Before you start
-----------------
 Here are some things to know before you start working with our API:
 
 * Each API call needs to be authenticated.

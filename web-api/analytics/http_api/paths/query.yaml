@@ -3,7 +3,7 @@ post:
   summary:
     Run query
   description: |
-    **POST** /api/analytics/v1/query/
+    ``POST /api/analytics/v1/query/``
 
     Send a query to a database.
   parameters:
