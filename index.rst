@@ -18,7 +18,6 @@ Developer docs and guides
    sdks/index
    integrations/index
    other/index
-   faq
    changelog
 
 
@@ -45,17 +44,23 @@ Developer docs and guides
     <div class="turbobox td_stretch td_left">
 													<div class="tx-4 tx-md-6 tx-sm-10">
 								<div class="content">
-									<h3><a href="https://developers.piwik.pro/en/feature-pptechdoc-90-copyright/web_api/index.html">Web API</a></h3>
+									<h3><a href="https://developers.piwik.pro/en/feature-pptechdoc-90-copyright/web-api/index.html">Web API</a></h3>
 																			<p class="mb3">Monocle ipsum dolor sit amet cutting-edge ex tempor, finest emerging cillum elegant Fast Lane irure eu qui incididunt. <a href="https://developers.piwik.pro/en/feature-pptechdoc-90-copyright/web_api/index.html">Read more</a></p>
 
 								</div>
 							</div>
 													<div class="tx-4 tx-md-6 tx-sm-10">
 								<div class="content">
-									<h3><a href="https://developers.piwik.pro/en/feature-pptechdoc-90-copyright/js_api/index.html">JS API</a></h3>
+									<h3><a href="https://developers.piwik.pro/en/feature-pptechdoc-90-copyright/js-api/getting-started.html">JS API: Analytics</a></h3>
 																			<p class="mb3">Monocle ipsum dolor sit amet cutting-edge ex tempor, finest emerging cillum elegant Fast Lane irure eu qui incididunt. <a href="https://developers.piwik.pro/en/feature-pptechdoc-90-copyright/js_api/index.html">Read more</a></p>
 								</div>
 							</div>
+              <div class="tx-4 tx-md-6 tx-sm-10">
+                          <div class="content">
+                    <h3><a href="https://developers.piwik.pro/en/feature-pptechdoc-90-copyright/js-api-consent-manager/getting-started.html">JS API: Consent Manager</a></h3>
+                          <p class="mb3">Monocle ipsum dolor sit amet cutting-edge ex tempor, finest emerging cillum elegant Fast Lane irure eu qui incididunt. <a href="https://developers.piwik.pro/en/feature-pptechdoc-90-copyright/faq.html">Read more</a></p>
+                </div>
+                </div>
 													<div class="tx-4 tx-md-6 tx-sm-10">
 								<div class="content">
 									<h3><a href="https://developers.piwik.pro/en/feature-pptechdoc-90-copyright/sdks/index.html">SDKs</a></h3>
@@ -69,15 +74,10 @@ Developer docs and guides
 																			<p class="mb3">Monocle ipsum dolor sit amet cutting-edge ex tempor, finest emerging cillum elegant Fast Lane irure eu qui incididunt. <a href="https://developers.piwik.pro/en/feature-pptechdoc-90-copyright/other/index.html">Read more</a></p>
 								</div>
                 </div>
-                            <div class="tx-4 tx-md-6 tx-sm-10">
-                  <div class="content">
-                    <h3><a href="https://developers.piwik.pro/en/feature-pptechdoc-90-copyright/faq.html">FAQ</a></h3>
-                                        <p class="mb3">Monocle ipsum dolor sit amet cutting-edge ex tempor, finest emerging cillum elegant Fast Lane irure eu qui incididunt. <a href="https://developers.piwik.pro/en/feature-pptechdoc-90-copyright/faq.html">Read more</a></p>
-                  </div>
-							</div>
+
 													<div class="tx-4 tx-md-6 tx-sm-10">
 								<div class="content">
-									<h3><a href="https://help.piwik.pro/support/tag-manager/">Changelog</a></h3>
+									<h3><a href="https://developers.piwik.pro/en/feature-pptechdoc-90-copyright/changelog.html">Changelog</a></h3>
 																			<p class="mb3">Monocle ipsum dolor sit amet cutting-edge ex tempor, finest emerging cillum elegant Fast Lane irure eu qui incididunt. <a href="https://help.piwik.pro/support/getting-started/">Read more</a></p>
 								</div>
 							</div>
