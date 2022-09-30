@@ -3,10 +3,10 @@ info:
     title: Tags
     version: '1.0'
     description: |
-        # Tag template options
+        ### Tag template options
         One should send all attributes he wants to be set when using PATCH request.
 
-        # Deprecations and changes
+        ### Deprecations and changes
 
         <details>
         <summary>Deprecated tags</summary>

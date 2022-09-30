@@ -10,6 +10,7 @@ post:
     - Authorization: User token
     - Compression: For large data, use in a header: Accept-Encoding: gzip
     - Results: All query results are cached for 10 minutes.
+    - Columns: See Metrics & dimensions 
     - Tip: Use API call definitions to build queries
   parameters:
   - name: body
