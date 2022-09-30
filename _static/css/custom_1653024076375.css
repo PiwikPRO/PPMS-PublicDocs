@@ -91,7 +91,7 @@ h2 {
 }
 
 h3 {
-    font-weight: 800 !important;;
+    font-weight: 800 !important;
     font-size: 1.125rem;
     line-height:1.222;
     margin-left: 100px;
@@ -99,7 +99,7 @@ h3 {
 }
 
 h4 {
-    font-weight: 800;
+    font-weight: 800 !important;
     font-size: 1rem;
     line-height:1.25;
     margin-left: 100px;
@@ -107,15 +107,17 @@ h4 {
 }
 
 h5 {
-    font-weight: 800;
-    font-size: .875rem;
-    line-height:1.286;
-    margin-left: 100px;
-    max-width: 630px;
+    font-weight: 800 !important;
+    font-size: .875rem !important;
+    line-height:1.286 !important;
+    margin-left: 100px !important;
+    max-width: 630px !important;
+    text-transform: none !important;
+    color: #13171A !important;
 }
 
 h6 {
-    font-weight: 800;
+    font-weight: 800 !important;
     font-size: .675rem;
     line-height:1;
     margin-left: 100px;
