@@ -342,7 +342,7 @@ body {
     box-sizing: border-box;
     border: none;
     background-color: #FFFFFF;
-    padding: 16px;
+    margin-left: 100px;
 }
 
 #redoc-container .dtUibw, #redoc-container .fLUKgj {
@@ -388,7 +388,7 @@ body {
 }
 
 #redoc-container .sc-EHOje.sc-bZQynM.dtUibw h3{
-    color: #FFFFFF;
+    color: #13171A;
     font-family: Inter;
     font-size: 18px;
     font-weight: 800;
