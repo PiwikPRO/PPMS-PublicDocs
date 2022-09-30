@@ -4,8 +4,8 @@ Tag Manager
 .. toctree::
   :maxdepth: 2
 
-  authorized_api/index
-  data_layer_name
-  content_security_policy
-  custom_popup_examples
-  skip_link_tracking
+  authorized_api/tags
+  authorized_api/triggers
+  authorized_api/variables
+  authorized_api/changelog
+  authorized_api/operations

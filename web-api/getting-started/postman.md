@@ -19,6 +19,6 @@ To use Postman, follow these steps:
 2. Done. All of your paths are imported.
 3. Replace your domain in the URL.
 4. Add your token: In the selected API call, click **Authorization**.
-5. Use the Bearer Token type.
+5. Use the **Bearer Token** type.
 6. Paste your token.
-7. Click **SEND** to call API.
+7. Click **Send** to call API.

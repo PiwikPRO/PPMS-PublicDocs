@@ -1,5 +1,5 @@
-Authorized HTTP API
-===================
+Methods
+=======
 
 .. toctree::
   :maxdepth: 2
