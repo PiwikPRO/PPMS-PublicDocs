@@ -1,6 +1,6 @@
 openapi: '3.0.0'
 info:
-    title: Tag Manager API
+    title: Variables
     version: '1.0'
     description: |
         # Builtin variables
