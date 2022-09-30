@@ -1,16 +1,16 @@
 #TODO: Confirm that term "Visitor" should be used when referring to user of tracked site.
 openapi: '3.0.3'
 info:
-  title: Tracking API
+  title: Tracker
   description: |
-    **No authentication.**
+    **Authentication:** none
   version: 'auto'
 servers:
-  - url: https://{instanceName}.piwik.pro/
+  - url: https://{account-name}.piwik.pro/
     variables:
       instanceName:
-        default: your-instance-name
-        description: Your instance name
+        default: account-name
+        description: Your account name
 paths:
   /ppms.php:
     get:
@@ -258,7 +258,7 @@ paths:
           in: query
           description: |
             External URL opened by the Visitor. It is recommended to set ``url`` parameter to same value.
-            
+
             *IMPORTANT*: URL/URI has to have authority or `mailto` scheme.
             You can lean more about authority and scheme [here](https://en.wikipedia.org/wiki/Uniform_Resource_Identifier#Example_URIs).
           schema:

@@ -1,7 +1,7 @@
 .. _data-collection-tracking-api-http:
 
-Tracking HTTP API
-=================
+Tracker
+=======
 
 Tracking HTTP API collects events such as page views, custom events and content impressions. The data sent to this API will be processed and eventually appear in Analytics reports.
 

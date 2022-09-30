@@ -1,5 +1,5 @@
-Collecting & Processing Pipeline debugger API
-=============================================
+Tracker debugger
+================
 :term:`Collecting & Processing Pipeline` debugger API exposes sessions in live mode. It's a useful tool for verifying JavaScript Tracking Snippet implementation and observing changes done to it.
 
 .. raw:: html
