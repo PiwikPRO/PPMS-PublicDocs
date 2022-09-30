@@ -8,7 +8,9 @@ post:
     Send a query to a database.
 
     Authorization: User token
+
     Compression: For large data, use in a header: Accept-Encoding: gzip
+
     Cached: All query results are cached for 10 minutes.
   parameters:
   - name: body

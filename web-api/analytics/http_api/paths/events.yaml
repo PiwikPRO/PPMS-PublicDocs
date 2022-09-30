@@ -8,7 +8,9 @@ post:
     Get raw events from a database.
 
     Authorization: User token
+
     Compression: For large data, use in a header: Accept-Encoding: gzip
+
     Columns: See Metrics & dimensions 
   parameters:
   - name: body

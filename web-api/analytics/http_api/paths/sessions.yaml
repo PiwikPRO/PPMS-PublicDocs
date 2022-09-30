@@ -8,6 +8,7 @@ post:
     Get raw sessions from a database. Event-level data is not available in this API.
 
     Authorization: User token
+    
     Compression: For large data, use in a header: Accept-Encoding: gzip
   parameters:
   - name: body
