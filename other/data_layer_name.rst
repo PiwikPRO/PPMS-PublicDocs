@@ -13,13 +13,13 @@ Use a unique data layer name. Make sure that it's not used by other tools instal
 
 To check if the data layer name is used on your site or app, follow these steps:
 
-Pick your new data layer name. Example: ``customDataLayer``.
-In a browser's console, run the following script with the picked name::
+1. Pick your new data layer name. Example: ``customDataLayer``.
+2. In a browser's console, run the following script with the picked name::
 
     var dataLayerName = "customDataLayer";
     !window.hasOwnProperty(dataLayerName);
 
-If the return statement is ``true``, you can use this name safely. It means that no other tool is using this name.
+3. If the return statement is ``true``, you can use this name safely. It means that no other tool is using this name.
 
 Rename your data layer
 ----------------------
