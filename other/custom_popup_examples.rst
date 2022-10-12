@@ -14,7 +14,7 @@ Example 1
 ----------
 Preview:
 
-    .. image:: /_static/images/tm_popup_examples/example-popup-1.png
+.. image:: /_static/images/tm_popup_examples/example-popup-1.png
         :alt: Custom popup example 1
 
 .. note::
@@ -22,14 +22,14 @@ Preview:
 
 Example code:
 
-    .. literalinclude:: popup_examples/example-popup-1.html
+.. literalinclude:: popup_examples/example-popup-1.html
         :language: html
 
 Example 2
 ----------
 Preview:
 
-    .. image:: /_static/images/tm_popup_examples/example-popup-2.png
+.. image:: /_static/images/tm_popup_examples/example-popup-2.png
           :alt: Custom popup example 2
 
 .. note::
@@ -37,20 +37,20 @@ Preview:
 
 Example code:
 
-    .. literalinclude:: popup_examples/example-popup-2.html
+.. literalinclude:: popup_examples/example-popup-2.html
         :language: html
 
 Example 3
 ----------
 Preview:
 
-    .. image:: /_static/images/tm_popup_examples/example-popup-3.png
-          :alt: Custom popup example 3
+.. image:: /_static/images/tm_popup_examples/example-popup-3.png
+    :alt: Custom popup example 3
 
 .. note::
     Handling of the close button is provided out of the box, as long as the class name ``ppms-popup-close-button`` is unchanged. Your own JavaScript code to handle `Sure, let's talk` and `Nah, I'm fine` buttons needs to be provided.
 
 Example code:
 
-    .. literalinclude:: popup_examples/example-popup-3.html
-        :language: html
+.. literalinclude:: popup_examples/example-popup-3.html
+    :language: html
