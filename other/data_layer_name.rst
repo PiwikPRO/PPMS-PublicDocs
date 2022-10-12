@@ -13,9 +13,6 @@ Use a unique data layer name. Make sure that it's not used by other tools instal
 
 To check if the data layer name is used on your site or app, follow these steps:
 
-1. Something
-1. Something
-1. Something
 1. Pick your new data layer name. Example: ``customDataLayer``.
 2. In a browser's console, run the following script with the picked name::
 
@@ -28,6 +25,8 @@ Rename your data layer
 ----------------------
 To rename the data layer, follow these steps:
 
+1. Something
+2. Something
 1. Log in to `Piwik PRO <https://piwik.pro/login>`_.
 2. Go to **Menu** > **Administration**.
 3. Navigate to **Sites & apps**.
@@ -35,48 +34,48 @@ To rename the data layer, follow these steps:
 5. Navigate to **Installation**.
 6. Copy the basic container's code. You'll modify this code in the next steps.
 
-    .. image:: ../_static/images/data_layer_name/install_manually_basic_container.png
-        :alt: Asynchronous container code - copy to clipboard
+.. image:: ../_static/images/data_layer_name/install_manually_basic_container.png
+  :alt: Asynchronous container code - copy to clipboard
 
 7. In the copied code, change ``dataLayer`` to a custom name.
 
-    .. code-block:: JavaScript
+.. code-block:: JavaScript
 
-        (window, document, 'dataLayer', '69bc995f-c40a-42ae-b756-b8b9fbc16508');
+    (window, document, 'dataLayer', '69bc995f-c40a-42ae-b756-b8b9fbc16508');
 
-    .. image:: ../_static/images/data_layer_name/data_layer_name.png
-        :alt: Asynchronous container code - data layer name
+.. image:: ../_static/images/data_layer_name/data_layer_name.png
+    :alt: Asynchronous container code - data layer name
 
 8. Paste the code right after the opening **<body>** tag on every page of your website or app.
 9. Optionally, copy the additional container's code. You'll modify this code in the next steps.
 
-    .. image:: ../_static/images/data_layer_name/install_manually_additional_container.png
-        :alt: Synchronous container code - copy to clipboard
+.. image:: ../_static/images/data_layer_name/install_manually_additional_container.png
+    :alt: Synchronous container code - copy to clipboard
 
 10. In the copied code, change ``dataLayer`` to a custom name.
 
-    .. code-block:: JavaScript
+.. code-block:: JavaScript
 
-        (window, document, 'dataLayer', '69bc995f-c40a-42ae-b756-b8b9fbc16508');
+    (window, document, 'dataLayer', '69bc995f-c40a-42ae-b756-b8b9fbc16508');
 
-    .. image:: ../_static/images/data_layer_name/data_layer_name_additional_container.png
-        :alt: Synchronous container code - data layer name
+.. image:: ../_static/images/data_layer_name/data_layer_name_additional_container.png
+    :alt: Synchronous container code - data layer name
 
-    .. note::
-        If you're using both containers, use the same data layer name in each container. Otherwise, things can break.
+.. note::
+    If you're using both containers, use the same data layer name in each container. Otherwise, things can break.
 
 11. Paste the code inside **<head></head>** tags on your website or app. Don’t add this code elsewhere because it may slow down your site and tracking won’t work correctly.
 12. Replace all existing references to the old data layer name. For example, if you use
 
-    .. code-block:: JavaScript
+.. code-block:: JavaScript
 
-        dataLayer.push({event: "test-event"});
+    dataLayer.push({event: "test-event"});
 
-   replace it with
+replace it with
 
-    .. code-block:: JavaScript
+.. code-block:: JavaScript
 
-        customDataLayer.push({event: "test-event"});
+    customDataLayer.push({event: "test-event"});
 
 WordPress plugin: rename your data layer
 ----------------------------------------
@@ -85,21 +84,23 @@ If you installed our containers with the WordPress plugin, you can quickly renam
 
 To rename the data layer in our WordPress plugin, follow these steps:
 
+1. Something
+2. Something
 1. In your WordPress admin panel, go to **Settings** > **Piwik PRO**.
 2. In **Data layer**, change the name to a custom one.
 
-    .. image:: ../_static/images/data_layer_name/data_layer_wp_plugin.png
-        :alt: Piwik PRO WordPress plugin settings - data layer name
+.. image:: ../_static/images/data_layer_name/data_layer_wp_plugin.png
+    :alt: Piwik PRO WordPress plugin settings - data layer name
 
 3. Click **Save changes**.
 4. Replace all existing references to the old data layer name. For example, if you use
 
-    .. code-block:: JavaScript
+.. code-block:: JavaScript
 
-        dataLayer.push({event: "test-event"});
+    dataLayer.push({event: "test-event"});
 
-   replace it with
+replace it with
 
-    .. code-block:: JavaScript
+.. code-block:: JavaScript
 
-        customDataLayer.push({event: "test-event"});
+    customDataLayer.push({event: "test-event"});
