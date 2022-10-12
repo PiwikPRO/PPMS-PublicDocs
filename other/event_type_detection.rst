@@ -1,6 +1,6 @@
 .. _data-collection-processing-event-type-detection:
 
-Event type detection
+Event processing
 =================
 
 Available event types

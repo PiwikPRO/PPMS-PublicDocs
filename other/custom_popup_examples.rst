@@ -3,7 +3,7 @@
 
 .. versionadded:: 10.1
 
-Custom popup template implementation examples
+Custom popup examples
 =============================================
 
 Introduction
