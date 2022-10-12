@@ -13,6 +13,8 @@ Use a unique data layer name. Make sure that it's not used by other tools instal
 
 To check if the data layer name is used on your site or app, follow these steps:
 
+1. Something
+2. Something
 1. Pick your new data layer name. Example: ``customDataLayer``.
 2. In a browser's console, run the following script with the picked name::
 
