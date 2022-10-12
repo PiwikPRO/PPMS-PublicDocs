@@ -25,8 +25,6 @@ Rename your data layer
 ----------------------
 To rename the data layer, follow these steps:
 
-1. Something
-2. Something
 1. Log in to `Piwik PRO <https://piwik.pro/login>`_.
 2. Go to **Menu** > **Administration**.
 3. Navigate to **Sites & apps**.
@@ -84,8 +82,6 @@ If you installed our containers with the WordPress plugin, you can quickly renam
 
 To rename the data layer in our WordPress plugin, follow these steps:
 
-1. Something
-2. Something
 1. In your WordPress admin panel, go to **Settings** > **Piwik PRO**.
 2. In **Data layer**, change the name to a custom one.
 
