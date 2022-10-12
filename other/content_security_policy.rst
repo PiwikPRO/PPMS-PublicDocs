@@ -25,14 +25,14 @@ Nonce mechanism requires additional definition in ``script-src`` directive of Co
 	Nonce value should be generated on the server-side. Its value should be different for each request. Please note that we leave here space for your permitted sources **<your-sources>**.
 
 
-Adding nonce to container code
+Add nonce to container code
 ```````````````````````````````````
 Consequently, default container code requires following modifications to work:
 
 **Asynchronous snippet:** In this container code the following changes (highlighted) are required:
 
-  .. code-block:: html
-      :emphasize-lines: 1
+.. code-block:: html
+    :emphasize-lines: 1
 
       <script type="text/javascript" nonce="INSERT_VALID_NONCE_VALUE">
           (function(window, document, dataLayerName, id) {
@@ -55,8 +55,8 @@ Consequently, default container code requires following modifications to work:
 
 **Synchronous snippet:** In this container code the following changes (highlighted) are required:
 
-  .. code-block:: html
-      :emphasize-lines: 1, 8
+.. code-block:: html
+    :emphasize-lines: 1, 8
 
       <script type="text/javascript" nonce="INSERT_VALID_NONCE_VALUE">
           (function(window, document, dataLayerName, id) {
@@ -81,26 +81,22 @@ Adjust tags to work with Content Security Policy
 
 This procedure is recommended:
 
-1.
-2.
-3.
 1. Create new variable with value of nonce parameter. It is not required to create nonce variable in admin panel. Just pushing it on dataLayer before script is executed is enough.
 
-        .. code-block:: javascript
+.. code-block:: javascript
 
-            window.dataLayer.push({
-                nonce: INSERT_VALID_NONCE_VALUE
-            });
-
+      window.dataLayer.push({
+      nonce: INSERT_VALID_NONCE_VALUE
+      });
 
 2. Use created variable as value for nonce attribute like follows:
 
-        .. code-block:: html
+.. code-block:: html
 
-            <script nonce="{{ nonce }}">
-                console.log("I'm synchronous tag!");
-                document.write('<p id="synchronous-tag">I was inserted by synchronous tag</p>');
-            </script>
+      <script nonce="{{ nonce }}">
+        console.log("I'm synchronous tag!");
+        document.write('<p id="synchronous-tag">I was inserted by synchronous tag</p>');
+      </script>
 
 .. note::
     Finally, not all 3rd party tools that are available as built-in templates are adjusted to work with Content Security Policy. This includes e.g. Google Analytics. In such cases, please refer to documentation of each respective tool (e.g. https://developers.google.com/web/fundamentals/security/csp).

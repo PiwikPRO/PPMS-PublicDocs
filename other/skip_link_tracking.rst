@@ -5,7 +5,7 @@
 
 .. versionadded:: 14.0
 
-Skip link tracking with `data-disable-delay` attribute
+Skip link tracking with a data-disable-delay attribute
 ======================================================
 
 Introduction
@@ -35,7 +35,7 @@ example can be SPA pages where ``a`` elements can serve as buttons. In such case
 the action performed inside the container can break the functionality of the page.
 That is where the ``data-disable-delay`` attribute comes in.
 
-`data-disable-delay` attribute
+data-disable-delay attribute
 ------------------------------
 ``data-disable-dalay`` is special custom attribute that is recognized by the
 container. Once the anchor element is clicked and the aforementioned attribute
@@ -47,42 +47,38 @@ element are executed immediatly after clicking.
 Example
 ```````
 
-1. Let's assume that your Tag Manager setup includes a `Custom code (async)` tag
-    (the contents of the tag does not matter in this case) and a basic `Click
-    trigger` assigned to the said tag.
+1. Let's assume that your Tag Manager setup includes a `Custom code (async)` tag (the contents of the tag does not matter in this case) and a basic `Click trigger` assigned to the said tag.
 2. On your page, the following code is present:
 
-    .. code-block:: html
+.. code-block:: html
 
-        <a
-            id='link-id'
-            href="/"
-        >
-            link
-        </a>
-        <script>
-            window.setTimeout(function() {
-                document.addEventListener('click', function(event) {
-                    if(event.target.id === 'link-id') {
-                        event.preventDefault()
-                    }
-                })
-            }, 1000)
-        </script>
+  <a
+      id='link-id'
+      href="/"
+  >
+      link
+  </a>
+  <script>
+      window.setTimeout(function() {
+          document.addEventListener('click', function(event) {
+              if(event.target.id === 'link-id') {
+                  event.preventDefault()
+              }
+          })
+      }, 1000)
+  </script>
 
-3. Once the visitor clicks the link, a redirect happens. This is not desired,
-    since the listener performs a `preventDefault` action.
+3. Once the visitor clicks the link, a redirect happens. This is not desired, since the listener performs a `preventDefault` action.
 4. Now let's modify the anchor element to look like this:
 
-    .. code-block:: html
+.. code-block:: html
 
-        <a
-            id='link-id'
-            href="/"
-            data-disable-delay
-        >
-            link
-        </a>
+  <a
+      id='link-id'
+      href="/"
+      data-disable-delay
+  >
+      link
+  </a>
 
-5. After the modification is done, clicking the link no longer performs
-    a redirect and fires the click listener immediately.
+5. After the modification is done, clicking the link no longer performs a redirect and fires the click listener immediately.
