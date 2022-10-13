@@ -278,7 +278,7 @@ body {
 }
 
 .rst-content .section>img, .rst-content .section>a>img {
-    max-width:700px !important;
+    max-width:630px !important;
     margin-left: 100px !important;
 }
 

@@ -70,7 +70,7 @@ Consequently, default container code requires following modifications to work:
       </script>
 
 .. note::
-    All that is needed for Tag Manager to work is to replace **INSERT_VALID_NONCE_VALUE** with generated nonce value. It should be done twice for both asynchronous and synchronous snippet.
+    **Note:** All that is needed for Tag Manager to work is to replace **INSERT_VALID_NONCE_VALUE** with generated nonce value. It should be done twice for both asynchronous and synchronous snippet.
 
 
 Adjust tags to work with Content Security Policy
@@ -100,7 +100,7 @@ This procedure is recommended:
       </script>
 
 .. note::
-    Finally, not all 3rd party tools that are available as built-in templates are adjusted to work with Content Security Policy. This includes e.g. Google Analytics. In such cases, please refer to documentation of each respective tool (e.g. https://developers.google.com/web/fundamentals/security/csp).
+    **Note:** Finally, not all 3rd party tools that are available as built-in templates are adjusted to work with Content Security Policy. This includes e.g. Google Analytics. In such cases, please refer to documentation of each respective tool (e.g. https://developers.google.com/web/fundamentals/security/csp).
 
 
 Tag Manager debugger
