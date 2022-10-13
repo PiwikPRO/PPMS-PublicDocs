@@ -77,6 +77,7 @@ Adjust tags to work with Content Security Policy
 ---------------
 
 **Asynchronous tags**: in most cases there should not be any change required to make asynchronous tags work. Tag Manager will automatically insert nonce attribute to all fired tags. Only exceptions is when Your tag adds other scripts/styles on page by itself - in such case, You should add nonce attribute manually.
+
 **Synchronous tags**: since synchronous tags have to fire before whole page is loaded, following procedure is recommended.
 
 This procedure is recommended:
