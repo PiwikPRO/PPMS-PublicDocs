@@ -420,31 +420,37 @@ thead  {
 
 .admonition.note {
     background-color: #E2F2FD;
-    border-top: 2px solid #006BD6;
-    border-bottom: 2px solid #006BD6;
+    border-top: none;
+    border-bottom: none;
     margin-left: 100px;
-    max-width: 700px;
+    max-width: 630px;
 }
 
 .admonition.warning {
     background-color: #FFFBEB;
-    border-top: 2px solid #ED8E00;
-    border-bottom: 2px solid #ED8E00;
+    border-top: none;
+    border-bottom: none;
     margin-left: 100px;
-    max-width: 700px;
+    max-width: 630px;
 }
 
 .note .first.admonition-title {
-    background-color: #006BD6 !important;
+    background-color: #E2F2FD !important;
 }
 
 .warning .first.admonition-title {
-    background-color: #ED8E00 !important;
+    background-color: #FFFBEB !important;
 }
+
+.wy-alert-title, .rst-content .admonition-title {
+    color: #FFFBEB !important #fff;
+}
+
 
 .last {
     top: -4px;
     position: relative;
+    margin-left: 0 !important;
 }
 
 .first.admonition-title {
