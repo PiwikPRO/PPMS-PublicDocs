@@ -3,7 +3,6 @@
 
 .. _`MDN`: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a
 
-.. versionadded:: 14.0
 
 Skip link tracking with a data-disable-delay attribute
 ======================================================
