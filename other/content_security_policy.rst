@@ -22,7 +22,7 @@ Nonce mechanism requires additional definition in ``script-src`` directive of Co
     script-src <your-sources> 'nonce-INSERT_VALID_NONCE_VALUE';
 
 .. note::
-	Nonce value should be generated on the server-side. Its value should be different for each request. Please note that we leave here space for your permitted sources **<your-sources>**.
+	**Note:** Nonce value should be generated on the server-side. Its value should be different for each request. Please note that we leave here space for your permitted sources ``<your-sources>``.
 
 
 Add nonce to container code
@@ -70,7 +70,7 @@ Consequently, default container code requires following modifications to work:
       </script>
 
 .. note::
-    **Note:** All that is needed for Tag Manager to work is to replace **INSERT_VALID_NONCE_VALUE** with generated nonce value. It should be done twice for both asynchronous and synchronous snippet.
+    **Note:** All that is needed for Tag Manager to work is to replace ``INSERT_VALID_NONCE_VALUE`` with generated nonce value. It should be done twice for both asynchronous and synchronous snippet.
 
 
 Adjust tags to work with Content Security Policy
