@@ -17,6 +17,7 @@ To check if the data layer name is used on your site or app, follow these steps:
 2. In a browser's console, run the following script with the picked name:
 
 .. code-block:: JavaScript
+
     var dataLayerName = "customDataLayer";
     !window.hasOwnProperty(dataLayerName);
 
