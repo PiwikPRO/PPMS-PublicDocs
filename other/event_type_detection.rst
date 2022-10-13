@@ -42,7 +42,7 @@ Values outside of that range will cause an error which results in ``BrokenEvent`
 
 **Step 13: Order completed.** Event will be categorized as ``OrderCompleted`` when ``idgoal`` parameter of the tracked event is equal to ``0`` but also ``ec_id`` parameter is provided.
 
-**Step 14: Site search.** Event will be categorized as ``Search`` when either ``search``parameter of the tracked event is provided or a search term was detected in the tracked url (provided as the ``url`` parameter).
+**Step 14: Site search.** Event will be categorized as ``Search`` when either ``search`` parameter of the tracked event is provided or a search term was detected in the tracked url (provided as the ``url`` parameter).
 
 **Step 15: Page view.** When every other detection step failed then your event will be categoried as a simple ``PageView``.
 

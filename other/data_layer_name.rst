@@ -62,7 +62,7 @@ To rename the data layer, follow these steps:
     :alt: Synchronous container code - data layer name
 
 .. note::
-    If you're using both containers, use the same data layer name in each container. Otherwise, things can break.
+    **Note:** If you're using both containers, use the same data layer name in each container. Otherwise, things can break.
 
 11. Paste the code inside **<head></head>** tags on your website or app. Don’t add this code elsewhere because it may slow down your site and tracking won’t work correctly.
 12. Replace all existing references to the old data layer name. For example, if you use
