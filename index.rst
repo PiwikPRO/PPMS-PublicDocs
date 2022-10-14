@@ -13,8 +13,7 @@ Developer docs and guides
    :maxdepth: 2
 
    web-api/index
-   js-api/index
-   js-api-consent-manager/index
+   js-api.rst
    sdks/index
    integrations/index
    other/index
