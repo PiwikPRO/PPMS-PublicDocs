@@ -1,8 +1,8 @@
 .. _cm-java-script:
 
-==========
-JavaScript
-==========
+================
+Plain JavaScript
+================
 Here are some guidelines on how to use our Consent Manager JS API in Java Script.
 
 Installation
