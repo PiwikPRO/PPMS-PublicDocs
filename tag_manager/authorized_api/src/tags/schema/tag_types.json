@@ -78,7 +78,7 @@
             "title": "Variable reference",
             "description": "Tag Manager's variable reference, example `{{ Campaign }}`",
             "type": "string",
-            "pattern": "^{{((?:.(?!}}))+.)}}$"
+            "pattern": "^{{((?:.(?!}}))*.)}}$"
         },
         "tag_new_identifier": {
             "$ref": "../../common/schema/common_types.json#/definitions/uuid",
