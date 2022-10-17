@@ -1411,6 +1411,10 @@ body {
     display: none;
 }
 
+tbody > tr:nth(2) > div:nth(2) > div > p {
+  margin-left: none !important;
+}
+
 @media (max-width:973px) {
     .wy-nav-side {
         top: 159px;
