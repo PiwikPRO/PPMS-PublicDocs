@@ -1,7 +1,7 @@
 JS API
 ======
 
-Monocle ipsum dolor sit amet impeccable Swiss charming, izakaya efficient Comme des Garçons sophisticated craftsmanship vibrant Asia-Pacific flat white. Uniforms impeccable smart, intricate discerning Shinkansen Porter craftsmanship Lufthansa. Delightful Baggu Toto, ryokan Nordic Marylebone Lufthansa handsome. Bureaux izakaya Ettinger joy.
+Piwik PRO offers two JS APIs -- one for Analytics and one for Consent Manager. You can use them after you install Piwik PRO on your site or app. We've prepared solid documentation for both JS APIs, so read on and see what you can do with them.
 
 
 **Next steps**
