@@ -1,5 +1,6 @@
 post:
-  tags: events
+  tags:
+    - events
   summary:
     Get events
   description: |

@@ -1,6 +1,7 @@
 post:
   tags:
-  summary: sessions
+    - sessions
+  summary:
     Get sessions
   description: |
     **POST /api/analytics/v1/sessions/**
