@@ -348,7 +348,7 @@ body {
 }
 
 #redoc-container .dtUibw, #redoc-container .fLUKgj {
-    background: #FFFFFF;
+    background: #373D42;
 }
 
 #redoc-container span[type="post"], #redoc-container span[type="get"], #redoc-container span[type="patch"], #redoc-container span[type="delete"] {
@@ -390,7 +390,7 @@ body {
 }
 
 #redoc-container .sc-EHOje.sc-bZQynM.dtUibw h3{
-    color: #13171A;
+    color: #FFFFFF;
     font-family: Inter;
     font-size: 18px;
     font-weight: 800;
@@ -1409,10 +1409,6 @@ body {
 
 .wy-nav-top{
     display: none;
-}
-
-tbody > tr:nth(2) > div:nth(2) > div > p {
-  margin-left: none !important;
 }
 
 @media (max-width:973px) {
