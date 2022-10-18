@@ -1,5 +1,5 @@
 post:
-  tags:
+  tags: events
   summary:
     Get events
   description: |
@@ -9,7 +9,7 @@ post:
 
     - Authorization: User token
     - Compression: For large data, use in a header: Accept-Encoding: gzip
-    - Columns: See Metrics & dimensions 
+    - Columns: See Metrics & dimensions
   parameters:
   - name: body
     in: body

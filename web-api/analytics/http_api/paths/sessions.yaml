@@ -1,6 +1,6 @@
 post:
   tags:
-  summary:
+  summary: sessions
     Get sessions
   description: |
     **POST /api/analytics/v1/sessions/**
@@ -9,7 +9,7 @@ post:
 
     - Authorization: User token
     - Compression: For large data, use in a header: Accept-Encoding: gzip
-    - Columns: See Metrics & dimensions 
+    - Columns: See Metrics & dimensions
   parameters:
   - name: body
     in: body
