@@ -46,6 +46,7 @@ api_definitions = {
     'tag_manager_authorized_api_versions.json': 'web-api/tag_manager/authorized_api/src/versions.yaml',
     'tag_manager_authorized_api_changelog.json': 'web-api/tag_manager/authorized_api/src/changelog.yaml',
     'tag_manager_authorized_api_operations.json': 'web-api/tag_manager/authorized_api/src/operations.yaml',
+    'piwik-pro-web-api.json': 'web-api/methods/piwik-pro-web-api.yaml'
 }
 
 

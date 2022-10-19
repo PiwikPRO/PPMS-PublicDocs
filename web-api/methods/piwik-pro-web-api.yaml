@@ -1,0 +1,697 @@
+swagger: "2.0"
+info:
+  description: "Piwik PRO offers a web API with over 100 methods to use. In short, you can access raw data, change settings, manage tags, triggers and variables, and much more. Most of our web API methods can be accessed after authorization."
+  version: "1.0.0"
+  title: "Piwik PRO web API"
+host: account-address.piwik.pro
+basePath: /
+tags:
+- name: "raw data"
+  description: "Analytics: access raw data"
+  externalDocs:
+    description: "See more"
+    url: "http://swagger.io"
+- name: "goals"
+  description: "Analytics: access goals"
+- name: "custom dimensions"
+  description: "Analytics: custom dimensions"
+- name: "tags"
+  description: "Tag Manager: tags"
+schemes:
+- "https"
+- "http"
+paths:
+  /api/analytics/v1/query/:
+    post:
+      tags:
+      - "raw data"
+      summary: "Run query"
+      description: "Send a query to a database."
+      operationId: "addPet"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Pet object that needs to be added to the store"
+        required: true
+        schema:
+          $ref: "#/definitions/Pet"
+      responses:
+        "405":
+          description: "Invalid input"
+      security:
+      - petstore_auth:
+        - "write:pets"
+        - "read:pets"
+  /api/analytics/v1/sessions/:
+    put:
+      tags:
+      - "raw data"
+      summary: "Get sessions"
+      description: "Get raw sessions from a database. Event-level data is not available in this API."
+      operationId: "updatePet"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Pet object that needs to be added to the store"
+        required: true
+        schema:
+          $ref: "#/definitions/Pet"
+      responses:
+        "400":
+          description: "Invalid ID supplied"
+        "404":
+          description: "Pet not found"
+        "405":
+          description: "Validation exception"
+      security:
+      - petstore_auth:
+        - "write:pets"
+        - "read:pets"
+  /api/analytics/v1/events/:
+    get:
+      tags:
+      - "raw data"
+      summary: "Get events"
+      description: "Get raw events from a database."
+      operationId: "findPetsByStatus"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "status"
+        in: "query"
+        description: "Status values that need to be considered for filter"
+        required: true
+        type: "array"
+        items:
+          type: "string"
+          enum:
+          - "available"
+          - "pending"
+          - "sold"
+          default: "available"
+        collectionFormat: "multi"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Pet"
+        "400":
+          description: "Invalid status value"
+      security:
+      - petstore_auth:
+        - "write:pets"
+        - "read:pets"
+  /api/analytics/v1/manage/goals/:
+    get:
+      tags:
+      - "goals"
+      summary: "Get goals"
+      description: "Monocle ipsum dolor sit amet charming Melbourne quality of life impeccable, St Moritz artisanal Singapore Washlet flat white. Shinkansen Tsutaya izakaya bulletin impeccable premium. "
+      operationId: "findPetsByTags"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "tags"
+        in: "query"
+        description: "Tags to filter by"
+        required: true
+        type: "array"
+        items:
+          type: "string"
+        collectionFormat: "multi"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Pet"
+        "400":
+          description: "Invalid tag value"
+      security:
+      - petstore_auth:
+        - "write:pets"
+        - "read:pets"
+      deprecated: true
+    post:
+      tags:
+      - "goals"
+      summary: "Update goal"
+      description: "Monocle ipsum dolor sit amet charming Melbourne quality of life impeccable, St Moritz artisanal Singapore Washlet flat white. Shinkansen Tsutaya izakaya bulletin impeccable premium."
+      operationId: "updatePetWithForm"
+      consumes:
+      - "application/x-www-form-urlencoded"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "ID of pet that needs to be updated"
+        required: true
+        type: "integer"
+        format: "int64"
+      - name: "name"
+        in: "formData"
+        description: "Updated name of the pet"
+        required: false
+        type: "string"
+      - name: "status"
+        in: "formData"
+        description: "Updated status of the pet"
+        required: false
+        type: "string"
+      responses:
+        "405":
+          description: "Invalid input"
+      security:
+      - petstore_auth:
+        - "write:pets"
+        - "read:pets"
+  /api/analytics/v1/manage/goals/{id}/:
+    delete:
+      tags:
+      - "goals"
+      summary: "Delete goal"
+      description: "Monocle ipsum dolor sit amet charming Melbourne quality of life impeccable, St Moritz artisanal Singapore Washlet flat white. Shinkansen Tsutaya izakaya bulletin impeccable premium."
+      operationId: "deletePet"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "api_key"
+        in: "header"
+        required: false
+        type: "string"
+      - name: "id"
+        in: "path"
+        description: "Pet id to delete"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        "400":
+          description: "Invalid ID supplied"
+        "404":
+          description: "Pet not found"
+      security:
+      - petstore_auth:
+        - "write:pets"
+        - "read:pets"
+    put:
+      tags:
+      - "goals"
+      summary: "Update goal"
+      description: "Monocle ipsum dolor sit amet charming Melbourne quality of life impeccable, St Moritz artisanal Singapore Washlet flat white. Shinkansen Tsutaya izakaya bulletin impeccable premium."
+      operationId: "id"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "api_key"
+        in: "header"
+        required: false
+        type: "string"
+      - name: "id"
+        in: "path"
+        description: "Pet id to delete"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        "400":
+          description: "Invalid ID supplied"
+        "404":
+          description: "Pet not found"
+      security:
+      - petstore_auth:
+        - "write:pets"
+        - "read:pets"
+
+  /api/analytics/v1/manage/custom-dimensions/{id}/:
+    put:
+      tags:
+      - "custom dimensions"
+      summary: "Add custom dimension"
+      description: "Monocle ipsum dolor sit amet charming Melbourne quality of life impeccable, St Moritz artisanal Singapore Washlet flat white. Shinkansen Tsutaya izakaya bulletin impeccable premium."
+      operationId: "uploadFile"
+      consumes:
+      - "multipart/form-data"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "ID of pet to update"
+        required: true
+        type: "integer"
+        format: "int64"
+      - name: "additionalMetadata"
+        in: "formData"
+        description: "Additional data to pass to server"
+        required: false
+        type: "string"
+      - name: "file"
+        in: "formData"
+        description: "file to upload"
+        required: false
+        type: "file"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ApiResponse"
+      security:
+      - petstore_auth:
+        - "write:pets"
+        - "read:pets"
+  /api/analytics/v1/manage/custom-dimensions/:
+    get:
+      tags:
+      - "custom dimensions"
+      summary: "Get custom dimension"
+      description: "Monocle ipsum dolor sit amet charming Melbourne quality of life impeccable, St Moritz artisanal Singapore Washlet flat white. Shinkansen Tsutaya izakaya bulletin impeccable premium. "
+      operationId: "getInventory"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            type: "object"
+            additionalProperties:
+              type: "integer"
+              format: "int32"
+      security:
+      - api_key: []
+
+  /api/tag/v1/{app_id}/tags:
+    get:
+      tags:
+      - "tags"
+      summary: "Get goals"
+      description: "Monocle ipsum dolor sit amet charming Melbourne quality of life impeccable, St Moritz artisanal Singapore Washlet flat white. Shinkansen Tsutaya izakaya bulletin impeccable premium. "
+      operationId: "placeOrder"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "order placed for purchasing the pet"
+        required: true
+        schema:
+          $ref: "#/definitions/Order"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/Order"
+        "400":
+          description: "Invalid Order"
+  /api/tag/v1/{appId}/tags/{tag_id}:
+    get:
+      tags:
+      - "tags"
+      summary: "Get tags"
+      description: "Monocle ipsum dolor sit amet charming Melbourne quality of life impeccable, St Moritz artisanal Singapore Washlet flat white. Shinkansen Tsutaya izakaya bulletin impeccable premium."
+      operationId: "getOrderById"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "tag_id"
+        in: "path"
+        description: "ID of pet that needs to be fetched"
+        required: true
+        type: "integer"
+        maximum: 10.0
+        minimum: 1.0
+        format: "int64"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/Order"
+        "400":
+          description: "Invalid ID supplied"
+        "404":
+          description: "Order not found"
+    delete:
+      tags:
+      - "tags"
+      summary: "Delete tag"
+      description: "Monocle ipsum dolor sit amet charming Melbourne quality of life impeccable, St Moritz artisanal Singapore Washlet flat white. Shinkansen Tsutaya izakaya bulletin impeccable premium."
+      operationId: "deleteOrder"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "orderId"
+        in: "path"
+        description: "ID of the order that needs to be deleted"
+        required: true
+        type: "integer"
+        minimum: 1.0
+        format: "int64"
+      responses:
+        "400":
+          description: "Invalid ID supplied"
+        "404":
+          description: "Order not found"
+  /api/tracker/v1/debugger:
+    post:
+      tags:
+      - "tracker debugger"
+      summary: "Get sessions in tracker debugger"
+      description: "Monocle ipsum dolor sit amet charming Melbourne quality of life impeccable, St Moritz artisanal Singapore Washlet flat white. Shinkansen Tsutaya izakaya bulletin impeccable premium. "
+      operationId: "createUser"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Created user object"
+        required: true
+        schema:
+          $ref: "#/definitions/User"
+      responses:
+        default:
+          description: "successful operation"
+  /ppms.php:
+    post:
+      tags:
+      - "tracker"
+      summary: "Send request"
+      description: "Monocle ipsum dolor sit amet charming Melbourne quality of life impeccable, St Moritz artisanal Singapore Washlet flat white. Shinkansen Tsutaya izakaya bulletin impeccable premium. "
+      operationId: "createUsersWithArrayInput"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "List of user object"
+        required: true
+        schema:
+          type: "array"
+          items:
+            $ref: "#/definitions/User"
+      responses:
+        default:
+          description: "successful operation"
+    get:
+      tags:
+      - "tracker"
+      summary: "Get request"
+      description: "Monocle ipsum dolor sit amet charming Melbourne quality of life impeccable, St Moritz artisanal Singapore Washlet flat white. Shinkansen Tsutaya izakaya bulletin impeccable premium. "
+      operationId: "createUsersWithListInput"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "List of user object"
+        required: true
+        schema:
+          type: "array"
+          items:
+            $ref: "#/definitions/User"
+      responses:
+        default:
+          description: "successful operation"
+  /api/access-control/v2/entry/{entity_id}:
+    get:
+      tags:
+      - "permissions"
+      summary: "Get permissions"
+      description: "Monocle ipsum dolor sit amet charming Melbourne quality of life impeccable, St Moritz artisanal Singapore Washlet flat white. Shinkansen Tsutaya izakaya bulletin impeccable premium. "
+      operationId: "loginUser"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "username"
+        in: "query"
+        description: "The user name for login"
+        required: true
+        type: "string"
+      - name: "password"
+        in: "query"
+        description: "The password for login in clear text"
+        required: true
+        type: "string"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            type: "string"
+          headers:
+            X-Rate-Limit:
+              type: "integer"
+              format: "int32"
+              description: "calls per hour allowed by the user"
+            X-Expires-After:
+              type: "string"
+              format: "date-time"
+              description: "date in UTC when token expires"
+        "400":
+          description: "Invalid username/password supplied"
+  /api/access-control/v2/entry/ppms/meta-site/action/{action}:
+    get:
+      tags:
+      - "permissions"
+      summary: "Get meta site/app permissions"
+      description: "Monocle ipsum dolor sit amet charming Melbourne quality of life impeccable, St Moritz artisanal Singapore Washlet flat white. Shinkansen Tsutaya izakaya bulletin impeccable premium. "
+      operationId: "logoutUser"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters: []
+      responses:
+        default:
+          description: "successful operation"
+  /api/user-groups/v1:
+    get:
+      tags:
+      - "groups"
+      summary: "Get groups"
+      description: "Monocle ipsum dolor sit amet charming Melbourne quality of life impeccable, St Moritz artisanal Singapore Washlet flat white. Shinkansen Tsutaya izakaya bulletin impeccable premium. "
+      operationId: "getUserByName"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "username"
+        in: "path"
+        description: "The name that needs to be fetched. Use user1 for testing. "
+        required: true
+        type: "string"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/User"
+        "400":
+          description: "Invalid username supplied"
+        "404":
+          description: "User not found"
+    put:
+      tags:
+      - "groups"
+      summary: "Update groups"
+      description: "Monocle ipsum dolor sit amet charming Melbourne quality of life impeccable, St Moritz artisanal Singapore Washlet flat white. Shinkansen Tsutaya izakaya bulletin impeccable premium. "
+      operationId: "updateUser"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "username"
+        in: "path"
+        description: "name that need to be updated"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        description: "Updated user object"
+        required: true
+        schema:
+          $ref: "#/definitions/User"
+      responses:
+        "400":
+          description: "Invalid user supplied"
+        "404":
+          description: "User not found"
+    delete:
+      tags:
+      - "groups"
+      summary: "Delete group"
+      description: "Monocle ipsum dolor sit amet charming Melbourne quality of life impeccable, St Moritz artisanal Singapore Washlet flat white. Shinkansen Tsutaya izakaya bulletin impeccable premium. "
+      operationId: "deleteUser"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "username"
+        in: "path"
+        description: "The name that needs to be deleted"
+        required: true
+        type: "string"
+      responses:
+        "400":
+          description: "Invalid username supplied"
+        "404":
+          description: "User not found"
+securityDefinitions:
+  petstore_auth:
+    type: "oauth2"
+    authorizationUrl: "http://petstore.swagger.io/oauth/dialog"
+    flow: "implicit"
+    scopes:
+      write:pets: "modify pets in your account"
+      read:pets: "read your pets"
+  api_key:
+    type: "apiKey"
+    name: "api_key"
+    in: "header"
+definitions:
+  Order:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+      petId:
+        type: "integer"
+        format: "int64"
+      quantity:
+        type: "integer"
+        format: "int32"
+      shipDate:
+        type: "string"
+        format: "date-time"
+      status:
+        type: "string"
+        description: "Order Status"
+        enum:
+        - "placed"
+        - "approved"
+        - "delivered"
+      complete:
+        type: "boolean"
+        default: false
+    xml:
+      name: "Order"
+  Category:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+      name:
+        type: "string"
+    xml:
+      name: "Category"
+  User:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+      username:
+        type: "string"
+      firstName:
+        type: "string"
+      lastName:
+        type: "string"
+      email:
+        type: "string"
+      password:
+        type: "string"
+      phone:
+        type: "string"
+      userStatus:
+        type: "integer"
+        format: "int32"
+        description: "User Status"
+    xml:
+      name: "User"
+  Tag:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+      name:
+        type: "string"
+    xml:
+      name: "Tag"
+  Pet:
+    type: "object"
+    required:
+    - "name"
+    - "photoUrls"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+      category:
+        $ref: "#/definitions/Category"
+      name:
+        type: "string"
+        example: "doggie"
+      photoUrls:
+        type: "array"
+        xml:
+          name: "photoUrl"
+          wrapped: true
+        items:
+          type: "string"
+      tags:
+        type: "array"
+        xml:
+          name: "tag"
+          wrapped: true
+        items:
+          $ref: "#/definitions/Tag"
+      status:
+        type: "string"
+        description: "pet status in the store"
+        enum:
+        - "available"
+        - "pending"
+        - "sold"
+    xml:
+      name: "Pet"
+  ApiResponse:
+    type: "object"
+    properties:
+      code:
+        type: "integer"
+        format: "int32"
+      type:
+        type: "string"
+      message:
+        type: "string"
+externalDocs:
+  description: "About Piwik PRO"
+  url: "http://piwik.pro/"
