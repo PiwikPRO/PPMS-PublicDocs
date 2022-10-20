@@ -8,7 +8,7 @@ Analytics
    :maxdepth: 1
 
    getting-started.rst
-   javascript.rst
+   plain-javascript.rst
    frameworks/index.rst
    methods/index.rst
 

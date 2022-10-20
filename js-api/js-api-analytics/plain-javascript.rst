@@ -1,4 +1,4 @@
-.. _java-script:
+.. _plain-javascript-analytics:
 
 ================
 Plain JavaScript

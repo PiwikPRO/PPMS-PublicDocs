@@ -16,7 +16,7 @@ Example 1
 
 Example code:
 
-.. literalinclude:: popup_examples/example-popup-1.html
+.. literalinclude:: popup-examples/example-popup-1.html
         :language: html
 
 .. note::
@@ -31,7 +31,7 @@ Example 2
 
 Example code:
 
-.. literalinclude:: popup_examples/example-popup-2.html
+.. literalinclude:: popup-examples/example-popup-2.html
         :language: html
 
 
@@ -46,7 +46,7 @@ Example 3
 
 Example code:
 
-.. literalinclude:: popup_examples/example-popup-3.html
+.. literalinclude:: popup-examples/example-popup-3.html
     :language: html
 
 

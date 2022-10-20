@@ -1,4 +1,4 @@
-.. _cm-java-script:
+.. _plain-java-script-consent-manager:
 
 ================
 Plain JavaScript
