@@ -1,5 +1,6 @@
-Methods
-=======
+==============
+Methods (beta)
+==============
 
 .. toctree::
    :maxdepth: 1

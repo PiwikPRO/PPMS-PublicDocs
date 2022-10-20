@@ -1,4 +1,4 @@
-Piwik PRO: metrics and dimensions
+Piwik PRO: metrics & dimensions
 ===========================
 
 Metrics

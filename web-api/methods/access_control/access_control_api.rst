@@ -1,5 +1,5 @@
-Permissions
-===================
+Access control
+==============
 
 .. raw:: html
 

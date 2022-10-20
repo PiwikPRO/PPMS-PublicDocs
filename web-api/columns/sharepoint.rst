@@ -1,4 +1,4 @@
-SharePoint: metrics and dimensions
+SharePoint: metrics & dimensions
 ==========
 
 Metrics
