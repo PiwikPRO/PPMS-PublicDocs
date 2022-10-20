@@ -1,22 +1,13 @@
-.. _js_api:
+JS API
+======
 
-=====
-Analytics
-=====
+Piwik PRO offers two JS APIs -- one for Analytics, one for Consent Manager. You can use them after you install Piwik PRO on your site or app. We've prepared solid documentation for both JS APIs so read on and see what you can do with them.
+
+
+**Next steps**
 
 .. toctree::
    :maxdepth: 1
 
-   getting-started.rst
-   javascript.rst
-   frameworks/index.rst
-   methods/index.rst
-
-.. raw:: html
-
-   <script>
-       let url = document.location.href.split('/');
-       url.pop();
-       url.push('getting-started.html');
-       location.replace(url.join('/'));
-   </script>
+   js-api-analytics/index.rst
+   js-api-consent-manager/index.rst
