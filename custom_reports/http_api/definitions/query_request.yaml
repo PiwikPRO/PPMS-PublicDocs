@@ -219,6 +219,22 @@ properties:
       Format of the columns header (in CSV responses) and metadata labels
       (in JSON responses). By default uses identifiers (``id`` option), set to
       ``name`` to use human-readable names.
+  options:
+    type: object
+    description: |
+      Additional options for query.
+    properties:
+      sampling:
+        type: float
+        description: |
+          Apply sampling for query with given data percent. Sampling 0.1 means
+          only 10% of data are used to calculate query results. Sampling 1
+          means that 100% of data is used to calculate results. Leave empty to
+          apply default sampling value for this website. By default this means
+          that sampling is turned off.
+        example: 0.2
+        minimum: 0.01
+        maximum: 1
 required:
   - website_id
   - columns
@@ -252,3 +268,5 @@ example:
     - - 2
       - asc
   format: json
+  options:
+    sampling: 0.2
