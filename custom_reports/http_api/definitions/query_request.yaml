@@ -231,8 +231,7 @@ properties:
           only 10% of data are used to calculate query results. Sampling 1
           means that 100% of data is used to calculate results. Leave empty to
           apply default sampling value for this website. By default this means
-          that sampling is turned off. More information you will find in this
-          [article about data sampling](https://piwik.pro/blog/what-is-data-sampling/).
+          that sampling is turned off.
         example: 0.2
         minimum: 0.01
         maximum: 1
