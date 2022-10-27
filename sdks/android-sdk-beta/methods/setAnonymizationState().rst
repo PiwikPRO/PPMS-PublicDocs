@@ -48,15 +48,7 @@ To mark a visitor as non-anonymous:
 
         .. code-block:: javascript
 
-          var jstc = Piwik.getTracker(
-            "https://example.com/",
-            "45e07cbf-c8b3-42f3-a6d6-a5a176f623ef"
-          );
-          jstc.customCrossDomainLinkDecorator(function (url, value, name) {
-              var parsedUrl = new URL(url);
-              parsedUrl.searchParams.append(name, value);
-              return parsedUrl.href;
-          }]);
+          TODO
 
 
 Related methods
