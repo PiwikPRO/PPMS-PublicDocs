@@ -11,7 +11,7 @@ Here are some things to know before you start working with columns:
 
 * Each listed column defines a *scope* attribute. If you make a call that includes one or more columns with the *event* scope, the whole query will be calculated using events -- not sessions. This might distort some custom metrics like average session time.
 
-**Next steps:**
+**Next steps**
 
 .. toctree::
   :maxdepth: 1
