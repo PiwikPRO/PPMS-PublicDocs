@@ -5,8 +5,8 @@ Other
 .. toctree::
    :maxdepth: 1
 
-   content_security_policy.rst
-   event_type_detection.rst
-   skip_link_tracking.rst
-   data_layer_name.rst
-   custom_popup_examples.rst
+   content-security-policy.rst
+   event-type-detection.rst
+   skip-link-tracking.rst
+   data-layer-name.rst
+   custom-popup-examples.rst
