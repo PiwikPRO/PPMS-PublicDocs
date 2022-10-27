@@ -250,6 +250,6 @@ intersphinx_mapping = {'https://docs.python.org/': None}
 
 
 # OpenAPI (YAML to JSON migration)
-for output, input in api_definitions.items():
-    with open(os.path.join(API_PATH, output), 'w') as file_handler:
-        write_open_api_json(path=input, file_handler=file_handler, version=version)
+# for output, input in api_definitions.items():
+#     with open(os.path.join(API_PATH, output), 'w') as file_handler:
+#         write_open_api_json(path=input, file_handler=file_handler, version=version)
