@@ -2,7 +2,7 @@
 Permissions
 ===========
 
-Permission is a group of specific actions that user can perform on entities.
+Here's a list of permissions avaliable in Piwik PRO.
 
 **Site/App permissions**
 
