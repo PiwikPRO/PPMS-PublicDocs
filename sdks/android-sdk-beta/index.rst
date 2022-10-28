@@ -1,7 +1,7 @@
 .. _android_sdk:
 
 =====
-Android SDK
+Android SDK (beta)
 =====
 
 .. toctree::

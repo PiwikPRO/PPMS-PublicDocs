@@ -6,12 +6,14 @@ Permission is a group of specific actions that user can perform on entities.
 
 **Site/App permissions**
 
-| ↓ Action \ Permission → | view | edit | edit-publish | manage |
-|-------------------------|------|------|--------------|--------|
-| view                    | ✔    | ✔    | ✔            | ✔      |
-| edit                    |      | ✔    | ✔            | ✔      |
-| publish                 |      |      | ✔            | ✔      |
-| manage                  |      |      |              | ✔      |
++--------------------------+-------+-------+---------------+---------+
+| ↓ Action \ Permission →  | view  | edit  | edit-publish  | manage  |
++==========================+=======+=======+===============+=========+
+| view                     | ✔     | ✔     | ✔             | ✔       |
+| edit                     |       | ✔     | ✔             | ✔       |
+| publish                  |       |       | ✔             | ✔       |
+| manage                   |       |       |               | ✔       |
++--------------------------+-------+-------+---------------+---------+
 
 * **view:** allows viewing an app
 * **edit:** allows editing an app
@@ -22,14 +24,16 @@ Permission is a group of specific actions that user can perform on entities.
 
 **Meta site/app permissions**
 
-| ↓ Action \ Permission → | view | edit | manage |
-|-------------------------|------|------|--------|
-| view                    | ✔    | ✔    | ✔      |
-| edit                    |      | ✔    | ✔      |
-| view_details            |      |      | ✔      |
-| edit_details            |      |      | ✔      |
-| list_apps_in_meta_site  |      |      | ✔      |
-| manage                  |      |      | ✔      |
++--------------------------+-------+-------+---------+
+| ↓ Action \ Permission →  | view  | edit  | manage  |
++==========================+=======+=======+=========+
+| view                     | ✔     | ✔     | ✔       |
+| edit                     |       | ✔     | ✔       |
+| view_details             |       |       | ✔       |
+| edit_details             |       |       | ✔       |
+| list_apps_in_meta_site   |       |       | ✔       |
+| manage                   |       |       | ✔       |
++--------------------------+-------+-------+---------+
 
 * **view:** allows viewing a meta site in Analytics
 * **edit:** allows editing meta site reports in Analytics

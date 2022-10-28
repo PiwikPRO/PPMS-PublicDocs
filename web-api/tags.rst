@@ -19,6 +19,8 @@ Here's a list of renamed tags. The attribute value used for these tags remained 
 | Old tag name                        | New tag name            |
 +=====================================+=========================+
 | Facebook Retargeting Pixel tag      | Meta Pixel tag          |
++-------------------------------------+-------------------------+
 | DoubleClick Floodlight Sales tag    | Floodlight Sales tag    |
++-------------------------------------+-------------------------+
 | DoubleClick Floodlight Counter tag  | Floodlight Counter tag  |
 +-------------------------------------+-------------------------+
