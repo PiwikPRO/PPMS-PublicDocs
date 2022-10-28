@@ -6,7 +6,7 @@ When you want to query your database, you can use an API call definition in Piwi
 
 To fetch data directly from a report, follow these steps:
 
-1. Log in to Piwik PRO.
+1. Log in to **Piwik PRO**.
 2. Go to **Menu** > **Analytics**.
 3. Navigate to **Reports**, **Custom reports**, **Goals**, or **Ecommerce**.
 4. On the left, click a report that you want to work with.
