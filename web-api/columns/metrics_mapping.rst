@@ -1,7 +1,7 @@
 Legacy vs. new metrics
 ===============
 
-Names of metrics used in API are different in Analytics classic and Analytics new. If you’re migrating to the Analytics new API then below metrics mapping table will be helpful to you. You can find there a list of metrics used in Analytics classic and their corresponding names in the Analytics new.
+If you migrate from Analytics classic to Analytics new, you need to use different metric names in your API calls. Here's a list that will help you with that.
 
 
 Simple metrics
