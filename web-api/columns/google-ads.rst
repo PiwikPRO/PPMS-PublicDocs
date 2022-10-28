@@ -71,8 +71,9 @@ Here's a list of dimensions that are avaliable in Piwik PRO when you use Google 
 Mixed queries
 -------------
 
-It is possible to request both internal analytics and Google Ads metrics in a single query (for example: "Sessions" and "Clicks (Google
-Ads)"), however **only the common dimensions listed below** may be used in such queries.
+If you want to mix Piwik PRO metrics with Google Ads metrics in a single call or filter, you can only use the metrics that are common in both products. Otherwise, you'll receive a Bad Request response.
+
+Here's a list of the metrics that you can use.
 
 +-------------------------------------+--------------------------+-------+----------+------------------+--------+------------------------------------------------------------------------------------------------+
 |           Dimension name            |        Column ID         | Scope |   Type   |Database type (1) |Nullable|                                             Notes                                              |
@@ -111,9 +112,3 @@ Ads)"), however **only the common dimensions listed below** may be used in such 
 +-------------------------------------+--------------------------+-------+----------+------------------+--------+------------------------------------------------------------------------------------------------+
 
 1. ``Database type`` is the source column of a dimension. ``Enum`` shows the ID type. ``Not applicable`` shows a dymamic dimension.
-
-
-.. warning::
-  **Note:** Using dimensions that are not explicitly listed in the table above in such
-  queries (either as query columns or as filters) will result in a **Bad
-  Request** response.

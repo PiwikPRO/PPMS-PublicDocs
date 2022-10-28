@@ -94,7 +94,7 @@ Simple metrics
 +----------------------------------+---------------------------------------------+-----------------------------------------------------+
 
 .. note::
-    Event dimensions can only be used with metrics calculated for an event dimension. |docs_link|
+    **Note:** Event dimensions can only be used with metrics calculated for an event dimension. |docs_link|
 
 .. |docs_link| raw:: html
 
@@ -104,6 +104,8 @@ Simple metrics
 
 Calculated metrics
 ------------------
+
+Here's a list of common examples of calculated metrics. Not all possible combinations are listed here.
 
 +-------------------------------------+---------------------------------+-----------------------------------------------------------------------------+
 | Metric name                         | Legacy API                      | New API                                                                     |
@@ -139,10 +141,6 @@ Calculated metrics
 .. |docs_link| raw:: html
 
    <a href="https://help.piwik.pro/support/questions/why-cant-i-combine-some-dimensions-and-metrics" target="_blank">Read more.</a>
-
-
-.. warning::
-     **Note:** This table does not include every single possible combination of a dimension and a transformation, just some common examples.
 
 
 Not available
