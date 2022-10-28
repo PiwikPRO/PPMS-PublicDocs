@@ -134,7 +134,7 @@ Calculated metrics
 +-------------------------------------+---------------------------------+-----------------------------------------------------------------------------+
 
 .. note::
-    Event dimensions can only be used with metrics calculated for an event dimension. |docs_link|
+    **Note:** Event dimensions can only be used with metrics calculated for an event dimension. |docs_link|
 
 .. |docs_link| raw:: html
 
@@ -142,7 +142,7 @@ Calculated metrics
 
 
 .. warning::
-     This table does not include every single possible combination of a dimension and a transformation, just some common examples.
+     **Note:** This table does not include every single possible combination of a dimension and a transformation, just some common examples.
 
 
 Not available

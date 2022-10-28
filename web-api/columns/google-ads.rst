@@ -114,6 +114,6 @@ Ads)"), however **only the common dimensions listed below** may be used in such 
 
 
 .. warning::
-  Using dimensions that are not explicitly listed in the table above in such
+  **Note:** Using dimensions that are not explicitly listed in the table above in such
   queries (either as query columns or as filters) will result in a **Bad
   Request** response.
