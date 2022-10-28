@@ -13,15 +13,14 @@ Set up Piwik PRO
 
 Before you install our library for Android, you need to set up Piwik PRO. Here's what you need to do:
 
-1. Create a **Piwik PRO account**.
-2. Log in to **Piwik PRO**.
-3. Go to **Menu** > **Administration**.
-4. Navigate to **Sites & apps**.
-5. Click **Add a site or app**.
-6. Type the app name and address, and click **Save**.
-7. Set the time zone and currency.
-8. Note the site/app ID. The ID is under the app name. Example: ``00000000-0000-0000-0000-000000000000``.
-9. Note your account address. Example: ``https://example.piwik.pro``.
+1. Log in to **Piwik PRO**.
+2. Go to **Menu** > **Administration**.
+3. Navigate to **Sites & apps**.
+4. Click **Add a site or app**.
+5. Type the app name and address, and click **Save**.
+6. Set the time zone and currency.
+7. Note the site/app ID. The ID is under the app name. Example: ``00000000-0000-0000-0000-000000000000``.
+8. Note your account address. Example: ``https://example.piwik.pro``.
 
 Install the library
 -------------------
