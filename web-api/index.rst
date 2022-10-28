@@ -8,10 +8,10 @@ Web API
    :maxdepth: 1
 
    getting-started/index.rst
-   columns/index.rst
    call-definition.rst
+   permissions.rst
+   columns/index.rst
    tags.rst
    built-in-variables.rst
-   permissions.rst
    methods-beta/index.rst
    methods/index.rst
