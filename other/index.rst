@@ -2,7 +2,8 @@
 Other
 ====
 
-Monocle ipsum dolor sit amet punctual sleepy Tsutaya hand-crafted izakaya Boeing 787 exclusive, pintxos espresso. Joy destination cutting-edge Scandinavian artisanal premium Tsutaya Lufthansa signature Helsinki.
+If you need help with topics other than web API, JS API or SDKs, see this section. More help articles are also available in our
+`help center <https://help.piwik.pro/>`_.
 
 **Next steps**
 

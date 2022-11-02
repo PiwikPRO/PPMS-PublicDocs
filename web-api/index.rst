@@ -4,7 +4,7 @@
 Web API
 ====
 
-Monocle ipsum dolor sit amet punctual sleepy Tsutaya hand-crafted izakaya Boeing 787 exclusive, pintxos espresso. Joy destination cutting-edge Scandinavian artisanal premium Tsutaya Lufthansa signature Helsinki.
+Our web API provides access to Piwik PRO functions and data. If you need to get raw data, manage tags, add new users - no problem! Our API is at hand and ready to be used in your next project.
 
 **Next steps**
 

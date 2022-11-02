@@ -4,7 +4,7 @@
 SDKs
 ====
 
-Monocle ipsum dolor sit amet punctual sleepy Tsutaya hand-crafted izakaya Boeing 787 exclusive, pintxos espresso. Joy destination cutting-edge Scandinavian artisanal premium Tsutaya Lufthansa signature Helsinki.
+Our SDKs let you collect user data from mobile apps built for Android, Flutter, React Native and iOS. With over 20 built-in methods, you can easily track screen views, goals, ecommerce orders and more.
 
 **Next steps**
 

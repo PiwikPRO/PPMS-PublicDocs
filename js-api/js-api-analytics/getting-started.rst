@@ -17,7 +17,7 @@ In short, our JavaScript library lets you collect data like:
 
 **Next steps**
 
-* :ref:`java-script`
+* :ref:`plain-javascript-analytics`
 * :ref:`angular`
 * :ref:`react`
 * :ref:`methods`
