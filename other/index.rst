@@ -5,7 +5,7 @@ Other
 If you need help with topics other than web API, JS API or SDKs, see this section. More help articles are also available in our
 `help center <https://help.piwik.pro/>`_.
 
-**Next steps**
+**See more**
 
 .. toctree::
    :maxdepth: 1

@@ -6,7 +6,7 @@ SDKs
 
 Our SDKs let you collect user data from mobile apps built for Android, Flutter, React Native and iOS. With over 20 built-in methods, you can easily track screen views, goals, ecommerce orders and more.
 
-**Next steps**
+**See more**
 
 .. toctree::
    :maxdepth: 1

@@ -6,7 +6,7 @@ Web API
 
 Our web API provides access to Piwik PRO functions and data. If you need to get raw data, manage tags, add new users - no problem! Our API is at hand and ready to be used in your next project.
 
-**Next steps**
+**See more**
 
 .. toctree::
    :maxdepth: 1
