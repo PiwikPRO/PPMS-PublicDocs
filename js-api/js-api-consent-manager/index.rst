@@ -8,7 +8,7 @@ Consent Manager
    :maxdepth: 1
 
    getting-started.rst
-   javascript.rst
+   plain-javascript.rst
    methods/index.rst
 
 .. raw:: html
