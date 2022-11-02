@@ -2,7 +2,7 @@
 Getting started
 ================
 
-Monocle ipsum dolor sit amet iconic quality of life ANA remarkable carefully curated. Eclectic izakaya global the best, Asia-Pacific airport handsome Swiss ryokan. Conversation Ettinger quality of life, Shinkansen artisanal global carefully curated flat white Winkreative discerning ryokan bureaux boulevard. Uniforms discerning elegant Helsinki Sunspel hand-crafted joy Shinkansen. Nordic destination first-class, Muji Sunspel lovely emerging. Hand-crafted exquisite Scandinavian business class premium bureaux craftsmanship boulevard airport. Fast Lane Washlet sleepy eclectic hand-crafted boulevard.
+Our web API offers you access to most features and data in Piwik PRO. From getting raw data, through managing tags, to adding new sites and users, our API is at hand when you want to build your next custom analytics project.  
 
 **Next steps**
 

@@ -1,7 +1,9 @@
 Postman
 =======
 
-[Postman](https://www.getpostman.com/) is a multiplatform GUI application for creating API calls. Piwik PRO allows you to export Swagger documentation and easily import it to Postman. Depending of what you want to work with, you can import the following swagger docs:
+[Postman](https://www.getpostman.com/) is the tool that lets you build, send and test API calls. You can easily import Piwik PRO API to Postman and try it out.
+
+Here are the Swagger docs that you can you import:
 
 * <a href="_static/api/platform_access_control_authorized_api.json" target="_blank">Access control</a>
 * <a href="_static/api/platform_apps_authorized_api.json" target="_blank">Apps</a>
@@ -15,9 +17,10 @@ Postman
 
 To use Postman, follow these steps:
 
-1. In Postman, click **Import** -&gt; **Import From Link**.
+1. In Postman, click **Import** > **File** or **Link**.
+2. Pick the file or link you want to import.
 2. Done. All of your paths are imported.
-3. Replace your domain in the URL.
+3. Replace your account address in the URL. Example: ``https://example.piwik.pro``.
 4. Add your token: In the selected API call, click **Authorization**.
 5. Use the **Bearer Token** type.
 6. Paste your token.
