@@ -114,7 +114,7 @@ Event will be categorized as ``OrderCompleted`` when ``idgoal`` parameter of the
 Site search
 ~~~~~~~~~~~~~~~~~~
 
-Event will be categorized as ``Search`` when either ``search``parameter of the tracked event is provided or a search term was detected in the tracked url (provided as the ``url`` parameter).
+Event will be categorized as ``Search`` when either ``search`` parameter of the tracked event is provided or a search term was detected in the tracked url (provided as the ``url`` parameter).
 
 Page view
 ~~~~~~~~~~~~~~~~~~
@@ -135,14 +135,14 @@ That is because those type are not "detected" but rather are a result of the pos
 Abandoned Cart
 ~~~~~~~~~~~~~~~~~~
 
-When a session did not track a ``OrderCompleted`` event, the last event of that type will be converted to ``AbandonedCart``.
+When a session did not track a ``OrderCompleted`` event, the last event of ``CartUpdate`` type will be converted to ``AbandonedCart``.
 
 Excluded Event
 ~~~~~~~~~~~~~~~~~~
 
 There are several ways of excluding an event (e.g. by blacklisting source IP or User-Agent header matching).
 If an event matches given criteria it will be excluded from the reports but is still tracked and receives ``ExcludedEvent`` type.
-If you experien any report abnormalities you may check Tracker Debugger if any of the legitimate traffic is not excluded by mistake.
+If you experience any report abnormalities you may check Tracker Debugger if any of the legitimate traffic is not excluded by mistake.
 
 Broken Event
 ~~~~~~~~~~~~~~~~~~
