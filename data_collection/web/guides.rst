@@ -818,7 +818,10 @@ Alternatively, you can trigger a goal manually with the use of :ref:`trackGoal<j
 
 .. code-block:: javascript
 
-    // force conversion of the goal with ID 17
+    // force conversion of the goal with UUID 38577a3c-ea12-41b1-970c-a116ee8732de
+    _paq.push(["trackGoal", "38577a3c-ea12-41b1-970c-a116ee8732de"]);
+
+    // force conversion of the goal with legacy integer ID 17
     _paq.push(["trackGoal", 17]);
 
 We call this procedure a "manual conversion". Manual conversion will send a standalone conversion event immediately and is not tied to any other event sent by tracker like automatic conversions.

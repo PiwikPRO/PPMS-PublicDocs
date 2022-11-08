@@ -343,11 +343,14 @@ paths:
           in: query
           description: |
             Goal ID. Signifies that a goal has been reached and tracks its conversion.
+            
+            **Accepts either Goal UUID or legacy integer Goal ID.**
 
             Value ``0`` is reserved for E-commerce cart tracking.
           schema:
-            type: integer
-          example: 15
+            type: string
+            format: uuid
+          example: e3554b05-aa7c-4f2e-87f8-043f49a5343e
         - name: revenue
           in: query
           description: |
