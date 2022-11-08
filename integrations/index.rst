@@ -11,4 +11,4 @@ If you need to set up Piwik PRO on a PWA or AMP or want to collect data only usi
 
    amp-integration.rst
    paw-integration.md
-   web-log-analytics.md
+   web-log-analytics.rst
