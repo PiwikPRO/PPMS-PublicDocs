@@ -12,10 +12,6 @@ Our web API lets you access data and features in Piwik PRO. Whether you need to 
    :maxdepth: 1
 
    getting-started/index.rst
-   call-definition.rst
-   permissions.rst
-   columns/index.rst
-   tags.rst
-   built-in-variables.rst
+   resources/index.rst
    methods-beta/index.rst
    methods/index.rst
