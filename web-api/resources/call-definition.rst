@@ -13,14 +13,14 @@ To fetch data directly from a report, follow these steps:
 5. Click the three-dot icon next to the report section that you want to use.
 
 .. image:: ../_static/images/api-call-definition/click-three-dot-icon.png
-    :alt: Asynchronous container code - data layer name
+    :alt: API call definition in Piwik PRO
 
 6. Click **View API call definition**.
 
 .. image:: ../_static/images/api-call-definition/api-call-definition.png
-    :alt: Asynchronous container code - data layer name
+    :alt: API call definition in Piwik PRO
 
 7. Copy an **API endpoint** or **API query**.
 
 .. image:: ../_static/images/api-call-definition/copy-api-call-definition.png
-    :alt: Asynchronous container code - data layer name
+    :alt: API call definition in Piwik PRO
