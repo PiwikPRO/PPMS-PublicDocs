@@ -108,7 +108,7 @@ In further examples we will assume usage of the first option.
 
 Anonymization is the feature that allows tracking a user's activity for aggregated data analysis even if the user doesn't consent to track the data. If a user does not agree to be tracked, he will not be identified as the same person across multiple sessions.
 
-Personal data will not be tracked during the session (i.e. [user ID](#user-id), [device ID](https://support.google.com/googleplay/android-developer/answer/6048248?hl=en)).
+Personal data will not be tracked during the session ([user ID](#user-id), [email](#user-email-address) and [device ID](https://support.google.com/googleplay/android-developer/answer/6048248?hl=en)).
 If the anonymization is enabled, a new [visitor ID](#visitor-id) will be created each time the application starts.
 
 Anonymization is enabled by default.
@@ -188,7 +188,9 @@ For more resources, please visit:
 ### Tracking exceptions
 *Requires Analytics*
 
-Caught exceptions are errors in your app for which you've defined an exception handling code, such as the occasional timeout of a network connection during a request for data. Exceptions are tracked on the server in a similar way as screen views, however, action internally generated for exceptions always use the _fatal_ or _caught_ prefix, and additionally the _exception_ prefix if ``tracker.isPrefixing()`` this particular option is enabled(true). The URL corresponds to exception stack trace, including the package name, activity path, method name and line number where crash occurred. Bear in mind that Piwik is not a crash tracker therefore use this sparingly.
+Caught exceptions are errors in your app for which you've defined an exception handling code, such as the occasional timeout of a network connection during a request for data. Exceptions are tracked on the server in a similar way as screen views. 
+
+If you provide cought exception to the ``exception`` method, URL will contain the package name, activity path, method name and line number where crash occurred.
 
 Measure a caught exception by setting the exception field values on the tracker and sending the hit, as with this example:
 
@@ -196,67 +198,66 @@ Measure a caught exception by setting the exception field values on the tracker 
 try {
    // perform action
 } catch(Exception ex) {
-   TrackHelper.track().exception(ex).description("Content download error").fatal(true).with(tracker);
+   TrackHelper.track().exception(ex).description("Content download error").with(tracker);
 }
 ```
 
-* An exception (required) – Caught exception instance.
+* An exception (optional) – Caught exception instance.
 
 * A description (optional) – additional information about the issue.
 
-* An isFatal (optional) – true if an exception is fatal.
+Bear in mind that Piwik is not a crash tracker therefore use this sparingly.
 
 ### Tracking social interactions
 *Requires Analytics*
 
-Social interactions such as likes, shares and comments in various social networks can be tracked as below. This, again, is tracked in a similar way as with screen views but the _social_ prefix is used when the default ``tracker.isPrefixing()`` option is enabled.
+Social interactions such as likes, shares and comments in various social networks can be tracked as below.
 
 ```java
- TrackHelper.track().socialInteraction("Like", "Facebook").target("Game").with(tracker);
+ TrackHelper.track().socialInteraction("Like", "Facebook").with(tracker);
 ```
 * An interaction (required) – defines the social interaction, e.g. "Like".
 
 * A network (required) – defines social network associated with interaction, e.g. "Facebook"
 
-* A target (optional) – the target for which this interaction occurred, e.g. "My Piwik PRO app".
 
-The URL corresponds to String, which includes the network, interaction and target parameters separated by slash.
-
-### Tracking downloads and app installs
+### Deep links
 *Requires Analytics*
 
-You can track the installations and downloads initiated by your application. This only triggers an event once per app version unless you force it. It is recommended to track application install in the Android ``Application`` class:
+You can track deep links along with the passed campaign parameters in the deep link.
 
 ```java
-    TrackHelper.track().download().identifier(new DownloadTracker.Extra.ApkChecksum(this)).with(getTracker());
+    TrackHelper.track().campaign("https://www.example.com?pk_campaign=WinterSale&pk_keyword=websiteAdd");
 ```
-That will use the package name, version and MD5 app checksum as an identifier, e.g. ``com.piwikpro.demo:12/7B3DF8ED277BABEA6126C44E9AECEFEA``.
 
-In case you need to specify more parameters, create the instance of the ``DownloadTracker`` class explicitly:
+* A URL (required) – the URL of the downloaded content.
+
+The information contained in the deep link will be tracked when the first screen event is triggered.
+To track campaign parameters correctly, it is necessary to configure them in the website ID settings in the Campaign parameters section. 
+
+
+### Tracking downloads
+*Requires Analytics*
+
+You can track the installations initiated by your application. 
 
 ```java
-        DownloadTracker downloadTracker = new DownloadTracker(getTracker());
-        DownloadTracker.Extra extra = new DownloadTracker.Extra.Custom() {
-            @Override
-            public boolean isIntensiveWork() {
-                return false;
-            }
-
-            @Nullable
-            @Override
-            public String buildExtraIdentifier() {
-                return "Demo Android download";
-            }
-        };
-
-        TrackHelper.track().download(downloadTracker).identifier(extra).force().version("1.0").with(getTracker());
+    TrackHelper.track().sendDownload("http://your.server.com/bonusmap.zip").with(getTracker());
 ```
 
-* isIntensiveWork() - return true if this should be run async and on a separate thread.
+* A URL (required) – the URL of the downloaded content.
 
-* buildExtraIdentifier() - return a String that will be used as extra identifier or null.
+No prefixes are used for tracking downloads, but each event of this type use an additional parameter ``download`` whose value equals to specified URL. On the analytics panel, all downloads can be viewed in the corresponding section.
 
-On the analytics panel, all downloads can be viewed in the corresponding section.
+### Tracking application installs
+*Requires Analytics*
+
+You can also track installations of your application. This event is sent to the server only once per application installation.
+
+```java
+    TrackHelper.track().sendApplicationDownload().with(getTracker());
+```
+Application installation is only tracked during the first launch. In the case of the application being installed but not run, the app installation will not be tracked.
 
 ### Tracking outlinks
 *Requires Analytics*
@@ -264,9 +265,9 @@ On the analytics panel, all downloads can be viewed in the corresponding section
 For tracking outlinks to external websites or other apps opened from your application use the ``outlink`` method:
 
 ```java
-TrackHelper.track().outlink(new URL("https://www.google.com")).with(getTracker());
+TrackHelper.track().outlink(new URL("yourScheme://address.app")).with(getTracker());
 ```
-* A URL (required) – defines the outlink target. HTTPS, HTTP and FTP are are valid.
+* A outlink (required) – a link to external resource.
 
 ### Tracking search operations
 *Requires Analytics*
@@ -302,7 +303,7 @@ TrackHelper.track().impression("Android content impression").piece("banner").tar
 By default, goals are defined as "matching" parts of the screen path or screen title. If you want to trigger a conversion manually or track some user interaction, call the method ``goal``. [Read more about what a goal is in the Help Center.](https://help.piwik.pro/support/reports/goals/)
 
 ```java
-TrackHelper.track().goal(1).revenue(revenue).with(tracker)
+TrackHelper.track().goal("27ecc5e3-8ae0-40c3-964b-5bd8ee3da059").revenue(revenue).with(tracker)
 ```
 * A goal (required) – a tracking request will trigger a conversion for the goal of the website being tracked with this ID.
 
@@ -345,7 +346,7 @@ TrackHelper.track().order("orderId",124144).subTotal(33110).tax(9890).shipping(1
 ### Tracking campaigns
 *Requires Analytics*
 
-Tracking [campaigns](https://help.piwik.pro/support/reports/campaign-report/) URLs configured with the online *Campaign URL Builder tool*, allow you to measure how different campaigns (for example with Facebook ads or direct emails) bring traffic to your application. You can track these URLs from the application via the ``campaign`` method:
+Tracking [campaigns](https://help.piwik.pro/support/reports/campaign-report/) URLs configured with the online [Campaign URL Builder tool](https://piwik.pro/url-builder-tool/), allow you to measure how different campaigns (for example with Facebook ads or direct emails) bring traffic to your application. You can track these URLs from the application via the ``campaign`` method:
 
 ```java
 TrackHelper.track().campaign(new URL("http://example.org/offer.html?pk_campaign=Email-SummerDeals&pk_keyword=LearnMore")).with(getTracker());
@@ -366,21 +367,40 @@ To set the custom variable of the screen scope, use the ``variable`` method in t
 
 ```java
 TrackHelper.track()
+       .variable(1, "filter", "price")
+       .variable(2, "language", "en");
+
+TrackHelper.track()
        .screen("/custom_vars")
        .title("Custom Vars")
-       .variable(1, "filter", "price")
-       .variable(2, "language", "en")
        .with(getTracker());
 ```
+
+When screen custom variable is set and the screen event is called, the screen custom variable will be erased from the list of screen custom variables.
+The above code can also be written in the following way.
+
+```java
+TrackHelper.track()
+       .variable(1, "filter", "price")
+       .variable(2, "language", "en")
+       .screen("/custom_vars")
+       .title("Custom Vars")
+       .with(getTracker());
+```
+
 To use the custom variable of the visit scope, use the ``visitVariables`` method in the tracking chain:
 
 ```java
 TrackHelper.track()
        .visitVariables(1, "filter", "price")
-       .visitVariables(2, "language", "en")
+       .visitVariables(2, "language", "en");
+TrackHelper.track()
        .event("category", "action")
        .with(tracker);
 ```
+
+In contrast to the screen custom variables, the visit custom variable will not be erased when the event is called.
+
 Please note that the [Default custom variables](#default-custom-variables) option is enabled by default. With this option turned on, use the custom variables with indexes greater than 3 or the visit scope custom variables with indexes 1-3.
 
 In case you don't need the default custom variable, you can disable it. See below the section regarding default custom variables and how to disable them.
@@ -411,11 +431,14 @@ TrackHelper.track()
 ```java
 TrackHelper.track()
        .dimension(1, "visit")
-       .dimension(2, "billing")
+       .dimension(2, "billing");
+TrackHelper.track()
        .event("category", "action")
        .with(tracker);
 ```
 ``1`` and ``2`` are our dimension slots and ``visit``, ``billing`` are the dimension values for the tracked event.
+
+Once an event is triggered, the dimensions are deleted and will not be sent with the next event. If you want to send dimensions with the next event, you must set them again.
 
 ### Tracking user profile attributes
 *Requires Audience Manager*
@@ -447,7 +470,21 @@ To turn off automatic fetch, use the ``setTrackDeviceId(boolean isTracked)`` met
 ```java
 getTracker().setTrackDeviceId(false);
 ```
-After calling the ``setTrackDeviceId`` method, the ``DEVICE_ID`` variable will not be set if the data anonymization is enabled.
+
+To set custom deviceID, use the ``setDeviceId(String deviceID)`` method:
+
+```java
+getTracker().setDeviceId(String deviceID);
+```
+
+If custom ``deviceID`` value is not set, then default automatically generated ``deviceID`` value is assigned.
+You can get ``deviceID`` via ``getDeviceId()`` method:
+
+```java
+getTracker().getDeviceId();
+```
+
+``deviceID`` will not be sent if the data anonymization is enabled.
 
 Profile attributes for the user that are tracked will be shown on the Audience Manager - Profile Browser tab.
 
@@ -518,6 +555,8 @@ getTracker().setUserId("John Doe");
 ```
 * A UserID (required) – any non-empty unique string identifying the user. Passing null will delete the current UserID
 
+``userID`` will not be send if the data anonymization is enabled.
+
 ### User email address
 *Used only by Audience Manager*
 
@@ -527,6 +566,8 @@ The user email address is an optional parameter for user identification. Similar
 getTracker().setUserMail("john@doe.com");
 ```
 * A userMail (required) – any non-null string representing email address
+
+``userMail`` will not be send if the data anonymization is enabled.
 
 Setting up an email helps the Audience Manager to enrich existing profiles or merge profiles which come from other sources (if they also have an email). Check [Tracking user profile attributes](#tracking-user-profile-attributes) for more information.
 
@@ -558,9 +599,11 @@ tracker.startNewSession();
 
 ### Dispatching
 
-Tracked events are stored temporarily on the queue and dispatched in batches every 30 seconds (default setting). This behavior can be changed with following options:
+Tracked events are stored temporarily on the queue and by default dispatched in batches every 3000 miliseconds (30 seconds). This behavior can be changed with following options:
 * ``setDispatchInterval(0)`` - incoming events will be dispatched immediately
 * ``setDispatchInterval(-1)`` - incoming events will not be dispatched automatically. This lets you gain full control over dispatch process, by using manual dispatch, as in the example below.
+* A dispatchInterval (required) – dispatch interval time in ms.
+
 
 ```java
     Tracker tracker = ((MyApplication) getApplication()).getTracker();
@@ -575,23 +618,7 @@ Tracked events are stored temporarily on the queue and dispatched in batches eve
     }
 ```
 
-In case when more than one event is in the queue, data is sent in bulk (using POST method with JSON payload). It is possible to compress the data before dispatch by using ``setDispatchGzipped`` method during the app initialization. See the example below for details:
-
-```java
-    private void initPiwik() {
-      ...
-
-        //configure dispatcher to compress JSON with gzip
-        getTracker().setDispatchGzipped(true);
-
-      ...
-    }
-```
-
-To take advantage of compressed requests you have to configure HTTP server of the tracker. Use `mod_deflate` (on Apache) or `lua_zlib` (on Nginx). Helpful resources:
-* [lua_zlib](https://github.com/brimworks/lua-zlib)
-* [lua-nginx-module](https://github.com/openresty/lua-nginx-module/)
-* [inflate.lua samples](https://gist.github.com/davidcaste/05b2f9461ebe4a3bb3fc)
+In case when more than one event is in the queue, data is sent in bulk (using POST method with JSON payload). 
 
 
 ### Custom queries
