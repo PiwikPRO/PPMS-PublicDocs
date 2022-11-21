@@ -9,16 +9,42 @@ Piwik PRO SDK for iOS
 * Copy and note the Website ID from "Administration > Websites & apps > Installation" and your server address.
 
 ### Client
-#### Including the library
+#### SDK integration - CocoaPods
 Use the following in your Podfile:
 
 ```
 pod 'PiwikPROSDK', '~> VERSION'
 ```
 
-Replace `VERSION` with the latest release name, e.g. ``'~> 1.0.7'``.
+Replace `VERSION` with the latest release name, e.g. ``'~> 1.1.5'``.
+You can check the latest version of the SDK on the [project page](https://cocoapods.org/pods/PiwikPROSDK).
+
 
 Then run ``pod install``. In every file you wish to use the PiwikPROSDK, don't forget to import it.
+
+#### SDK integration - Swift Package Manager
+
+Before you start, make sure you are using Xcode version 12 or later.
+
+Starting with version 1.1.4 of the Piwik Pro SDK for iOS, we have introduced support for Swift Package Manager for use with Xcode.
+
+1. If you are migrating a project from a CocoaPods, run the command `pod deintegrate` to remove CocoaPods from your Xcode project. Then remove the remaining Piwik Pro SDK files.
+
+2. To install the Piwik Pro SDK, in Xcode navigate to File > Add Packages. Altermatively, go to your project's settings, select `Package Dependencies` tab and click on the `+` button.
+
+3. Enter the URL of our Piwik PRO SDK GitHub repository 
+```
+https://github.com/PiwikPRO/piwik-pro-sdk-framework-ios
+```
+4. Select the [version](https://github.com/PiwikPRO/piwik-pro-sdk-framework-ios/tags) of Piwik Pro SDK you would like to use. For new projects, we recommend using the latest version. Bear in mind that Piwik Pro SDK is supporting Swift Package Manager since version 1.1.4.
+
+5. Click on "Add Package" button and wait for Xcode to finish downloading the Swift Package into your project.
+
+6. Next, select project in the Project Navigator. In the target list, select the target that builds the application and then click on the `Build Settings` tab. Find `Other Linker Flags` setting and double-click on it.
+If the `-ObjC` flag is not in the list, click + and add it.
+
+ *If you do not add the `-ObjC` flag, some parts of the API may not be visible and unexpected Piwik PRO SDK behaviour may occur while the application is running. You may experience some difficult to understand crash messages
+ "+[NSString visitorID]: unrecognized selector sent to class 0x1ef0739a8" and other difficult to predict issues.*
 
 #### Configuration
 
@@ -65,7 +91,7 @@ SDK supports several different types of actions which can be tracked. If the eve
 
 Anonymization is the feature that allows tracking a user's activity for aggregated data analysis even if the user doesn't consent to track the data. If a user does not agree to be tracked, he will not be identified as the same person across multiple sessions.
 
-Personal data will not be tracked during the session (i.e. [user ID](#user-id), [device ID](#device-id))
+Personal data will not be tracked during the session ([user ID](#user-id), [email](#user-email-address) and [device ID](#device-id))
 If the anonymization is enabled, a new [visitor ID](#visitor-id) will be created each time the application starts.
 
 Anonymization is enabled by default.
@@ -91,14 +117,19 @@ The basic functionality of the SDK is the tracking screen views which represent 
 
 * A screen name (required) – title of the action being tracked. The appropriate screen path will be generated for this action.
 
+It is also possible to track multiple views in one event. For that you can use the method ``sendViews``:
+
+```
+[[PiwikTracker sharedInstance] sendViews:@[ @"menu", @"view 1", @"screen view 2" ]];
+```
 
 ### Tracking custom events
 *Requires Analytics*
 
-Custm events can be used to track the user's interaction with various custom components and features of your application, such as playing a song or a video. Category and action parameters are required while the name and value are optional. You can read more about events in the Piwik PRO [documentation](https://help.piwik.pro/analytics/custom-events-overview/) and [ultimate guide to event tracking](https://piwik.pro/blog/event-tracking-ultimate-guide/).
+Custm events can be used to track the user's interaction with various custom components and features of your application, such as playing a song or a video. Category and action parameters are required while the name and value are optional.
 
 ```
-[[PiwikTracker sharedInstance] sendEventWithCategory:@"Video" action:@"Play" name:@"Pirates" value:@185];
+[[PiwikTracker sharedInstance] sendEventWithCategory:@"Video" action:@"Play" name:@"Pirates" value:@185 path: @"/main/actionScreen"];
 ```
 
 The ``sendEventWithCategory`` method allows to specify next parameters:
@@ -111,37 +142,38 @@ The ``sendEventWithCategory`` method allows to specify next parameters:
 
 * A value (optional) – this Float defines a numerical value associated with the event. For example, if you were tracking "Buy" button clicks, you might log the number of items being purchased, or their total cost.
 
+* A path (optional) – the path under which this event occurred.
+
+For more resources, please visit:
+* [Custom Events Overview](https://help.piwik.pro/support/getting-started/custom-event/)
+* [Ultimate guide to event tracking](https://piwik.pro/blog/event-tracking-ultimate-guide/).
+
 
 ### Tracking exceptions
 *Requires Analytics*
 
-Tracking exceptions allow the measurement of exceptions and errors in your app. Exceptions are tracked on the server in a similar way as screen views, however, URLs internally generated for exceptions always use the _fatal_ or _caught_ prefix and, additionally, if the ``isPrefixingEnabled`` option is enabled, then the additional _exception_ prefix is added.
+Tracking exceptions allow the measurement of exceptions and errors in your app. Exceptions are tracked on the server in a similar way as screen views.
 
 ```
-[[PiwikTracker sharedInstance] sendExceptionWithDescription:@"Content download error" isFatal:YES];
+[[PiwikTracker sharedInstance] sendExceptionWithDescription:@"Content download error"];
 ```
 * A description (required) – provides the exception message.
-
-* An isFatal (required) – true if an exception is fatal.
 
 Bear in mind that Piwik is not a crash tracker, use this sparingly.
 
 ### Tracking social interactions
 *Requires Analytics*
 
-Social interactions such as likes, shares and comments in various social networks can be tracked as below. This, again, is tracked in a similar way as screen views but the _social_ prefix is used when the default ``isPrefixingEnabled`` option is enabled.
+Social interactions such as likes, shares and comments in various social networks can be tracked as below. 
 
 ```
-[[PiwikTracker sharedInstance] sendSocialInteractionWithAction:@"like" target:@"Dogs" network:@"Facebook"];
+[[PiwikTracker sharedInstance] sendSocialInteractionWithAction:@"like" network:@"Facebook"];
 ```
 
 * An interaction (required) – defines the social interaction, e.g. "Like".
 
 * A network (required) – defines the social network associated with interaction, e.g. "Facebook"
 
-* A target (optional) – the target for which this interaction occurred, e.g. "Dogs".
-
-The URL corresponds to String, which includes network, interaction and target parameters separated by a slash.
 
 ### Tracking downloads
 *Requires Analytics*
@@ -205,10 +237,12 @@ You can track the impression of the ad in your application as below:
 
 When the user interacts with the ad by tapping on it, you can also track it with a similar method:
 ```
-[[PiwikTracker sharedInstance] sendContentInteractionWithName:@"name" piece:@"piece" target:@"target"];
+[[PiwikTracker sharedInstance] sendContentInteractionWithName:@"name" interaction:@"click" piece:@"piece" target:@"target"];
 ```
 
 * A contentName (required) – the name of the content, e.g. "Ad Foo Bar".
+
+* A interaction (required) – type of interaction, e.g. click.
 
 * A piece (optional) – the actual content. For instance the path to an image, video, audio, any text.
 
@@ -217,10 +251,10 @@ When the user interacts with the ad by tapping on it, you can also track it with
 ### Tracking goals
 *Requires Analytics*
 
-Goaltracking is used to measure and improve your business objectives. To track goals, you first need to configure them on the server in your web panel. Goals such as, for example, subscribing to a newsletter can be tracked as below with the goal ID that you will see on the server after configuring the goal and optional revenue. The currency for the revenue can be set in the Piwik PRO Analytics settings. You can read more about goals [here](https://help.piwik.pro/analytics/creating-managing-goals/).
+Goaltracking is used to measure and improve your business objectives. To track goals, you first need to configure them on the server in your web panel. Goals such as, for example, subscribing to a newsletter can be tracked as below with the goal ID that you will see on the server after configuring the goal and optional revenue. The currency for the revenue can be set in the Piwik PRO Analytics settings. You can read more about goals [here](https://help.piwik.pro/support/reports/goals/).
 
 ```
-[[PiwikTracker sharedInstance] sendGoalWithID:2 revenue:@30];
+[[PiwikTracker sharedInstance] sendGoalWithID:@"27ecc5e3-8ae0-40c3-964b-5bd8ee3da059" revenue:@30];
 ```
 * A goal (required) – tracking request will trigger a conversion for the goal of the website being tracked with this ID.
 
@@ -258,10 +292,10 @@ Ecommerce transactions (in-app purchases) can be tracked to help you improve you
 * Items (optional) –  the items included in the order, use the ``addItemWithSku`` method to instantiate items
 
 
-### Tracking campaigns
+### Tracking deep links and campaigns
 *Requires Analytics*
 
-Tracking campaign URLs created with the online [Campaign URL Builder tool](https://piwik.pro/url-builder-tool/) allow you to measure how different campaigns (for example with Facebook ads or direct emails) bring traffic to your application. You can register a custom URL schema in your project settings to launch your application when users tap on the campaign link. You can track these URLs from the application delegate as below. The campaign information will be sent to the server together with the next analytics event. More details about campaigns can be found in the [documentation](https://help.piwik.pro/support/reports/campaign-report/).
+Tracking campaign URLs created with the online [Campaign URL Builder tool](https://piwik.pro/url-builder-tool/) allow you to measure how different campaigns (for example with Facebook ads or direct emails) bring traffic to your application. You can register a custom URL schema in your project settings to launch your application when users tap on the campaign link. The campaign information will be sent to the server together with the next ``sendView`` event. More details about campaigns can be found in the [documentation](https://help.piwik.pro/support/reports/campaign-report/). You can track these URLs from the application delegate as below.
 
 ```
 - (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary *)options
@@ -269,7 +303,7 @@ Tracking campaign URLs created with the online [Campaign URL Builder tool](https
     return [[PiwikTracker sharedInstance] sendCampaign:url.absoluteString];
 }
 ```
-* A URL (required) – the campaign URL. HTTPS, HTTP and FTP are valid - the URL must contain a campaign name and keyword parameters.
+* A URL (required) – the campaign URL. The URL must contain a campaign name and keyword parameters.
 
 ### Tracking with custom variables
 *The feature will soon be disabled. We recommend using [custom dimensions](#tracking-with-custom-dimensions) instead.*
@@ -294,7 +328,7 @@ It is required for names and values to be encoded in UTF-8.
 ### Tracking with custom dimensions
 *Requires Analytics*
 
-You can also use custom dimensions to track custom values as below. Custom dimensions first have to be defined on the server in your web panel. More details about custom dimensions can be found in the [documentation](https://help.piwik.pro/analytics/custom-dimensions/):
+You can also use custom dimensions to track custom values as below.
 ```
 [[PiwikTracker sharedInstance] setCustomDimensionForID:1 value:@"english"];
 ```
@@ -304,6 +338,9 @@ You can also use custom dimensions to track custom values as below. Custom dimen
 * A value (required) – this String defines the value of a specific custom dimension such as "English". Limited to 200 characters. 
 
 Assigning a value to an already used index will overwrite the previously assigned value.
+Note that the custom dimensions data is not sent by itself, but only with other tracking events.
+
+Custom dimensions first have to be defined on the server in your web panel. More details about custom dimensions can be found in the [documentation](https://help.piwik.pro/analytics/custom-dimensions/):
 
 ### Tracking profile attributes
 *Requires Audience Manager*
@@ -327,6 +364,8 @@ Aside from attributes, each event also sends parameters, that are retrieved from
 * DEVICE_ID - it is a device IDFA, which is not set by default (due to platform limitations). In order to set device ID see [Device ID](#device-id) section below.
 
 Profile attributes for the user that are tracked will be shown on the Audience Manager - Profile Browser tab.
+
+Audience manager events are dispatched together with analytics events. Therefore, settings set in the tracker for analytics events processing (dispatch interval, cache size and age, etc.) will be same for audience manager events. Once the audience manager event is dispatched, it is no longer stored locally.
 
 ### Reading user profile attributes
 *Requires Audience Manager*
@@ -375,8 +414,10 @@ The user ID is an additional, optional non-empty unique string identifying the u
 [PiwikTracker sharedInstance].userID = @"User Name";
 ```
 * `userID` (required) – any non-empty unique string identifying the user. Passing null will delete the current user ID
+``userID`` will not be sent if the data anonymization is enabled.
 
 ### User email address
+*Used only by Audience Manager*
 
 The user email address is another additional, optional string for user identification - if the provided user email is sent to the audience manager part when you send the custom profile attribute configured on the audience manager web panel. Similarly to the user ID, it allows the association of data from various platforms (for example iOS and Android) to the same user as long as the same email is used on all platforms. To set user email use the ``userEmail`` field:
 
@@ -387,9 +428,17 @@ The user email address is another additional, optional string for user identific
 
 It is recommended to set the user email to track audience manager profile attributes as it will create a better user profile.
 
+``userMail`` will not be send if the data anonymization is enabled.
+
 ### Visitor ID
 
 SDK uses various IDs for tracking the user. The main one is visitor ID, which is internally randomly generated once by the SDK on the first usage and is then stored locally on the device. The visitor ID will never change unless the user removes the application from the device so that all events sent from his device will always be assigned to the same user in the Piwik PRO web panel. 
+It is also possible to set the VisitorID manually:
+
+```
+[PiwikTracker sharedInstance].visitorID = @"12345678901234fa";
+```
+
 When the anonymization is enabled, a new visitor id is generated each time the application is started.
 We recommend using userID instead of VisitorID.
 
@@ -402,7 +451,14 @@ A session represents a set of user's interactions with your app. By default, Ana
 ```
 * sessionTimeout (required) – session timeout time in seconds. Default: 1800 seconds (30 minutes).
 
+You can manually start a new session when sending a hit to Piwik by using the ``startNewSession`` method.
+
+```
+[PiwikTracker sharedInstance].startNewSession;
+```
+
 ### Device ID
+*Used only by Audience Manager*
 
 The device ID is used to track the IDFA (identifier for advertising). The IDFA is an additional, optional non-empty unique string identifying the device. If you wish to use the IDFA for tracking then you should set the device ID by yourself. Note that if you plan to send your application to the App Store and your application uses IDFA, but does not display ads, then it may be rejected in the App Store review process. You can set the IDFA as in the example below:
 ```
@@ -412,21 +468,23 @@ NSString *idfa = [[[ASIdentifierManager sharedManager] advertisingIdentifier] UU
 [PiwikTracker sharedInstance].deviceID = idfa;
 ```
 
+``deviceID`` will not be sent if the data anonymization is enabled.
+
+
 ### Dispatching
 
 All tracking events are saved locally and by default. They are automatically sent to the server every 30 seconds. You can change this interval to any other number as below:
+* ``[PiwikTracker sharedInstance].dispatchInterval = 0`` - incoming events will be dispatched immediately
+* ``[PiwikTracker sharedInstance].dispatchInterval = -1`` - incoming events will not be dispatched automatically. This lets you gain full control over dispatch process, by using manual dispatch:
 ```
-[PiwikTracker sharedInstance].dispatchInterval = 60;
+[PiwikTracker sharedInstance].dispatchInterval = -1;
+[[PiwikTracker sharedInstance] sendExceptionWithDescription:@"Content download error"];
+[PiwikTracker sharedInstance].dispatch;
 ```
 
-### Gzip compression
+* A dispatchInterval (required) – dispatch interval time in seconds.
 
-You can enable gzip compression for communication with the server as below. By default, requests to the server do not use compression.
-```
-[PiwikTracker sharedInstance].useGzip = YES;
-```
-This feature must also be set on server-side using mod_deflate/APACHE or lua_zlib/NGINX
-([lua_zlib](https://github.com/brimworks/lua-zlib) - [lua-nginx-module](https://github.com/openresty/lua-nginx-module/) - [inflate.lua samples](https://gist.github.com/davidcaste/05b2f9461ebe4a3bb3fc)).
+In case when more than one event is in the queue, data is sent in bulk (using POST method with JSON payload). 
 
 ### Default custom variables
 
@@ -447,7 +505,7 @@ You can set limits for storing events related to maximum size and time for which
 
 * `maxNumberOfQueuedEvents` (required) – the maximum number of events after which events in the queue are deleted. By default, the limit is set to 500.
 
-* `maxAgeOfQueuedEvents` (required) – time in ms after which events are deleted. By default, the limit is set to 7 * 24 * 60 * 60 * 1000 ms = 7 days.
+* `maxAgeOfQueuedEvents` (required) – time in ms after which events are deleted. By default, the limit is set to 24 * 60 * 60 = 24 hours.
 
 
 ### Opt-out
@@ -456,4 +514,14 @@ You can disable all tracking in the application by using the opt-out feature. No
 ```
 [PiwikTracker sharedInstance].optOut = YES;
 ```
+
+
+### Dry run
+
+The SDK provides a dryRun flag that, when set, prevents any data from being sent to Piwik and instead prints them in the console. The dryRun flag should be set whenever you are testing or debugging an implementation and do not want test data to appear in your Piwik reports. To set the dry run flag, use:
+
+```
+[PiwikTracker sharedInstance].dryRun = YES;
+```
+* dryRun (required) – a flag that indicates the state of dry run mode. Set it to `NO` to disable dry run.
 

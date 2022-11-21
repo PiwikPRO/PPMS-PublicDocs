@@ -238,7 +238,6 @@ Tracking [campaigns](https://help.piwik.pro/support/reports/campaign-report/) UR
 * A URL (required) – the campaign URL. HTTPS, HTTP and FTP are valid, however, the URL must contain campaign name and keyword parameters.
 
 The information contained in the campaign URL or the deep link will be tracked when the first screen event is triggered.
-To track campaign parameters correctly, it is necessary to configure them in the website ID settings in the Campaign parameters section. 
 
 
 ### Tracking downloads
