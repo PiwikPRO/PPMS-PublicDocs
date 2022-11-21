@@ -53,7 +53,7 @@ public class YourApplication extends PiwikApplication{
 public class YourApplication extends Application {
     private Tracker tracker;
     public synchronized Tracker getTracker() {
-        if (tracker == null) tracker = Piwik.getInstance(this).newTracker(new TrackerConfig("https://your.piwik.pro.server.com", "01234567-89ab-cdef-0123-456789abcdef"));
+        if (tracker == null) tracker = Piwik.getInstance(this).newTracker(new TrackerConfig("https://your.piwik.pro.server.com", "01234567-89ab-cdef-0123-456789abcdef", "Default Tracker"));
         return tracker;
     }
 }
@@ -161,6 +161,12 @@ In order to bind the tracker to your applications, use the ``screens`` method. T
 TrackHelper.track().screens(getApplication()).with(tracker);
 ```
 
+Alternatively, it is also possible to define a list of views that will be sent with a single event:
+```java
+TrackHelper.track().screens(Arrays.asList("android_test/test1", "android_test/test2")).with(tracker);
+```
+
+
 ### Tracking custom events
 *Requires Analytics*
 
@@ -191,7 +197,6 @@ For more resources, please visit:
 Caught exceptions are errors in your app for which you've defined an exception handling code, such as the occasional timeout of a network connection during a request for data. Exceptions are tracked on the server in a similar way as screen views. 
 
 If you provide cought exception to the ``exception`` method, URL will contain the package name, activity path, method name and line number where crash occurred.
-
 Measure a caught exception by setting the exception field values on the tracker and sending the hit, as with this example:
 
 ```java
@@ -221,18 +226,18 @@ Social interactions such as likes, shares and comments in various social network
 * A network (required) – defines social network associated with interaction, e.g. "Facebook"
 
 
-### Deep links
+### Tracking deep links and campaigns
 *Requires Analytics*
 
-You can track deep links along with the passed campaign parameters in the deep link.
+Tracking [campaigns](https://help.piwik.pro/support/reports/campaign-report/) URLs configured with the online [Campaign URL Builder tool](https://piwik.pro/url-builder-tool/), allow you to measure how different campaigns (for example with Facebook ads or direct emails) bring traffic to your application. For this purpose you may use a deep link with the campaign parameters. You can track these URLs from the application via the ``campaign`` method:
 
 ```java
-    TrackHelper.track().campaign("https://www.example.com?pk_campaign=WinterSale&pk_keyword=websiteAdd");
+    TrackHelper.track().campaign("https://www.example.com?pk_campaign=Email-SummerDeals&pk_keyword=LearnMore");
 ```
 
-* A URL (required) – the URL of the downloaded content.
+* A URL (required) – the campaign URL. HTTPS, HTTP and FTP are valid, however, the URL must contain campaign name and keyword parameters.
 
-The information contained in the deep link will be tracked when the first screen event is triggered.
+The information contained in the campaign URL or the deep link will be tracked when the first screen event is triggered.
 To track campaign parameters correctly, it is necessary to configure them in the website ID settings in the Campaign parameters section. 
 
 
@@ -267,7 +272,8 @@ For tracking outlinks to external websites or other apps opened from your applic
 ```java
 TrackHelper.track().outlink(new URL("yourScheme://address.app")).with(getTracker());
 ```
-* A outlink (required) – a link to external resource.
+* A outlink (required) – defines the outlink target.
+
 
 ### Tracking search operations
 *Requires Analytics*
@@ -291,7 +297,14 @@ You can track an impression of an ad in your application as below.
 TrackHelper.track().impression("Android content impression").piece("banner").target("https://www.dn.se/").with(getTracker());
 ```
 
+When the user interacts with the ad by tapping on it, you can also track it with a similar method:
+```java
+TrackHelper.track().interaction("Android content impression", "click").piece("banner").target("https://www.dn.se/").with(getTracker());
+```
+
 * A contentName (required) – the name of the content, e.g. "Ad Foo Bar".
+
+* A interaction (required) – type of interaction, e.g. click.
 
 * A piece (optional) – the actual content. For instance, the path to an image, video, audio or any text.
 
@@ -343,17 +356,6 @@ TrackHelper.track().order("orderId",124144).subTotal(33110).tax(9890).shipping(1
 * `items` (optional) –  the items included in the order, use the ``EcommerceItems`` class to instantiate items
 
 
-### Tracking campaigns
-*Requires Analytics*
-
-Tracking [campaigns](https://help.piwik.pro/support/reports/campaign-report/) URLs configured with the online [Campaign URL Builder tool](https://piwik.pro/url-builder-tool/), allow you to measure how different campaigns (for example with Facebook ads or direct emails) bring traffic to your application. You can track these URLs from the application via the ``campaign`` method:
-
-```java
-TrackHelper.track().campaign(new URL("http://example.org/offer.html?pk_campaign=Email-SummerDeals&pk_keyword=LearnMore")).with(getTracker());
-```
-
-* A URL (required) – the campaign URL. HTTPS, HTTP and FTP are valid, however, the URL must contain campaign name and keyword parameters.
-
 ### Tracking custom variables 
 *The feature will soon be disabled. We recommend using [custom dimensions](#tracking-custom-dimensions) instead.*
 
@@ -376,7 +378,7 @@ TrackHelper.track()
        .with(getTracker());
 ```
 
-When screen custom variable is set and the screen event is called, the screen custom variable will be erased from the list of screen custom variables.
+When screen custom variable is set and the screen event is called, the screen custom variable will be removed from the list of screen custom variables.
 The above code can also be written in the following way.
 
 ```java
@@ -399,7 +401,7 @@ TrackHelper.track()
        .with(tracker);
 ```
 
-In contrast to the screen custom variables, the visit custom variable will not be erased when the event is called.
+In contrast to the screen custom variables, the visit custom variable will not be removed when the event is called.
 
 Please note that the [Default custom variables](#default-custom-variables) option is enabled by default. With this option turned on, use the custom variables with indexes greater than 3 or the visit scope custom variables with indexes 1-3.
 
@@ -438,12 +440,12 @@ TrackHelper.track()
 ```
 ``1`` and ``2`` are our dimension slots and ``visit``, ``billing`` are the dimension values for the tracked event.
 
-Once an event is triggered, the dimensions are deleted and will not be sent with the next event. If you want to send dimensions with the next event, you must set them again.
+Once the event is triggered, the dimensions are deleted and will not be sent with the next event. If you want to send dimensions with the next event, you must set them again.
 
 ### Tracking user profile attributes
 *Requires Audience Manager*
 
-The Audience Manager stores visitors' profiles which have data from a variety of sources. One of them can be a mobile application. It is possible to enrich the profiles with more attributes by passing any key-value pair e.g. gender: male, favourite food: Italian, etc. It is recommended to set additional user identifiers such as [email](#user-email-address) or [User ID](#user-id) which will allow the enrichment of existing profiles or merging of profiles rather than creating a new profile. For example, if the user visited the website, performed some actions, filled in a form with his email (his data was tracked and profile created in Audience Manager) and afterwards started using a mobile application, the existing profile will be enriched only if the email was set. Otherwise, a new profile will be created.
+The Audience Manager stores visitors' profiles which have data from a variety of sources. One of them can be a mobile application. It is possible to enrich the profiles with more attributes by passing any key-value pair e.g. gender: male, favourite food: Italian, etc. It is recommended to set additional user identifiers such as [email](#user-email-address) or [User ID](#user-id) which will allow the enrichment of existing profiles or merging of profiles rather than creating a new profile. For example, if the user visited the website, performed some actions, filled in a form with his email (his data was tracked and profile created in Audience Manager) and *Used only by Audience Manager* started using a mobile application, the existing profile will be enriched only if the email was set. Otherwise, a new profile will be created.
 
 For sending profile attributes use ``audienceManagerSetProfileAttribute`` method:
 
@@ -464,27 +466,7 @@ Aside from attributes, each event also sends parameters which are retrieved from
 * USER_ID - if it is set. [Read more](#user-id) about the User ID,
 * EMAIL - if it is set. [Read more](#user-email-address) about the email,
 * VISITOR_ID - always sent, ID of the mobile application user, generated by SDK
-* DEVICE_ID - an [Advertising ID](https://support.google.com/googleplay/android-developer/answer/6048248?hl=en) that, by default, is fetched automatically when the tracker instance is created.
-To turn off automatic fetch, use the ``setTrackDeviceId(boolean isTracked)`` method:
-
-```java
-getTracker().setTrackDeviceId(false);
-```
-
-To set custom deviceID, use the ``setDeviceId(String deviceID)`` method:
-
-```java
-getTracker().setDeviceId(String deviceID);
-```
-
-If custom ``deviceID`` value is not set, then default automatically generated ``deviceID`` value is assigned.
-You can get ``deviceID`` via ``getDeviceId()`` method:
-
-```java
-getTracker().getDeviceId();
-```
-
-``deviceID`` will not be sent if the data anonymization is enabled.
+* DEVICE_ID - an [Advertising ID](https://support.google.com/googleplay/android-developer/answer/6048248?hl=en) that, by default, is fetched automatically when the tracker instance is created. In order to set device ID see [Device ID](#device-id) section below.
 
 Profile attributes for the user that are tracked will be shown on the Audience Manager - Profile Browser tab.
 
@@ -555,7 +537,7 @@ getTracker().setUserId("John Doe");
 ```
 * A UserID (required) – any non-empty unique string identifying the user. Passing null will delete the current UserID
 
-``userID`` will not be send if the data anonymization is enabled.
+``userID`` will not be sent if the data anonymization is enabled.
 
 ### User email address
 *Used only by Audience Manager*
@@ -571,15 +553,43 @@ getTracker().setUserMail("john@doe.com");
 
 Setting up an email helps the Audience Manager to enrich existing profiles or merge profiles which come from other sources (if they also have an email). Check [Tracking user profile attributes](#tracking-user-profile-attributes) for more information.
 
+### Device ID
+*Used only by Audience Manager*
+
+The device ID is used to track the AAID (identifier for advertising). The AAID is an additional, non-empty unique string identifying the device. By default, device ID fetched automatically when the tracker instance is created.
+
+To turn off automatic fetch, use the ``setTrackDeviceId(boolean isTracked)`` method:
+
+```java
+getTracker().setTrackDeviceId(false);
+```
+
+To set custom deviceID, use the ``setDeviceId(String deviceID)`` method:
+
+```java
+getTracker().setDeviceId(String deviceID);
+```
+
+If custom ``deviceID`` value is not set, then default automatically generated ``deviceID`` value is assigned.
+You can get ``deviceID`` via ``getDeviceId()`` method:
+
+```java
+getTracker().getDeviceId();
+```
+
+``deviceID`` will not be sent if the data anonymization is enabled.
+Note that if you plan to send your application to the Google Play Store and your application uses AAID, you will have to ask the user of the application for the corresponding permission.
+
 ### Visitor ID
 
-To track user sessions on difference sources, the VisitorID parameter is used. VisitorID is randomly generated when the tracker instance is created, and stored between application launches. It is also possible to reset the VisitorID manually:
+To track user sessions on difference sources, the VisitorID parameter is used. VisitorID is randomly generated when the tracker instance is created, and stored between application launches. It is also possible to set the VisitorID manually:
 
 ```java
 tracker.setVisitorId("0123456789abcdef");
 ```
 * A VisitorID (required) – unique visitor ID, must be 16 characters hexadecimal string.
 
+When the anonymization is enabled, a new visitor id is generated each time the application starts.
 Every unique visitor must be assigned a different ID and this ID must not change after it is assigned. We recommend using UserID instead of VisitorID.
 
 ### Sessions
@@ -599,7 +609,7 @@ tracker.startNewSession();
 
 ### Dispatching
 
-Tracked events are stored temporarily on the queue and by default dispatched in batches every 3000 miliseconds (30 seconds). This behavior can be changed with following options:
+Tracked events are stored temporarily on the queue and by default dispatched in batches every 3000 miliseconds (30 seconds). This behavior can be changed with the following options:
 * ``setDispatchInterval(0)`` - incoming events will be dispatched immediately
 * ``setDispatchInterval(-1)`` - incoming events will not be dispatched automatically. This lets you gain full control over dispatch process, by using manual dispatch, as in the example below.
 * A dispatchInterval (required) – dispatch interval time in ms.
@@ -675,7 +685,7 @@ getTracker().setOptOut(true);
 
 ### Dry run
 
-The SDK provides a dryRun flag that, when set, prevents any data from being sent to Piwik. The dryRun flag should be set whenever you are testing or debugging an implementation and do not want test data to appear in your Piwik reports. To set the dry run flag, use:
+The SDK provides a dryRun flag that, when set, prevents any data from being sent to Piwik and instead prints them in the console. The dryRun flag should be set whenever you are testing or debugging an implementation and do not want test data to appear in your Piwik reports. To set the dry run flag, use:
 
 ```java
 getTracker().setDryRunTarget(Collections.synchronizedList(new ArrayList<Packet>()));
