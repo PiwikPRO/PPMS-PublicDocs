@@ -318,7 +318,7 @@ paths:
     get:
       summary: List apps & meta sites
       description: >
-        Get list of apps with meta sites
+        Get list of apps with meta sites. App with `demo` type will be always first on the list if exists (sorting method is irrelevant)
 
 
 
@@ -336,6 +336,7 @@ paths:
         - $ref: "#/components/parameters/Offset"
         - $ref: "#/components/parameters/Limit"
         - $ref: "#/components/parameters/Search"
+        - $ref: "#/components/parameters/SortAppsWithMetasites"
         - $ref: "#/components/parameters/Action"
       responses:
         "200":
@@ -504,6 +505,21 @@ components:
           - -name
           - -created_at
           - -updated_at
+        default: name
+    SortAppsWithMetasites:
+      in: query
+      name: sort
+      description: Sort field - can be reversed by adding dash before field name e.g (-name)
+      required: false
+      schema:
+        type: string
+        enum:
+          - name
+          - type
+          - created_at
+          - -name
+          - -type
+          - -created_at
         default: name
   responses:
     ListBadRequest:
