@@ -6,7 +6,7 @@ Channel detection
 Recognized channels
 -----------------
 
-Piwik recognizes following channels:
+Piwik PRO Analytics recognizes following channels:
 
 - Campaign
 - Direct
@@ -17,7 +17,7 @@ Piwik recognizes following channels:
 Channel detection approach
 -----------------
 
-This section describes how Piwik detects a channel from the tracked event. The order this section is arranged by represents the order of detection. Detection stops when the conditions of the currently processed step are met.
+This section describes how Piwik PRO Analytics detects a channel from the tracked event. The order this section is arranged by represents the order of detection. Detection stops when the conditions of the currently processed step are met.
 
 Campaign
 ~~~~~~~~~~~~~~~~~~
@@ -49,7 +49,7 @@ When detecting campains we don't consider only the GET query parameters but also
     .. note::
         **Example**: you've configured following parameter for the campaign name:  ``pk_campaign``, when you track URL like ``http://a.tld/index?pk_campaign=abc#pk_campaign=123`` the campaign name assigned to the processed Event will be ``123`` because this was the value of the ``pk_campaign`` nested in the URL fragment.
 
-Maximal allowed length for each of the campaign dimensions is `1024 characters`.
+Maximum allowed length for each of the campaign dimensions is `1024 characters`.
 
 Direct
 ~~~~~~~~~~~~~~~~~~
