@@ -13,5 +13,4 @@ Our web API lets you access data and features in Piwik PRO. Whether you need to 
 
    getting-started/index.rst
    resources/index.rst
-   methods-beta/index.rst
    methods/index.rst
