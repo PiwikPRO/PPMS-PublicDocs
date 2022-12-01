@@ -41,7 +41,7 @@ Developer docs and guides
         }
     </script>
     <div class="turbobox td_center">
-        <img src="/_static/images/api-call-definition/marcus-rocket.png" alt="Developer portal in Piwik PRO">
+        <img src="/_static/images/marcus-rocket.png" alt="Developer portal in Piwik PRO">
     </div>
     <div class="turbobox td_stretch td_left">
 													<div class="tx-4 tx-md-6 tx-sm-10">
