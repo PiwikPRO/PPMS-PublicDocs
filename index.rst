@@ -40,7 +40,9 @@ Developer docs and guides
             }
         }
     </script>
-    <div class="turbobox td_center">
+    <div class="turbobox td_center" style="margin-left: 100px !important;">
+    <img src="_static/images/marcus-rocket.png" alt="Developer portal in Piwik PRO">
+</div>>
         <img src="_static/images/marcus-rocket.png" alt="Developer portal in Piwik PRO">
     </div>
     <div class="turbobox td_stretch td_left">
