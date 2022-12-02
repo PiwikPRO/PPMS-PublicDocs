@@ -7,7 +7,7 @@ Analytics
 .. toctree::
    :maxdepth: 1
 
-   getting-started.rst
+   getting-started.rst 
    plain-javascript.rst
    frameworks/index.rst
    methods/index.rst
