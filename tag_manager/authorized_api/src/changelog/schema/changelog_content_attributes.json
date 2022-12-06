@@ -314,6 +314,10 @@
                                             {
                                                 "title": "Url parameter variable options",
                                                 "$ref": "../../variables/schema/variable_type_attributes.json#/definitions/url_parameter_options_attribute"
+                                            },
+                                            {
+                                                "title": "Lookup table variable options",
+                                                "$ref": "../../variables/schema/variable_type_attributes.json#/definitions/lookup_table_variable_options_attribute"
                                             }
                                         ]
                                     }
@@ -371,6 +375,10 @@
                         {
                             "$ref": "../../variables/schema/variable_type_attributes.json#/definitions/url_parameter_options_attribute",
                             "title": "Url parameter variable options"
+                        },
+                        {
+                            "title": "Lookup table variable options",
+                            "$ref": "../../variables/schema/variable_type_attributes.json#/definitions/lookup_table_variable_options_attribute"
                         }
                     ]
                 }
