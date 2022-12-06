@@ -1,13 +1,13 @@
 .. _deleteCustomVariable():
 
-===================================
+============================================
 deleteCustomVariable()
 
 .. raw: html
 
 <img src="http://www.w3.org/2000/svg"></img>
 
-===================================
+============================================
 
 .. deprecated::
     0.0.0 This method is no longer recommended. Use the setCustomDimensionValue() and deleteCustomDimension() method instead.

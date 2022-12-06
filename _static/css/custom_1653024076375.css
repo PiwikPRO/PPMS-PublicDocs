@@ -1636,8 +1636,3 @@ body {
 .sc-eHgmQL.irpqyy  .react-tabs__tab-list{
     display: block;
 }
-
-.turbobox {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-}
