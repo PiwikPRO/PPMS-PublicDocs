@@ -3,9 +3,8 @@
 ============================================
 deleteCustomVariable()
 
-.. raw: html
-
-  <img src="http://www.w3.org/2000/svg"></img>
+.. image:: http://www.w3.org/2000/svg
+    :alt: my-picture1
 
 ============================================
 
