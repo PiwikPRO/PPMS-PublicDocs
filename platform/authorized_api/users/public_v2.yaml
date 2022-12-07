@@ -356,6 +356,7 @@ components:
       format: 'IETF-language-tag'
       description: User Interface language with IETF language tag format
       example: 'en-US'
+      default: 'en-US'
 
     JsonApi_Id:
       type: string
@@ -444,14 +445,9 @@ components:
 
     JsonApi_User_Invite:
       type: object
-      required:
-        - data
       properties:
         data:
           type: object
-          required:
-            - type
-            - attributes
           properties:
             type:
               type: string
@@ -466,7 +462,6 @@ components:
                   $ref: '#/components/schemas/Language'
               required:
                 - email
-                - language
 
     JsonApi_Edit_User:
       type: object
