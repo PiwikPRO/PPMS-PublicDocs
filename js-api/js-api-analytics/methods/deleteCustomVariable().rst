@@ -1,11 +1,7 @@
 .. _deleteCustomVariable():
 
 ============================================
-deleteCustomVariable()
-
-.. image:: http://www.w3.org/2000/svg
-    :alt: my-picture1
-
+deleteCustomVariable() 🗑
 ============================================
 
 .. deprecated::
