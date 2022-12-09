@@ -29,6 +29,7 @@ We recognize 6 campaign dimensions:
 * campaign keyword
 * campaign source
 * campaign medium
+* campaign ID
 * campaign content
 * paid campaign ID (like `gclid`)
 
