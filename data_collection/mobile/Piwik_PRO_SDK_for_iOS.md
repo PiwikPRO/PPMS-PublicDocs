@@ -33,9 +33,7 @@ Starting with version 1.1.4 of the Piwik Pro SDK for iOS, we have introduced sup
 2. To install the Piwik Pro SDK, in Xcode navigate to File > Add Packages. Altermatively, go to your project's settings, select `Package Dependencies` tab and click on the `+` button.
 
 3. Enter the URL of our Piwik PRO SDK GitHub repository 
-```
-https://github.com/PiwikPRO/piwik-pro-sdk-framework-ios
-```
+    * ```https://github.com/PiwikPRO/piwik-pro-sdk-framework-ios```
 4. Select the [version](https://github.com/PiwikPRO/piwik-pro-sdk-framework-ios/tags) of Piwik Pro SDK you would like to use. For new projects, we recommend using the latest version. Bear in mind that Piwik Pro SDK is supporting Swift Package Manager since version 1.1.4.
 
 5. Click on "Add Package" button and wait for Xcode to finish downloading the Swift Package into your project.

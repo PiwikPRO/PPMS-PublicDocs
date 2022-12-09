@@ -143,7 +143,7 @@ public class YourActivity extends Activity {
 ```
 * A path (required) – each screen should be mapped to the URL path
 
-* A title (optional) – the title of the action being tracked. It is possible to use slashes (`/`) to set one or several categories for this action.
+* A title (optional) – the title of the action being tracked.
 
 To automatically use the activity-stack as a path and activity title as a name, use the overloaded screen method:
 ```java
