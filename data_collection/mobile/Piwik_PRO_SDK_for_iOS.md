@@ -208,7 +208,7 @@ For tracking outlinks to external websites or other apps opened from your applic
 ```
 [[PiwikTracker sharedInstance] sendOutlink:@"http://great.website.com"];
 ```
-* A URL (required) – defines the outlink target. HTTPS, HTTP and FTP are valid.
+* A URL (required) – defines the outlink target.
 
 ### Tracking search operations
 *Requires Analytics*
