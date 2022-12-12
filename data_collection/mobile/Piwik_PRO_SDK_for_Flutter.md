@@ -193,7 +193,7 @@ await FlutterPiwikPro.sharedInstance.trackOutlink('http://great.website.com');
 
 ##### iOS and Android parameters
 
-- `String url` - defines the outlink target. HTTPS, HTTP and FTP are valid.
+- `String url` - defines the outlink target.
 
 ### Tracking Search Operations
 
@@ -252,7 +252,7 @@ Goal tracking is used to measure and improve your business objectives. To track 
 To track goals you can use the `trackGoal` method:
 
 ```dart
-await FlutterPiwikPro.sharedInstance.trackGoal(goal: 10, revenue: 102.2);
+await FlutterPiwikPro.sharedInstance.trackGoal(goal: "27ecc5e3-8ae0-40c3-964b-5bd8ee3da059", revenue: 102.2);
 ```
 
 ##### iOS and Android parameters
