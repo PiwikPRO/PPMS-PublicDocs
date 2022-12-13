@@ -38,6 +38,12 @@
         "app_identifier": {
             "description": "Application identifier",
             "$ref": "#/definitions/uuid"
+        },
+        "variable_reference": {
+            "title": "Variable reference",
+            "description": "Tag Manager's variable reference, example `{{ Campaign }}`",
+            "type": "string",
+            "pattern": "^{{((?:.(?!}}))*.)}}$"
         }
     }
 }

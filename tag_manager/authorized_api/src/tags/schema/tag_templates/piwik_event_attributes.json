@@ -17,7 +17,7 @@
                             "$ref": "../tag_types.json#/definitions/non_empty_string"
                         },
                         {
-                            "$ref": "../tag_types.json#/definitions/variable_reference"
+                            "$ref": "../../../common/schema/common_types.json#/definitions/variable_reference"
                         }
                     ]
                 },
@@ -28,7 +28,7 @@
                             "$ref": "../tag_types.json#/definitions/non_empty_string"
                         },
                         {
-                            "$ref": "../tag_types.json#/definitions/variable_reference"
+                            "$ref": "../../../common/schema/common_types.json#/definitions/variable_reference"
                         }
                     ]
                 },
@@ -39,7 +39,7 @@
                             "$ref": "../tag_types.json#/definitions/non_empty_string"
                         },
                         {
-                            "$ref": "../tag_types.json#/definitions/variable_reference"
+                            "$ref": "../../../common/schema/common_types.json#/definitions/variable_reference"
                         }
                     ]
                 },
@@ -53,7 +53,7 @@
                             "type": "integer"
                         },
                         {
-                            "$ref": "../tag_types.json#/definitions/variable_reference"
+                            "$ref": "../../../common/schema/common_types.json#/definitions/variable_reference"
                         }
                     ]
                 },
