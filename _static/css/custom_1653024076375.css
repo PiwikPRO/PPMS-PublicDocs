@@ -68,7 +68,6 @@ h1 {
     line-height:1.111 !important;;
     margin-bottom: 1.5rem !important;;
     margin-top: 20px;
-    max-width: 630px;
 }
 
 .rst-content .toctree-wrapper p.caption, body, h2, h3, h4, h5, h6, legend {
@@ -85,28 +84,24 @@ h2 {
     font-weight: 800 !important;
     font-size: 1.375rem;
     line-height:1.182;
-    max-width: 630px;
 }
 
 h3 {
     font-weight: 800 !important;
     font-size: 1.125rem;
     line-height:1.222;
-    max-width: 630px;
 }
 
 h4 {
     font-weight: 800 !important;
     font-size: 1rem;
     line-height:1.25;
-    max-width: 630px;
 }
 
 h5 {
     font-weight: 800 !important;
     font-size: .875rem !important;
     line-height:1.286 !important;
-    max-width: 630px !important;
     text-transform: none !important;
     color: #13171A !important;
 }
@@ -115,7 +110,6 @@ h6 {
     font-weight: 800 !important;
     font-size: .675rem;
     line-height:1;
-    max-width: 630px;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -125,13 +119,12 @@ h1, h2, h3, h4, h5, h6 {
 p {
     font-size: 1rem;
     line-height: 1.5;
-    max-width: 630px;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
 
 .wy-plain-list-disc, .rst-content .section ul, .rst-content .toctree-wrapper ul, article ul, .wy-plain-list-decimal, .rst-content .section ol, .rst-content ol.arabic, article ol {
-    font-size: 1rem; max-width: 630px;
+    font-size: 1rem;
 }
 
 li {
@@ -252,7 +245,6 @@ ul.react-tabs__tab-list {
 
 #redoc-container table {
 	table-layout: fixed;
-  max-width: 630px;
 }
 
 #redoc-container td {
@@ -412,14 +404,12 @@ thead  {
     background-color: #E2F2FD;
     border-top: none;
     border-bottom: none;
-    max-width: 630px;
 }
 
 .admonition.warning {
     background-color: #FFFBEB;
     border-top: none;
     border-bottom: none;
-    max-width: 630px;
 }
 
 .note .first.admonition-title {
@@ -460,7 +450,6 @@ thead  {
     border-top: none !important;
     border-bottom: none !important;
     margin-bottom: 16px;
-    max-width: 630px;
 }
 
 .rst-content tt.literal, .rst-content tt.literal, .rst-content code.literal{
@@ -1312,7 +1301,6 @@ footer {
     border-top: 2px solid #D32F2F;
     border-bottom: 2px solid #D32F2F;
     margin-bottom: 16px;
-    max-width: 630px;
 }
 
 .deprecated .versionmodified {
@@ -1379,7 +1367,6 @@ body {
 .line-block{
   font-size:16px;
   line-height: 24px;
-  max-width: 630px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -1524,7 +1511,6 @@ body {
 
 .wy-table-responsive table{
     width: 100%;
-    max-width: 630px;
 
 }
 
