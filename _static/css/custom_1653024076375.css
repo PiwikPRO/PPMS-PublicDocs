@@ -1077,6 +1077,8 @@ html {
 
 div[role="main"] {
     min-height: calc(100vh - 340px);
+    margin-left: 100px;
+    max-width: 630px;
 }
 
 footer {
