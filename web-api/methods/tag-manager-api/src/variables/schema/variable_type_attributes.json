@@ -1,0 +1,114 @@
+{
+    "definitions": {
+        "custom_javascript_variable_type_attribute": {
+            "type": "string",
+            "enum": ["custom_javascript"],
+            "description": "Variable custom_javascript type"
+        },
+        "constant_variable_type_attribute": {
+            "type": "string",
+            "enum": ["constant"],
+            "description": "Variable constant type"
+        },
+        "cookie_variable_type_attribute": {
+            "type": "string",
+            "enum": ["cookie"],
+            "description": "Variable cookie type"
+        },
+        "data_layer_variable_type_attribute": {
+            "type": "string",
+            "enum": ["data_layer"],
+            "description": "Variable data_layer type"
+        },
+        "dom_element_variable_type_attribute": {
+            "type": "string",
+            "enum": ["dom_element"],
+            "description": "Variable dom_element type"
+        },
+        "document_variable_type_attribute": {
+            "type": "string",
+            "enum": ["document"],
+            "description": "Variable document type"
+        },
+        "random_variable_type_attribute": {
+            "type": "string",
+            "enum": ["random"],
+            "description": "Variable random type"
+        },
+        "url_variable_type_attribute": {
+            "type": "string",
+            "enum": ["url"],
+            "description": "Variable url type"
+        },
+        "lookup_table_variable_type_attribute": {
+            "type": "string",
+            "enum": ["lookup_table"],
+            "description": "Variable lookup_table type"
+        },
+        "dom_element_variable_options_attribute": {
+            "type": "object",
+            "description": "Variable options",
+            "properties": {
+                "extract_text_content": {
+                    "description": "Flag indicating whether you want extract only text or whole element",
+                    "type": "boolean"
+                },
+                "selector_type": {
+                    "description": "Selector type",
+                    "type": "string",
+                    "enum": [
+                        "element_id",
+                        "css",
+                        "xpath"
+                    ]
+                }
+            },
+            "required": ["extract_text_content", "selector_type"],
+            "additionalProperties": false
+        },
+        "url_parameter_options_attribute": {
+            "type": "object",
+            "description": "Variable options",
+            "properties": {
+                "parameter_name": {
+                    "description": "Parameter name",
+                    "type": "string"
+                }
+            },
+            "required": ["parameter_name"],
+            "additionalProperties": false
+        },
+        "lookup_table_variable_options_attribute": {
+            "type": "object",
+            "description": "Variable lookup table options",
+            "properties": {
+                "default_value": {
+                    "description": "Value that will be returned if none of the mapping key is matched.",
+                    "anyOf": [
+                        {
+                            "description": "Do not use default value",
+                            "$ref": "../../common/schema/common_types.json#/definitions/nullable"
+                        },
+                        {
+                            "description": "Static text to be returned when value was not found in the table",
+                            "type": "string"
+                        },
+                        {
+                            "description": "Variable identifier to be returned when value was not found in the table",
+                            "$ref": "variable_types.json#/definitions/variable_identifier"
+                        }
+                    ]
+                },
+                "mapping": {
+                    "description": "Lookup table mapping",
+                    "type": "array",
+                    "items": {
+                        "$ref": "variable_types.json#/definitions/lookup_table_entry"
+                    }
+                }
+            },
+            "required": ["default_value", "mapping"],
+            "additionalProperties": false
+        }
+    }
+}

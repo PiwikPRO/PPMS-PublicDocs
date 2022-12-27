@@ -1,0 +1,321 @@
+openapi: 3.0.3
+info:
+  title: Audit Log Api
+  version: auto
+servers:
+  - url: https://example.piwik.pro
+paths:
+  /api/audit-log/v1/entries:
+    get:
+      summary: Entry list
+      description: >
+        List of Audit Log entries<br><br>
+        To specify filters use `?filter[name]=value` syntax (e.g. `?filter[type]=app.added,app.edited`)<br><br>
+        To return csv instead of json, use `Accept: text/csv` header
+      operationId: audit_log_entries_v1
+      parameters:
+        - $ref: "#/components/parameters/Limit"
+        - $ref: "#/components/parameters/Offset"
+        - $ref: "#/components/parameters/EntriesFilter"
+        - $ref: "#/components/parameters/Sort"
+      responses:
+        200:
+          description: OK
+          content:
+            application/vnd.api+json:
+              schema:
+                type: object
+                required:
+                  - data
+                  - meta
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/Entry"
+                  meta:
+                    $ref: "#/components/schemas/Meta"
+            text/csv:
+              example: |
+                author_email,author_id,created_at,id,ip,payload,subject_id,type,version
+                john@company.com,378871f1-ec3e-11ea-b4d9-0242ac150002,2020-03-19T21:49:36Z,06768bbe-ec3f-11ea-9ba2-0242ac150002,68.242.57.125,"{""id"": ""06768bbe-ec3f-11ea-9ba2-0242ac150002"", ""urls"": [""http://piwik.pro""]}",06768b77-ec3f-11ea-9ba2-0242ac150002,app.changed.urls,1
+                jane@company.com,06164bd6-ec3f-11ea-9ba2-0242ac150002,2019-10-28T13:15:26Z,067589fd-ec3f-11ea-9ba2-0242ac150002,65.60.114.193,"{""id"": ""06768bbe-ec3f-11ea-9ba2-0242ac150002""}",067589b0-ec3f-11ea-9ba2-0242ac150002,app.changed.exclude_unknown_urls,1
+                john@company.com,378871f1-ec3e-11ea-b4d9-0242ac150002,2020-01-18T10:04:48Z,39018459-ec3e-11ea-b4d9-0242ac150002,92.128.231.122,"{""id"": ""06768bbe-ec3f-11ea-9ba2-0242ac150002""}",3901832e-ec3e-11ea-b4d9-0242ac150002,app.deleted,1
+                john@company.com,378871f1-ec3e-11ea-b4d9-0242ac150002,2019-12-15T04:31:24Z,3900b710-ec3e-11ea-b4d9-0242ac150002,15.23.2.241,"{""id"": ""0fa3fd75-b1b2-4897-8853-708211cebf0a""}",3900b5d3-ec3e-11ea-b4d9-0242ac150002,permission.user_group.changed.meta_site,1
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/EntryProperties"
+        400:
+          $ref: "#/components/responses/ListBadRequest"
+        401:
+          $ref: "#/components/responses/UnauthorizedError"
+        403:
+          $ref: "#/components/responses/AccessDeniedError"
+components:
+  parameters:
+    Limit:
+      name: limit
+      in: query
+      description: Limit for pagination
+      required: false
+      schema:
+        type: integer
+        default: 10
+        minimum: 0
+        maximum: 100
+    Offset:
+      name: offset
+      in: query
+      description: Offset for pagination
+      required: false
+      schema:
+        type: integer
+        default: 0
+        minimum: 0
+    EmailFilter:
+      in: query
+      name: filter[email]
+      required: false
+      description: Email address search query
+      allowEmptyValue: true
+      schema:
+        type: string
+        example:
+          - piwik.pro
+    EntriesFilter:
+      in: query
+      name: filter
+      description: Filter items by provided criteria
+      style: deepObject
+      required: false
+      schema:
+        type: object
+        properties:
+          type:
+            description: Comma separated list of event types
+            example: app.added,app.edited
+            type: array
+            items:
+              $ref: "#/components/schemas/Type"
+          date_from:
+            description: Date from (ISO-8601 format)
+            example: 2020-01-01T00:00:00Z
+            type: string
+            format: "date-time"
+          date_to:
+            description: Date to (ISO-8601 format)
+            example: 2020-01-03T00:00:00Z
+            type: string
+            format: "date-time"
+          author_id:
+            description: Comma separated list of UUIDs of event authors
+            type: array
+            items:
+              $ref: "#/components/schemas/Id"
+          subject_id:
+            description: Comma separated list of UUIDs of event subjects (i.e. for `Meta site edited` it's the id of a meta site)
+            type: array
+            items:
+              $ref: "#/components/schemas/Id"
+          ip:
+            description: Comma serparated list of IPs
+            type: array
+            items:
+              $ref: "#/components/schemas/Ip"
+    Sort:
+      in: query
+      name: sort
+      description: Sort by field
+      schema:
+        type: string
+        default: -created_at
+        enum:
+          - type
+          - email
+          - created_at
+          - ip
+          - subject_id
+          - -type
+          - -email
+          - -created_at
+          - -ip
+          - -subject_id
+      required: false
+  schemas:
+    Id:
+      type: string
+      format: uuid
+      description: UUIDv4 identifier of an object
+      example: 6edb1e3c-4c43-4760-ab76-682ad83146be
+    EntryProperties:
+      type: object
+      required:
+        - created_at
+        - type
+        - payload
+        - author_id
+        - author_email
+        - subject_id
+        - ip
+        - version
+      properties:
+        created_at:
+          $ref: "#/components/schemas/CreatedAt"
+        type:
+          $ref: "#/components/schemas/Type"
+        payload:
+          $ref: "#/components/schemas/Payload"
+        author_id:
+          $ref: "#/components/schemas/Id"
+        author_email:
+          allOf:
+            - $ref: "#/components/schemas/Email"
+            - nullable: true
+        subject_id:
+          $ref: "#/components/schemas/Id"
+        ip:
+          allOf:
+            - $ref: "#/components/schemas/Ip"
+            - nullable: true
+        version:
+          $ref: "#/components/schemas/Version"
+    Entry:
+      type: object
+      required:
+        - id
+        - type
+        - attributes
+      properties:
+        id:
+          $ref: "#/components/schemas/Id"
+        type:
+          type: string
+          description: Resource type
+          enum:
+            - ppms/audit-log-entry
+        attributes:
+          $ref: "#/components/schemas/EntryProperties"
+    CreatedAt:
+      type: string
+      format: "date-time"
+      description: Timestamp of event occurrence (ISO-8601 format)
+      readOnly: true
+    Type:
+      type: string
+      description: Name of the event
+      example: app.added
+    Payload:
+      type: object
+      example:
+        id: 4faa8732-8877-40aa-b772-7b243bf60423
+        name: Important name
+    Ip:
+      description: Event author ip address (IPv4 or IPv6)
+      example: 193.17.41.169
+      type: string
+      oneOf:
+        - format: "IPv4"
+        - format: "IPv6"
+    Version:
+      description: Version of an event (e.g. version `1` of `app.added` could be not compatible with version `2`)
+      type: integer
+      minimum: 1
+    Email:
+      type: string
+      format: email
+      example: john@doe.com
+    QueryParamErrorObject:
+      allOf:
+        - $ref: "#/components/schemas/ErrorObject"
+        - properties:
+            errors:
+              type: array
+              items:
+                type: object
+                required:
+                  - status
+                  - code
+                  - title
+                properties:
+                  source:
+                    type: object
+                    properties:
+                      parameter:
+                        type: string
+                        description: string indicating which URI query parameter caused the error.
+                        example: filter[ip]
+    ErrorObject:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            required:
+              - status
+              - code
+              - title
+            properties:
+              status:
+                type: string
+                description: the HTTP status code applicable to this problem, expressed as a string value
+                example: "400"
+              code:
+                type: string
+                description: an application-specific error code, expressed as a string value
+                example: invalid
+              detail:
+                type: string
+                description: a human-readable explanation specific to this occurrence of the problem. This field’s value can be localized
+                example: "'512.xxx.123' does not appear to be an IPv4 or IPv6 address"
+    Meta:
+      type: object
+      description: Response meta
+      required:
+        - total
+      properties:
+        total:
+          type: integer
+  responses:
+    ListBadRequest:
+      description: Bad Request
+      content:
+        "application/vnd.api+json":
+          schema:
+            $ref: "#/components/schemas/QueryParamErrorObject"
+    UnauthorizedError:
+      description: Unauthorized
+      content:
+        "application/json":
+          schema:
+            type: object
+            required:
+              - error
+            properties:
+              error:
+                type: string
+                example: authorization field missing
+    AccessDeniedError:
+      description: Forbidden
+      content:
+        "application/vnd.api+json":
+          schema:
+            allOf:
+              - $ref: "#/components/schemas/ErrorObject"
+              - example:
+                  {
+                      "errors": [
+                          {
+                              "detail": "Authentication credentials were not provided.",
+                              "status": "403",
+                              "code": "not_authenticated"
+                          }
+                      ]
+                  }
+    NoJWTError:
+      description: Forbidden
+      content:
+        "application/vnd.api+json":
+          schema:
+            $ref: "#/components/schemas/ErrorObject"

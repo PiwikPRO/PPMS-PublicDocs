@@ -1,0 +1,90 @@
+{
+    "definitions": {
+        "tag_identifier": {
+            "$ref": "../../common/schema/common_types.json#/definitions/uuid",
+            "description": "Tag identifier"
+        },
+        "tag_resource_type": {
+            "description": "Tag resource type",
+            "type": "string",
+            "enum": [
+                "tag"
+            ]
+        },
+        "relationships_description": {
+            "description": "Tag relationships"
+        },
+        "trigger_relationship": {
+            "description": "Tag triggers",
+            "type": "object",
+            "properties": {
+                "data": {
+                    "title": "Trigger relationship",
+                    "description": "JSON:API 1.0 relationship data",
+                    "type": "array",
+                    "minItems": 0,
+                    "items": {
+                        "properties": {
+                            "id": {
+                                "$ref": "../../triggers/schema/trigger_types.json#/definitions/trigger_identifier"
+                            },
+                            "type": {
+                                "$ref": "../../triggers/schema/trigger_types.json#/definitions/trigger_resource_type"
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": [
+                            "id",
+                            "type"
+                        ]
+                    }
+                }
+            },
+            "additionalProperties": false,
+            "required": [
+                "data"
+            ]
+        },
+        "timezone": {
+            "title": "Timezone",
+            "description": "Time zone definition (https://www.php.net/manual/en/timezones.php#timezones)",
+            "type": "string"
+        },
+        "date": {
+            "title": "Date",
+            "description": "format: Y-m-d\\TH:i:sO (https://www.php.net/manual/en/class.datetimeinterface.php#datetime.constants.iso8601)",
+            "type": "string",
+            "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}\\+[0-9]{4}$"
+        },
+        "time": {
+            "title": "Time",
+            "description": "format: H:i:s (https://www.php.net/manual/en/function.date.php#refsect1-function.date-parameters)",
+            "type": "string",
+            "pattern": "^[0-9]{2}:[0-9]{2}:[0-9]{2}$"
+        },
+        "non_empty_string": {
+            "type": "string",
+            "minLength": 1
+        },
+        "positive_number": {
+            "type": "number",
+            "minimum": 0
+        },
+        "positive_integer": {
+            "type": "integer",
+            "minimum": 0
+        },
+        "tag_new_identifier": {
+            "$ref": "../../common/schema/common_types.json#/definitions/uuid",
+            "description": "New tag's identifier"
+        },
+        "tag_new_name": {
+            "$ref": "../../common/schema/common_types.json#/definitions/name",
+            "description": "New tag's name"
+        },
+        "with_triggers": {
+            "description": "Flag indicating whether tag is copied with or without triggers",
+            "type": "boolean"
+        }
+    }
+}

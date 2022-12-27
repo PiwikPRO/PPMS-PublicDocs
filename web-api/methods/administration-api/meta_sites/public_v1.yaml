@@ -1,0 +1,861 @@
+openapi: 3.0.3
+info:
+  title: Meta sites API
+  version: auto
+paths:
+  /api/meta-sites/v1:
+    get:
+      summary: List meta sites
+      description: Lists meta sites
+      operationId: list_meta_site_v1
+      parameters:
+        - $ref: "#/components/parameters/Limit"
+        - $ref: "#/components/parameters/Offset"
+        - $ref: "#/components/parameters/Search"
+        - $ref: "#/components/parameters/Sort"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/vnd.api+json:
+              schema:
+                type: object
+                required:
+                  - meta
+                  - data
+                properties:
+                  meta:
+                    $ref: "#/components/schemas/ListMetadata"
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      required:
+                        - id
+                        - type
+                        - attributes
+                      properties:
+                        id:
+                          $ref: "#/components/schemas/Id"
+                        type:
+                          type: string
+                          enum:
+                            - ppms/meta-site
+                        attributes:
+                          type: object
+                          required:
+                            - name
+                            - created_at
+                            - updated_at
+                          properties:
+                            name:
+                              $ref: "#/components/schemas/MetaSiteName"
+                            created_at:
+                              $ref: "#/components/schemas/CreatedAt"
+                            updated_at:
+                              $ref: "#/components/schemas/UpdatedAt"
+        "400":
+          $ref: "#/components/responses/ListBadRequest"
+        "401":
+          $ref: "#/components/responses/UnauthorizedError"
+    post:
+      summary: Add meta site
+      description: >
+        Adds meta site with unique name. You can add apps to this meta site in
+
+        [/api/meta-sites/v1/{meta_site_id}/relationships/apps](#operation/add_apps_to_meta_site_v1) endpoint.
+      operationId: add_meta_site_v1
+      requestBody:
+        content:
+          application/vnd.api+json:
+            schema:
+              type: object
+              required:
+                - data
+              properties:
+                data:
+                  allOf:
+                    - $ref: "#/components/schemas/AddMetaSite"
+        description: Request data to add new meta site
+        required: true
+      responses:
+        "201":
+          description: Created
+          content:
+            "*/*":
+              schema:
+                type: object
+                required:
+                  - data
+                properties:
+                  data:
+                    allOf:
+                      - $ref: "#/components/schemas/MetaSite"
+                      - required:
+                          - id
+                          - type
+                          - attributes
+        "400":
+          description: Bad Request
+          content:
+            "*/*":
+              schema:
+                allOf:
+                  - $ref: "#/components/schemas/BadRequestObject"
+                  - example:
+                      errors:
+                        - status: "400"
+                          code: error.default
+                          title: Invalid form
+                          detail: This field is invalid
+                          source:
+                            pointer: /data/attributes/name
+        "401":
+          $ref: "#/components/responses/UnauthorizedError"
+        "403":
+          $ref: "#/components/responses/ForbiddenError"
+  "/api/meta-sites/v1/{meta_site_id}":
+    get:
+      summary: Get meta site
+      description: Gets meta site
+      operationId: get_meta_site_v1
+      parameters:
+        - $ref: "#/components/parameters/MetaSiteId"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/vnd.api+json:
+              schema:
+                type: object
+                required:
+                  - data
+                properties:
+                  data:
+                    allOf:
+                      - $ref: "#/components/schemas/MetaSite"
+                      - required:
+                          - id
+        "400":
+          $ref: "#/components/responses/InvalidUuidBadRequest"
+        "401":
+          $ref: "#/components/responses/UnauthorizedError"
+        "404":
+          $ref: "#/components/responses/NotFoundMetaSite"
+    patch:
+      summary: Edit meta site
+      description: Edits meta site
+      operationId: edit_meta_site_v1
+      parameters:
+        - $ref: "#/components/parameters/MetaSiteId"
+      requestBody:
+        content:
+          application/vnd.api+json:
+            schema:
+              type: object
+              required:
+                - data
+              properties:
+                data:
+                  $ref: "#/components/schemas/EditableMetaSite"
+        description: Request data to edit existing meta site
+        required: true
+      responses:
+        "204":
+          description: No Content
+        "400":
+          description: Bad Request
+          content:
+            "*/*":
+              schema:
+                allOf:
+                  - $ref: "#/components/schemas/BadRequestObject"
+                  - example:
+                      errors:
+                        - status: "400"
+                          code: error.default
+                          title: Invalid form
+                          detail: This value is not valid.
+                          source:
+                            pointer: /data/attributes/currency
+        "401":
+          $ref: "#/components/responses/UnauthorizedError"
+        "404":
+          $ref: "#/components/responses/NotFoundMetaSite"
+    delete:
+      summary: Delete meta site
+      description: Deletes meta site
+      operationId: delete_meta_site_v1
+      parameters:
+        - $ref: "#/components/parameters/MetaSiteId"
+      responses:
+        "204":
+          description: No Content
+        "400":
+          $ref: "#/components/responses/InvalidUuidBadRequest"
+        "401":
+          $ref: "#/components/responses/UnauthorizedError"
+        "404":
+          $ref: "#/components/responses/NotFoundMetaSite"
+  "/api/meta-sites/v1/{meta_site_id}/relationships/apps":
+    post:
+      summary: Add apps to meta site
+      description: Adds apps to meta site. You can add up to 1000 apps to meta site in one
+        api call.
+      operationId: add_apps_to_meta_site_v1
+      parameters:
+        - $ref: "#/components/parameters/MetaSiteId"
+      requestBody:
+        content:
+          application/vnd.api+json:
+            schema:
+              $ref: "#/components/schemas/AppIdentifiersList"
+        description: Request data to add apps to meta site
+        required: true
+      responses:
+        "204":
+          description: No Content
+        "400":
+          $ref: "#/components/responses/InvalidUuidBadRequest"
+        "401":
+          $ref: "#/components/responses/UnauthorizedError"
+        "403":
+          $ref: "#/components/responses/ForbiddenError"
+        "404":
+          $ref: "#/components/responses/NotFoundMetaSite"
+    delete:
+      summary: Remove apps from meta site
+      description: Removes apps from meta site. You can remove up to 1000 apps from meta
+        site in one api call.
+      operationId: remove_apps_from_meta_site_v1
+      parameters:
+        - $ref: "#/components/parameters/MetaSiteId"
+      requestBody:
+        content:
+          application/vnd.api+json:
+            schema:
+              $ref: "#/components/schemas/AppIdentifiersList"
+        description: Request data to remove apps from meta site
+        required: true
+      responses:
+        "204":
+          description: No Content
+        "400":
+          $ref: "#/components/responses/InvalidUuidBadRequest"
+        "401":
+          $ref: "#/components/responses/UnauthorizedError"
+        "403":
+          $ref: "#/components/responses/ForbiddenError"
+        "404":
+          $ref: "#/components/responses/NotFoundMetaSite"
+  "/api/meta-sites/v1/{meta_site_id}/apps":
+    get:
+      summary: List apps in meta site
+      description: Lists apps that belong to given meta site
+      operationId: list_apps_in_meta_site_v1
+      parameters:
+        - $ref: "#/components/parameters/MetaSiteId"
+        - $ref: "#/components/parameters/Limit"
+        - $ref: "#/components/parameters/Offset"
+        - $ref: "#/components/parameters/Search"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/vnd.api+json:
+              schema:
+                type: object
+                required:
+                  - meta
+                  - data
+                properties:
+                  meta:
+                    $ref: "#/components/schemas/ListMetadata"
+                  data:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/App"
+        "400":
+          $ref: "#/components/responses/ListBadRequest"
+        "401":
+          $ref: "#/components/responses/UnauthorizedError"
+        "404":
+          $ref: "#/components/responses/NotFoundMetaSite"
+  "/api/meta-sites/v1/{meta_site_id}/apps/excluded":
+    get:
+      summary: List apps excluded from meta site
+      description: Lists apps that don't belong to given meta site
+      operationId: list_apps_excluded_from_meta_site_v1
+      parameters:
+        - $ref: "#/components/parameters/MetaSiteId"
+        - $ref: "#/components/parameters/Limit"
+        - $ref: "#/components/parameters/Offset"
+        - $ref: "#/components/parameters/Search"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/vnd.api+json:
+              schema:
+                type: object
+                required:
+                  - meta
+                  - data
+                properties:
+                  meta:
+                    $ref: "#/components/schemas/ListMetadata"
+                  data:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/App"
+        "400":
+          $ref: "#/components/responses/ListBadRequest"
+        "401":
+          $ref: "#/components/responses/UnauthorizedError"
+        "404":
+          $ref: "#/components/responses/NotFoundMetaSite"
+  /api/meta-sites/v1/apps-with-meta-sites:
+    get:
+      summary: List apps & meta sites
+      description: >
+        Get list of apps with meta sites. App with `demo` type will be always first on the list if exists (sorting method is irrelevant)
+
+
+
+        Full example:
+
+        ```
+
+        /api/meta-sites/v1/apps-with-meta-sites?offset=100&limit=10&search=nifty+marketing&action=edit
+
+        ```
+
+        this will list 10 apps and meta sites which I have access to (can execute `edit` action) starting on 101th matching search query "nifty marketing".
+      operationId: list_apps_and_meta_sites_v1
+      parameters:
+        - $ref: "#/components/parameters/Offset"
+        - $ref: "#/components/parameters/Limit"
+        - $ref: "#/components/parameters/Search"
+        - $ref: "#/components/parameters/SortAppsWithMetasites"
+        - $ref: "#/components/parameters/Action"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/vnd.api+json:
+              schema:
+                type: object
+                required:
+                  - meta
+                  - data
+                properties:
+                  meta:
+                    $ref: "#/components/schemas/ListMetadata"
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      required:
+                        - type
+                        - id
+                        - attributes
+                      properties:
+                        type:
+                          description: Resource type
+                          enum:
+                            - ppms/app
+                            - ppms/meta-site
+                          type: string
+                        id:
+                          $ref: "#/components/schemas/Id"
+                        attributes:
+                          type: object
+                          required:
+                            - name
+                            - created_at
+                          properties:
+                            name:
+                              $ref: "#/components/schemas/Name"
+                            created_at:
+                              $ref: "#/components/schemas/CreatedAt"
+                example:
+                  meta:
+                    total: 2
+                  data:
+                    - type: ppms/app
+                      id: 6edb1e3c-4c43-4760-ab76-682ad83146be
+                      attributes:
+                        name: Example site
+                        created_at: 2019-07-30T12:53:46Z
+                    - type: ppms/meta-site
+                      id: ac62ca6b-cfd6-4161-b414-e1061baa05b7
+                      attributes:
+                        name: European landing pages
+                        created_at: 2019-02-21T02:30:12Z
+        "400":
+          $ref: "#/components/responses/ListBadRequest"
+  "/api/meta-sites/v1/{meta_site_id}/apps/integrity":
+    get:
+      summary: Meta site integrity
+      description: It informs whether all apps of given meta site have the same currency
+        and timezone as meta site itself
+      operationId: meta_site_integrity_v1
+      parameters:
+        - $ref: "#/components/parameters/MetaSiteId"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/vnd.api+json:
+              schema:
+                type: object
+                required:
+                  - data
+                properties:
+                  data:
+                    type: object
+                    required:
+                      - id
+                      - type
+                      - attributes
+                    properties:
+                      id:
+                        $ref: "#/components/schemas/Id"
+                      type:
+                        type: string
+                        enum:
+                          - meta-site/apps/integrity
+                      attributes:
+                        type: object
+                        required:
+                          - valid_currency
+                          - valid_timezone
+                        properties:
+                          valid_currency:
+                            type: boolean
+                            description: Flag indicating that all apps of given meta site
+                              have the same currency as meta site itself
+                          valid_timezone:
+                            description: Flag indicating that all apps of given meta site
+                              have the same timezone as meta site itself
+                            type: boolean
+        "401":
+          $ref: "#/components/responses/UnauthorizedError"
+        "404":
+          $ref: "#/components/responses/NotFoundMetaSite"
+servers:
+  - url: https://example.piwik.pro
+components:
+  parameters:
+    MetaSiteId:
+      in: path
+      name: meta_site_id
+      required: true
+      description: UUIDv4 identifier of an object
+      schema:
+        type: string
+        format: uuid
+    Limit:
+      in: query
+      name: limit
+      description: Limits the number of returned items
+      required: false
+      schema:
+        type: integer
+        minimum: 0
+        maximum: 1000
+        default: 10
+    Offset:
+      in: query
+      name: offset
+      description: Sets offset for list of items
+      required: false
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
+    Search:
+      in: query
+      name: search
+      description: Search phrase - search for name or id
+      required: false
+      schema:
+        type: string
+    Action:
+      in: query
+      name: action
+      description: Action to which I have access (can execute given action)
+      required: false
+      schema:
+        type: string
+        enum:
+          - view
+          - edit
+    Sort:
+      in: query
+      name: sort
+      description: Sort field - can be reversed by adding dash before field name e.g (-name)
+      required: false
+      schema:
+        type: string
+        enum:
+          - name
+          - created_at
+          - updated_at
+          - -name
+          - -created_at
+          - -updated_at
+        default: name
+    SortAppsWithMetasites:
+      in: query
+      name: sort
+      description: Sort field - can be reversed by adding dash before field name e.g (-name)
+      required: false
+      schema:
+        type: string
+        enum:
+          - name
+          - type
+          - created_at
+          - -name
+          - -type
+          - -created_at
+        default: name
+  responses:
+    ListBadRequest:
+      description: Bad Request
+      content:
+        "*/*":
+          schema:
+            allOf:
+              - $ref: "#/components/schemas/BadRequestObject"
+              - example:
+                  status: "400"
+                  code: error.default
+                  title: Invalid query parameter 'offset' - value should be a
+                    positive integer - got '-1'
+    InvalidUuidBadRequest:
+      description: Bad Request
+      content:
+        "*/*":
+          schema:
+            allOf:
+              - $ref: "#/components/schemas/BadRequestObject"
+              - example:
+                  errors:
+                    - status: "400"
+                      code: error.default
+                      title: '"my-id" is not valid UUID.'
+    UnauthorizedError:
+      description: Unauthorized
+      content:
+        "*/*":
+          schema:
+            type: object
+            required:
+              - error
+            properties:
+              error:
+                type: string
+                example: access token not authorized
+    ForbiddenError:
+      description: Forbidden
+      content:
+        "*/*":
+          schema:
+            allOf:
+              - $ref: "#/components/schemas/ErrorObject"
+              - example:
+                  errors:
+                    - status: "403"
+                      code: error.forbidden
+                      title: Access denied.
+    NotFoundMetaSite:
+      description: Not Found
+      content:
+        "*/*":
+          schema:
+            allOf:
+              - $ref: "#/components/schemas/ErrorObject"
+              - example:
+                  errors:
+                    - status: "404"
+                      code: meta-site.error.not-exists
+                      title: Meta site with id "2136b49b-c4b5-44f1-a9ab-b6149bf047a0"
+                        does not exist
+  schemas:
+    Id:
+      type: string
+      format: uuid
+      description: UUIDv4 identifier of an object
+      example: 6edb1e3c-4c43-4760-ab76-682ad83146be
+    ListMetadata:
+      type: object
+      description: Metadata of a listing
+      required:
+        - total
+      properties:
+        total:
+          type: integer
+          description: Total number of items
+          example: 1
+    MetaSite:
+      type: object
+      required:
+        - type
+        - attributes
+      properties:
+        id:
+          $ref: "#/components/schemas/Id"
+        type:
+          type: string
+          enum:
+            - ppms/meta-site
+        attributes:
+          $ref: "#/components/schemas/MetaSiteAttributes"
+    MetaSiteAttributes:
+      type: object
+      properties:
+        name:
+          $ref: "#/components/schemas/MetaSiteName"
+        currency:
+          $ref: "#/components/schemas/Currency"
+        timezone:
+          $ref: "#/components/schemas/Timezone"
+        e_commerce_tracking:
+          $ref: "#/components/schemas/ECommerceTracking"
+        sharepoint_integration:
+          $ref: "#/components/schemas/SharepointIntegration"
+        created_at:
+          $ref: "#/components/schemas/CreatedAt"
+        updated_at:
+          $ref: "#/components/schemas/UpdatedAt"
+        organization:
+          $ref: "#/components/schemas/Organization"
+    AddMetaSite:
+      type: object
+      required:
+        - type
+        - attributes
+      properties:
+        id:
+          $ref: "#/components/schemas/Id"
+        type:
+          type: string
+          enum:
+            - ppms/meta-site
+        attributes:
+          $ref: "#/components/schemas/AddMetaSiteAttributes"
+    AddMetaSiteAttributes:
+      type: object
+      required:
+        - name
+      properties:
+        name:
+          $ref: "#/components/schemas/MetaSiteName"
+        currency:
+          $ref: "#/components/schemas/DefaultCurrency"
+        timezone:
+          $ref: "#/components/schemas/DefaultTimezone"
+        e_commerce_tracking:
+          $ref: "#/components/schemas/DefaultECommerceTracking"
+        sharepoint_integration:
+          $ref: "#/components/schemas/DefaultSharepointIntegration"
+    EditableMetaSite:
+      type: object
+      required:
+        - id
+        - type
+        - attributes
+      properties:
+        id:
+          $ref: "#/components/schemas/Id"
+        type:
+          type: string
+          enum:
+            - ppms/meta-site
+        attributes:
+          $ref: "#/components/schemas/EditableMetaSiteAttributes"
+    EditableMetaSiteAttributes:
+      type: object
+      properties:
+        name:
+          $ref: "#/components/schemas/MetaSiteName"
+        currency:
+          $ref: "#/components/schemas/Currency"
+        timezone:
+          $ref: "#/components/schemas/Timezone"
+        e_commerce_tracking:
+          $ref: "#/components/schemas/ECommerceTracking"
+        sharepoint_integration:
+          $ref: "#/components/schemas/SharepointIntegration"
+    AppIdentifiersList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: "#/components/schemas/AppIdentifier"
+    AppIdentifier:
+      type: object
+      required:
+        - type
+        - id
+      properties:
+        type:
+          description: Resource type
+          type: string
+          enum:
+            - ppms/app
+        id:
+          $ref: "#/components/schemas/Id"
+    MetaSiteName:
+      type: string
+      description: Unique name of a meta site
+      example: All apps
+      maxLength: 191
+      minLength: 1
+    Currency:
+      type: string
+      description: Currency in ISO 4217 format (e.g. USD)
+      example: USD
+    DefaultCurrency:
+      type: string
+      description: Currency in ISO 4217 format (e.g. USD)
+      example: USD
+      default: USD
+    Timezone:
+      type: string
+      description: Timezone in IANA time zone format (like Europe/Warsaw), or UTC offset
+        (like UTC+1)
+      example: Europe/Warsaw
+    DefaultTimezone:
+      type: string
+      description: Timezone in IANA time zone format (like Europe/Warsaw), or UTC offset
+        (like UTC+1)
+      example: Europe/Warsaw
+      default: UTC
+    ECommerceTracking:
+      type: boolean
+      description: Enables e-commerce reports, additional tab is shown in Analytics module
+        with e-commerce logs. Sales can be easily tracked using this setting.
+      example: false
+    DefaultECommerceTracking:
+      type: boolean
+      description: Enables e-commerce reports, additional tab is shown in Analytics module
+        with e-commerce logs. Sales can be easily tracked using this setting.
+      example: false
+      default: false
+    SharepointIntegration:
+      type: boolean
+      description: Enable sharepoint integration
+      example: false
+    DefaultSharepointIntegration:
+      type: boolean
+      description: Enable sharepoint integration
+      example: false
+      default: false
+    CreatedAt:
+      type: string
+      format: date-time
+      description: Timestamp of object's creation
+      readOnly: true
+    UpdatedAt:
+      type: string
+      format: date-time
+      description: Timestamp of object's last modification
+      readOnly: true
+    AppName:
+      type: string
+      description: App name
+      example: Example app
+    Name:
+      type: string
+      description: App or Meta Site name
+      example: Example app
+    Organization:
+      type: string
+      description: Organization to which a resource belongs to
+      example: default
+      deprecated: true
+    App:
+      type: object
+      required:
+        - type
+        - id
+        - attributes
+      properties:
+        type:
+          description: Resource type
+          type: string
+          enum:
+            - ppms/app
+        id:
+          $ref: "#/components/schemas/Id"
+        attributes:
+          type: object
+          required:
+            - name
+            - timezone
+            - currency
+          properties:
+            name:
+              $ref: "#/components/schemas/AppName"
+            timezone:
+              $ref: "#/components/schemas/Timezone"
+            currency:
+              $ref: "#/components/schemas/Currency"
+    ErrorObject:
+      type: object
+      required:
+        - status
+        - title
+      properties:
+        status:
+          type: string
+          description: the HTTP status code applicable to this problem, expressed as a
+            string value
+          example: "400"
+        code:
+          type: string
+          description: an application-specific error code, expressed as a string value
+          example: error.default
+        title:
+          type: string
+          description: >
+            a short, human-readable summary of the problem that SHOULD NOT
+            change from occurrence to occurrence of the problem, except for
+            purposes of localization
+          example: Invalid form
+        detail:
+          type: string
+          description: >
+            a human-readable explanation specific to this occurrence of the
+            problem. Like `title`, this field’s value can be localized
+          example: This field is invalid
+        source:
+          type: object
+          description: >
+            an object containing references to the source of the error,
+            optionally including any of the following members: [pointer,
+            parameter]
+          properties:
+            pointer:
+              type: string
+              example: /data/attributes/name
+              description: >
+                a JSON Pointer [RFC6901] to the associated entity in the request
+                document [e.g. "/data" for a primary data object, or
+                "/data/attributes/name" for a specific attribute]
+            parameter:
+              type: string
+              example: offset
+              description: a string indicating which URI query parameter caused the error
+    BadRequestObject:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            allOf:
+              - $ref: "#/components/schemas/ErrorObject"

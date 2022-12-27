@@ -1,0 +1,71 @@
+{
+    "definitions": {
+        "variable_resource_type": {
+            "type": "string",
+            "enum": ["variable"],
+            "description": "Variable resource type"
+        },
+        "variable_type": {
+            "type": "string",
+            "enum": [
+                "custom_javascript",
+                "constant",
+                "cookie",
+                "data_layer",
+                "dom_element",
+                "document",
+                "random",
+                "url",
+                "lookup_table"
+            ],
+            "description": "Variable type"
+        },
+        "variable_identifier": {
+            "description": "Variable identifier",
+            "$ref": "../../common/schema/common_types.json#/definitions/uuid"
+        },
+        "new_variable_identifier": {
+            "description": "New variable's identifier",
+            "$ref": "../../common/schema/common_types.json#/definitions/uuid"
+        },
+        "lookup_table_input_variable_reference": {
+            "description": "Lookup table input variable reference",
+            "$ref": "../../common/schema/common_types.json#/definitions/variable_reference"
+        },
+        "new_variable_name": {
+            "description": "New variable's name",
+            "$ref": "../../common/schema/common_types.json#/definitions/name"
+        },
+        "lookup_table_entry": {
+            "type": "object",
+            "description": "Lookup table input and output pair",
+            "properties": {
+                "input": {
+                    "description": "Input value",
+                    "anyOf": [
+                        {
+                            "description": "Custom string",
+                            "type": "string"
+                        },
+                        {
+                            "$ref": "../../common/schema/common_types.json#/definitions/variable_reference"
+                        }
+                    ]
+                },
+                "output": {
+                    "description": "Output value",
+                    "anyOf": [
+                        {
+                            "description": "Custom string",
+                            "type": "string"
+                        },
+                        {
+                            "$ref": "../../common/schema/common_types.json#/definitions/variable_reference"
+                        }
+                    ]
+                }
+            },
+            "required": ["input", "output"]
+        }
+    }
+}

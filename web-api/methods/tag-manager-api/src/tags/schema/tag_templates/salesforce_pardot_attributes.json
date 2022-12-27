@@ -1,0 +1,47 @@
+{
+    "definitions": {
+        "consent_type_default": {
+            "$ref": "../tag_attributes.json#/definitions/consent_type",
+            "default": "marketing_automation"
+        },
+        "template": {
+            "$ref": "../tag_attributes.json#/definitions/template",
+            "enum": [
+                "salesforce_pardot"
+            ]
+        },
+        "template_options": {
+            "description": "[Tag template options](#tag-template-options)",
+            "type": "object",
+            "properties": {
+                "pi_a_id": {
+                    "description": "Account identifier",
+                    "anyOf": [
+                        {
+                            "$ref": "../tag_types.json#/definitions/non_empty_string"
+                        },
+                        {
+                            "$ref": "../../../common/schema/common_types.json#/definitions/variable_reference"
+                        }
+                    ]
+                },
+                "pi_c_id": {
+                    "description": "Campaign identifier",
+                    "anyOf": [
+                        {
+                            "$ref": "../tag_types.json#/definitions/non_empty_string"
+                        },
+                        {
+                            "$ref": "../../../common/schema/common_types.json#/definitions/variable_reference"
+                        }
+                    ]
+                }
+            },
+            "additionalProperties": false,
+            "required": [
+                "pi_a_id",
+                "pi_c_id"
+            ]
+        }
+    }
+}

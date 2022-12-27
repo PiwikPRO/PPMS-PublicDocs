@@ -1,0 +1,63 @@
+{
+    "definitions": {
+        "consent_type_default": {
+            "$ref": "../tag_attributes.json#/definitions/consent_type",
+            "default": "remarketing"
+        },
+        "template": {
+            "$ref": "../tag_attributes.json#/definitions/template",
+            "description": "Tag template. Despite rebranding the tag name, the template value remained the same due to maintaining backward compatibility.",
+            "enum": [
+                "facebook_retargeting_pixel"
+            ]
+        },
+        "template_options_pixel_id": {
+            "description": "Pixel ID",
+            "anyOf": [
+                {
+                    "$ref": "../tag_types.json#/definitions/non_empty_string"
+                },
+                {
+                    "$ref": "../../../common/schema/common_types.json#/definitions/variable_reference"
+                }
+            ]
+        },
+        "template_options_event": {
+            "type": "string",
+            "enum": [
+                "ViewContent",
+                "Search",
+                "AddToCart",
+                "AddToWishlist",
+                "InitiateCheckout",
+                "AddPaymentInfo",
+                "Lead",
+                "CompleteRegistration"
+            ]
+        },
+        "template_options_audience": {
+            "description": "Audience to export to Facebook Ads Manager (same audience should be set on trigger)",
+            "$ref": "../tag_types.json#/definitions/non_empty_string"
+        },
+        "template_options": {
+            "description": "[Tag template options](#tag-template-options)",
+            "type": "object",
+            "properties": {
+                "pixel_id": {
+                    "$ref": "#/definitions/template_options_pixel_id"
+                },
+                "event": {
+                    "$ref": "#/definitions/template_options_event"
+                },
+                "audience": {
+                    "$ref": "#/definitions/template_options_audience"
+                }
+            },
+            "additionalProperties": false,
+            "required": [
+                "pixel_id",
+                "event"
+            ]
+        }
+    }
+}

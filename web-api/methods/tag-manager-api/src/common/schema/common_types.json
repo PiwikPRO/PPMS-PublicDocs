@@ -1,0 +1,49 @@
+{
+    "definitions": {
+        "uuid": {
+            "title": "UUID",
+            "type": "string",
+            "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
+        },
+        "name": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 255
+        },
+        "datetime": {
+            "title": "DateTime",
+            "description": "ISO 8601",
+            "type": "string",
+            "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}\\+[0-9]{2}:[0-9]{2}$"
+        },
+        "app_resource_type": {
+            "description": "Application resource type",
+            "type": "string",
+            "enum": ["app"]
+        },
+        "email": {
+            "title": "Email",
+            "type": "string",
+            "pattern": "^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+$"
+        },
+        "nullable": {
+            "title": "null",
+            "description": "",
+            "enum": [null]
+        },
+        "uri": {
+            "type": "string",
+            "format": "uri"
+        },
+        "app_identifier": {
+            "description": "Application identifier",
+            "$ref": "#/definitions/uuid"
+        },
+        "variable_reference": {
+            "title": "Variable reference",
+            "description": "Tag Manager's variable reference, example `{{ Campaign }}`",
+            "type": "string",
+            "pattern": "^{{((?:.(?!}}))*.)}}$"
+        }
+    }
+}

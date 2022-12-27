@@ -1,0 +1,35 @@
+{
+    "definitions": {
+        "consent_type_default": {
+            "$ref": "../tag_attributes.json#/definitions/consent_type",
+            "default": "remarketing"
+        },
+        "template": {
+            "$ref": "../tag_attributes.json#/definitions/template",
+            "enum": [
+                "bing_ads"
+            ]
+        },
+        "template_options": {
+            "description": "[Tag template options](#tag-template-options)",
+            "type": "object",
+            "properties": {
+                "id": {
+                    "description": "Universal Event Tracking Tag id",
+                    "anyOf": [
+                        {
+                            "$ref": "../tag_types.json#/definitions/non_empty_string"
+                        },
+                        {
+                            "$ref": "../../../common/schema/common_types.json#/definitions/variable_reference"
+                        }
+                    ]
+                }
+            },
+            "additionalProperties": false,
+            "required": [
+                "id"
+            ]
+        }
+    }
+}

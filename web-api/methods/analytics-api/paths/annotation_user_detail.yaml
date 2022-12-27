@@ -1,0 +1,89 @@
+get:
+  tags:
+    - User Annotations
+  summary: Get user annotation
+  description: |
+    Returns a definition of a specific user annotation.
+    Please note that each request must be authenticated.
+  parameters:    
+    - $ref: '#/parameters/Id'
+    - $ref: '#/parameters/WebsiteId'
+  responses:
+    '200':
+      description: OK
+      content:
+        application/vnd.api+json:
+          schema:
+            type: object
+            required:
+              - data
+            properties:
+              data:
+                $ref: '#/definitions/AnnotationUserDetails'
+    '403':
+      description: Forbidden
+patch:
+  tags:
+    - User Annotations
+  summary: Update user annotation
+  description: |
+    Update an existing user annotation.
+    Please note that each request must be authenticated.
+  parameters:
+    - $ref: '#/parameters/Id'
+  requestBody:
+    content:
+      application/vnd.api+json:
+        schema:
+            type: object
+            required:
+              - data
+            properties:
+              data:
+                type: object
+                allOf:
+                  - $ref: '#/definitions/AnnotationUser'
+                required:
+                  - type
+                  - attributes
+                  - id
+                properties:
+                  id:
+                    type: string
+                    description: ID of a annotation.
+                    format: uuid
+                    readOnly: false
+                    example: 677fe0d3-b4f7-43ed-852d-1a9e7b8e59fb
+  responses:
+    '200':
+      description: OK
+      content:
+        application/vnd.api+json:
+          schema:
+            type: object
+            required:
+              - data
+            properties:
+              data:
+                $ref: '#/definitions/AnnotationUserDetails'
+    '400':
+      description: Bad Request
+    '403':
+      description: Forbidden
+delete:
+  tags:
+    - User Annotations
+  summary: Delete user annotation
+  description: |
+    Delete the specified user annotation.
+    Please note that each request must be authenticated.
+  parameters:
+    - $ref: '#/parameters/Id'
+    - $ref: '#/parameters/WebsiteId'
+  responses:
+    '204':
+      description: No Content
+    '403':
+      description: Forbidden
+    '404':
+      description: Not Found

@@ -1,0 +1,136 @@
+{
+    "definitions": {
+        "consent_type_default": {
+            "$ref": "../../tag_attributes.json#/definitions/consent_type",
+            "default": "remarketing"
+        },
+        "template": {
+            "$ref": "../../tag_attributes.json#/definitions/template",
+            "description": "Tag template. Despite rebranding the tag name, the template value remained the same due to maintaining backward compatibility.",
+            "enum": [
+                "doubleclick_floodlight"
+            ]
+        },
+        "template_options_type_descritpion": {
+            "description": "Floodlight type. Despite rebranding the tag name, the template options type value remained the same due to maintaining backward compatibility.",
+            "type": "string"
+        },
+        "template_options_type_sales": {
+            "$ref": "#/definitions/template_options_type_descritpion",
+            "enum": [
+                "doubleclick_floodlight_sales"
+            ]
+        },
+        "template_options_type_counter": {
+            "$ref": "#/definitions/template_options_type_descritpion",
+            "enum": [
+                "doubleclick_floodlight_counter"
+            ]
+        },
+        "template_options_advertiser_id": {
+            "description": "Advertiser identifier",
+            "anyOf": [
+                {
+                    "$ref": "../../tag_types.json#/definitions/non_empty_string"
+                },
+                {
+                    "$ref": "../../../../common/schema/common_types.json#/definitions/variable_reference"
+                }
+            ]
+        },
+        "template_options_group_tag_string": {
+            "description": "Group tag",
+            "anyOf": [
+                {
+                    "$ref": "../../tag_types.json#/definitions/non_empty_string"
+                },
+                {
+                    "$ref": "../../../../common/schema/common_types.json#/definitions/variable_reference"
+                }
+            ]
+        },
+        "template_options_activity_tag_string": {
+            "description": "Activity tag",
+            "anyOf": [
+                {
+                    "$ref": "../../tag_types.json#/definitions/non_empty_string"
+                },
+                {
+                    "$ref": "../../../../common/schema/common_types.json#/definitions/variable_reference"
+                }
+            ]
+        },
+        "template_options_u": {
+            "description": "Standard variable U",
+            "anyOf": [
+                {
+                    "type": "integer"
+                },
+                {
+                    "type": "number"
+                },
+                {
+                    "$ref": "../../tag_types.json#/definitions/non_empty_string"
+                },
+                {
+                    "$ref": "../../../../common/schema/common_types.json#/definitions/variable_reference"
+                }
+            ]
+        },
+        "template_options_tran": {
+            "description": "Standard variable Tran",
+            "anyOf": [
+                {
+                    "type": "integer"
+                },
+                {
+                    "type": "number"
+                },
+                {
+                    "$ref": "../../tag_types.json#/definitions/non_empty_string"
+                },
+                {
+                    "$ref": "../../../../common/schema/common_types.json#/definitions/variable_reference"
+                }
+            ]
+        },
+        "template_options_custom_variables": {
+            "description": "Custom variables",
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "description": "Variable name `[u1, u2, ..., u100]`",
+                        "type": "string",
+                        "pattern": "^u([1-9][0-9]?|100)$"
+                    },
+                    "value": {
+                        "description": "Variable value",
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "number"
+                            },
+                            {
+                                "$ref": "../../tag_types.json#/definitions/non_empty_string"
+                            },
+                            {
+                                "$ref": "../../../../common/schema/common_types.json#/definitions/variable_reference"
+                            }
+                        ]
+                    }
+                },
+                "additionalProperties": false,
+                "required": [
+                    "id",
+                    "value"
+                ]
+            },
+            "maxItems": 100,
+            "uniqueItems": true
+        }
+    }
+}

@@ -1,0 +1,393 @@
+openapi: '3.0.0'
+info:
+    title: Tag Manager API
+    version: '1.0'
+
+security:
+    - BearerAuth: []
+
+servers:
+    - url: https://example.piwik.pro
+
+paths:
+    /api/tag/v1/{app_id}/versions:
+        parameters:
+            - $ref: 'common/api/common_request_parameters.json#/components/parameters/app_id'
+
+        get:
+            summary: List of versions
+            description: |
+                ### JSON API compatibility divergence
+
+                #### Filters
+                In JSON API standard (https://jsonapi.org/recommendations/#filtering) one can request elements with multiple
+                filter values by simply providing them separated by coma:
+
+                `versions?filter[version_type][]=published,draft`
+
+                This notation will not work here. You can achieve this functionality by providing multiple filters for the same parameter:
+
+                `versions?filter[version_type][]=published&filter[version_type][]=draft`
+            parameters:
+                - $ref: 'common/api/common_request_parameters.json#/components/parameters/page[limit]'
+                - $ref: 'common/api/common_request_parameters.json#/components/parameters/page[offset]'
+                - $ref: 'versions/api/versions_request_parameters.json#/components/parameters/filter[version_type]'
+                - $ref: 'versions/api/versions_request_parameters.json#/components/parameters/sort'
+            responses:
+                '200':
+                    description: List of versions
+                    content:
+                        application/vnd.api+json:
+                            schema:
+                                $ref: 'versions/schema/list/versions_list_response_schema.json'
+                            example:
+                                $ref: 'versions/example/list/versions_list_response_example.json'
+                '400':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/bad_request_uri_parameter'
+                '401':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/unauthorized'
+                '404':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/not_found'
+                '500':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/internal_server_error'
+
+    /api/tag/v1/{app_id}/versions/{version_id}:
+        parameters:
+            - $ref: 'common/api/common_request_parameters.json#/components/parameters/app_id'
+            - $ref: 'versions/api/versions_request_parameters.json#/components/parameters/version_id'
+
+        get:
+            summary: Get version
+            responses:
+                '200':
+                    description: Version data
+                    content:
+                        application/vnd.api+json:
+                            schema:
+                                $ref: 'versions/schema/get/versions_get_response_schema.json'
+                            example:
+                                $ref: 'versions/example/get/versions_get_response_example.json'
+                '400':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/bad_request_uri_parameter'
+                '401':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/unauthorized'
+                '404':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/not_found'
+                '500':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/internal_server_error'
+
+    /api/tag/v1/{app_id}/versions/draft:
+        parameters:
+            -   $ref: 'common/api/common_request_parameters.json#/components/parameters/app_id'
+
+        get:
+            summary: Get draft version
+            responses:
+                '200':
+                    description: Version data
+                    content:
+                        application/vnd.api+json:
+                            schema:
+                                $ref: 'versions/schema/get/versions_get_draft_response_schema.json'
+                            example:
+                                $ref: 'versions/example/get/versions_get_draft_response_example.json'
+                '400':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/bad_request_uri_parameter'
+                '401':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/unauthorized'
+                '404':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/not_found'
+                '500':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/internal_server_error'
+
+    /api/tag/v1/{app_id}/versions/published:
+        parameters:
+            -   $ref: 'common/api/common_request_parameters.json#/components/parameters/app_id'
+
+        get:
+            summary: Get published version
+            responses:
+                '200':
+                    description: Version data
+                    content:
+                        application/vnd.api+json:
+                            schema:
+                                $ref: 'versions/schema/get/versions_get_published_response_schema.json'
+                            example:
+                                $ref: 'versions/example/get/versions_get_published_response_example.json'
+                '400':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/bad_request_uri_parameter'
+                '401':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/unauthorized'
+                '404':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/not_found'
+                '500':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/internal_server_error'
+
+    /api/tag/v1/{app_id}/versions/published/restore:
+        parameters:
+            -   $ref: 'common/api/common_request_parameters.json#/components/parameters/app_id'
+
+        post:
+            summary: Restore published version
+            responses:
+                '202':
+                    description: Version data
+                    content:
+                        application/vnd.api+json:
+                            schema:
+                                $ref: 'versions/schema/restore/versions_restore_response_schema.json'
+                            example:
+                                $ref: 'versions/example/restore/versions_restore_response_example.json'
+                '400':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/bad_request'
+                '401':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/unauthorized'
+                '404':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/not_found'
+                '500':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/internal_server_error'
+                '503':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/service_unavailable'
+
+    /api/tag/v1/{app_id}/versions/{version_id}/restore:
+        parameters:
+            -   $ref: 'common/api/common_request_parameters.json#/components/parameters/app_id'
+            -   $ref: 'versions/api/versions_request_parameters.json#/components/parameters/version_id'
+
+        post:
+            summary: Restore version by id
+            responses:
+                '202':
+                    description: Version data
+                    content:
+                        application/vnd.api+json:
+                            schema:
+                                $ref: 'versions/schema/restore/versions_restore_response_schema.json'
+                            example:
+                                $ref: 'versions/example/restore/versions_restore_response_example.json'
+                '400':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/bad_request'
+                '401':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/unauthorized'
+                '404':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/not_found'
+                '500':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/internal_server_error'
+                '503':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/service_unavailable'
+
+    /api/tag/v1/{app_id}/versions/draft/snapshot:
+        parameters:
+            -   $ref: 'common/api/common_request_parameters.json#/components/parameters/app_id'
+
+        post:
+            summary: Snapshot draft version
+            responses:
+                '202':
+                    description: Version data
+                    content:
+                        application/vnd.api+json:
+                            schema:
+                                $ref: 'versions/schema/snapshot/versions_snapshot_response_schema.json'
+                            example:
+                                $ref: 'versions/example/snapshot/versions_snapshot_response_example.json'
+                '400':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/bad_request'
+                '401':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/unauthorized'
+                '404':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/not_found'
+                '500':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/internal_server_error'
+                '503':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/service_unavailable'
+
+    /api/tag/v1/{app_id}/versions/{version_id}/export-files:
+        parameters:
+            -   $ref: 'common/api/common_request_parameters.json#/components/parameters/app_id'
+            -   $ref: 'versions/api/versions_request_parameters.json#/components/parameters/version_id'
+
+        post:
+            summary: Create export file
+            responses:
+                '202':
+                    description: Export file data
+                    content:
+                        application/vnd.api+json:
+                            schema:
+                                $ref: 'versions/schema/export/versions_export_response_schema.json'
+                            example:
+                                $ref: 'versions/example/export/versions_export_response_example.json'
+                '400':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/bad_request_uri_parameter'
+                '401':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/unauthorized'
+                '404':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/not_found'
+                '500':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/internal_server_error'
+                '503':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/service_unavailable'
+            requestBody:
+                required: true
+                content:
+                    application/vnd.api+json:
+                        schema:
+                            $ref: 'versions/schema/export/versions_export_request_schema.json'
+                        example:
+                            $ref: 'versions/example/export/versions_export_request_example.json'
+
+    /api/tag/v1/{app_id}/versions/{version_id}/export-files/{export_file_id}:
+        parameters:
+            -   $ref: 'common/api/common_request_parameters.json#/components/parameters/app_id'
+            -   $ref: 'versions/api/versions_request_parameters.json#/components/parameters/version_id'
+            -   $ref: 'versions/api/versions_request_parameters.json#/components/parameters/export_file_id'
+
+        get:
+            summary: Get export file
+            responses:
+                '200':
+                    description: Export file
+                    content:
+                        application/vnd.api+json:
+                            schema:
+                                $ref: 'versions/schema/export_files_get/versions_export_files_get_response_schema.json'
+                            example:
+                                $ref: 'versions/example/export_files_get/versions_export_files_get_response_example.json'
+
+                '400':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/bad_request'
+                '401':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/unauthorized'
+                '404':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/not_found'
+                '500':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/internal_server_error'
+
+
+    /api/tag/v1/{app_id}/versions/draft/publish:
+        parameters:
+            - $ref: 'common/api/common_request_parameters.json#/components/parameters/app_id'
+
+        post:
+            summary: Publish draft version
+            responses:
+                '202':
+                    description: Version data
+                    content:
+                        application/vnd.api+json:
+                            schema:
+                                $ref: 'versions/schema/publish/versions_publish_response_schema.json'
+                            example:
+                                $ref: 'versions/example/publish/versions_publish_response_example.json'
+                '400':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/bad_request'
+                '401':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/unauthorized'
+                '404':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/not_found'
+                '500':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/internal_server_error'
+                '503':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/service_unavailable'
+
+    /api/tag/v1/{app_id}/versions/{version_id}/publish:
+        parameters:
+            - $ref: 'common/api/common_request_parameters.json#/components/parameters/app_id'
+            - $ref: 'versions/api/versions_request_parameters.json#/components/parameters/version_id'
+
+        post:
+            summary: Publish version by id
+            responses:
+                '202':
+                    description: Version data
+                    content:
+                        application/vnd.api+json:
+                            schema:
+                                $ref: 'versions/schema/publish/versions_publish_response_schema.json'
+                            example:
+                                $ref: 'versions/example/publish/versions_publish_response_example.json'
+                '400':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/bad_request'
+                '401':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/unauthorized'
+                '404':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/not_found'
+                '500':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/internal_server_error'
+                '503':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/service_unavailable'
+
+    /api/tag/v1/{app_id}/versions/import:
+        parameters:
+            - $ref: 'common/api/common_request_parameters.json#/components/parameters/app_id'
+
+        post:
+            summary: Import version
+            responses:
+                '202':
+                    description: Version data
+                    content:
+                        application/vnd.api+json:
+                            schema:
+                                $ref: 'versions/schema/import/versions_import_response_schema.json'
+                            example:
+                                $ref: 'versions/example/import/versions_import_response_example.json'
+                '400':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/bad_request'
+                '401':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/unauthorized'
+                '404':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/not_found'
+                '500':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/internal_server_error'
+                '503':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/service_unavailable'
+            requestBody:
+                required: true
+                content:
+                    application/vnd.api+json:
+                        schema:
+                            $ref: 'versions/schema/import/versions_import_request_schema.json'
+                        example:
+                            $ref: 'versions/example/import/versions_import_request_example.json'
+
+    /api/tag/v1/{app_id}/versions/import-file:
+        parameters:
+            - $ref: 'common/api/common_request_parameters.json#/components/parameters/app_id'
+
+        post:
+            summary: Import version from file
+            responses:
+                '202':
+                    description: Version data
+                    content:
+                        application/vnd.api+json:
+                            schema:
+                                $ref: 'versions/schema/import/versions_import_response_schema.json'
+                            example:
+                                $ref: 'versions/example/import/versions_import_response_example.json'
+                '400':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/bad_request'
+                '401':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/unauthorized'
+                '404':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/not_found'
+                '500':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/internal_server_error'
+                '503':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/service_unavailable'
+            requestBody:
+                content:
+                    multipart/form-data:
+                        schema:
+                            type: object
+                            properties:
+                                file:
+                                    type: string
+                                    format: application/json
+
+components:
+    securitySchemes:
+        $ref: 'common/api/common_security_schemes.json#/components/securitySchemes'

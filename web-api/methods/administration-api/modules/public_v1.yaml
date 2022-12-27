@@ -1,0 +1,483 @@
+openapi: 3.0.3
+info:
+  version: auto
+  title: Modules API
+servers:
+  - url: https://example.piwik.pro
+paths:
+  /api/modules/v1:
+    get:
+      summary: Modules list
+      description: List of licensed modules with access for a current user
+      operationId: list_modules_v1
+      responses:
+        "200":
+          description: OK
+          content:
+            application/vnd.api+json:
+              schema:
+                type: object
+                required:
+                  - data
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      required:
+                        - id
+                        - type
+                      properties:
+                        id:
+                          $ref: "#/components/schemas/ModuleId"
+                        type:
+                          type: string
+                          enum:
+                            - ppms/module
+                example:
+                  data:
+                    - id: analytics
+                      type: ppms/module
+                    - id: tag_manager
+                      type: ppms/module
+        "401":
+          $ref: '#/components/responses/UnauthorizedError'
+  /api/modules/v1/by-users:
+    post:
+      summary: Modules list for given users
+      description: List of modules with access for a list of users
+      operationId: accessible_modules_for_users_batch
+      requestBody:
+        content:
+          application/vnd.api+json:
+            schema:
+              type: object
+              required:
+                - data
+              properties:
+                data:
+                  type: array
+                  maxItems: 100
+                  items:
+                    $ref: "#/components/schemas/UserIdentifier"
+        description: list of users
+      responses:
+        "200":
+          description: OK
+          content:
+            application/vnd.api+json:
+              schema:
+                type: object
+                required:
+                  - data
+                properties:
+                  data:
+                    type: array
+                    maxItems: 100
+                    items:
+                      type: object
+                      required:
+                        - type
+                        - id
+                        - attributes
+                      properties:
+                        type:
+                          type: string
+                          enum:
+                            - ppms/user/modules
+                        id:
+                          $ref: "#/components/schemas/Id"
+                        attributes:
+                          type: object
+                          required:
+                            - modules
+                          properties:
+                            modules:
+                              type: array
+                              items:
+                                $ref: "#/components/schemas/ModuleId"
+        "400":
+          $ref: '#/components/responses/BadRequest'
+        "401":
+          $ref: '#/components/responses/UnauthorizedError'
+        "409":
+          $ref: '#/components/responses/ConflictUserError'
+        "415":
+          $ref: '#/components/responses/UnsupportedMediaTypeError'
+  "/api/modules/v1/{module}":
+    get:
+      summary: Module
+      description: Returns module if it is licensed and user has access to it
+      operationId: get_module_v1
+      parameters:
+        - $ref: "#/components/parameters/Module"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/vnd.api+json:
+              schema:
+                type: object
+                required:
+                  - data
+                properties:
+                  data:
+                    type: object
+                    required:
+                      - id
+                      - type
+                    properties:
+                      id:
+                        $ref: "#/components/schemas/ModuleId"
+                      type:
+                        type: string
+                        enum:
+                          - ppms/module
+        "401":
+          $ref: "#/components/responses/UnauthorizedError"
+        "403":
+          $ref: "#/components/responses/AccessToModuleDeniedError"
+        "404":
+          $ref: "#/components/responses/NotFoundModule"
+  "/api/modules/v1/access/user/{user_id}":
+    get:
+      summary: Modules access list for a given user
+      description: >
+        Lists all modules to which a given user has access to.
+
+        List contains both explicit access for a user and implicit access inherited from user groups which user belongs to.
+      operationId: get_user_modules_access_v1
+      parameters:
+        - $ref: "#/components/parameters/UserId"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/vnd.api+json:
+              schema:
+                type: object
+                required:
+                  - data
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/ModulesAccessForUser"
+        "401":
+          $ref: "#/components/responses/UnauthorizedError"
+        "403":
+          $ref: "#/components/responses/NoJWTError"
+        "404":
+          $ref: "#/components/responses/NotFoundUser"
+    put:
+      summary: Set modules access for a given user
+      description: Sets modules access for a given user
+      operationId: set_modules_access_v1
+      parameters:
+        - $ref: "#/components/parameters/UserId"
+      requestBody:
+        content:
+          application/vnd.api+json:
+            schema:
+              type: object
+              required:
+                - data
+              properties:
+                data:
+                  type: array
+                  items:
+                    type: object
+                    required:
+                      - type
+                      - id
+                      - attributes
+                    properties:
+                      type:
+                        type: string
+                        description: Resource type
+                        enum:
+                          - module/access
+                      id:
+                        $ref: "#/components/schemas/ModuleId"
+                      attributes:
+                        type: object
+                        required:
+                          - access
+                        properties:
+                          access:
+                            type: boolean
+      responses:
+        "204":
+          description: No Content
+        "401":
+          $ref: "#/components/responses/UnauthorizedError"
+        "403":
+          $ref: "#/components/responses/SetAccessForUnlicensedModuleError"
+        "404":
+          $ref: "#/components/responses/NotFoundUser"
+        "409":
+          $ref: "#/components/responses/ConflictModulesAccessError"
+        "415":
+          $ref: '#/components/responses/UnsupportedMediaTypeError'
+components:
+  parameters:
+    Module:
+      in: path
+      name: module
+      required: true
+      schema:
+        type: string
+        enum:
+          - analytics
+          - piwik
+          - consent_manager
+          - tag_manager
+          - administration
+          - audience_manager
+    UserId:
+      in: path
+      name: user_id
+      required: true
+      description: UUIDv4 identifier of an object
+      schema:
+        type: string
+        format: uuid
+  responses:
+    NotFoundModule:
+      description: Not Found
+      content:
+        "application/vnd.api+json":
+          schema:
+            allOf:
+              - $ref: "#/components/schemas/ErrorObject"
+              - example:
+                  errors:
+                    - status: "404"
+                      code: module.not-exists
+                      title: Module 'personalization' does not exist. Available
+                        modules are [analytics, piwik, consent_manager,
+                        tag_manager, administration, audience_manager]
+    NotFoundUser:
+      description: Not Found
+      content:
+        "application/vnd.api+json":
+          schema:
+            allOf:
+              - $ref: "#/components/schemas/ErrorObject"
+              - example:
+                  errors:
+                    - status: "404"
+                      code: modules.error.user-not-exists
+                      detail: User 704a6202-d899-4968-aba3-71758457bec1 does not exist
+    UnauthorizedError:
+      description: Unauthorized
+      content:
+        "application/json":
+          schema:
+            type: object
+            required:
+              - error
+            properties:
+              error:
+                type: string
+                example: access token not authorized
+    BadRequest:
+      description: Bad request
+      content:
+        application/vnd.api+json:
+          schema:
+            type: object
+            required:
+              - errors
+            properties:
+              errors:
+                type: array
+                items:
+                  $ref: "#/components/schemas/ErrorObject"
+            example:
+              errors:
+                - status: "400"
+                  code: modules.error.too-many-users
+                  detail: This collection contains 101 elements. It should have
+                    100 elements or less.
+                  source:
+                    pointer: /data
+    ConflictUserError:
+      description: Conflict
+      content:
+        "application/vnd.api.json":
+          schema:
+            allOf:
+              - $ref: "#/components/schemas/ErrorObject"
+              - example:
+                  errors:
+                    - status: "409"
+                      code: error
+                      source:
+                        pointer: "/data"
+                      detail: The resource object's type (INVALID) is not the type that constitute the collection represented by the endpoint (ppms/user).
+    ConflictModulesAccessError:
+      description: Conflict
+      content:
+        "application/vnd.api.json":
+          schema:
+            allOf:
+              - $ref: "#/components/schemas/ErrorObject"
+              - example:
+                  errors:
+                    - status: "409"
+                      code: error
+                      source:
+                        pointer: "/data"
+                      detail: The resource object's type (INVALID) is not the type that constitute the collection represented by the endpoint (module/access).
+    AccessToModuleDeniedError:
+      description: Forbidden
+      content:
+        "application/vnd.api+json":
+          schema:
+            allOf:
+              - $ref: "#/components/schemas/ErrorObject"
+              - example:
+                  errors:
+                    - status: "403"
+                      code: modules.error.access-denied
+                      detail: Access to module 'analytics' is revoked
+    SetAccessForUnlicensedModuleError:
+      description: Forbidden
+      content:
+        "application/vnd.api+json":
+          schema:
+            allOf:
+              - $ref: "#/components/schemas/ErrorObject"
+              - example:
+                  errors:
+                    - status: "403"
+                      code: modules.error.unlicensed-module
+                      detail: "Missing license for: analytics"
+    NoJWTError:
+      description: Forbidden
+      content:
+        "application/vnd.api+json":
+          schema:
+            allOf:
+              - $ref: "#/components/schemas/ErrorObject"
+              - example:
+                  errors:
+                    - status: "403"
+                      code: authentication_failed
+                      detail: Missing or invalid Authorization header
+    UnsupportedMediaTypeError:
+      description: Unsupported Media Type
+      content:
+        "application/vnd.api+json":
+          schema:
+            allOf:
+              - $ref: "#/components/schemas/ErrorObject"
+              - example:
+                  errors:
+                    - status: "415"
+                      code: unsupported_media_type
+                      source:
+                        pointer: "/data"
+                      detail: Unsupported media type "UNSUPPORTED" in request.
+  schemas:
+    Id:
+      type: string
+      format: uuid
+      description: UUIDv4 identifier of an object
+      example: 6edb1e3c-4c43-4760-ab76-682ad83146be
+    ModuleId:
+      type: string
+      enum:
+        - analytics
+        - piwik
+        - consent_manager
+        - tag_manager
+        - administration
+        - audience_manager
+      description: ID of a module
+    UserIdentifier:
+      type: object
+      properties:
+        type:
+          description: Resource type
+          type: string
+          enum:
+            - ppms/user
+        id:
+          $ref: "#/components/schemas/Id"
+    ModulesAccessForUser:
+      type: object
+      required:
+        - id
+        - type
+        - attributes
+      properties:
+        id:
+          $ref: "#/components/schemas/ModuleId"
+        type:
+          type: string
+          description: Resource type
+          enum:
+            - module/access/user
+        attributes:
+          type: object
+          required:
+            - group_access
+            - access
+          properties:
+            group_access:
+              type: object
+              required:
+                - group_names
+                - access
+              properties:
+                group_names:
+                  type: array
+                  items:
+                    type: string
+                    example: Managers
+                access:
+                  type: boolean
+            access:
+              type: boolean
+    ErrorObject:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            required:
+              - status
+              - code
+              - detail
+              - source
+            properties:
+              status:
+                type: string
+                description: the HTTP status code applicable to this problem, expressed as a
+                  string value
+                example: "400"
+              code:
+                type: string
+                description: an application-specific error code, expressed as a string value
+                example: error.default
+              detail:
+                type: string
+                description: >
+                  a human-readable explanation specific to this occurrence of the
+                  problem. Like `title`, this field’s value can be localized
+                example: This field is invalid
+              source:
+                type: object
+                description: >
+                  an object containing references to the source of the error, optionally including any of the
+                  following members: [pointer, parameter]
+                properties:
+                  pointer:
+                    type: string
+                    example: /data
+                    description: >
+                      a JSON Pointer [RFC6901] to the associated entity in the request document
+                      [e.g. "/data" for a primary data object, or "/data/attributes/name" for a specific attribute]

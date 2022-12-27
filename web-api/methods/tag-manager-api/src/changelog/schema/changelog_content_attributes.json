@@ -1,0 +1,397 @@
+{
+    "definitions": {
+        "empty_before_content_attribute": {
+            "type": "object",
+            "title": "empty",
+            "description": "Empty before content",
+            "properties": {},
+            "additionalProperties": false
+        },
+        "empty_after_content_attribute": {
+            "type": "object",
+            "title": "empty",
+            "description": "Empty after content",
+            "properties": {},
+            "additionalProperties": false
+        },
+        "tag_type_content_attribute": {
+            "type": "object",
+            "title": "filled",
+            "properties": {
+                "name": {
+                    "$ref": "../../tags/schema/tag_attributes.json#/definitions/name"
+                },
+                "triggers": {
+                    "type": "array",
+                    "description": "Triggers list",
+                    "items": {
+                        "type": "object",
+                        "description": "Trigger details",
+                        "properties": {
+                            "trigger_id": {
+                                "$ref": "../../triggers/schema/trigger_types.json#/definitions/trigger_identifier"
+                            },
+                            "name": {
+                                "$ref": "../../triggers/schema/trigger_attributes.json#/definitions/trigger_name_attribute"
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": [
+                            "trigger_id",
+                            "name"
+                        ]
+                    }
+                },
+                "document_write": {
+                    "$ref": "../../tags/schema/tag_attributes.json#/definitions/document_write"
+                },
+                "disable_in_debug_mode": {
+                    "$ref": "../../tags/schema/tag_attributes.json#/definitions/disable_in_debug_mode"
+                },
+                "is_active": {
+                    "$ref": "../../tags/schema/tag_attributes.json#/definitions/is_active"
+                },
+                "template": {
+                    "$ref": "../../tags/schema/tag_attributes.json#/definitions/template"
+                },
+                "template_options": {
+                    "title": "Template options",
+                    "description": "Tag template options",
+                    "oneOf": [
+                        {
+                            "title": "Custom tag",
+                            "$ref": "../../tags/schema/tag_attributes.json#/definitions/template_options_empty"
+                        },
+                        {
+                            "title": "Custom content",
+                            "$ref": "../../tags/schema/tag_templates/custom_content_attributes.json#/definitions/template_options"
+                        },
+                        {
+                            "title": "Custom popup",
+                            "$ref": "../../tags/schema/tag_attributes.json#/definitions/template_options_empty"
+                        },
+                        {
+                            "title": "Piwik PRO",
+                            "$ref": "../../tags/schema/tag_templates/piwik_attributes.json#/definitions/template_options_get"
+                        },
+                        {
+                            "title": "Piwik PRO Audience Manager Form Tracker",
+                            "$ref": "../../tags/schema/tag_templates/audience_manager_attributes.json#/definitions/template_options_get"
+                        },
+                        {
+                            "title": "Piwik PRO Custom Dimensions",
+                            "$ref": "../../tags/schema/tag_templates/piwik_custom_dimension_attributes.json#/definitions/template_options"
+                        },
+                        {
+                            "title": "Piwik PRO Custom Event",
+                            "$ref": "../../tags/schema/tag_templates/piwik_event_attributes.json#/definitions/template_options"
+                        },
+                        {
+                            "title": "Piwik PRO Goal Conversion",
+                            "$ref": "../../tags/schema/tag_templates/piwik_goal_conversion_attributes.json#/definitions/template_options"
+                        },
+                        {
+                            "title": "Piwik PRO Virtual Page View",
+                            "$ref": "../../tags/schema/tag_templates/piwik_virtual_page_view_attributes.json#/definitions/template_options"
+                        },
+                        {
+                            "title": "A/B Tasty",
+                            "$ref": "../../tags/schema/tag_templates/ab_tasty_attributes.json#/definitions/template_options"
+                        },
+                        {
+                            "title": "Adroll",
+                            "$ref": "../../tags/schema/tag_templates/adroll_attributes.json#/definitions/template_options"
+                        },
+                        {
+                            "title": "Bing Ads",
+                            "$ref": "../../tags/schema/tag_templates/bing_ads_attributes.json#/definitions/template_options"
+                        },
+                        {
+                            "title": "Clicktale",
+                            "$ref": "../../tags/schema/tag_templates/click_tale_attributes.json#/definitions/template_options"
+                        },
+                        {
+                            "title": "Crazy Egg",
+                            "$ref": "../../tags/schema/tag_templates/crazy_egg_attributes.json#/definitions/template_options"
+                        },
+                        {
+                            "title": "Floodlight Sales (item sold)",
+                            "$ref": "../../tags/schema/tag_templates/doubleclick_floodlight/doubleclick_floodlight_sales_item_sold_attributes.json#/definitions/template_options"
+                        },
+                        {
+                            "title": "Floodlight Sales (transactions)",
+                            "$ref": "../../tags/schema/tag_templates/doubleclick_floodlight/doubleclick_floodlight_sales_transactions_attributes.json#/definitions/template_options"
+                        },
+                        {
+                            "title": "Floodlight Counter (session)",
+                            "$ref": "../../tags/schema/tag_templates/doubleclick_floodlight/doubleclick_floodlight_counter_session_attributes.json#/definitions/template_options"
+                        },
+                        {
+                            "title": "Floodlight Counter (standard_method)",
+                            "$ref": "../../tags/schema/tag_templates/doubleclick_floodlight/doubleclick_floodlight_counter_standard_method_attributes.json#/definitions/template_options"
+                        },
+                        {
+                            "title": "Floodlight Counter (unique_method)",
+                            "$ref": "../../tags/schema/tag_templates/doubleclick_floodlight/doubleclick_floodlight_counter_unique_method_attributes.json#/definitions/template_options"
+                        },
+                        {
+                            "title": "DoubleClick Conversion",
+                            "$ref": "../../tags/schema/tag_templates/google_adwords/google_adwords_doubleclick_attributes.json#/definitions/template_options"
+                        },
+                        {
+                            "title": "Meta Pixel",
+                            "$ref": "../../tags/schema/tag_templates/facebook_retargeting_pixel_attributes.json#/definitions/template_options"
+                        },
+                        {
+                            "title": "Google Ads Remarketing",
+                            "$ref": "../../tags/schema/tag_templates/google_adwords/google_adwords_remarketing_attributes.json#/definitions/template_options"
+                        },
+                        {
+                            "title": "Google Ads Tracking Conversion",
+                            "$ref": "../../tags/schema/tag_templates/google_adwords/google_adwords_remarketing_attributes.json#/definitions/template_options"
+                        },
+                        {
+                            "title": "Google Analytics",
+                            "$ref": "../../tags/schema/tag_templates/google_analytics_attributes.json#/definitions/template_options_get"
+                        },
+                        {
+                            "title": "Hotjar",
+                            "$ref": "../../tags/schema/tag_templates/hot_jar_attributes.json#/definitions/template_options"
+                        },
+                        {
+                            "title": "HubSpot",
+                            "$ref": "../../tags/schema/tag_templates/hub_spot_attributes.json#/definitions/template_options"
+                        },
+                        {
+                            "title": "LinkedIn",
+                            "$ref": "../../tags/schema/tag_templates/linkedin_attributes.json#/definitions/template_options"
+                        },
+                        {
+                            "title": "Marketo",
+                            "$ref": "../../tags/schema/tag_templates/marketo_attributes.json#/definitions/template_options"
+                        },
+                        {
+                            "title": "Mautic",
+                            "$ref": "../../tags/schema/tag_templates/mautic_attributes.json#/definitions/template_options"
+                        },
+                        {
+                            "title": "Optimizely",
+                            "$ref": "../../tags/schema/tag_templates/optimizely_attributes.json#/definitions/template_options"
+                        },
+                        {
+                            "title": "Qualaroo",
+                            "$ref": "../../tags/schema/tag_templates/qualaroo_attributes.json#/definitions/template_options"
+                        },
+                        {
+                            "title": "SALESmanago",
+                            "$ref": "../../tags/schema/tag_templates/sales_manago_attributes.json#/definitions/template_options"
+                        },
+                        {
+                            "title": "Salesforce Pardot",
+                            "$ref": "../../tags/schema/tag_templates/salesforce_pardot_attributes.json#/definitions/template_options"
+                        },
+                        {
+                            "title": "Visual Website Optimizer",
+                            "$ref": "../../tags/schema/tag_templates/visual_website_optimizer_attributes.json#/definitions/template_options"
+                        },
+                        {
+                            "title": "Video HTML5",
+                            "$ref": "../../tags/schema/tag_templates/video_html5_attributes.json#/definitions/template_options"
+                        },
+                        {
+                            "title": "Video YouTube",
+                            "$ref": "../../tags/schema/tag_templates/video_youtube_attributes.json#/definitions/template_options"
+                        },
+                        {
+                            "title": "Heatmaps",
+                            "$ref": "../../tags/schema/tag_templates/heatmaps_attributes.json#/definitions/template_options"
+                        }
+                    ]
+                },
+                "tag_type": {
+                    "$ref": "../../tags/schema/tag_attributes.json#/definitions/tag_type"
+                },
+                "respect_visitors_privacy": {
+                    "$ref": "../../tags/schema/tag_attributes.json#/definitions/respect_visitors_privacy"
+                },
+                "code": {
+                    "$ref": "../../tags/schema/tag_attributes.json#/definitions/code"
+                },
+                "priority": {
+                    "$ref": "../../tags/schema/tag_attributes.json#/definitions/priority"
+                },
+                "scheduler": {
+                    "$ref": "../../tags/schema/tag_attributes.json#/definitions/scheduler"
+                },
+                "consent_type": {
+                    "$ref": "../../tags/schema/tag_attributes.json#/definitions/consent_type"
+                }
+            },
+            "additionalProperties": false
+        },
+        "tag_type_before_content_attribute": {
+            "$ref": "#/definitions/tag_type_content_attribute",
+            "description": "Before content"
+        },
+        "tag_type_after_content_attribute": {
+            "$ref": "#/definitions/tag_type_content_attribute",
+            "description": "After content"
+        },
+        "trigger_type_content_attribute": {
+            "type": "object",
+            "title": "filled",
+            "properties": {
+                "name": {
+                    "$ref": "../../triggers/schema/trigger_attributes.json#/definitions/trigger_name_attribute"
+                },
+                "trigger_type": {
+                    "$ref": "../../triggers/schema/trigger_attributes.json#/definitions/trigger_type_attribute"
+                },
+                "conditions": {
+                    "type": "array",
+                    "description": "Conditions list",
+                    "items": {
+                        "type": "object",
+                        "description": "Condition details",
+                        "properties": {
+                            "condition_type": {
+                                "$ref": "../../triggers/schema/condition_attributes.json#/definitions/condition_type_attribute"
+                            },
+                            "value": {
+                                "$ref": "../../triggers/schema/condition_attributes.json#/definitions/condition_value_attribute"
+                            },
+                            "condition_id": {
+                                "$ref": "../../triggers/schema/condition_attributes.json#/definitions/condition_id_attribute"
+                            },
+                            "options": {
+                                "description": "Condition options",
+                                "oneOf": [
+                                    {
+                                        "title": "Selector type condition options",
+                                        "type": "object",
+                                        "properties": {
+                                            "selector_type": {
+                                                "$ref": "../../triggers/schema/condition_attributes.json#/definitions/condition_options_selector_type_attribute"
+                                            }
+                                        },
+                                        "additionalProperties": false
+                                    },
+                                    {
+                                        "title": "Page scroll unit condition options",
+                                        "type": "object",
+                                        "properties": {
+                                            "page_scroll_unit": {
+                                                "$ref": "../../triggers/schema/condition_attributes.json#/definitions/condition_options_page_scroll_unit_attribute"
+                                            }
+                                        },
+                                        "additionalProperties": false
+                                    }
+                                ]
+                            },
+                            "variable": {
+                                "type": "object",
+                                "description": "Variable details",
+                                "properties": {
+                                    "variable_id": {
+                                        "$ref": "../../variables/schema/variable_types.json#/definitions/variable_identifier"
+                                    },
+                                    "name": {
+                                        "$ref": "../../variables/schema/variable_attributes.json#/definitions/variable_name_attribute"
+                                    },
+                                    "variable_type": {
+                                        "$ref": "../../variables/schema/variable_types.json#/definitions/variable_type"
+                                    },
+                                    "value": {
+                                        "$ref": "../../variables/schema/variable_attributes.json#/definitions/variable_value_attribute"
+                                    },
+                                    "options": {
+                                        "description": "Variable options",
+                                        "oneOf": [
+                                            {
+                                                "title": "Dom element variable options",
+                                                "$ref": "../../variables/schema/variable_type_attributes.json#/definitions/dom_element_variable_options_attribute"
+                                            },
+                                            {
+                                                "title": "Url parameter variable options",
+                                                "$ref": "../../variables/schema/variable_type_attributes.json#/definitions/url_parameter_options_attribute"
+                                            },
+                                            {
+                                                "title": "Lookup table variable options",
+                                                "$ref": "../../variables/schema/variable_type_attributes.json#/definitions/lookup_table_variable_options_attribute"
+                                            }
+                                        ]
+                                    }
+                                },
+                                "additionalProperties": false,
+                                "required": [
+                                    "variable_id",
+                                    "name",
+                                    "variable_type",
+                                    "value"
+                                ]
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": [
+                            "condition_type",
+                            "value",
+                            "condition_id"
+                        ]
+                    }
+                }
+            },
+            "additionalProperties": false
+        },
+        "trigger_type_before_content_attribute": {
+            "$ref": "#/definitions/trigger_type_content_attribute",
+            "description": "Before content"
+        },
+        "trigger_type_after_content_attribute": {
+            "$ref": "#/definitions/trigger_type_content_attribute",
+            "description": "After content"
+        },
+        "variable_type_content_attribute": {
+            "type": "object",
+            "title": "filled",
+            "properties": {
+                "variable_id": {
+                    "$ref": "../../variables/schema/variable_types.json#/definitions/variable_identifier"
+                },
+                "name": {
+                    "$ref": "../../variables/schema/variable_attributes.json#/definitions/variable_name_attribute"
+                },
+                "variable_type": {
+                    "$ref": "../../variables/schema/variable_types.json#/definitions/variable_type"
+                },
+                "value": {
+                    "$ref": "../../variables/schema/variable_attributes.json#/definitions/variable_value_attribute"
+                },
+                "options": {
+                    "oneOf": [
+                        {
+                            "$ref": "../../variables/schema/variable_type_attributes.json#/definitions/dom_element_variable_options_attribute",
+                            "title": "Dom element variable options"
+                        },
+                        {
+                            "$ref": "../../variables/schema/variable_type_attributes.json#/definitions/url_parameter_options_attribute",
+                            "title": "Url parameter variable options"
+                        },
+                        {
+                            "title": "Lookup table variable options",
+                            "$ref": "../../variables/schema/variable_type_attributes.json#/definitions/lookup_table_variable_options_attribute"
+                        }
+                    ]
+                }
+            },
+            "additionalProperties": false
+        },
+        "variable_type_before_content_attribute": {
+            "$ref": "#/definitions/variable_type_content_attribute",
+            "description": "Before content"
+        },
+        "variable_type_after_content_attribute": {
+            "$ref": "#/definitions/variable_type_content_attribute",
+            "description": "After content"
+        }
+    }
+}

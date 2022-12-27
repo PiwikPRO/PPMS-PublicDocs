@@ -1,0 +1,54 @@
+{
+    "description": "Variable get response",
+    "oneOf": [
+        {
+            "$ref": "response/constant_schema.json",
+            "title": "constant"
+        },
+        {
+            "$ref": "response/cookie_schema.json",
+            "title": "cookie"
+        },
+        {
+            "$ref": "response/custom_javascript_schema.json",
+            "title": "custom_javascript"
+        },
+        {
+            "$ref": "response/data_layer_schema.json",
+            "title": "data_layer"
+        },
+        {
+            "$ref": "response/document_schema.json",
+            "title": "document"
+        },
+        {
+            "$ref": "response/dom_element_schema.json",
+            "title": "dom_element"
+        },
+        {
+            "$ref": "response/random_schema.json",
+            "title": "random"
+        },
+        {
+            "title": "url",
+            "oneOf": [
+                {
+                    "$ref": "response/url_parameter_schema.json",
+                    "title": "parameter"
+                },
+                {
+                    "$ref": "response/url_protocol_schema.json",
+                    "title": "protocol"
+                },
+                {
+                    "$ref": "response/url_query_schema.json",
+                    "title": "query"
+                }
+            ]
+        },
+        {
+            "$ref": "response/lookup_table_schema.json",
+            "title": "lookup_table"
+        }
+    ]
+}

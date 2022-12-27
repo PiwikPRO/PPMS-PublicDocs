@@ -1,0 +1,54 @@
+{
+    "description": "Variable edit request",
+    "oneOf": [
+        {
+            "$ref": "request/constant_schema.json",
+            "title": "constant"
+        },
+        {
+            "$ref": "request/cookie_schema.json",
+            "title": "cookie"
+        },
+        {
+            "$ref": "request/custom_javascript_schema.json",
+            "title": "custom_javascript"
+        },
+        {
+            "$ref": "request/data_layer_schema.json",
+            "title": "data_layer"
+        },
+        {
+            "$ref": "request/document_schema.json",
+            "title": "document"
+        },
+        {
+            "$ref": "request/dom_element_schema.json",
+            "title": "dom_element"
+        },
+        {
+            "$ref": "request/random_schema.json",
+            "title": "random"
+        },
+        {
+            "title": "url",
+            "oneOf": [
+                {
+                    "$ref": "request/url_parameter_schema.json",
+                    "title": "parameter"
+                },
+                {
+                    "$ref": "request/url_protocol_schema.json",
+                    "title": "protocol"
+                },
+                {
+                    "$ref": "request/url_query_schema.json",
+                    "title": "query"
+                }
+            ]
+        },
+        {
+            "$ref": "request/lookup_table_schema.json",
+            "title": "lookup_table"
+        }
+    ]
+}

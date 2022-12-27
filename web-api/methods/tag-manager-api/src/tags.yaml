@@ -1,0 +1,252 @@
+openapi: '3.0.0'
+info:
+    title: Tag Manager API
+    version: '1.0'
+    description: |
+        # Tag template options
+        One should send all attributes he wants to be set when using PATCH request.
+        
+        # Deprecations and changes
+        
+        <details>
+        <summary>Deprecated tags</summary>
+        The tags listed below are marked as deprecated and will not be supported soon. 
+        We strongly discourage using them.
+            
+        | Deprecated tags               |      
+        |---                            |
+        | Clicktale Tracking Code tag   |
+        | DoubleClick Conversion tag    |
+        
+        </details>
+        
+        <details>
+        <summary>Renamed tags</summary>
+        The following tags have been rebranded. However, their template attribute value remained the same due to maintaining backward compatibility.
+        
+        | Old tag name                      | New tag name          |
+        |---                                |---                    |
+        | Facebook Retargeting Pixel tag    | Meta Pixel tag        |
+        | DoubleClick Floodlight Sales tag  | Floodlight Sales tag  |
+        | DoubleClick Floodlight Counter tag| Floodlight Counter tag|
+        
+        </details>
+security:
+    - BearerAuth: []
+
+servers:
+    - url: https://example.piwik.pro
+
+paths:
+    /api/tag/v1/{app_id}/tags:
+        parameters:
+            - $ref: 'common/api/common_request_parameters.json#/components/parameters/app_id'
+
+        get:
+            summary: List of tags
+            description: |
+                ### JSON API compatibility divergence
+
+                #### Filters
+                In JSON API standard (https://jsonapi.org/recommendations/#filtering) one can request elements with multiple
+                filter values by simply providing them separated by coma:
+
+                `tags?filter[template]=piwik,adroll`
+
+                This notation will not work here. You can achieve this functionality by providing multiple filters for the same parameter:
+
+                `tags?filter[template][]=piwik&filter[template][]=adroll`
+            parameters:
+                - $ref: 'common/api/common_request_parameters.json#/components/parameters/page[limit]'
+                - $ref: 'common/api/common_request_parameters.json#/components/parameters/page[offset]'
+                - $ref: 'tags/api/tags_request_parameters.json#/components/parameters/filter[name]'
+                - $ref: 'tags/api/tags_request_parameters.json#/components/parameters/filter[is_active]'
+                - $ref: 'tags/api/tags_request_parameters.json#/components/parameters/filter[tag_type]'
+                - $ref: 'tags/api/tags_request_parameters.json#/components/parameters/filter[template]'
+                - $ref: 'tags/api/tags_request_parameters.json#/components/parameters/filter[is_prioritized]'
+                - $ref: 'tags/api/tags_request_parameters.json#/components/parameters/sort'
+            responses:
+                '200':
+                    description: List of tags
+                    content:
+                        application/vnd.api+json:
+                            schema:
+                                $ref: 'tags/schema/list/tags_list_response_schema.json'
+                            example:
+                                $ref: 'tags/example/list/tags_list_response_example.json'
+                '400':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/bad_request_uri_parameter'
+                '401':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/unauthorized'
+                '404':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/not_found'
+                '500':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/internal_server_error'
+        patch:
+            summary: Edit tags order
+            requestBody:
+                required: true
+                content:
+                    application/vnd.api+json:
+                        schema:
+                            $ref: 'tags/schema/list/tags_edit_order_request_schema.json'
+                        example:
+                            $ref: 'tags/example/list/tags_edit_order_request_example.json'
+            responses:
+                '204':
+                    description: No content
+                '400':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/bad_request_uri_parameter'
+                '401':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/unauthorized'
+                '404':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/not_found'
+                '500':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/internal_server_error'
+                '503':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/service_unavailable'
+
+        post:
+            summary: Create tag
+            description: |
+                See more details about API changes: <a href="#section/Deprecations-and-changes">Deprecations and changes</a>
+            requestBody:
+                required: true
+                content:
+                    application/vnd.api+json:
+                        schema:
+                            $ref: 'tags/schema/create/tags_create_request_schema.json'
+                        examples:
+                            Custom tag:
+                                description: Custom tag without triggers
+                                externalValue: 'tags/example/create/tags_create_request_example.json'
+                            Custom tag with triggers:
+                                description: Custom tag with triggers
+                                externalValue: 'tags/example/create/tags_create_request_example_with_triggers.json'
+                            A/B tasty template:
+                                description: A/B tasty template
+                                externalValue: 'tags/example/create/tags_create_request_example_ab_tasty.json'
+            responses:
+                '201':
+                    description: Tag data
+                    content:
+                        application/vnd.api+json:
+                            schema:
+                                $ref: 'tags/schema/create/tags_create_response_schema.json'
+                            example:
+                                $ref: 'tags/example/get/tags_get_response_example.json'
+                '400':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/bad_request'
+                '401':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/unauthorized'
+                '404':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/not_found'
+                '500':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/internal_server_error'
+                '503':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/service_unavailable'
+
+    /api/tag/v1/{appId}/tags/{tag_id}:
+        parameters:
+            - $ref: 'common/api/common_request_parameters.json#/components/parameters/app_id'
+            - $ref: 'tags/api/tags_request_parameters.json#/components/parameters/tag_id'
+        get:
+            summary: Get tag
+            responses:
+                '200':
+                    description: Tag data
+                    content:
+                        application/vnd.api+json:
+                            schema:
+                                $ref: 'tags/schema/get/tags_get_response_schema.json'
+                            example:
+                                $ref: 'tags/example/get/tags_get_response_example.json'
+                '400':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/bad_request_uri_parameter'
+                '401':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/unauthorized'
+                '404':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/not_found'
+                '500':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/internal_server_error'
+
+        patch:
+            summary: Edit tag
+            description: |
+                See more details about API changes: <a href="#section/Deprecations-and-changes">Deprecations and changes</a>
+            requestBody:
+                required: true
+                content:
+                    application/vnd.api+json:
+                        schema:
+                            $ref: 'tags/schema/edit/tags_edit_request_schema.json'
+                        example:
+                            $ref: 'tags/example/edit/tags_edit_request_example.json'
+            responses:
+                '204':
+                    description: No content
+                '400':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/bad_request'
+                '401':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/unauthorized'
+                '404':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/not_found'
+                '500':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/internal_server_error'
+                '503':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/service_unavailable'
+
+        delete:
+            summary: Delete tag
+            responses:
+                '204':
+                    description: No content
+                '400':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/bad_request_uri_parameter'
+                '401':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/unauthorized'
+                '404':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/not_found'
+                '500':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/internal_server_error'
+                '503':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/service_unavailable'
+
+    /api/tag/v1/{app_id}/tags/{tag_id}/copy:
+        parameters:
+            - $ref: 'common/api/common_request_parameters.json#/components/parameters/app_id'
+            - $ref: 'tags/api/tags_request_parameters.json#/components/parameters/tag_id'
+
+        post:
+            summary: Copy tag
+            responses:
+                '202':
+                    description: Operation data with new (copied) tag identifier
+                    content:
+                        application/vnd.api+json:
+                            schema:
+                                $ref: 'tags/schema/copy/tags_copy_response_schema.json'
+                            example:
+                                $ref: 'tags/example/copy/tags_copy_response_example.json'
+                '400':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/bad_request'
+                '401':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/unauthorized'
+                '404':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/not_found'
+                '500':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/internal_server_error'
+                '503':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/service_unavailable'
+            requestBody:
+                required: true
+                content:
+                    application/vnd.api+json:
+                        schema:
+                            $ref: 'tags/schema/copy/tags_copy_request_schema.json'
+                        example:
+                            $ref: 'tags/example/copy/tags_copy_request_example.json'
+
+components:
+    securitySchemes:
+        $ref: 'common/api/common_security_schemes.json#/components/securitySchemes'

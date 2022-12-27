@@ -1,0 +1,21 @@
+{
+    "definitions": {
+        "template": {
+            "$ref": "../../tag_attributes.json#/definitions/template",
+            "enum": [
+                "google_adwords"
+            ]
+        },
+        "template_options_conversion_id": {
+            "description": "Conversion identifier",
+            "anyOf": [
+                {
+                    "$ref": "../../tag_types.json#/definitions/positive_integer"
+                },
+                {
+                    "$ref": "../../../../common/schema/common_types.json#/definitions/variable_reference"
+                }
+            ]
+        }
+    }
+}

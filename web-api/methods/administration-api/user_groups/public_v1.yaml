@@ -1,0 +1,485 @@
+openapi: 3.0.3
+info:
+  title: User Groups API
+  version: auto
+paths:
+  /api/user-groups/v1:
+    get:
+      summary: List user groups
+      description: Lists user groups
+      operationId: list_user_group_v1
+      parameters:
+        - $ref: "#/components/parameters/UserGroupsSearch"
+        - $ref: "#/components/parameters/UserGroupsSort"
+        - $ref: "#/components/parameters/UserGroupsLimit"
+        - $ref: "#/components/parameters/Offset"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/vnd.api+json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: "#/components/schemas/ListMetadata"
+                  data:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/UserGroup"
+        "400":
+          description: Bad Request
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+    post:
+      summary: Add user group
+      description: Adds user group with unique name
+      operationId: add_user_group_v1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - data
+              properties:
+                data:
+                  $ref: "#/components/schemas/UserGroup"
+        description: Request data to add new user group
+        required: true
+      responses:
+        "201":
+          description: Created
+          content:
+            application/vnd.api+json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: "#/components/schemas/UserGroup"
+        "400":
+          description: Bad Request
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+  "/api/user-groups/v1/{user_group_id}":
+    get:
+      summary: Get user group
+      description: Gets specific user group details
+      operationId: UserGroupDetails_v1
+      parameters:
+        - $ref: "#/components/parameters/UserGroupId"
+      responses:
+        "200":
+          description: OK
+          content:
+            "*/*":
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: "#/components/schemas/UserGroup"
+        "400":
+          description: Bad Request
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+    patch:
+      summary: Edit user group
+      description: Updates user group details
+      operationId: edit_user_group_v1
+      parameters:
+        - $ref: "#/components/parameters/UserGroupId"
+      requestBody:
+        content:
+          application/vnd.api+json:
+            schema:
+              type: object
+              required:
+                - data
+              properties:
+                data:
+                  allOf:
+                    - $ref: "#/components/schemas/UserGroup"
+                    - type: object
+                      properties:
+                        id:
+                          type: string
+                          format: uuid
+                          description: UUID of edited user group (must match
+                            `user_group_id` parameter)
+                          example: 9a67f188-734c-4ba3-8769-912a7e59f3ff
+        required: true
+      responses:
+        "204":
+          description: No Content
+        "400":
+          description: Bad Request
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+    delete:
+      summary: Delete user group
+      description: Deletes user group
+      operationId: delete_user_group_v1
+      parameters:
+        - $ref: "#/components/parameters/UserGroupId"
+      responses:
+        "204":
+          description: No Content
+        "400":
+          description: Bad Request
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+  "/api/user-groups/v1/{user_group_id}/users":
+    get:
+      summary: Get user group members
+      description: Gets user group members
+      operationId: list_user_group_users_v1
+      parameters:
+        - $ref: "#/components/parameters/UserGroupId"
+        - $ref: "#/components/parameters/UsersSearch"
+        - $ref: "#/components/parameters/UsersSort"
+        - $ref: "#/components/parameters/Limit"
+        - $ref: "#/components/parameters/Offset"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: "#/components/schemas/UsersList"
+        "400":
+          description: Bad Request
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+  "/api/user-groups/v1/{user_group_id}/users/excluded":
+    get:
+      summary: Get users excluded from group
+      description: Gets users excluded from given user group
+      operationId: list_user_group_users_excluded_v1
+      parameters:
+        - $ref: "#/components/parameters/UserGroupId"
+        - $ref: "#/components/parameters/UsersSearch"
+        - $ref: "#/components/parameters/UsersSort"
+        - $ref: "#/components/parameters/Limit"
+        - $ref: "#/components/parameters/Offset"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: "#/components/schemas/UsersList"
+        "400":
+          description: Bad Request
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+  "/api/user-groups/v1/{user_group_id}/relationships/users":
+    post:
+      summary: Add users to user group
+      description: Adds users to user group
+      operationId: add_users_to_group_v1
+      parameters:
+        - $ref: "#/components/parameters/UserGroupId"
+      requestBody:
+        content:
+          application/vnd.api+json:
+            schema:
+              $ref: "#/components/schemas/UserIdentifiersList"
+        description: Request data to add users to user group
+        required: true
+      responses:
+        "204":
+          description: No Content
+        "400":
+          description: Bad Request
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+    delete:
+      summary: Remove users from user group
+      description: Remove users from user group
+      operationId: remove_users_from_group_v1
+      parameters:
+        - $ref: "#/components/parameters/UserGroupId"
+      requestBody:
+        content:
+          application/vnd.api+json:
+            schema:
+              $ref: "#/components/schemas/UserIdentifiersList"
+        description: Request data to remove users from user group
+        required: true
+      responses:
+        "204":
+          description: No Content
+        "400":
+          description: Bad Request
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+  "/api/user-groups/v1/{user_group_id}/permissions":
+    post:
+      deprecated: true
+      summary: Set permission group
+      description: Sets permission group to entity for user group
+      operationId: set_permission_group_for_user_group_v1
+      parameters:
+        - $ref: "#/components/parameters/UserGroupId"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SetPermissionGroup"
+        description: Request data to set permission group for user group
+        required: true
+      responses:
+        "204":
+          description: No Content
+        "400":
+          description: Bad Request
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+servers:
+  - url: https://example.piwik.pro
+components:
+  parameters:
+    UserGroupId:
+      in: path
+      name: user_group_id
+      required: true
+      description: UUIDv4 identifier of given user group
+      schema:
+        type: string
+        format: uuid
+    UserGroupsSearch:
+      in: query
+      name: search
+      description: Search phrase - search for user group name and user group id
+      required: false
+      schema:
+        type: string
+    UserGroupsSort:
+      in: query
+      name: sort
+      description: Sort field - can be reversed by adding dash before field name e.g (-name)
+      required: false
+      schema:
+        type: string
+        enum:
+          - name
+          - created_at
+          - updated_at
+          - -name
+          - -created_at
+          - -updated_at
+        default: name
+    UserGroupsLimit:
+      in: query
+      name: limit
+      description: Limits the number of returned user groups in response
+      required: false
+      schema:
+        type: integer
+        maximum: 1000
+        default: 10
+    UsersSearch:
+      in: query
+      name: search
+      description: Search phrase for searching users by email or user id
+      required: false
+      schema:
+        type: string
+    UsersSort:
+      in: query
+      name: sort
+      description: Sort field - can be reversed by adding dash before field name e.g
+        (-email)
+      required: false
+      schema:
+        type: string
+        enum:
+          - email
+          - -email
+        default: email
+    Limit:
+      in: query
+      name: limit
+      description: Limits the number of returned items
+      required: false
+      schema:
+        type: string
+        default: 10
+    Offset:
+      in: query
+      name: offset
+      description: Sets offset for list of items
+      required: false
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
+  schemas:
+    Id:
+      type: string
+      format: uuid
+      description: UUIDv4 identifier of an object
+      example: 6edb1e3c-4c43-4760-ab76-682ad83146be
+    PermissionGroup:
+      type: string
+      description: Permission group (for example `edit-publish` contains permissions
+        `view`, `edit` and `publish`)
+      enum:
+        - no-access
+        - view
+        - edit
+        - edit-publish
+        - manage
+    CreatedAt:
+      type: string
+      format: date-time
+      description: Timestamp of object's creation
+      readOnly: true
+    UpdatedAt:
+      type: string
+      format: date-time
+      description: Timestamp of object's last modification
+      readOnly: true
+    ListMetadata:
+      type: object
+      description: Metadata of a listing
+      required:
+        - total
+      properties:
+        total:
+          type: integer
+          description: Total number of items
+          example: 1
+    UserGroup:
+      type: object
+      required:
+        - id
+        - type
+        - attributes
+      properties:
+        type:
+          type: string
+          enum:
+            - ppms/user-group
+        id:
+          allOf:
+            - $ref: "#/components/schemas/Id"
+            - readOnly: true
+        attributes:
+          type: object
+          required:
+            - name
+            - created_at
+            - updated_at
+          properties:
+            name:
+              description: User group name
+              type: string
+              example: Managers
+            created_at:
+              allOf:
+                - $ref: "#/components/schemas/CreatedAt"
+                - readOnly: true
+            updated_at:
+              allOf:
+                - $ref: "#/components/schemas/UpdatedAt"
+                - readOnly: true
+    UsersList:
+      type: object
+      properties:
+        meta:
+          $ref: "#/components/schemas/ListMetadata"
+        data:
+          type: array
+          items:
+            $ref: "#/components/schemas/User"
+    User:
+      type: object
+      description: User details
+      required:
+        - id
+        - type
+        - attributes
+      properties:
+        id:
+          $ref: "#/components/schemas/Id"
+        type:
+          type: string
+          description: Resource type
+          enum:
+            - ppms/user
+        attributes:
+          type: object
+          required:
+            - email
+          properties:
+            email:
+              $ref: "#/components/schemas/Email"
+    Email:
+      type: string
+      format: email
+      description: User email
+      example: example@example.com
+    UserIdentifiersList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: "#/components/schemas/UserIdentifier"
+    UserIdentifier:
+      type: object
+      properties:
+        type:
+          description: Resource type
+          type: string
+          enum:
+            - ppms/user
+        id:
+          $ref: "#/components/schemas/Id"
+    SetPermissionGroup:
+      type: object
+      required:
+        - data
+      properties:
+        data:
+          type: object
+          required:
+            - type
+            - attributes
+          properties:
+            type:
+              description: Resource type
+              type: string
+              enum:
+                - ppms/permissions/group
+            attributes:
+              type: object
+              required:
+                - entity_id
+                - group
+              properties:
+                entity_id:
+                  $ref: "#/components/schemas/Id"
+                group:
+                  $ref: "#/components/schemas/PermissionGroup"

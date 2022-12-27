@@ -1,0 +1,70 @@
+get:
+  tags:
+    - Custom Dimensions
+  summary: Get custom dimension
+  description: |
+    Returns a definition of a specific custom dimension.
+  parameters:
+    - $ref: '#/parameters/Id'
+    - $ref: '#/parameters/WebsiteId'
+  responses:
+    '200':
+      description: OK
+      content:
+        application/vnd.api+json:
+          schema:
+            type: object
+            required:
+              - data
+            properties:
+              data:
+                $ref: '#/definitions/CustomDimensionDetail'
+    '403':
+      description: Forbidden
+put:
+  tags:
+    - Custom Dimensions
+  summary: Update custom dimension
+  description: |
+    Configure existing custom dimension.
+  parameters:
+    - $ref: '#/parameters/Id'
+  requestBody:
+    content:
+      application/vnd.api+json:
+        schema:
+            type: object
+            required:
+              - data
+            properties:
+              data:
+                type: object
+                allOf:
+                  - $ref: '#/definitions/CustomDimensionUpdate'
+                required:
+                  - type
+                  - attributes
+                  - id
+                properties:
+                  id:
+                    type: string
+                    description: ID of a annotation.
+                    format: uuid
+                    readOnly: false
+                    example: 677fe0d3-b4f7-43ed-852d-1a9e7b8e59fb
+  responses:
+    '200':
+      description: OK
+      content:
+        application/vnd.api+json:
+          schema:
+            type: object
+            required:
+              - data
+            properties:
+              data:
+                $ref: '#/definitions/CustomDimensionDetail'
+    '400':
+      description: Bad Request
+    '403':
+      description: Forbidden

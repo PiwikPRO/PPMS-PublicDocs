@@ -1,0 +1,70 @@
+post:
+  tags:
+    -  User Annotations
+  summary: Create user annotation
+  description: |
+    Create a new user annotation.
+    Please note that each request must be authenticated.
+  requestBody:
+    content:
+      application/vnd.api+json:
+        schema:
+          type: object
+          required:
+            - data
+          properties:
+            data:
+              $ref: '#/definitions/AnnotationUser'
+    required: true
+  responses:
+    '201':
+      description: OK
+      content:
+        application/vnd.api+json:
+          schema:
+            type: object
+            required:
+              - data
+            properties:
+              data:
+                $ref: '#/definitions/AnnotationUserDetails'
+    '400':
+      description: Bad Request
+    '403':
+      description: Forbidden
+get:
+  tags:
+    -  User Annotations
+  summary: List user annotations
+  description: |
+    Returns a list all user annotations available for a website.
+    Please note that each request must be authenticated.
+  parameters:
+    - $ref: '#/parameters/WebsiteId'
+    - $ref: '#/parameters/DateFrom'
+    - $ref: '#/parameters/DateTo'
+    - $ref: '#/parameters/Limit'
+    - $ref: '#/parameters/Offset'
+  responses:
+    '200':
+      description: OK
+      content:
+        application/vnd.api+json:
+          schema:
+            type: object
+            required:
+              - data
+              - meta
+            properties:
+              meta:
+                type: object
+                allOf:
+                  - $ref: '#/schemas/Meta'
+              data:
+                type: array
+                items:
+                  $ref: '#/definitions/AnnotationUserDetails'
+    '400':
+      description: Bad Request
+    '403':
+      description: Forbidden

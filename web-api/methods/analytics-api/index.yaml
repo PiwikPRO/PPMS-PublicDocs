@@ -1,0 +1,130 @@
+swagger: '2.0'
+info:
+  title: Object management HTTP API for Analytics.
+  description: |
+    **Authentication is required** to access any of the
+    following endpoints. Please see [Authorization](../../platform/getting_started.html)
+    documentation for more details.
+
+  version: 'auto'
+host: your-instance-name.piwik.pro
+basePath: /
+schemes:
+  - https
+consumes:
+  - application/json
+  - application/vnd.api+json
+produces:
+  - application/vnd.api+json,
+schemas:
+  Meta:
+    type: object
+    required:
+      - "total"
+    properties:
+      total:
+        type: integer
+        description: Total number of results.
+        example: 1
+parameters:
+  Id:
+    name: id
+    in: path
+    description: ID of the object.
+    required: true
+    schema:
+      type: string
+      format: uuid
+    example: 'dde2dc68-b6bb-45ee-9ac2-868b6181e33f'
+  WebsiteId:
+    name: website_id
+    in: query
+    required: true
+    description: ID of the website.
+    schema:
+      type: string
+      format: uuid
+    example: '677fe0d3-b4f7-43ed-852d-1a9e7b8e59fb'
+  DateFrom:
+    name: date_from
+    in: query
+    description: |
+      Start date for the query (inclusive). You can specify mulitple dates which will be paired with corresponding `date_to` parameters. For example `?date_from=2020-01-01&date_to=2020-01-10&date_from=2021-06-01&date_to=2021-07-01` will create two ranges: `[2020-01-01; 2020-01-10]` and `[2021-06-01; 2021-07-01]`.
+      Number of `date_from` parameters must match number of `date_to` parameters.
+    style: form
+    explode: false
+    schema:
+      type: array
+      items:
+        type: string
+        format: date
+        example: '2021-05-01'
+  DateTo:
+    name: date_to
+    in: query
+    description: End date for the query (inclusive). You can specify mulitple dates which will be paired with corresponding `date_to` parameters. Read more in `date_from` parameter description.
+    style: form
+    explode: false
+    schema:
+      type: array
+      items:
+        type: string
+        format: date
+        example: '2021-05-01'
+  Offset:
+    name: offset
+    in: query
+    type: integer
+    default: 0
+    minimum: 0
+    description: Number of rows to skip before beginning to return rows.
+  Limit:
+    name: limit
+    in: query
+    type: integer
+    default: 10
+    minimum: 1
+    maximum: 100000
+    description: Number of rows to return.
+paths:
+  /api/analytics/v1/manage/goals/:
+    $ref: ./paths/goals.yaml
+  /api/analytics/v1/manage/goals/{id}/:
+    $ref: ./paths/goals_detail.yaml
+  /api/analytics/v1/manage/custom-dimensions/:
+    $ref: ./paths/custom_dimensions.yaml
+  /api/analytics/v1/manage/custom-dimensions/{id}/:
+    $ref: ./paths/custom_dimensions_detail.yaml
+  /api/analytics/v1/manage/custom-dimensions/slots/:
+    $ref: ./paths/custom_dimensions_slots.yaml
+  /api/analytics/v1/manage/annotation/user/:
+    $ref: ./paths/annotation_user.yaml
+  /api/analytics/v1/manage/annotation/user/{id}/:
+    $ref: ./paths/annotation_user_detail.yaml
+  /api/analytics/v1/manage/annotation/system/:
+    $ref: ./paths/annotation_system.yaml
+definitions:
+  Goal:
+    $ref: ./definitions/goal.yaml
+  GoalDetails:
+    $ref: ./definitions/goal_details.yaml
+  CustomDimension:
+    $ref: ./definitions/custom_dimension.yaml
+  CustomDimensionCreate:
+    $ref: ./definitions/custom_dimension_create.yaml
+  CustomDimensionDetail:
+    $ref: ./definitions/custom_dimension_details.yaml
+  CustomDimensionUpdate:
+    $ref: ./definitions/custom_dimension_update.yaml
+  CustomDimensionSlot:
+    $ref: ./definitions/custom_dimension_slot.yaml
+  CustomDimensionSlots:
+    $ref: ./definitions/custom_dimension_slots.yaml
+  Annotation:
+    $ref: ./definitions/annotation.yaml
+  AnnotationUser:
+    $ref: ./definitions/annotation_user.yaml
+  AnnotationUserDetails:
+    $ref: ./definitions/annotation_user_detail.yaml
+  AnnotationSystem:
+    $ref: ./definitions/annotation_system.yaml

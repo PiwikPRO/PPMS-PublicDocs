@@ -1,0 +1,45 @@
+{
+    "definitions": {
+        "template": {
+            "$ref": "../tag_attributes.json#/definitions/template",
+            "enum": [
+                "piwik_virtual_page_view"
+            ]
+        },
+        "template_options": {
+            "description": "[Tag template options](#tag-template-options)",
+            "type": "object",
+            "properties": {
+                "url": {
+                    "description": "Page URL (for example: `https://example.org`, `/pages/about-us`)",
+                    "anyOf": [
+                        {
+                            "$ref": "../tag_types.json#/definitions/non_empty_string"
+                        },
+                        {
+                            "$ref": "../../../common/schema/common_types.json#/definitions/variable_reference"
+                        }
+                    ]
+                },
+                "document_title": {
+                    "description": "Page title",
+                    "anyOf": [
+                        {
+                            "$ref": "../tag_types.json#/definitions/non_empty_string"
+                        },
+                        {
+                            "$ref": "../../../common/schema/common_types.json#/definitions/variable_reference"
+                        }
+                    ]
+                },
+                "custom_dimensions": {
+                    "$ref": "piwik_base_attributes.json#/definitions/custom_dimensions"
+                }
+            },
+            "additionalProperties": false,
+            "required": [
+                "url"
+            ]
+        }
+    }
+}

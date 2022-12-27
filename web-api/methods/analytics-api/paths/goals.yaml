@@ -1,0 +1,67 @@
+post:
+  tags:
+    - Goals
+  summary: Create goal
+  description: |
+    Create a new goal.
+    Please note that each request must be authenticated.
+  requestBody:
+    content:
+      application/vnd.api+json:
+        schema:
+          type: object
+          required:
+            - data
+          properties:
+            data:
+              $ref: '#/definitions/Goal'
+  responses:
+    '201':
+      description: OK
+      content:
+        application/vnd.api+json:
+          schema:
+            type: object
+            required:
+              - data
+            properties:
+              data:
+                $ref: '#/definitions/GoalDetails'
+    '400':
+      description: Bad Request
+    '403':
+      description: Forbidden
+get:
+  tags:
+    - Goals
+  summary: List goals
+  description: |
+    Returns a list all goals available for a website.
+    Please note that each request must be authenticated.
+  parameters:
+    - $ref: '#/parameters/WebsiteId'
+    - $ref: '#/parameters/Limit'
+    - $ref: '#/parameters/Offset'
+  responses:
+    '200':
+      description: OK
+      content:
+        application/vnd.api+json:
+          schema:
+            type: object
+            required:
+              - data
+              - meta
+            properties:
+              meta:
+                type: object
+                allOf:
+                  - $ref: '#/schemas/Meta'
+              data:
+                type: array
+                items:
+                  $ref: '#/definitions/GoalDetails'
+    '400':
+      description: Bad Request
+    '403':
+      description: Forbidden

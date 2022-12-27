@@ -1,0 +1,185 @@
+openapi: '3.0.0'
+info:
+    title: Tag Manager API
+    version: '1.0'
+
+security:
+    - BearerAuth: []
+
+servers:
+    - url: https://example.piwik.pro
+
+paths:
+    /api/tag/v1/{app_id}/triggers:
+        parameters:
+            - $ref: 'common/api/common_request_parameters.json#/components/parameters/app_id'
+
+        get:
+            summary: List of triggers
+            description: |
+                ### JSON API compatibility divergence
+
+                #### Filters
+                In JSON API standard (https://jsonapi.org/recommendations/#filtering) one can request elements with multiple
+                filter values by simply providing them separated by coma:
+
+                `triggers?filter[trigger_type]=click,event`
+
+                Unfortunately it is not possible in this endpoint.
+            parameters:
+                - $ref: 'common/api/common_request_parameters.json#/components/parameters/page[limit]'
+                - $ref: 'common/api/common_request_parameters.json#/components/parameters/page[offset]'
+                - $ref: 'triggers/api/triggers_request_parameters.json#/components/parameters/filter[name]'
+                - $ref: 'triggers/api/triggers_request_parameters.json#/components/parameters/filter[trigger_type]'
+                - $ref: 'triggers/api/triggers_request_parameters.json#/components/parameters/sort'
+            responses:
+                '200':
+                    description: List of triggers
+                    content:
+                        application/vnd.api+json:
+                            schema:
+                                $ref: 'triggers/schema/list/triggers_list_response_schema.json'
+                            example:
+                                $ref: 'triggers/example/list/triggers_list_response_example.json'
+                '400':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/bad_request_uri_parameter'
+                '401':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/unauthorized'
+                '404':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/not_found'
+                '500':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/internal_server_error'
+
+        post:
+            summary: Create trigger
+            responses:
+                '201':
+                    description: Trigger data
+                    content:
+                        application/vnd.api+json:
+                            schema:
+                                $ref: 'triggers/schema/create/triggers_create_response_schema.json'
+                            example:
+                                $ref: 'triggers/example/create/triggers_create_response_example.json'
+                '400':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/bad_request'
+                '401':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/unauthorized'
+                '404':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/not_found'
+                '500':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/internal_server_error'
+                '503':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/service_unavailable'
+            requestBody:
+                required: true
+                content:
+                    application/vnd.api+json:
+                        schema:
+                            $ref: 'triggers/schema/create/triggers_create_request_schema.json'
+                        example:
+                            $ref: 'triggers/example/create/triggers_create_request_example.json'
+
+    /api/tag/v1/{app_id}/triggers/{trigger_id}:
+        parameters:
+            - $ref: 'common/api/common_request_parameters.json#/components/parameters/app_id'
+            - $ref: 'triggers/api/triggers_request_parameters.json#/components/parameters/trigger_id'
+
+        get:
+            summary: Get trigger
+            responses:
+                '200':
+                    description: Trigger data
+                    content:
+                        application/vnd.api+json:
+                            schema:
+                                $ref: 'triggers/schema/get/triggers_get_response_schema.json'
+                            example:
+                                $ref: 'triggers/example/get/triggers_get_response_example.json'
+                '400':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/bad_request_uri_parameter'
+                '401':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/unauthorized'
+                '404':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/not_found'
+                '500':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/internal_server_error'
+
+        patch:
+            summary: Edit trigger
+            responses:
+                '204':
+                    description: No content
+                '400':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/bad_request'
+                '401':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/unauthorized'
+                '404':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/not_found'
+                '500':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/internal_server_error'
+                '503':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/service_unavailable'
+            requestBody:
+                required: true
+                content:
+                    application/vnd.api+json:
+                        schema:
+                            $ref: 'triggers/schema/edit/triggers_edit_request_schema.json'
+                        example:
+                            $ref: 'triggers/example/edit/triggers_edit_request_example.json'
+
+        delete:
+            summary: Delete trigger
+            responses:
+                '204':
+                    description: No content
+                '400':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/bad_request_uri_parameter'
+                '401':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/unauthorized'
+                '404':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/not_found'
+                '500':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/internal_server_error'
+                '503':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/service_unavailable'
+
+    /api/tag/v1/{app_id}/triggers/{trigger_id}/copy:
+        parameters:
+            - $ref: 'common/api/common_request_parameters.json#/components/parameters/app_id'
+            - $ref: 'triggers/api/triggers_request_parameters.json#/components/parameters/trigger_id'
+
+        post:
+            summary: Copy trigger
+            responses:
+                '202':
+                    description: Operation data with new (copied) trigger identifier
+                    content:
+                        application/vnd.api+json:
+                            schema:
+                                $ref: 'triggers/schema/copy/triggers_copy_response_schema.json'
+                            example:
+                                $ref: 'triggers/example/copy/triggers_copy_response_example.json'
+                '400':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/bad_request'
+                '401':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/unauthorized'
+                '404':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/not_found'
+                '500':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/internal_server_error'
+                '503':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/service_unavailable'
+            requestBody:
+                required: true
+                content:
+                    application/vnd.api+json:
+                        schema:
+                            $ref: 'triggers/schema/copy/triggers_copy_request_schema.json'
+                        example:
+                            $ref: 'triggers/example/copy/triggers_copy_request_example.json'
+
+components:
+    securitySchemes:
+        $ref: 'common/api/common_security_schemes.json#/components/securitySchemes'

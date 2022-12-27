@@ -1,0 +1,19 @@
+get:
+  tags:
+    - Custom Dimensions
+  summary: Get custom dimension slots
+  description: |
+    Returns statistics about available custom dimension slots.
+  parameters:
+    - $ref: '#/parameters/WebsiteId'
+  responses:
+    '200':
+      description: OK
+      content:
+        application/vnd.api+json:
+          schema:
+            properties:
+              data:
+                $ref: '#/definitions/CustomDimensionSlots'
+    '403':
+      description: Forbidden

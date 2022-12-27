@@ -1,0 +1,47 @@
+{
+    "definitions": {
+        "consent_type_default": {
+            "$ref": "../tag_attributes.json#/definitions/consent_type",
+            "default": "analytics"
+        },
+        "template": {
+            "$ref": "../tag_attributes.json#/definitions/template",
+            "enum": [
+                "click_tale"
+            ]
+        },
+        "template_options": {
+            "description": "[Tag template options](#tag-template-options)",
+            "type": "object",
+            "properties": {
+                "partition": {
+                    "description": "Partition number from server",
+                    "anyOf": [
+                        {
+                            "$ref": "../tag_types.json#/definitions/non_empty_string"
+                        },
+                        {
+                            "$ref": "../../../common/schema/common_types.json#/definitions/variable_reference"
+                        }
+                    ]
+                },
+                "guid": {
+                    "description": "Tag identifier",
+                    "anyOf": [
+                        {
+                            "$ref": "../tag_types.json#/definitions/non_empty_string"
+                        },
+                        {
+                            "$ref": "../../../common/schema/common_types.json#/definitions/variable_reference"
+                        }
+                    ]
+                }
+            },
+            "additionalProperties": false,
+            "required": [
+                "partition",
+                "guid"
+            ]
+        }
+    }
+}

@@ -1,0 +1,45 @@
+{
+    "definitions": {
+        "template": {
+            "$ref": "../tag_attributes.json#/definitions/template",
+            "enum": [
+                "piwik_goal_conversion"
+            ]
+        },
+        "template_options": {
+            "description": "[Tag template options](#tag-template-options)",
+            "type": "object",
+            "properties": {
+                "id": {
+                    "description": "Goal identifier",
+                    "anyOf": [
+                        {
+                            "$ref": "../tag_types.json#/definitions/non_empty_string"
+                        },
+                        {
+                            "$ref": "../../../common/schema/common_types.json#/definitions/variable_reference"
+                        }
+                    ]
+                },
+                "revenue": {
+                    "description": "Goal revenue",
+                    "oneOf": [
+                        {
+                            "$ref": "../tag_types.json#/definitions/positive_number"
+                        },
+                        {
+                            "$ref": "../../../common/schema/common_types.json#/definitions/variable_reference"
+                        }
+                    ]
+                },
+                "custom_dimensions": {
+                    "$ref": "piwik_base_attributes.json#/definitions/custom_dimensions"
+                }
+            },
+            "additionalProperties": false,
+            "required": [
+                "id"
+            ]
+        }
+    }
+}

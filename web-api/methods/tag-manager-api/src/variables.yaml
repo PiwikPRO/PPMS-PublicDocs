@@ -1,0 +1,228 @@
+openapi: '3.0.0'
+info:
+    title: Tag Manager API
+    version: '1.0'
+    description: |
+        # Builtin variables
+
+        <details>
+        <summary>Show builtin variables list</summary>
+
+        | name                      	| variable_id                           	| description                                                                                                                                                                                                                                                                                                                                                            |
+        |---------------------------	|---------------------------------------	|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+        | History source            	| caf01b44-cdbf-4a7e-a7e8-0150744b4e32   	| Contains information about the last method/event that updated the History object. It changes its value when a pushState, replaceState, popState or hashchange event occurs. |
+        | History state             	| c98aff1e-a24a-4ab7-bad4-d7e0f056b42e  	| Contains the current value of HTML5 history state which is of type any. It changes its value when a history state meets a defined condition. |
+        | Old history state         	| a489adb8-f2cf-4a09-8b7a-e6a048b943d7  	| Contains the previous value of HTML5 history state which is of type any. It changes its value when a previous history state meets a defined condition. |
+        | History fragment          	| d462fb15-d23c-40e2-bc54-494377accccb  	| Contains the current value of URL fragment identifier (hash). It changes its value when a hash in the page URL meets a defined condition. |
+        | Old history fragment      	| 44ef5a4b-4009-4f66-8fb4-c8137c0ed1b0  	| Contains the previous value of URL fragment identifier (hash). It changes its value when a previous hash in the page URL meets a defined condition. |
+        | Click ID                  	| f39468e9-ae2d-4e58-9e2c-73a4d44add6f  	| Contains the ID of the clicked element. It changes its value when the visitor clicks an element with the chosen ID. |
+        | Click Url                 	| efd3558a-714d-4b33-9edd-2bbeb0b5eaf7  	| Contains the URL of the clicked element. It changes its value when the visitor clicks a link with the chosen URL. |
+        | Click Classes             	| efc09356-e1f2-40f7-8a0a-4c454429e678  	| Contains the class(es) of the clicked element. It changes its value when the visitor clicks an element with the chosen CSS class. |
+        | Click Element             	| db5a673e-dabe-4dfa-908c-d08b369d08c9  	| Contains DOM object of clicked HTML element. |
+        | Form ID                   	| b1504526-de0d-4c27-9ff0-1ee7734561ed  	| Contains the ID of the submitted form element. It changes its value when the visitor submits a form with the chosen ID. |
+        | Form Url                  	| 0e45761b-d00d-4b18-88c1-eb8fc233d3da  	| Contains the URL of the submitted form element. It changes its value when the visitor submits a form that sends a request to the chosen URL. |
+        | Form Classes              	| d7c47336-342d-4c9b-b35a-fa13f238ca44  	| Contains the class(es) of the submitted form element. It changes its value when the visitor submits a form with the chosen CSS class. |
+        | Form Name                 	| 028f3993-dc39-4ad1-8602-f6345c91f3bb  	| Contains name of the submitted form. |
+        | Event                     	| 977a1f9d-4fdb-43bf-9549-bdf68a7b69a6  	| The name of the event emitted on dataLayer. It changes its value when a chosen custom event occurs in dataLayer. |
+        | Time on website           	| 4a3cbab8-e239-44ca-b1c9-6c1bc5cc3fbd  	| It changes its value when the visitor is on the website or page for a certain amount of time. For example, fires a tag when the visitor spends at least 15 seconds on a page or website. |
+        | Page Scroll               	| a9a87b7d-d565-433d-8090-df9d80bf91f5  	| It changes its value when the visitor scrolls to the chosen point on the page. For example, the visitor scrolls 50% of the page or scrolls to 1440 px on the page. |
+        | Leave content             	| c2fe42d6-2cbc-45d0-b4df-af92fdbdc2fc  	| It changes its value when the cursor leaves a page. You can choose two options for this condition: page exit intent — the cursor leaves page via top edge or cursor leaving the browser's area — the cursor leaves page via any edge. |
+        | Page Url                  	| 67ed6060-eace-4370-8ede-a083f7c909f1  	| Contains the whole URL of the current page. |
+        | Page Path                 	| e1e2b185-464f-4eb5-8575-feec34c5e281  	| Contains the path of the URL of the current page. |
+        | Page Hostname             	| 42ff090e-f97c-45b5-8625-21ae26891382  	| Contains the hostname of the URL of the current page. |
+        | View within session       	| 18c827bd-43e2-409a-a25d-cd8b0f6b95f7  	| Contains time in seconds from last interaction. |
+        | Referrer                  	| 8530b589-aaac-42e4-b4c0-dfeef1360ee5  	| The URL of the page that linked to the current page. |
+        | External referrer         	| 6fa9617f-00b8-4bed-8112-ccbb32033c74  	| The URL of the page from the website with a different hostname that linked to your current website. |
+        | Campaign                  	| a3f51ab7-ea76-4adc-a839-a32d392df37c  	| Its value based on the utm_campaign or pk_campaign parameter from URL. |
+        | Traffic source            	| 78fec807-3991-4fbc-ad57-238a6960d0b7  	| Contains traffic source: campaign, organic search, social, website, direct. It changes its value when the visitor clicks an element on any page to which they came from the chosen traffic source: campaign, organic search, social, referral, direct. |
+        | Returning Visitor         	| d76335ca-0ae1-4540-8b7e-5ff7acb0d14f  	| Logical condition which says if this is the user’s first visit or not. It changes its value when a returning visitor clicks an element on the chosen page (this mechanism is based on the cookie). |
+        | Audience manager audience 	| 86068b14-804c-4b44-8a48-68ab37244ffc  	| Contains the audience list of the visitor |
+        | Consents                  	| 67f49c79-bab6-4b0f-95c8-3bf624b6398f  	| Contains information about the current and previous state of visitor consents. |
+        | Found elements               	| 7dead2a9-5804-4cdd-8d73-b04d338952e9  	| Variable used in Element presence trigger. It contains the class name of the found elements that the trigger was set to look for. |
+
+        </details>
+
+security:
+    - BearerAuth: []
+
+servers:
+    - url: https://example.piwik.pro
+
+paths:
+    /api/tag/v1/{app_id}/variables:
+        parameters:
+            - $ref: 'common/api/common_request_parameters.json#/components/parameters/app_id'
+
+        get:
+            summary: List of variables
+            description: |
+                ### JSON API compatibility divergence
+
+                #### Filters
+                In JSON API standard (https://jsonapi.org/recommendations/#filtering) one can request elements with multiple
+                filter values by simply providing them separated by coma:
+
+                `variables?filter[variable_type]=url,constant`
+
+                This notation will not work here. You can achieve this functionality by providing multiple filters for the same parameter:
+
+                `variables?filter[variable_type][]=url&filter[variable_type][]=constant`
+            parameters:
+                - $ref: 'common/api/common_request_parameters.json#/components/parameters/page[limit]'
+                - $ref: 'common/api/common_request_parameters.json#/components/parameters/page[offset]'
+                - $ref: 'variables/api/variables_request_parameters.json#/components/parameters/filter[name]'
+                - $ref: 'variables/api/variables_request_parameters.json#/components/parameters/filter[variable_type]'
+                - $ref: 'variables/api/variables_request_parameters.json#/components/parameters/filter[builtin]'
+                - $ref: 'variables/api/variables_request_parameters.json#/components/parameters/sort'
+            responses:
+                '200':
+                    description: List of variables
+                    content:
+                        application/vnd.api+json:
+                            schema:
+                                $ref: 'variables/schema/list/variables_list_response_schema.json'
+                            example:
+                                $ref: 'variables/example/list/variables_list_response_example.json'
+                '400':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/bad_request_uri_parameter'
+                '401':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/unauthorized'
+                '404':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/not_found'
+                '500':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/internal_server_error'
+
+        post:
+            summary: Create variable
+            responses:
+                '201':
+                    description: Variable data
+                    content:
+                        application/vnd.api+json:
+                            schema:
+                                $ref: 'variables/schema/create/variables_create_response_schema.json'
+                            example:
+                                $ref: 'variables/example/create/variables_create_response_example.json'
+                '400':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/bad_request'
+                '401':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/unauthorized'
+                '404':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/not_found'
+                '500':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/internal_server_error'
+                '503':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/service_unavailable'
+            requestBody:
+                required: true
+                content:
+                    application/vnd.api+json:
+                        schema:
+                            $ref: 'variables/schema/create/variables_create_request_schema.json'
+                        example:
+                            $ref: 'variables/example/create/variables_create_request_example.json'
+
+    /api/tag/v1/{app_id}/variables/{variable_id}:
+        parameters:
+            - $ref: 'common/api/common_request_parameters.json#/components/parameters/app_id'
+            - $ref: 'variables/api/variables_request_parameters.json#/components/parameters/variable_id'
+
+        get:
+            summary: Get variable
+            responses:
+                '200':
+                    description: Variable data
+                    content:
+                        application/vnd.api+json:
+                            schema:
+                                $ref: 'variables/schema/get/variables_get_response_schema.json'
+                            example:
+                                $ref: 'variables/example/get/variables_get_response_example.json'
+                '400':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/bad_request_uri_parameter'
+                '401':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/unauthorized'
+                '404':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/not_found'
+                '500':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/internal_server_error'
+
+        patch:
+            summary: Edit variable
+            description: It is possible to edit variable's type. Just make a request with a new type and all required attributes from its schema.
+            responses:
+                '204':
+                    description: No content
+                '400':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/bad_request'
+                '401':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/unauthorized'
+                '404':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/not_found'
+                '500':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/internal_server_error'
+                '503':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/service_unavailable'
+            requestBody:
+                required: true
+                content:
+                    application/vnd.api+json:
+                        schema:
+                            $ref: 'variables/schema/edit/variables_edit_request_schema.json'
+                        example:
+                            $ref: 'variables/example/edit/variables_edit_request_example.json'
+
+        delete:
+            summary: Delete variable
+            responses:
+                '204':
+                    description: No content
+                '400':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/bad_request_uri_parameter'
+                '401':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/unauthorized'
+                '404':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/not_found'
+                '500':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/internal_server_error'
+                '503':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/service_unavailable'
+
+    /api/tag/v1/{app_id}/variables/{variable_id}/copy:
+        parameters:
+            - $ref: 'common/api/common_request_parameters.json#/components/parameters/app_id'
+            - $ref: 'variables/api/variables_request_parameters.json#/components/parameters/variable_id'
+
+        post:
+            summary: Copy variable
+            responses:
+                '202':
+                    description: Operation data with new (copied) variable identifier
+                    content:
+                        application/vnd.api+json:
+                            schema:
+                                $ref: 'variables/schema/copy/variables_copy_response_schema.json'
+                            example:
+                                $ref: 'variables/example/copy/variables_copy_response_example.json'
+                '400':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/bad_request'
+                '401':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/unauthorized'
+                '404':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/not_found'
+                '500':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/internal_server_error'
+                '503':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/service_unavailable'
+            requestBody:
+                required: true
+                content:
+                    application/vnd.api+json:
+                        schema:
+                            $ref: 'variables/schema/copy/variables_copy_request_schema.json'
+                        example:
+                            $ref: 'variables/example/copy/variables_copy_request_example.json'
+
+components:
+    securitySchemes:
+        $ref: 'common/api/common_security_schemes.json#/components/securitySchemes'

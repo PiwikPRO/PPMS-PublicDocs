@@ -1,0 +1,60 @@
+{
+    "definitions": {
+        "consent_type_default": {
+            "$ref": "../tag_attributes.json#/definitions/consent_type",
+            "default": "analytics"
+        },
+        "custom_dimensions_item": {
+            "description": "Custom dimension",
+            "type": "object",
+            "properties": {
+                "id": {
+                    "description": "Custom dimension number",
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 400
+                },
+                "value": {
+                    "description": "Custom dimension value",
+                    "anyOf": [
+                        {
+                            "type": "integer"
+                        },
+                        {
+                            "type": "number"
+                        },
+                        {
+                            "type": "boolean"
+                        },
+                        {
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 255
+                        },
+                        {
+                            "$ref": "../../../common/schema/common_types.json#/definitions/variable_reference"
+                        }
+                    ]
+                }
+            },
+            "additionalProperties": false,
+            "required": [
+                "id",
+                "value"
+            ]
+        },
+        "custom_dimensions": {
+            "description": "Custom dimensions",
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/custom_dimensions_item"
+            },
+            "minItems": 0,
+            "maxItems": 400
+        },
+        "tracker_site_id": {
+            "$ref": "../../../common/schema/common_types.json#/definitions/uuid",
+            "description": "Tracker site ID"
+        }
+    }
+}

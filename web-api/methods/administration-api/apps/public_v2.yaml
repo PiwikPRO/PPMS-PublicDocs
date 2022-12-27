@@ -1,0 +1,664 @@
+openapi: 3.0.3
+info:
+  title: Apps Api
+  version: auto
+servers:
+  - url: https://example.piwik.pro
+components:
+  parameters:
+    Limit:
+      in: query
+      name: limit
+      description: Limits the number of returned items
+      required: false
+      schema:
+        type: integer
+        minimum: 0
+        maximum: 1000
+        default: 10
+    Offset:
+      in: query
+      name: offset
+      description: Sets offset for list of items
+      required: false
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
+    permissions_limit:
+      name: limit
+      in: query
+      description: Limit for app permissions
+      required: false
+      schema:
+        type: integer
+        default: 10000
+    search:
+      name: search
+      in: query
+      description: App search query
+      required: false
+      schema:
+        type: string
+        default: ''
+    search_query:
+      name: search_query
+      in: query
+      description: (deprecated) Use `search` param instead
+      required: false
+      schema:
+        type: string
+        default: ''
+    sort:
+      in: query
+      name: sort
+      description: Sort field - can be reversed by adding dash before field name e.g (-name)
+      required: false
+      schema:
+        type: string
+        default: -addedAt
+        enum:
+          - name
+          - addedAt
+          - updatedAt
+          - -name
+          - -addedAt
+          - -updatedAt
+    app_id:
+      name: app_id
+      in: path
+      description: App UUIDv4
+      required: true
+      schema:
+        type: string
+    UserGroup_Id:
+      in: path
+      name: user_group_id
+      description: UUIDv4 identifier of given user group
+      required: true
+      schema:
+        type: string
+        format: uuid
+    UserGroup_AppPermissionsSearch:
+      in: query
+      name: search
+      description: Search phrase for searching apps by name or id
+      required: false
+      schema:
+        type: string
+    UserGroup_AppPermissionsSort:
+      in: query
+      name: sort
+      description: Sort type, order of sorting can be reversed by adding dash before type e.g (-name)
+      required: false
+      schema:
+        type: string
+        default: name
+        enum:
+          - name
+          - -name
+  schemas:
+    App_Name:
+      type: string
+      description: App name
+      maxLength: 90
+      example: AppName
+    App_Urls:
+      type: array
+      description: |
+        List of URL's under which the app is available (each URL needs to start with ``http://`` or ``https://``)
+      items:
+        type: string
+      example: [ 'http://example.com' ]
+    App_Timezone:
+      type: string
+      description: It allows to specify the timezone for your app (using IANA format), and tracked data will show date & time of this time zone. Please note that changing the timezone will not affect previous logs in reports.
+      example: UTC
+    App_Currency:
+      type: string
+      description: App currency. It specifies the default currency for Goal revenues shown in Analytics. By default, Analytics reports display revenue in US dollars.
+      example: USD
+    App_AddedAt:
+      type: string
+      description: When app was added
+      example: '2018-07-10T08:50:41+00:00'
+      format: 'date-time'
+    App_UpdatedAt:
+      type: string
+      description: When app was edited
+      example: '2018-09-01T10:25:11+00:00'
+      format: 'date-time'
+    App_Organization:
+      type: string
+      description: Organization to which an app belongs to
+      example: default
+    New_App_Id:
+      type: string
+      description: App ID
+      example: 985ed9d7-b652-47b8-b9cf-c17d62735261
+      format: uuid
+    New_App_App_Type:
+      type: string
+      description: App type
+      example: web
+      enum: [ web, sharepoint ]
+      default: web
+    App_Type:
+      type: string
+      description: App type
+      example: web
+      enum: [ web, sharepoint, demo ]
+      default: web
+    JsonApi_Id:
+      type: string
+      description: Resource ID
+      example: 985ed9d7-b652-47b8-b9cf-c17d62735261
+      format: uuid
+    JsonApi_Type:
+      type: string
+      description: Resource type, unique across whole PPAS
+      example: ppms/app
+    JsonApi_Resource_Object:
+      type: object
+      properties:
+        type:
+          $ref: "#/components/schemas/JsonApi_Type"
+        id:
+          $ref: "#/components/schemas/JsonApi_Id"
+        attributes:
+          type: object
+    EditApp_JsonApi:
+      type: object
+      properties:
+        data:
+          type: object
+          allOf:
+            - $ref: "#/components/schemas/JsonApi_Resource_Object"
+            - properties:
+                attributes:
+                  $ref: "#/components/schemas/App_Editable_Attributes"
+    App_NewApp_JsonApi:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            type:
+              $ref: "#/components/schemas/JsonApi_Type"
+            attributes:
+              type: object
+              required:
+                - name
+                - urls
+              allOf:
+                - properties:
+                    id:
+                      $ref: "#/components/schemas/New_App_Id"
+                    appType:
+                      $ref: "#/components/schemas/New_App_App_Type"
+                - $ref: "#/components/schemas/App_Editable_Attributes"
+    App_Permissions_JsonApi:
+      type: object
+      properties:
+        meta:
+          $ref: "#/components/schemas/Total"
+        data:
+          type: object
+          allOf:
+            - type: object
+              properties:
+                type:
+                  type: string
+                  description: Resource type, unique across whole PPAS
+                  example: ppms/app_permissions_for_user
+                id:
+                  $ref: "#/components/schemas/JsonApi_Id"
+                attributes:
+                  type: object
+            - properties:
+                attributes:
+                  type: object
+                  properties:
+                    displayName:
+                      description: Display name
+                      type: string
+                      example: email@adress.com
+                    access:
+                      description: Access list
+                      type: array
+                      items:
+                        type: string
+                      example: [ view ]
+    App_User_Group_Permissions_JsonApi:
+      type: object
+      properties:
+        meta:
+          $ref: "#/components/schemas/Total"
+        data:
+          type: object
+          properties:
+            type:
+              type: string
+              description: Resource type, unique across whole PPAS
+              example: ppms/app_permissions_for_user_group
+            id:
+              $ref: "#/components/schemas/JsonApi_Id"
+            attributes:
+              type: object
+              properties:
+                app_name:
+                  description: Display name
+                  type: string
+                  example: Example App
+                access:
+                  description: Permission group to given app
+                  type: string
+                  example: view
+    App_List_JsonApi:
+      type: object
+      properties:
+        meta:
+          $ref: "#/components/schemas/Total"
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              type:
+                description: Resource type
+                enum: [ ppms/app ]
+                type: string
+              id:
+                $ref: "#/components/schemas/JsonApi_Id"
+              attributes:
+                type: object
+                properties:
+                  name:
+                    $ref: "#/components/schemas/App_Name"
+                  addedAt:
+                    $ref: "#/components/schemas/App_AddedAt"
+                  updatedAt:
+                    $ref: "#/components/schemas/App_UpdatedAt"
+    App_JsonApi:
+      type: object
+      properties:
+        data:
+          type: object
+          allOf:
+            - $ref: "#/components/schemas/JsonApi_Resource_Object"
+            - properties:
+                attributes:
+                  $ref: "#/components/schemas/App_Attributes"
+    App_Editable_Attributes:
+      type: object
+      properties:
+        name:
+          $ref: "#/components/schemas/App_Name"
+        urls:
+          $ref: "#/components/schemas/App_Urls"
+        timezone:
+          $ref: "#/components/schemas/App_Timezone"
+        currency:
+          $ref: "#/components/schemas/App_Currency"
+        excludeUnknownUrls:
+          type: boolean
+          description: |
+            Track only visits and actions when URL starts with one of `urls`
+          default: false
+          example: false
+        keepUrlFragment:
+          type: boolean
+          description: |
+            Disable this setting to exclude Page URL fragments (everything after #, e.g. `example.org/index.html#first_section` will be tracked as `example.org.index.html`)
+          default: true
+          example: true
+        eCommerceTracking:
+          type: boolean
+          description: Enables e-commerce reports, additional tab is shown in Analytics module with e-commerce logs. Sales can be easily tracked using this setting.
+          default: false
+          example: false
+        siteSearchTracking:
+          deprecated: true
+          type: boolean
+          description: <br>To disable internal search engine tracking, just set `site_search_category_params` and `site_search_query_params` to empty lists (`[]`) in <a href="?path=./tracker/public_v2.yaml#operation/api_edit_global_tracker_settings_v2">Tracker Settings</a>. <br><br>Track and report what users are searching in your apps internal search engine
+          default: true
+          example: true
+        siteSearchQueryParams:
+          type: array
+          description: |
+            Site search query params for an app
+          default: [ q,query,s,search,searchword,keyword ]
+          items:
+            type: string
+          example: [ q,query,s,search,searchword,keyword ]
+        siteSearchCategoryParams:
+          type: array
+          description: |
+            Site search category params for an app
+          default: [ ]
+          items:
+            type: string
+          example: [ ]
+        delay:
+          type: integer
+          description: Delay (in ms) is used to slow down actions (e.g. redirect) when waiting for tags to be resolved
+          default: 500
+          example: 500
+        excludedIps:
+          type: array
+          description: |
+            List of IPs (IPv4 and IPv6) to blacklist from tracking, e.g `192.168.0.0` or `2607:f0d0:1002:51::4`. You can use wildcards, e.g. `1.2.3.*`, `1.2.*.*` or `::7:*`
+          default: [ ]
+          items:
+            type: string
+          example:
+            - 192.168.0.0
+            - 172.16.0.0
+            - 1.2.*.*
+            - 2607:f0d0:1002:51::4
+            - ::7:*
+        excludedUrlParams:
+          type: array
+          description: |
+            URL query parameters excluded by default from tracking: `gclid`, `fb_xd_fragment`, `fb_comment_id`, `phpsessid`, `jsessid`, `aspsessid`, `doing_wp_cron`, `sid` and `pk_vid`. Regular expressions such as `/^sess.*|.*[dD]ate$/` are supported
+          default: [ ]
+          items:
+            type: string
+          example:
+            - pl_medium
+            - pk_source
+            - fb_comment_id
+            - /^sess.*|.*[dD]ate$/
+        excludedUserAgents:
+          type: array
+          description: |
+            If the visitor's user agent string contains any of the strings you specify, the visitor will be excluded from tracking
+          default: [ ]
+          items:
+            type: string
+          example:
+            - Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0
+            - Opera/9.80 (Windows NT 6.2; Win64; x64) Presto/2.12 Version/12.16
+        gdpr:
+          type: boolean
+          description: Enable collection of privacy consent for full GDPR compliance. The compliance form will be triggered if you serve your users tags that require consent
+          default: true
+          example: true
+        gdprUserModeEnabled:
+          type: boolean
+          description: Gdpr User Mode enabled or disabled for an app
+          default: false
+          example: false
+        privacyCookieDomainsEnabled:
+          type: boolean
+          description: Privacy cookie domains enabled or disabled for an app
+          default: false
+          example: false
+        privacyCookieExpirationPeriod:
+          type: integer
+          description: Privacy cookie expiration period (in seconds, default is one year)
+          default: 31536000
+          example: 31536000
+        privacyCookieDomains:
+          type: array
+          description: List of privacy cookie domains for an app (works if `privacyCookieDomainsEnabled` is true), you can also use wildcards like ``*.example.com``
+          default: [ ]
+          items:
+            type: string
+          example:
+            - '*.example.com'
+            - example.com
+        gdprLocationRecognition:
+          type: boolean
+          description: Use geolocation to detect UE visitors and present consent forms only to them
+          default: true
+          example: true
+        gdprDataAnonymization:
+          type: boolean
+          description: Track only a minimal amount of users data, for which we don't need to gather their consent. Any data points considered as personally identifiable information will not be tracked unless the consent is provided
+          default: true
+          example: true
+        sharepointIntegration:
+          type: boolean
+          description: Enable sharepoint integration
+          default: false
+          example: false
+        gdprDataAnonymizationMode:
+          type: string
+          description: Anonymization mode
+          enum: [ no_device_storage, session_cookie_id ]
+          default: session_cookie_id
+        privacyUseCookies:
+          type: boolean
+          description: Use cookies to recognize new and returning visitors
+          default: true
+        privacyUseFingerprinting:
+          type: boolean
+          description: Use fingerprinting to recognize new and returning visitors
+          default: true
+        cnil:
+          type: boolean
+          description: Enable CNIL integration
+          default: false
+          example: false
+        sessionIdStrictPrivacyMode:
+          type: boolean
+          description: Don't collect visitor’s device data (compliace with the German Data Protection Act - TTDSG)
+          default: false
+          example: false
+    App_Attributes:
+      type: object
+      allOf:
+        - properties:
+            organization:
+              $ref: "#/components/schemas/App_Organization"
+            appType:
+              $ref: "#/components/schemas/App_Type"
+            addedAt:
+              $ref: "#/components/schemas/App_AddedAt"
+            updatedAt:
+              $ref: "#/components/schemas/App_UpdatedAt"
+        - $ref: "#/components/schemas/App_Editable_Attributes"
+    Total:
+      type: object
+      properties:
+        total:
+          type: integer
+          description: Total count of objects
+          example: 1
+paths:
+  /api/apps/v2:
+    get:
+      summary: Apps list
+      description: |
+        Get list of apps<br><br>
+        Full example:
+        ```
+        /api/apps/v2?offset=100&limit=10&sort=name&search=nifty+marketing
+        ```
+        this will list 10 apps ordered ascending by `name` starting on 101th matching search query "nifty marketing".
+      operationId: api_app_list_v2
+      parameters:
+        - $ref: "#/components/parameters/Offset"
+        - $ref: "#/components/parameters/Limit"
+        - $ref: "#/components/parameters/search_query"
+        - $ref: "#/components/parameters/sort"
+        - $ref: "#/components/parameters/search"
+      responses:
+        200:
+          description: OK
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: "#/components/schemas/App_List_JsonApi"
+    post:
+      summary: App add
+      description: It adds app
+      operationId: api_app_add_v2
+      requestBody:
+        content:
+          application/vnd.api+json:
+            schema:
+              $ref: "#/components/schemas/App_NewApp_JsonApi"
+        description: Data describing app
+        required: true
+      responses:
+        201:
+          description: Created
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: "#/components/schemas/App_JsonApi"
+        400:
+          description: Bad Request
+          content:
+            application/vnd.api+json:
+              schema:
+                allOf:
+                  - $ref: "../users/public_v2.yaml#/components/schemas/ErrorObject"
+              examples:
+                Too long app name:
+                  value:
+                    errors:
+                      - status: '400'
+                        title: Invalid form
+                        detail: This value is too long. It should have 90 characters or less.
+                        code: error.default
+                        source:
+                          pointer: /name
+                Add demo app forbidden:
+                  value:
+                    errors:
+                      - status: '400'
+                        title: Invalid form
+                        detail: AppType "demo" is not supported (supported are sharepoint, web)
+                        code: error.default
+                        source:
+                          pointer: /appType
+                App id already exists:
+                  value:
+                    errors:
+                      - status: '400'
+                        title: 'App with id: "985ed9d7-b652-47b8-b9cf-c17d62735261" already exists'
+                        code: error.default
+        409:
+          description: Conflict
+          content:
+            application/vnd.api+json:
+              schema:
+                type: object
+                required:
+                  - errors
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      required:
+                        - status
+                        - title
+                      properties:
+                        status:
+                          type: string
+                          description: the HTTP status code applicable to this problem, expressed as a string value
+                          example: "409"
+                        code:
+                          type: string
+                          description: an application-specific error code, expressed as a string value
+                          example: apps.error.apps-limit-reached
+                        title:
+                          type: string
+                          description: >
+                            a short, human-readable summary of the problem that SHOULD NOT change from occurrence
+                            to occurrence of the problem, except for purposes of localization
+                          example: Limit of apps has been reached
+  /api/apps/v2/{app_id}:
+    get:
+      summary: App details
+      description: It gets app details
+      operationId: api_apps_details_v2
+      parameters:
+        - $ref: "#/components/parameters/app_id"
+      responses:
+        200:
+          description: OK
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: "#/components/schemas/App_JsonApi"
+        404:
+          description: Not Found
+    delete:
+      summary: App delete
+      description: It deletes app with given ID
+      operationId: api_app_delete_v2
+      parameters:
+        - $ref: "#/components/parameters/app_id"
+      responses:
+        204:
+          description: No Content
+        400:
+          description: Bad Request
+    patch:
+      summary: App edit
+      description: It edits app
+      operationId: api_app_edit_v2
+      parameters:
+        - $ref: "#/components/parameters/app_id"
+      requestBody:
+        content:
+          application/vnd.api+json:
+            schema:
+              $ref: "#/components/schemas/EditApp_JsonApi"
+        description: Data describing app
+        required: true
+      responses:
+        204:
+          description: No Content
+        400:
+          description: Bad Request
+  /api/apps/v2/{app_id}/permissions:
+    get:
+      deprecated: true
+      summary: App permissions
+      description: Get app permissions
+      operationId: api_apps_permissions_v2
+      parameters:
+        - $ref: "#/components/parameters/app_id"
+        - $ref: "#/components/parameters/permissions_limit"
+        - $ref: "#/components/parameters/Offset"
+      responses:
+        200:
+          description: OK
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: "#/components/schemas/App_Permissions_JsonApi"
+        400:
+          description: Bad Request
+        404:
+          description: Not Found
+  /api/apps/v2/user-group/{user_group_id}/permissions:
+    get:
+      summary: Apps permission for user group
+      description: Get apps permission for user group
+      operationId: api_apps_user_group_permissions_v2
+      parameters:
+        - $ref: "#/components/parameters/UserGroup_Id"
+        - $ref: "#/components/parameters/UserGroup_AppPermissionsSearch"
+        - $ref: "#/components/parameters/UserGroup_AppPermissionsSort"
+        - $ref: "#/components/parameters/Limit"
+        - $ref: "#/components/parameters/Offset"
+      responses:
+        200:
+          description: OK
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: "#/components/schemas/App_User_Group_Permissions_JsonApi"
+        400:
+          description: Bad Request
+        403:
+          description: Forbidden
+        404:
+          description: Not Found

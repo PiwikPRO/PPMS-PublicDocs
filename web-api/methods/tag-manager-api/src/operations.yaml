@@ -1,0 +1,38 @@
+openapi: '3.0.0'
+info:
+    title: Tag Manager API
+    version: '1.0'
+
+security:
+    - BearerAuth: []
+
+servers:
+    - url: https://example.piwik.pro
+
+paths:
+    /api/tag/v1/{app_id}/operations/{operation_id}:
+        parameters:
+            - $ref: 'common/api/common_request_parameters.json#/components/parameters/app_id'
+            - $ref: 'operations/api/operations_request_parameters.json#/components/parameters/operation_id'
+
+        get:
+            summary: Get operation
+            responses:
+                '200':
+                    description:  Get operation
+                    content:
+                        application/vnd.api+json:
+                            schema:
+                                $ref: 'operations/schema/get/operations_get_response_schema.json'
+                            example:
+                                $ref: 'operations/example/get/operations_get_response_example.json'
+                '400':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/bad_request_uri_parameter'
+                '404':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/not_found'
+                '500':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/internal_server_error'
+
+components:
+    securitySchemes:
+        $ref: 'common/api/common_security_schemes.json#/components/securitySchemes'

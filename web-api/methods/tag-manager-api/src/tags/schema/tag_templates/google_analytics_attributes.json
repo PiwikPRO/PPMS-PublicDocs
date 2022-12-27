@@ -1,0 +1,109 @@
+{
+    "definitions": {
+        "consent_type_default": {
+            "$ref": "../tag_attributes.json#/definitions/consent_type",
+            "default": "analytics"
+        },
+        "template": {
+            "$ref": "../tag_attributes.json#/definitions/template",
+            "enum": [
+                "google_analytics"
+            ]
+        },
+        "template_options_optimize_setup_flash_of_original_content": {
+            "description": "Flag describing whether minimize flash of original content (`true`) or not (`false`)",
+            "type": "boolean"
+        },
+        "template_options_optimize_setup_flash_of_original_content_default": {
+            "$ref": "#/definitions/template_options_optimize_setup_flash_of_original_content",
+            "default": false
+        },
+        "template_options_id": {
+            "description": "Tracking identifier",
+            "anyOf": [
+                {
+                    "$ref": "../tag_types.json#/definitions/non_empty_string"
+                },
+                {
+                    "$ref": "../../../common/schema/common_types.json#/definitions/variable_reference"
+                }
+            ]
+        },
+        "template_options_optimize_setup_optimize_id": {
+            "description": "Optimize identifier",
+            "anyOf": [
+                {
+                    "$ref": "../tag_types.json#/definitions/non_empty_string"
+                },
+                {
+                    "$ref": "../../../common/schema/common_types.json#/definitions/variable_reference"
+                }
+            ]
+        },
+        "template_options_optimize_setup_create_edit": {
+            "description": "Google Optimize setup",
+            "type": "object",
+            "properties": {
+                "optimize_id": {
+                    "$ref": "#/definitions/template_options_optimize_setup_optimize_id"
+                },
+                "flash_of_original_content": {
+                    "$ref": "#/definitions/template_options_optimize_setup_flash_of_original_content_default"
+                }
+            },
+            "additionalProperties": false,
+            "required": [
+                "optimize_id"
+            ]
+        },
+        "template_options_optimize_setup_get": {
+            "description": "Google Optimize setup",
+            "type": "object",
+            "properties": {
+                "optimize_id": {
+                    "$ref": "#/definitions/template_options_optimize_setup_optimize_id"
+                },
+                "flash_of_original_content": {
+                    "$ref": "#/definitions/template_options_optimize_setup_flash_of_original_content"
+                }
+            },
+            "additionalProperties": false,
+            "required": [
+                "optimize_id",
+                "flash_of_original_content"
+            ]
+        },
+        "template_options_create_edit": {
+            "description": "[Tag template options](#tag-template-options)",
+            "type": "object",
+            "properties": {
+                "id": {
+                    "$ref": "#/definitions/template_options_id"
+                },
+                "optimize_setup": {
+                    "$ref": "#/definitions/template_options_optimize_setup_create_edit"
+                }
+            },
+            "additionalProperties": false,
+            "required": [
+                "id"
+            ]
+        },
+        "template_options_get": {
+            "description": "[Tag template options](#tag-template-options)",
+            "type": "object",
+            "properties": {
+                "id": {
+                    "$ref": "#/definitions/template_options_id"
+                },
+                "optimize_setup": {
+                    "$ref": "#/definitions/template_options_optimize_setup_get"
+                }
+            },
+            "additionalProperties": false,
+            "required": [
+                "id"
+            ]
+        }
+    }
+}

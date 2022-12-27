@@ -1,0 +1,46 @@
+openapi: '3.0.0'
+info:
+    title: Tag Manager API
+    version: '1.0'
+
+security:
+    - BearerAuth: []
+
+servers:
+    - url: https://example.piwik.pro
+
+paths:
+    /api/tag/v1/{app_id}/versions/{version_id}/changelog:
+        parameters:
+            - $ref: 'common/api/common_request_parameters.json#/components/parameters/app_id'
+            - $ref: 'versions/api/versions_request_parameters.json#/components/parameters/version_id'
+
+        get:
+            summary: Get list of changes
+            parameters:
+                - $ref: 'common/api/common_request_parameters.json#/components/parameters/page[limit]'
+                - $ref: 'common/api/common_request_parameters.json#/components/parameters/page[offset]'
+                - $ref: 'changelog/api/changelog_request_parameters.json#/components/parameters/filter[resource_id]'
+                - $ref: 'changelog/api/changelog_request_parameters.json#/components/parameters/filter[author]'
+                - $ref: 'changelog/api/changelog_request_parameters.json#/components/parameters/sort'
+            responses:
+                '200':
+                    description: List of changes
+                    content:
+                        application/vnd.api+json:
+                            schema:
+                                $ref: 'changelog/schema/list/changelog_list_response_schema.json'
+                            example:
+                                 $ref: 'changelog/example/list/changelog_list_response_example.json'
+                '400':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/bad_request'
+                '401':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/unauthorized'
+                '404':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/not_found'
+                '500':
+                    $ref: 'common/api/common_error_responses.json#/components/responses/internal_server_error'
+
+components:
+    securitySchemes:
+        $ref: 'common/api/common_security_schemes.json#/components/securitySchemes'

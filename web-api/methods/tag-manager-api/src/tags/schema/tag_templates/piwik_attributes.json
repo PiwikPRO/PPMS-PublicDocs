@@ -1,0 +1,320 @@
+{
+    "definitions": {
+        "template": {
+            "$ref": "../tag_attributes.json#/definitions/template",
+            "enum": [
+                "piwik"
+            ]
+        },
+        "custom_variables_item": {
+            "description": "Custom variable",
+            "type": "object",
+            "properties": {
+                "id": {
+                    "description": "Custom variable number",
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 20
+                },
+                "name": {
+                    "description": "Custom variable name",
+                    "anyOf": [
+                        {
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 255
+                        },
+                        {
+                            "$ref": "../../../common/schema/common_types.json#/definitions/variable_reference"
+                        }
+                    ]
+                },
+                "value": {
+                    "description": "Custom variable value",
+                    "anyOf": [
+                        {
+                            "type": "integer"
+                        },
+                        {
+                            "type": "number"
+                        },
+                        {
+                            "type": "boolean"
+                        },
+                        {
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 255
+                        },
+                        {
+                            "$ref": "../../../common/schema/common_types.json#/definitions/variable_reference"
+                        }
+                    ]
+                },
+                "scope": {
+                    "description": "Custom variable scope",
+                    "type": "string",
+                    "enum": [
+                        "page",
+                        "visit"
+                    ]
+                }
+            },
+            "additionalProperties": false,
+            "required": [
+                "id",
+                "name",
+                "value",
+                "scope"
+            ]
+        },
+        "custom_variables": {
+            "description": "Custom variables",
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/custom_variables_item"
+            },
+            "minItems": 0,
+            "maxItems": 20
+        },
+        "template_options_link_tracking": {
+            "description": "Enables download and outlink tracking",
+            "type": "boolean"
+        },
+        "template_options_link_tracking_default": {
+            "description": "Enables download and outlink tracking",
+            "type": "boolean",
+            "default": true
+        },
+        "template_options_content_tracking": {
+            "description": "Track all or visible content impressions within a page",
+            "type": "string",
+            "enum": [
+                "trackAllContentImpressions",
+                "trackVisibleContentImpressions"
+            ]
+        },
+        "template_options_cross_domain_tracking": {
+            "description": "Enables cross domain tracking",
+            "type": "boolean"
+        },
+        "template_options_heart_beat_timer": {
+            "description": "Accurately measure the time spent on each page",
+            "type": "object",
+            "properties": {
+                "enabled": {
+                    "description": "Enables accurate time measure",
+                    "type": "boolean"
+                },
+                "spent_time": {
+                    "description": "Time spent on page threshold in seconds (is ignored and will be removed in next version)",
+                    "type": "integer",
+                    "minimum": 1,
+                    "deprecated": true
+                }
+            },
+            "additionalProperties": false,
+            "required": [
+                "enabled"
+            ]
+        },
+        "template_options_user_id": {
+            "description": "User ID to connect together a given user's data collected from multiple sources",
+            "anyOf": [
+                {
+                    "$ref": "../tag_types.json#/definitions/non_empty_string"
+                },
+                {
+                    "$ref": "../../../common/schema/common_types.json#/definitions/variable_reference"
+                }
+            ]
+        },
+        "template_options_cookie_domain": {
+            "description": "Share the tracking cookie across subdomains",
+            "anyOf": [
+                {
+                    "$ref": "../tag_types.json#/definitions/non_empty_string"
+                },
+                {
+                    "$ref": "../../../common/schema/common_types.json#/definitions/variable_reference"
+                }
+            ]
+        },
+        "template_options_disable_cookies": {
+            "description": "Disables all first party cookies",
+            "type": "boolean"
+        },
+        "template_options_secure_cookie": {
+            "description": "Enable secure cookie flag on all first party cookies. This should be used when your website is only available under HTTPS so that all tracking cookies are always sent over secure connection.",
+            "type": "boolean"
+        },
+        "template_options_visitor_cookie_timeout": {
+            "description": "Visitor cookie timeout in seconds",
+            "type": "integer"
+        },
+        "template_options_referral_cookie_timeout": {
+            "description": "Referral cookie timeout in seconds (is ignored and will be removed in next version)",
+            "type": "integer",
+            "deprecated": true
+        },
+        "template_options_session_cookie_timeout": {
+            "description": "Session cookie timeout in seconds",
+            "type": "integer"
+        },
+        "template_options_js_error_tracking": {
+            "description": "Automatically track JavaScript errors",
+            "type": "boolean"
+        },
+        "template_options_js_error_tracking_default": {
+            "description": "Automatically track JavaScript errors",
+            "type": "boolean",
+            "default": true
+        },
+        "template_options_track_page_view": {
+            "description": "Track page view",
+            "type": "boolean"
+        },
+        "template_options_track_page_view_default": {
+            "description": "Track page view",
+            "type": "boolean",
+            "default": true
+        },
+        "template_options_piwik_custom_variables": {
+            "$ref": "#/definitions/custom_variables"
+        },
+        "template_options_piwik_custom_dimensions": {
+            "$ref": "piwik_base_attributes.json#/definitions/custom_dimensions"
+        },
+        "template_options_create_edit": {
+            "description": "[Tag template options](#tag-template-options)",
+            "type": "object",
+            "properties": {
+                "link_tracking": {
+                    "$ref": "#/definitions/template_options_link_tracking_default"
+                },
+                "content_tracking": {
+                    "$ref": "#/definitions/template_options_content_tracking"
+                },
+                "cross_domain_tracking": {
+                    "$ref": "#/definitions/template_options_cross_domain_tracking"
+                },
+                "heart_beat_timer": {
+                    "$ref": "#/definitions/template_options_heart_beat_timer"
+                },
+                "user_id": {
+                    "$ref": "#/definitions/template_options_user_id"
+                },
+                "cookie_domain": {
+                    "$ref": "#/definitions/template_options_cookie_domain"
+                },
+                "disable_cookies": {
+                    "$ref": "#/definitions/template_options_disable_cookies"
+                },
+                "secure_cookie": {
+                    "$ref": "#/definitions/template_options_secure_cookie"
+                },
+                "visitor_cookie_timeout": {
+                    "$ref": "#/definitions/template_options_visitor_cookie_timeout"
+                },
+                "referral_cookie_timeout": {
+                    "$ref": "#/definitions/template_options_referral_cookie_timeout"
+                },
+                "session_cookie_timeout": {
+                    "$ref": "#/definitions/template_options_session_cookie_timeout"
+                },
+                "js_error_tracking": {
+                    "$ref": "#/definitions/template_options_js_error_tracking_default"
+                },
+                "track_page_view": {
+                    "$ref": "#/definitions/template_options_track_page_view_default"
+                },
+                "piwik_custom_variables": {
+                    "$ref": "#/definitions/custom_variables"
+                },
+                "piwik_custom_dimensions": {
+                    "$ref": "piwik_base_attributes.json#/definitions/custom_dimensions"
+                }
+            },
+            "additionalProperties": false
+        },
+        "template_options_get": {
+            "description": "[Tag template options](#tag-template-options)",
+            "type": "object",
+            "properties": {
+                "link_tracking": {
+                    "$ref": "#/definitions/template_options_link_tracking"
+                },
+                "content_tracking": {
+                    "$ref": "#/definitions/template_options_content_tracking"
+                },
+                "cross_domain_tracking": {
+                    "$ref": "#/definitions/template_options_cross_domain_tracking"
+                },
+                "heart_beat_timer": {
+                    "$ref": "#/definitions/template_options_heart_beat_timer"
+                },
+                "user_id": {
+                    "$ref": "#/definitions/template_options_user_id"
+                },
+                "cookie_domain": {
+                    "$ref": "#/definitions/template_options_cookie_domain"
+                },
+                "disable_cookies": {
+                    "$ref": "#/definitions/template_options_disable_cookies"
+                },
+                "secure_cookie": {
+                    "$ref": "#/definitions/template_options_secure_cookie"
+                },
+                "visitor_cookie_timeout": {
+                    "$ref": "#/definitions/template_options_visitor_cookie_timeout"
+                },
+                "referral_cookie_timeout": {
+                    "$ref": "#/definitions/template_options_referral_cookie_timeout"
+                },
+                "session_cookie_timeout": {
+                    "$ref": "#/definitions/template_options_session_cookie_timeout"
+                },
+                "js_error_tracking": {
+                    "$ref": "#/definitions/template_options_js_error_tracking"
+                },
+                "track_page_view": {
+                    "$ref": "#/definitions/template_options_track_page_view"
+                },
+                "piwik_custom_variables": {
+                    "$ref": "#/definitions/custom_variables"
+                },
+                "piwik_custom_dimensions": {
+                    "$ref": "piwik_base_attributes.json#/definitions/custom_dimensions"
+                },
+                "tracker_domains": {
+                    "type": "array",
+                    "description": "Tracker domains",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "tracker_php_url": {
+                    "type": "string",
+                    "description": "Tracker PHP url"
+                },
+                "tracker_js_url": {
+                    "type": "string",
+                    "description": "Tracker JS url"
+                },
+                "tracker_site_id": {
+                    "$ref": "piwik_base_attributes.json#/definitions/tracker_site_id"
+                }
+            },
+            "additionalProperties": false,
+            "required": [
+                "link_tracking",
+                "js_error_tracking",
+                "track_page_view",
+                "tracker_domains",
+                "tracker_php_url",
+                "tracker_js_url",
+                "tracker_site_id"
+            ]
+        }
+    }
+}

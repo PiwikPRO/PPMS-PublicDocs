@@ -1,0 +1,58 @@
+{
+    "definitions": {
+        "template_options": {
+            "description": "[Tag template options](#tag-template-options)",
+            "type": "object",
+            "properties": {
+                "type": {
+                    "$ref": "doubleclick_floodlight_base_attributes.json#/definitions/template_options_type_counter"
+                },
+                "advertiser_id": {
+                    "$ref": "doubleclick_floodlight_base_attributes.json#/definitions/template_options_advertiser_id"
+                },
+                "group_tag_string": {
+                    "$ref": "doubleclick_floodlight_base_attributes.json#/definitions/template_options_group_tag_string"
+                },
+                "activity_tag_string": {
+                    "$ref": "doubleclick_floodlight_base_attributes.json#/definitions/template_options_activity_tag_string"
+                },
+                "counting_method": {
+                    "description": "Counting method",
+                    "type": "string",
+                    "enum": [
+                        "session"
+                    ]
+                },
+                "session_id": {
+                    "description": "Session identifier",
+                    "anyOf": [
+                        {
+                            "$ref": "../../tag_types.json#/definitions/non_empty_string"
+                        },
+                        {
+                            "$ref": "../../../../common/schema/common_types.json#/definitions/variable_reference"
+                        }
+                    ]
+                },
+                "u": {
+                    "$ref": "doubleclick_floodlight_base_attributes.json#/definitions/template_options_u"
+                },
+                "tran": {
+                    "$ref": "doubleclick_floodlight_base_attributes.json#/definitions/template_options_tran"
+                },
+                "custom_variables": {
+                    "$ref": "doubleclick_floodlight_base_attributes.json#/definitions/template_options_custom_variables"
+                }
+            },
+            "additionalProperties": false,
+            "required": [
+                "type",
+                "advertiser_id",
+                "group_tag_string",
+                "activity_tag_string",
+                "counting_method",
+                "session_id"
+            ]
+        }
+    }
+}

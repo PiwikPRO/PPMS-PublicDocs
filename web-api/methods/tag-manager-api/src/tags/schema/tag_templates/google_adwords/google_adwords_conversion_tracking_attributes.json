@@ -1,0 +1,72 @@
+{
+    "definitions": {
+        "consent_type_default": {
+            "$ref": "../../tag_attributes.json#/definitions/consent_type",
+            "default": "conversion_tracking"
+        },
+        "template_options_type": {
+            "description": "Google Ads type",
+            "type": "string",
+            "enum": [
+                "conversion_tracking"
+            ]
+        },
+        "template_options_audience": {
+            "description": "Audience to export to Google Ads (same audience should be set on trigger)",
+            "$ref": "../../tag_types.json#/definitions/non_empty_string"
+        },
+        "template_options": {
+            "description": "[Tag template options](#tag-template-options)",
+            "type": "object",
+            "properties": {
+                "type": {
+                    "$ref": "#/definitions/template_options_type"
+                },
+                "conversion_id": {
+                    "$ref": "google_adwords_base_attributes.json#/definitions/template_options_conversion_id"
+                },
+                "conversion_tracking": {
+                    "description": "Conversion tracking definition",
+                    "type": "object",
+                    "properties": {
+                        "conversion_label": {
+                            "description": "Conversion label",
+                            "anyOf": [
+                                {
+                                    "$ref": "../../tag_types.json#/definitions/non_empty_string"
+                                },
+                                {
+                                    "$ref": "../../../../common/schema/common_types.json#/definitions/variable_reference"
+                                }
+                            ]
+                        },
+                        "conversion_value": {
+                            "description": "Conversion value",
+                            "oneOf": [
+                                {
+                                    "$ref": "../../tag_types.json#/definitions/positive_number"
+                                },
+                                {
+                                    "$ref": "../../../../common/schema/common_types.json#/definitions/variable_reference"
+                                }
+                            ]
+                        }
+                    },
+                    "additionalProperties": false,
+                    "required": [
+                        "conversion_label"
+                    ]
+                },
+                "audience": {
+                    "$ref": "#/definitions/template_options_audience"
+                }
+            },
+            "additionalProperties": false,
+            "required": [
+                "type",
+                "conversion_id",
+                "conversion_tracking"
+            ]
+        }
+    }
+}

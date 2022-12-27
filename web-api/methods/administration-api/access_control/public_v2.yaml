@@ -1,0 +1,1287 @@
+openapi: 3.0.3
+info:
+  title: Access Control Api
+  version: auto
+  description: >
+    This api allows manipulating user and user group permissions for apps and
+    meta sites.
+
+
+    # Permission overview
+
+    **Permission** is a group of specific **actions** that user can perform on entities.
+
+
+    **App permissions**:
+
+
+
+    | ↓ Action  \  Permission → | view | edit | edit-publish | manage |
+
+    |---------------------------|:----:|:----:|:------------:|:------:|
+
+    | view                      | ✔    | ✔    | ✔            | ✔      |
+
+    | edit                      |      | ✔    | ✔            | ✔      |
+
+    | publish                   |      |      | ✔            | ✔      |
+
+    | manage                    |      |      |              | ✔      |
+
+
+
+    Detailed description of app actions:
+
+
+    - view - allows viewing an app
+
+    - edit - allows editing an app
+
+    - publish - allows publishing changes in Tag Manager module
+
+    - manage - allows managing user permissions for an app
+
+    - add - allows adding apps (owner only)
+
+    - delete - allows deleting an app (owner only)
+
+
+    **Meta site permissions**:
+
+
+    | ↓ Action  \  Permission → | view | edit | manage |
+
+    |---------------------------|:----:|:----:|:------:|
+
+    | view                      | ✔    | ✔    | ✔      |
+
+    | edit                      |      | ✔    | ✔      |
+
+    | view_details              |      |      | ✔      |
+
+    | edit_details              |      |      | ✔      |
+
+    | list_apps_in_meta_site    |      |      | ✔      |
+
+    | manage                    |      |      | ✔      |
+
+
+
+    Detailed description of meta site actions:
+
+
+    - view - allows viewing meta site in Analytics module
+
+    - edit - allows editing meta site reports in Analytics module
+
+    - view_details - allows viewing meta site details in Administration module
+
+    - edit_details - allows editing meta site details in Administration module
+
+    - list_apps_in_meta_site - allows listing apps in a meta site
+
+    - manage - allows managing user permissions for a meta site
+
+    - add - allows creating new meta site (owner only)
+
+    - delete - allows deleting meta site (owner only)
+
+    - add_app_to_meta_site - allows adding apps to a meta site (owner only)
+
+    - remove_app_from_meta_site - allows removing apps from a meta site (owner only)
+paths:
+  "/api/access-control/v2/entry/{entity_id}":
+    get:
+      summary: Entity actions
+      description: Returns granted actions to a given entity for current user.
+      operationId: get_entity_actions_v2
+      parameters:
+        - $ref: "#/components/parameters/EntityId"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: "#/components/schemas/EntityActionsResponse"
+        "400":
+          description: Bad Request
+        "403":
+          description: Forbidden
+  "/api/access-control/v2/entry/ppms/app/action/{action}":
+    get:
+      summary: Apps with granted action
+      description: Returns apps with granted action for current user.
+      operationId: get_apps_with_action_v2
+      parameters:
+        - name: action
+          in: path
+          description: Action of the app
+          required: true
+          schema:
+            type: string
+            enum:
+              - view
+              - edit
+              - publish
+              - delete
+              - add
+              - manage
+      responses:
+        "200":
+          description: OK
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: "#/components/schemas/AppsWithGrantedAction"
+        "400":
+          description: Bad Request
+        "403":
+          description: Forbidden
+  "/api/access-control/v2/entry/ppms/meta-site/action/{action}":
+    get:
+      summary: Meta sites with granted action
+      description: Returns meta sites with granted action for current user.
+      operationId: get_meta_sites_with_action_v2
+      parameters:
+        - name: action
+          in: path
+          description: Action of the meta site
+          required: true
+          schema:
+            type: string
+            enum:
+              - view
+              - edit
+              - view_details
+              - edit_details
+              - list_apps_in_meta_site
+              - manage
+              - add
+              - delete
+              - add_app_to_meta_site
+              - remove_app_from_meta_site
+      responses:
+        "200":
+          description: OK
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: "#/components/schemas/MetaSitesWithGrantedAction"
+        "400":
+          description: Bad Request
+        "403":
+          description: Forbidden
+  "/api/access-control/v2/entry/ppms/user/action/{action}":
+    get:
+      summary: Users with granted action
+      description: Returns users with granted action for current user.
+      operationId: get_users_with_action_v2
+      parameters:
+        - name: action
+          in: path
+          description: Action of the user
+          required: true
+          schema:
+            type: string
+            enum:
+              - view
+              - edit
+              - delete
+              - list
+              - add
+              - demote_app_manager
+              - demote_meta_site_manager
+      responses:
+        "200":
+          description: OK
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: "#/components/schemas/UsersWithGrantedAction"
+        "400":
+          description: Bad Request
+        "403":
+          description: Forbidden
+  /api/access-control/v2/global/actions:
+    get:
+      summary: Global actions
+      description: It gets actions without specific entity context for a given user.
+      operationId: get_global_actions_v2
+      responses:
+        "200":
+          description: OK
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: "#/components/schemas/GlobalActions"
+  "/api/access-control/v2/app/{app_id}/permission/user":
+    get:
+      summary: Users permissions for a given app
+      description: >
+        Lists all users (but not owners) and their permissions for a given app.
+
+        List contains both explicit permission of a user and implicit highest permission inherited from user groups which user belongs to.
+      operationId: list_app_permissions_for_user_v2
+      parameters:
+        - $ref: "#/components/parameters/Limit"
+        - $ref: "#/components/parameters/Offset"
+        - $ref: "#/components/parameters/AppId"
+        - $ref: "#/components/parameters/UserSearch"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/vnd.api+json:
+              schema:
+                type: object
+                required:
+                  - meta
+                  - data
+                properties:
+                  meta:
+                    $ref: "#/components/schemas/ListMetadata"
+                  data:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/UserPermissionsForApp"
+        "400":
+          description: Bad Request
+        "401":
+          description: Unauthorized
+        "404":
+          description: Not Found
+  "/api/access-control/v2/app/{app_id}/permission/user-group":
+    get:
+      summary: User groups permissions for a given app
+      description: Lists all user groups and their permissions for a given app.
+      operationId: list_app_permissions_for_user_group_v2
+      parameters:
+        - $ref: "#/components/parameters/AppId"
+        - $ref: "#/components/parameters/Limit"
+        - $ref: "#/components/parameters/Offset"
+        - $ref: "#/components/parameters/UserGroupsSearch"
+        - in: query
+          name: sort
+          description: Sort field - can be reversed by adding dash before field name e.g
+            (-name)
+          required: false
+          schema:
+            type: string
+            enum:
+              - name
+              - -name
+            default: name
+      responses:
+        "200":
+          description: OK
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: "#/components/schemas/UserGroupPermission"
+        "400":
+          description: Bad Request
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+  "/api/access-control/v2/meta-site/{meta_site_id}/permission/user":
+    get:
+      summary: Users permissions for a given meta site
+      description: >
+        Lists all users (but not owners) and their permissions for a given meta
+        site.
+
+        List contains both explicit permission of a user and implicit highest permission inherited from user groups which user belongs to.
+      operationId: list_meta_site_permissions_for_user_v2
+      parameters:
+        - $ref: "#/components/parameters/Limit"
+        - $ref: "#/components/parameters/Offset"
+        - $ref: "#/components/parameters/MetaSiteId"
+        - $ref: "#/components/parameters/UserSearch"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/vnd.api+json:
+              schema:
+                type: object
+                required:
+                  - meta
+                  - data
+                properties:
+                  meta:
+                    $ref: "#/components/schemas/ListMetadata"
+                  data:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/UserPermissionsForMetaSite"
+        "400":
+          description: Bad Request
+        "401":
+          description: Unauthorized
+        "404":
+          description: Not Found
+  "/api/access-control/v2/meta-site/{meta_site_id}/permission/user-group":
+    get:
+      summary: User groups permissions for a given meta site
+      description: Lists all user groups and their permission for a given meta site.
+      operationId: list_meta_site_permissions_for_user_group_v2
+      parameters:
+        - $ref: "#/components/parameters/MetaSiteId"
+        - $ref: "#/components/parameters/Limit"
+        - $ref: "#/components/parameters/Offset"
+        - $ref: "#/components/parameters/UserGroupSearch"
+        - $ref: "#/components/parameters/UserGroupSort"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: "#/components/schemas/UserGroupPermissionsForMetaSite"
+        "400":
+          description: Bad Request
+        "401":
+          description: Unauthorized
+        "404":
+          description: Not Found
+  "/api/access-control/v2/app/{app_id}/permission/user/{user_id}":
+    post:
+      summary: Set user permission for a given app
+      description: Sets user permission for a given app
+      operationId: set_app_permission_for_user_v2
+      parameters:
+        - $ref: "#/components/parameters/AppId"
+        - $ref: "#/components/parameters/UserId"
+      requestBody:
+        content:
+          application/vnd.api+json:
+            schema:
+              type: object
+              allOf:
+                - $ref: "#/components/schemas/AppPermissionForUserSet"
+        description: Request data to set permission for an app for a user
+        required: true
+      responses:
+        "204":
+          description: No Content
+        "400":
+          $ref: "#/components/responses/SetAppPermissionBadRequest"
+        "401":
+          $ref: "#/components/responses/UnauthorizedError"
+        "403":
+          description: Forbidden
+  "/api/access-control/v2/app/{app_id}/permission/user-group/{user_group_id}":
+    post:
+      summary: Set user group permission for a given app
+      description: It sets permission for a given app for a user group
+      operationId: set_app_permission_for_user_group_v2
+      parameters:
+        - $ref: "#/components/parameters/AppId"
+        - $ref: "#/components/parameters/UserGroupId"
+      requestBody:
+        content:
+          application/vnd.api+json:
+            schema:
+              type: object
+              allOf:
+                - $ref: "#/components/schemas/AppPermissionForUserGroupSet"
+        description: Request data to set permission for an app for a user group
+        required: true
+      responses:
+        "204":
+          description: No Content
+        "400":
+          $ref: "#/components/responses/SetAppPermissionBadRequest"
+        "401":
+          $ref: "#/components/responses/UnauthorizedError"
+        "403":
+          description: Forbidden
+  "/api/access-control/v2/meta-site/{meta_site_id}/permission/user/{user_id}":
+    post:
+      summary: Set user permission for a given meta site
+      description: It sets permission for a given meta site for a user
+      operationId: set_meta_site_permission_for_user_v2
+      parameters:
+        - $ref: "#/components/parameters/MetaSiteId"
+        - $ref: "#/components/parameters/UserId"
+      requestBody:
+        content:
+          application/vnd.api+json:
+            schema:
+              type: object
+              allOf:
+                - $ref: "#/components/schemas/MetaSitePermissionForUserSet"
+        description: Request data to set permission for a meta site for a user
+        required: true
+      responses:
+        "204":
+          description: No Content
+        "400":
+          $ref: "#/components/responses/SetMetaSitePermissionBadRequest"
+        "401":
+          $ref: "#/components/responses/UnauthorizedError"
+        "403":
+          description: Forbidden
+  "/api/access-control/v2/meta-site/{meta_site_id}/permission/user-group/{user_group_id}":
+    post:
+      summary: Set user group permission for a given meta site
+      description: It sets permission for a given meta site for a user group
+      operationId: set_meta_site_permission_for_user_group_v2
+      parameters:
+        - $ref: "#/components/parameters/MetaSiteId"
+        - $ref: "#/components/parameters/UserGroupId"
+      requestBody:
+        content:
+          application/vnd.api+json:
+            schema:
+              type: object
+              allOf:
+                - $ref: "#/components/schemas/MetaSitePermissionForUserGroupSet"
+        description: Request data to set permission for a meta site for a user group
+        required: true
+      responses:
+        "204":
+          description: No Content
+        "400":
+          $ref: "#/components/responses/SetMetaSitePermissionBadRequest"
+        "401":
+          $ref: "#/components/responses/UnauthorizedError"
+        "403":
+          description: Forbidden
+  /api/access-control/v2/entry/group:
+    post:
+      summary: Permission set
+      deprecated: true
+      description: >
+        Please use <a href="#operation/set_app_permission_for_user_v2">Set user permission for a given app</a> instead.<br><br>
+        It sets permission for a given entity (ppms/user or ppms/app).
+      operationId: _legacy_set_permission_group_v2
+      requestBody:
+        content:
+          application/vnd.api+json:
+            schema:
+              type: object
+              properties:
+                data:
+                  $ref: "#/components/schemas/PermissionSet"
+        description: set permission
+        required: true
+      responses:
+        "204":
+          description: No Content
+        "400":
+          description: Bad Request
+        "403":
+          description: Forbidden
+  "/api/access-control/v2/entry/groups/ppms/app/{entity_id}":
+    get:
+      summary: Permissions
+      deprecated: true
+      description: >
+        Please use <a href="#operation/list_app_permissions_for_user_v2">Users permissions for a given app</a> instead.<br><br>
+        Lists all users (but not owners) and their permissions for a given app.
+        List contains both explicit permission of a user and implicit highest permission inherited from user groups which user belongs to.
+      operationId: _legacy_get_permission_groups_v2
+      parameters:
+        - $ref: "#/components/parameters/LimitListAppPermissions"
+        - $ref: "#/components/parameters/Offset"
+        - $ref: "#/components/parameters/EntityId"
+        - $ref: "#/components/parameters/UserSearch"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/vnd.api+json:
+              schema:
+                type: object
+                required:
+                  - meta
+                  - data
+                properties:
+                  meta:
+                    $ref: "#/components/schemas/ListMetadata"
+                  data:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/DeprecatedUserPermissionsForApp"
+        "400":
+          description: Bad Request
+        "403":
+          description: Forbidden
+servers:
+  - url: https://example.piwik.pro
+components:
+  parameters:
+    UserGroupsSearch:
+      in: query
+      name: search
+      description: Search phrase - search for user group name and user group id
+      required: false
+      schema:
+        type: string
+    EntityId:
+      in: path
+      name: entity_id
+      required: true
+      description: UUIDv4 identifier of given entity
+      schema:
+        type: string
+        format: uuid
+    Limit:
+      in: query
+      name: limit
+      description: Limits the number of returned items
+      required: false
+      schema:
+        type: integer
+        minimum: 0
+        maximum: 1000
+        default: 10
+    LimitListAppPermissions:
+      in: query
+      name: limit
+      description: Limits the number of returned items
+      required: false
+      schema:
+        type: integer
+        default: 10
+    Offset:
+      in: query
+      name: offset
+      description: Sets offset for list of items
+      required: false
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
+    UserGroupSort:
+      in: query
+      name: sort
+      description: Sort field - can be reversed by adding dash before field name e.g (-name)
+      required: false
+      schema:
+        type: string
+        enum:
+          - name
+          - -name
+        default: name
+    UserGroupSearch:
+      in: query
+      name: search
+      description: Search phrase - search for name or id
+      required: false
+      schema:
+        type: string
+    UserSearch:
+      in: query
+      name: search
+      description: Search phrase - search for e-mail or id
+      required: false
+      schema:
+        type: string
+    AppId:
+      in: path
+      name: app_id
+      required: true
+      description: UUIDv4 identifier of an object
+      schema:
+        type: string
+        format: uuid
+    UserId:
+      in: path
+      name: user_id
+      required: true
+      description: UUIDv4 identifier of an object
+      schema:
+        type: string
+        format: uuid
+    UserGroupId:
+      in: path
+      name: user_group_id
+      required: true
+      description: UUIDv4 identifier of an object
+      schema:
+        type: string
+        format: uuid
+    MetaSiteId:
+      in: path
+      name: meta_site_id
+      required: true
+      description: UUIDv4 identifier of an object
+      schema:
+        type: string
+        format: uuid
+  responses:
+    SetMetaSitePermissionBadRequest:
+      description: Bad Request
+      content:
+        "*/*":
+          schema:
+            allOf:
+              - $ref: "#/components/schemas/BadRequestObject"
+              - example:
+                  errors:
+                    - status: "400"
+                      code: error.default
+                      title: Invalid form
+                      detail: 'Invalid permission "copy", available are: [no-access,
+                        view, edit, manage]'
+                      source:
+                        pointer: /data/attributes/permission
+    SetAppPermissionBadRequest:
+      description: Bad Request
+      content:
+        "*/*":
+          schema:
+            allOf:
+              - $ref: "#/components/schemas/BadRequestObject"
+              - example:
+                  errors:
+                    - status: "400"
+                      code: error.default
+                      title: Invalid form
+                      detail: 'Invalid permission "copy", available are: [no-access,
+                        view, edit, edit-publish, manage]'
+                      source:
+                        pointer: /data/attributes/permission
+    UnauthorizedError:
+      description: Unauthorized
+      content:
+        "*/*":
+          schema:
+            type: object
+            required:
+              - error
+            properties:
+              error:
+                type: string
+                example: access token not authorized
+  schemas:
+    EntityActionsResponse:
+      type: object
+      properties:
+        data:
+          allOf:
+            - $ref: "#/components/schemas/JsonApiResourceObject"
+            - properties:
+                attributes:
+                  type: object
+                  properties:
+                    actions:
+                      type: array
+                      items:
+                        type: string
+                      description: List of available actions for a given entity
+      example:
+        data:
+          type: ppms/permission/entity/actions
+          id: 50fca71a-e4a7-4480-a612-a9ffbdf0935f
+          attributes:
+            actions:
+              - view
+              - edit
+              - publish
+              - delete
+              - manage
+              - add
+    AppsWithGrantedAction:
+      type: object
+      properties:
+        meta:
+          type: object
+          description: Meta information
+          properties:
+            total:
+              type: integer
+              description: Number of records found
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                $ref: "#/components/schemas/JsonApiId"
+              type:
+                $ref: "#/components/schemas/JsonApiType"
+              attributes:
+                type: object
+                properties:
+                  entityType:
+                    type: string
+                    description: Entity type
+                    enum:
+                      - ppms/app
+      example:
+        meta:
+          total: 2
+        data:
+          - id: e0180272-d1f5-4bb5-a7d3-0f1a138eacd5
+            type: ppms/permission/entity
+            attributes:
+              entityType: ppms/app
+          - id: ccc9c3a4-fd65-4755-900f-2590460aff44
+            type: ppms/permission/entity
+            attributes:
+              entityType: ppms/app
+    MetaSitesWithGrantedAction:
+      type: object
+      properties:
+        meta:
+          type: object
+          description: Meta information
+          properties:
+            total:
+              type: integer
+              description: Number of records found
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                $ref: "#/components/schemas/JsonApiId"
+              type:
+                $ref: "#/components/schemas/JsonApiType"
+              attributes:
+                type: object
+                properties:
+                  entityType:
+                    type: string
+                    description: Entity type
+                    enum:
+                      - ppms/meta-site
+      example:
+        meta:
+          total: 2
+        data:
+          - id: e0180272-d1f5-4bb5-a7d3-0f1a138eacd5
+            type: ppms/permission/entity
+            attributes:
+              entityType: ppms/meta-site
+          - id: ccc9c3a4-fd65-4755-900f-2590460aff44
+            type: ppms/permission/entity
+            attributes:
+              entityType: ppms/meta-site
+    UsersWithGrantedAction:
+      type: object
+      properties:
+        meta:
+          type: object
+          description: Meta information
+          properties:
+            total:
+              type: integer
+              description: Number of records found
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                $ref: "#/components/schemas/JsonApiId"
+              type:
+                $ref: "#/components/schemas/JsonApiType"
+              attributes:
+                type: object
+                properties:
+                  entityType:
+                    type: string
+                    description: Entity type
+                    enum:
+                      - ppms/user
+      example:
+        meta:
+          total: 2
+        data:
+          - id: e0180272-d1f5-4bb5-a7d3-0f1a138eacd5
+            type: ppms/permission/entity
+            attributes:
+              entityType: ppms/user
+          - id: ccc9c3a4-fd65-4755-900f-2590460aff44
+            type: ppms/permission/entity
+            attributes:
+              entityType: ppms/user
+    UserGroupPermissionsForMetaSite:
+      type: object
+      required:
+        - meta
+        - data
+      properties:
+        meta:
+          $ref: "#/components/schemas/ListMetadata"
+        data:
+          type: array
+          items:
+            type: object
+            required:
+              - id
+              - type
+              - attributes
+            properties:
+              id:
+                $ref: "#/components/schemas/JsonApiId"
+              type:
+                type: string
+                enum:
+                  - meta-site/permission/user-group
+              attributes:
+                type: object
+                required:
+                  - name
+                  - permission
+                properties:
+                  name:
+                    type: string
+                    description: Name of user group
+                    example: User Group Name
+                  permission:
+                    $ref: "#/components/schemas/MetaSitePermission"
+    UserPermissionsForApp:
+      type: object
+      required:
+        - id
+        - type
+        - attributes
+      properties:
+        id:
+          $ref: "#/components/schemas/JsonApiId"
+        type:
+          type: string
+          description: Resource type
+          enum:
+            - app/permission/user
+        attributes:
+          type: object
+          required:
+            - email
+            - group_permissions
+            - permissions
+          properties:
+            email:
+              $ref: "#/components/schemas/Email"
+            group_permissions:
+              type: object
+              required:
+                - group_names
+                - permission
+              properties:
+                group_names:
+                  type: array
+                  items:
+                    type: string
+                    example: Managers
+                permission:
+                  $ref: "#/components/schemas/AppPermission"
+            permission:
+              $ref: "#/components/schemas/AppPermission"
+    DeprecatedUserPermissionsForApp:
+      type: object
+      required:
+        - id
+        - type
+        - attributes
+      properties:
+        id:
+          $ref: "#/components/schemas/JsonApiId"
+        type:
+          type: string
+          description: Resource type
+          enum:
+            - ppms/permissions/group
+        attributes:
+          type: object
+          required:
+            - email
+            - group_permissions
+            - permissions
+          properties:
+            email:
+              $ref: "#/components/schemas/Email"
+            group_permissions:
+              type: object
+              required:
+                - group_names
+                - permission
+              properties:
+                group_names:
+                  type: array
+                  items:
+                    type: string
+                    example: Managers
+                permission:
+                  $ref: "#/components/schemas/AppPermission"
+            permissions:
+              type: array
+              items:
+                $ref: "#/components/schemas/AppPermission"
+    UserPermissionsForMetaSite:
+      type: object
+      required:
+        - id
+        - type
+        - attributes
+      properties:
+        id:
+          $ref: "#/components/schemas/JsonApiId"
+        type:
+          type: string
+          description: Resource type
+          enum:
+            - meta-site/permission/user
+        attributes:
+          type: object
+          required:
+            - email
+            - group_permissions
+            - permissions
+          properties:
+            email:
+              $ref: "#/components/schemas/Email"
+            group_permissions:
+              type: object
+              required:
+                - group_names
+                - permission
+              properties:
+                group_names:
+                  type: array
+                  items:
+                    type: string
+                    example: Managers
+                permission:
+                  $ref: "#/components/schemas/MetaSitePermission"
+            permission:
+              $ref: "#/components/schemas/MetaSitePermission"
+    PermissionSet:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+            - ppms/permissions/group
+        attributes:
+          type: object
+          properties:
+            entity:
+              type: string
+              enum:
+                - ppms/app
+            entityId:
+              type: string
+              format: uuid
+              description: UUIDv4 identifier of given entity
+              example: 94445dcb-4da3-4e24-9f7b-c685aacc5a2a
+            group:
+              type: string
+              enum:
+                - no-access
+                - view
+                - edit
+                - edit-publish
+                - manage
+            targetUserId:
+              type: string
+              format: uuid
+              description: UUIDv4 identifier of user which will receive permissions
+              example: 94445dcb-4da3-4e24-9f7b-c685aacc5a2a
+      example:
+        type: ppms/permissions/group
+        attributes:
+          entity: ppms/app
+          entityId: 50fca71a-e4a7-4480-a612-a9ffbdf0935f
+          group: manage
+          targetUserId: 8275cf58-93db-4cda-9d11-7262376c2c72
+    AppPermissionForUserSet:
+      type: object
+      required:
+        - data
+      properties:
+        data:
+          type: object
+          required:
+            - type
+            - attributes
+          properties:
+            type:
+              type: string
+              enum:
+                - app/permission/user
+            attributes:
+              type: object
+              required:
+                - permission
+              properties:
+                permission:
+                  $ref: "#/components/schemas/AppPermission"
+    AppPermissionForUserGroupSet:
+      type: object
+      required:
+        - data
+      properties:
+        data:
+          type: object
+          required:
+            - type
+            - attributes
+          properties:
+            type:
+              type: string
+              enum:
+                - app/permission/user-group
+            attributes:
+              type: object
+              required:
+                - permission
+              properties:
+                permission:
+                  $ref: "#/components/schemas/AppPermission"
+    MetaSitePermissionForUserGroupSet:
+      type: object
+      required:
+        - data
+      properties:
+        data:
+          type: object
+          required:
+            - type
+            - attributes
+          properties:
+            type:
+              type: string
+              enum:
+                - meta-site/permission/user-group
+            attributes:
+              type: object
+              required:
+                - permission
+              properties:
+                permission:
+                  $ref: "#/components/schemas/MetaSitePermission"
+    MetaSitePermissionForUserSet:
+      type: object
+      required:
+        - data
+      properties:
+        data:
+          type: object
+          required:
+            - type
+            - attributes
+          properties:
+            type:
+              type: string
+              enum:
+                - meta-site/permission/user
+            attributes:
+              type: object
+              required:
+                - permission
+              properties:
+                permission:
+                  $ref: "#/components/schemas/MetaSitePermission"
+    GlobalActions:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                description: Resource type
+                enum:
+                  - ppms/app
+                  - ppms/user
+                  - ppms/meta-site
+                type: string
+              type:
+                description: Resource type
+                enum:
+                  - ppms/permissions/global
+                type: string
+              attributes:
+                type: object
+                properties:
+                  permissions:
+                    type: array
+                    items:
+                      type: string
+                    description: List of global actions for authorized user
+      example:
+        data:
+          - id: ppms/app
+            type: ppms/permissions/global
+            attributes:
+              permissions:
+                - add
+          - id: ppms/user
+            type: ppms/permissions/global
+            attributes:
+              permissions:
+                - list
+                - add
+                - demote_app_manager
+                - demote_meta_site_manager
+          - id: ppms/meta-site
+            type: ppms/permissions/global
+            attributes:
+              permissions:
+                - add
+                - delete
+    JsonApiId:
+      type: string
+      format: uuid
+      description: Resource ID
+      example: 985ed9d7-b652-47b8-b9cf-c17d62735261
+    JsonApiType:
+      type: string
+      description: Resource type, unique across whole PPAS
+      example: ppms/user
+    JsonApiResourceObject:
+      type: object
+      properties:
+        id:
+          $ref: "#/components/schemas/JsonApiId"
+        type:
+          $ref: "#/components/schemas/JsonApiType"
+        attributes:
+          type: object
+    ListMetadata:
+      type: object
+      description: Metadata of a listing
+      required:
+        - total
+      properties:
+        total:
+          type: integer
+          description: Total number of items
+          example: 1
+    Email:
+      type: string
+      format: email
+      description: User email
+      example: example@example.com
+    AppPermission:
+      type: string
+      description: Permission for `ppms/app` (for example `edit-publish` contains actions
+        `view`, `edit` and `publish`)
+      enum:
+        - no-access
+        - view
+        - edit
+        - edit-publish
+        - manage
+      example: manage
+    MetaSitePermission:
+      type: string
+      description: Permission for `ppms/meta-site` (for example `manage` contains actions
+        `view` nad `edit`)
+      enum:
+        - no-access
+        - view
+        - edit
+        - manage
+      example: manage
+    ErrorObject:
+      type: object
+      required:
+        - status
+        - title
+      properties:
+        status:
+          type: string
+          description: the HTTP status code applicable to this problem, expressed as a
+            string value
+          example: "400"
+        code:
+          type: string
+          description: an application-specific error code, expressed as a string value
+          example: error.default
+        title:
+          type: string
+          description: >
+            a short, human-readable summary of the problem that SHOULD NOT
+            change from occurrence to occurrence of the problem, except for
+            purposes of localization
+          example: Invalid form
+        detail:
+          type: string
+          description: >
+            a human-readable explanation specific to this occurrence of the
+            problem. Like `title`, this field’s value can be localized
+          example: This field is invalid
+        source:
+          type: object
+          description: >
+            an object containing references to the source of the error,
+            optionally including any of the following members: [pointer,
+            parameter]
+          properties:
+            pointer:
+              type: string
+              example: /data/attributes/name
+              description: >
+                a JSON Pointer [RFC6901] to the associated entity in the request
+                document [e.g. "/data" for a primary data object, or
+                "/data/attributes/name" for a specific attribute]
+            parameter:
+              type: string
+              example: offset
+              description: a string indicating which URI query parameter caused the error
+    BadRequestObject:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            allOf:
+              - $ref: "#/components/schemas/ErrorObject"
+    UserGroupPermission:
+      type: object
+      required:
+        - meta
+        - data
+      properties:
+        meta:
+          type: object
+          required:
+            - total
+          description: Meta information
+          properties:
+            total:
+              type: integer
+              description: Total number of entries found
+              example: 1
+        data:
+          type: array
+          required:
+            - id
+            - type
+            - attributes
+          items:
+            type: object
+            properties:
+              id:
+                $ref: "#/components/schemas/JsonApiId"
+              type:
+                type: string
+                enum:
+                  - app/permission/user-group
+              attributes:
+                type: object
+                required:
+                  - name
+                  - permission
+                properties:
+                  name:
+                    type: string
+                    description: Name of user group
+                    example: User Group Name
+                  permission:
+                    type: string
+                    description: Permission
+                    example: manage

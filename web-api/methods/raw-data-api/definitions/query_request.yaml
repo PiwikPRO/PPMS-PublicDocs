@@ -1,0 +1,272 @@
+type: object
+properties:
+  website_id:
+    type: string
+    format: uuid
+    description: ID of a website or a meta site.
+    example: 70236925-724f-404e-b634-7b5633bc0bcc
+  columns:
+    type: array
+    description: Column definitions for the query.
+    items:
+      type: object
+      properties:
+        column_id:
+          type: string
+          description: ID of the column (either a dimension or a metric).
+        transformation_id:
+          type: string
+          description: |
+            Optional ID of the transformation. Must be supported by the
+            column that was specified.
+        goal_id:
+          type: integer
+          description: |
+            Optional ID of a goal. Available only for metrics related to goals.
+      required:
+        - column_id
+    example: [{"column_id":"device_type"},{"column_id":"revenue","transformation_id":"sum"}]
+  date_from:
+    type: string
+    format: date
+    description: Start date for the query (inclusive). Cannot be used with relative_date field at
+      the same time. Mandatory if ``relative_date`` is not used.
+  date_to:
+    type: string
+    format: date
+    description: End date for the query (inclusive). Cannot be used with ``relative_date`` field at
+      the same time. Mandatory if ``relative_date`` is not used.
+  relative_date:
+    type: string
+    enum:
+      - today
+      - yesterday
+      - last_week
+      - last_month
+      - last_year
+      - last_X_days
+    description: |
+      Use relative date in query. Cannot be used with absolute date fields at
+      the same time. ``X`` in ``last_X_days`` must be in range 1 <= ``X`` <= 365.
+      Note that ``last_X_days`` does not include data from today.
+      Mandatory if absolute date fields are not used.
+  filters:
+    type: object
+    description: |
+      Dimension filters for the query.  The top-level object must specify
+      AND/OR clause, but any nested objects may either specify another AND/OR
+      clause or a single filter.
+    properties:
+      operator:
+        type: string
+        description: Logical operator (AND/OR) for the clause.
+        enum:
+          - and
+          - or
+      conditions:
+        type: array
+        description: List of filters or recursively nested clauses.
+        items:
+          type: object
+          required:
+            - column_id
+            - condition
+          properties:
+            column_id:
+              type: string
+              description: ID of the column (must be a dimension).
+            transformation_id:
+              type: string
+              description: |
+                Optional ID of the transformation. Must be supported by
+                the column that was specified and must convert the column
+                into another dimension (and not a metric).
+            condition:
+              type: object
+              description: Definition of a the condition for this column.
+              properties:
+                operator:
+                  type: string
+                  description: |
+                    Filtering operator. Available choices depend on
+                    the specified column's type.
+
+                    String operators: ``eq``, ``neq``,
+                    ``contains``, ``not_contains``,
+                    ``icontains``, ``not_icontains``,
+                    ``starts_with``, ``ends_with``,
+                    ``matches``, ``not_matches``. For regular expressions (operators: ``matches`` and ``not_matches``)
+                    use [re2](https://github.com/google/re2/wiki/Syntax) syntax.
+
+                    Numeric operators: ``eq``, ``neq``, ``gt``, ``gte``,
+                    ``lt``, ``lte``.
+
+                    Boolean operators: ``eq``, ``neq``.
+
+                    Enum operators: ``eq``, ``neq``, ``empty``, ``not_empty``.
+                value:
+                  description: |
+                    Value that should be matched by filter. Value type must
+                    match the type of the specified column. For enumerated
+                    fields, you must use the ID value.
+              required:
+                - operator
+                - value
+          example: {"column_id":"event_title","condition":{"operator":"contains","value":"test"}}
+    required:
+      - operator
+      - conditions
+  metric_filters:
+    type: object
+    description: |
+      Metric filters for the query. The top-level object must specify AND/OR
+      clause, but any nested objects may either specify another AND/OR
+      clause or a single filter.
+    properties:
+      operator:
+        type: string
+        description: Logical operator (AND/OR) for the clause.
+        enum:
+          - and
+          - or
+      conditions:
+        type: array
+        description: List of filters or recursively nested clauses.
+        items:
+          type: object
+          required:
+            - column_id
+            - condition
+          properties:
+            column_id:
+              type: string
+              description: |
+                ID of the column (must be a metric, or a dimension converted
+                to a metric).
+            transformation_id:
+              type: string
+              description: |
+                Optional ID of the transformation. Must be supported by
+                the column that was specified and must convert the column
+                into a metric.
+            goal_id:
+              type: integer
+              description: |
+                Specify a goal ID to calculate the metric using data limited
+                to that goal only. Supported only by goal-related metrics.
+            condition:
+              type: object
+              description: Definition of a the condition for this column.
+              properties:
+                operator:
+                  type: string
+                  description: Filtering operator.
+                  enum:
+                    - eq
+                    - neq
+                    - gt
+                    - gte
+                    - lt
+                    - lte
+                value:
+                  description: Value that should be matched by filter.
+                  type: float
+                  example: 42.5
+              required:
+                - operator
+                - value
+          example: {"column_id":"page_views","condition":{"operator":"eq","value":42}}
+    required:
+      - operator
+      - conditions
+  offset:
+    type: integer
+    default: 0
+    minimum: 0
+    description: Number of rows to skip before beginning to return rows.
+  limit:
+    type: integer
+    default: 100
+    minimum: 1
+    maximum: 100000
+    description: Number of rows to return.
+  order_by:
+    type: array
+    description: |
+      Array of sorting directives. Each directive is a 2-element array with
+      0-based colum index and direction). You can sort on more than one column.
+      By default sorts descending by the first metric in query.
+    items:
+      type: array
+    example: [[1, "desc"], [2, "asc"]]
+  format:
+    type: string
+    enum:
+      - json
+      - json-kv
+      - csv
+      - xml
+    default: json
+    description: |
+      Data format of a successful response (error responses are always in json).
+  column_format:
+    type: string
+    enum:
+      - id
+      - name
+    default: id
+    description: |
+      Format of the columns header (in CSV responses) and metadata labels
+      (in JSON responses). By default uses identifiers (``id`` option), set to
+      ``name`` to use human-readable names.
+  options:
+    type: object
+    description: |
+      Additional options for query.
+    properties:
+      sampling:
+        type: float
+        description: |
+          Apply sampling for query with given data percent. Sampling 0.1 means
+          only 10% of data are used to calculate query results. Sampling 1
+          means that 100% of data is used to calculate results. Leave empty to
+          apply default sampling value for this website. By default this means
+          that sampling is turned off.
+        example: 0.2
+        minimum: 0.01
+        maximum: 1
+required:
+  - website_id
+  - columns
+example:
+  website_id: 70236925-724f-404e-b634-7b5633bc0bcc
+  columns:
+    - column_id: device_type
+    - column_id: revenue
+      transformation_id: sum
+  date_from: '2020-02-10'
+  date_to: '2020-02-10'
+  filters:
+    operator: and
+    conditions:
+      - column_id: event_title
+        condition:
+          operator: contains
+          value: test
+  metric_filters:
+    operator: and
+    conditions:
+      - column_id: page_views
+        condition:
+          operator: eq
+          value: 42
+  offset: 0
+  limit: 100
+  order_by:
+    - - 1
+      - desc
+    - - 2
+      - asc
+  format: json
+  options:
+    sampling: 0.2
