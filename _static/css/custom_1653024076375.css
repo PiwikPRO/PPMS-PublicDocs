@@ -1153,8 +1153,7 @@ footer {
 }
 
 #developer-docs-and-guides {
-    max-width: 630px;
-    margin: auto;
+    margin-left: 300px;
 }
 
 #developer-docs-and-guides em{
