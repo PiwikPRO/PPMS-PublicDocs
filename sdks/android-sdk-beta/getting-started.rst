@@ -69,7 +69,7 @@ To set up the Piwik PRO tracker, follow these steps:
         }
     }
 
-  Tip: See `our demo app <https://github.com/PiwikPRO/piwik-pro-sdk-demo-android>`_ where we used this method.
+Tip: See `our demo app <https://github.com/PiwikPRO/piwik-pro-sdk-demo-android>`_ where we used this method.
 
 2. Share the ``Tracker`` instance across your app. The ``Tracker`` is now thread-safe.
 
