@@ -1,4 +1,4 @@
-.. _js_api:
+.. _JS API Consent Manager:
 
 =====
 Consent Manager
