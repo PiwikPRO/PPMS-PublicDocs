@@ -27,9 +27,9 @@ Syntax
 Returns
 -------
 
-Whether a user is marked as anonymous or non-anonymous.
-Format: True is anonymous. False is non-anonymous.
-Type: Boolean
+| Whether a user is marked as anonymous or non-anonymous.
+| Format: True: is anonymous. False: is non-anonymous.
+| Type: Boolean
 
 Examples
 --------

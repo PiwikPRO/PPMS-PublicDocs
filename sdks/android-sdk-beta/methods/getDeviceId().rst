@@ -27,9 +27,9 @@ Syntax
 Returns
 -------
 
-The unique device ID
-Format: Example: abcd123e-a123-bcFG-d123
-Type: String
+| The unique device ID
+| Format: Example: abcd123e-a123-bcFG-d123
+| Type: String
 
 
 Examples
