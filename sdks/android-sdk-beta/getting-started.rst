@@ -1,4 +1,4 @@
-.. _android_getting_started:
+.. _Android SDK getting started:
 
 =====
 Getting started
@@ -44,44 +44,109 @@ Install the library
     implementation 'pro.piwik:sdk-framework-android:VERSION'
     }
 
-3. Replace ``VERSION`` with the latest release name. Example: ``1.0.3``. (Where to find it?)
+3. Replace ``VERSION`` with the latest release name. Example: ``1.1.8``. (`Where to find it? <https://jitpack.io/#pro.piwik/sdk-framework-android>`_)
 
 Set up the tracker
 ------------------
 
-To set up the Piwik PRO tracker, you have two options:
+To set up the Piwik PRO tracker, you can use two methods: (1) create and manege the tracker in the Application class or (2) manage the tracker on your own.
 
-1. Extend ``PiwikApplication`` class with your Android Application class. It forces implementation of one abstract method. That approach is used in the Piwik PRO SDK demo app as below:
+Method #1
++++++++++
+
+We recommend using this method for most cases. It forces the implementation of just one abstract method.
+
+To set up the Piwik PRO tracker, follow these steps:
+
+1. Extend `PiwikApplication` class with your Android Application class. Use your account address (Example: `https://example.piwik.pro/`) and the site/app ID (`Where to find it? <https://help.piwik.pro/support/questions/find-website-id/>`_)
 
 .. code-block:: javascript
 
     public class YourApplication extends PiwikApplication{
-    @Override
-    public TrackerConfig onCreateTrackerConfig() {
-        return TrackerConfig.createDefault("https://your.piwik.pro.server.com", "01234567-89ab-cdef-0123-456789abcdef");
-    }
-    }
-
-2. Manage the Tracker on your own. To configure the Tracker you will need your account address and the app ID (You can find it in Administration > Websites & apps > Installation.):
-
-.. code-block:: javascript
-
-    public class YourApplication extends Application {
-    private Tracker tracker;
-    public synchronized Tracker getTracker() {
-        if (tracker == null) tracker = Piwik.getInstance(this).newTracker(new TrackerConfig("https://your.piwik.pro.server.com", "01234567-89ab-cdef-0123-456789abcdef"));
-        return tracker;
-    }
+        @Override
+        public TrackerConfig onCreateTrackerConfig() {
+            return TrackerConfig.createDefault("account-address", "site-id");
+        }
     }
 
-Notes:
+Tip: See `our demo app <https://github.com/PiwikPRO/piwik-pro-sdk-demo-android>`_ where we used this method.
 
-* We don't not recommended creating multiple Tracker instances for the same target as it may lead to over-count of metrics.
-* We recommended creating and managing the tracker in the Application class to make sure there is only one instance of the tracker.
-* The Tracker is thread-safe and can be shared across the application.
+2. Share the `Tracker` instance across your app. The `Tracker` is now thread-safe.
 
 .. code-block:: javascript
 
     Tracker tracker = ((PiwikApplication) getApplication()).getTracker();
 
-3. Now your application can use Piwik PRO SDK.
+3. Done! Now your app can use Piwik PRO SDK.
+
+4. We recommend using the `TrackHelper` class to track events. For tracking each event with `TrackHelper`, you will need to pass the `Tracker` instance.
+
+.. code-block:: javascript
+
+    Tracker tracker = ((PiwikApplication) getApplication()).getTracker();
+    TrackHelper.track().screen("Main screen").with(tracker);
+
+Note: The `TrackerHelper` class has methods for all common actions, which can be chained to facilitate the correct order and use. Combine it with the IDE autocompletion, and using the SDK will be more convenient.
+
+Method #2
++++++++++
+
+To set up the Piwik PRO tracker, follow these steps:
+
+1. Manage the tracker on your own. Use your account address (Example: `https://example.piwik.pro/`) and the site/app ID (`Where to find it? <https://help.piwik.pro/support/questions/find-website-id/>`).
+
+.. code-block:: javascript
+
+    public class YourApplication extends Application {
+        private Tracker tracker;
+        public synchronized Tracker getTracker() {
+            if (tracker == null) tracker = Piwik.getInstance(this).newTracker(new TrackerConfig(""account-address", "site-id", "Default Tracker"));
+            return tracker;
+        }
+    }
+
+
+Note: We recommend using just one tracker instance for your app. Otherwise, you can end up with over-counted metrics.
+
+2. Share the `Tracker` instance across your app. The `Tracker` is now thread-safe.
+
+.. code-block:: javascript
+
+    Tracker tracker = ((YourApplication) getApplication()).getTracker();
+
+3. Done! Now your app can use Piwik PRO SDK.
+
+4. We recommend using the `TrackHelper` class to track events. For tracking each event with `TrackHelper`, you will need to pass the `Tracker` instance.
+
+.. code-block:: javascript
+
+    Tracker tracker = ((YourApplication) getApplication()).getTracker();
+    TrackHelper.track().screen("Main screen").with(tracker);
+
+Note: The `TrackerHelper` class has methods for all common actions, which can be chained to facilitate the correct order and use. Combine it with the IDE autocompletion, and using the SDK will be more convenient.
+
+Kotlin
+------
+
+Our SDK is written in Java, but it can also be used in Kotlin. If you refer to any of our SDK methods in Kotlin, it'll be automatically shown as a Kotlin syntax.
+
+Here's an example of the **track().screen()** method in both languages:
+
+.. tabs::
+
+    .. group-tab:: Java
+
+        .. code-block:: javascript
+
+            Tracker tracker = ((PiwikApplication) getApplication()).getTracker();
+            TrackHelper.track().screen("path").title("title").with(tracker);
+
+
+    .. group-tab:: Kotlin
+
+        .. code-block:: javascript
+
+            val tracker: Tracker = (application as PiwikApplication).tracker
+            TrackHelper.track().screen("path").title("title").with(tracker)
+
+Tip: For more on calling Java from Kotlin, `see this article <https://kotlinlang.org/docs/java-interop.html>`_.
