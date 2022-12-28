@@ -101,6 +101,13 @@ To get profile attributes:
             }
           })
 
+
+Notes
+-----
+
+* You can get only the attributes with `granted access <https://help.piwik.pro/support/audiences/api-access-attribute/>`_.
+
+
 Related methods
 ---------------
 
