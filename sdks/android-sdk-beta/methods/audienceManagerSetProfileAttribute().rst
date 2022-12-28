@@ -45,7 +45,7 @@ Parameters
 Examples
 --------
 
-To set the attribute ``plan type`` with the value ``premium`` and send it with .with(getTracker() to Audience Manager:
+To set the attribute ``plan type`` with the value ``premium`` and send it with ``.with(getTracker())`` to Audience Manager:
 
 .. tabs::
 
@@ -69,7 +69,7 @@ Notes
 -----
 
 * Each event always sends the following attributes: Site or app ID, Visitor ID, and Device ID.
-* If setAnonymizationState(false) and the User ID and Email are set, each event will also send them.
+* If setAnonymizationState(false) is set and User ID and Email are set, each event will also send User ID and Email.
 * You can see all added attributes in Audience Manager > Profile.
 
 Related methods
