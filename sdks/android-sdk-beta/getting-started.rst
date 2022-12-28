@@ -3,7 +3,7 @@
 =====
 Getting started
 =====
-Our SDK for Android lets you collect user data from mobile apps built for Android. It contains over 20 built-in methods that let you easily track screen views, goals, ecommerce orders, and more.
+Our SDK for Android lets you collect user data from mobile apps built for Android. It contains over 30 built-in methods that let you easily track screen views, goals, ecommerce orders, and more.
 
 To get started you need to set up your account in Piwik PRO, install our library, and set up the tracker.
 
@@ -58,7 +58,7 @@ We recommend using this method for most cases. It forces the implementation of j
 
 To set up the Piwik PRO tracker, follow these steps:
 
-1. Extend `PiwikApplication` class with your Android Application class. Use your account address (Example: `https://example.piwik.pro/`) and the site/app ID (`Where to find it? <https://help.piwik.pro/support/questions/find-website-id/>`_)
+1. Extend ``PiwikApplication`` class with your Android Application class. Use your account address (Example: ``https://example.piwik.pro/``) and the site/app ID (`Where to find it? <https://help.piwik.pro/support/questions/find-website-id/>`_)
 
 .. code-block:: javascript
 
@@ -71,7 +71,7 @@ To set up the Piwik PRO tracker, follow these steps:
 
 Tip: See `our demo app <https://github.com/PiwikPRO/piwik-pro-sdk-demo-android>`_ where we used this method.
 
-2. Share the `Tracker` instance across your app. The `Tracker` is now thread-safe.
+2. Share the ``Tracker`` instance across your app. The ``Tracker`` is now thread-safe.
 
 .. code-block:: javascript
 
@@ -79,21 +79,21 @@ Tip: See `our demo app <https://github.com/PiwikPRO/piwik-pro-sdk-demo-android>`
 
 3. Done! Now your app can use Piwik PRO SDK.
 
-4. We recommend using the `TrackHelper` class to track events. For tracking each event with `TrackHelper`, you will need to pass the `Tracker` instance.
+4. We recommend using the ``TrackHelper`` class to track events. For tracking each event with ``TrackHelper``, you will need to pass the ``Tracker`` instance.
 
 .. code-block:: javascript
 
     Tracker tracker = ((PiwikApplication) getApplication()).getTracker();
     TrackHelper.track().screen("Main screen").with(tracker);
 
-Note: The `TrackerHelper` class has methods for all common actions, which can be chained to facilitate the correct order and use. Combine it with the IDE autocompletion, and using the SDK will be more convenient.
+Note: The ``TrackerHelper`` class has methods for all common actions, which can be chained to facilitate the correct order and use. Combine it with the IDE autocompletion, and using the SDK will be more convenient.
 
 Method #2
 +++++++++
 
 To set up the Piwik PRO tracker, follow these steps:
 
-1. Manage the tracker on your own. Use your account address (Example: `https://example.piwik.pro/`) and the site/app ID (`Where to find it? <https://help.piwik.pro/support/questions/find-website-id/>`).
+1. Manage the tracker on your own. Use your account address (Example: ``https://example.piwik.pro/``) and the site/app ID (`Where to find it? <https://help.piwik.pro/support/questions/find-website-id/>`_).
 
 .. code-block:: javascript
 
@@ -108,7 +108,7 @@ To set up the Piwik PRO tracker, follow these steps:
 
 Note: We recommend using just one tracker instance for your app. Otherwise, you can end up with over-counted metrics.
 
-2. Share the `Tracker` instance across your app. The `Tracker` is now thread-safe.
+2. Share the ``Tracker`` instance across your app. The ``Tracker`` is now thread-safe.
 
 .. code-block:: javascript
 
@@ -116,14 +116,14 @@ Note: We recommend using just one tracker instance for your app. Otherwise, you 
 
 3. Done! Now your app can use Piwik PRO SDK.
 
-4. We recommend using the `TrackHelper` class to track events. For tracking each event with `TrackHelper`, you will need to pass the `Tracker` instance.
+4. We recommend using the ``TrackHelper`` class to track events. For tracking each event with ``TrackHelper``, you will need to pass the ``Tracker`` instance.
 
 .. code-block:: javascript
 
     Tracker tracker = ((YourApplication) getApplication()).getTracker();
     TrackHelper.track().screen("Main screen").with(tracker);
 
-Note: The `TrackerHelper` class has methods for all common actions, which can be chained to facilitate the correct order and use. Combine it with the IDE autocompletion, and using the SDK will be more convenient.
+Note: The ``TrackerHelper`` class has methods for all common actions, which can be chained to facilitate the correct order and use. Combine it with the IDE autocompletion, and using the SDK will be more convenient.
 
 Kotlin
 ------
