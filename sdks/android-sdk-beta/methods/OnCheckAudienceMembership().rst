@@ -28,7 +28,7 @@ Syntax
             public void onError(String errorData) {
                 // handle error
             }
-        });
+          });
 
 
 
@@ -57,12 +57,12 @@ Parameters
 | The audience ID that you want to check. You can find it in Audience Manager > Audiences.
 
 | **OnCheckAudienceMembership()** (required)
-| The callback to handle a request result. The call is asynchronous. It has two methods void onChecked(boolean isMember) and void onError(String errorData).
+| The callback to handle a request result. The call is asynchronous. It has two methods ``void onChecked(boolean isMember)`` and ``void onError(String errorData)``.
 
 | **isMember** (boolean, output)
 | Whether a user belongs to the given audience or not. True: Belongs. False: Doesn't belong.
 
-| errorData (output)
+| **errorData** (output)
 | The error string. If an error occurs, only this method will be called.
 
 
@@ -87,7 +87,7 @@ To check if the user belongs to the audience:
             public void onError(String errorData) {
                 // handle error
             }
-        });
+          });
 
 
 
