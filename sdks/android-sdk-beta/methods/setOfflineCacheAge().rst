@@ -28,7 +28,7 @@ Parameters
 ----------
 
 | **milliseconds** (number, required)
-| The time (in milliseconds) after which events are removed from the local storage. Default value: 24 hours (24 * 60 * 60 * 1000 milliseconds). If 0 is set, events are stored for ever (unlimited time). If -1 is set, storing is turned off.
+| The time (in milliseconds) after which events are removed from the local storage. Default value: 24 hours (24 * 60 * 60 * 1000 milliseconds). If 0 is set, events are stored forever (unlimited time). If -1 is set, storing is turned off.
 
 Related methods
 ---------------
