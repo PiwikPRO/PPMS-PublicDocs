@@ -1,9 +1,10 @@
+.. _android setAnonymizationState():
 
 =======================
 setAnonymizationState()
 =======================
 
-The **setAnonymizationState()** method marks a user as anonymous or non-anonymous. An anonymous user has a hidden IP address (Example: 0.0.0.0) and hidden location data (only Country data is available). You also don't collect their user ID and device ID. And each time an application starts, a new visitor ID is created.
+The **setAnonymizationState()** method marks a user as anonymous or non-anonymous. When a user is anonymous, their IP address is hidden (Example: 0.0.0.0) and their location data is hidden (only Country data is available). Additionally, their user ID and device ID are not collected. Each time the application is started, a new visitor ID is generated for the anonymous user.
 
 The **setAnonymizationState()** method is enabled by default. This means each user is anonymous by default.
 
@@ -22,7 +23,10 @@ Syntax
 
         .. code-block:: javascript
 
-          TODO
+          (application as PiwikApplication).tracker.setAnonymizationState(
+            isAnonymous
+          )
+
 
 
 Parameters
@@ -48,7 +52,9 @@ To mark a visitor as non-anonymous:
 
         .. code-block:: javascript
 
-          TODO
+          (application as PiwikApplication).tracker.setAnonymizationState(
+            false
+          )
 
 
 Related methods
