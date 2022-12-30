@@ -65,7 +65,10 @@ To send a screen view with a path ``example/welcome`` and title ``Welcome``:
             override fun onCreate(savedInstanceState: Bundle?) {
               super.onCreate(savedInstanceState)
               val tracker: Tracker = (application as PiwikApplication).tracker
-              TrackHelper.track().screen("example/welcome").title("Welcome").with(tracker)
+              TrackHelper.track()
+                .screen("example/welcome")
+                .title("Welcome")
+                .with(tracker)
             }
           }
 

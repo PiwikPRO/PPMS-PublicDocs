@@ -52,11 +52,11 @@ To set a user ID as ``ABC123`` and send it with a screen view:
 
         .. code-block:: javascript
 
-        tracker.userId = "ABC123"
-        TrackHelper.track()
-          .screen("example/welcome")
-          .title("Welcome")
-          .with(tracker);
+          tracker.userId = "ABC123"
+          TrackHelper.track()
+            .screen("example/welcome")
+            .title("Welcome")
+            .with(tracker);
 
 Notes
 -----

@@ -31,9 +31,10 @@ Parameters
 | **campaignURL** (string, required)
 | The URL you used in your campaign to bring traffic to your mobile app. Valid formats:  HTTPS, HTTP and FTP. Example: ``http://example.com?pk_campaign=Summer_Promo&pk_keyword=banking_app``
 
-Note: You can tag campaigns manually or use our `Piwik PRO URL builder <https://help.piwik.pro/support/collecting-data/piwik-pro-url-builder/>`_. For now, only the pk_campaign and pk_keyword work on SDKs, so don't use other parameters.
+| Note: You can tag campaigns manually or use our `Piwik PRO URL builder <https://help.piwik.pro/support/collecting-data/piwik-pro-url-builder/>`_. For now, only the pk_campaign and pk_keyword work on SDKs, so don't use other parameters.
 
 Examples
+--------
 
 To pass campaign data from a campaign link ``http://example.com?pk_campaign=Summer_Promo&pk_keyword=banking_app``:
 
