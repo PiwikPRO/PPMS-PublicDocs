@@ -75,5 +75,5 @@ Notes
 Related methods
 ---------------
 
-* audienceManagerGetProfileAttributes() 🗑
-* OnCheckAudienceMembership() 🗑
+* :ref:`android audienceManagerGetProfileAttributes()`
+* :ref:`android OnCheckAudienceMembership()`
