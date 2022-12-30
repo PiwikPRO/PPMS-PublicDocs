@@ -80,7 +80,7 @@ Developer docs and guides
 													<div class="tx-4 tx-md-6 tx-sm-10">
 								<div class="content">
 									<h3><a href="https://help.piwik.pro/support/getting-started/">Changelog</a></h3>
-																			<p class="mb3">We roll out a new version bi-weekly, so keep an eye on changes in our changelog. <a href="https://help.piwik.pro/support/getting-started/">Read more</a></p>
+																			<p class="mb3">Keep an eye on changes in our changelog. We roll out a new version bi-weekly.  <a href="https://help.piwik.pro/support/getting-started/">Read more</a></p>
 								</div>
 							</div>
 
