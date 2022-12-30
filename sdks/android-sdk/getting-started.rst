@@ -1,4 +1,4 @@
-.. _Android SDK getting started:
+.. _android getting started:
 
 =====
 Getting started

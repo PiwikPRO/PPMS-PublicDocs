@@ -1,8 +1,8 @@
 .. _android_sdk:
 
-=====
-Android SDK (beta)
-=====
+===========
+Android SDK
+===========
 
 .. toctree::
    :maxdepth: 1
