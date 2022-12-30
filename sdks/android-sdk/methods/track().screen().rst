@@ -29,6 +29,7 @@ Parameters
 
 | **path** (string, required)
 | A path set for your screen. Example: ``example/welcome``. A path is automatically translated to a URL and it gets a prefix ``screen`` (if tracker.setPrefixing(true) is set).
+
 | Note: Set the current instance of Android ``Activity`` class instead of the path if you want to use the activity stack. It'll then automatically set the activity stack as a path and activity title as a title.
 
 | **title** (string, optional)
