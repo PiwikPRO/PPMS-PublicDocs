@@ -28,7 +28,7 @@ Parameters
 ----------
 
 | **downloadURL** (string, required)
-| The download URL. Example: https://example.com/paid-app.zip
+| The download URL. Example: ``https://example.com/paid-app.zip``
 
 Examples
 --------
