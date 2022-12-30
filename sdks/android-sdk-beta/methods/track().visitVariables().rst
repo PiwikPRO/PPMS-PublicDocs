@@ -32,6 +32,7 @@ Parameters
 
 | **index** (number, required)
 | Index where the variable is stored.
+
 | Note: If setIncludeDefaultCustomVars(true) is set, you can't use the index 4-5 because that method automatically tracks some items under those indexes. The setIncludeDefaultCustomVars(true) method is set by default.
 
 | **name** (string, required)
