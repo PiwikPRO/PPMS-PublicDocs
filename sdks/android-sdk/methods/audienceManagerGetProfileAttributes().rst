@@ -111,5 +111,5 @@ Notes
 Related methods
 ---------------
 
-* audienceManagerSetProfileAttribute() 🗑
-* OnCheckAudienceMembership() 🗑
+* :ref:`android audienceManagerSetProfileAttribute()`
+* :ref:`android OnCheckAudienceMembership()`

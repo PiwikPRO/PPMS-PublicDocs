@@ -80,6 +80,6 @@ Notes
 Related methods
 ---------------
 
-* setIncludeDefaultCustomVars()
-* track().variable() 🗑
-* track().dimension()
+* :ref:`android setIncludeDefaultCustomVars()`
+* :ref:`android track().variable()`
+* :ref:`android track().dimension()`

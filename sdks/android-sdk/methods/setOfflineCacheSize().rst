@@ -53,4 +53,4 @@ To set the size limit to 2 Mb (2 * 1024 * 1024 bytes):
 Related methods
 ---------------
 
-* setOfflineCacheAge()
+* :ref:`android setOfflineCacheAge()`

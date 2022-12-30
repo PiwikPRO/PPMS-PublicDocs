@@ -55,4 +55,4 @@ To check if data anonymization is turned on or off for a given visitor:
 Related methods
 ---------------
 
-* setAnonymizationState()
+* :ref:`android setAnonymizationState()`

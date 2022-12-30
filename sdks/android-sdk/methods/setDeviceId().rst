@@ -59,5 +59,5 @@ Notes
 Related methods
 ---------------
 
-* setTrackDeviceId()
-* getDeviceId()
+* :ref:`android setTrackDeviceId()`
+* :ref:`android getDeviceId()`

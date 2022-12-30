@@ -112,5 +112,5 @@ To check if the user belongs to the audience:
 Related methods
 ---------------
 
-* audienceManagerSetProfileAttribute() 🗑
-* audienceManagerGetProfileAttributes() 🗑
+* :ref:`android audienceManagerSetProfileAttribute()`
+* :ref:`android audienceManagerGetProfileAttributes()`

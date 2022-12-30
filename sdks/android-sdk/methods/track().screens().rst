@@ -50,4 +50,4 @@ To automatically record screen views:
 Related methods
 ---------------
 
-* track().screen()
+* :ref:`android track().screen()`

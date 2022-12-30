@@ -62,5 +62,5 @@ Notes
 Related methods
 ---------------
 
-* setDeviceId()
-* getDeviceId()
+* :ref:`android setDeviceId()`
+* :ref:`android getDeviceId()`

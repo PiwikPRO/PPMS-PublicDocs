@@ -58,6 +58,6 @@ Notes
 Related methods
 ---------------
 
-* track().dimension()
-* track().variable() 🗑
-* track().visitVariables() 🗑
+* :ref:`android track().dimension()`
+* :ref:`android track().variable()`
+* :ref:`android track().visitVariables()`

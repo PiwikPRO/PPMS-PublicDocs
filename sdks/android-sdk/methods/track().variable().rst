@@ -108,6 +108,6 @@ Notes
 Related methods
 ---------------
 
-* setIncludeDefaultCustomVars()
-* track().visitVariables() 🗑
-* track().dimension()
+* :ref:`android setIncludeDefaultCustomVars()`
+* :ref:`android track().visitVariables()`
+* :ref:`android track().dimension()`

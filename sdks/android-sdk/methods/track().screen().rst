@@ -102,4 +102,4 @@ To send a screen view and automatically use the activity stack as a path and act
 Related methods
 ---------------
 
-* track().screens()
+* :ref:`android track().screens()`

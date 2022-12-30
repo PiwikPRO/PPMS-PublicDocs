@@ -33,4 +33,4 @@ Parameters
 Related methods
 ---------------
 
-* setOfflineCacheSize()
+* :ref:`android setOfflineCacheSize()`

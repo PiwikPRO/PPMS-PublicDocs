@@ -60,4 +60,4 @@ To mark a visitor as non-anonymous:
 Related methods
 ---------------
 
-* isAnonymizationOn()
+* :ref:`android isAnonymizationOn()`

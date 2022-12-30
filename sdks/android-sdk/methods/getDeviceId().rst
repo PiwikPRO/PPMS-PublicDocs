@@ -55,5 +55,5 @@ To get a device ID:
 Related methods
 ---------------
 
-* setTrackDeviceId()
-* setDeviceId()
+* :ref:`android setTrackDeviceId()`
+* :ref:`android setDeviceId()`
