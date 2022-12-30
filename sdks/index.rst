@@ -11,8 +11,7 @@ Our SDKs let you collect user data from mobile apps built for Android, Flutter, 
 .. toctree::
    :maxdepth: 1
 
-   Android-sdk.md
+   android-sdk/index.rst
    Flutter-sdk.md
    iOS-sdk.md
    React-Native-sdk.md
-   android-sdk-beta/index.rst
