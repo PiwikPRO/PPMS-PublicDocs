@@ -15,14 +15,22 @@ Syntax
 
         .. code-block:: javascript
 
-          TrackHelper.track().search("keyword").category("category").count(searchCount).with(getTracker());
+          TrackHelper.track()
+            .search("keyword")
+            .category("category")
+            .count(searchCount)
+            .with(getTracker());
 
 
     .. group-tab:: Kotlin
 
         .. code-block:: javascript
 
-          TrackHelper.track().search("keyword").category("category").count(searchCount).with(tracker)
+          TrackHelper.track()
+            .search("keyword")
+            .category("category")
+            .count(searchCount)
+            .with(tracker)
 
 Parameters
 ----------
@@ -48,7 +56,11 @@ To send an internal search with the keyword "ATM in London" and 20 search result
         .. code-block:: javascript
 
           Tracker tracker = ((PiwikApplication) getApplication()).getTracker();
-          TrackHelper.track().search("ATM in London").category("").count(20).with(tracker);
+          TrackHelper.track()
+            .search("ATM in London")
+            .category("")
+            .count(20)
+            .with(tracker);
 
 
 
@@ -57,4 +69,8 @@ To send an internal search with the keyword "ATM in London" and 20 search result
         .. code-block:: javascript
 
           val tracker: Tracker = (application as PiwikApplication).tracker
-          TrackHelper.track().search("ATM in London").category("").count(20).with(tracker)
+          TrackHelper.track()
+            .search("ATM in London")
+            .category("")
+            .count(20)
+            .with(tracker)

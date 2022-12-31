@@ -15,14 +15,18 @@ Syntax
 
         .. code-block:: javascript
 
-          TrackHelper.track().outlink("outlink").with(getTracker());
+          TrackHelper.track()
+            .outlink("outlink")
+            .with(getTracker());
 
 
     .. group-tab:: Kotlin
 
         .. code-block:: javascript
 
-          TrackHelper.track().outlink("outlink").with(tracker)
+          TrackHelper.track()
+            .outlink("outlink")
+            .with(tracker)
 
 Parameters
 ----------
@@ -42,7 +46,9 @@ To track an outlink to ``https://example.com``:
         .. code-block:: javascript
 
           Tracker tracker = ((PiwikApplication) getApplication()).getTracker();
-          TrackHelper.track().outlink("https://example.com").with(tracker);
+          TrackHelper.track()
+            .outlink("https://example.com")
+            .with(tracker);
 
 
     .. group-tab:: Kotlin
@@ -50,4 +56,6 @@ To track an outlink to ``https://example.com``:
         .. code-block:: javascript
 
           val tracker: Tracker = (application as PiwikApplication).tracker
-          TrackHelper.track().outlink("https://example.com").with(tracker)
+          TrackHelper.track()
+            .outlink("https://example.com")
+            .with(tracker)

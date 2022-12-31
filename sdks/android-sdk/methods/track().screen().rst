@@ -15,14 +15,20 @@ Syntax
 
         .. code-block:: javascript
 
-          TrackHelper.track().screen("path").title("title").with(tracker);
+          TrackHelper.track()
+            .screen("path")
+            .title("title")
+            .with(tracker);
 
 
     .. group-tab:: Kotlin
 
         .. code-block:: javascript
 
-          TrackHelper.track().screen("path").title("title").with(tracker)
+          TrackHelper.track()
+            .screen("path")
+            .title("title")
+            .with(tracker)
 
 Parameters
 ----------

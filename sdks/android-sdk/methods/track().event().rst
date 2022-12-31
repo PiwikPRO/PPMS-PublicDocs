@@ -15,14 +15,24 @@ Syntax
 
         .. code-block:: javascript
 
-          TrackHelper.track().event("category", "action").path("path").name("name").value(value).with(getTracker());
+          TrackHelper.track()
+            .event("category", "action")
+            .path("path")
+            .name("name")
+            .value(value)
+            .with(getTracker());
 
 
     .. group-tab:: Kotlin
 
         .. code-block:: javascript
 
-          TrackHelper.track().event("category", "action").path("path").name("name").value(value).with(tracker)
+          TrackHelper.track()
+            .event("category", "action")
+            .path("path")
+            .name("name")
+            .value(value)
+            .with(tracker)
 
 Parameters
 ----------
@@ -54,7 +64,12 @@ To send a custom event when a user clicks on a signup button on ``/main/signup``
         .. code-block:: javascript
 
           Tracker tracker = ((PiwikApplication) getApplication()).getTracker();
-          TrackHelper.track().event("Clicks", "Button").path("/main/signup").name("Sign up").value(100).with(tracker);
+          TrackHelper.track()
+            .event("Clicks", "Button")
+            .path("/main/signup")
+            .name("Sign up")
+            .value(100)
+            .with(tracker);
 
 
     .. group-tab:: Kotlin
@@ -62,7 +77,12 @@ To send a custom event when a user clicks on a signup button on ``/main/signup``
         .. code-block:: javascript
 
           val tracker: Tracker = (application as PiwikApplication).tracker
-          TrackHelper.track().event("Clicks", "Button").path("/main/signup").name("Sign up").value(100).with(tracker)
+          TrackHelper.track()
+            .event("Clicks", "Button")
+            .path("/main/signup")
+            .name("Sign up")
+            .value(100)
+            .with(tracker)
 
 Notes
 -----

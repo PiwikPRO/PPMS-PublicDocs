@@ -15,14 +15,18 @@ Syntax
 
         .. code-block:: javascript
 
-          TrackHelper.track().sendApplicationDownload().with(getTracker());
+          TrackHelper.track()
+            .sendApplicationDownload()
+            .with(getTracker());
 
 
     .. group-tab:: Kotlin
 
         .. code-block:: javascript
 
-          TrackHelper.track().sendApplicationDownload().with(tracker)
+          TrackHelper.track()
+            .sendApplicationDownload()
+            .with(tracker)
 
 Example
 -------
@@ -36,7 +40,9 @@ To track your app install:
         .. code-block:: javascript
 
           Tracker tracker = ((PiwikApplication) getApplication()).getTracker();
-          TrackHelper.track().sendApplicationDownload().with(tracker);
+          TrackHelper.track()
+            .sendApplicationDownload()
+            .with(tracker);
 
 
     .. group-tab:: Kotlin
@@ -44,4 +50,6 @@ To track your app install:
         .. code-block:: javascript
 
           val tracker: Tracker = (application as PiwikApplication).tracker
-          TrackHelper.track().sendApplicationDownload().with(tracker)
+          TrackHelper.track()
+            .sendApplicationDownload()
+            .with(tracker)

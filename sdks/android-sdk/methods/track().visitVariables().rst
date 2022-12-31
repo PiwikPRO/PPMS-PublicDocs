@@ -18,14 +18,16 @@ Syntax
 
         .. code-block:: javascript
 
-          TrackHelper.track().visitVariables(index, "name", "value");
+          TrackHelper.track()
+            .visitVariables(index, "name", "value");
 
 
     .. group-tab:: Kotlin
 
         .. code-block:: javascript
 
-          TrackHelper.track().visitVariables(index, "name", "value")
+          TrackHelper.track()
+            .visitVariables(index, "name", "value")
 
 Parameters
 ----------
@@ -54,6 +56,7 @@ To set a custom variable in the visit (session) scope and send it with a screen 
 
           TrackHelper.track()
             .visitVariables(1, "age", "25")
+
           TrackHelper.track()
             .screen("example/welcome")
             .title("Welcome")
@@ -67,6 +70,7 @@ To set a custom variable in the visit (session) scope and send it with a screen 
 
           TrackHelper.track()
             .visitVariables(1, "age", "25")
+            
           TrackHelper.track()
             .screen("example/welcome")
             .title("Welcome")

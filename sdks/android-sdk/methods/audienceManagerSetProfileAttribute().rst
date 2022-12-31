@@ -18,17 +18,19 @@ Syntax
 
         .. code-block:: javascript
 
-          TrackHelper.track().audienceManagerSetProfileAttribute("name", "value").add("name", "value").with(getTracker());
+          TrackHelper.track()
+            .audienceManagerSetProfileAttribute("name", "value")
+            .add("name", "value")
+            .with(getTracker());
 
     .. group-tab:: Kotlin
 
         .. code-block:: javascript
 
           TrackHelper.track()
-            .audienceManagerSetProfileAttribute("name", "value").add("name", "value")
-            .with(
-              tracker
-            )
+            .audienceManagerSetProfileAttribute("name", "value")
+            .add("name", "value")
+            .with(tracker)
 
 Parameters
 ----------
@@ -53,17 +55,19 @@ To set the attribute ``plan type`` with the value ``premium`` and send it with `
 
         .. code-block:: javascript
 
-          TrackHelper.track().audienceManagerSetProfileAttribute("plan type", "premium").add("", "").with(getTracker());
+          TrackHelper.track()
+            .audienceManagerSetProfileAttribute("plan type", "premium")
+            .add("", "")
+            .with(getTracker());
 
     .. group-tab:: Kotlin
 
         .. code-block:: javascript
 
           TrackHelper.track()
-            .audienceManagerSetProfileAttribute(("plan type"), "premium").add("", "")
-            .with(
-              tracker
-            )
+            .audienceManagerSetProfileAttribute(("plan type"), "premium")
+            .add("", "")
+            .with(tracker)
 
 Notes
 -----

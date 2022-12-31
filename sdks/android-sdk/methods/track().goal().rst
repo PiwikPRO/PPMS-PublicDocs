@@ -15,14 +15,20 @@ Syntax
 
         .. code-block:: javascript
 
-          TrackHelper.track().goal("goalID").revenue(conversionValue).with(getTracker());
+          TrackHelper.track()
+            .goal("goalID")
+            .revenue(conversionValue)
+            .with(getTracker());
 
 
     .. group-tab:: Kotlin
 
         .. code-block:: javascript
 
-          TrackHelper.track().goal("goalID").revenue(conversionValue).with(tracker)
+          TrackHelper.track()
+            .goal("goalID")
+            .revenue(conversionValue)
+            .with(tracker)
 
 Parameters
 ----------
@@ -45,7 +51,10 @@ To send a goal with the ID ``27ecc5e3-8ae0-40c3-964b-5bd8ee3da059`` and value ``
         .. code-block:: javascript
 
           Tracker tracker = ((PiwikApplication) getApplication()).getTracker();
-          TrackHelper.track().goal("27ecc5e3-8ae0-40c3-964b-5bd8ee3da059").revenue(20).with(tracker);
+          TrackHelper.track()
+            .goal("27ecc5e3-8ae0-40c3-964b-5bd8ee3da059")
+            .revenue(20)
+            .with(tracker);
 
 
 
@@ -54,7 +63,10 @@ To send a goal with the ID ``27ecc5e3-8ae0-40c3-964b-5bd8ee3da059`` and value ``
         .. code-block:: javascript
 
           val tracker: Tracker = (application as PiwikApplication).tracker
-          TrackHelper.track().goal("27ecc5e3-8ae0-40c3-964b-5bd8ee3da059").revenue(20).with(tracker)
+          TrackHelper.track()
+            .goal("27ecc5e3-8ae0-40c3-964b-5bd8ee3da059")
+            .revenue(20)
+            .with(tracker)
 
 Notes
 -----

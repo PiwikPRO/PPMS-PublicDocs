@@ -15,14 +15,18 @@ Syntax
 
         .. code-block:: javascript
 
-          TrackHelper.track().screens(getApplication()).with(getTracker());
+          TrackHelper.track()
+            .screens(getApplication())
+            .with(getTracker());
 
 
     .. group-tab:: Kotlin
 
         .. code-block:: javascript
 
-          TrackHelper.track().screens(getApplication()).with(tracker)
+          TrackHelper.track()
+            .screens(getApplication())
+            .with(tracker)
 
 Examples
 --------
@@ -36,7 +40,9 @@ To automatically record screen views:
         .. code-block:: javascript
 
           Tracker tracker = ((PiwikApplication) getApplication()).getTracker();
-          TrackHelper.track().screens(getApplication()).with(tracker);
+          TrackHelper.track()
+            .screens(getApplication())
+            .with(tracker);
 
 
 
@@ -45,7 +51,9 @@ To automatically record screen views:
         .. code-block:: javascript
 
           val tracker: Tracker = (application as PiwikApplication).tracker
-          TrackHelper.track().screens(getApplication()).with(tracker)
+          TrackHelper.track()
+            .screens(getApplication())
+            .with(tracker)
 
 Related methods
 ---------------

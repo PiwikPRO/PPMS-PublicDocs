@@ -15,14 +15,16 @@ Syntax
 
         .. code-block:: javascript
 
-          TrackHelper.track().dimension(customDimensionId, "customDimensionValue");
+          TrackHelper.track()
+            .dimension(customDimensionId, "customDimensionValue");
 
 
     .. group-tab:: Kotlin
 
         .. code-block:: javascript
 
-          TrackHelper.track().dimension(customDimensionId, "customDimensionValue")
+          TrackHelper.track()
+            .dimension(customDimensionId, "customDimensionValue")
 
 Parameters
 ----------

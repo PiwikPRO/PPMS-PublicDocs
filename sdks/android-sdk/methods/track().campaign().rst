@@ -15,14 +15,16 @@ Syntax
 
         .. code-block:: javascript
 
-          TrackHelper.track().campaign("campaignURL");
+          TrackHelper.track()
+            .campaign("campaignURL");
 
 
     .. group-tab:: Kotlin
 
         .. code-block:: javascript
 
-          TrackHelper.track().campaign("campaignURL")
+          TrackHelper.track()
+            .campaign("campaignURL")
 
 
 Parameters

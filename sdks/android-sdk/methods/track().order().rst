@@ -15,14 +15,27 @@ Syntax
 
         .. code-block:: javascript
 
-          TrackHelper.track().order("orderID", orderGrandTotal).subTotal(orderSubTotal).tax(orderTax).shipping(orderShipping).discount(orderDiscount).items(items).with(getTracker());
+          TrackHelper.track()
+            .order("orderID", orderGrandTotal)
+            .subTotal(orderSubTotal)
+            .tax(orderTax)
+            .shipping(orderShipping)
+            .discount(orderDiscount)
+            .items(items)
+            .with(getTracker());
 
 
     .. group-tab:: Kotlin
 
         .. code-block:: javascript
 
-          TrackHelper.track().order("orderID", orderGrandTotal).subTotal(orderSubTotal).tax(orderTax).shipping(orderShipping).discount(orderDiscount).items(items).with(tracker)
+          TrackHelper.track()
+            .order("orderID", orderGrandTotal).subTotal(orderSubTotal)
+            .tax(orderTax)
+            .shipping(orderShipping)
+            .discount(orderDiscount)
+            .items(items)
+            .with(tracker)
 
 Parameters
 ----------
@@ -59,14 +72,34 @@ To track a confirmed order:
 
           Tracker tracker = ((YourApplication) getApplication()).getTracker();
           EcommerceItems items = new EcommerceItems();
+
           // register all purchased items
           // EcommerceItems.Item("<SKU>").name("<name>").category("<category>").price(<price>).quantity(<quantity>)
-          items.addItem(new EcommerceItems.Item("584340").name("Specialized Stumpjumper").category("Mountain bike").price(500000).quantity(1));
-          items.addItem(new EcommerceItems.Item("460923").name("Specialized Chamonix").category("Helmets").price(20000).quantity(1));
+
+          items.addItem(new EcommerceItems
+            .Item("584340")
+            .name("Specialized Stumpjumper")
+            .category("Mountain bike")
+            .price(500000)
+            .quantity(1));
+
+          items.addItem(new EcommerceItems
+            .Item("460923")
+            .name("Specialized Chamonix")
+            .category("Helmets")
+            .price(20000)
+            .quantity(1));
 
           // track order
 
-          TrackHelper.track().order("43967392", 525000).subTotal(520000).tax(97000).shipping(15000).discount(10000).items(items).with(tracker);
+          TrackHelper.track()
+            .order("43967392", 525000)
+            .subTotal(520000)
+            .tax(97000)
+            .shipping(15000)
+            .discount(10000)
+            .items(items)
+            .with(tracker);
 
 
 
@@ -76,11 +109,31 @@ To track a confirmed order:
 
           val tracker: Tracker = (application as PiwikApplication).tracker
           var items: EcommerceItems = EcommerceItems()
+
           // register all purchased items
           // EcommerceItems.Item("<SKU>").name("<name>").category("<category>").price(<price>).quantity(<quantity>)
-          items.addItem(EcommerceItems.Item("584340").name("Specialized Stumpjumper").category("Mountain bike").price(500000).quantity(1))
-          items.addItem(EcommerceItems.Item("460923").name("Specialized Chamonix").category("Helmets").price(20000).quantity(1))
+
+          items.addItem(EcommerceItems
+            .Item("584340")
+            .name("Specialized Stumpjumper")
+            .category("Mountain bike")
+            .price(500000)
+            .quantity(1))
+
+          items.addItem(EcommerceItems
+            .Item("460923")
+            .name("Specialized Chamonix")
+            .category("Helmets")
+            .price(20000)
+            .quantity(1))
 
           // track order
 
-          TrackHelper.track().order("43967392", 525000).subTotal(520000).tax(97000).shipping(15000).discount(10000).items(items).with(tracker)
+          TrackHelper.track()
+            .order("43967392", 525000)
+            .subTotal(520000)
+            .tax(97000)
+            .shipping(15000)
+            .discount(10000)
+            .items(items)
+            .with(tracker)

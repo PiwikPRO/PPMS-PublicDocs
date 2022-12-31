@@ -15,14 +15,18 @@ Syntax
 
         .. code-block:: javascript
 
-          TrackHelper.track().socialInteraction("interaction", "network").with(getTracker());
+          TrackHelper.track()
+            .socialInteraction("interaction", "network")
+            .with(getTracker());
 
 
     .. group-tab:: Kotlin
 
         .. code-block:: javascript
 
-          TrackHelper.track().socialInteraction("interaction", "network").with(tracker)
+          TrackHelper.track()
+            .socialInteraction("interaction", "network")
+            .with(tracker)
 
 Parameters
 ----------
@@ -44,11 +48,15 @@ To track a like on Facebook on your app:
 
         .. code-block:: javascript
 
-          TrackHelper.track().socialInteraction("like", "Facebook").with(getTracker());
+          TrackHelper.track()
+            .socialInteraction("like", "Facebook")
+            .with(getTracker());
 
 
     .. group-tab:: Kotlin
 
         .. code-block:: javascript
 
-          TrackHelper.track().socialInteraction("like", "Facebook").with(tracker)
+          TrackHelper.track()
+            .socialInteraction("like", "Facebook")
+            .with(tracker)

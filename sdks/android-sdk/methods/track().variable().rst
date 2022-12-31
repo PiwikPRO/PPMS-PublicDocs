@@ -19,14 +19,16 @@ Syntax
 
         .. code-block:: javascript
 
-          TrackHelper.track().variable(index, "name", "value");
+          TrackHelper.track()
+            .variable(index, "name", "value");
 
 
     .. group-tab:: Kotlin
 
         .. code-block:: javascript
 
-          TrackHelper.track().variable(index, "name", "value")
+          TrackHelper.track()
+            .variable(index, "name", "value")
 
 Parameters
 ----------

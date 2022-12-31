@@ -15,14 +15,20 @@ Syntax
 
         .. code-block:: javascript
 
-          TrackHelper.track().exception(ex).description("description").with(getTracker());
+          TrackHelper.track()
+            .exception(ex)
+            .description("description")
+            .with(getTracker());
 
 
     .. group-tab:: Kotlin
 
         .. code-block:: javascript
 
-          TrackHelper.track().exception(ex).description("description").with(tracker)
+          TrackHelper.track()
+            .exception(ex)
+            .description("description")
+            .with(tracker)
 
 Parameters
 ----------
@@ -44,11 +50,17 @@ To send a caught exception:
 
         .. code-block:: javascript
 
-          TrackHelper.track().exception(new Exception("OnPurposeException")).description("Download error").with(getTracker());
+          TrackHelper.track()
+            .exception(new Exception("OnPurposeException"))
+            .description("Download error")
+            .with(getTracker());
 
 
     .. group-tab:: Kotlin
 
         .. code-block:: javascript
 
-          TrackHelper.track().exception(Exception("OnPurposeException")).description("Download error").with(tracker)
+          TrackHelper.track()
+            .exception(Exception("OnPurposeException"))
+            .description("Download error")
+            .with(tracker)

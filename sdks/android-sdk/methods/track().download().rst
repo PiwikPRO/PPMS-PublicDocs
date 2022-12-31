@@ -15,14 +15,18 @@ Syntax
 
         .. code-block:: javascript
 
-          TrackHelper.track().sendDownload("downloadURL").with(getTracker());
+          TrackHelper.track()
+            .sendDownload("downloadURL")
+            .with(getTracker());
 
 
     .. group-tab:: Kotlin
 
         .. code-block:: javascript
 
-          TrackHelper.track().sendDownload("downloadURL").with(tracker)
+          TrackHelper.track()
+            .sendDownload("downloadURL")
+            .with(tracker)
 
 Parameters
 ----------

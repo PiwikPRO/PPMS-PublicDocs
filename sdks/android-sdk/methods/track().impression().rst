@@ -15,14 +15,22 @@ Syntax
 
         .. code-block:: javascript
 
-          TrackHelper.track().impression("contentName").piece("contentPiece").target("contentTarget").with(getTracker());
+          TrackHelper.track()
+            .impression("contentName")
+            .piece("contentPiece")
+            .target("contentTarget")
+            .with(getTracker());
 
 
     .. group-tab:: Kotlin
 
         .. code-block:: javascript
 
-          TrackHelper.track().impression("contentName").piece("contentPiece").target("contentTarget").with(tracker)
+          TrackHelper.track()
+            .impression("contentName")
+            .piece("contentPiece")
+            .target("contentTarget")
+            .with(tracker)
 
 Parameters
 ----------
@@ -48,7 +56,11 @@ To track an impression of a content block on your mobile app:
         .. code-block:: javascript
 
           Tracker tracker = ((PiwikApplication) getApplication()).getTracker();
-          TrackHelper.track().impression("gravel bikes collection").piece("banner").target("https://example.com/bikes/").with(tracker);
+          TrackHelper.track()
+            .impression("gravel bikes collection")
+            .piece("banner")
+            .target("https://example.com/bikes/")
+            .with(tracker);
 
 
     .. group-tab:: Kotlin
@@ -56,7 +68,11 @@ To track an impression of a content block on your mobile app:
         .. code-block:: javascript
 
           val tracker: Tracker = (application as PiwikApplication).tracker
-          TrackHelper.track().impression("gravel bikes collection").piece("banner").target("https://example.com/bikes/").with(tracker)
+          TrackHelper.track()
+            .impression("gravel bikes collection")
+            .piece("banner")
+            .target("https://example.com/bikes/")
+            .with(tracker)
 
 Notes
 -----
