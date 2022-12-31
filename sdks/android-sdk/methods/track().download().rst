@@ -46,7 +46,9 @@ To track a click on ``https://example.com/paid-app.zip`` as a download:
         .. code-block:: javascript
 
           Tracker tracker = ((PiwikApplication) getApplication()).getTracker();
-          TrackHelper.track().sendDownload("https://example.com/paid-app.zip").with(tracker);
+          TrackHelper.track()
+            .sendDownload("https://example.com/paid-app.zip")
+            .with(tracker);
 
 
     .. group-tab:: Kotlin
@@ -54,7 +56,9 @@ To track a click on ``https://example.com/paid-app.zip`` as a download:
         .. code-block:: javascript
 
           val tracker: Tracker = (application as PiwikApplication).tracker
-          TrackHelper.track().sendDownload("https://example.com/paid-app.zip").with(tracker)
+          TrackHelper.track()
+            .sendDownload("https://example.com/paid-app.zip")
+            .with(tracker)
 
 Notes
 -----

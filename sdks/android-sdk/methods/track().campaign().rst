@@ -47,7 +47,9 @@ To pass campaign data from a campaign link ``http://example.com?pk_campaign=Summ
         .. code-block:: javascript
 
           Tracker tracker = ((PiwikApplication) getApplication()).getTracker();
-          TrackHelper.track().campaign("http://example.com?pk_campaign=Summer_Promo&pk_keyword=banking_app");
+          TrackHelper.track()
+            .campaign("http://example.com?pk_campaign=Summer_Promo&pk_keyword=banking_app");
+
           TrackHelper.track()
             .screen("example/welcome")
             .title("Welcome")
@@ -58,7 +60,9 @@ To pass campaign data from a campaign link ``http://example.com?pk_campaign=Summ
         .. code-block:: javascript
 
           val tracker: Tracker = (application as PiwikApplication).tracker
-          TrackHelper.track().campaign("http://example.com?pk_campaign=Summer_Promo&pk_keyword=banking_app")
+          TrackHelper.track()
+            .campaign("http://example.com?pk_campaign=Summer_Promo&pk_keyword=banking_app")
+
           TrackHelper.track()
             .screen("example/welcome")
             .title("Welcome")
