@@ -25,6 +25,8 @@ Before you install our library for Android, you need to set up Piwik PRO. Here's
 Install the library
 -------------------
 
+To install the library, follow these steps:
+
 1. Add the JitPack repository to your root ``build.gradle`` file at the end of repositories:
 
 .. code-block:: javascript
@@ -44,7 +46,7 @@ Install the library
     implementation 'pro.piwik:sdk-framework-android:VERSION'
     }
 
-3. Replace ``VERSION`` with the latest release name. Example: ``1.1.8``. (`Where to find it? <https://jitpack.io/#pro.piwik/sdk-framework-android>`_)
+Note: Replace ``VERSION`` with the latest release name. Example: ``1.1.8``. (`Where to find it? <https://jitpack.io/#pro.piwik/sdk-framework-android>`_)
 
 Set up the tracker
 ------------------
