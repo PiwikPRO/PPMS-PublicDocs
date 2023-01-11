@@ -146,3 +146,5 @@ Notes
 
 Related methods
 ---------------
+
+* :ref:`android setDeviceId()`
