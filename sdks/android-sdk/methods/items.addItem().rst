@@ -146,5 +146,3 @@ Notes
 
 Related methods
 ---------------
-
-* :ref:`_android track().order()`
