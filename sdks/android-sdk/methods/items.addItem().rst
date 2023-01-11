@@ -17,13 +17,12 @@ Syntax
 
           EcommerceItems items = new EcommerceItems();
 
-          items.addItem(
-          new EcommerceItems
-          .Item("productSKU")
-          .name("productName")
-          .category("productCategory")
-          .price(productPrice)
-          .quantity(productQuantity));
+          items.addItem(new EcommerceItems
+            .Item("productSKU")
+            .name("productName")
+            .category("productCategory")
+            .price(productPrice)
+            .quantity(productQuantity));
 
 
     .. group-tab:: Kotlin
@@ -32,31 +31,30 @@ Syntax
 
           var items: EcommerceItems = EcommerceItems()
 
-          items.addItem(
-          EcommerceItems
-          .Item("productSKU")
-          .name("productName")
-          .category("productCategory")
-          .price(productPrice)
-          .quantity(productQuantity))
+          items.addItem(EcommerceItems
+            .Item("productSKU")
+            .name("productName")
+            .category("productCategory")
+            .price(productPrice)
+            .quantity(productQuantity))
 
 
 Parameters
 ----------
 
-| productSKU (string, required)
+| **productSKU** (string, required)
 | The stock-keeping unit of the added product.
 
-| productName (string, optional)
+| **productName** (string, optional)
 | The name of the added product.
 
-| productCategory (string | array<string>, optional)
+| **productCategory** (string | array<string>, optional)
 | The category of the added product. It can be an array of up to 5 categories.
 
-| productPrice (number, optional)
+| **productPrice** (number, optional)
 | The price of the added product.
 
-| productQuantity (number, optional)
+| **productQuantity** (number, optional)
 | The number of added items.
 
 
@@ -78,29 +76,29 @@ To track a confirmed order:
           // EcommerceItems.Item("<SKU>").name("<name>").category("<category>").price(<price>).quantity(<quantity>)
 
           items.addItem(new EcommerceItems
-          .Item("584340")
-          .name("Specialized Stumpjumper")
-          .category("Mountain bike")
-          .price(500000)
-          .quantity(1));
+            .Item("584340")
+            .name("Specialized Stumpjumper")
+            .category("Mountain bike")
+            .price(500000)
+            .quantity(1));
 
           items.addItem(new EcommerceItems
-          .Item("460923")
-          .name("Specialized Chamonix")
-          .category("Helmets")
-          .price(20000)
-          .quantity(1));
+            .Item("460923")
+            .name("Specialized Chamonix")
+            .category("Helmets")
+            .price(20000)
+            .quantity(1));
 
           // track order
 
           TrackHelper.track()
-          .order("43967392", 525000)
-          .subTotal(520000)
-          .tax(97000)
-          .shipping(15000)
-          .discount(10000)
-          .items(items)
-          .with(tracker);
+            .order("43967392", 525000)
+            .subTotal(520000)
+            .tax(97000)
+            .shipping(15000)
+            .discount(10000)
+            .items(items)
+            .with(tracker);
 
 
     .. group-tab:: Kotlin
@@ -114,29 +112,29 @@ To track a confirmed order:
           // EcommerceItems.Item("<SKU>").name("<name>").category("<category>").price(<price>).quantity(<quantity>)
 
           items.addItem(EcommerceItems
-          .Item("584340")
-          .name("Specialized Stumpjumper")
-          .category("Mountain bike")
-          .price(500000)
-          .quantity(1))
+            .Item("584340")
+            .name("Specialized Stumpjumper")
+            .category("Mountain bike")
+            .price(500000)
+            .quantity(1))
 
           items.addItem(EcommerceItems
-          .Item("460923")
-          .name("Specialized Chamonix")
-          .category("Helmets")
-          .price(20000)
-          .quantity(1))
+            .Item("460923")
+            .name("Specialized Chamonix")
+            .category("Helmets")
+            .price(20000)
+            .quantity(1))
 
           // track order
 
           TrackHelper.track()
-          .order("43967392", 525000)
-          .subTotal(520000)
-          .tax(97000)
-          .shipping(15000)
-          .discount(10000)
-          .items(items)
-          .with(tracker)
+            .order("43967392", 525000)
+            .subTotal(520000)
+            .tax(97000)
+            .shipping(15000)
+            .discount(10000)
+            .items(items)
+            .with(tracker)
 
 
 Notes
@@ -149,4 +147,4 @@ Notes
 Related methods
 ---------------
 
-* ref: `_android track().order()`
+* ref:`_android track().order()`
