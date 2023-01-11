@@ -137,3 +137,8 @@ To track a confirmed order:
             .discount(10000)
             .items(items)
             .with(tracker)
+
+Related methods
+---------------
+
+* ref: `android items.addItem()`
