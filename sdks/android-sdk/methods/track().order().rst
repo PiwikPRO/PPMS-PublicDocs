@@ -141,4 +141,4 @@ To track a confirmed order:
 Related methods
 ---------------
 
-* :ref:`android items.addItem()`
+* :ref:`_android items.addItem()`
