@@ -2,17 +2,14 @@ openapi: '3.0.0'
 info:
     title: Container Settings API
     version: '1.0'
-
 security:
     - BearerAuth: []
-
 servers:
     - url: https://example.piwik.pro
-
 paths:
     /api/container-settings/v1/app/{app_id}/settings:
         parameters:
-            - $ref : 'schema/common_request_parameters.json#/components/parameters/app_id'
+            - $ref: 'schema/common_request_parameters.json#/components/parameters/app_id'
         get:
             summary: Get App's container settings
             responses:
@@ -32,6 +29,8 @@ paths:
                     $ref: 'common/api/common_error_responses.json#/components/responses/not_found'
                 '500':
                     $ref: 'common/api/common_error_responses.json#/components/responses/internal_server_error'
+            tags:
+                - Container Settings
         patch:
             summary: Modify App's container settings
             requestBody:
@@ -53,10 +52,12 @@ paths:
                     $ref: 'common/api/common_error_responses.json#/components/responses/not_found'
                 '500':
                     $ref: 'common/api/common_error_responses.json#/components/responses/internal_server_error'
+            tags:
+                - Container Settings
     /api/container-settings/v1/app/{app_id}/settings/{setting_name}:
         parameters:
-            - $ref : 'schema/common_request_parameters.json#/components/parameters/app_id'
-            - $ref : 'schema/common_request_parameters.json#/components/parameters/setting_name'
+            - $ref: 'schema/common_request_parameters.json#/components/parameters/app_id'
+            - $ref: 'schema/common_request_parameters.json#/components/parameters/setting_name'
         get:
             summary: Get the App's container setting
             responses:
@@ -76,6 +77,8 @@ paths:
                     $ref: 'common/api/common_error_responses.json#/components/responses/not_found'
                 '500':
                     $ref: 'common/api/common_error_responses.json#/components/responses/internal_server_error'
+            tags:
+                - Container Settings
         delete:
             summary: Remove the App's container setting
             responses:
@@ -89,6 +92,8 @@ paths:
                     $ref: 'common/api/common_error_responses.json#/components/responses/not_found'
                 '500':
                     $ref: 'common/api/common_error_responses.json#/components/responses/internal_server_error'
+            tags:
+                - Container Settings
         put:
             summary: Modify App's container setting
             requestBody:
@@ -110,9 +115,11 @@ paths:
                     $ref: 'common/api/common_error_responses.json#/components/responses/not_found'
                 '500':
                     $ref: 'common/api/common_error_responses.json#/components/responses/internal_server_error'
+            tags:
+                - Container Settings
     /api/container-settings/v1/organization/{organization}/settings:
         parameters:
-            - $ref : 'schema/common_request_parameters.json#/components/parameters/organization'
+            - $ref: 'schema/common_request_parameters.json#/components/parameters/organization'
         get:
             summary: Get list of organization's container settings
             responses:
@@ -132,6 +139,8 @@ paths:
                     $ref: 'common/api/common_error_responses.json#/components/responses/not_found'
                 '500':
                     $ref: 'common/api/common_error_responses.json#/components/responses/internal_server_error'
+            tags:
+                - Container Settings
         patch:
             summary: Modify Organization's container settings
             requestBody:
@@ -153,10 +162,12 @@ paths:
                     $ref: 'common/api/common_error_responses.json#/components/responses/not_found'
                 '500':
                     $ref: 'common/api/common_error_responses.json#/components/responses/internal_server_error'
+            tags:
+                - Container Settings
     /api/container-settings/v1/organization/{organization}/settings/{setting_name}:
         parameters:
-            - $ref : 'schema/common_request_parameters.json#/components/parameters/organization'
-            - $ref : 'schema/common_request_parameters.json#/components/parameters/setting_name'
+            - $ref: 'schema/common_request_parameters.json#/components/parameters/organization'
+            - $ref: 'schema/common_request_parameters.json#/components/parameters/setting_name'
         get:
             summary: Fetch organization's container setting
             responses:
@@ -176,6 +187,8 @@ paths:
                     $ref: 'common/api/common_error_responses.json#/components/responses/not_found'
                 '500':
                     $ref: 'common/api/common_error_responses.json#/components/responses/internal_server_error'
+            tags:
+                - Container Settings
         put:
             summary: Modify organization\'s container setting
             requestBody:
@@ -197,3 +210,5 @@ paths:
                     $ref: 'common/api/common_error_responses.json#/components/responses/not_found'
                 '500':
                     $ref: 'common/api/common_error_responses.json#/components/responses/internal_server_error'
+            tags:
+                - Container Settings

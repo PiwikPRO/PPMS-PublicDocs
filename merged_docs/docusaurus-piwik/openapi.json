@@ -643,7 +643,7 @@
       "post": {
         "summary": "Permission set",
         "deprecated": true,
-        "description": "Please use <a href=\"#operation/set_app_permission_for_user_v2\">Set user permission for a given app</a> instead.<br><br> It sets permission for a given entity (ppms/user or ppms/app).\n",
+        "description": "Please use <a href=\"#operation/set_app_permission_for_user_v2\">Set user permission for a given app</a> instead. It sets permission for a given entity (ppms/user or ppms/app).\n",
         "operationId": "_legacy_set_permission_group_v2",
         "requestBody": {
           "content": {
@@ -681,7 +681,7 @@
       "get": {
         "summary": "Permissions",
         "deprecated": true,
-        "description": "Please use <a href=\"#operation/list_app_permissions_for_user_v2\">Users permissions for a given app</a> instead.<br><br> Lists all users (but not owners) and their permissions for a given app. List contains both explicit permission of a user and implicit highest permission inherited from user groups which user belongs to.\n",
+        "description": "Please use <a href=\"#operation/list_app_permissions_for_user_v2\">Users permissions for a given app</a> instead. Lists all users (but not owners) and their permissions for a given app. List contains both explicit permission of a user and implicit highest permission inherited from user groups which user belongs to.\n",
         "operationId": "_legacy_get_permission_groups_v2",
         "parameters": [
           {
@@ -738,7 +738,7 @@
     "/api/apps/v2": {
       "get": {
         "summary": "Apps list",
-        "description": "Get list of apps<br><br>\nFull example:\n```\n/api/apps/v2?offset=100&limit=10&sort=name&search=nifty+marketing\n```\nthis will list 10 apps ordered ascending by `name` starting on 101th matching search query \"nifty marketing\".\n",
+        "description": "Get list of apps\nFull example:\n```\n/api/apps/v2?offset=100&limit=10&sort=name&search=nifty+marketing\n```\nthis will list 10 apps ordered ascending by `name` starting on 101th matching search query \"nifty marketing\".\n",
         "operationId": "api_app_list_v2",
         "parameters": [
           {
@@ -1078,7 +1078,7 @@
     "/api/audit-log/v1/entries": {
       "get": {
         "summary": "Entry list",
-        "description": "List of Audit Log entries<br><br> To specify filters use `?filter[name]=value` syntax (e.g. `?filter[type]=app.added,app.edited`)<br><br> To return csv instead of json, use `Accept: text/csv` header\n",
+        "description": "List of Audit Log entries To specify filters use `?filter[name]=value` syntax (e.g. `?filter[type]=app.added,app.edited`) To return csv instead of json, use `Accept: text/csv` header\n",
         "operationId": "audit_log_entries_v1",
         "parameters": [
           {
@@ -3279,7 +3279,7 @@
     "/api/users/v2": {
       "post": {
         "deprecated": true,
-        "description": "Please use <a href=\"#operation/api_users_invited_v2\">Invite user</a> instead.<br><br>\nIt adds user.\n",
+        "description": "Please use <a href=\"#operation/api_users_invited_v2\">Invite user</a> instead.\nIt adds user.\n",
         "summary": "Create user",
         "operationId": "api_users_add_v2",
         "requestBody": {
@@ -3575,7 +3575,7 @@
     "/api/users/v2/me/details": {
       "get": {
         "deprecated": true,
-        "description": "Please use <a href=\"#operation/api_users_me_details_v2\">Current user details</a> instead.<br><br>\nIt gets current user details.\n",
+        "description": "Please use <a href=\"#operation/api_users_me_details_v2\">Current user details</a> instead.\nIt gets current user details.\n",
         "summary": "Current user details",
         "operationId": "deprecated_api_user_details_v2",
         "responses": {
@@ -6231,7 +6231,7 @@
           "siteSearchTracking": {
             "deprecated": true,
             "type": "boolean",
-            "description": "<br>To disable internal search engine tracking, just set `site_search_category_params` and `site_search_query_params` to empty lists (`[]`) in <a href=\"?path=./tracker/public_v2.yaml#operation/api_edit_global_tracker_settings_v2\">Tracker Settings</a>. <br><br>Track and report what users are searching in your apps internal search engine",
+            "description": "To disable internal search engine tracking, just set `site_search_category_params` and `site_search_query_params` to empty lists (`[]`) in <a href=\"?path=./tracker/public_v2.yaml#operation/api_edit_global_tracker_settings_v2\">Tracker Settings</a>. Track and report what users are searching in your apps internal search engine",
             "default": true,
             "example": true
           },

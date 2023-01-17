@@ -15,7 +15,7 @@ paths:
             schema:
               $ref: '#/components/schemas/JsonApi_User_Invite'
       responses:
-        201:
+        '201':
           description: Created
           content:
             application/vnd.api+json:
@@ -40,10 +40,12 @@ paths:
                             $ref: '#/components/schemas/Date'
                           language:
                             $ref: '#/components/schemas/Language'
-        400:
+        '400':
           $ref: '#/components/schemas/Bad_Request'
-        403:
+        '403':
           $ref: '#/components/schemas/Forbidden'
+      tags:
+        - Users
   /api/users/v2:
     post:
       deprecated: true
@@ -58,13 +60,13 @@ paths:
             schema:
               $ref: '#/components/schemas/JsonApi_User_Create'
       responses:
-        201:
+        '201':
           description: Created
           content:
             application/vnd.api+json:
               schema:
                 $ref: '#/components/schemas/JsonApi_User_Object'
-        400:
+        '400':
           description: Bad Request
           content:
             application/vnd.api+json:
@@ -77,12 +79,15 @@ paths:
                     errors:
                       - status: '400'
                         title: Invalid form
-                        detail: Password is invalid. It must contain at least one numeric digit, one uppercase, and one lowercase letter
+                        detail: Password is invalid. It must contain at least one
+                          numeric digit, one uppercase, and one lowercase letter
                         code: users.error.invalid-new-password
                         source:
                           pointer: /password
-        403:
+        '403':
           $ref: '#/components/schemas/Forbidden'
+      tags:
+        - Users
     get:
       summary: Get users list
       operationId: api_users_list_v2
@@ -93,7 +98,7 @@ paths:
         - $ref: '#/components/parameters/sort'
         - $ref: '#/components/parameters/search'
       responses:
-        200:
+        '200':
           description: OK
           content:
             application/vnd.api+json:
@@ -106,7 +111,8 @@ paths:
                     type: array
                     items:
                       $ref: '#/components/schemas/JsonApi_User'
-
+      tags:
+        - Users
   /api/users/v2/{userId}:
     get:
       summary: Get details of an user
@@ -119,26 +125,28 @@ paths:
             type: string
             format: uuid
       responses:
-        200:
+        '200':
           description: OK
           content:
             application/vnd.api+json:
               schema:
                 $ref: '#/components/schemas/JsonApi_User_Object'
-
+      tags:
+        - Users
     delete:
       summary: Delete user
       operationId: api_users_delete_v2
       responses:
-        204:
+        '204':
           $ref: '#/components/schemas/No_Content'
-        400:
+        '400':
           $ref: '#/components/schemas/Bad_Request'
-        403:
+        '403':
           $ref: '#/components/schemas/Forbidden'
-        404:
+        '404':
           $ref: '#/components/schemas/Not_Found'
-
+      tags:
+        - Users
     patch:
       summary: Edit user
       operationId: api_users_edit_v2
@@ -148,15 +156,16 @@ paths:
             schema:
               $ref: '#/components/schemas/JsonApi_Edit_User'
       responses:
-        204:
+        '204':
           $ref: '#/components/schemas/No_Content'
-        400:
+        '400':
           $ref: '#/components/schemas/Bad_Request'
-        403:
+        '403':
           $ref: '#/components/schemas/Forbidden'
-        404:
+        '404':
           $ref: '#/components/schemas/Not_Found'
-
+      tags:
+        - Users
   /api/users/v2/{userId}/change-role:
     patch:
       summary: Change user role
@@ -174,15 +183,16 @@ paths:
             schema:
               $ref: '#/components/schemas/JsonApi_Change_Role'
       responses:
-        204:
+        '204':
           $ref: '#/components/schemas/No_Content'
-        400:
+        '400':
           $ref: '#/components/schemas/Bad_Request'
-        403:
+        '403':
           $ref: '#/components/schemas/Forbidden'
-        404:
+        '404':
           $ref: '#/components/schemas/Not_Found'
-
+      tags:
+        - Users
   /api/users/v2/me/change-password:
     patch:
       summary: Change my password
@@ -193,9 +203,9 @@ paths:
             schema:
               $ref: '#/components/schemas/JsonApi_Change_Password'
       responses:
-        204:
+        '204':
           $ref: '#/components/schemas/No_Content'
-        400:
+        '400':
           description: Bad Request
           content:
             application/vnd.api+json:
@@ -208,12 +218,15 @@ paths:
                     errors:
                       - status: '400'
                         title: Invalid form
-                        detail: Password is invalid. It must contain at least one numeric digit, one uppercase, and one lowercase letter
+                        detail: Password is invalid. It must contain at least one
+                          numeric digit, one uppercase, and one lowercase letter
                         code: users.error.invalid-new-password
                         source:
                           pointer: /newPassword
-        404:
+        '404':
           $ref: '#/components/schemas/Not_Found'
+      tags:
+        - Users
   /api/users/v2/me/details:
     get:
       deprecated: true
@@ -223,7 +236,7 @@ paths:
       summary: Current user details
       operationId: deprecated_api_user_details_v2
       responses:
-        200:
+        '200':
           description: OK
           content:
             application/vnd.api+json:
@@ -232,13 +245,14 @@ paths:
                 properties:
                   data:
                     $ref: '#/components/schemas/JsonApi_User'
-
+      tags:
+        - Users
   /api/users/v2/me:
     get:
       summary: Current user details
       operationId: api_users_me_details_v2
       responses:
-        200:
+        '200':
           description: OK
           content:
             application/vnd.api+json:
@@ -247,7 +261,8 @@ paths:
                 properties:
                   data:
                     $ref: '#/components/schemas/JsonApi_User'
-
+      tags:
+        - Users
     patch:
       summary: Edit own account
       operationId: api_users_me_edit_v2
@@ -257,15 +272,16 @@ paths:
             schema:
               $ref: '#/components/schemas/JsonApi_Edit_User'
       responses:
-        204:
+        '204':
           $ref: '#/components/schemas/No_Content'
-        400:
+        '400':
           $ref: '#/components/schemas/Bad_Request'
-        403:
+        '403':
           $ref: '#/components/schemas/Forbidden'
-        404:
+        '404':
           $ref: '#/components/schemas/Not_Found'
-
+      tags:
+        - Users
 components:
   parameters:
     Offset:
@@ -277,7 +293,6 @@ components:
         minimum: 0
         default: 0
       required: false
-  
     Limit:
       in: query
       name: limit
@@ -288,7 +303,6 @@ components:
         minimum: 0
         maximum: 1000
       required: false
-  
     search:
       name: search
       in: query
@@ -297,7 +311,6 @@ components:
       schema:
         type: string
         default: ''
-  
     search_query:
       name: search_query
       in: query
@@ -306,11 +319,11 @@ components:
         type: string
         default: ''
       required: false
-
     sort:
       in: query
       name: sort
-      description: Sort field - can be reversed by adding dash before field name e.g (-email)
+      description: Sort field - can be reversed by adding dash before field name e.g
+        (-email)
       schema:
         type: string
         default: -addedAt
@@ -322,58 +335,49 @@ components:
           - -addedAt
           - -role
       required: false
-
   schemas:
     User_Role:
       type: string
       description: User role
       example: USER
-      enum: [ OWNER, USER ]
-
+      enum: [OWNER, USER]
     User_Email:
       type: string
       description: Valid user email
       format: email
       example: john@doe.com
-
     User_Organization:
       type: string
       example: organization_name
-
     User_Password:
       type: string
-      description: Valid password (length between 8 and 128 chars, it must contain at least one digit, one uppercase and one lowercase letter)
+      description: Valid password (length between 8 and 128 chars, it must contain
+        at least one digit, one uppercase and one lowercase letter)
       example: Secret1337
-
     Date:
       type: string
       format: 'date-time'
       description: Datetime with time zone in ISO-8601 format
       example: '2018-06-25T07:28:52+01:00'
-
     Language:
       type: string
       format: 'IETF-language-tag'
       description: User Interface language with IETF language tag format
       example: 'en-US'
       default: 'en-US'
-
     JsonApi_Id:
       type: string
       format: uuid
       description: Resource ID
       example: 985ed9d7-b652-47b8-b9cf-c17d62735261
-
     JsonApi_Type:
       type: string
       description: Resource type, unique across whole PPAS
       example: ppms/user
-
     JsonApi_User_Type:
       type: string
-      enum: [ ppms/user ]
+      enum: [ppms/user]
       description: PPAS user resource type
-
     JsonApi_Resource_Object:
       type: object
       properties:
@@ -383,7 +387,6 @@ components:
           $ref: '#/components/schemas/JsonApi_Type'
         attributes:
           type: object
-
     JsonApi_User:
       allOf:
         - $ref: '#/components/schemas/JsonApi_Resource_Object'
@@ -404,13 +407,11 @@ components:
                   $ref: '#/components/schemas/Date'
                 language:
                   $ref: '#/components/schemas/Language'
-
     JsonApi_User_Object:
       type: object
       properties:
         data:
           $ref: '#/components/schemas/JsonApi_User'
-
     JsonApi_User_Create:
       type: object
       required:
@@ -424,7 +425,7 @@ components:
           properties:
             type:
               type: string
-              enum: [ ppms/user ]
+              enum: [ppms/user]
               description: Resource type, unique across whole PPAS
             attributes:
               type: object
@@ -442,7 +443,6 @@ components:
               required:
                 - email
                 - password
-
     JsonApi_User_Invite:
       type: object
       properties:
@@ -451,7 +451,7 @@ components:
           properties:
             type:
               type: string
-              enum: [ ppms/user ]
+              enum: [ppms/user]
               description: Resource type, unique across whole PPAS
             attributes:
               type: object
@@ -462,7 +462,6 @@ components:
                   $ref: '#/components/schemas/Language'
               required:
                 - email
-
     JsonApi_Edit_User:
       type: object
       required:
@@ -483,7 +482,6 @@ components:
                       $ref: '#/components/schemas/User_Role'
                     language:
                       $ref: '#/components/schemas/Language'
-
     JsonApi_Change_Role:
       type: object
       required:
@@ -504,7 +502,6 @@ components:
                       $ref: '#/components/schemas/User_Role'
                   required:
                     - role
-
     JsonApi_Change_Password:
       type: object
       required:
@@ -527,7 +524,6 @@ components:
                         - $ref: '#/components/schemas/User_Password'
                     newPassword:
                       $ref: '#/components/schemas/User_Password'
-
     ListMetadata:
       type: object
       description: Metadata of a listing
@@ -538,7 +534,6 @@ components:
           type: integer
           description: Total number of items
           example: 1
-
     Bad_Request:
       description: Bad Request
     Forbidden:
@@ -547,7 +542,6 @@ components:
       description: Not Found
     No_Content:
       description: No content
-
     ErrorObject:
       type: object
       required:
@@ -556,8 +550,8 @@ components:
       properties:
         status:
           type: string
-          description: the HTTP status code applicable to this problem, expressed as a
-            string value
+          description: the HTTP status code applicable to this problem, expressed
+            as a string value
           example: "400"
         code:
           type: string
@@ -566,31 +560,30 @@ components:
         title:
           type: string
           description: >
-            a short, human-readable summary of the problem that SHOULD NOT
-            change from occurrence to occurrence of the problem, except for
-            purposes of localization
+            a short, human-readable summary of the problem that SHOULD NOT change
+            from occurrence to occurrence of the problem, except for purposes of localization
           example: Invalid form
         detail:
           type: string
           description: >
-            a human-readable explanation specific to this occurrence of the
-            problem. Like `title`, this field’s value can be localized
+            a human-readable explanation specific to this occurrence of the problem.
+            Like `title`, this field’s value can be localized
           example: This field is invalid
         source:
           type: object
           description: >
-            an object containing references to the source of the error,
-            optionally including any of the following members: [pointer,
-            parameter]
+            an object containing references to the source of the error, optionally
+            including any of the following members: [pointer, parameter]
           properties:
             pointer:
               type: string
               example: /data/attributes/name
               description: >
-                a JSON Pointer [RFC6901] to the associated entity in the request
-                document [e.g. "/data" for a primary data object, or
-                "/data/attributes/name" for a specific attribute]
+                a JSON Pointer [RFC6901] to the associated entity in the request document
+                [e.g. "/data" for a primary data object, or "/data/attributes/name"
+                for a specific attribute]
             parameter:
               type: string
               example: offset
-              description: a string indicating which URI query parameter caused the error
+              description: a string indicating which URI query parameter caused the
+                error
