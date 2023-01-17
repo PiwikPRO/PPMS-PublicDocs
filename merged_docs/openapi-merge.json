@@ -13,7 +13,7 @@
     {"inputFile":"../tag_manager/authorized_api/src/operations.yaml"},
     {"inputFile":"../tag_manager/authorized_api/src/tags.yaml"},
     {"inputFile":"../tag_manager/authorized_api/src/variables.yaml"},
-    {"inputFile":"../tag_manager/authorized_api/src/versions.yaml"},
+    {"inputFile":"../tag_manager/authorized_api/src/versions.yaml"}
   ],
   "output": "./output.swagger.json"
 }

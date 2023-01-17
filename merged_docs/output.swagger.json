@@ -43,7 +43,10 @@
           "403": {
             "description": "Forbidden"
           }
-        }
+        },
+        "tags": [
+          "Access Control"
+        ]
       }
     },
     "/api/access-control/v2/entry/ppms/app/action/{action}": {
@@ -87,7 +90,10 @@
           "403": {
             "description": "Forbidden"
           }
-        }
+        },
+        "tags": [
+          "Access Control"
+        ]
       }
     },
     "/api/access-control/v2/entry/ppms/meta-site/action/{action}": {
@@ -135,7 +141,10 @@
           "403": {
             "description": "Forbidden"
           }
-        }
+        },
+        "tags": [
+          "Access Control"
+        ]
       }
     },
     "/api/access-control/v2/entry/ppms/user/action/{action}": {
@@ -180,7 +189,10 @@
           "403": {
             "description": "Forbidden"
           }
-        }
+        },
+        "tags": [
+          "Access Control"
+        ]
       }
     },
     "/api/access-control/v2/global/actions": {
@@ -199,7 +211,10 @@
               }
             }
           }
-        }
+        },
+        "tags": [
+          "Access Control"
+        ]
       }
     },
     "/api/access-control/v2/app/{app_id}/permission/user": {
@@ -256,7 +271,10 @@
           "404": {
             "description": "Not Found"
           }
-        }
+        },
+        "tags": [
+          "Access Control"
+        ]
       }
     },
     "/api/access-control/v2/app/{app_id}/permission/user-group": {
@@ -315,7 +333,10 @@
           "404": {
             "description": "Not Found"
           }
-        }
+        },
+        "tags": [
+          "Access Control"
+        ]
       }
     },
     "/api/access-control/v2/meta-site/{meta_site_id}/permission/user": {
@@ -372,7 +393,10 @@
           "404": {
             "description": "Not Found"
           }
-        }
+        },
+        "tags": [
+          "Access Control"
+        ]
       }
     },
     "/api/access-control/v2/meta-site/{meta_site_id}/permission/user-group": {
@@ -417,7 +441,10 @@
           "404": {
             "description": "Not Found"
           }
-        }
+        },
+        "tags": [
+          "Access Control"
+        ]
       }
     },
     "/api/access-control/v2/app/{app_id}/permission/user/{user_id}": {
@@ -462,7 +489,10 @@
           "403": {
             "description": "Forbidden"
           }
-        }
+        },
+        "tags": [
+          "Access Control"
+        ]
       }
     },
     "/api/access-control/v2/app/{app_id}/permission/user-group/{user_group_id}": {
@@ -507,7 +537,10 @@
           "403": {
             "description": "Forbidden"
           }
-        }
+        },
+        "tags": [
+          "Access Control"
+        ]
       }
     },
     "/api/access-control/v2/meta-site/{meta_site_id}/permission/user/{user_id}": {
@@ -552,7 +585,10 @@
           "403": {
             "description": "Forbidden"
           }
-        }
+        },
+        "tags": [
+          "Access Control"
+        ]
       }
     },
     "/api/access-control/v2/meta-site/{meta_site_id}/permission/user-group/{user_group_id}": {
@@ -597,7 +633,10 @@
           "403": {
             "description": "Forbidden"
           }
-        }
+        },
+        "tags": [
+          "Access Control"
+        ]
       }
     },
     "/api/access-control/v2/entry/group": {
@@ -632,7 +671,10 @@
           "403": {
             "description": "Forbidden"
           }
-        }
+        },
+        "tags": [
+          "Access Control"
+        ]
       }
     },
     "/api/access-control/v2/entry/groups/ppms/app/{entity_id}": {
@@ -687,7 +729,10 @@
           "403": {
             "description": "Forbidden"
           }
-        }
+        },
+        "tags": [
+          "Access Control"
+        ]
       }
     },
     "/api/apps/v2": {
@@ -723,7 +768,10 @@
               }
             }
           }
-        }
+        },
+        "tags": [
+          "Apps"
+        ]
       },
       "post": {
         "summary": "App add",
@@ -850,7 +898,10 @@
               }
             }
           }
-        }
+        },
+        "tags": [
+          "Apps"
+        ]
       }
     },
     "/api/apps/v2/{app_id}": {
@@ -877,7 +928,10 @@
           "404": {
             "description": "Not Found"
           }
-        }
+        },
+        "tags": [
+          "Apps"
+        ]
       },
       "delete": {
         "summary": "App delete",
@@ -895,7 +949,10 @@
           "400": {
             "description": "Bad Request"
           }
-        }
+        },
+        "tags": [
+          "Apps"
+        ]
       },
       "patch": {
         "summary": "App edit",
@@ -924,7 +981,10 @@
           "400": {
             "description": "Bad Request"
           }
-        }
+        },
+        "tags": [
+          "Apps"
+        ]
       }
     },
     "/api/apps/v2/{app_id}/permissions": {
@@ -961,7 +1021,10 @@
           "404": {
             "description": "Not Found"
           }
-        }
+        },
+        "tags": [
+          "Apps"
+        ]
       }
     },
     "/api/apps/v2/user-group/{user_group_id}/permissions": {
@@ -1006,7 +1069,10 @@
           "404": {
             "description": "Not Found"
           }
-        }
+        },
+        "tags": [
+          "Apps"
+        ]
       }
     },
     "/api/audit-log/v1/entries": {
@@ -1072,7 +1138,10 @@
           "403": {
             "$ref": "#/components/responses/AccessDeniedError"
           }
-        }
+        },
+        "tags": [
+          "AuditLog"
+        ]
       }
     },
     "/api/container-settings/v1/app/{app_id}/settings": {
@@ -1467,7 +1536,10 @@
           "401": {
             "$ref": "#/components/responses/UnauthorizedError"
           }
-        }
+        },
+        "tags": [
+          "Meta Sites"
+        ]
       },
       "post": {
         "summary": "Add meta site",
@@ -1561,7 +1633,10 @@
           "403": {
             "$ref": "#/components/responses/ForbiddenError"
           }
-        }
+        },
+        "tags": [
+          "Meta Sites"
+        ]
       }
     },
     "/api/meta-sites/v1/{meta_site_id}": {
@@ -1611,7 +1686,10 @@
           "404": {
             "$ref": "#/components/responses/NotFoundMetaSite"
           }
-        }
+        },
+        "tags": [
+          "Meta Sites"
+        ]
       },
       "patch": {
         "summary": "Edit meta site",
@@ -1680,7 +1758,10 @@
           "404": {
             "$ref": "#/components/responses/NotFoundMetaSite"
           }
-        }
+        },
+        "tags": [
+          "Meta Sites"
+        ]
       },
       "delete": {
         "summary": "Delete meta site",
@@ -1704,7 +1785,10 @@
           "404": {
             "$ref": "#/components/responses/NotFoundMetaSite"
           }
-        }
+        },
+        "tags": [
+          "Meta Sites"
+        ]
       }
     },
     "/api/meta-sites/v1/{meta_site_id}/relationships/apps": {
@@ -1744,7 +1828,10 @@
           "404": {
             "$ref": "#/components/responses/NotFoundMetaSite"
           }
-        }
+        },
+        "tags": [
+          "Meta Sites"
+        ]
       },
       "delete": {
         "summary": "Remove apps from meta site",
@@ -1782,7 +1869,10 @@
           "404": {
             "$ref": "#/components/responses/NotFoundMetaSite"
           }
-        }
+        },
+        "tags": [
+          "Meta Sites"
+        ]
       }
     },
     "/api/meta-sites/v1/{meta_site_id}/apps": {
@@ -1839,7 +1929,10 @@
           "404": {
             "$ref": "#/components/responses/NotFoundMetaSite"
           }
-        }
+        },
+        "tags": [
+          "Meta Sites"
+        ]
       }
     },
     "/api/meta-sites/v1/{meta_site_id}/apps/excluded": {
@@ -1896,7 +1989,10 @@
           "404": {
             "$ref": "#/components/responses/NotFoundMetaSite"
           }
-        }
+        },
+        "tags": [
+          "Meta Sites"
+        ]
       }
     },
     "/api/meta-sites/v1/apps-with-meta-sites": {
@@ -1986,7 +2082,7 @@
                         "id": "6edb1e3c-4c43-4760-ab76-682ad83146be",
                         "attributes": {
                           "name": "Example site",
-                          "created_at": "2019-07-30T12:53:46.000Z"
+                          "created_at": "2019-07-30T12:53:46Z"
                         }
                       },
                       {
@@ -1994,7 +2090,7 @@
                         "id": "ac62ca6b-cfd6-4161-b414-e1061baa05b7",
                         "attributes": {
                           "name": "European landing pages",
-                          "created_at": "2019-02-21T02:30:12.000Z"
+                          "created_at": "2019-02-21T02:30:12Z"
                         }
                       }
                     ]
@@ -2006,7 +2102,10 @@
           "400": {
             "$ref": "#/components/responses/ListBadRequest1"
           }
-        }
+        },
+        "tags": [
+          "Meta Sites"
+        ]
       }
     },
     "/api/meta-sites/v1/{meta_site_id}/apps/integrity": {
@@ -2077,7 +2176,10 @@
           "404": {
             "$ref": "#/components/responses/NotFoundMetaSite"
           }
-        }
+        },
+        "tags": [
+          "Meta Sites"
+        ]
       }
     },
     "/api/modules/v1": {
@@ -2137,7 +2239,10 @@
           "401": {
             "$ref": "#/components/responses/UnauthorizedError2"
           }
-        }
+        },
+        "tags": [
+          "Modules"
+        ]
       }
     },
     "/api/modules/v1/by-users": {
@@ -2232,7 +2337,10 @@
           "415": {
             "$ref": "#/components/responses/UnsupportedMediaTypeError"
           }
-        }
+        },
+        "tags": [
+          "Modules"
+        ]
       }
     },
     "/api/modules/v1/{module}": {
@@ -2288,7 +2396,10 @@
           "404": {
             "$ref": "#/components/responses/NotFoundModule"
           }
-        }
+        },
+        "tags": [
+          "Modules"
+        ]
       }
     },
     "/api/modules/v1/access/user/{user_id}": {
@@ -2332,7 +2443,10 @@
           "404": {
             "$ref": "#/components/responses/NotFoundUser"
           }
-        }
+        },
+        "tags": [
+          "Modules"
+        ]
       },
       "put": {
         "summary": "Set modules access for a given user",
@@ -2410,7 +2524,10 @@
           "415": {
             "$ref": "#/components/responses/UnsupportedMediaTypeError"
           }
-        }
+        },
+        "tags": [
+          "Modules"
+        ]
       }
     },
     "/api/tracker/v2/settings/app/global": {
@@ -2435,7 +2552,10 @@
           "403": {
             "$ref": "#/components/responses/AccessDeniedError1"
           }
-        }
+        },
+        "tags": [
+          "Tracker Settings"
+        ]
       },
       "patch": {
         "summary": "Edit global tracker settings",
@@ -2464,7 +2584,10 @@
           "403": {
             "$ref": "#/components/responses/AccessDeniedError1"
           }
-        }
+        },
+        "tags": [
+          "Tracker Settings"
+        ]
       }
     },
     "/api/tracker/v2/settings/app/{app_id}": {
@@ -2497,7 +2620,10 @@
           "403": {
             "$ref": "#/components/responses/AccessDeniedError1"
           }
-        }
+        },
+        "tags": [
+          "Tracker Settings"
+        ]
       },
       "patch": {
         "summary": "Edit tracker settings of an app",
@@ -2531,7 +2657,10 @@
           "403": {
             "$ref": "#/components/responses/AccessDeniedError1"
           }
-        }
+        },
+        "tags": [
+          "Tracker Settings"
+        ]
       }
     },
     "/api/tracker/v2/settings/app/{app_id}/{setting}": {
@@ -2560,7 +2689,10 @@
           "403": {
             "$ref": "#/components/responses/AccessDeniedError1"
           }
-        }
+        },
+        "tags": [
+          "Tracker Settings"
+        ]
       }
     },
     "/api/tracker/v2/settings/app/url": {
@@ -2593,7 +2725,10 @@
           "404": {
             "$ref": "#/components/responses/NoAppWithSuchUrl"
           }
-        }
+        },
+        "tags": [
+          "Tracker Settings"
+        ]
       }
     },
     "/api/user-groups/v1": {
@@ -2646,7 +2781,10 @@
           "403": {
             "description": "Forbidden"
           }
-        }
+        },
+        "tags": [
+          "User Groups"
+        ]
       },
       "post": {
         "summary": "Add user group",
@@ -2696,7 +2834,10 @@
           "403": {
             "description": "Forbidden"
           }
-        }
+        },
+        "tags": [
+          "User Groups"
+        ]
       }
     },
     "/api/user-groups/v1/{user_group_id}": {
@@ -2734,7 +2875,10 @@
           "403": {
             "description": "Forbidden"
           }
-        }
+        },
+        "tags": [
+          "User Groups"
+        ]
       },
       "patch": {
         "summary": "Edit user group",
@@ -2791,7 +2935,10 @@
           "403": {
             "description": "Forbidden"
           }
-        }
+        },
+        "tags": [
+          "User Groups"
+        ]
       },
       "delete": {
         "summary": "Delete user group",
@@ -2815,7 +2962,10 @@
           "403": {
             "description": "Forbidden"
           }
-        }
+        },
+        "tags": [
+          "User Groups"
+        ]
       }
     },
     "/api/user-groups/v1/{user_group_id}/users": {
@@ -2860,7 +3010,10 @@
           "403": {
             "description": "Forbidden"
           }
-        }
+        },
+        "tags": [
+          "User Groups"
+        ]
       }
     },
     "/api/user-groups/v1/{user_group_id}/users/excluded": {
@@ -2905,7 +3058,10 @@
           "403": {
             "description": "Forbidden"
           }
-        }
+        },
+        "tags": [
+          "User Groups"
+        ]
       }
     },
     "/api/user-groups/v1/{user_group_id}/relationships/users": {
@@ -2942,7 +3098,10 @@
           "403": {
             "description": "Forbidden"
           }
-        }
+        },
+        "tags": [
+          "User Groups"
+        ]
       },
       "delete": {
         "summary": "Remove users from user group",
@@ -2977,7 +3136,10 @@
           "403": {
             "description": "Forbidden"
           }
-        }
+        },
+        "tags": [
+          "User Groups"
+        ]
       }
     },
     "/api/user-groups/v1/{user_group_id}/permissions": {
@@ -3015,7 +3177,10 @@
           "403": {
             "description": "Forbidden"
           }
-        }
+        },
+        "tags": [
+          "User Groups"
+        ]
       }
     },
     "/api/users/v2/invite": {
@@ -8614,13 +8779,13 @@
             },
             "date_from": {
               "description": "Date from (ISO-8601 format)",
-              "example": "2020-01-01T00:00:00.000Z",
+              "example": "2020-01-01T00:00:00Z",
               "type": "string",
               "format": "date-time"
             },
             "date_to": {
               "description": "Date to (ISO-8601 format)",
-              "example": "2020-01-03T00:00:00.000Z",
+              "example": "2020-01-03T00:00:00Z",
               "type": "string",
               "format": "date-time"
             },

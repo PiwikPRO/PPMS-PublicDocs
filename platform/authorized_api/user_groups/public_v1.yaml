@@ -14,7 +14,7 @@ paths:
         - $ref: "#/components/parameters/UserGroupsLimit"
         - $ref: "#/components/parameters/Offset"
       responses:
-        "200":
+        '200':
           description: OK
           content:
             application/vnd.api+json:
@@ -27,12 +27,14 @@ paths:
                     type: array
                     items:
                       $ref: "#/components/schemas/UserGroup"
-        "400":
+        '400':
           description: Bad Request
-        "401":
+        '401':
           description: Unauthorized
-        "403":
+        '403':
           description: Forbidden
+      tags:
+        - User Groups
     post:
       summary: Add user group
       description: Adds user group with unique name
@@ -50,7 +52,7 @@ paths:
         description: Request data to add new user group
         required: true
       responses:
-        "201":
+        '201':
           description: Created
           content:
             application/vnd.api+json:
@@ -59,13 +61,15 @@ paths:
                 properties:
                   data:
                     $ref: "#/components/schemas/UserGroup"
-        "400":
+        '400':
           description: Bad Request
-        "401":
+        '401':
           description: Unauthorized
-        "403":
+        '403':
           description: Forbidden
-  "/api/user-groups/v1/{user_group_id}":
+      tags:
+        - User Groups
+  /api/user-groups/v1/{user_group_id}:
     get:
       summary: Get user group
       description: Gets specific user group details
@@ -73,21 +77,23 @@ paths:
       parameters:
         - $ref: "#/components/parameters/UserGroupId"
       responses:
-        "200":
+        '200':
           description: OK
           content:
-            "*/*":
+            '*/*':
               schema:
                 type: object
                 properties:
                   data:
                     $ref: "#/components/schemas/UserGroup"
-        "400":
+        '400':
           description: Bad Request
-        "401":
+        '401':
           description: Unauthorized
-        "403":
+        '403':
           description: Forbidden
+      tags:
+        - User Groups
     patch:
       summary: Edit user group
       description: Updates user group details
@@ -110,19 +116,21 @@ paths:
                         id:
                           type: string
                           format: uuid
-                          description: UUID of edited user group (must match
-                            `user_group_id` parameter)
+                          description: UUID of edited user group (must match `user_group_id`
+                            parameter)
                           example: 9a67f188-734c-4ba3-8769-912a7e59f3ff
         required: true
       responses:
-        "204":
+        '204':
           description: No Content
-        "400":
+        '400':
           description: Bad Request
-        "401":
+        '401':
           description: Unauthorized
-        "403":
+        '403':
           description: Forbidden
+      tags:
+        - User Groups
     delete:
       summary: Delete user group
       description: Deletes user group
@@ -130,15 +138,17 @@ paths:
       parameters:
         - $ref: "#/components/parameters/UserGroupId"
       responses:
-        "204":
+        '204':
           description: No Content
-        "400":
+        '400':
           description: Bad Request
-        "401":
+        '401':
           description: Unauthorized
-        "403":
+        '403':
           description: Forbidden
-  "/api/user-groups/v1/{user_group_id}/users":
+      tags:
+        - User Groups
+  /api/user-groups/v1/{user_group_id}/users:
     get:
       summary: Get user group members
       description: Gets user group members
@@ -150,19 +160,21 @@ paths:
         - $ref: "#/components/parameters/Limit"
         - $ref: "#/components/parameters/Offset"
       responses:
-        "200":
+        '200':
           description: OK
           content:
             application/vnd.api+json:
               schema:
                 $ref: "#/components/schemas/UsersList"
-        "400":
+        '400':
           description: Bad Request
-        "401":
+        '401':
           description: Unauthorized
-        "403":
+        '403':
           description: Forbidden
-  "/api/user-groups/v1/{user_group_id}/users/excluded":
+      tags:
+        - User Groups
+  /api/user-groups/v1/{user_group_id}/users/excluded:
     get:
       summary: Get users excluded from group
       description: Gets users excluded from given user group
@@ -174,19 +186,21 @@ paths:
         - $ref: "#/components/parameters/Limit"
         - $ref: "#/components/parameters/Offset"
       responses:
-        "200":
+        '200':
           description: OK
           content:
             application/vnd.api+json:
               schema:
                 $ref: "#/components/schemas/UsersList"
-        "400":
+        '400':
           description: Bad Request
-        "401":
+        '401':
           description: Unauthorized
-        "403":
+        '403':
           description: Forbidden
-  "/api/user-groups/v1/{user_group_id}/relationships/users":
+      tags:
+        - User Groups
+  /api/user-groups/v1/{user_group_id}/relationships/users:
     post:
       summary: Add users to user group
       description: Adds users to user group
@@ -201,14 +215,16 @@ paths:
         description: Request data to add users to user group
         required: true
       responses:
-        "204":
+        '204':
           description: No Content
-        "400":
+        '400':
           description: Bad Request
-        "401":
+        '401':
           description: Unauthorized
-        "403":
+        '403':
           description: Forbidden
+      tags:
+        - User Groups
     delete:
       summary: Remove users from user group
       description: Remove users from user group
@@ -223,15 +239,17 @@ paths:
         description: Request data to remove users from user group
         required: true
       responses:
-        "204":
+        '204':
           description: No Content
-        "400":
+        '400':
           description: Bad Request
-        "401":
+        '401':
           description: Unauthorized
-        "403":
+        '403':
           description: Forbidden
-  "/api/user-groups/v1/{user_group_id}/permissions":
+      tags:
+        - User Groups
+  /api/user-groups/v1/{user_group_id}/permissions:
     post:
       deprecated: true
       summary: Set permission group
@@ -247,14 +265,16 @@ paths:
         description: Request data to set permission group for user group
         required: true
       responses:
-        "204":
+        '204':
           description: No Content
-        "400":
+        '400':
           description: Bad Request
-        "401":
+        '401':
           description: Unauthorized
-        "403":
+        '403':
           description: Forbidden
+      tags:
+        - User Groups
 servers:
   - url: https://example.piwik.pro
 components:
@@ -277,7 +297,8 @@ components:
     UserGroupsSort:
       in: query
       name: sort
-      description: Sort field - can be reversed by adding dash before field name e.g (-name)
+      description: Sort field - can be reversed by adding dash before field name e.g
+        (-name)
       required: false
       schema:
         type: string

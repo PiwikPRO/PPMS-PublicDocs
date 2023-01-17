@@ -3,8 +3,8 @@ info:
   title: Access Control Api
   version: auto
   description: >
-    This api allows manipulating user and user group permissions for apps and
-    meta sites.
+    This api allows manipulating user and user group permissions for apps and meta
+    sites.
 
 
     # Permission overview
@@ -90,7 +90,7 @@ info:
 
     - remove_app_from_meta_site - allows removing apps from a meta site (owner only)
 paths:
-  "/api/access-control/v2/entry/{entity_id}":
+  /api/access-control/v2/entry/{entity_id}:
     get:
       summary: Entity actions
       description: Returns granted actions to a given entity for current user.
@@ -98,17 +98,19 @@ paths:
       parameters:
         - $ref: "#/components/parameters/EntityId"
       responses:
-        "200":
+        '200':
           description: OK
           content:
             application/vnd.api+json:
               schema:
                 $ref: "#/components/schemas/EntityActionsResponse"
-        "400":
+        '400':
           description: Bad Request
-        "403":
+        '403':
           description: Forbidden
-  "/api/access-control/v2/entry/ppms/app/action/{action}":
+      tags:
+        - Access Control
+  /api/access-control/v2/entry/ppms/app/action/{action}:
     get:
       summary: Apps with granted action
       description: Returns apps with granted action for current user.
@@ -128,17 +130,19 @@ paths:
               - add
               - manage
       responses:
-        "200":
+        '200':
           description: OK
           content:
             application/vnd.api+json:
               schema:
                 $ref: "#/components/schemas/AppsWithGrantedAction"
-        "400":
+        '400':
           description: Bad Request
-        "403":
+        '403':
           description: Forbidden
-  "/api/access-control/v2/entry/ppms/meta-site/action/{action}":
+      tags:
+        - Access Control
+  /api/access-control/v2/entry/ppms/meta-site/action/{action}:
     get:
       summary: Meta sites with granted action
       description: Returns meta sites with granted action for current user.
@@ -162,17 +166,19 @@ paths:
               - add_app_to_meta_site
               - remove_app_from_meta_site
       responses:
-        "200":
+        '200':
           description: OK
           content:
             application/vnd.api+json:
               schema:
                 $ref: "#/components/schemas/MetaSitesWithGrantedAction"
-        "400":
+        '400':
           description: Bad Request
-        "403":
+        '403':
           description: Forbidden
-  "/api/access-control/v2/entry/ppms/user/action/{action}":
+      tags:
+        - Access Control
+  /api/access-control/v2/entry/ppms/user/action/{action}:
     get:
       summary: Users with granted action
       description: Returns users with granted action for current user.
@@ -193,35 +199,40 @@ paths:
               - demote_app_manager
               - demote_meta_site_manager
       responses:
-        "200":
+        '200':
           description: OK
           content:
             application/vnd.api+json:
               schema:
                 $ref: "#/components/schemas/UsersWithGrantedAction"
-        "400":
+        '400':
           description: Bad Request
-        "403":
+        '403':
           description: Forbidden
+      tags:
+        - Access Control
   /api/access-control/v2/global/actions:
     get:
       summary: Global actions
       description: It gets actions without specific entity context for a given user.
       operationId: get_global_actions_v2
       responses:
-        "200":
+        '200':
           description: OK
           content:
             application/vnd.api+json:
               schema:
                 $ref: "#/components/schemas/GlobalActions"
-  "/api/access-control/v2/app/{app_id}/permission/user":
+      tags:
+        - Access Control
+  /api/access-control/v2/app/{app_id}/permission/user:
     get:
       summary: Users permissions for a given app
       description: >
         Lists all users (but not owners) and their permissions for a given app.
 
-        List contains both explicit permission of a user and implicit highest permission inherited from user groups which user belongs to.
+        List contains both explicit permission of a user and implicit highest permission
+        inherited from user groups which user belongs to.
       operationId: list_app_permissions_for_user_v2
       parameters:
         - $ref: "#/components/parameters/Limit"
@@ -229,7 +240,7 @@ paths:
         - $ref: "#/components/parameters/AppId"
         - $ref: "#/components/parameters/UserSearch"
       responses:
-        "200":
+        '200':
           description: OK
           content:
             application/vnd.api+json:
@@ -245,13 +256,15 @@ paths:
                     type: array
                     items:
                       $ref: "#/components/schemas/UserPermissionsForApp"
-        "400":
+        '400':
           description: Bad Request
-        "401":
+        '401':
           description: Unauthorized
-        "404":
+        '404':
           description: Not Found
-  "/api/access-control/v2/app/{app_id}/permission/user-group":
+      tags:
+        - Access Control
+  /api/access-control/v2/app/{app_id}/permission/user-group:
     get:
       summary: User groups permissions for a given app
       description: Lists all user groups and their permissions for a given app.
@@ -263,8 +276,8 @@ paths:
         - $ref: "#/components/parameters/UserGroupsSearch"
         - in: query
           name: sort
-          description: Sort field - can be reversed by adding dash before field name e.g
-            (-name)
+          description: Sort field - can be reversed by adding dash before field name
+            e.g (-name)
           required: false
           schema:
             type: string
@@ -273,28 +286,30 @@ paths:
               - -name
             default: name
       responses:
-        "200":
+        '200':
           description: OK
           content:
             application/vnd.api+json:
               schema:
                 $ref: "#/components/schemas/UserGroupPermission"
-        "400":
+        '400':
           description: Bad Request
-        "401":
+        '401':
           description: Unauthorized
-        "403":
+        '403':
           description: Forbidden
-        "404":
+        '404':
           description: Not Found
-  "/api/access-control/v2/meta-site/{meta_site_id}/permission/user":
+      tags:
+        - Access Control
+  /api/access-control/v2/meta-site/{meta_site_id}/permission/user:
     get:
       summary: Users permissions for a given meta site
       description: >
-        Lists all users (but not owners) and their permissions for a given meta
-        site.
+        Lists all users (but not owners) and their permissions for a given meta site.
 
-        List contains both explicit permission of a user and implicit highest permission inherited from user groups which user belongs to.
+        List contains both explicit permission of a user and implicit highest permission
+        inherited from user groups which user belongs to.
       operationId: list_meta_site_permissions_for_user_v2
       parameters:
         - $ref: "#/components/parameters/Limit"
@@ -302,7 +317,7 @@ paths:
         - $ref: "#/components/parameters/MetaSiteId"
         - $ref: "#/components/parameters/UserSearch"
       responses:
-        "200":
+        '200':
           description: OK
           content:
             application/vnd.api+json:
@@ -318,13 +333,15 @@ paths:
                     type: array
                     items:
                       $ref: "#/components/schemas/UserPermissionsForMetaSite"
-        "400":
+        '400':
           description: Bad Request
-        "401":
+        '401':
           description: Unauthorized
-        "404":
+        '404':
           description: Not Found
-  "/api/access-control/v2/meta-site/{meta_site_id}/permission/user-group":
+      tags:
+        - Access Control
+  /api/access-control/v2/meta-site/{meta_site_id}/permission/user-group:
     get:
       summary: User groups permissions for a given meta site
       description: Lists all user groups and their permission for a given meta site.
@@ -336,19 +353,21 @@ paths:
         - $ref: "#/components/parameters/UserGroupSearch"
         - $ref: "#/components/parameters/UserGroupSort"
       responses:
-        "200":
+        '200':
           description: OK
           content:
             application/vnd.api+json:
               schema:
                 $ref: "#/components/schemas/UserGroupPermissionsForMetaSite"
-        "400":
+        '400':
           description: Bad Request
-        "401":
+        '401':
           description: Unauthorized
-        "404":
+        '404':
           description: Not Found
-  "/api/access-control/v2/app/{app_id}/permission/user/{user_id}":
+      tags:
+        - Access Control
+  /api/access-control/v2/app/{app_id}/permission/user/{user_id}:
     post:
       summary: Set user permission for a given app
       description: Sets user permission for a given app
@@ -366,15 +385,17 @@ paths:
         description: Request data to set permission for an app for a user
         required: true
       responses:
-        "204":
+        '204':
           description: No Content
-        "400":
+        '400':
           $ref: "#/components/responses/SetAppPermissionBadRequest"
-        "401":
+        '401':
           $ref: "#/components/responses/UnauthorizedError"
-        "403":
+        '403':
           description: Forbidden
-  "/api/access-control/v2/app/{app_id}/permission/user-group/{user_group_id}":
+      tags:
+        - Access Control
+  /api/access-control/v2/app/{app_id}/permission/user-group/{user_group_id}:
     post:
       summary: Set user group permission for a given app
       description: It sets permission for a given app for a user group
@@ -392,15 +413,17 @@ paths:
         description: Request data to set permission for an app for a user group
         required: true
       responses:
-        "204":
+        '204':
           description: No Content
-        "400":
+        '400':
           $ref: "#/components/responses/SetAppPermissionBadRequest"
-        "401":
+        '401':
           $ref: "#/components/responses/UnauthorizedError"
-        "403":
+        '403':
           description: Forbidden
-  "/api/access-control/v2/meta-site/{meta_site_id}/permission/user/{user_id}":
+      tags:
+        - Access Control
+  /api/access-control/v2/meta-site/{meta_site_id}/permission/user/{user_id}:
     post:
       summary: Set user permission for a given meta site
       description: It sets permission for a given meta site for a user
@@ -418,15 +441,17 @@ paths:
         description: Request data to set permission for a meta site for a user
         required: true
       responses:
-        "204":
+        '204':
           description: No Content
-        "400":
+        '400':
           $ref: "#/components/responses/SetMetaSitePermissionBadRequest"
-        "401":
+        '401':
           $ref: "#/components/responses/UnauthorizedError"
-        "403":
+        '403':
           description: Forbidden
-  "/api/access-control/v2/meta-site/{meta_site_id}/permission/user-group/{user_group_id}":
+      tags:
+        - Access Control
+  /api/access-control/v2/meta-site/{meta_site_id}/permission/user-group/{user_group_id}:
     post:
       summary: Set user group permission for a given meta site
       description: It sets permission for a given meta site for a user group
@@ -444,21 +469,24 @@ paths:
         description: Request data to set permission for a meta site for a user group
         required: true
       responses:
-        "204":
+        '204':
           description: No Content
-        "400":
+        '400':
           $ref: "#/components/responses/SetMetaSitePermissionBadRequest"
-        "401":
+        '401':
           $ref: "#/components/responses/UnauthorizedError"
-        "403":
+        '403':
           description: Forbidden
+      tags:
+        - Access Control
   /api/access-control/v2/entry/group:
     post:
       summary: Permission set
       deprecated: true
       description: >
-        Please use <a href="#operation/set_app_permission_for_user_v2">Set user permission for a given app</a> instead.<br><br>
-        It sets permission for a given entity (ppms/user or ppms/app).
+        Please use <a href="#operation/set_app_permission_for_user_v2">Set user permission
+        for a given app</a> instead.<br><br> It sets permission for a given entity
+        (ppms/user or ppms/app).
       operationId: _legacy_set_permission_group_v2
       requestBody:
         content:
@@ -471,20 +499,24 @@ paths:
         description: set permission
         required: true
       responses:
-        "204":
+        '204':
           description: No Content
-        "400":
+        '400':
           description: Bad Request
-        "403":
+        '403':
           description: Forbidden
-  "/api/access-control/v2/entry/groups/ppms/app/{entity_id}":
+      tags:
+        - Access Control
+  /api/access-control/v2/entry/groups/ppms/app/{entity_id}:
     get:
       summary: Permissions
       deprecated: true
       description: >
-        Please use <a href="#operation/list_app_permissions_for_user_v2">Users permissions for a given app</a> instead.<br><br>
-        Lists all users (but not owners) and their permissions for a given app.
-        List contains both explicit permission of a user and implicit highest permission inherited from user groups which user belongs to.
+        Please use <a href="#operation/list_app_permissions_for_user_v2">Users permissions
+        for a given app</a> instead.<br><br> Lists all users (but not owners) and
+        their permissions for a given app. List contains both explicit permission
+        of a user and implicit highest permission inherited from user groups which
+        user belongs to.
       operationId: _legacy_get_permission_groups_v2
       parameters:
         - $ref: "#/components/parameters/LimitListAppPermissions"
@@ -492,7 +524,7 @@ paths:
         - $ref: "#/components/parameters/EntityId"
         - $ref: "#/components/parameters/UserSearch"
       responses:
-        "200":
+        '200':
           description: OK
           content:
             application/vnd.api+json:
@@ -508,10 +540,12 @@ paths:
                     type: array
                     items:
                       $ref: "#/components/schemas/DeprecatedUserPermissionsForApp"
-        "400":
+        '400':
           description: Bad Request
-        "403":
+        '403':
           description: Forbidden
+      tags:
+        - Access Control
 servers:
   - url: https://example.piwik.pro
 components:
@@ -561,7 +595,8 @@ components:
     UserGroupSort:
       in: query
       name: sort
-      description: Sort field - can be reversed by adding dash before field name e.g (-name)
+      description: Sort field - can be reversed by adding dash before field name e.g
+        (-name)
       required: false
       schema:
         type: string
@@ -619,7 +654,7 @@ components:
     SetMetaSitePermissionBadRequest:
       description: Bad Request
       content:
-        "*/*":
+        '*/*':
           schema:
             allOf:
               - $ref: "#/components/schemas/BadRequestObject"
@@ -635,7 +670,7 @@ components:
     SetAppPermissionBadRequest:
       description: Bad Request
       content:
-        "*/*":
+        '*/*':
           schema:
             allOf:
               - $ref: "#/components/schemas/BadRequestObject"
@@ -651,7 +686,7 @@ components:
     UnauthorizedError:
       description: Unauthorized
       content:
-        "*/*":
+        '*/*':
           schema:
             type: object
             required:
@@ -1167,8 +1202,8 @@ components:
       example: example@example.com
     AppPermission:
       type: string
-      description: Permission for `ppms/app` (for example `edit-publish` contains actions
-        `view`, `edit` and `publish`)
+      description: Permission for `ppms/app` (for example `edit-publish` contains
+        actions `view`, `edit` and `publish`)
       enum:
         - no-access
         - view
@@ -1178,8 +1213,8 @@ components:
       example: manage
     MetaSitePermission:
       type: string
-      description: Permission for `ppms/meta-site` (for example `manage` contains actions
-        `view` nad `edit`)
+      description: Permission for `ppms/meta-site` (for example `manage` contains
+        actions `view` nad `edit`)
       enum:
         - no-access
         - view
@@ -1194,8 +1229,8 @@ components:
       properties:
         status:
           type: string
-          description: the HTTP status code applicable to this problem, expressed as a
-            string value
+          description: the HTTP status code applicable to this problem, expressed
+            as a string value
           example: "400"
         code:
           type: string
@@ -1204,34 +1239,33 @@ components:
         title:
           type: string
           description: >
-            a short, human-readable summary of the problem that SHOULD NOT
-            change from occurrence to occurrence of the problem, except for
-            purposes of localization
+            a short, human-readable summary of the problem that SHOULD NOT change
+            from occurrence to occurrence of the problem, except for purposes of localization
           example: Invalid form
         detail:
           type: string
           description: >
-            a human-readable explanation specific to this occurrence of the
-            problem. Like `title`, this field’s value can be localized
+            a human-readable explanation specific to this occurrence of the problem.
+            Like `title`, this field’s value can be localized
           example: This field is invalid
         source:
           type: object
           description: >
-            an object containing references to the source of the error,
-            optionally including any of the following members: [pointer,
-            parameter]
+            an object containing references to the source of the error, optionally
+            including any of the following members: [pointer, parameter]
           properties:
             pointer:
               type: string
               example: /data/attributes/name
               description: >
-                a JSON Pointer [RFC6901] to the associated entity in the request
-                document [e.g. "/data" for a primary data object, or
-                "/data/attributes/name" for a specific attribute]
+                a JSON Pointer [RFC6901] to the associated entity in the request document
+                [e.g. "/data" for a primary data object, or "/data/attributes/name"
+                for a specific attribute]
             parameter:
               type: string
               example: offset
-              description: a string indicating which URI query parameter caused the error
+              description: a string indicating which URI query parameter caused the
+                error
     BadRequestObject:
       type: object
       properties:

@@ -11,16 +11,18 @@ paths:
       description: It gets global tracker settings.
       operationId: api_get_global_tracker_settings_v2
       responses:
-        200:
+        '200':
           description: OK
           content:
             application/vnd.api+json:
               schema:
                 $ref: '#/components/schemas/GlobalTrackerSettings'
-        401:
+        '401':
           $ref: "#/components/responses/UnauthorizedError"
-        403:
+        '403':
           $ref: "#/components/responses/AccessDeniedError"
+      tags:
+        - Tracker Settings
     patch:
       summary: Edit global tracker settings
       description: It edits global tracker settings.
@@ -32,14 +34,16 @@ paths:
             schema:
               $ref: '#/components/schemas/GlobalTrackerSettings'
       responses:
-        204:
+        '204':
           description: No Content
-        400:
+        '400':
           $ref: "#/components/responses/InvalidFormBadRequest"
-        401:
+        '401':
           $ref: "#/components/responses/UnauthorizedError"
-        403:
+        '403':
           $ref: "#/components/responses/AccessDeniedError"
+      tags:
+        - Tracker Settings
   /api/tracker/v2/settings/app/{app_id}:
     get:
       summary: Get tracker settings of an app
@@ -48,18 +52,20 @@ paths:
       parameters:
         - $ref: '#/components/parameters/app_id'
       responses:
-        200:
+        '200':
           description: OK
           content:
             application/vnd.api+json:
               schema:
                 $ref: '#/components/schemas/TrackerAppSettings'
-        400:
+        '400':
           $ref: "#/components/responses/InvalidUuidBadRequest"
-        401:
+        '401':
           $ref: "#/components/responses/UnauthorizedError"
-        403:
+        '403':
           $ref: "#/components/responses/AccessDeniedError"
+      tags:
+        - Tracker Settings
     patch:
       summary: Edit tracker settings of an app
       description: It edits tracker settings of an app.
@@ -73,51 +79,59 @@ paths:
             schema:
               $ref: '#/components/schemas/TrackerAppSettings'
       responses:
-        204:
+        '204':
           description: No Content
-        400:
+        '400':
           $ref: "#/components/responses/InvalidFormBadRequest"
-        401:
+        '401':
           $ref: "#/components/responses/UnauthorizedError"
-        403:
+        '403':
           $ref: "#/components/responses/AccessDeniedError"
+      tags:
+        - Tracker Settings
   /api/tracker/v2/settings/app/{app_id}/{setting}:
     delete:
       summary: Delete given tracker setting of an app
-      description: It deletes given tracker setting of an app. Then global setting will be used instead.
+      description: It deletes given tracker setting of an app. Then global setting
+        will be used instead.
       operationId: api_delete_app_tracker_setting_v2
       parameters:
         - $ref: '#/components/parameters/app_id'
         - $ref: '#/components/parameters/setting'
       responses:
-        204:
+        '204':
           description: No Content
-        400:
+        '400':
           $ref: "#/components/responses/InvalidUuidBadRequest"
-        401:
+        '401':
           $ref: "#/components/responses/UnauthorizedError"
-        403:
+        '403':
           $ref: "#/components/responses/AccessDeniedError"
+      tags:
+        - Tracker Settings
   /api/tracker/v2/settings/app/url:
     get:
       summary: Get tracker settings of an app by it's url
-      description: It gets tracker settings of an app that first matched against given url. Used mostly in log analytics for website autorecognition.
+      description: It gets tracker settings of an app that first matched against given
+        url. Used mostly in log analytics for website autorecognition.
       operationId: api_get_app_by_url_tracker_settings_v2
       parameters:
         - $ref: '#/components/parameters/app_url'
       responses:
-        200:
+        '200':
           description: OK
           content:
             application/vnd.api+json:
               schema:
                 $ref: '#/components/schemas/TrackerAppSettings'
-        401:
+        '401':
           $ref: "#/components/responses/UnauthorizedError"
-        403:
+        '403':
           $ref: "#/components/responses/AccessDeniedError"
-        404:
+        '404':
           $ref: "#/components/responses/NoAppWithSuchUrl"
+      tags:
+        - Tracker Settings
 components:
   parameters:
     app_id:
@@ -171,7 +185,7 @@ components:
     InvalidUuidBadRequest:
       description: Bad Request
       content:
-        'application/vnd.api+json':
+        application/vnd.api+json:
           schema:
             properties:
               errors:
@@ -186,7 +200,7 @@ components:
     InvalidFormBadRequest:
       description: Bad Request
       content:
-        'application/vnd.api+json':
+        application/vnd.api+json:
           schema:
             properties:
               errors:
@@ -198,7 +212,8 @@ components:
                 - status: '400'
                   code: error.default
                   title: Invalid form
-                  detail: "Invalid anonymization level '13.5', available are: [0, 1, 2, 3, 4]"
+                  detail: "Invalid anonymization level '13.5', available are: [0,\
+                    \ 1, 2, 3, 4]"
                   source:
                     pointer: /data/attributes/anonymize_visitor_ip_level
                 - status: '400'
@@ -210,7 +225,7 @@ components:
     UnauthorizedError:
       description: Unauthorized
       content:
-        "application/json":
+        application/json:
           schema:
             type: object
             required:
@@ -222,25 +237,25 @@ components:
     AccessDeniedError:
       description: Forbidden
       content:
-        "application/vnd.api+json":
+        application/vnd.api+json:
           schema:
             type: object
             example:
               errors:
-              - status: '403'
-                code: not_authenticated
-                title: Authentication credentials were not provided.
+                - status: '403'
+                  code: not_authenticated
+                  title: Authentication credentials were not provided.
     NoAppWithSuchUrl:
       description: Not Found
       content:
-        "application/vnd.api+json":
+        application/vnd.api+json:
           schema:
             type: object
             example:
               errors:
-              - status: '404'
-                code: error.resource-not-found
-                title: 'App with given url ''http://example.com'' doesn''t exist'
+                - status: '404'
+                  code: error.resource-not-found
+                  title: 'App with given url ''http://example.com'' doesn''t exist'
   schemas:
     TrackerAppSettings:
       type: object
@@ -308,7 +323,6 @@ components:
                   $ref: '#/components/schemas/Urls'
                 updated_at:
                   $ref: '#/components/schemas/UpdatedAt'
-
     GlobalTrackerSettings:
       type: object
       required: [data]
@@ -374,13 +388,11 @@ components:
                   $ref: '#/components/schemas/UrlQueryParameterToExcludeFromUrl'
                 updated_at:
                   $ref: '#/components/schemas/UpdatedAt'
-
     Id:
       type: string
       format: uuid
       description: UUIDv4 identifier of an object
       example: 6edb1e3c-4c43-4760-ab76-682ad83146be
-
     Urls:
       type: array
       description: |
@@ -393,7 +405,6 @@ components:
       example:
         - http://example.com/
         - http://example.com/app
-
     ExcludeUnknownUrls:
       type: boolean
       description: |
@@ -403,7 +414,6 @@ components:
           false
         ```
       example: false
-
     ExcludedIps:
       type: array
       description: |
@@ -418,7 +428,6 @@ components:
         - 192.168.0.0
         - 172.16.0.0
         - 1.2.*.*
-
     UrlQueryParameterToExcludeFromUrl:
       type: array
       description: |
@@ -446,7 +455,6 @@ components:
         - pk_source
         - fb_comment_id
         - /^sess.*|.*[dD]ate$/
-
     ExcludedUserAgents:
       type: array
       description: |
@@ -460,7 +468,6 @@ components:
       example:
         - Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0
         - Opera/9.80 (Windows NT 6.2; Win64; x64) Presto/2.12 Version/12.16
-
     FingerprintBasedOnAnonymizedIp:
       type: boolean
       description: |
@@ -470,7 +477,6 @@ components:
           false
         ```
       example: true
-
     KeepUrlFragment:
       type: boolean
       description: |
@@ -480,7 +486,6 @@ components:
           true
         ```
       example: true
-
     SiteSearchQueryParams:
       type: array
       description: |
@@ -501,7 +506,6 @@ components:
       example:
         - s
         - search
-
     SiteSearchCategoryParams:
       type: array
       description: |
@@ -516,7 +520,6 @@ components:
         - category
         - cat
         - c
-
     AnonymizeVisitorIpLevel:
       type: integer
       description: |
@@ -527,7 +530,6 @@ components:
         ```
       enum: [0, 1, 2, 3, 4]
       example: 1
-
     AnonymizeVisitorGeolocationLevel:
       type: string
       description: |
@@ -538,7 +540,6 @@ components:
         ```
       enum: [none, City, Region, Country, Continent]
       example: Region
-
     CreateNewVisitWhenWebsiteReferrerChanges:
       type: boolean
       description: |
@@ -548,7 +549,6 @@ components:
           false
         ```
       example: false
-
     CreateNewVisitWhenCampaignChanges:
       type: boolean
       description: |
@@ -558,7 +558,6 @@ components:
           false
         ```
       example: false
-
     TrustVisitorsCookies:
       type: boolean
       description: |
@@ -568,7 +567,6 @@ components:
           false
         ```
       example: false
-
     CampaignNameParams:
       type: array
       description: |
@@ -586,7 +584,6 @@ components:
         type: string
       example:
         - pk_campaign
-
     CampaignKeywordParams:
       type: array
       description: |
@@ -602,7 +599,6 @@ components:
         type: string
       example:
         - pk_medium
-
     CampaignSourceParams:
       type: array
       description: |
@@ -618,7 +614,6 @@ components:
         type: string
       example:
         - pk_source
-
     CampaignMediumParams:
       type: array
       description: |
@@ -634,7 +629,6 @@ components:
         type: string
       example:
         - pk_medium
-
     CampaignContentParams:
       type: array
       description: |
@@ -650,7 +644,6 @@ components:
         type: string
       example:
         - pk_content
-
     CampaignIdParams:
       type: array
       description: |
@@ -666,7 +659,6 @@ components:
         type: string
       example:
         - pk_cid
-
     EnableFingerprintingAcrossWebsites:
       type: boolean
       description: |
@@ -676,7 +668,6 @@ components:
           false
         ```
       example: false
-
     TrackingFingerprintDisabled:
       type: boolean
       description: |
@@ -686,7 +677,6 @@ components:
           false
         ```
       example: false
-
     StripSiteSearchQueryParameters:
       type: boolean
       description: |
@@ -696,7 +686,6 @@ components:
           false
         ```
       example: false
-
     ExcludeCrawlers:
       type: boolean
       description: |
@@ -706,13 +695,11 @@ components:
           true
         ```
       example: true
-
     UpdatedAt:
       type: string
       format: 'date-time'
       description: Timestamp of object's last modification
       readOnly: true
-
     FormErrorObject:
       type: object
       allOf:
@@ -733,20 +720,21 @@ components:
             source:
               type: object
               description: >
-                an object containing references to the source of the error, optionally including any of the
-                following members: [pointer, parameter]
+                an object containing references to the source of the error, optionally
+                including any of the following members: [pointer, parameter]
               properties:
                 pointer:
                   type: string
                   example: /data/attributes/name
                   description: >
-                    a JSON Pointer [RFC6901] to the associated entity in the request document
-                    [e.g. '/data' for a primary data object, or '/data/attributes/name' for a specific attribute]
+                    a JSON Pointer [RFC6901] to the associated entity in the request
+                    document [e.g. '/data' for a primary data object, or '/data/attributes/name'
+                    for a specific attribute]
                 parameter:
                   type: string
                   example: offset
-                  description: a string indicating which URI query parameter caused the error
-
+                  description: a string indicating which URI query parameter caused
+                    the error
     ErrorObject:
       type: object
       properties:
@@ -761,15 +749,17 @@ components:
             properties:
               status:
                 type: string
-                description: the HTTP status code applicable to this problem, expressed as a
-                  string value
+                description: the HTTP status code applicable to this problem, expressed
+                  as a string value
                 example: "400"
               code:
                 type: string
-                description: an application-specific error code, expressed as a string value
+                description: an application-specific error code, expressed as a string
+                  value
                 example: error.default
               title:
                 type: string
                 description: >
-                  a short, human-readable summary of the problem that SHOULD NOT change from occurrence
-                  to occurrence of the problem, except for purposes of localization
+                  a short, human-readable summary of the problem that SHOULD NOT change
+                  from occurrence to occurrence of the problem, except for purposes
+                  of localization
