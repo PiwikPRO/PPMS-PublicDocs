@@ -1,0 +1,14 @@
+{
+  "inputs": [
+    {"inputFile":"../platform/authorized_api/access_control/public_v2.yaml"},
+    {"inputFile":"../platform/authorized_api/apps/public_v2.yaml"},
+    {"inputFile":"../platform/authorized_api/audit_log/public_v1.yaml"},
+    {"inputFile":"../platform/authorized_api/container_settings/src/settings.yaml"},
+    {"inputFile":"../platform/authorized_api/meta_sites/public_v1.yaml"},
+    {"inputFile":"../platform/authorized_api/modules/public_v1.yaml"},
+    {"inputFile":"../platform/authorized_api/tracker_settings/public_v2.yaml"},
+    {"inputFile":"../platform/authorized_api/user_groups/public_v1.yaml"},
+    {"inputFile":"../platform/authorized_api/users/public_v2.yaml"}
+  ],
+  "output": "./output.swagger.json"
+}
