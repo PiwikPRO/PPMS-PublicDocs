@@ -13,7 +13,9 @@
     {"inputFile":"../tag_manager/authorized_api/src/operations.yaml"},
     {"inputFile":"../tag_manager/authorized_api/src/tags.yaml"},
     {"inputFile":"../tag_manager/authorized_api/src/variables.yaml"},
-    {"inputFile":"../tag_manager/authorized_api/src/versions.yaml"}
+    {"inputFile":"../tag_manager/authorized_api/src/versions.yaml"},
+    {"inputFile":"../custom_reports/http_api/index.yaml"},
+    {"inputFile":"../custom_reports/object_management_api/index.yaml"}
   ],
   "output": "./output.swagger.json"
 }
