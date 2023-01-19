@@ -28,6 +28,8 @@ openapi_tag(){
 OpenApi
 https://github.com/cloud-annotations/docusaurus-openapi#readme
 
+Docusaurus + Stoplight Elements
+https://github.com/stoplightio/elements/discussions/1777
 ```
 npm install
 npx docusaurus start
