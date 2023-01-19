@@ -7,15 +7,15 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: "My Site",
-  tagline: "Dinosaurs are cool",
+  title: "Developer docs and guides",
+  tagline: "Piwik PRO Analytics Suite",
   url: "https://your-docusaurus-test-site.com",
   baseUrl: "/",
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
   favicon: "img/favicon.ico",
-  organizationName: "facebook", // Usually your GitHub org/user name.
-  projectName: "docusaurus", // Usually your repo name.
+  organizationName: "PiwikPRO", // Usually your GitHub org/user name.
+  projectName: "Piwik Pro Analytics Suite", // Usually your repo name.
 
   presets: [
     [
@@ -80,10 +80,10 @@ const config = {
     /** @type {import('docusaurus-preset-openapi').ThemeConfig} */
     ({
       navbar: {
-        title: "My Site",
+        title: "Developer docs and guides",
         logo: {
           alt: "My Site Logo",
-          src: "img/logo.svg",
+          src: "img/icon.svgz",
         },
         items: [
           {
