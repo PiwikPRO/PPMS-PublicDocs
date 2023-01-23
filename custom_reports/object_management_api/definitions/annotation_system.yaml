@@ -21,6 +21,6 @@ properties:
       - id
       - date
     allOf:
-      - $ref: '#/definitions/Annotation'
+      - $ref: '../index.yaml#/components/schemas/Annotation'
 
 

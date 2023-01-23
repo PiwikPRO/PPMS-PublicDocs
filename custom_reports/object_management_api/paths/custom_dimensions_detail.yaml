@@ -5,8 +5,8 @@ get:
   description: |
     Returns a definition of a specific custom dimension.
   parameters:
-    - $ref: '#/parameters/Id'
-    - $ref: '#/parameters/WebsiteId'
+    - $ref: '../index.yaml#/components/parameters/Id'
+    - $ref: '../index.yaml#/components/parameters/WebsiteId'
   responses:
     '200':
       description: OK
@@ -18,7 +18,7 @@ get:
               - data
             properties:
               data:
-                $ref: '#/definitions/CustomDimensionDetail'
+                $ref: '../index.yaml#/components/schemas/CustomDimensionDetail'
     '403':
       description: Forbidden
 put:
@@ -28,7 +28,7 @@ put:
   description: |
     Configure existing custom dimension.
   parameters:
-    - $ref: '#/parameters/Id'
+    - $ref: '../index.yaml#/components/parameters/Id'
   requestBody:
     content:
       application/vnd.api+json:
@@ -40,7 +40,7 @@ put:
               data:
                 type: object
                 allOf:
-                  - $ref: '#/definitions/CustomDimensionUpdate'
+                  - $ref: '../index.yaml#/components/schemas/CustomDimensionUpdate'
                 required:
                   - type
                   - attributes
@@ -63,7 +63,7 @@ put:
               - data
             properties:
               data:
-                $ref: '#/definitions/CustomDimensionDetail'
+                $ref: '../index.yaml#/components/schemas/CustomDimensionDetail'
     '400':
       description: Bad Request
     '403':
