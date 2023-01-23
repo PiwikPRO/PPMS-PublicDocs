@@ -8,16 +8,6 @@ info:
   version: auto
 servers:
   - url: https://your-instance-name.piwik.pro/
-schemas:
-  Meta:
-    type: object
-    required:
-      - "total"
-    properties:
-      total:
-        type: integer
-        description: Total number of results.
-        example: 1
 paths:
   /api/analytics/v1/manage/goals/:
     $ref: ./paths/goals.yaml
@@ -97,6 +87,15 @@ components:
       maximum: 100000
       description: Number of rows to return.
   schemas:
+    Meta:
+      type: object
+      required:
+        - "total"
+      properties:
+        total:
+          type: integer
+          description: Total number of results.
+          example: 1
     Goal:
       $ref: ./definitions/goal.yaml
     GoalDetails:
