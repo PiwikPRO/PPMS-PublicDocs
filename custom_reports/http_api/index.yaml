@@ -67,25 +67,7 @@ paths:
                         type: integer
                         description: Total number of results available for this query.
                     description: Additional results metadata for the query.
-                example:
-                  data:
-                    - - - EU
-                        - Europe
-                      - Blink
-                      - 529437
-                      - 128334
-                    - - - NA
-                        - North America
-                      - Blink
-                      - 199355
-                      - 47171
-                    - - - AS
-                        - Asia
-                      - Blink
-                      - 153385
-                      - 37308
-                  meta:
-                    count: 42
+                example: {"data": [[["EU", "Europe"], "Blink", 529437, 128334], [["NA", "North America"], "Blink", 199355, 47171], [["AS", "Asia"], "Blink", 153385, 37308]], "meta": {"count": 42}}
         400:
           description: Bad Request
           content:
@@ -209,22 +191,7 @@ paths:
                         type: integer
                         description: Total number of results available for this query.
                     description: Additional results metadata for the query.
-                example:
-                  data:
-                    - - "2132601"
-                      - 2ecf33167d400648
-                      - 2018-12-03T00:21:03
-                      - 375x667
-                      - - 1
-                        - Smartphone
-                  meta:
-                    columns:
-                      - session_id
-                      - visitor_id
-                      - timestamp
-                      - resolution
-                      - device_type
-                    count: 1999
+                example: {"data":[["2132601","2ecf33167d400648","2018-12-03T00:21:03","375x667",[1,"Smartphone"]]],"meta":{"columns":["session_id","visitor_id","timestamp","resolution","device_type"],"count":1999}}
         400:
           description: Bad Request
           content:
@@ -347,24 +314,7 @@ paths:
                         type: integer
                         description: Total number of results available for this query.
                     description: Additional results metadata for the query.
-                example:
-                  data:
-                    - - "2132601"
-                      - "8131637"
-                      - 2ecf33167d400648
-                      - 2018-12-03T00:21:03
-                      - 375x667
-                      - - 1
-                        - Smartphone
-                  meta:
-                    columns:
-                      - session_id
-                      - event_id
-                      - visitor_id
-                      - timestamp
-                      - resolution
-                      - device_type
-                    count: 3448
+                example: {"data":[["2132601","8131637","2ecf33167d400648","2018-12-03T00:21:03","375x667",[1,"Smartphone"]]],"meta":{"columns":["session_id","event_id","visitor_id","timestamp","resolution","device_type"],"count":3448}}
         400:
           description: Bad Request
           content:
@@ -457,10 +407,7 @@ components:
         columns:
           type: array
           description: Column definitions for the query.
-          example:
-            - column_id: device_type
-            - column_id: revenue
-              transformation_id: sum
+          example: [{"column_id":"device_type"},{"column_id":"revenue","transformation_id":"sum"}]
           items:
             required:
               - column_id
@@ -564,11 +511,7 @@ components:
                           match the type of the specified column. For enumerated
                           fields, you must use the ID value.
                     description: Definition of a the condition for this column.
-                example:
-                  column_id: event_title
-                  condition:
-                    operator: contains
-                    value: test
+                example: {"column_id":"event_title","condition":{"operator":"contains","value":"test"}}
           description: |
             Dimension filters for the query.  The top-level object must specify
             AND/OR clause, but any nested objects may either specify another AND/OR
@@ -632,11 +575,7 @@ components:
                         format: float
                         example: 42.5
                     description: Definition of a the condition for this column.
-                example:
-                  column_id: page_views
-                  condition:
-                    operator: eq
-                    value: 42
+                example: {"column_id":"page_views","condition":{"operator":"eq","value":42}}
           description: |
             Metric filters for the query. The top-level object must specify AND/OR
             clause, but any nested objects may either specify another AND/OR
@@ -656,11 +595,7 @@ components:
             Array of sorting directives. Each directive is a 2-element array with
             0-based colum index and direction). You can sort on more than one column.
             By default sorts descending by the first metric in query.
-          example:
-            - - 1
-              - desc
-            - - 2
-              - asc
+          example: [[1, "desc"], [2, "asc"]]
           items:
             type: array
             items:
@@ -852,11 +787,7 @@ components:
                           match the type of the specified column. For enumerated
                           fields, you must use the ID value.
                     description: Definition of a the condition for this column.
-                example:
-                  column_id: browser_name
-                  condition:
-                    operator: eq
-                    value: FF
+                example: {"column_id":"browser_name","condition":{"operator":"eq","value":"FF"}}
           description: |
             Dimension filters for the query. The top-level object must specify
             AND/OR clause, but any nested objects may either specify another AND/OR
