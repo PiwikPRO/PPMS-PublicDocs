@@ -14,7 +14,7 @@ post:
             - data
           properties:
             data:
-              $ref: '#/definitions/Goal'
+              $ref: '../index.yaml#/components/schemas/Goal'
   responses:
     '201':
       description: OK
@@ -26,7 +26,7 @@ post:
               - data
             properties:
               data:
-                $ref: '#/definitions/GoalDetails'
+                $ref: '../index.yaml#/components/schemas/GoalDetails'
     '400':
       description: Bad Request
     '403':
@@ -39,9 +39,9 @@ get:
     Returns a list all goals available for a website.
     Please note that each request must be authenticated.
   parameters:
-    - $ref: '#/parameters/WebsiteId'
-    - $ref: '#/parameters/Limit'
-    - $ref: '#/parameters/Offset'
+    - $ref: '../index.yaml#/components/parameters/WebsiteId'
+    - $ref: '../index.yaml#/components/parameters/Limit'
+    - $ref: '../index.yaml#/components/parameters/Offset'
   responses:
     '200':
       description: OK
@@ -56,11 +56,11 @@ get:
               meta:
                 type: object
                 allOf:
-                  - $ref: '#/schemas/Meta'
+                  - $ref: '../index.yaml#/schemas/Meta'
               data:
                 type: array
                 items:
-                  $ref: '#/definitions/GoalDetails'
+                  $ref: '../index.yaml#/components/schemas/GoalDetails'
     '400':
       description: Bad Request
     '403':

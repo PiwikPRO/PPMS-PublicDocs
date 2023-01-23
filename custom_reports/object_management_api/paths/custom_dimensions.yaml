@@ -13,7 +13,7 @@ post:
             - data
           properties:
             data:
-              $ref: '#/definitions/CustomDimensionCreate'
+              $ref: '../index.yaml#/components/schemas/CustomDimensionCreate'
     required: true
   responses:
     '201':
@@ -26,7 +26,7 @@ post:
               - data
             properties:
               data:
-                $ref: '#/definitions/CustomDimensionDetail'
+                $ref: '../index.yaml#/components/schemas/CustomDimensionDetail'
     '400':
       description: Bad Request
     '403':
@@ -38,9 +38,9 @@ get:
   description: |
     Returns a list all custom dimensions available for a website.
   parameters:
-    - $ref: '#/parameters/WebsiteId'
-    - $ref: '#/parameters/Limit'
-    - $ref: '#/parameters/Offset'
+    - $ref: '../index.yaml#/components/parameters/WebsiteId'
+    - $ref: '../index.yaml#/components/parameters/Limit'
+    - $ref: '../index.yaml#/components/parameters/Offset'
   responses:
     '200':
       description: OK
@@ -55,11 +55,11 @@ get:
               meta:
                 type: object
                 allOf:
-                  - $ref: '#/schemas/Meta'
+                  - $ref: '../index.yaml#/schemas/Meta'
               data:
                 type: array
                 items:
-                  $ref: '#/definitions/CustomDimensionDetail'
+                  $ref: '../index.yaml#/components/schemas/CustomDimensionDetail'
     '400':
       description: Bad Request
     '403':

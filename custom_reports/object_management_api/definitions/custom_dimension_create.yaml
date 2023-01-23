@@ -1,6 +1,6 @@
 type: object
 allOf:
-  - $ref: '#/definitions/CustomDimension'
+  - $ref: '../index.yaml#/components/schemas/CustomDimension'
   - type: object
     properties:
       attributes:

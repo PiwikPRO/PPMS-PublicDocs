@@ -1,6 +1,6 @@
 post:
   tags:
-  - Raw data
+    - Raw data
   summary:
     Fetch events
   description: |
@@ -13,12 +13,12 @@ post:
     an **Accept-Encoding: gzip** header to enable
     compression.
   parameters:
-  - name: body
-    in: body
-    type: object
-    required: true
-    schema:
-      $ref: '#/definitions/RawDataRequest'
+    - name: body
+      in: body
+      type: object
+      required: true
+      schema:
+        $ref: '../index.yaml#/components/schemas/RawDataRequest'
   responses:
     200:
       description: OK
@@ -42,7 +42,7 @@ post:
               count:
                 type: integer
                 description: Total number of results available for this query.
-        example: {"data":[["2132601","8131637","2ecf33167d400648","2018-12-03T00:21:03","375x667",[1,"Smartphone"]]],"meta":{"columns":["session_id","event_id","visitor_id","timestamp","resolution","device_type"],"count":3448}}
+        example: { "data": [ [ "2132601","8131637","2ecf33167d400648","2018-12-03T00:21:03","375x667",[ 1,"Smartphone" ] ] ],"meta": { "columns": [ "session_id","event_id","visitor_id","timestamp","resolution","device_type" ],"count": 3448 } }
     400:
       description: Bad Request
       schema:
@@ -66,7 +66,7 @@ post:
                     parameter:
                       type: string
                       description: Path to the parameter that caused the error.
-        example: {"errors": [{"status": "400", "detail": "Dimension \"example\" does not exist.", "source": {"parameter": "columns.column_id"}}]}
+        example: { "errors": [ { "status": "400", "detail": "Dimension \"example\" does not exist.", "source": { "parameter": "columns.column_id" } } ] }
     401:
       description: Unauthorized
       schema:
@@ -83,7 +83,7 @@ post:
                 detail:
                   type: string
                   description: Additional information about the error.
-        example: {"errors": [{"status": "401", "detail": "No valid credentials provided."}]}
+        example: { "errors": [ { "status": "401", "detail": "No valid credentials provided." } ] }
     403:
       description: Forbidden
       schema:
@@ -100,4 +100,4 @@ post:
                 detail:
                   type: string
                   description: Additional information about the error.
-        example: {"errors": [{"status": "403", "detail": "No valid license found."}]}
+        example: { "errors": [ { "status": "403", "detail": "No valid license found." } ] }
