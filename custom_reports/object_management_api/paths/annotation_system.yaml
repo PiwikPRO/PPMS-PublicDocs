@@ -24,7 +24,7 @@ get:
               meta:
                 type: object
                 allOf:
-                  - $ref: '../index.yaml#/schemas/Meta'
+                  - $ref: '../index.yaml#/components/schemas/Meta'
               data:
                 type: array
                 items:
