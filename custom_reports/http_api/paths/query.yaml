@@ -36,78 +36,86 @@ post:
   responses:
     200:
       description: OK
-      schema:
-        type: object
-        properties:
-          data:
-            type: array
-            description: Rows with results for the query.
-            items:
-              type: object
-              description:
-          meta:
+      content:
+        application/json:
+          schema:
             type: object
-            description: Additional results metadata for the query.
             properties:
-              count:
-                type: integer
-                description: Total number of results available for this query.
-        example: {"data": [[["EU", "Europe"], "Blink", 529437, 128334], [["NA", "North America"], "Blink", 199355, 47171], [["AS", "Asia"], "Blink", 153385, 37308]], "meta": {"count": 42}}
+              data:
+                type: array
+                description: Rows with results for the query.
+                items:
+                  type: object
+                  description:
+              meta:
+                type: object
+                description: Additional results metadata for the query.
+                properties:
+                  count:
+                    type: integer
+                    description: Total number of results available for this query.
+            example: {"data": [[["EU", "Europe"], "Blink", 529437, 128334], [["NA", "North America"], "Blink", 199355, 47171], [["AS", "Asia"], "Blink", 153385, 37308]], "meta": {"count": 42}}
     400:
       description: Bad Request
-      schema:
-        type: object
-        properties:
-          errors:
-            type: array
-            items:
-              type: object
-              properties:
-                status:
-                  type: string
-                  description: HTTP status code for the error.
-                detail:
-                  type: string
-                  description: Additional information about the error.
-                source:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              errors:
+                type: array
+                items:
                   type: object
-                  description: Source of the error (if available).
                   properties:
-                    parameter:
+                    status:
                       type: string
-                      description: Path to the parameter that caused the error.
-        example: { "errors": [ { "status": "400", "detail": "Dimension \"example\" does not exist.", "source": { "parameter": "columns.column_id" } } ] }
+                      description: HTTP status code for the error.
+                    detail:
+                      type: string
+                      description: Additional information about the error.
+                    source:
+                      type: object
+                      description: Source of the error (if available).
+                      properties:
+                        parameter:
+                          type: string
+                          description: Path to the parameter that caused the error.
+            example: { "errors": [ { "status": "400", "detail": "Dimension \"example\" does not exist.", "source": { "parameter": "columns.column_id" } } ] }
     401:
       description: Unauthorized
-      schema:
-        type: object
-        properties:
-          errors:
-            type: array
-            items:
-              type: object
-              properties:
-                status:
-                  type: string
-                  description: HTTP status code for the error.
-                detail:
-                  type: string
-                  description: Additional information about the error.
-        example: { "errors": [ { "status": "401", "detail": "No valid credentials provided." } ] }
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              errors:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    status:
+                      type: string
+                      description: HTTP status code for the error.
+                    detail:
+                      type: string
+                      description: Additional information about the error.
+            example: { "errors": [ { "status": "401", "detail": "No valid credentials provided." } ] }
     403:
       description: Forbidden
-      schema:
-        type: object
-        properties:
-          errors:
-            type: array
-            items:
-              type: object
-              properties:
-                status:
-                  type: string
-                  description: HTTP status code for the error.
-                detail:
-                  type: string
-                  description: Additional information about the error.
-        example: { "errors": [ { "status": "403", "detail": "No valid license found." } ] }
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              errors:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    status:
+                      type: string
+                      description: HTTP status code for the error.
+                    detail:
+                      type: string
+                      description: Additional information about the error.
+            example: { "errors": [ { "status": "403", "detail": "No valid license found." } ] }
