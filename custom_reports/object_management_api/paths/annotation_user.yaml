@@ -14,7 +14,7 @@ post:
             - data
           properties:
             data:
-              $ref: '#/definitions/AnnotationUser'
+              $ref: '../index.yaml#/components/schemas/AnnotationUser'
     required: true
   responses:
     '201':
@@ -27,7 +27,7 @@ post:
               - data
             properties:
               data:
-                $ref: '#/definitions/AnnotationUserDetails'
+                $ref: '../index.yaml#/components/schemas/AnnotationUserDetails'
     '400':
       description: Bad Request
     '403':
@@ -40,11 +40,11 @@ get:
     Returns a list all user annotations available for a website.
     Please note that each request must be authenticated.
   parameters:
-    - $ref: '#/parameters/WebsiteId'
-    - $ref: '#/parameters/DateFrom'
-    - $ref: '#/parameters/DateTo'
-    - $ref: '#/parameters/Limit'
-    - $ref: '#/parameters/Offset'
+    - $ref: '../index.yaml#/components/parameters/WebsiteId'
+    - $ref: '../index.yaml#/components/parameters/DateFrom'
+    - $ref: '../index.yaml#/components/parameters/DateTo'
+    - $ref: '../index.yaml#/components/parameters/Limit'
+    - $ref: '../index.yaml#/components/parameters/Offset'
   responses:
     '200':
       description: OK
@@ -59,11 +59,11 @@ get:
               meta:
                 type: object
                 allOf:
-                  - $ref: '#/schemas/Meta'
+                  - $ref: '../index.yaml#/components/schemas/Meta'
               data:
                 type: array
                 items:
-                  $ref: '#/definitions/AnnotationUserDetails'
+                  $ref: '../index.yaml#/components/schemas/AnnotationUserDetails'
     '400':
       description: Bad Request
     '403':

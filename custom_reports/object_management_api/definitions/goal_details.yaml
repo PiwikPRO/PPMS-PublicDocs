@@ -1,6 +1,6 @@
 type: object
 allOf:
-  - $ref: '#/definitions/Goal'
+  - $ref: '../index.yaml#/components/schemas/Goal'
 required:
   - type
   - attributes

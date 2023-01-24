@@ -6,8 +6,8 @@ get:
     Returns a definition of a specific user annotation.
     Please note that each request must be authenticated.
   parameters:    
-    - $ref: '#/parameters/Id'
-    - $ref: '#/parameters/WebsiteId'
+    - $ref: '../index.yaml#/components/parameters/Id'
+    - $ref: '../index.yaml#/components/parameters/WebsiteId'
   responses:
     '200':
       description: OK
@@ -19,7 +19,7 @@ get:
               - data
             properties:
               data:
-                $ref: '#/definitions/AnnotationUserDetails'
+                $ref: '../index.yaml#/components/schemas/AnnotationUserDetails'
     '403':
       description: Forbidden
 patch:
@@ -30,7 +30,7 @@ patch:
     Update an existing user annotation.
     Please note that each request must be authenticated.
   parameters:
-    - $ref: '#/parameters/Id'
+    - $ref: '../index.yaml#/components/parameters/Id'
   requestBody:
     content:
       application/vnd.api+json:
@@ -42,7 +42,7 @@ patch:
               data:
                 type: object
                 allOf:
-                  - $ref: '#/definitions/AnnotationUser'
+                  - $ref: '../index.yaml#/components/schemas/AnnotationUser'
                 required:
                   - type
                   - attributes
@@ -65,7 +65,7 @@ patch:
               - data
             properties:
               data:
-                $ref: '#/definitions/AnnotationUserDetails'
+                $ref: '../index.yaml#/components/schemas/AnnotationUserDetails'
     '400':
       description: Bad Request
     '403':
@@ -78,8 +78,8 @@ delete:
     Delete the specified user annotation.
     Please note that each request must be authenticated.
   parameters:
-    - $ref: '#/parameters/Id'
-    - $ref: '#/parameters/WebsiteId'
+    - $ref: '../index.yaml#/components/parameters/Id'
+    - $ref: '../index.yaml#/components/parameters/WebsiteId'
   responses:
     '204':
       description: No Content
