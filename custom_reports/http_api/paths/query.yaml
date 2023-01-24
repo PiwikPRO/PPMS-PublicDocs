@@ -27,13 +27,12 @@ post:
 
     Please note that all query results are cached for 10 minutes.
 
-  parameters:
-    - name: body
-      in: body
-      type: object
-      required: true
-      schema:
-        $ref: '../index.yaml#/components/schemas/QueryRequest'
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../index.yaml#/components/schemas/QueryRequest'
   responses:
     200:
       description: OK
@@ -53,7 +52,7 @@ post:
               count:
                 type: integer
                 description: Total number of results available for this query.
-        example: { "data": [ [ [ "EU", "Europe" ], "Blink", 529437, 128334 ], [ [ "NA", "North America" ], "Blink", 199355, 47171 ], [ [ "AS", "Asia" ], "Blink", 153385, 37308 ] ], "meta": { "count": 42 } }
+        example: {"data": [[["EU", "Europe"], "Blink", 529437, 128334], [["NA", "North America"], "Blink", 199355, 47171], [["AS", "Asia"], "Blink", 153385, 37308]], "meta": {"count": 42}}
     400:
       description: Bad Request
       schema:

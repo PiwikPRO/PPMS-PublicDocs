@@ -11,14 +11,14 @@ post:
 
     When requesting large amount of data, make sure to include
     an **Accept-Encoding: gzip** header to enable
-    compression.
-  parameters:
-    - name: body
-      in: body
-      type: object
-      required: true
-      schema:
-        $ref: '../index.yaml#/components/schemas/RawDataRequest'
+    compression.s
+
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../index.yaml#/components/schemas/RawDataRequest'
   responses:
     200:
       description: OK
