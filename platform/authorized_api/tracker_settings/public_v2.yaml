@@ -160,6 +160,9 @@ components:
           - excluded_user_agents
           - fingerprint_based_on_anonymized_ip
           - keep_url_fragment
+          - session_limit_exceeded_action
+          - session_max_duration_seconds
+          - session_max_event_count
           - site_search_category_params
           - site_search_query_params
           - strip_site_search_query_parameters
@@ -292,6 +295,12 @@ components:
                   $ref: '#/components/schemas/FingerprintBasedOnAnonymizedIp'
                 keep_url_fragment:
                   $ref: '#/components/schemas/KeepUrlFragment'
+                session_limit_exceeded_action:
+                  $ref: '#/components/schemas/SessionLimitExceededAction'
+                session_max_duration_seconds:
+                  $ref: '#/components/schemas/SessionMaxDurationSeconds'
+                session_max_event_count:
+                  $ref: '#/components/schemas/SessionMaxEventCount'
                 site_search_category_params:
                   $ref: '#/components/schemas/SiteSearchCategoryParams'
                 site_search_query_params:
@@ -360,6 +369,12 @@ components:
                   $ref: '#/components/schemas/FingerprintBasedOnAnonymizedIp'
                 keep_url_fragment:
                   $ref: '#/components/schemas/KeepUrlFragment'
+                session_limit_exceeded_action:
+                  $ref: '#/components/schemas/SessionLimitExceededAction'
+                session_max_duration_seconds:
+                  $ref: '#/components/schemas/SessionMaxDurationSeconds'
+                session_max_event_count:
+                  $ref: '#/components/schemas/SessionMaxEventCount'
                 site_search_category_params:
                   $ref: '#/components/schemas/SiteSearchCategoryParams'
                 site_search_query_params:
@@ -501,6 +516,41 @@ components:
       example:
         - s
         - search
+
+    SessionLimitExceededAction:
+      type: string
+      description: |
+        Defines how tracker will behave when user session exceeds its limits, either time or event count. Defined behaviours are `split_and_exclude` - session will be splitted (ended) and all further events that would fit into this session will be excluded, `just_split` - session will be splitted into new one with the event which exceeded its limit.
+        ```
+        Initial global value:
+          split_and_exclude
+        ```
+      enum: [split_and_exclude, just_split]
+      example: split_and_exclude
+
+    SessionMaxDurationSeconds:
+      type: integer
+      description: |
+        Limits the session in term of time. The session can last only for defined time period, after which it will be splitted into new session. Max period is 12h and it result from session detection mechanism in PSA.
+        ```
+        Initial global value:
+          43200
+        ```
+      example: 21600
+      minimum: 1
+      maximum: 43200
+
+    SessionMaxEventCount:
+      type: integer
+      description: |
+        Limits the session in term of evens count. Thes session can contain only this much events, after reaching higher count it will be splitted into new session. Max is 65535, which is unlikely to reach by a human.
+        ```
+        Initial global value:
+          5000
+        ```
+      example: 1000
+      minimum: 1
+      maximum: 65535
 
     SiteSearchCategoryParams:
       type: array
