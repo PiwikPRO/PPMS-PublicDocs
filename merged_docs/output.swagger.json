@@ -5710,10 +5710,43 @@
         "description": "Update an existing goal.\nPlease note that each request must be authenticated.\n",
         "parameters": [
           {
-            "$ref": "#/components/parameters/Id",
-            "required": true
+            "$ref": "#/components/parameters/Id"
           }
         ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/vnd.api+json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "data"
+                ],
+                "properties": {
+                  "data": {
+                    "type": "object",
+                    "allOf": [
+                      {
+                        "$ref": "#/components/schemas/Goal"
+                      },
+                      {
+                        "properties": {
+                          "id": {
+                            "type": "string",
+                            "description": "ID of a Goal.",
+                            "format": "uuid",
+                            "readOnly": false,
+                            "example": "677fe0d3-b4f7-43ed-852d-1a9e7b8e59fb"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "OK",
