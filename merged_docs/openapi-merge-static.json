@@ -1,0 +1,21 @@
+{
+  "inputs": [
+    {"inputFile":"../platform/authorized_api/access_control/public_v2.yaml"},
+    {"inputFile":"../platform/authorized_api/apps/public_v2.yaml"},
+    {"inputFile":"../platform/authorized_api/audit_log/public_v1.yaml"},
+    {"inputFile":"../platform/authorized_api/container_settings/src/settings.yaml"},
+    {"inputFile":"../platform/authorized_api/meta_sites/public_v1.yaml"},
+    {"inputFile":"../platform/authorized_api/modules/public_v1.yaml"},
+    {"inputFile":"../platform/authorized_api/tracker_settings/public_v2.yaml"},
+    {"inputFile":"../platform/authorized_api/user_groups/public_v1.yaml"},
+    {"inputFile":"../platform/authorized_api/users/public_v2.yaml"},
+    {"inputFile":"../tag_manager/authorized_api/src/changelog.yaml"},
+    {"inputFile":"../tag_manager/authorized_api/src/operations.yaml"},
+    {"inputFile":"../tag_manager/authorized_api/src/tags.yaml"},
+    {"inputFile":"../tag_manager/authorized_api/src/variables.yaml"},
+    {"inputFile":"../tag_manager/authorized_api/src/versions.yaml"},
+    {"inputFile":"../custom_reports/http_api/bundle.yaml"},
+    {"inputFile":"../custom_reports/object_management_api/bundle.yaml"}
+  ],
+  "output": "./output.swagger.json"
+}
