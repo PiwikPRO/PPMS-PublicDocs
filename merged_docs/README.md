@@ -1,5 +1,9 @@
 # Merge docs
 
+```
+sudo npm install -g swagger-cli openapi-merge-cli
+```
+
 Used library: https://www.npmjs.com/package/openapi-merge-cli
 
 ```bash 
@@ -21,6 +25,10 @@ openapi_tag(){
   echo $CONTENT > $1
 }
 
+```
+
+```
+cd merged_docs && python3 merge_docs.py
 ```
 
 ## Docusaurus
