@@ -1,6 +1,8 @@
 import json
 import os
 
+# Add module tag to each openapi doc
+
 docs = [
     "../platform/authorized_api/access_control/public_v2.yaml",
     "../platform/authorized_api/apps/public_v2.yaml",
@@ -39,5 +41,6 @@ for doc in docs:
 
 with open('openapi-merge.json', 'w') as f:
     json.dump(openapi_merge_config, f, indent=2)
+
 
 os.system("npx openapi-merge-cli")
