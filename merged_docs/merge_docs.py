@@ -44,3 +44,13 @@ with open('openapi-merge.json', 'w') as f:
 
 
 os.system("npx openapi-merge-cli")
+
+
+
+Switched to context "panda-express".
+❯ kubectl -n piwikpro-middleware auth can-i list deployment
+yes
+❯ kubectl use pp-core-gwc-piwikpro
+Switched to context "pp-core-gwc-piwikpro".
+❯ kubectl -n piwikpro-middleware auth can-i list deployment
+no
