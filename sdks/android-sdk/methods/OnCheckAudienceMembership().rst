@@ -60,7 +60,7 @@ Parameters
 | The callback to handle a request result. The call is asynchronous. It has two methods ``void onChecked(boolean isMember)`` and ``void onError(String errorData)``.
 
 | **isMember** (boolean, output)
-| Whether the user belongs to a specific audience or not. True: Belongs. False: Doesn't belong.
+| Whether the user belongs to a specific audience. True: Belongs. False: Doesn't belong.
 
 | **errorData** (output)
 | The error string. If an error occurs, only this method will be called.

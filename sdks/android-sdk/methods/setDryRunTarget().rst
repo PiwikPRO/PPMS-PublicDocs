@@ -28,7 +28,7 @@ Parameters
 ----------
 
 | **dryRunTarget** (Collection, required)
-| The data structure to which data is to be sent. Type: List<Packet>. Set it to null to disable the dry-run flag.
+| The data structure to which the data shoud be sent. Type: List<Packet>. Set it to null to disable the dry-run flag.
 
 Examples
 --------

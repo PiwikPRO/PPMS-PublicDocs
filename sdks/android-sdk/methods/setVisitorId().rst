@@ -28,7 +28,7 @@ Parameters
 ----------
 
 | **visitorID** (string, required)
-| The visitor ID set for a given user. Format: 16-character hexadecimal string. Example: 0123456789abcdef.
+| The visitor ID set for a specific user. Format: 16-character hexadecimal string. Example: 0123456789abcdef.
 
 Examples
 --------

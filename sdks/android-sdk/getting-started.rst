@@ -17,9 +17,9 @@ Before you install our library for Android, you need to set up Piwik PRO. Here's
 2. Go to **Menu** > **Administration**.
 3. Navigate to **Sites & apps**.
 4. Click **Add a site or app**.
-5. Type the app name and address, and click **Save**.
+5. Type the app name and address and click **Save**.
 6. Set the time zone and currency.
-7. Note the site/app ID. The ID is under the app name. Example: ``00000000-0000-0000-0000-000000000000``.
+7. Note the site/app ID. The ID is below the app name. Example: ``00000000-0000-0000-0000-000000000000``.
 8. Note your account address. Example: ``https://example.piwik.pro``.
 
 Install the library
@@ -108,7 +108,7 @@ To set up the Piwik PRO tracker, follow these steps:
     }
 
 
-Note: We recommend using just one tracker instance for your app. Otherwise, you can end up with over-counted metrics.
+Note: We recommend using just one tracker instance for your app. Otherwise, you may end up with over-counted metrics.
 
 2. Share the ``Tracker`` instance across your app. The ``Tracker`` is now thread-safe.
 

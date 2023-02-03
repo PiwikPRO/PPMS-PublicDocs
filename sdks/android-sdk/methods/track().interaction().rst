@@ -80,7 +80,7 @@ To track the interaction with a content block on your mobile app:
 Notes
 -----
 
-* To track content interaction, this option needs to be turned on: Menu > Tag Manager > Tags > Piwik PRO (tracking code) > Data collection > Interactions with popups and content (on). `Read more <https://help.piwik.pro/support/questions/set-up-content-tracking/>`_
+* To track interactions with content, this option needs to be turned on: Menu > Tag Manager > Tags > Piwik PRO (tracking code) > Data collection > Interactions with popups and content (on). `Read more <https://help.piwik.pro/support/questions/set-up-content-tracking/>`_
 * Tracked interactions will be visible in Analytics > Reports > Content performance.
 
 

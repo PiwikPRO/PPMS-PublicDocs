@@ -34,12 +34,12 @@ Parameters
 ----------
 
 | **path** (string, required)
-| The path set for your screen. Example: ``example/welcome``. The path is automatically translated into a URL and given the ``screen`` prefix (if tracker.setPrefixing(true) is set).
+| The path set for your screen. Example: ``example/welcome``. The path is automatically translated into a URL and given the ``screen`` prefix if tracker.setPrefixing(true) is set.
 
-| Note: Set the current instance of the Android ``Activity`` class instead of the path if you want to use the activity stack. It'll then automatically set the activity stack as the path and activity title as the title.
+| Note: Set the current instance of the Android ``Activity`` class instead of the path if you want to use the activity stack. It'll then automatically set the activity stack as the path and the activity title as the title.
 
 | **title** (string, optional)
-| A title set for your screen. Example: Welcome.
+| The title set for your screen. Example: Welcome.
 
 Examples
 --------
@@ -79,7 +79,7 @@ To send a screen view with the path ``example/welcome`` and the title ``Welcome`
             }
           }
 
-To send a screen view and automatically use the activity stack as the path and the activity name as the title (if our activity class is activityClass):
+To send a screen view and automatically use the activity stack as the path and the activity name as the title (if your activity class is activityClass):
 
 .. tabs::
 

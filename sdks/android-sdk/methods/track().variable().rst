@@ -8,7 +8,7 @@ track().variable() 🗑
     16.0.0 This method is no longer recommended. Audience Manager is no longer available in the latest product version.
 
 
-The **track().variable()** method sets a custom variable in the screen scope. The value can then be sent to Piwik PRO with a screen view or other event.
+The **track().variable()** method sets a custom variable in the screen scope. The value can be sent to Piwik PRO with a screen view or other event.
 
 Syntax
 ------

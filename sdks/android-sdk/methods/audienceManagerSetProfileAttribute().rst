@@ -7,7 +7,9 @@ audienceManagerSetProfileAttribute() 🗑
 .. deprecated::
     16.0.0 This method is no longer recommended. Audience Manager is no longer available in the latest product version.
 
-The **audienceManagerSetProfileAttribute()** method sets profile attributes in Audience Manager. The attributes can be sent to Audience Manager with a screen view or other event. Attributes are all kinds of information about a user that help you build audiences for marketing and advertising purposes.
+The **audienceManagerSetProfileAttribute()** method sets profile attributes in Audience Manager. The attributes can be sent to Audience Manager with a screen view or other event.
+
+Attributes are all kinds of information about a user that help you build audiences for marketing and advertising purposes.
 
 Syntax
 ------
