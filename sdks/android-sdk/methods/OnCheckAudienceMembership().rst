@@ -7,7 +7,7 @@ OnCheckAudienceMembership() 🗑
 .. deprecated::
     16.0.0 This method is no longer recommended. Audience Manager is no longer available in the latest product version.
 
-The **OnCheckAudienceMembership()** method checks if the user belongs to a given audience.
+The **OnCheckAudienceMembership()** method checks if a user belongs to a specific audience.
 
 Syntax
 ------
@@ -54,13 +54,13 @@ Parameters
 ----------
 
 | **audienceId** (string, required)
-| The audience ID that you want to check. You can find it in Audience Manager > Audiences.
+| The ID of the audience you want to check. You can find it in Audience Manager > Audiences.
 
 | **OnCheckAudienceMembership()** (required)
 | The callback to handle a request result. The call is asynchronous. It has two methods ``void onChecked(boolean isMember)`` and ``void onError(String errorData)``.
 
 | **isMember** (boolean, output)
-| Whether a user belongs to the given audience or not. True: Belongs. False: Doesn't belong.
+| Whether the user belongs to a specific audience or not. True: Belongs. False: Doesn't belong.
 
 | **errorData** (output)
 | The error string. If an error occurs, only this method will be called.
@@ -69,7 +69,7 @@ Parameters
 Examples
 --------
 
-To check if the user belongs to the audience:
+To check if a user belongs to an audience:
 
 .. tabs::
 

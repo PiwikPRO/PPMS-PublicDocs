@@ -4,7 +4,7 @@
 track().outlink()
 =================
 
-The **track().outlink()** method records clicks on links to external websites or apps (different domain).
+The **track().outlink()** method records clicks on links to external websites or apps (different domains).
 
 Syntax
 ------

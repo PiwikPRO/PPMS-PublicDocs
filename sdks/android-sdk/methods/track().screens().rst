@@ -4,7 +4,7 @@
 track().screens()
 =================
 
-The **track().screens()** method automatically records screen views on your mobile app. It automatically uses the activity stack as a path and activity name as a title.
+The **track().screens()** method automatically records screen views on your mobile app. It automatically uses the activity stack as the path and the activity name as the title.
 
 Syntax
 ------

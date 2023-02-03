@@ -4,7 +4,7 @@
 setPrefixing()
 ==============
 
-The **setPrefixing()** method turns on or off automatic prefixing. If turned on, URLs will get prefixes automatically when some methods are used. Example: In the track().screen() method the ``screen`` prefix will be added to the URL.
+The **setPrefixing()** method turns on or off automatic prefixing. If turned on, URLs will get prefixes automatically when certain methods are used. Example: The track().screen() method will add the ``screen`` prefix to the URL.
 
 By default, setPrefixing(true) is set. This means that prefixes are added automatically.
 
@@ -30,7 +30,7 @@ Parameters
 ----------
 
 | **isAutomatic** (boolean, required)
-| Whether URLs get prefixes automatically or not. True: prefixes are added automatically. False: prefixes are not added automatically.
+| Whether URLs get prefixes automatically. True: prefixes are added automatically. False: prefixes are not added automatically.
 
 Examples
 --------

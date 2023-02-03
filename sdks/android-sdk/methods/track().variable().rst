@@ -8,7 +8,7 @@ track().variable() 🗑
     16.0.0 This method is no longer recommended. Audience Manager is no longer available in the latest product version.
 
 
-The **track().variable()** method sets a custom variable in the screen scope. The value can then be sent to Piwik PRO with a screen view or any other event.
+The **track().variable()** method sets a custom variable in the screen scope. The value can then be sent to Piwik PRO with a screen view or other event.
 
 Syntax
 ------
@@ -34,15 +34,15 @@ Parameters
 ----------
 
 | **index** (number, required)
-| Index where the variable is stored.
+| The index where the variable is stored.
 
-| Note: If setIncludeDefaultCustomVars(true) is set, you can only use index greater than 2 because that method automatically tracks some items under the index 1-2. The setIncludeDefaultCustomVars(true) method is set by default.
+| Note: If setIncludeDefaultCustomVars(true) is set, you can only use an index greater than 2 because this method automatically tracks some items under the index 1-2. The setIncludeDefaultCustomVars(true) method is set by default.
 
 | **name** (string, required)
-| Name of the variable. Valid format: UTF-8.
+| The name of the variable. Valid format: UTF-8.
 
 | **value** (string, optional)
-| Value of the variable. Valid format: UTF-8. Limited to 200 characters.
+| The value of the variable. Valid format: UTF-8. Limited to 200 characters.
 
 Examples
 --------
@@ -105,7 +105,7 @@ Another way to set a custom variable and send it with a screen view:
 Notes
 -----
 
-* The screen scope relates to events like a screen view or downloading a file and holds captured variable for each event. The value is removed after an event is called.
+* The screen scope refers to events like a screen view or file download and holds a captured variable for each event. The value is removed after an event is called.
 
 Related methods
 ---------------

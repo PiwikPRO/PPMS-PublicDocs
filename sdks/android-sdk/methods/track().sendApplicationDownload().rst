@@ -4,7 +4,7 @@
 track().sendApplicationDownload()
 =================================
 
-The **track().sendApplicationDownload()** method records app installs. The event is sent during the first app launch, once per install. If a user installs your app but doesn't run it, the event won't be sent.
+The **track().sendApplicationDownload()** method records app installations. The event is sent the first time the app is launched, once per installation. If a user installs your app but doesn't run it, the event is not sent.
 
 Syntax
 ------
@@ -31,7 +31,7 @@ Syntax
 Example
 -------
 
-To track your app install:
+To track the installation of your app:
 
 .. tabs::
 

@@ -40,7 +40,7 @@ Parameters
 Examples
 --------
 
-To track a like on Facebook on your app:
+To track a Facebook like on your app:
 
 .. tabs::
 

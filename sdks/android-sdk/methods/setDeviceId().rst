@@ -28,7 +28,7 @@ Parameters
 ----------
 
 | **deviceID** (string, optional)
-| A custom device ID. If the value is not set, the automatic value is generated.
+| A custom device ID. If the value is not set, an automatic value is generated.
 
 Examples
 --------

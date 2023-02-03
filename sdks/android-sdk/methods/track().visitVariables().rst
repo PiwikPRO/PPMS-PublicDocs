@@ -7,7 +7,7 @@ track().visitVariables() 🗑
 .. deprecated::
     16.0.0 This method is no longer recommended. Audience Manager is no longer available in the latest product version.
 
-The **track().visitVariables()** method sets a custom variable in the visit (session) scope. The value can then be sent to Piwik PRO with a screen view or any other event.
+The **track().visitVariables()** method sets a custom variable in the visit (session) scope. The value can be sent to Piwik PRO with a screen view or other event.
 
 Syntax
 ------
@@ -33,15 +33,15 @@ Parameters
 ----------
 
 | **index** (number, required)
-| Index where the variable is stored.
+| The index where the variable is stored.
 
-| Note: If setIncludeDefaultCustomVars(true) is set, you can't use the index 4-5 because that method automatically tracks some items under those indexes. The setIncludeDefaultCustomVars(true) method is set by default.
+| Note: If setIncludeDefaultCustomVars(true) is set, you can't use the index 4-5 because this method automatically tracks some items under these indexes. The setIncludeDefaultCustomVars(true) method is set by default.
 
 | **name** (string, required)
-| Name of the variable. Valid format: UTF-8. Limited to 200 characters.
+| The name of the variable. Valid format: UTF-8. Limited to 200 characters.
 
 | **value** (string, optional)
-| Value of the variable. Valid format: UTF-8. Limited to 200 characters.
+| The value of the variable. Valid format: UTF-8. Limited to 200 characters.
 
 Examples
 --------
@@ -70,7 +70,7 @@ To set a custom variable in the visit (session) scope and send it with a screen 
 
           TrackHelper.track()
             .visitVariables(1, "age", "25")
-            
+
           TrackHelper.track()
             .screen("example/welcome")
             .title("Welcome")
@@ -79,7 +79,7 @@ To set a custom variable in the visit (session) scope and send it with a screen 
 Notes
 -----
 
-* The visit (session) scope relates to the whole visit and holds captured custom dimension for the whole session.
+* The visit (session) scope refers to the entire session and holds the captured custom dimension for the entire session.
 
 Related methods
 ---------------

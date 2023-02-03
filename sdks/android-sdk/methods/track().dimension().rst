@@ -4,7 +4,7 @@
 track().dimension()
 ===================
 
-The **track().dimension()** method sets a value for a custom dimension. The value can then be sent to Piwik PRO with a screen view or any other event.
+The **track().dimension()** method sets a value for the custom dimension. The value can be sent to Piwik PRO with a screen view or other event.
 
 Syntax
 ------
@@ -30,15 +30,15 @@ Parameters
 ----------
 
 | **customDimensionId** (number, required)
-| An ID of the custom dimension.
+| The ID of the custom dimension.
 
 | **customDimensionValue** (string, required)
-| A value of the custom dimension.
+| The value of the custom dimension.
 
 Examples
 --------
 
-To set a custom dimension with the ID ``1`` and value ``5 stars`` and send it with a screen view:
+To set a custom dimension with the ID ``1`` and the value ``5 stars`` and send it with a screen view:
 
 .. tabs::
 
@@ -64,7 +64,7 @@ To set a custom dimension with the ID ``1`` and value ``5 stars`` and send it wi
             .title("Product rating")
             .with(tracker)
 
-To set a custom dimension with the ID ``2`` and value ``paid subscriber`` and send it with an event:
+To set a custom dimension with the ID ``2`` and the value ``paid subscriber`` and send it with an event:
 
 .. tabs::
 
@@ -95,4 +95,4 @@ To set a custom dimension with the ID ``2`` and value ``paid subscriber`` and se
 Notes
 -----
 
-* After sending the set dimension with the event, the dimension is deleted. It won't be sent with the next event. So you need to set it each time you want to send it.
+* After a dimension is sent with an event, it is deleted and will not be sent with the next event. So, you have to set it each time you want to send it.

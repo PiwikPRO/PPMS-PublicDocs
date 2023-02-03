@@ -7,7 +7,7 @@ audienceManagerGetProfileAttributes() 🗑
 .. deprecated::
     16.0.0 This method is no longer recommended. Audience Manager is no longer available in the latest product version.
 
-The **audienceManagerGetProfileAttributes()** method returns profile attributes. You can get only the attributes with `granted access <https://help.piwik.pro/support/audiences/api-access-attribute/>`_.
+The **audienceManagerGetProfileAttributes()** method returns profile attributes. You can only access attributes that heve been `granted access <https://help.piwik.pro/support/audiences/api-access-attribute/>`_.
 
 Syntax
 ------
@@ -105,7 +105,7 @@ To get profile attributes:
 Notes
 -----
 
-* You can get only the attributes with `granted access <https://help.piwik.pro/support/audiences/api-access-attribute/>`_.
+* You can only access attributes that have been `granted access <https://help.piwik.pro/support/audiences/api-access-attribute/>`_.
 
 
 Related methods

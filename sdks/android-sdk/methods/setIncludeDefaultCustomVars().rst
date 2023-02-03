@@ -4,7 +4,7 @@
 setIncludeDefaultCustomVars()
 =============================
 
-The **setIncludeDefaultCustomVars()** method turns on or off fetching the platform version, OS version and app version from the tracker instance. It is turned on by default.
+The **setIncludeDefaultCustomVars()** method turns on or off fetching platform, OS and app version from the tracker instance. It is turned on by default.
 
 Syntax
 ------
@@ -28,12 +28,12 @@ Parameters
 ----------
 
 | **isFetched** (boolean, required)
-| Whether the platform version, OS version and app version is fetched from the tracker instance or not. True: is fetched. False: is not fetched.
+| Whether platform, OS and app version are fetched from the tracker instance. True: is fetched. False: is not fetched.
 
 Examples
 --------
 
-To turn off automatic fetching of the platform version, OS version and app version from the tracker instance:
+To turn off automatic fetching of platform, OS and app version from the tracker instance:
 
 .. tabs::
 
@@ -53,7 +53,7 @@ To turn off automatic fetching of the platform version, OS version and app versi
 Notes
 -----
 
-* If setIncludeDefaultCustomVars(true) is set, indexes 1-3 are used to track the platform version, OS version and app version as custom variables.
+* If setIncludeDefaultCustomVars(true) is set, indexes 1-3 are used to track the platform, OS and app version as custom variables.
 
 Related methods
 ---------------

@@ -3,9 +3,9 @@
 =====
 Getting started
 =====
-Our SDK for Android lets you collect user data from mobile apps built for Android. It contains over 30 built-in methods that let you easily track screen views, goals, ecommerce orders, and more.
+Our SDK for Android lets you collect user data from Android mobile apps. It contains over 30 methods that make it easy to track screen views, goals, ecommerce orders and more.
 
-To get started you need to set up your account in Piwik PRO, install our library, and set up the tracker.
+To get started, you need to set up your account in Piwik PRO, install our library and set up the tracker.
 
 
 Set up Piwik PRO
@@ -51,7 +51,7 @@ Note: Replace ``VERSION`` with the latest release name. Example: ``1.1.8``. (`Wh
 Set up the tracker
 ------------------
 
-To set up the Piwik PRO tracker, you can use two methods: (1) create and manege the tracker in the Application class or (2) manage the tracker on your own.
+To set up the Piwik PRO tracker, you can use two methods: (1) create and manage the tracker in the Application class or (2) manage the tracker on your own.
 
 Method #1
 +++++++++
@@ -60,7 +60,7 @@ We recommend using this method for most cases. It forces the implementation of j
 
 To set up the Piwik PRO tracker, follow these steps:
 
-1. Extend ``PiwikApplication`` class with your Android Application class. Use your account address (Example: ``https://example.piwik.pro/``) and the site/app ID (`Where to find it? <https://help.piwik.pro/support/questions/find-website-id/>`_)
+1. Extend the ``PiwikApplication`` class with your Android Application class. Use your account address (Example: ``https://example.piwik.pro/``) and the site/app ID (`Where to find it? <https://help.piwik.pro/support/questions/find-website-id/>`_)
 
 .. code-block:: javascript
 
@@ -88,7 +88,7 @@ Tip: See `our demo app <https://github.com/PiwikPRO/piwik-pro-sdk-demo-android>`
     Tracker tracker = ((PiwikApplication) getApplication()).getTracker();
     TrackHelper.track().screen("Main screen").with(tracker);
 
-Note: The ``TrackerHelper`` class has methods for all common actions, which can be chained to facilitate the correct order and use. Combine it with the IDE autocompletion, and using the SDK will be more convenient.
+Note: The ``TrackerHelper`` class has methods for all common actions, which can be chained to facilitate the correct order and use. Combine it with the IDE autocompletion and using the SDK will be even easier.
 
 Method #2
 +++++++++
@@ -125,12 +125,12 @@ Note: We recommend using just one tracker instance for your app. Otherwise, you 
     Tracker tracker = ((YourApplication) getApplication()).getTracker();
     TrackHelper.track().screen("Main screen").with(tracker);
 
-Note: The ``TrackerHelper`` class has methods for all common actions, which can be chained to facilitate the correct order and use. Combine it with the IDE autocompletion, and using the SDK will be more convenient.
+Note: The ``TrackerHelper`` class has methods for all common actions, which can be chained to facilitate the correct order and use. Combine it with the IDE autocompletion and using the SDK will be even easier.
 
 Kotlin
 ------
 
-Our SDK is written in Java, but it can also be used in Kotlin. If you refer to any of our SDK methods in Kotlin, it'll be automatically shown as a Kotlin syntax.
+Our SDK is written in Java but can be used with Kotlin. If you refer to any of our methods in Kotlin, they will automatically appear as Kotlin syntax.
 
 Here's an example of the **track().screen()** method in both languages:
 

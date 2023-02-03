@@ -4,7 +4,7 @@
 getDeviceId()
 =============
 
-The **getDeviceId()** method returns a device ID set for a given user.
+The **getDeviceId()** method returns the device ID set for a specific user.
 
 Syntax
 ------

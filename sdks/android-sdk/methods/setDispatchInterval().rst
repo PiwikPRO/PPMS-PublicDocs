@@ -4,7 +4,7 @@
 setDispatchInterval()
 =====================
 
-The **setDispatchInterval()** method sets a custom dispatch interval time. Tracked events are stored temporarily in the queue and are dispatched in batches. The default dispatch interval time is 30 seconds (3000 milliseconds) – batches are sent every 30 seconds.
+The **setDispatchInterval()** method sets a custom dispatch interval time. Tracked events are temporarily stored in a queue and dispatched in batches. The default dispatch interval time is 30 seconds (3000 milliseconds) – batches are sent every 30 seconds.
 
 Syntax
 ------
@@ -28,7 +28,7 @@ Parameters
 ----------
 
 | **milliseconds** (number, required)
-| The interval time (in milliseconds) for dispatching tracked events. If 0 milliseconds, events will be sent right away. If -1 milliseconds, events won't be sent automatically, and you'll be able to send them manually.
+| The interval time (in milliseconds) for dispatching tracked events. If 0 milliseconds, events will be sent right away. If -1 milliseconds, events won't be sent automatically and can be send manually.
 
 Examples
 --------
@@ -50,7 +50,7 @@ To set the dispatch interval time to 60 seconds (60*1000 milliseconds):
 
           tracker.dispatchInterval = 60 * 1000
 
-To block sending events automatically and send it manually:
+To block sending events automatically and send them manually:
 
 .. tabs::
 
@@ -89,4 +89,4 @@ To block sending events automatically and send it manually:
 Notes
 -----
 
-* If there's more than one event in the queue, data is sent in bulk using the POST method with the JSON payload.
+* If more than one event is queued, the data is sent in bulk using the POST method with a JSON payload.

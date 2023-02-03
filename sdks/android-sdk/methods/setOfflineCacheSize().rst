@@ -4,7 +4,7 @@
 setOfflineCacheSize()
 =====================
 
-The **setOfflineCacheSize()** method sets the size limit for storing events in the local storage. The default value is 4 Mb (4*1024*1024 bytes).
+The **setOfflineCacheSize()** method sets the size limit for storing events in local storage. The default value is 4 Mb (4*1024*1024 bytes).
 
 Syntax
 ------
@@ -28,7 +28,7 @@ Parameters
 ----------
 
 | **bytes** (number, required)
-| The size limit (in bytes) for storing events in the local storage. Default value: 4 Mb (4*1024*1024 bytes). If 0 is set, the size is unlimited.
+| The size limit (in bytes) for storing events in local storage. Default value: 4 Mb (4*1024*1024 bytes). If 0 is set, the size is unlimited.
 
 Examples
 --------

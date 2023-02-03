@@ -4,7 +4,7 @@
 track().impression()
 ====================
 
-The **track().impression()** method tracks impressions of a content block and passes data about the content name, piece and target.
+The **track().impression()** method tracks the impressions of a content block and passes data about the content name, piece and target.
 
 Syntax
 ------
@@ -36,18 +36,18 @@ Parameters
 ----------
 
 | **contentName** (string, required)
-| The name of a content block.
+| The name of the tracked content block.
 
 | **contentPiece** (string, required)
-| The piece of the tracked content block, for example, a creative, banner, or video.
+| The piece of the tracked content block. Example: a creative, banner or video.
 
 | **contentTarget** (string, required)
-| he target of the tracked content block, for example, a link in the content block.
+| The target of the tracked content block. Example: a link in the content block.
 
 Examples
 --------
 
-To track an impression of a content block on your mobile app:
+To track the impression of a content block on your mobile app:
 
 .. tabs::
 

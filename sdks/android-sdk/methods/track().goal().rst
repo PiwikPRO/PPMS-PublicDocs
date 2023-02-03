@@ -4,7 +4,7 @@
 track().goal()
 ==============
 
-The **track().goal()** method tracks completed goals. You can set any event as a goal on your app. For example, when visitors sign up, buy your product, download a white paper or do something that you find essential for your business.
+The **track().goal()** method tracks completed goals in your app. You can set any event as a goal, like when visitors sign up, buy your product, download a whitepaper or do anything else you think is important for your business.
 
 Syntax
 ------
@@ -34,7 +34,7 @@ Parameters
 ----------
 
 | **goalID** (string , required)
-| The ID of the goal to be tracked. (To find a goal ID go to Menu > Analytics > Goals.)
+| The ID of the goal you want to track. (To find a goal ID go to Menu > Analytics > Goals.)
 
 | **conversionValue** (number, optional)
 | The value of the goal. It's used to calculate the goal revenue.
@@ -42,7 +42,7 @@ Parameters
 Examples
 --------
 
-To send a goal with the ID ``27ecc5e3-8ae0-40c3-964b-5bd8ee3da059`` and value ``20``:
+To send a goal with the ID ``27ecc5e3-8ae0-40c3-964b-5bd8ee3da059`` and the value ``20``:
 
 .. tabs::
 
@@ -72,4 +72,4 @@ Notes
 -----
 
 * After you set up a goal in Analytics > Goals > Add a goal, the goal is tracked automatically. The track().goal() method can be used in addition to the automatic method.
-* For more on goals, see our `help center article <https://help.piwik.pro/support/reports/goals/>`_.
+* For more on goals, see our `help article <https://help.piwik.pro/support/reports/goals/>`_.

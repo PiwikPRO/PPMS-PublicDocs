@@ -4,7 +4,7 @@
 track().event()
 ===============
 
-The **track().event()** method records actions users perform on your mobile app – like button presses, gestures or voice commands.
+The **track().event()** method records actions performed by users on your mobile app – like button presses, gestures or voice commands.
 
 Syntax
 ------
@@ -38,24 +38,24 @@ Parameters
 ----------
 
 | **category** (string, required)
-| The category of the event you're tracking. You can define event categories based on actions (clicks, gestures, voice commands, and the like) or features (play, pause, fast forward, and the like).
+| The category of the tracked event. You can define event categories based on actions (clicks, gestures, voice commands) or features (play, pause, fast forward).
 
 | **action** (string, required)
-| The action of the event you're tracking. Example: A category can be user clicks, an action can be a button click.
+| The action of the tracked event. Example: A category could be user clicks, an action could be a button click.
 
 | **name** (string, optional)
-| The name of the event you're tracking. For example, if you have multiple button controls on a screen, you can use the name to record a specific view control identifier that was clicked.
+| The name of the tracked event. For example, if you have multiple button controls on the screen, you can use the name to record the specific ID of the button that was clicked.
 
 | **value** (float, optional)
-| The value you want to assign to the event you're tracking. For example, if you're tracking “Buy” button presses, you can record the number of purchased items or the total cost.
+| The value you want to assign to the tracked event. For example, if you're tracking “Buy” button presses, you can record the number of purchased items or the total cost.
 
 | **path** (string, optional)
-| A URL path set for this event.
+| The URL path set for this event.
 
 Examples
 --------
 
-To send a custom event when a user clicks on a signup button on ``/main/signup`` and assign ``100`` value to it:
+To send a custom event when a user clicks a sign-up button on ``/main/sign-up'' and assign the value ``100'' to the event:
 
 .. tabs::
 

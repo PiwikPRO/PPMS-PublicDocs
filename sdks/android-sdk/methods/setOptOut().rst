@@ -4,7 +4,7 @@
 setOptOut()
 ===========
 
-The **setOptOut()** method sets the opt-out flag for the whole app. When the opt-out flag is set, no data is collected.
+The **setOptOut()** method sets the opt-out flag for the entire app. Once the opt-out flag is set, no data is collected.
 
 By default, setOptOut(false) is set.
 
@@ -31,12 +31,12 @@ Parameters
 ----------
 
 | **isOptOut** (boolean, required)
-| Whether or not. True: is opted out. False: is opted in.
+| Whether the opt-out flag is set. True: is set. False: is not set.
 
 Examples
 --------
 
-To set the opt-out flag and don't collect any data:
+To set the opt-out flag and not collect any data:
 
 .. tabs::
 

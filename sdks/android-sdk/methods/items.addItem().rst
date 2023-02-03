@@ -140,8 +140,8 @@ To track a confirmed order:
 Notes
 -----
 
-* The cart with added items is not stored in the browser storage. Make sure that you add all items again after the page reloads.
-* If a product with the same SKU is already in the cart, it'll be removed and replaced with the one added with the items.addItem() method.
+* The cart with added items is not stored in local storage. Make sure to add all items again after the page reloads.
+* If a product with the same SKU is already in the cart, it'll be removed and replaced with the product added with the items.addItem() method.
 * This method doesn't send any data to Piwik PRO. It just creates a cart. You can use the track().order() method to send cart data to Piwik PRO.
 
 Related methods

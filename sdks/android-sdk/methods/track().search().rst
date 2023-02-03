@@ -36,10 +36,10 @@ Parameters
 ----------
 
 | **keyword** (string, required)
-| A keyword the user entered into the search box.
+| The keyword the user typed into the search box.
 
 | **category** (string | array<string>, optional)
-| A category selected in the search engine.
+| The category selected in the search engine.
 
 | **searchCount** (number, optional)
 | The number of search results.

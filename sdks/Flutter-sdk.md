@@ -175,7 +175,7 @@ await FlutterPiwikPro.sharedInstance.trackDownload('http://your.server.com/bonus
 
 ### Tracking Application Installs
 
-You can also track installations of your application. This event is sent to the server only once per application version (additional events won't be sent).
+You can also track installations of your application. This event is sent to the server only once per apps version (additional events won't be sent).
 
 You can track app installs using the `trackAppInstall` method:
 

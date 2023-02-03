@@ -4,7 +4,7 @@
 setDryRunTarget()
 =================
 
-The **setDryRunTarget()** method sets a dry-run flag and lets you test and debug tracking. The dry-run flag prevents sending data to Piwik PRO and prints it in the console instead.
+The **setDryRunTarget()** method sets a dry-run flag and lets you test and debug tracking. The dry-run flag prevents data from being sent to Piwik PRO and instead prints it to the console.
 
 Syntax
 ------
@@ -28,12 +28,12 @@ Parameters
 ----------
 
 | **dryRunTarget** (Collection, required)
-| The data structure where the data should be passed into. Type: List<Packet>. Set it to null to disable a dry-run flag.
+| The data structure to which data is to be sent. Type: List<Packet>. Set it to null to disable the dry-run flag.
 
 Examples
 --------
 
-To set a dry-run flag:
+To set the dry-run flag:
 
 .. tabs::
 

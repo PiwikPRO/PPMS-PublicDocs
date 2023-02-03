@@ -7,7 +7,7 @@ audienceManagerSetProfileAttribute() 🗑
 .. deprecated::
     16.0.0 This method is no longer recommended. Audience Manager is no longer available in the latest product version.
 
-The **audienceManagerSetProfileAttribute()** method sets profile attributes for Audience Manager. The attributes can then be sent to Audience Manager with a screen view or any other event. Attributes are all kind of information about the user. They help you build audiences.
+The **audienceManagerSetProfileAttribute()** method sets profile attributes in Audience Manager. The attributes can be sent to Audience Manager with a screen view or other event. Attributes are all kinds of information about a user that help you build audiences for marketing and advertising purposes.
 
 Syntax
 ------
@@ -72,7 +72,7 @@ To set the attribute ``plan type`` with the value ``premium`` and send it with `
 Notes
 -----
 
-* Each event always sends the following attributes: Site or app ID, Visitor ID, and Device ID.
+* Each event always sends the following attributes: Site or app ID, Visitor ID and Device ID.
 * If setAnonymizationState(false) is set and User ID and Email are set, each event will also send User ID and Email.
 * You can see all added attributes in Audience Manager > Profile.
 

@@ -4,7 +4,7 @@
 setSessionTimeout()
 ===================
 
-The **setSessionTimeout()** method sets the expiration time for the session. The default value is 30 minutes.
+The **setSessionTimeout()** method sets the the session timeout. The default value is 30 minutes.
 
 Syntax
 ------

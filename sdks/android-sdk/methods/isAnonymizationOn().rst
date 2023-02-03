@@ -4,7 +4,7 @@
 isAnonymizationOn()
 ===================
 
-The **isAnonymizationOn()** method checks if a visitor is marked as anonymous or non-anonymous.
+The **isAnonymizationOn()** method checks whether a user is marked as anonymous or non-anonymous.
 
 Syntax
 ------
@@ -34,7 +34,7 @@ Returns
 Examples
 --------
 
-To check if data anonymization is turned on or off for a given visitor:
+To check whether a specific user is anonymous or non-anonymous:
 
 .. tabs::
 

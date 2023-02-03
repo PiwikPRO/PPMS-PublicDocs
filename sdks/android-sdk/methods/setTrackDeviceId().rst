@@ -4,7 +4,7 @@
 setTrackDeviceId()
 ==================
 
-The **setTrackDeviceId()** method turns on or off fetching the device ID from the tracker instance. The device ID is the `advertising ID (AAID) assigned by Google <https://support.google.com/googleplay/android-developer/answer/6048248?hl=en>`_.
+The **setTrackDeviceId()** method turns on or off the fetching of the device ID from the tracker instance. The device ID is the `advertising ID (AAID) assigned by Google <https://support.google.com/googleplay/android-developer/answer/6048248?hl=en>`_.
 
 By default, setTrackDeviceId(true) is set.
 
@@ -31,12 +31,12 @@ Parameters
 ----------
 
 | **isFetched** (boolean, required)
-| Weather a user ID is fetched automatically from the tracker instance. A user ID is the advertising ID (AAID) assigned by Google.  True: is fetched. False: is not fetched.
+| Whether the user ID is fetched automatically from the tracker instance. The user ID is the advertising ID (AAID) assigned by Google.  True: is fetched. False: is not fetched.
 
 Examples
 --------
 
-To turn off fetching a device ID from the tracker instance:
+To turn off fetching the device ID from the tracker instance:
 
 .. tabs::
 
@@ -57,7 +57,7 @@ Notes
 -----
 
 * The device ID won't be sent if setAnonymizationState(true) is set.
-* If your app uses the device ID (AAID) and you plan to send your app to the Google Play, you need to ask each user for permission to share their data.
+* If your app uses the device ID (AAID) and you plan to submit your app to Google Play, you will need to ask each user for permission to share their data.
 
 Related methods
 ---------------

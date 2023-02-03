@@ -4,7 +4,7 @@
 track().exception()
 ===================
 
-The **track().exception()** method records caught exceptions (errors) on your app. For each exception, you need to define handling code.
+The **track().exception()** method records caught exceptions (errors) in your app. For each exception, you need to define handling code.
 
 Syntax
 ------
@@ -34,7 +34,7 @@ Parameters
 ----------
 
 | **ex** (Throwable, optional)
-| The caught exception instance. The exception instance is automatically translated to a URL, and the following information is added to it: package name, activity path, method name and line number where the crash occurred.
+| The caught exception instance. The exception instance is automatically translated into a URL and the following information is added to it: package name, activity path, method name and line number where the crash occurred.
 
 | **description** (string, optional)
 | Additional information about the issue.

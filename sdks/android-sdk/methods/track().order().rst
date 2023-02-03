@@ -44,19 +44,19 @@ Parameters
 | The unique order ID.
 
 | **orderGrandTotal** (number, required)
-| Total payment for an order. Including tax, shipping and discounts. Format: 1/100 of the basic monetary unit. Example: 100 is 1 USD.
+| Total payment for the order. Includes tax, shipping and discounts. Format: 1/100 of the base currency unit. Example: 100 is 1 USD.
 
 | **orderSubTotal** (number, optional)
-| Payment for an order without shipping. Format: 1/100 of the basic monetary unit. Example: 100 is 1 USD.
+| Payment for the order without shipping. Format: 1/100 of the base currency unit. Example: 100 is 1 USD.
 
 | **orderTax** (number, optional)
-| Tax included in an order. Format: 1/100 of the basic monetary unit. Example: 100 is 1 USD.
+| Tax included in the order. Format: 1/100 of the base currency unit. Example: 100 is 1 USD.
 
 | **orderShipping** (number, optional)
-| Shipping costs for an order. Format: 1/100 of the basic monetary unit. Example: 100 is 1 USD.
+| Shipping costs for the order. Format: 1/100 of the base currency unit. Example: 100 is 1 USD.
 
 | **orderDiscount** (number, optional)
-| Discounts included in an order. Format: 1/100 of the basic monetary unit. Example: 100 is 1 USD.
+| Discounts included in the order. Format: 1/100 of the base currency unit. Example: 100 is 1 USD.
 
 
 Examples

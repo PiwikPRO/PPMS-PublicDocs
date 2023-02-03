@@ -4,7 +4,7 @@
 track().interaction()
 =====================
 
-The **track().interaction()** method tracks interactions with a content block and passes data about the content name, piece and target.
+The **track().interaction()** method tracks the interactions with a content block and passes data about the content name, piece and target.
 
 Syntax
 ------
@@ -36,21 +36,21 @@ Parameters
 ----------
 
 | **contentName** (string, required)
-| The name of a content block.
+| The name of the tracked content block.
 
 | **contentInteraction** (string, required)
-| The type of interaction with a content block. Example: click.
+| The type of interaction with the tracked content block. Example: click.
 
 | **contentPiece** (string, required)
-| The piece of the tracked content block, for example, a creative, banner, or video.
+| The piece of the tracked content block. Example: a creative, banner, or video.
 
 | **contentTarget** (string, required)
-| The target of the tracked content block, for example, a link in the content block.
+| The target of the tracked content block. Example: a link in the content block.
 
 Examples
 --------
 
-To track an interaction with a content block on your mobile app:
+To track the interaction with a content block on your mobile app:
 
 .. tabs::
 
