@@ -1,0 +1,2099 @@
+openapi: 3.0.0
+info:
+  title: Tag Manager API
+  version: '1.0'
+  description: "# Builtin variables\n<details> <summary>Show builtin variables list</summary>\n| name                      \t| variable_id                           \t| description                                                                                                                                                                                                                                                                                                                                                            | |---------------------------\t|---------------------------------------\t|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------| | History source            \t| caf01b44-cdbf-4a7e-a7e8-0150744b4e32   \t| Contains information about the last method/event that updated the History object. It changes its value when a pushState, replaceState, popState or hashchange event occurs. | | History state             \t| c98aff1e-a24a-4ab7-bad4-d7e0f056b42e  \t| Contains the current value of HTML5 history state which is of type any. It changes its value when a history state meets a defined condition. | | Old history state         \t| a489adb8-f2cf-4a09-8b7a-e6a048b943d7  \t| Contains the previous value of HTML5 history state which is of type any. It changes its value when a previous history state meets a defined condition. | | History fragment          \t| d462fb15-d23c-40e2-bc54-494377accccb  \t| Contains the current value of URL fragment identifier (hash). It changes its value when a hash in the page URL meets a defined condition. | | Old history fragment      \t| 44ef5a4b-4009-4f66-8fb4-c8137c0ed1b0  \t| Contains the previous value of URL fragment identifier (hash). It changes its value when a previous hash in the page URL meets a defined condition. | | Click ID                  \t| f39468e9-ae2d-4e58-9e2c-73a4d44add6f  \t| Contains the ID of the clicked element. It changes its value when the visitor clicks an element with the chosen ID. | | Click Url                 \t| efd3558a-714d-4b33-9edd-2bbeb0b5eaf7  \t| Contains the URL of the clicked element. It changes its value when the visitor clicks a link with the chosen URL. | | Click Classes             \t| efc09356-e1f2-40f7-8a0a-4c454429e678  \t| Contains the class(es) of the clicked element. It changes its value when the visitor clicks an element with the chosen CSS class. | | Click Element             \t| db5a673e-dabe-4dfa-908c-d08b369d08c9  \t| Contains DOM object of clicked HTML element. | | Form ID                   \t| b1504526-de0d-4c27-9ff0-1ee7734561ed  \t| Contains the ID of the submitted form element. It changes its value when the visitor submits a form with the chosen ID. | | Form Url                  \t| 0e45761b-d00d-4b18-88c1-eb8fc233d3da  \t| Contains the URL of the submitted form element. It changes its value when the visitor submits a form that sends a request to the chosen URL. | | Form Classes              \t| d7c47336-342d-4c9b-b35a-fa13f238ca44  \t| Contains the class(es) of the submitted form element. It changes its value when the visitor submits a form with the chosen CSS class. | | Form Name                 \t| 028f3993-dc39-4ad1-8602-f6345c91f3bb  \t| Contains name of the submitted form. | | Event                     \t| 977a1f9d-4fdb-43bf-9549-bdf68a7b69a6  \t| The name of the event emitted on dataLayer. It changes its value when a chosen custom event occurs in dataLayer. | | Time on website           \t| 4a3cbab8-e239-44ca-b1c9-6c1bc5cc3fbd  \t| It changes its value when the visitor is on the website or page for a certain amount of time. For example, fires a tag when the visitor spends at least 15 seconds on a page or website. | | Page Scroll               \t| a9a87b7d-d565-433d-8090-df9d80bf91f5  \t| It changes its value when the visitor scrolls to the chosen point on the page. For example, the visitor scrolls 50% of the page or scrolls to 1440 px on the page. | | Leave content             \t| c2fe42d6-2cbc-45d0-b4df-af92fdbdc2fc  \t| It changes its value when the cursor leaves a page. You can choose two options for this condition: page exit intent — the cursor leaves page via top edge or cursor leaving the browser's area — the cursor leaves page via any edge. | | Page Url                  \t| 67ed6060-eace-4370-8ede-a083f7c909f1  \t| Contains the whole URL of the current page. | | Page Path                 \t| e1e2b185-464f-4eb5-8575-feec34c5e281  \t| Contains the path of the URL of the current page. | | Page Hostname             \t| 42ff090e-f97c-45b5-8625-21ae26891382  \t| Contains the hostname of the URL of the current page. | | View within session       \t| 18c827bd-43e2-409a-a25d-cd8b0f6b95f7  \t| Contains time in seconds from last interaction. | | Referrer                  \t| 8530b589-aaac-42e4-b4c0-dfeef1360ee5  \t| The URL of the page that linked to the current page. | | External referrer         \t| 6fa9617f-00b8-4bed-8112-ccbb32033c74  \t| The URL of the page from the website with a different hostname that linked to your current website. | | Campaign                  \t| a3f51ab7-ea76-4adc-a839-a32d392df37c  \t| Its value based on the utm_campaign or pk_campaign parameter from URL. | | Traffic source            \t| 78fec807-3991-4fbc-ad57-238a6960d0b7  \t| Contains traffic source: campaign, organic search, social, website, direct. It changes its value when the visitor clicks an element on any page to which they came from the chosen traffic source: campaign, organic search, social, referral, direct. | | Returning Visitor         \t| d76335ca-0ae1-4540-8b7e-5ff7acb0d14f  \t| Logical condition which says if this is the user’s first visit or not. It changes its value when a returning visitor clicks an element on the chosen page (this mechanism is based on the cookie). | | Audience manager audience \t| 86068b14-804c-4b44-8a48-68ab37244ffc  \t| Contains the audience list of the visitor | | Consents                  \t| 67f49c79-bab6-4b0f-95c8-3bf624b6398f  \t| Contains information about the current and previous state of visitor consents. | | Found elements               \t| 7dead2a9-5804-4cdd-8d73-b04d338952e9  \t| Variable used in Element presence trigger. It contains the class name of the found elements that the trigger was set to look for. |\n</details> "
+security:
+  - BearerAuth: []
+servers:
+  - url: 'https://example.piwik.pro'
+paths:
+  '/api/tag/v1/{app_id}/variables':
+    parameters:
+      - in: path
+        name: app_id
+        required: true
+        description: Application identifier
+        schema:
+          title: UUID
+          type: string
+          pattern: '^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$'
+        example: 1f74dda5-b598-41d6-a9e4-f501ef4379e1
+    get:
+      summary: List of variables
+      description: |
+        ### JSON API compatibility divergence
+
+        #### Filters
+        In JSON API standard (https://jsonapi.org/recommendations/#filtering) one can request elements with multiple
+        filter values by simply providing them separated by coma:
+
+        `variables?filter[variable_type]=url,constant`
+
+        This notation will not work here. You can achieve this functionality by providing multiple filters for the same parameter:
+
+        `variables?filter[variable_type][]=url&filter[variable_type][]=constant`
+      parameters:
+        - in: query
+          name: 'page[limit]'
+          required: false
+          description: Limits the number of returned items
+          schema:
+            type: integer
+            minimum: 1
+          example: 10
+        - in: query
+          name: 'page[offset]'
+          required: false
+          description: Sets offset for list of items
+          schema:
+            type: integer
+            minimum: 0
+          example: 20
+        - in: query
+          name: 'filter[name]'
+          required: false
+          description: Filter variable name attribute
+          schema:
+            type: string
+            minLength: 1
+            maxLength: 255
+          example: Custom Javascript variable
+        - in: query
+          name: 'filter[variable_type]'
+          required: false
+          description: Filter variable with type
+          schema:
+            type: string
+            enum:
+              - custom_javascript
+              - constant
+              - cookie
+              - data_layer
+              - dom_element
+              - document
+              - random
+              - url
+              - lookup_table
+            description: Variable type
+          example: url
+        - in: query
+          name: 'filter[builtin]'
+          required: false
+          description: Filter variable with builtin attribute
+          schema:
+            type: boolean
+          example: true
+        - in: query
+          name: sort
+          required: false
+          description: 'Comma-separated sort list with given attributes: name, variable_type, created_at, updated_at'
+          schema:
+            type: array
+            items:
+              type: string
+              enum:
+                - name
+                - '-name'
+                - variable_type
+                - '-variable_type'
+                - created_at
+                - '-created_at'
+                - updated_at
+                - '-updated_at'
+            minItems: 1
+          example:
+            - name
+            - '-created_at'
+            - updated_at
+      responses:
+        '200':
+          description: List of variables
+          content:
+            application/vnd.api+json:
+              schema:
+                description: Variables list response
+                type: object
+                properties:
+                  data:
+                    title: 'JSON:API 1.0 list response data'
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables~1%7Bvariable_id%7D~1copy/post/responses/202/content/application~1vnd.api%2Bjson/schema/properties/data/properties/id'
+                        type:
+                          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables~1%7Bvariable_id%7D~1copy/post/requestBody/content/application~1vnd.api%2Bjson/schema/properties/data/properties/type'
+                        attributes:
+                          description: Variable attributes
+                          type: object
+                          properties:
+                            name:
+                              description: Variable name
+                              type: string
+                              minLength: 1
+                              maxLength: 255
+                            variable_type:
+                              $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/get/parameters/3/schema'
+                            builtin:
+                              type: boolean
+                              description: Flag indicating whether variable is custom or builtin
+                            is_published:
+                              type: boolean
+                              description: Flag describing whether variable is published (true) or not published (false)
+                            created_at:
+                              title: DateTime
+                              description: ISO 8601
+                              type: string
+                              pattern: '^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}\+[0-9]{2}:[0-9]{2}$'
+                            updated_at:
+                              $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/items/properties/attributes/properties/created_at'
+                          required:
+                            - name
+                            - variable_type
+                            - builtin
+                            - is_published
+                            - created_at
+                            - updated_at
+                          additionalProperties: false
+                      required:
+                        - id
+                        - type
+                        - attributes
+                      additionalProperties: false
+                  meta:
+                    type: object
+                    description: Meta information about resources
+                    properties:
+                      total:
+                        description: Total number of elements
+                        type: integer
+                        minimum: 0
+                    additionalProperties: false
+                    required:
+                      - total
+                  links:
+                    type: object
+                    description: Pagination links
+                    properties:
+                      self:
+                        description: Link to current page
+                        $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/links/properties/last/oneOf/0'
+                      first:
+                        description: Link to first page
+                        oneOf:
+                          - $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/links/properties/last/oneOf/0'
+                          - $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/links/properties/last/oneOf/1'
+                      last:
+                        description: Link to last page
+                        oneOf:
+                          - type: string
+                            format: uri
+                          - title: 'null'
+                            description: ''
+                            enum:
+                              - null
+                      prev:
+                        description: Link to previous page
+                        oneOf:
+                          - $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/links/properties/last/oneOf/0'
+                          - $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/links/properties/last/oneOf/1'
+                      next:
+                        description: Link to next page
+                        oneOf:
+                          - $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/links/properties/last/oneOf/0'
+                          - $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/links/properties/last/oneOf/1'
+                    additionalProperties: false
+                    required:
+                      - self
+                required:
+                  - data
+                  - meta
+                  - links
+                additionalProperties: false
+              example:
+                data:
+                  - id: 677423b3-e529-4e03-88fd-d3b9dcacf2cf
+                    type: variable
+                    attributes:
+                      name: New variable
+                      variable_type: custom_javascript
+                      builtin: false
+                      is_published: false
+                      created_at: '2020-01-29T13:43:57+00:00'
+                      updated_at: '2020-01-29T13:43:57+00:00'
+                meta:
+                  total: 25
+                links:
+                  prev: 'http://client.piwik.pro/api/tag/v1/1f74dda5-b598-41d6-a9e4-f501ef4379e1/variables?page[offset]=0&page[limit]=10'
+                  self: 'http://client.piwik.pro/api/tag/v1/1f74dda5-b598-41d6-a9e4-f501ef4379e1/variables?page[offset]=10&page[limit]=10'
+                  next: 'http://client.piwik.pro/api/tag/v1/1f74dda5-b598-41d6-a9e4-f501ef4379e1/variables?page[offset]=20&page[limit]=10'
+        '400':
+          description: Bad request parameter
+          content:
+            application/vnd.api+json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          description: 'An application-specific error code, expressed as a string value.'
+                        detail:
+                          type: string
+                          description: A human-readable explanation specific to this occurrence of the problem.
+                        source:
+                          type: object
+                          description: An object containing references to the source of the error.
+                          properties:
+                            pointer:
+                              type: string
+                              description: 'A JSON Pointer [RFC6901] to the associated entity in the request document.'
+                            parameter:
+                              type: string
+                              description: A string indicating which URI parameter caused the error.
+                          additionalProperties: false
+                        meta:
+                          type: object
+                          description: An object containing additional application-specific information about error.
+                          properties:
+                            keyword:
+                              type: string
+                            keyword_args:
+                              type: object
+                          additionalProperties: false
+                      additionalProperties: false
+                      required:
+                        - code
+                        - detail
+                    minItems: 1
+                additionalProperties: false
+                required:
+                  - errors
+              example:
+                errors:
+                  - code: INVALID_URI_PARAMETER_ERROR
+                    detail: Application identifier should be of type UUID
+                    source:
+                      parameter: app_id
+        '401':
+          description: Unauthorized
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/get/responses/400/content/application~1vnd.api%2Bjson/schema'
+              example:
+                errors:
+                  - code: UNAUTHORIZED_ERROR
+                    detail: Access token not authorized
+        '404':
+          description: Not found
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/get/responses/400/content/application~1vnd.api%2Bjson/schema'
+              example:
+                errors:
+                  - code: NOT_FOUND_ERROR
+                    detail: 'There is no application with given identifier: 5c39070d-9e0b-40a2-ae56-392f05711f74'
+                    source:
+                      parameter: app_id
+        '500':
+          description: Internal server error
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/get/responses/400/content/application~1vnd.api%2Bjson/schema'
+              example:
+                errors:
+                  - code: INTERNAL_SERVER_ERROR
+                    detail: MySQL server has gone away
+      tags:
+        - Tag Manager
+    post:
+      summary: Create variable
+      responses:
+        '201':
+          description: Variable data
+          content:
+            application/vnd.api+json:
+              schema:
+                description: Variable create response
+                oneOf:
+                  - title: constant
+                    type: object
+                    properties:
+                      data:
+                        type: object
+                        properties:
+                          id:
+                            $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables~1%7Bvariable_id%7D~1copy/post/responses/202/content/application~1vnd.api%2Bjson/schema/properties/data/properties/id'
+                          type:
+                            $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables~1%7Bvariable_id%7D~1copy/post/requestBody/content/application~1vnd.api%2Bjson/schema/properties/data/properties/type'
+                          attributes:
+                            description: Variable attributes
+                            type: object
+                            properties:
+                              name:
+                                $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/items/properties/attributes/properties/name'
+                              value:
+                                $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/post/requestBody/content/application~1vnd.api%2Bjson/schema/oneOf/0/properties/data/properties/attributes/properties/value'
+                              variable_type:
+                                $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/post/requestBody/content/application~1vnd.api%2Bjson/schema/oneOf/0/properties/data/properties/attributes/properties/variable_type'
+                              options:
+                                $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/post/requestBody/content/application~1vnd.api%2Bjson/schema/oneOf/0/properties/data/properties/attributes/properties/options'
+                              builtin:
+                                $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/items/properties/attributes/properties/builtin'
+                              is_published:
+                                $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/items/properties/attributes/properties/is_published'
+                              created_at:
+                                $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/items/properties/attributes/properties/created_at'
+                              updated_at:
+                                $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/items/properties/attributes/properties/created_at'
+                            required:
+                              - name
+                              - value
+                              - variable_type
+                              - options
+                              - builtin
+                              - is_published
+                              - created_at
+                              - updated_at
+                            additionalProperties: false
+                        required:
+                          - id
+                          - type
+                          - attributes
+                        additionalProperties: false
+                    required:
+                      - data
+                    additionalProperties: false
+                  - title: cookie
+                    type: object
+                    properties:
+                      data:
+                        type: object
+                        properties:
+                          id:
+                            $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables~1%7Bvariable_id%7D~1copy/post/responses/202/content/application~1vnd.api%2Bjson/schema/properties/data/properties/id'
+                          type:
+                            $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables~1%7Bvariable_id%7D~1copy/post/requestBody/content/application~1vnd.api%2Bjson/schema/properties/data/properties/type'
+                          attributes:
+                            description: Variable attributes
+                            type: object
+                            properties:
+                              name:
+                                $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/items/properties/attributes/properties/name'
+                              value:
+                                $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/post/requestBody/content/application~1vnd.api%2Bjson/schema/oneOf/0/properties/data/properties/attributes/properties/value'
+                              variable_type:
+                                $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/post/requestBody/content/application~1vnd.api%2Bjson/schema/oneOf/1/properties/data/properties/attributes/properties/variable_type'
+                              options:
+                                $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/post/requestBody/content/application~1vnd.api%2Bjson/schema/oneOf/0/properties/data/properties/attributes/properties/options'
+                              builtin:
+                                $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/items/properties/attributes/properties/builtin'
+                              is_published:
+                                $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/items/properties/attributes/properties/is_published'
+                              created_at:
+                                $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/items/properties/attributes/properties/created_at'
+                              updated_at:
+                                $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/items/properties/attributes/properties/created_at'
+                            required:
+                              - name
+                              - value
+                              - variable_type
+                              - options
+                              - builtin
+                              - is_published
+                              - created_at
+                              - updated_at
+                            additionalProperties: false
+                        required:
+                          - id
+                          - type
+                          - attributes
+                        additionalProperties: false
+                    required:
+                      - data
+                    additionalProperties: false
+                  - title: custom_javascript
+                    type: object
+                    properties:
+                      data:
+                        type: object
+                        properties:
+                          id:
+                            $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables~1%7Bvariable_id%7D~1copy/post/responses/202/content/application~1vnd.api%2Bjson/schema/properties/data/properties/id'
+                          type:
+                            $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables~1%7Bvariable_id%7D~1copy/post/requestBody/content/application~1vnd.api%2Bjson/schema/properties/data/properties/type'
+                          attributes:
+                            description: Variable attributes
+                            type: object
+                            properties:
+                              name:
+                                $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/items/properties/attributes/properties/name'
+                              value:
+                                $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/post/requestBody/content/application~1vnd.api%2Bjson/schema/oneOf/0/properties/data/properties/attributes/properties/value'
+                              variable_type:
+                                $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/post/requestBody/content/application~1vnd.api%2Bjson/schema/oneOf/2/properties/data/properties/attributes/properties/variable_type'
+                              options:
+                                $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/post/requestBody/content/application~1vnd.api%2Bjson/schema/oneOf/0/properties/data/properties/attributes/properties/options'
+                              builtin:
+                                $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/items/properties/attributes/properties/builtin'
+                              is_published:
+                                $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/items/properties/attributes/properties/is_published'
+                              created_at:
+                                $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/items/properties/attributes/properties/created_at'
+                              updated_at:
+                                $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/items/properties/attributes/properties/created_at'
+                            required:
+                              - name
+                              - value
+                              - variable_type
+                              - options
+                              - builtin
+                              - is_published
+                              - created_at
+                              - updated_at
+                            additionalProperties: false
+                        required:
+                          - id
+                          - type
+                          - attributes
+                        additionalProperties: false
+                    required:
+                      - data
+                    additionalProperties: false
+                  - title: data_layer
+                    type: object
+                    properties:
+                      data:
+                        type: object
+                        properties:
+                          id:
+                            $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables~1%7Bvariable_id%7D~1copy/post/responses/202/content/application~1vnd.api%2Bjson/schema/properties/data/properties/id'
+                          type:
+                            $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables~1%7Bvariable_id%7D~1copy/post/requestBody/content/application~1vnd.api%2Bjson/schema/properties/data/properties/type'
+                          attributes:
+                            description: Variable attributes
+                            type: object
+                            properties:
+                              name:
+                                $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/items/properties/attributes/properties/name'
+                              value:
+                                $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/post/requestBody/content/application~1vnd.api%2Bjson/schema/oneOf/0/properties/data/properties/attributes/properties/value'
+                              variable_type:
+                                $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/post/requestBody/content/application~1vnd.api%2Bjson/schema/oneOf/3/properties/data/properties/attributes/properties/variable_type'
+                              options:
+                                $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/post/requestBody/content/application~1vnd.api%2Bjson/schema/oneOf/0/properties/data/properties/attributes/properties/options'
+                              builtin:
+                                $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/items/properties/attributes/properties/builtin'
+                              is_published:
+                                $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/items/properties/attributes/properties/is_published'
+                              created_at:
+                                $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/items/properties/attributes/properties/created_at'
+                              updated_at:
+                                $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/items/properties/attributes/properties/created_at'
+                            required:
+                              - name
+                              - value
+                              - variable_type
+                              - options
+                              - builtin
+                              - is_published
+                              - created_at
+                              - updated_at
+                            additionalProperties: false
+                        required:
+                          - id
+                          - type
+                          - attributes
+                        additionalProperties: false
+                    required:
+                      - data
+                    additionalProperties: false
+                  - title: document
+                    type: object
+                    properties:
+                      data:
+                        type: object
+                        properties:
+                          id:
+                            $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables~1%7Bvariable_id%7D~1copy/post/responses/202/content/application~1vnd.api%2Bjson/schema/properties/data/properties/id'
+                          type:
+                            $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables~1%7Bvariable_id%7D~1copy/post/requestBody/content/application~1vnd.api%2Bjson/schema/properties/data/properties/type'
+                          attributes:
+                            description: Variable attributes
+                            type: object
+                            properties:
+                              name:
+                                $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/items/properties/attributes/properties/name'
+                              value:
+                                $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/post/requestBody/content/application~1vnd.api%2Bjson/schema/oneOf/0/properties/data/properties/attributes/properties/value'
+                              variable_type:
+                                $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/post/requestBody/content/application~1vnd.api%2Bjson/schema/oneOf/4/properties/data/properties/attributes/properties/variable_type'
+                              options:
+                                $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/post/requestBody/content/application~1vnd.api%2Bjson/schema/oneOf/0/properties/data/properties/attributes/properties/options'
+                              builtin:
+                                $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/items/properties/attributes/properties/builtin'
+                              is_published:
+                                $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/items/properties/attributes/properties/is_published'
+                              created_at:
+                                $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/items/properties/attributes/properties/created_at'
+                              updated_at:
+                                $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/items/properties/attributes/properties/created_at'
+                            required:
+                              - name
+                              - value
+                              - variable_type
+                              - options
+                              - builtin
+                              - is_published
+                              - created_at
+                              - updated_at
+                            additionalProperties: false
+                        required:
+                          - id
+                          - type
+                          - attributes
+                        additionalProperties: false
+                    required:
+                      - data
+                    additionalProperties: false
+                  - title: dom_element
+                    type: object
+                    properties:
+                      data:
+                        type: object
+                        properties:
+                          id:
+                            $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables~1%7Bvariable_id%7D~1copy/post/responses/202/content/application~1vnd.api%2Bjson/schema/properties/data/properties/id'
+                          type:
+                            $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables~1%7Bvariable_id%7D~1copy/post/requestBody/content/application~1vnd.api%2Bjson/schema/properties/data/properties/type'
+                          attributes:
+                            description: Variable attributes
+                            type: object
+                            properties:
+                              name:
+                                $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/items/properties/attributes/properties/name'
+                              value:
+                                $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/post/requestBody/content/application~1vnd.api%2Bjson/schema/oneOf/0/properties/data/properties/attributes/properties/value'
+                              variable_type:
+                                $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/post/requestBody/content/application~1vnd.api%2Bjson/schema/oneOf/5/properties/data/properties/attributes/properties/variable_type'
+                              options:
+                                $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/post/requestBody/content/application~1vnd.api%2Bjson/schema/oneOf/5/properties/data/properties/attributes/properties/options'
+                              builtin:
+                                $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/items/properties/attributes/properties/builtin'
+                              is_published:
+                                $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/items/properties/attributes/properties/is_published'
+                              created_at:
+                                $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/items/properties/attributes/properties/created_at'
+                              updated_at:
+                                $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/items/properties/attributes/properties/created_at'
+                            required:
+                              - name
+                              - value
+                              - variable_type
+                              - options
+                              - builtin
+                              - is_published
+                              - created_at
+                              - updated_at
+                            additionalProperties: false
+                        required:
+                          - id
+                          - type
+                          - attributes
+                        additionalProperties: false
+                    required:
+                      - data
+                    additionalProperties: false
+                  - title: random
+                    type: object
+                    properties:
+                      data:
+                        type: object
+                        properties:
+                          id:
+                            $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables~1%7Bvariable_id%7D~1copy/post/responses/202/content/application~1vnd.api%2Bjson/schema/properties/data/properties/id'
+                          type:
+                            $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables~1%7Bvariable_id%7D~1copy/post/requestBody/content/application~1vnd.api%2Bjson/schema/properties/data/properties/type'
+                          attributes:
+                            description: Variable attributes
+                            type: object
+                            properties:
+                              name:
+                                $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/items/properties/attributes/properties/name'
+                              value:
+                                $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/post/requestBody/content/application~1vnd.api%2Bjson/schema/oneOf/6/properties/data/properties/attributes/properties/value'
+                              variable_type:
+                                $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/post/requestBody/content/application~1vnd.api%2Bjson/schema/oneOf/6/properties/data/properties/attributes/properties/variable_type'
+                              options:
+                                $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/post/requestBody/content/application~1vnd.api%2Bjson/schema/oneOf/0/properties/data/properties/attributes/properties/options'
+                              builtin:
+                                $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/items/properties/attributes/properties/builtin'
+                              is_published:
+                                $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/items/properties/attributes/properties/is_published'
+                              created_at:
+                                $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/items/properties/attributes/properties/created_at'
+                              updated_at:
+                                $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/items/properties/attributes/properties/created_at'
+                            required:
+                              - name
+                              - value
+                              - variable_type
+                              - options
+                              - builtin
+                              - is_published
+                              - created_at
+                              - updated_at
+                            additionalProperties: false
+                        required:
+                          - id
+                          - type
+                          - attributes
+                        additionalProperties: false
+                    required:
+                      - data
+                    additionalProperties: false
+                  - title: url
+                    oneOf:
+                      - title: parameter
+                        type: object
+                        properties:
+                          data:
+                            type: object
+                            properties:
+                              id:
+                                $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables~1%7Bvariable_id%7D~1copy/post/responses/202/content/application~1vnd.api%2Bjson/schema/properties/data/properties/id'
+                              type:
+                                $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables~1%7Bvariable_id%7D~1copy/post/requestBody/content/application~1vnd.api%2Bjson/schema/properties/data/properties/type'
+                              attributes:
+                                description: Variable attributes
+                                type: object
+                                properties:
+                                  name:
+                                    $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/items/properties/attributes/properties/name'
+                                  value:
+                                    type: string
+                                    enum:
+                                      - parameter
+                                  variable_type:
+                                    $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/post/requestBody/content/application~1vnd.api%2Bjson/schema/oneOf/7/oneOf/0/properties/data/properties/attributes/properties/variable_type'
+                                  options:
+                                    $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/post/requestBody/content/application~1vnd.api%2Bjson/schema/oneOf/7/oneOf/0/properties/data/properties/attributes/properties/options'
+                                  builtin:
+                                    $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/items/properties/attributes/properties/builtin'
+                                  is_published:
+                                    $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/items/properties/attributes/properties/is_published'
+                                  created_at:
+                                    $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/items/properties/attributes/properties/created_at'
+                                  updated_at:
+                                    $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/items/properties/attributes/properties/created_at'
+                                required:
+                                  - name
+                                  - value
+                                  - variable_type
+                                  - options
+                                  - builtin
+                                  - is_published
+                                  - created_at
+                                  - updated_at
+                                additionalProperties: false
+                            required:
+                              - id
+                              - type
+                              - attributes
+                            additionalProperties: false
+                        required:
+                          - data
+                        additionalProperties: false
+                      - title: protocol
+                        type: object
+                        properties:
+                          data:
+                            type: object
+                            properties:
+                              id:
+                                $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables~1%7Bvariable_id%7D~1copy/post/responses/202/content/application~1vnd.api%2Bjson/schema/properties/data/properties/id'
+                              type:
+                                $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables~1%7Bvariable_id%7D~1copy/post/requestBody/content/application~1vnd.api%2Bjson/schema/properties/data/properties/type'
+                              attributes:
+                                description: Variable attributes
+                                type: object
+                                properties:
+                                  name:
+                                    $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/items/properties/attributes/properties/name'
+                                  value:
+                                    type: string
+                                    enum:
+                                      - protocol
+                                  variable_type:
+                                    $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/post/requestBody/content/application~1vnd.api%2Bjson/schema/oneOf/7/oneOf/0/properties/data/properties/attributes/properties/variable_type'
+                                  options:
+                                    $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/post/requestBody/content/application~1vnd.api%2Bjson/schema/oneOf/0/properties/data/properties/attributes/properties/options'
+                                  builtin:
+                                    $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/items/properties/attributes/properties/builtin'
+                                  is_published:
+                                    $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/items/properties/attributes/properties/is_published'
+                                  created_at:
+                                    $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/items/properties/attributes/properties/created_at'
+                                  updated_at:
+                                    $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/items/properties/attributes/properties/created_at'
+                                required:
+                                  - name
+                                  - value
+                                  - variable_type
+                                  - options
+                                  - builtin
+                                  - is_published
+                                  - created_at
+                                  - updated_at
+                                additionalProperties: false
+                            required:
+                              - id
+                              - type
+                              - attributes
+                            additionalProperties: false
+                        required:
+                          - data
+                        additionalProperties: false
+                      - title: query
+                        type: object
+                        properties:
+                          data:
+                            type: object
+                            properties:
+                              id:
+                                $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables~1%7Bvariable_id%7D~1copy/post/responses/202/content/application~1vnd.api%2Bjson/schema/properties/data/properties/id'
+                              type:
+                                $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables~1%7Bvariable_id%7D~1copy/post/requestBody/content/application~1vnd.api%2Bjson/schema/properties/data/properties/type'
+                              attributes:
+                                description: Variable attributes
+                                type: object
+                                properties:
+                                  name:
+                                    $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/items/properties/attributes/properties/name'
+                                  value:
+                                    type: string
+                                    enum:
+                                      - query
+                                  variable_type:
+                                    $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/post/requestBody/content/application~1vnd.api%2Bjson/schema/oneOf/7/oneOf/0/properties/data/properties/attributes/properties/variable_type'
+                                  options:
+                                    $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/post/requestBody/content/application~1vnd.api%2Bjson/schema/oneOf/0/properties/data/properties/attributes/properties/options'
+                                  builtin:
+                                    $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/items/properties/attributes/properties/builtin'
+                                  is_published:
+                                    $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/items/properties/attributes/properties/is_published'
+                                  created_at:
+                                    $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/items/properties/attributes/properties/created_at'
+                                  updated_at:
+                                    $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/items/properties/attributes/properties/created_at'
+                                required:
+                                  - name
+                                  - value
+                                  - variable_type
+                                  - options
+                                  - builtin
+                                  - is_published
+                                  - created_at
+                                  - updated_at
+                                additionalProperties: false
+                            required:
+                              - id
+                              - type
+                              - attributes
+                            additionalProperties: false
+                        required:
+                          - data
+                        additionalProperties: false
+                  - title: lookup_table
+                    type: object
+                    properties:
+                      data:
+                        type: object
+                        properties:
+                          id:
+                            $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables~1%7Bvariable_id%7D~1copy/post/responses/202/content/application~1vnd.api%2Bjson/schema/properties/data/properties/id'
+                          type:
+                            $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables~1%7Bvariable_id%7D~1copy/post/requestBody/content/application~1vnd.api%2Bjson/schema/properties/data/properties/type'
+                          attributes:
+                            description: Variable attributes
+                            type: object
+                            properties:
+                              name:
+                                $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/items/properties/attributes/properties/name'
+                              value:
+                                $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/post/requestBody/content/application~1vnd.api%2Bjson/schema/oneOf/8/properties/data/properties/attributes/properties/value'
+                              variable_type:
+                                $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/post/requestBody/content/application~1vnd.api%2Bjson/schema/oneOf/8/properties/data/properties/attributes/properties/variable_type'
+                              options:
+                                $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/post/requestBody/content/application~1vnd.api%2Bjson/schema/oneOf/8/properties/data/properties/attributes/properties/options'
+                              builtin:
+                                $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/items/properties/attributes/properties/builtin'
+                              is_published:
+                                $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/items/properties/attributes/properties/is_published'
+                              created_at:
+                                $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/items/properties/attributes/properties/created_at'
+                              updated_at:
+                                $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/items/properties/attributes/properties/created_at'
+                            required:
+                              - name
+                              - value
+                              - variable_type
+                              - options
+                              - builtin
+                              - is_published
+                              - created_at
+                              - updated_at
+                            additionalProperties: false
+                        required:
+                          - id
+                          - type
+                          - attributes
+                        additionalProperties: false
+                    required:
+                      - data
+                    additionalProperties: false
+              example:
+                data:
+                  id: 677423b3-e529-4e03-88fd-d3b9dcacf2cf
+                  type: variable
+                  attributes:
+                    name: New variable
+                    value: 'function () {}'
+                    variable_type: custom_javascript
+                    builtin: false
+                    created_at: '2020-01-29T13:43:57+00:00'
+                    updated_at: '2020-01-29T13:43:57+00:00'
+        '400':
+          description: Bad request
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/get/responses/400/content/application~1vnd.api%2Bjson/schema'
+              example:
+                errors:
+                  - code: INVALID_JSON_ERROR
+                    detail: The attribute expected to be of type string but integer given.
+                    source:
+                      pointer: /data/attributes/trigger_type
+                    meta:
+                      keyword: type
+                      keyword_args:
+                        expected: string
+                        used: integer
+        '401':
+          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/get/responses/401'
+        '404':
+          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/get/responses/404'
+        '500':
+          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/get/responses/500'
+        '503':
+          description: Service unavailable
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/get/responses/400/content/application~1vnd.api%2Bjson/schema'
+              example:
+                errors:
+                  - code: SERVICE_UNAVAILABLE
+                    detail: 'Maintenance mode enabled for organization (organization: default)'
+          headers:
+            X-Reason:
+              schema:
+                type: string
+              description: Reason for service being unavailable
+              example: maintenance-mode
+      requestBody:
+        required: true
+        content:
+          application/vnd.api+json:
+            schema:
+              description: Variable create request
+              oneOf:
+                - title: constant
+                  type: object
+                  properties:
+                    data:
+                      title: 'JSON:API 1.0 request data'
+                      type: object
+                      properties:
+                        id:
+                          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables~1%7Bvariable_id%7D~1copy/post/responses/202/content/application~1vnd.api%2Bjson/schema/properties/data/properties/id'
+                        type:
+                          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables~1%7Bvariable_id%7D~1copy/post/requestBody/content/application~1vnd.api%2Bjson/schema/properties/data/properties/type'
+                        attributes:
+                          description: Variable attributes
+                          type: object
+                          properties:
+                            name:
+                              $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/items/properties/attributes/properties/name'
+                            value:
+                              type: string
+                              description: Variable value
+                            variable_type:
+                              type: string
+                              enum:
+                                - constant
+                              description: Variable constant type
+                            options:
+                              description: Variable options (empty)
+                              type: object
+                          required:
+                            - name
+                            - value
+                            - variable_type
+                          additionalProperties: false
+                      required:
+                        - type
+                        - attributes
+                      additionalProperties: false
+                  required:
+                    - data
+                  additionalProperties: false
+                - title: cookie
+                  type: object
+                  properties:
+                    data:
+                      title: 'JSON:API 1.0 request data'
+                      type: object
+                      properties:
+                        id:
+                          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables~1%7Bvariable_id%7D~1copy/post/responses/202/content/application~1vnd.api%2Bjson/schema/properties/data/properties/id'
+                        type:
+                          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables~1%7Bvariable_id%7D~1copy/post/requestBody/content/application~1vnd.api%2Bjson/schema/properties/data/properties/type'
+                        attributes:
+                          description: Variable attributes
+                          type: object
+                          properties:
+                            name:
+                              $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/items/properties/attributes/properties/name'
+                            value:
+                              $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/post/requestBody/content/application~1vnd.api%2Bjson/schema/oneOf/0/properties/data/properties/attributes/properties/value'
+                            variable_type:
+                              type: string
+                              enum:
+                                - cookie
+                              description: Variable cookie type
+                            options:
+                              $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/post/requestBody/content/application~1vnd.api%2Bjson/schema/oneOf/0/properties/data/properties/attributes/properties/options'
+                          required:
+                            - name
+                            - value
+                            - variable_type
+                          additionalProperties: false
+                      required:
+                        - type
+                        - attributes
+                      additionalProperties: false
+                  required:
+                    - data
+                  additionalProperties: false
+                - title: custom_javascript
+                  type: object
+                  properties:
+                    data:
+                      title: 'JSON:API 1.0 request data'
+                      type: object
+                      properties:
+                        id:
+                          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables~1%7Bvariable_id%7D~1copy/post/responses/202/content/application~1vnd.api%2Bjson/schema/properties/data/properties/id'
+                        type:
+                          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables~1%7Bvariable_id%7D~1copy/post/requestBody/content/application~1vnd.api%2Bjson/schema/properties/data/properties/type'
+                        attributes:
+                          description: Variable attributes
+                          type: object
+                          properties:
+                            name:
+                              $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/items/properties/attributes/properties/name'
+                            value:
+                              $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/post/requestBody/content/application~1vnd.api%2Bjson/schema/oneOf/0/properties/data/properties/attributes/properties/value'
+                            variable_type:
+                              type: string
+                              enum:
+                                - custom_javascript
+                              description: Variable custom_javascript type
+                            options:
+                              $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/post/requestBody/content/application~1vnd.api%2Bjson/schema/oneOf/0/properties/data/properties/attributes/properties/options'
+                          required:
+                            - name
+                            - value
+                            - variable_type
+                          additionalProperties: false
+                      required:
+                        - type
+                        - attributes
+                      additionalProperties: false
+                  required:
+                    - data
+                  additionalProperties: false
+                - title: data_layer
+                  type: object
+                  properties:
+                    data:
+                      title: 'JSON:API 1.0 request data'
+                      type: object
+                      properties:
+                        id:
+                          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables~1%7Bvariable_id%7D~1copy/post/responses/202/content/application~1vnd.api%2Bjson/schema/properties/data/properties/id'
+                        type:
+                          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables~1%7Bvariable_id%7D~1copy/post/requestBody/content/application~1vnd.api%2Bjson/schema/properties/data/properties/type'
+                        attributes:
+                          description: Variable attributes
+                          properties:
+                            name:
+                              $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/items/properties/attributes/properties/name'
+                            value:
+                              $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/post/requestBody/content/application~1vnd.api%2Bjson/schema/oneOf/0/properties/data/properties/attributes/properties/value'
+                            variable_type:
+                              type: string
+                              enum:
+                                - data_layer
+                              description: Variable data_layer type
+                            options:
+                              $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/post/requestBody/content/application~1vnd.api%2Bjson/schema/oneOf/0/properties/data/properties/attributes/properties/options'
+                          required:
+                            - name
+                            - value
+                            - variable_type
+                          additionalProperties: false
+                      required:
+                        - type
+                        - attributes
+                      additionalProperties: false
+                  required:
+                    - data
+                  additionalProperties: false
+                - title: document
+                  type: object
+                  properties:
+                    data:
+                      title: 'JSON:API 1.0 request data'
+                      type: object
+                      properties:
+                        id:
+                          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables~1%7Bvariable_id%7D~1copy/post/responses/202/content/application~1vnd.api%2Bjson/schema/properties/data/properties/id'
+                        type:
+                          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables~1%7Bvariable_id%7D~1copy/post/requestBody/content/application~1vnd.api%2Bjson/schema/properties/data/properties/type'
+                        attributes:
+                          description: Variable attributes
+                          type: object
+                          properties:
+                            name:
+                              $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/items/properties/attributes/properties/name'
+                            value:
+                              $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/post/requestBody/content/application~1vnd.api%2Bjson/schema/oneOf/0/properties/data/properties/attributes/properties/value'
+                            variable_type:
+                              type: string
+                              enum:
+                                - document
+                              description: Variable document type
+                            options:
+                              $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/post/requestBody/content/application~1vnd.api%2Bjson/schema/oneOf/0/properties/data/properties/attributes/properties/options'
+                          required:
+                            - name
+                            - value
+                            - variable_type
+                          additionalProperties: false
+                      required:
+                        - type
+                        - attributes
+                      additionalProperties: false
+                  required:
+                    - data
+                  additionalProperties: false
+                - title: dom_element
+                  type: object
+                  properties:
+                    data:
+                      title: 'JSON:API 1.0 request data'
+                      type: object
+                      properties:
+                        id:
+                          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables~1%7Bvariable_id%7D~1copy/post/responses/202/content/application~1vnd.api%2Bjson/schema/properties/data/properties/id'
+                        type:
+                          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables~1%7Bvariable_id%7D~1copy/post/requestBody/content/application~1vnd.api%2Bjson/schema/properties/data/properties/type'
+                        attributes:
+                          description: Variable attributes
+                          type: object
+                          properties:
+                            name:
+                              $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/items/properties/attributes/properties/name'
+                            value:
+                              $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/post/requestBody/content/application~1vnd.api%2Bjson/schema/oneOf/0/properties/data/properties/attributes/properties/value'
+                            variable_type:
+                              type: string
+                              enum:
+                                - dom_element
+                              description: Variable dom_element type
+                            options:
+                              type: object
+                              description: Variable options
+                              properties:
+                                extract_text_content:
+                                  description: Flag indicating whether you want extract only text or whole element
+                                  type: boolean
+                                selector_type:
+                                  description: Selector type
+                                  type: string
+                                  enum:
+                                    - element_id
+                                    - css
+                                    - xpath
+                              required:
+                                - extract_text_content
+                                - selector_type
+                              additionalProperties: false
+                          required:
+                            - name
+                            - value
+                            - variable_type
+                            - options
+                          additionalProperties: false
+                      required:
+                        - type
+                        - attributes
+                      additionalProperties: false
+                  required:
+                    - data
+                  additionalProperties: false
+                - title: random
+                  type: object
+                  properties:
+                    data:
+                      title: 'JSON:API 1.0 request data'
+                      type: object
+                      properties:
+                        id:
+                          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables~1%7Bvariable_id%7D~1copy/post/responses/202/content/application~1vnd.api%2Bjson/schema/properties/data/properties/id'
+                        type:
+                          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables~1%7Bvariable_id%7D~1copy/post/requestBody/content/application~1vnd.api%2Bjson/schema/properties/data/properties/type'
+                        attributes:
+                          description: Variable attributes
+                          type: object
+                          properties:
+                            name:
+                              $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/items/properties/attributes/properties/name'
+                            value:
+                              description: Variable value (empty)
+                              title: 'null'
+                              enum:
+                                - null
+                            variable_type:
+                              type: string
+                              enum:
+                                - random
+                              description: Variable random type
+                            options:
+                              $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/post/requestBody/content/application~1vnd.api%2Bjson/schema/oneOf/0/properties/data/properties/attributes/properties/options'
+                          required:
+                            - name
+                            - variable_type
+                          additionalProperties: false
+                      required:
+                        - type
+                        - attributes
+                      additionalProperties: false
+                  required:
+                    - data
+                  additionalProperties: false
+                - title: url
+                  oneOf:
+                    - title: parameter
+                      type: object
+                      properties:
+                        data:
+                          title: 'JSON:API 1.0 request data'
+                          type: object
+                          properties:
+                            id:
+                              $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables~1%7Bvariable_id%7D~1copy/post/responses/202/content/application~1vnd.api%2Bjson/schema/properties/data/properties/id'
+                            type:
+                              $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables~1%7Bvariable_id%7D~1copy/post/requestBody/content/application~1vnd.api%2Bjson/schema/properties/data/properties/type'
+                            attributes:
+                              description: Variable attributes
+                              type: object
+                              properties:
+                                name:
+                                  $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/items/properties/attributes/properties/name'
+                                value:
+                                  type: string
+                                  enum:
+                                    - parameter
+                                variable_type:
+                                  type: string
+                                  enum:
+                                    - url
+                                  description: Variable url type
+                                options:
+                                  type: object
+                                  description: Variable options
+                                  properties:
+                                    parameter_name:
+                                      description: Parameter name
+                                      type: string
+                                  required:
+                                    - parameter_name
+                                  additionalProperties: false
+                              required:
+                                - name
+                                - variable_type
+                                - value
+                                - options
+                              additionalProperties: false
+                          required:
+                            - type
+                            - attributes
+                          additionalProperties: false
+                      required:
+                        - data
+                      additionalProperties: false
+                    - title: protocol
+                      type: object
+                      properties:
+                        data:
+                          title: 'JSON:API 1.0 request data'
+                          type: object
+                          properties:
+                            id:
+                              $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables~1%7Bvariable_id%7D~1copy/post/responses/202/content/application~1vnd.api%2Bjson/schema/properties/data/properties/id'
+                            type:
+                              $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables~1%7Bvariable_id%7D~1copy/post/requestBody/content/application~1vnd.api%2Bjson/schema/properties/data/properties/type'
+                            attributes:
+                              description: Variable attributes
+                              type: object
+                              properties:
+                                name:
+                                  $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/items/properties/attributes/properties/name'
+                                value:
+                                  type: string
+                                  enum:
+                                    - protocol
+                                variable_type:
+                                  $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/post/requestBody/content/application~1vnd.api%2Bjson/schema/oneOf/7/oneOf/0/properties/data/properties/attributes/properties/variable_type'
+                                options:
+                                  $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/post/requestBody/content/application~1vnd.api%2Bjson/schema/oneOf/0/properties/data/properties/attributes/properties/options'
+                              required:
+                                - name
+                                - variable_type
+                                - value
+                              additionalProperties: false
+                          required:
+                            - type
+                            - attributes
+                          additionalProperties: false
+                      required:
+                        - data
+                      additionalProperties: false
+                    - title: query
+                      type: object
+                      properties:
+                        data:
+                          title: 'JSON:API 1.0 request data'
+                          type: object
+                          properties:
+                            id:
+                              $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables~1%7Bvariable_id%7D~1copy/post/responses/202/content/application~1vnd.api%2Bjson/schema/properties/data/properties/id'
+                            type:
+                              $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables~1%7Bvariable_id%7D~1copy/post/requestBody/content/application~1vnd.api%2Bjson/schema/properties/data/properties/type'
+                            attributes:
+                              description: Variable attributes
+                              type: object
+                              properties:
+                                name:
+                                  $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/items/properties/attributes/properties/name'
+                                value:
+                                  type: string
+                                  enum:
+                                    - query
+                                variable_type:
+                                  $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/post/requestBody/content/application~1vnd.api%2Bjson/schema/oneOf/7/oneOf/0/properties/data/properties/attributes/properties/variable_type'
+                                options:
+                                  $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/post/requestBody/content/application~1vnd.api%2Bjson/schema/oneOf/0/properties/data/properties/attributes/properties/options'
+                              required:
+                                - name
+                                - variable_type
+                                - value
+                              additionalProperties: false
+                          required:
+                            - type
+                            - attributes
+                          additionalProperties: false
+                      required:
+                        - data
+                      additionalProperties: false
+                - title: lookup_table
+                  type: object
+                  properties:
+                    data:
+                      title: 'JSON:API 1.0 request data'
+                      type: object
+                      properties:
+                        id:
+                          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables~1%7Bvariable_id%7D~1copy/post/responses/202/content/application~1vnd.api%2Bjson/schema/properties/data/properties/id'
+                        type:
+                          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables~1%7Bvariable_id%7D~1copy/post/requestBody/content/application~1vnd.api%2Bjson/schema/properties/data/properties/type'
+                        attributes:
+                          description: Variable attributes
+                          type: object
+                          properties:
+                            name:
+                              $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/items/properties/attributes/properties/name'
+                            value:
+                              description: Lookup table input variable reference
+                              title: Variable reference
+                              type: string
+                              pattern: '^{{((?:.(?!}}))*.)}}$'
+                            variable_type:
+                              type: string
+                              enum:
+                                - lookup_table
+                              description: Variable lookup_table type
+                            options:
+                              type: object
+                              description: Variable lookup table options
+                              properties:
+                                default_value:
+                                  description: Value that will be returned if none of the mapping key is matched.
+                                  anyOf:
+                                    - description: Do not use default value
+                                      $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/links/properties/last/oneOf/1'
+                                    - description: Static text to be returned when value was not found in the table
+                                      type: string
+                                    - description: Variable identifier to be returned when value was not found in the table
+                                      $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables~1%7Bvariable_id%7D~1copy/post/responses/202/content/application~1vnd.api%2Bjson/schema/properties/data/properties/id'
+                                mapping:
+                                  description: Lookup table mapping
+                                  type: array
+                                  items:
+                                    type: object
+                                    description: Lookup table input and output pair
+                                    properties:
+                                      input:
+                                        description: Input value
+                                        anyOf:
+                                          - description: Custom string
+                                            type: string
+                                          - title: Variable reference
+                                            description: 'Tag Manager''s variable reference, example `{{ Campaign }}`'
+                                            type: string
+                                            pattern: '^{{((?:.(?!}}))*.)}}$'
+                                      output:
+                                        description: Output value
+                                        anyOf:
+                                          - description: Custom string
+                                            type: string
+                                          - $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/post/responses/201/content/application~1vnd.api%2Bjson/schema/oneOf/8/properties/data/properties/attributes/properties/options/properties/mapping/items/properties/input/anyOf/1'
+                                    required:
+                                      - input
+                                      - output
+                              required:
+                                - default_value
+                                - mapping
+                              additionalProperties: false
+                          required:
+                            - name
+                            - value
+                            - variable_type
+                            - options
+                          additionalProperties: false
+                      required:
+                        - type
+                        - attributes
+                      additionalProperties: false
+                  required:
+                    - data
+                  additionalProperties: false
+            example:
+              data:
+                type: variable
+                attributes:
+                  name: New variable
+                  value: 'function () {}'
+                  variable_type: custom_javascript
+      tags:
+        - Tag Manager
+  '/api/tag/v1/{app_id}/variables/{variable_id}':
+    parameters:
+      - $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/parameters/0'
+      - in: path
+        name: variable_id
+        required: true
+        description: Variable identifier
+        schema:
+          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/parameters/0/schema'
+        example: 5c39070d-9e0b-40a2-ae56-392f05711f74
+    get:
+      summary: Get variable
+      responses:
+        '200':
+          description: Variable data
+          content:
+            application/vnd.api+json:
+              schema:
+                description: Variable get response
+                oneOf:
+                  - $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/post/responses/201/content/application~1vnd.api%2Bjson/schema/oneOf/0'
+                    title: constant
+                  - $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/post/responses/201/content/application~1vnd.api%2Bjson/schema/oneOf/1'
+                    title: cookie
+                  - $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/post/responses/201/content/application~1vnd.api%2Bjson/schema/oneOf/2'
+                    title: custom_javascript
+                  - $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/post/responses/201/content/application~1vnd.api%2Bjson/schema/oneOf/3'
+                    title: data_layer
+                  - $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/post/responses/201/content/application~1vnd.api%2Bjson/schema/oneOf/4'
+                    title: document
+                  - $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/post/responses/201/content/application~1vnd.api%2Bjson/schema/oneOf/5'
+                    title: dom_element
+                  - $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/post/responses/201/content/application~1vnd.api%2Bjson/schema/oneOf/6'
+                    title: random
+                  - title: url
+                    oneOf:
+                      - $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/post/responses/201/content/application~1vnd.api%2Bjson/schema/oneOf/7/oneOf/0'
+                        title: parameter
+                      - $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/post/responses/201/content/application~1vnd.api%2Bjson/schema/oneOf/7/oneOf/1'
+                        title: protocol
+                      - $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/post/responses/201/content/application~1vnd.api%2Bjson/schema/oneOf/7/oneOf/2'
+                        title: query
+                  - $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/post/responses/201/content/application~1vnd.api%2Bjson/schema/oneOf/8'
+                    title: lookup_table
+              example:
+                data:
+                  id: 677423b3-e529-4e03-88fd-d3b9dcacf2cf
+                  type: variable
+                  attributes:
+                    name: New variable name
+                    value: parameter
+                    variable_type: url
+                    builtin: false
+                    is_published: false
+                    options:
+                      parameter_name: param1
+                    created_at: '2020-01-29T13:43:57+00:00'
+                    updated_at: '2020-01-29T13:43:57+00:00'
+        '400':
+          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/get/responses/400'
+        '401':
+          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/get/responses/401'
+        '404':
+          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/get/responses/404'
+        '500':
+          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/get/responses/500'
+      tags:
+        - Tag Manager
+    patch:
+      summary: Edit variable
+      description: It is possible to edit variable's type. Just make a request with a new type and all required attributes from its schema.
+      responses:
+        '204':
+          description: No content
+        '400':
+          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/post/responses/400'
+        '401':
+          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/get/responses/401'
+        '404':
+          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/get/responses/404'
+        '500':
+          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/get/responses/500'
+        '503':
+          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/post/responses/503'
+      requestBody:
+        required: true
+        content:
+          application/vnd.api+json:
+            schema:
+              description: Variable edit request
+              oneOf:
+                - title: constant
+                  description: Variables edit request
+                  type: object
+                  properties:
+                    data:
+                      title: 'JSON:API 1.0 request data'
+                      type: object
+                      properties:
+                        id:
+                          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables~1%7Bvariable_id%7D~1copy/post/responses/202/content/application~1vnd.api%2Bjson/schema/properties/data/properties/id'
+                        type:
+                          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables~1%7Bvariable_id%7D~1copy/post/requestBody/content/application~1vnd.api%2Bjson/schema/properties/data/properties/type'
+                        attributes:
+                          description: Variable attributes
+                          type: object
+                          properties:
+                            name:
+                              $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/items/properties/attributes/properties/name'
+                            value:
+                              $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/post/requestBody/content/application~1vnd.api%2Bjson/schema/oneOf/0/properties/data/properties/attributes/properties/value'
+                            variable_type:
+                              $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/post/requestBody/content/application~1vnd.api%2Bjson/schema/oneOf/0/properties/data/properties/attributes/properties/variable_type'
+                            options:
+                              $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/post/requestBody/content/application~1vnd.api%2Bjson/schema/oneOf/0/properties/data/properties/attributes/properties/options'
+                          additionalProperties: false
+                      required:
+                        - id
+                        - type
+                        - attributes
+                      additionalProperties: false
+                  required:
+                    - data
+                  additionalProperties: false
+                - title: cookie
+                  description: Variables edit request
+                  type: object
+                  properties:
+                    data:
+                      title: 'JSON:API 1.0 request data'
+                      type: object
+                      properties:
+                        id:
+                          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables~1%7Bvariable_id%7D~1copy/post/responses/202/content/application~1vnd.api%2Bjson/schema/properties/data/properties/id'
+                        type:
+                          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables~1%7Bvariable_id%7D~1copy/post/requestBody/content/application~1vnd.api%2Bjson/schema/properties/data/properties/type'
+                        attributes:
+                          description: Variable attributes
+                          type: object
+                          properties:
+                            name:
+                              $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/items/properties/attributes/properties/name'
+                            value:
+                              $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/post/requestBody/content/application~1vnd.api%2Bjson/schema/oneOf/0/properties/data/properties/attributes/properties/value'
+                            variable_type:
+                              $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/post/requestBody/content/application~1vnd.api%2Bjson/schema/oneOf/1/properties/data/properties/attributes/properties/variable_type'
+                            options:
+                              $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/post/requestBody/content/application~1vnd.api%2Bjson/schema/oneOf/0/properties/data/properties/attributes/properties/options'
+                          additionalProperties: false
+                      required:
+                        - id
+                        - type
+                        - attributes
+                      additionalProperties: false
+                  required:
+                    - data
+                  additionalProperties: false
+                - title: custom_javascript
+                  description: Variables edit request
+                  type: object
+                  properties:
+                    data:
+                      title: 'JSON:API 1.0 request data'
+                      type: object
+                      properties:
+                        id:
+                          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables~1%7Bvariable_id%7D~1copy/post/responses/202/content/application~1vnd.api%2Bjson/schema/properties/data/properties/id'
+                        type:
+                          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables~1%7Bvariable_id%7D~1copy/post/requestBody/content/application~1vnd.api%2Bjson/schema/properties/data/properties/type'
+                        attributes:
+                          description: Variable attributes
+                          type: object
+                          properties:
+                            name:
+                              $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/items/properties/attributes/properties/name'
+                            value:
+                              $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/post/requestBody/content/application~1vnd.api%2Bjson/schema/oneOf/0/properties/data/properties/attributes/properties/value'
+                            variable_type:
+                              $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/post/requestBody/content/application~1vnd.api%2Bjson/schema/oneOf/2/properties/data/properties/attributes/properties/variable_type'
+                            options:
+                              $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/post/requestBody/content/application~1vnd.api%2Bjson/schema/oneOf/0/properties/data/properties/attributes/properties/options'
+                          additionalProperties: false
+                      required:
+                        - id
+                        - type
+                        - attributes
+                      additionalProperties: false
+                  required:
+                    - data
+                  additionalProperties: false
+                - title: data_layer
+                  description: Variables edit request
+                  type: object
+                  properties:
+                    data:
+                      title: 'JSON:API 1.0 request data'
+                      type: object
+                      properties:
+                        id:
+                          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables~1%7Bvariable_id%7D~1copy/post/responses/202/content/application~1vnd.api%2Bjson/schema/properties/data/properties/id'
+                        type:
+                          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables~1%7Bvariable_id%7D~1copy/post/requestBody/content/application~1vnd.api%2Bjson/schema/properties/data/properties/type'
+                        attributes:
+                          description: Variable attributes
+                          type: object
+                          properties:
+                            name:
+                              $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/items/properties/attributes/properties/name'
+                            value:
+                              $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/post/requestBody/content/application~1vnd.api%2Bjson/schema/oneOf/0/properties/data/properties/attributes/properties/value'
+                            variable_type:
+                              $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/post/requestBody/content/application~1vnd.api%2Bjson/schema/oneOf/3/properties/data/properties/attributes/properties/variable_type'
+                            options:
+                              $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/post/requestBody/content/application~1vnd.api%2Bjson/schema/oneOf/0/properties/data/properties/attributes/properties/options'
+                          additionalProperties: false
+                      required:
+                        - id
+                        - type
+                        - attributes
+                      additionalProperties: false
+                  required:
+                    - data
+                  additionalProperties: false
+                - title: document
+                  description: Variables edit request
+                  type: object
+                  properties:
+                    data:
+                      title: 'JSON:API 1.0 request data'
+                      type: object
+                      properties:
+                        id:
+                          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables~1%7Bvariable_id%7D~1copy/post/responses/202/content/application~1vnd.api%2Bjson/schema/properties/data/properties/id'
+                        type:
+                          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables~1%7Bvariable_id%7D~1copy/post/requestBody/content/application~1vnd.api%2Bjson/schema/properties/data/properties/type'
+                        attributes:
+                          description: Variable attributes
+                          type: object
+                          properties:
+                            name:
+                              $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/items/properties/attributes/properties/name'
+                            value:
+                              $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/post/requestBody/content/application~1vnd.api%2Bjson/schema/oneOf/0/properties/data/properties/attributes/properties/value'
+                            variable_type:
+                              $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/post/requestBody/content/application~1vnd.api%2Bjson/schema/oneOf/4/properties/data/properties/attributes/properties/variable_type'
+                            options:
+                              $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/post/requestBody/content/application~1vnd.api%2Bjson/schema/oneOf/0/properties/data/properties/attributes/properties/options'
+                          additionalProperties: false
+                      required:
+                        - id
+                        - type
+                        - attributes
+                      additionalProperties: false
+                  required:
+                    - data
+                  additionalProperties: false
+                - title: dom_element
+                  description: Variables edit request
+                  type: object
+                  properties:
+                    data:
+                      title: 'JSON:API 1.0 request data'
+                      type: object
+                      properties:
+                        id:
+                          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables~1%7Bvariable_id%7D~1copy/post/responses/202/content/application~1vnd.api%2Bjson/schema/properties/data/properties/id'
+                        type:
+                          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables~1%7Bvariable_id%7D~1copy/post/requestBody/content/application~1vnd.api%2Bjson/schema/properties/data/properties/type'
+                        attributes:
+                          description: Variable attributes
+                          type: object
+                          properties:
+                            name:
+                              $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/items/properties/attributes/properties/name'
+                            value:
+                              $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/post/requestBody/content/application~1vnd.api%2Bjson/schema/oneOf/0/properties/data/properties/attributes/properties/value'
+                            variable_type:
+                              $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/post/requestBody/content/application~1vnd.api%2Bjson/schema/oneOf/5/properties/data/properties/attributes/properties/variable_type'
+                            options:
+                              $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/post/requestBody/content/application~1vnd.api%2Bjson/schema/oneOf/5/properties/data/properties/attributes/properties/options'
+                          additionalProperties: false
+                      required:
+                        - id
+                        - type
+                        - attributes
+                      additionalProperties: false
+                  required:
+                    - data
+                  additionalProperties: false
+                - title: random
+                  description: Variables edit request
+                  type: object
+                  properties:
+                    data:
+                      title: 'JSON:API 1.0 request data'
+                      type: object
+                      properties:
+                        id:
+                          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables~1%7Bvariable_id%7D~1copy/post/responses/202/content/application~1vnd.api%2Bjson/schema/properties/data/properties/id'
+                        type:
+                          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables~1%7Bvariable_id%7D~1copy/post/requestBody/content/application~1vnd.api%2Bjson/schema/properties/data/properties/type'
+                        attributes:
+                          description: Variable attributes
+                          type: object
+                          properties:
+                            name:
+                              $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/items/properties/attributes/properties/name'
+                            value:
+                              $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/post/requestBody/content/application~1vnd.api%2Bjson/schema/oneOf/6/properties/data/properties/attributes/properties/value'
+                            variable_type:
+                              $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/post/requestBody/content/application~1vnd.api%2Bjson/schema/oneOf/6/properties/data/properties/attributes/properties/variable_type'
+                            options:
+                              $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/post/requestBody/content/application~1vnd.api%2Bjson/schema/oneOf/0/properties/data/properties/attributes/properties/options'
+                          additionalProperties: false
+                      required:
+                        - id
+                        - type
+                        - attributes
+                      additionalProperties: false
+                  required:
+                    - data
+                  additionalProperties: false
+                - title: url
+                  oneOf:
+                    - title: parameter
+                      description: Variables edit request
+                      type: object
+                      properties:
+                        data:
+                          title: 'JSON:API 1.0 request data'
+                          type: object
+                          properties:
+                            id:
+                              $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables~1%7Bvariable_id%7D~1copy/post/responses/202/content/application~1vnd.api%2Bjson/schema/properties/data/properties/id'
+                            type:
+                              $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables~1%7Bvariable_id%7D~1copy/post/requestBody/content/application~1vnd.api%2Bjson/schema/properties/data/properties/type'
+                            attributes:
+                              description: Variable attributes
+                              type: object
+                              properties:
+                                name:
+                                  $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/items/properties/attributes/properties/name'
+                                value:
+                                  type: string
+                                  enum:
+                                    - parameter
+                                variable_type:
+                                  $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/post/requestBody/content/application~1vnd.api%2Bjson/schema/oneOf/7/oneOf/0/properties/data/properties/attributes/properties/variable_type'
+                                options:
+                                  $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/post/requestBody/content/application~1vnd.api%2Bjson/schema/oneOf/7/oneOf/0/properties/data/properties/attributes/properties/options'
+                              additionalProperties: false
+                          required:
+                            - id
+                            - type
+                            - attributes
+                          additionalProperties: false
+                      required:
+                        - data
+                      additionalProperties: false
+                    - title: protocol
+                      description: Variables edit request
+                      type: object
+                      properties:
+                        data:
+                          title: 'JSON:API 1.0 request data'
+                          type: object
+                          properties:
+                            id:
+                              $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables~1%7Bvariable_id%7D~1copy/post/responses/202/content/application~1vnd.api%2Bjson/schema/properties/data/properties/id'
+                            type:
+                              $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables~1%7Bvariable_id%7D~1copy/post/requestBody/content/application~1vnd.api%2Bjson/schema/properties/data/properties/type'
+                            attributes:
+                              description: Variable attributes
+                              type: object
+                              properties:
+                                name:
+                                  $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/items/properties/attributes/properties/name'
+                                value:
+                                  type: string
+                                  enum:
+                                    - protocol
+                                variable_type:
+                                  $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/post/requestBody/content/application~1vnd.api%2Bjson/schema/oneOf/7/oneOf/0/properties/data/properties/attributes/properties/variable_type'
+                                options:
+                                  $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/post/requestBody/content/application~1vnd.api%2Bjson/schema/oneOf/0/properties/data/properties/attributes/properties/options'
+                              additionalProperties: false
+                          required:
+                            - id
+                            - type
+                            - attributes
+                          additionalProperties: false
+                      required:
+                        - data
+                      additionalProperties: false
+                    - title: query
+                      description: Variables edit request
+                      type: object
+                      properties:
+                        data:
+                          title: 'JSON:API 1.0 request data'
+                          type: object
+                          properties:
+                            id:
+                              $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables~1%7Bvariable_id%7D~1copy/post/responses/202/content/application~1vnd.api%2Bjson/schema/properties/data/properties/id'
+                            type:
+                              $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables~1%7Bvariable_id%7D~1copy/post/requestBody/content/application~1vnd.api%2Bjson/schema/properties/data/properties/type'
+                            attributes:
+                              description: Variable attributes
+                              type: object
+                              properties:
+                                name:
+                                  $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/items/properties/attributes/properties/name'
+                                value:
+                                  type: string
+                                  enum:
+                                    - query
+                                variable_type:
+                                  $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/post/requestBody/content/application~1vnd.api%2Bjson/schema/oneOf/7/oneOf/0/properties/data/properties/attributes/properties/variable_type'
+                                options:
+                                  $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/post/requestBody/content/application~1vnd.api%2Bjson/schema/oneOf/0/properties/data/properties/attributes/properties/options'
+                              additionalProperties: false
+                          required:
+                            - id
+                            - type
+                            - attributes
+                          additionalProperties: false
+                      required:
+                        - data
+                      additionalProperties: false
+                - title: lookup_table
+                  description: Lookup table variable edit request
+                  type: object
+                  properties:
+                    data:
+                      title: 'JSON:API 1.0 request data'
+                      type: object
+                      properties:
+                        id:
+                          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables~1%7Bvariable_id%7D~1copy/post/responses/202/content/application~1vnd.api%2Bjson/schema/properties/data/properties/id'
+                        type:
+                          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables~1%7Bvariable_id%7D~1copy/post/requestBody/content/application~1vnd.api%2Bjson/schema/properties/data/properties/type'
+                        attributes:
+                          description: Variable attributes
+                          type: object
+                          properties:
+                            name:
+                              $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/items/properties/attributes/properties/name'
+                            value:
+                              $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/post/requestBody/content/application~1vnd.api%2Bjson/schema/oneOf/8/properties/data/properties/attributes/properties/value'
+                            variable_type:
+                              $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/post/requestBody/content/application~1vnd.api%2Bjson/schema/oneOf/8/properties/data/properties/attributes/properties/variable_type'
+                            options:
+                              $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/post/requestBody/content/application~1vnd.api%2Bjson/schema/oneOf/8/properties/data/properties/attributes/properties/options'
+                          additionalProperties: false
+                      required:
+                        - id
+                        - type
+                        - attributes
+                      additionalProperties: false
+                  required:
+                    - data
+                  additionalProperties: false
+            example:
+              data:
+                id: 677423b3-e529-4e03-88fd-d3b9dcacf2cf
+                type: variable
+                attributes:
+                  name: New variable name
+                  variable_type: url
+                  options:
+                    parameter_name: param1
+                  value: parameter
+      tags:
+        - Tag Manager
+    delete:
+      summary: Delete variable
+      responses:
+        '204':
+          description: No content
+        '400':
+          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/get/responses/400'
+        '401':
+          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/get/responses/401'
+        '404':
+          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/get/responses/404'
+        '500':
+          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/get/responses/500'
+        '503':
+          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/post/responses/503'
+      tags:
+        - Tag Manager
+  '/api/tag/v1/{app_id}/variables/{variable_id}/copy':
+    parameters:
+      - $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/parameters/0'
+      - $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables~1%7Bvariable_id%7D/parameters/1'
+    post:
+      summary: Copy variable
+      responses:
+        '202':
+          description: Operation data with new (copied) variable identifier
+          content:
+            application/vnd.api+json:
+              schema:
+                description: Variables copy response
+                type: object
+                properties:
+                  data:
+                    title: 'JSON:API 1.0 response data'
+                    type: object
+                    properties:
+                      id:
+                        description: Variable identifier
+                        title: UUID
+                        type: string
+                        pattern: '^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$'
+                      type:
+                        $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables~1%7Bvariable_id%7D~1copy/post/requestBody/content/application~1vnd.api%2Bjson/schema/properties/data/properties/type'
+                      attributes:
+                        type: object
+                        description: Copy variable attributes
+                        properties:
+                          name:
+                            $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables~1%7Bvariable_id%7D~1copy/post/requestBody/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/properties/name'
+                        additionalProperties: false
+                      relationships:
+                        type: object
+                        description: Copy variable relationships
+                        properties:
+                          operation:
+                            type: object
+                            description: Operation
+                            properties:
+                              data:
+                                title: 'JSON:API 1.0 relationship data'
+                                type: object
+                                description: Operation data
+                                properties:
+                                  id:
+                                    allOf:
+                                      - description: Operation identifier
+                                      - $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/parameters/0/schema'
+                                  type:
+                                    description: Operation resource type
+                                    type: string
+                                    enum:
+                                      - operation
+                                required:
+                                  - id
+                                  - type
+                                additionalProperties: false
+                            required:
+                              - data
+                            additionalProperties: false
+                        required:
+                          - operation
+                        additionalProperties: false
+                    required:
+                      - id
+                      - type
+                      - attributes
+                      - relationships
+                    additionalProperties: false
+                required:
+                  - data
+                additionalProperties: false
+              example:
+                data:
+                  id: 21b27740-6cef-438f-860d-a2f9adb9e4a8
+                  type: variable
+                  attributes:
+                    name: New variable - copy
+                  relationships:
+                    operation:
+                      data:
+                        id: fedbc70e-2390-4b89-8cc4-60a2f6df7b98
+                        type: operation
+        '400':
+          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/post/responses/400'
+        '401':
+          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/get/responses/401'
+        '404':
+          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/get/responses/404'
+        '500':
+          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/get/responses/500'
+        '503':
+          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1variables/post/responses/503'
+      requestBody:
+        required: true
+        content:
+          application/vnd.api+json:
+            schema:
+              description: Variables copy request
+              type: object
+              properties:
+                data:
+                  title: 'JSON:API 1.0 request data'
+                  type: object
+                  properties:
+                    id:
+                      description: New variable's identifier
+                      title: UUID
+                      type: string
+                      pattern: '^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$'
+                    type:
+                      type: string
+                      enum:
+                        - variable
+                      description: Variable resource type
+                    attributes:
+                      type: object
+                      description: Copy variable attributes
+                      properties:
+                        name:
+                          description: New variable's name
+                          type: string
+                          minLength: 1
+                          maxLength: 255
+                      additionalProperties: false
+                    relationships:
+                      type: object
+                      description: Copy variable relationships
+                      properties:
+                        target_app:
+                          type: object
+                          description: Target application
+                          properties:
+                            data:
+                              title: 'JSON:API 1.0 relationship data'
+                              description: Target application data
+                              type: object
+                              properties:
+                                id:
+                                  description: Application identifier
+                                  title: UUID
+                                  type: string
+                                  pattern: '^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$'
+                                type:
+                                  description: Application resource type
+                                  type: string
+                                  enum:
+                                    - app
+                              required:
+                                - id
+                                - type
+                              additionalProperties: false
+                          required:
+                            - data
+                          additionalProperties: false
+                      required:
+                        - target_app
+                      additionalProperties: false
+                  required:
+                    - type
+                    - relationships
+                  additionalProperties: false
+              required:
+                - data
+              additionalProperties: false
+            example:
+              data:
+                id: 677423b3-e529-4e03-88fd-d3b9dcacf2cf
+                type: variable
+                attributes:
+                  name: New variable - copy
+                relationships:
+                  target_app:
+                    data:
+                      id: 1bf18ce0-727e-43c0-885c-984e5496a0fa
+                      type: app
+      tags:
+        - Tag Manager
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

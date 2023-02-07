@@ -1,0 +1,1314 @@
+openapi: 3.0.0
+info:
+  title: Tag Manager API
+  version: '1.0'
+security:
+  - BearerAuth: []
+servers:
+  - url: 'https://example.piwik.pro'
+paths:
+  '/api/tag/v1/{app_id}/operations/{operation_id}':
+    parameters:
+      - in: path
+        name: app_id
+        required: true
+        description: Application identifier
+        schema:
+          title: UUID
+          type: string
+          pattern: '^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$'
+        example: 1f74dda5-b598-41d6-a9e4-f501ef4379e1
+      - in: path
+        name: operation_id
+        required: true
+        description: Operation identifier
+        schema:
+          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/parameters/0/schema'
+        example: d2d9e011-6693-4088-9a20-e1c3498bf24a
+    get:
+      summary: Get operation
+      responses:
+        '200':
+          description: Get operation
+          content:
+            application/vnd.api+json:
+              schema:
+                description: Operations get response
+                type: object
+                properties:
+                  data:
+                    title: 'JSON:API 1.0 response data'
+                    type: object
+                    properties:
+                      id:
+                        allOf:
+                          - description: Operation identifier
+                          - $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/parameters/0/schema'
+                      type:
+                        description: Operation resource type
+                        type: string
+                        enum:
+                          - operation
+                      attributes:
+                        title: Operation
+                        description: Operation attributes
+                        oneOf:
+                          - title: copy/tag
+                            type: object
+                            properties:
+                              operation_type:
+                                description: Copy tag operation type
+                                type: string
+                                enum:
+                                  - copy/tag
+                              state:
+                                description: Operation state
+                                type: string
+                                enum:
+                                  - created
+                                  - started
+                                  - completed
+                                  - failed
+                              parameters:
+                                type: object
+                                description: Operation parameters
+                                properties:
+                                  source_tag_id:
+                                    allOf:
+                                      - $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/parameters/0/schema'
+                                      - description: Source tag's identifier
+                                  target_tag_id:
+                                    description: New tag's identifier
+                                    title: UUID
+                                    type: string
+                                    pattern: '^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$'
+                                  target_app_id:
+                                    allOf:
+                                      - $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/parameters/0/schema'
+                                      - description: Target application identifier
+                                  name:
+                                    description: New resource name
+                                    type: string
+                                    minLength: 1
+                                    maxLength: 255
+                                  with_triggers:
+                                    description: Flag indicating whether tag is copied with or without triggers
+                                    type: boolean
+                                required:
+                                  - source_tag_id
+                                  - target_tag_id
+                                  - target_app_id
+                                  - name
+                                  - with_triggers
+                                additionalProperties: false
+                              summary:
+                                type: object
+                                description: Operation summary
+                                properties:
+                                  tags:
+                                    description: List of copied tags
+                                    type: array
+                                    items:
+                                      oneOf:
+                                        - title: Successfully copied tags
+                                          type: object
+                                          properties:
+                                            source_tag_id:
+                                              allOf:
+                                                - description: Source tag identifier
+                                                - $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/parameters/0/schema'
+                                            target_tag_id:
+                                              allOf:
+                                                - description: Target tag identifier
+                                                - $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/parameters/0/schema'
+                                            source_id:
+                                              $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/summary/properties/triggers/items/properties/source_id'
+                                            source_name:
+                                              $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/summary/properties/triggers/items/properties/source_name'
+                                            target_name:
+                                              $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/summary/properties/triggers/items/properties/target_name'
+                                            is_renamed:
+                                              $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/summary/properties/triggers/items/properties/is_renamed'
+                                          required:
+                                            - source_id
+                                            - source_tag_id
+                                            - source_name
+                                            - target_tag_id
+                                            - target_name
+                                            - is_renamed
+                                          additionalProperties: false
+                                        - title: Not copied tags
+                                          type: object
+                                          properties:
+                                            source_tag_id:
+                                              $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/summary/properties/tags/items/oneOf/0/properties/source_tag_id'
+                                            source_id:
+                                              $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/summary/properties/triggers/items/properties/source_id'
+                                            source_name:
+                                              $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/summary/properties/triggers/items/properties/source_name'
+                                            errors:
+                                              description: List of tag's errors
+                                              type: array
+                                              items:
+                                                type: string
+                                          required:
+                                            - source_id
+                                            - source_tag_id
+                                            - source_name
+                                            - errors
+                                          additionalProperties: false
+                                  triggers:
+                                    description: List of copied triggers
+                                    type: array
+                                    items:
+                                      type: object
+                                      properties:
+                                        source_trigger_id:
+                                          allOf:
+                                            - description: Source trigger identifier
+                                            - $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/parameters/0/schema'
+                                        target_trigger_id:
+                                          allOf:
+                                            - description: Target trigger identifier
+                                            - $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/parameters/0/schema'
+                                        source_id:
+                                          allOf:
+                                            - description: Source resource internal identifier
+                                            - $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/parameters/0/schema'
+                                        source_name:
+                                          allOf:
+                                            - description: Source resource name
+                                            - type: string
+                                              minLength: 1
+                                              maxLength: 255
+                                        target_name:
+                                          allOf:
+                                            - description: Target resource name
+                                            - $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/summary/properties/triggers/items/properties/source_name/allOf/1'
+                                        is_renamed:
+                                          type: boolean
+                                          description: Target resource is renamed
+                                      required:
+                                        - source_id
+                                        - source_trigger_id
+                                        - source_name
+                                        - target_trigger_id
+                                        - target_name
+                                        - is_renamed
+                                      additionalProperties: false
+                                  variables:
+                                    description: List of copied variables
+                                    type: array
+                                    items:
+                                      type: object
+                                      properties:
+                                        source_variable_id:
+                                          allOf:
+                                            - description: Source variable identifier
+                                            - $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/parameters/0/schema'
+                                        target_variable_id:
+                                          allOf:
+                                            - description: Target variable identifier
+                                            - $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/parameters/0/schema'
+                                        source_id:
+                                          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/summary/properties/triggers/items/properties/source_id'
+                                        source_name:
+                                          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/summary/properties/triggers/items/properties/source_name'
+                                        target_name:
+                                          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/summary/properties/triggers/items/properties/target_name'
+                                        is_renamed:
+                                          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/summary/properties/triggers/items/properties/is_renamed'
+                                      required:
+                                        - source_id
+                                        - source_variable_id
+                                        - source_name
+                                        - target_variable_id
+                                        - target_name
+                                        - is_renamed
+                                      additionalProperties: false
+                                required:
+                                  - tags
+                                additionalProperties: false
+                              created_at:
+                                title: DateTime
+                                description: ISO 8601
+                                type: string
+                                pattern: '^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}\+[0-9]{2}:[0-9]{2}$'
+                              updated_at:
+                                $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/created_at'
+                              started_at:
+                                oneOf:
+                                  - $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/created_at'
+                                  - $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/failed_at/oneOf/1'
+                              completed_at:
+                                oneOf:
+                                  - $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/created_at'
+                                  - $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/failed_at/oneOf/1'
+                              failed_at:
+                                oneOf:
+                                  - $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/created_at'
+                                  - title: 'null'
+                                    description: ''
+                                    enum:
+                                      - null
+                            required:
+                              - operation_type
+                              - state
+                              - parameters
+                              - summary
+                              - created_at
+                              - updated_at
+                              - started_at
+                              - completed_at
+                              - failed_at
+                            additionalProperties: false
+                          - title: copy/trigger
+                            type: object
+                            properties:
+                              operation_type:
+                                description: Copy trigger operation type
+                                type: string
+                                enum:
+                                  - copy/trigger
+                              state:
+                                $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/state'
+                              parameters:
+                                type: object
+                                description: Operation parameters
+                                properties:
+                                  source_trigger_id:
+                                    allOf:
+                                      - $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/parameters/0/schema'
+                                      - description: Source trigger's identifier
+                                  target_trigger_id:
+                                    description: New trigger's identifier
+                                    title: UUID
+                                    type: string
+                                    pattern: '^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$'
+                                  target_app_id:
+                                    $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/parameters/properties/target_app_id'
+                                  name:
+                                    $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/parameters/properties/name'
+                                required:
+                                  - source_trigger_id
+                                  - target_trigger_id
+                                  - target_app_id
+                                  - name
+                                additionalProperties: false
+                              summary:
+                                type: object
+                                description: Operation summary
+                                properties:
+                                  tags:
+                                    description: Empty tags list
+                                    type: array
+                                  triggers:
+                                    description: List of copied triggers
+                                    type: array
+                                    items:
+                                      type: object
+                                      properties:
+                                        source_trigger_id:
+                                          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/summary/properties/triggers/items/properties/source_trigger_id'
+                                        target_trigger_id:
+                                          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/summary/properties/triggers/items/properties/target_trigger_id'
+                                        source_id:
+                                          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/summary/properties/triggers/items/properties/source_id'
+                                        source_name:
+                                          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/summary/properties/triggers/items/properties/source_name'
+                                        target_name:
+                                          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/summary/properties/triggers/items/properties/target_name'
+                                        is_renamed:
+                                          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/summary/properties/triggers/items/properties/is_renamed'
+                                      required:
+                                        - source_id
+                                        - source_trigger_id
+                                        - source_name
+                                        - target_trigger_id
+                                        - target_name
+                                        - is_renamed
+                                      additionalProperties: false
+                                  variables:
+                                    description: List of copied variables
+                                    type: array
+                                    items:
+                                      type: object
+                                      properties:
+                                        source_variable_id:
+                                          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/summary/properties/variables/items/properties/source_variable_id'
+                                        target_variable_id:
+                                          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/summary/properties/variables/items/properties/target_variable_id'
+                                        source_id:
+                                          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/summary/properties/triggers/items/properties/source_id'
+                                        source_name:
+                                          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/summary/properties/triggers/items/properties/source_name'
+                                        target_name:
+                                          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/summary/properties/triggers/items/properties/target_name'
+                                        is_renamed:
+                                          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/summary/properties/triggers/items/properties/is_renamed'
+                                      required:
+                                        - source_id
+                                        - source_variable_id
+                                        - source_name
+                                        - target_variable_id
+                                        - target_name
+                                        - is_renamed
+                                      additionalProperties: false
+                                required:
+                                  - triggers
+                                  - variables
+                                additionalProperties: false
+                              created_at:
+                                $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/created_at'
+                              updated_at:
+                                $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/created_at'
+                              started_at:
+                                oneOf:
+                                  - $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/created_at'
+                                  - $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/failed_at/oneOf/1'
+                              completed_at:
+                                oneOf:
+                                  - $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/created_at'
+                                  - $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/failed_at/oneOf/1'
+                              failed_at:
+                                oneOf:
+                                  - $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/created_at'
+                                  - $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/failed_at/oneOf/1'
+                            required:
+                              - operation_type
+                              - state
+                              - parameters
+                              - summary
+                              - created_at
+                              - updated_at
+                              - started_at
+                              - completed_at
+                              - failed_at
+                            additionalProperties: false
+                          - title: copy/variable
+                            type: object
+                            properties:
+                              operation_type:
+                                description: Copy variable operation type
+                                type: string
+                                enum:
+                                  - copy/variable
+                              state:
+                                $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/state'
+                              parameters:
+                                type: object
+                                description: Operation parameters
+                                properties:
+                                  source_variable_id:
+                                    allOf:
+                                      - $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/parameters/0/schema'
+                                      - description: Source variable's identifier
+                                  target_variable_id:
+                                    description: New variable's identifier
+                                    title: UUID
+                                    type: string
+                                    pattern: '^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$'
+                                  target_app_id:
+                                    $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/parameters/properties/target_app_id'
+                                  name:
+                                    $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/parameters/properties/name'
+                                required:
+                                  - source_variable_id
+                                  - target_variable_id
+                                  - target_app_id
+                                  - name
+                                additionalProperties: false
+                              summary:
+                                type: object
+                                description: Operation summary
+                                properties:
+                                  tags:
+                                    description: Empty tags list
+                                    type: array
+                                  triggers:
+                                    description: Empty triggers list
+                                    type: array
+                                  variables:
+                                    description: List of copied variables
+                                    type: array
+                                    items:
+                                      type: object
+                                      properties:
+                                        source_variable_id:
+                                          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/summary/properties/variables/items/properties/source_variable_id'
+                                        target_variable_id:
+                                          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/summary/properties/variables/items/properties/target_variable_id'
+                                        source_id:
+                                          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/summary/properties/triggers/items/properties/source_id'
+                                        source_name:
+                                          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/summary/properties/triggers/items/properties/source_name'
+                                        target_name:
+                                          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/summary/properties/triggers/items/properties/target_name'
+                                        is_renamed:
+                                          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/summary/properties/triggers/items/properties/is_renamed'
+                                      required:
+                                        - source_id
+                                        - source_variable_id
+                                        - source_name
+                                        - target_variable_id
+                                        - target_name
+                                        - is_renamed
+                                      additionalProperties: false
+                                required:
+                                  - variables
+                                additionalProperties: false
+                              created_at:
+                                $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/created_at'
+                              updated_at:
+                                $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/created_at'
+                              started_at:
+                                oneOf:
+                                  - $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/created_at'
+                                  - $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/failed_at/oneOf/1'
+                              completed_at:
+                                oneOf:
+                                  - $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/created_at'
+                                  - $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/failed_at/oneOf/1'
+                              failed_at:
+                                oneOf:
+                                  - $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/created_at'
+                                  - $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/failed_at/oneOf/1'
+                            required:
+                              - operation_type
+                              - state
+                              - parameters
+                              - summary
+                              - created_at
+                              - updated_at
+                              - started_at
+                              - completed_at
+                              - failed_at
+                            additionalProperties: false
+                          - title: export/version
+                            type: object
+                            properties:
+                              operation_type:
+                                description: Export version operation type
+                                type: string
+                                enum:
+                                  - export/version
+                              state:
+                                $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/state'
+                              parameters:
+                                type: object
+                                description: Operation parameters
+                                properties:
+                                  source_app_id:
+                                    allOf:
+                                      - $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/parameters/0/schema'
+                                      - description: Source application identifier
+                                  source_version_id:
+                                    allOf:
+                                      - $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/parameters/0/schema'
+                                      - description: Exported version identifier
+                                  export_file_id:
+                                    allOf:
+                                      - $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/parameters/0/schema'
+                                      - description: Exported file identifier
+                                required:
+                                  - source_app_id
+                                  - source_version_id
+                                  - export_file_id
+                                additionalProperties: false
+                              summary:
+                                type: object
+                                description: Operation summary
+                                properties:
+                                  export_file_id:
+                                    allOf:
+                                      - $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/parameters/0/schema'
+                                      - description: Export file identifier
+                                required:
+                                  - export_file_id
+                                additionalProperties: false
+                              created_at:
+                                $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/created_at'
+                              updated_at:
+                                $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/created_at'
+                              started_at:
+                                oneOf:
+                                  - $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/created_at'
+                                  - $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/failed_at/oneOf/1'
+                              completed_at:
+                                oneOf:
+                                  - $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/created_at'
+                                  - $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/failed_at/oneOf/1'
+                              failed_at:
+                                oneOf:
+                                  - $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/created_at'
+                                  - $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/failed_at/oneOf/1'
+                            required:
+                              - operation_type
+                              - state
+                              - parameters
+                              - summary
+                              - created_at
+                              - updated_at
+                              - started_at
+                              - completed_at
+                              - failed_at
+                            additionalProperties: false
+                          - title: import/version
+                            type: object
+                            properties:
+                              operation_type:
+                                description: Import version operation type
+                                type: string
+                                enum:
+                                  - import/version
+                              state:
+                                $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/state'
+                              parameters:
+                                type: object
+                                description: Operation parameters
+                                properties:
+                                  target_app_id:
+                                    $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/parameters/properties/target_app_id'
+                                  source_version_id:
+                                    description: Source version identifier
+                                    title: UUID
+                                    type: string
+                                    pattern: '^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$'
+                                required:
+                                  - target_app_id
+                                  - source_version_id
+                                additionalProperties: false
+                              summary:
+                                type: object
+                                description: Operation summary
+                                properties:
+                                  tags:
+                                    description: List of imported tags
+                                    type: array
+                                    items:
+                                      oneOf:
+                                        - title: Successfully imported tags
+                                          type: object
+                                          properties:
+                                            source_tag_id:
+                                              $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/summary/properties/tags/items/oneOf/0/properties/source_tag_id'
+                                            target_tag_id:
+                                              $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/summary/properties/tags/items/oneOf/0/properties/target_tag_id'
+                                            source_id:
+                                              $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/summary/properties/triggers/items/properties/source_id'
+                                            source_name:
+                                              $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/summary/properties/triggers/items/properties/source_name'
+                                            target_name:
+                                              $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/summary/properties/triggers/items/properties/target_name'
+                                            is_renamed:
+                                              $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/summary/properties/triggers/items/properties/is_renamed'
+                                          required:
+                                            - source_id
+                                            - source_tag_id
+                                            - source_name
+                                            - target_tag_id
+                                            - target_name
+                                            - is_renamed
+                                          additionalProperties: false
+                                        - title: Not imported tags
+                                          type: object
+                                          properties:
+                                            source_tag_id:
+                                              $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/summary/properties/tags/items/oneOf/0/properties/source_tag_id'
+                                            source_id:
+                                              $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/summary/properties/triggers/items/properties/source_id'
+                                            source_name:
+                                              $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/summary/properties/triggers/items/properties/source_name'
+                                            errors:
+                                              $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/summary/properties/tags/items/oneOf/1/properties/errors'
+                                          required:
+                                            - source_id
+                                            - source_tag_id
+                                            - source_name
+                                            - errors
+                                          additionalProperties: false
+                                  triggers:
+                                    description: List of imported triggers
+                                    type: array
+                                    items:
+                                      type: object
+                                      properties:
+                                        source_trigger_id:
+                                          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/summary/properties/triggers/items/properties/source_trigger_id'
+                                        target_trigger_id:
+                                          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/summary/properties/triggers/items/properties/target_trigger_id'
+                                        source_id:
+                                          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/summary/properties/triggers/items/properties/source_id'
+                                        source_name:
+                                          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/summary/properties/triggers/items/properties/source_name'
+                                        target_name:
+                                          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/summary/properties/triggers/items/properties/target_name'
+                                        is_renamed:
+                                          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/summary/properties/triggers/items/properties/is_renamed'
+                                      required:
+                                        - source_id
+                                        - source_trigger_id
+                                        - source_name
+                                        - target_trigger_id
+                                        - target_name
+                                        - is_renamed
+                                      additionalProperties: false
+                                  variables:
+                                    description: List of imported variables
+                                    type: array
+                                    items:
+                                      type: object
+                                      properties:
+                                        source_variable_id:
+                                          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/summary/properties/variables/items/properties/source_variable_id'
+                                        target_variable_id:
+                                          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/summary/properties/variables/items/properties/target_variable_id'
+                                        source_id:
+                                          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/summary/properties/triggers/items/properties/source_id'
+                                        source_name:
+                                          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/summary/properties/triggers/items/properties/source_name'
+                                        target_name:
+                                          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/summary/properties/triggers/items/properties/target_name'
+                                        is_renamed:
+                                          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/summary/properties/triggers/items/properties/is_renamed'
+                                      required:
+                                        - source_id
+                                        - source_variable_id
+                                        - source_name
+                                        - target_variable_id
+                                        - target_name
+                                        - is_renamed
+                                      additionalProperties: false
+                                additionalProperties: false
+                              created_at:
+                                $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/created_at'
+                              updated_at:
+                                $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/created_at'
+                              started_at:
+                                oneOf:
+                                  - $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/created_at'
+                                  - $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/failed_at/oneOf/1'
+                              completed_at:
+                                oneOf:
+                                  - $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/created_at'
+                                  - $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/failed_at/oneOf/1'
+                              failed_at:
+                                oneOf:
+                                  - $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/created_at'
+                                  - $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/failed_at/oneOf/1'
+                            required:
+                              - operation_type
+                              - state
+                              - parameters
+                              - summary
+                              - created_at
+                              - updated_at
+                              - started_at
+                              - completed_at
+                              - failed_at
+                            additionalProperties: false
+                          - title: import/file
+                            type: object
+                            properties:
+                              operation_type:
+                                description: Import file operation type
+                                type: string
+                                enum:
+                                  - import/file
+                              state:
+                                $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/state'
+                              parameters:
+                                type: object
+                                description: Operation parameters
+                                properties:
+                                  target_app_id:
+                                    $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/parameters/properties/target_app_id'
+                                  import_file_id:
+                                    allOf:
+                                      - $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/parameters/0/schema'
+                                      - description: Imported file identifier
+                                required:
+                                  - target_app_id
+                                  - import_file_id
+                                additionalProperties: false
+                              summary:
+                                type: object
+                                description: Operation summary
+                                properties:
+                                  tags:
+                                    description: List of imported tags
+                                    type: array
+                                    items:
+                                      oneOf:
+                                        - title: Successfully imported tags
+                                          type: object
+                                          properties:
+                                            source_tag_id:
+                                              $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/summary/properties/tags/items/oneOf/0/properties/source_tag_id'
+                                            target_tag_id:
+                                              $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/summary/properties/tags/items/oneOf/0/properties/target_tag_id'
+                                            source_id:
+                                              $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/summary/properties/triggers/items/properties/source_id'
+                                            source_name:
+                                              $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/summary/properties/triggers/items/properties/source_name'
+                                            target_name:
+                                              $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/summary/properties/triggers/items/properties/target_name'
+                                            is_renamed:
+                                              $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/summary/properties/triggers/items/properties/is_renamed'
+                                          required:
+                                            - source_id
+                                            - source_tag_id
+                                            - source_name
+                                            - target_tag_id
+                                            - target_name
+                                            - is_renamed
+                                          additionalProperties: false
+                                        - title: Not imported tags
+                                          type: object
+                                          properties:
+                                            source_tag_id:
+                                              $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/summary/properties/tags/items/oneOf/0/properties/source_tag_id'
+                                            source_id:
+                                              $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/summary/properties/triggers/items/properties/source_id'
+                                            source_name:
+                                              $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/summary/properties/triggers/items/properties/source_name'
+                                            errors:
+                                              $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/summary/properties/tags/items/oneOf/1/properties/errors'
+                                          required:
+                                            - source_id
+                                            - source_tag_id
+                                            - source_name
+                                            - errors
+                                          additionalProperties: false
+                                  triggers:
+                                    description: List of imported triggers
+                                    type: array
+                                    items:
+                                      type: object
+                                      properties:
+                                        source_trigger_id:
+                                          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/summary/properties/triggers/items/properties/source_trigger_id'
+                                        target_trigger_id:
+                                          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/summary/properties/triggers/items/properties/target_trigger_id'
+                                        source_id:
+                                          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/summary/properties/triggers/items/properties/source_id'
+                                        source_name:
+                                          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/summary/properties/triggers/items/properties/source_name'
+                                        target_name:
+                                          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/summary/properties/triggers/items/properties/target_name'
+                                        is_renamed:
+                                          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/summary/properties/triggers/items/properties/is_renamed'
+                                      required:
+                                        - source_id
+                                        - source_trigger_id
+                                        - source_name
+                                        - target_trigger_id
+                                        - target_name
+                                        - is_renamed
+                                      additionalProperties: false
+                                  variables:
+                                    description: List of imported variables
+                                    type: array
+                                    items:
+                                      type: object
+                                      properties:
+                                        source_variable_id:
+                                          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/summary/properties/variables/items/properties/source_variable_id'
+                                        target_variable_id:
+                                          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/summary/properties/variables/items/properties/target_variable_id'
+                                        source_id:
+                                          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/summary/properties/triggers/items/properties/source_id'
+                                        source_name:
+                                          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/summary/properties/triggers/items/properties/source_name'
+                                        target_name:
+                                          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/summary/properties/triggers/items/properties/target_name'
+                                        is_renamed:
+                                          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/summary/properties/triggers/items/properties/is_renamed'
+                                      required:
+                                        - source_id
+                                        - source_variable_id
+                                        - source_name
+                                        - target_variable_id
+                                        - target_name
+                                        - is_renamed
+                                      additionalProperties: false
+                                additionalProperties: false
+                              created_at:
+                                $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/created_at'
+                              updated_at:
+                                $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/created_at'
+                              started_at:
+                                oneOf:
+                                  - $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/created_at'
+                                  - $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/failed_at/oneOf/1'
+                              completed_at:
+                                oneOf:
+                                  - $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/created_at'
+                                  - $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/failed_at/oneOf/1'
+                              failed_at:
+                                oneOf:
+                                  - $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/created_at'
+                                  - $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/failed_at/oneOf/1'
+                            required:
+                              - operation_type
+                              - state
+                              - parameters
+                              - summary
+                              - created_at
+                              - updated_at
+                              - started_at
+                              - completed_at
+                              - failed_at
+                            additionalProperties: false
+                          - title: restore/version
+                            type: object
+                            properties:
+                              operation_type:
+                                description: Restore version operation type
+                                type: string
+                                enum:
+                                  - restore/version
+                              state:
+                                $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/state'
+                              parameters:
+                                type: object
+                                description: Operation parameters
+                                properties:
+                                  version_id:
+                                    description: Version identifier
+                                    title: UUID
+                                    type: string
+                                    pattern: '^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$'
+                                  version_type:
+                                    description: Version type to restore
+                                    type: string
+                                    enum:
+                                      - published
+                                      - historic
+                                required:
+                                  - version_id
+                                  - version_type
+                                additionalProperties: false
+                              summary:
+                                oneOf:
+                                  - title: Created/Started operation summary
+                                    type: object
+                                    additionalProperties: false
+                                  - title: Successful operation summary
+                                    type: object
+                                    properties:
+                                      versions:
+                                        type: array
+                                        items:
+                                          type: object
+                                          properties:
+                                            version_id:
+                                              $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/6/properties/parameters/properties/version_id'
+                                            version_type:
+                                              description: Version type
+                                              type: string
+                                              enum:
+                                                - published
+                                                - draft
+                                            version_major:
+                                              type: integer
+                                              minimum: 0
+                                              description: Version number before dot
+                                            version_minor:
+                                              type: integer
+                                              minimum: 0
+                                              description: Version number after dot
+                                            created_at:
+                                              $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/created_at'
+                                            updated_at:
+                                              $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/created_at'
+                                            change_type:
+                                              type: string
+                                              enum:
+                                                - removed
+                                                - added
+                                          required:
+                                            - version_id
+                                            - version_type
+                                            - version_major
+                                            - version_minor
+                                            - created_at
+                                            - updated_at
+                                            - change_type
+                                          additionalProperties: false
+                                        minItems: 2
+                                        maxItems: 2
+                                    required:
+                                      - versions
+                                    additionalProperties: false
+                                  - title: Failed operation summary
+                                    type: object
+                                    properties:
+                                      errors:
+                                        type: array
+                                        items:
+                                          type: string
+                                        minItems: 1
+                                    required:
+                                      - errors
+                                    additionalProperties: false
+                              created_at:
+                                $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/created_at'
+                              updated_at:
+                                $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/created_at'
+                              started_at:
+                                oneOf:
+                                  - $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/created_at'
+                                  - $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/failed_at/oneOf/1'
+                              completed_at:
+                                oneOf:
+                                  - $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/created_at'
+                                  - $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/failed_at/oneOf/1'
+                              failed_at:
+                                oneOf:
+                                  - $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/created_at'
+                                  - $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/failed_at/oneOf/1'
+                            required:
+                              - operation_type
+                              - state
+                              - parameters
+                              - summary
+                              - created_at
+                              - updated_at
+                              - started_at
+                              - completed_at
+                              - failed_at
+                            additionalProperties: false
+                          - title: publish/version
+                            type: object
+                            properties:
+                              operation_type:
+                                description: Publish version operation type
+                                type: string
+                                enum:
+                                  - publish/version
+                              state:
+                                $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/state'
+                              parameters:
+                                type: object
+                                description: Operation parameters
+                                properties:
+                                  version_id:
+                                    $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/6/properties/parameters/properties/version_id'
+                                  version_type:
+                                    description: Version type to publish
+                                    type: string
+                                    enum:
+                                      - draft
+                                      - historic
+                                required:
+                                  - version_id
+                                  - version_type
+                                additionalProperties: false
+                              summary:
+                                oneOf:
+                                  - $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/6/properties/summary/oneOf/0'
+                                  - title: Successful operation summary
+                                    type: object
+                                    properties:
+                                      versions:
+                                        type: array
+                                        items:
+                                          type: object
+                                          properties:
+                                            version_id:
+                                              $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/6/properties/parameters/properties/version_id'
+                                            version_type:
+                                              description: Version type
+                                              type: string
+                                              enum:
+                                                - draft
+                                                - published
+                                                - historic
+                                            version_major:
+                                              $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/6/properties/summary/oneOf/1/properties/versions/items/properties/version_major'
+                                            version_minor:
+                                              $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/6/properties/summary/oneOf/1/properties/versions/items/properties/version_minor'
+                                            created_at:
+                                              $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/created_at'
+                                            updated_at:
+                                              $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/created_at'
+                                            change_type:
+                                              type: string
+                                              enum:
+                                                - added
+                                                - modified
+                                          required:
+                                            - version_id
+                                            - version_type
+                                            - version_major
+                                            - version_minor
+                                            - created_at
+                                            - updated_at
+                                            - change_type
+                                          additionalProperties: false
+                                        minItems: 3
+                                        maxItems: 3
+                                    required:
+                                      - versions
+                                    additionalProperties: false
+                                  - $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/6/properties/summary/oneOf/2'
+                              created_at:
+                                $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/created_at'
+                              updated_at:
+                                $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/created_at'
+                              started_at:
+                                oneOf:
+                                  - $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/created_at'
+                                  - $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/failed_at/oneOf/1'
+                              completed_at:
+                                oneOf:
+                                  - $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/created_at'
+                                  - $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/failed_at/oneOf/1'
+                              failed_at:
+                                oneOf:
+                                  - $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/created_at'
+                                  - $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/failed_at/oneOf/1'
+                            required:
+                              - operation_type
+                              - state
+                              - parameters
+                              - summary
+                              - created_at
+                              - updated_at
+                              - started_at
+                              - completed_at
+                              - failed_at
+                            additionalProperties: false
+                          - title: snapshot/version
+                            type: object
+                            properties:
+                              operation_type:
+                                description: Snapshot version operation type
+                                type: string
+                                enum:
+                                  - snapshot/version
+                              state:
+                                $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/state'
+                              parameters:
+                                type: object
+                                description: Operation parameters
+                                properties:
+                                  version_id:
+                                    $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/6/properties/parameters/properties/version_id'
+                                  version_type:
+                                    description: Version type to snapshot
+                                    type: string
+                                    enum:
+                                      - draft
+                                required:
+                                  - version_id
+                                  - version_type
+                                additionalProperties: false
+                              summary:
+                                oneOf:
+                                  - $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/6/properties/summary/oneOf/0'
+                                  - title: Successful operation summary
+                                    type: object
+                                    properties:
+                                      versions:
+                                        type: array
+                                        items:
+                                          type: object
+                                          properties:
+                                            version_id:
+                                              $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/6/properties/parameters/properties/version_id'
+                                            version_type:
+                                              description: Version type
+                                              type: string
+                                              enum:
+                                                - draft
+                                                - historic
+                                            version_major:
+                                              $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/6/properties/summary/oneOf/1/properties/versions/items/properties/version_major'
+                                            version_minor:
+                                              $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/6/properties/summary/oneOf/1/properties/versions/items/properties/version_minor'
+                                            created_at:
+                                              $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/created_at'
+                                            updated_at:
+                                              $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/created_at'
+                                            change_type:
+                                              type: string
+                                              enum:
+                                                - added
+                                                - modified
+                                          required:
+                                            - version_id
+                                            - version_type
+                                            - version_major
+                                            - version_minor
+                                            - created_at
+                                            - updated_at
+                                            - change_type
+                                          additionalProperties: false
+                                        minItems: 2
+                                        maxItems: 2
+                                    required:
+                                      - versions
+                                    additionalProperties: false
+                                  - $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/6/properties/summary/oneOf/2'
+                              created_at:
+                                $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/created_at'
+                              updated_at:
+                                $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/created_at'
+                              started_at:
+                                oneOf:
+                                  - $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/created_at'
+                                  - $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/failed_at/oneOf/1'
+                              completed_at:
+                                oneOf:
+                                  - $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/created_at'
+                                  - $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/failed_at/oneOf/1'
+                              failed_at:
+                                oneOf:
+                                  - $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/created_at'
+                                  - $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/oneOf/0/properties/failed_at/oneOf/1'
+                            required:
+                              - operation_type
+                              - state
+                              - parameters
+                              - summary
+                              - created_at
+                              - updated_at
+                              - started_at
+                              - completed_at
+                              - failed_at
+                            additionalProperties: false
+                    required:
+                      - id
+                      - type
+                      - attributes
+                    additionalProperties: false
+                additionalProperties: false
+                required:
+                  - data
+              example:
+                data:
+                  id: 7f767738-069b-41b2-b270-d801fc05e028
+                  type: operation
+                  attributes:
+                    operation_type: import/version
+                    state: completed
+                    parameters:
+                      target_app_id: 7b7beca9-eebf-42e0-8923-d16d4e2a8307
+                      source_version_id: 731e930b-5002-43ce-930e-52388123a56d
+                    summary:
+                      tags:
+                        - source_id: 166d3863-69c3-4c8d-90f8-bb9da0654296
+                          source_tag_id: 7ee802ae-ee13-4365-8892-cbb1b2ab4968
+                          source_name: Piwik PRO
+                          target_tag_id: c7b3e0af-67ed-4fbe-aefc-a1648021914e
+                          target_name: Piwik PRO
+                          is_renamed: false
+                        - source_id: 36a2e74e-d12f-4a6b-85f7-a896fdb9ece8
+                          source_tag_id: 8a745cc1-4ee7-4236-b9d2-ccb236264755
+                          source_name: Tag name
+                          target_tag_id: d191fac5-c91b-46d4-826f-6dcf14fb117c
+                          target_name: Tag name
+                          is_renamed: false
+                      triggers:
+                        - source_id: fc04d2cc-9f3d-4857-a1ee-e851aff2e1a1
+                          source_trigger_id: 81dde686-86f3-432a-a08f-bfcf796d36fb
+                          target_trigger_id: 11c32a79-5409-4427-9809-7ce1937fd401
+                          source_name: Trigger name
+                          target_name: Trigger name - copy
+                          is_renamed: true
+                      variables:
+                        - source_id: 6ce3da2b-bb1c-4fff-9561-4b19d1b360d6
+                          source_variable_id: eb8c90a2-2b80-4acb-96e0-b5c6c28cf041
+                          target_variable_id: 3c55cf00-e282-4126-b06c-0ccb8b77d094
+                          source_name: Page URL
+                          target_name: Page URL
+                          is_renamed: false
+                    created_at: '2020-04-06T09:06:46+00:00'
+                    started_at: '2020-04-06T09:06:50+00:00'
+                    completed_at: '2020-04-06T09:07:20+00:00'
+                    failed_at: null
+                    updated_at: '2020-04-06T09:06:46+00:00'
+        '400':
+          description: Bad request parameter
+          content:
+            application/vnd.api+json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          description: 'An application-specific error code, expressed as a string value.'
+                        detail:
+                          type: string
+                          description: A human-readable explanation specific to this occurrence of the problem.
+                        source:
+                          type: object
+                          description: An object containing references to the source of the error.
+                          properties:
+                            pointer:
+                              type: string
+                              description: 'A JSON Pointer [RFC6901] to the associated entity in the request document.'
+                            parameter:
+                              type: string
+                              description: A string indicating which URI parameter caused the error.
+                          additionalProperties: false
+                        meta:
+                          type: object
+                          description: An object containing additional application-specific information about error.
+                          properties:
+                            keyword:
+                              type: string
+                            keyword_args:
+                              type: object
+                          additionalProperties: false
+                      additionalProperties: false
+                      required:
+                        - code
+                        - detail
+                    minItems: 1
+                additionalProperties: false
+                required:
+                  - errors
+              example:
+                errors:
+                  - code: INVALID_URI_PARAMETER_ERROR
+                    detail: Application identifier should be of type UUID
+                    source:
+                      parameter: app_id
+        '404':
+          description: Not found
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/400/content/application~1vnd.api%2Bjson/schema'
+              example:
+                errors:
+                  - code: NOT_FOUND_ERROR
+                    detail: 'There is no application with given identifier: 5c39070d-9e0b-40a2-ae56-392f05711f74'
+                    source:
+                      parameter: app_id
+        '500':
+          description: Internal server error
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1operations~1%7Boperation_id%7D/get/responses/400/content/application~1vnd.api%2Bjson/schema'
+              example:
+                errors:
+                  - code: INTERNAL_SERVER_ERROR
+                    detail: MySQL server has gone away
+      tags:
+        - Tag Manager
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

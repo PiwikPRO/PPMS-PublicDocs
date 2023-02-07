@@ -1,0 +1,693 @@
+openapi: 3.0.0
+info:
+  title: Container Settings API
+  version: '1.0'
+security:
+  - BearerAuth: []
+servers:
+  - url: 'https://example.piwik.pro'
+paths:
+  '/api/container-settings/v1/app/{app_id}/settings':
+    parameters:
+      - in: path
+        name: app_id
+        required: true
+        description: App identifier
+        schema:
+          title: UUID
+          type: string
+          pattern: '^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$'
+        example: 1f74dda5-b598-41d6-a9e4-f501ef4379e1
+    get:
+      summary: Get App's container settings
+      responses:
+        '200':
+          description: OK
+          content:
+            application/vnd.api+json:
+              schema:
+                description: App's container settings response
+                type: object
+                properties:
+                  data:
+                    title: List of container settings for App
+                    type: array
+                    items:
+                      oneOf:
+                        - $ref: '#/paths/~1api~1container-settings~1v1~1app~1%7Bapp_id%7D~1settings~1%7Bsetting_name%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/oneOf/0'
+                        - $ref: '#/paths/~1api~1container-settings~1v1~1app~1%7Bapp_id%7D~1settings~1%7Bsetting_name%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/oneOf/1'
+                required:
+                  - data
+              example:
+                links:
+                  self: '/api/container-settings/v1/app/1ec83458-1e3c-6bf4-8a9e-0242b03927ed/settings?page[offset]=0&page[limit]=100'
+                  first: '/api/container-settings/v1/app/1ec83458-1e3c-6bf4-8a9e-0242b03927ed/settings?page[offset]=0&page[limit]=100'
+                  last: '/api/container-settings/v1/app/1ec83458-1e3c-6bf4-8a9e-0242b03927ed/settings?page[offset]=0&page[limit]=100'
+                  prev: null
+                  next: null
+                data:
+                  - type: container/app/setting
+                    id: automatic_scroll_tracking
+                    attributes:
+                      value:
+                        is_enabled: true
+                        thresholds:
+                          - 5
+                          - 50
+                          - 95
+                      is_custom: false
+                  - type: container/app/setting
+                    id: spa_tracking
+                    attributes:
+                      value:
+                        is_enabled: true
+                      is_custom: true
+        '400':
+          description: Bad request parameter
+          content:
+            application/vnd.api+json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          description: 'An application-specific error code, expressed as a string value.'
+                        detail:
+                          type: string
+                          description: A human-readable explanation specific to this occurrence of the problem.
+                        source:
+                          type: object
+                          description: An object containing references to the source of the error.
+                          properties:
+                            pointer:
+                              type: string
+                              description: 'A JSON Pointer [RFC6901] to the associated entity in the request document.'
+                            parameter:
+                              type: string
+                              description: A string indicating which URI parameter caused the error.
+                          additionalProperties: false
+                        meta:
+                          type: object
+                          description: An object containing additional application-specific information about error.
+                          properties:
+                            keyword:
+                              type: string
+                            keyword_args:
+                              type: object
+                          additionalProperties: false
+                      additionalProperties: false
+                      required:
+                        - code
+                        - detail
+                    minItems: 1
+                additionalProperties: false
+                required:
+                  - errors
+              example:
+                errors:
+                  - code: INVALID_URI_PARAMETER_ERROR
+                    detail: Application identifier should be of type UUID
+                    source:
+                      parameter: app_id
+        '401':
+          description: Unauthorized
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/paths/~1api~1container-settings~1v1~1app~1%7Bapp_id%7D~1settings/get/responses/400/content/application~1vnd.api%2Bjson/schema'
+              example:
+                errors:
+                  - code: UNAUTHORIZED_ERROR
+                    detail: Access token not authorized
+        '404':
+          description: Not found
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/paths/~1api~1container-settings~1v1~1app~1%7Bapp_id%7D~1settings/get/responses/400/content/application~1vnd.api%2Bjson/schema'
+              example:
+                errors:
+                  - code: NOT_FOUND_ERROR
+                    detail: 'There is no application with given identifier: 5c39070d-9e0b-40a2-ae56-392f05711f74'
+                    source:
+                      parameter: app_id
+        '500':
+          description: Internal server error
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/paths/~1api~1container-settings~1v1~1app~1%7Bapp_id%7D~1settings/get/responses/400/content/application~1vnd.api%2Bjson/schema'
+              example:
+                errors:
+                  - code: INTERNAL_SERVER_ERROR
+                    detail: MySQL server has gone away
+      tags:
+        - Container Settings
+    patch:
+      summary: Modify App's container settings
+      requestBody:
+        required: true
+        content:
+          application/vnd.api+json:
+            schema:
+              description: Edit App's container settings request
+              type: object
+              properties:
+                data:
+                  description: App's container settings list to be edited
+                  type: array
+                  items:
+                    oneOf:
+                      - $ref: '#/paths/~1api~1container-settings~1v1~1app~1%7Bapp_id%7D~1settings~1%7Bsetting_name%7D/put/requestBody/content/application~1vnd.api%2Bjson/schema/properties/data/oneOf/0'
+                      - $ref: '#/paths/~1api~1container-settings~1v1~1app~1%7Bapp_id%7D~1settings~1%7Bsetting_name%7D/put/requestBody/content/application~1vnd.api%2Bjson/schema/properties/data/oneOf/1'
+              additionalProperties: false
+              required:
+                - data
+            example:
+              data:
+                - id: automatic_scroll_tracking
+                  type: container/app/setting
+                  attributes:
+                    value:
+                      is_enabled: true
+                      thresholds:
+                        - 5
+                        - 50
+                        - 95
+      responses:
+        '204':
+          description: No content
+        '400':
+          $ref: '#/paths/~1api~1container-settings~1v1~1app~1%7Bapp_id%7D~1settings/get/responses/400'
+        '401':
+          $ref: '#/paths/~1api~1container-settings~1v1~1app~1%7Bapp_id%7D~1settings/get/responses/401'
+        '404':
+          $ref: '#/paths/~1api~1container-settings~1v1~1app~1%7Bapp_id%7D~1settings/get/responses/404'
+        '500':
+          $ref: '#/paths/~1api~1container-settings~1v1~1app~1%7Bapp_id%7D~1settings/get/responses/500'
+      tags:
+        - Container Settings
+  '/api/container-settings/v1/app/{app_id}/settings/{setting_name}':
+    parameters:
+      - $ref: '#/paths/~1api~1container-settings~1v1~1app~1%7Bapp_id%7D~1settings/parameters/0'
+      - in: path
+        name: setting_name
+        required: true
+        description: Container setting name
+        schema:
+          type: string
+          enum:
+            - automatic_scroll_tracking
+            - spa_tracking
+    get:
+      summary: Get the App's container setting
+      responses:
+        '200':
+          description: OK
+          content:
+            application/vnd.api+json:
+              schema:
+                description: App's container setting response
+                type: object
+                properties:
+                  data:
+                    oneOf:
+                      - title: Automatic scroll tracking for App
+                        type: object
+                        properties:
+                          id:
+                            $ref: '#/paths/~1api~1container-settings~1v1~1app~1%7Bapp_id%7D~1settings~1%7Bsetting_name%7D/put/requestBody/content/application~1vnd.api%2Bjson/schema/properties/data/oneOf/0/properties/id'
+                          type:
+                            $ref: '#/paths/~1api~1container-settings~1v1~1app~1%7Bapp_id%7D~1settings~1%7Bsetting_name%7D/put/requestBody/content/application~1vnd.api%2Bjson/schema/properties/data/oneOf/0/properties/type'
+                          attributes:
+                            description: Container setting for App
+                            type: object
+                            properties:
+                              value:
+                                $ref: '#/paths/~1api~1container-settings~1v1~1app~1%7Bapp_id%7D~1settings~1%7Bsetting_name%7D/put/requestBody/content/application~1vnd.api%2Bjson/schema/properties/data/oneOf/0/properties/attributes/properties/value'
+                              is_custom:
+                                description: 'Flag informing, that setting is a custom App setting'
+                                type: boolean
+                            required:
+                              - value
+                              - is_custom
+                            additionalProperties: false
+                        additionalProperties: false
+                        required:
+                          - id
+                          - type
+                          - attributes
+                      - title: SPA tracking for App
+                        type: object
+                        properties:
+                          id:
+                            $ref: '#/paths/~1api~1container-settings~1v1~1app~1%7Bapp_id%7D~1settings~1%7Bsetting_name%7D/put/requestBody/content/application~1vnd.api%2Bjson/schema/properties/data/oneOf/1/properties/id'
+                          type:
+                            $ref: '#/paths/~1api~1container-settings~1v1~1app~1%7Bapp_id%7D~1settings~1%7Bsetting_name%7D/put/requestBody/content/application~1vnd.api%2Bjson/schema/properties/data/oneOf/0/properties/type'
+                          attributes:
+                            description: Container setting for App
+                            type: object
+                            properties:
+                              value:
+                                $ref: '#/paths/~1api~1container-settings~1v1~1app~1%7Bapp_id%7D~1settings~1%7Bsetting_name%7D/put/requestBody/content/application~1vnd.api%2Bjson/schema/properties/data/oneOf/1/properties/attributes/properties/value'
+                              is_custom:
+                                $ref: '#/paths/~1api~1container-settings~1v1~1app~1%7Bapp_id%7D~1settings~1%7Bsetting_name%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/oneOf/0/properties/attributes/properties/is_custom'
+                            required:
+                              - value
+                              - is_custom
+                            additionalProperties: false
+                        additionalProperties: false
+                        required:
+                          - id
+                          - type
+                          - attributes
+                required:
+                  - data
+              example:
+                data:
+                  id: automatic_scroll_tracking
+                  type: container/app/setting
+                  attributes:
+                    value:
+                      is_enabled: true
+                      thresholds:
+                        - 5
+                        - 50
+                        - 95
+        '400':
+          $ref: '#/paths/~1api~1container-settings~1v1~1app~1%7Bapp_id%7D~1settings/get/responses/400'
+        '401':
+          $ref: '#/paths/~1api~1container-settings~1v1~1app~1%7Bapp_id%7D~1settings/get/responses/401'
+        '404':
+          $ref: '#/paths/~1api~1container-settings~1v1~1app~1%7Bapp_id%7D~1settings/get/responses/404'
+        '500':
+          $ref: '#/paths/~1api~1container-settings~1v1~1app~1%7Bapp_id%7D~1settings/get/responses/500'
+      tags:
+        - Container Settings
+    delete:
+      summary: Remove the App's container setting
+      responses:
+        '204':
+          description: No content
+        '400':
+          $ref: '#/paths/~1api~1container-settings~1v1~1app~1%7Bapp_id%7D~1settings/get/responses/400'
+        '401':
+          $ref: '#/paths/~1api~1container-settings~1v1~1app~1%7Bapp_id%7D~1settings/get/responses/401'
+        '404':
+          $ref: '#/paths/~1api~1container-settings~1v1~1app~1%7Bapp_id%7D~1settings/get/responses/404'
+        '500':
+          $ref: '#/paths/~1api~1container-settings~1v1~1app~1%7Bapp_id%7D~1settings/get/responses/500'
+      tags:
+        - Container Settings
+    put:
+      summary: Modify App's container setting
+      requestBody:
+        required: true
+        content:
+          application/vnd.api+json:
+            schema:
+              description: Edit App's container setting request
+              type: object
+              properties:
+                data:
+                  oneOf:
+                    - title: Automatic scroll tracking for App
+                      type: object
+                      properties:
+                        id:
+                          description: Container setting name
+                          type: string
+                          enum:
+                            - automatic_scroll_tracking
+                        type:
+                          description: Container setting for App resource type
+                          type: string
+                          enum:
+                            - container/app/setting
+                        attributes:
+                          description: Container setting for App
+                          type: object
+                          properties:
+                            value:
+                              type: object
+                              description: Automatic scroll tracking setting value
+                              properties:
+                                is_enabled:
+                                  type: boolean
+                                  description: It determines if the setting is enabled
+                                thresholds:
+                                  type: array
+                                  description: Scroll tracking thresholds as a collection of positive unique integers from 0 to 100
+                                  items:
+                                    type: integer
+                                    minimum: 0
+                                    maximum: 100
+                                    minItems: 1
+                                  uniqueItems: true
+                              required:
+                                - is_enabled
+                                - thresholds
+                          required:
+                            - value
+                          additionalProperties: false
+                      additionalProperties: false
+                      required:
+                        - id
+                        - type
+                        - attributes
+                    - title: SPA tracking for App
+                      type: object
+                      properties:
+                        id:
+                          description: Container setting name
+                          type: string
+                          enum:
+                            - spa_tracking
+                        type:
+                          $ref: '#/paths/~1api~1container-settings~1v1~1app~1%7Bapp_id%7D~1settings~1%7Bsetting_name%7D/put/requestBody/content/application~1vnd.api%2Bjson/schema/properties/data/oneOf/0/properties/type'
+                        attributes:
+                          description: Container setting for App
+                          type: object
+                          properties:
+                            value:
+                              type: object
+                              description: SPA tracking setting value
+                              properties:
+                                is_enabled:
+                                  type: boolean
+                                  description: It determines if the setting is enabled
+                              required:
+                                - is_enabled
+                          required:
+                            - value
+                          additionalProperties: false
+                      additionalProperties: false
+                      required:
+                        - id
+                        - type
+                        - attributes
+              additionalProperties: false
+              required:
+                - data
+            example:
+              data:
+                id: automatic_scroll_tracking
+                type: container/app/setting
+                attributes:
+                  value:
+                    is_enabled: true
+                    thresholds:
+                      - 25
+                      - 50
+                      - 75
+      responses:
+        '204':
+          description: No content
+        '400':
+          $ref: '#/paths/~1api~1container-settings~1v1~1app~1%7Bapp_id%7D~1settings/get/responses/400'
+        '401':
+          $ref: '#/paths/~1api~1container-settings~1v1~1app~1%7Bapp_id%7D~1settings/get/responses/401'
+        '404':
+          $ref: '#/paths/~1api~1container-settings~1v1~1app~1%7Bapp_id%7D~1settings/get/responses/404'
+        '500':
+          $ref: '#/paths/~1api~1container-settings~1v1~1app~1%7Bapp_id%7D~1settings/get/responses/500'
+      tags:
+        - Container Settings
+  '/api/container-settings/v1/organization/{organization}/settings':
+    parameters:
+      - in: path
+        name: organization
+        required: true
+        description: Organization name
+        schema:
+          type: string
+          minLength: 1
+          maxLength: 255
+        example: my_organization
+    get:
+      summary: Get list of organization's container settings
+      responses:
+        '200':
+          description: OK
+          content:
+            application/vnd.api+json:
+              schema:
+                description: Organization's container settings response
+                type: object
+                properties:
+                  data:
+                    title: List of container settings for organization
+                    type: array
+                    items:
+                      oneOf:
+                        - $ref: '#/paths/~1api~1container-settings~1v1~1organization~1%7Borganization%7D~1settings~1%7Bsetting_name%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/oneOf/0'
+                        - $ref: '#/paths/~1api~1container-settings~1v1~1organization~1%7Borganization%7D~1settings~1%7Bsetting_name%7D/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/oneOf/1'
+                required:
+                  - data
+              example:
+                links:
+                  self: '/api/container-settings/v1/organization/test/settings?page[offset]=0&page[limit]=100'
+                  first: '/api/container-settings/v1/organization/test/settings?page[offset]=0&page[limit]=100'
+                  last: '/api/container-settings/v1/organization/test/settings?page[offset]=0&page[limit]=100'
+                  prev: null
+                  next: null
+                data:
+                  - type: container/organization/setting
+                    id: automatic_scroll_tracking
+                    attributes:
+                      value:
+                        is_enabled: true
+                        thresholds:
+                          - 5
+                          - 50
+                          - 95
+                  - type: container/organization/setting
+                    id: spa_tracking
+                    attributes:
+                      value:
+                        is_enabled: true
+        '400':
+          $ref: '#/paths/~1api~1container-settings~1v1~1app~1%7Bapp_id%7D~1settings/get/responses/400'
+        '401':
+          $ref: '#/paths/~1api~1container-settings~1v1~1app~1%7Bapp_id%7D~1settings/get/responses/401'
+        '404':
+          $ref: '#/paths/~1api~1container-settings~1v1~1app~1%7Bapp_id%7D~1settings/get/responses/404'
+        '500':
+          $ref: '#/paths/~1api~1container-settings~1v1~1app~1%7Bapp_id%7D~1settings/get/responses/500'
+      tags:
+        - Container Settings
+    patch:
+      summary: Modify Organization's container settings
+      requestBody:
+        required: true
+        content:
+          application/vnd.api+json:
+            schema:
+              description: Edit organization's container settings request
+              type: object
+              properties:
+                data:
+                  title: Organization's container settings list to be edited
+                  type: array
+                  items:
+                    oneOf:
+                      - $ref: '#/paths/~1api~1container-settings~1v1~1organization~1%7Borganization%7D~1settings~1%7Bsetting_name%7D/put/requestBody/content/application~1vnd.api%2Bjson/schema/properties/data/oneOf/0'
+                      - $ref: '#/paths/~1api~1container-settings~1v1~1organization~1%7Borganization%7D~1settings~1%7Bsetting_name%7D/put/requestBody/content/application~1vnd.api%2Bjson/schema/properties/data/oneOf/1'
+              additionalProperties: false
+              required:
+                - data
+            example:
+              data:
+                - id: automatic_scroll_tracking
+                  type: container/organization/setting
+                  attributes:
+                    value:
+                      is_enabled: true
+                      thresholds:
+                        - 5
+                        - 50
+                        - 95
+      responses:
+        '204':
+          description: No content
+        '400':
+          $ref: '#/paths/~1api~1container-settings~1v1~1app~1%7Bapp_id%7D~1settings/get/responses/400'
+        '401':
+          $ref: '#/paths/~1api~1container-settings~1v1~1app~1%7Bapp_id%7D~1settings/get/responses/401'
+        '404':
+          $ref: '#/paths/~1api~1container-settings~1v1~1app~1%7Bapp_id%7D~1settings/get/responses/404'
+        '500':
+          $ref: '#/paths/~1api~1container-settings~1v1~1app~1%7Bapp_id%7D~1settings/get/responses/500'
+      tags:
+        - Container Settings
+  '/api/container-settings/v1/organization/{organization}/settings/{setting_name}':
+    parameters:
+      - $ref: '#/paths/~1api~1container-settings~1v1~1organization~1%7Borganization%7D~1settings/parameters/0'
+      - $ref: '#/paths/~1api~1container-settings~1v1~1app~1%7Bapp_id%7D~1settings~1%7Bsetting_name%7D/parameters/1'
+    get:
+      summary: Fetch organization's container setting
+      responses:
+        '200':
+          description: OK
+          content:
+            application/vnd.api+json:
+              schema:
+                description: Organization's container setting response
+                type: object
+                properties:
+                  data:
+                    oneOf:
+                      - title: Automatic scroll tracking for Organization
+                        type: object
+                        properties:
+                          id:
+                            $ref: '#/paths/~1api~1container-settings~1v1~1app~1%7Bapp_id%7D~1settings~1%7Bsetting_name%7D/put/requestBody/content/application~1vnd.api%2Bjson/schema/properties/data/oneOf/0/properties/id'
+                          type:
+                            $ref: '#/paths/~1api~1container-settings~1v1~1organization~1%7Borganization%7D~1settings~1%7Bsetting_name%7D/put/requestBody/content/application~1vnd.api%2Bjson/schema/properties/data/oneOf/0/properties/type'
+                          attributes:
+                            description: Container setting for Organization
+                            type: object
+                            properties:
+                              value:
+                                $ref: '#/paths/~1api~1container-settings~1v1~1app~1%7Bapp_id%7D~1settings~1%7Bsetting_name%7D/put/requestBody/content/application~1vnd.api%2Bjson/schema/properties/data/oneOf/0/properties/attributes/properties/value'
+                            required:
+                              - value
+                            additionalProperties: false
+                        additionalProperties: false
+                        required:
+                          - id
+                          - type
+                          - attributes
+                      - title: SPA tracking for Organization
+                        type: object
+                        properties:
+                          id:
+                            $ref: '#/paths/~1api~1container-settings~1v1~1app~1%7Bapp_id%7D~1settings~1%7Bsetting_name%7D/put/requestBody/content/application~1vnd.api%2Bjson/schema/properties/data/oneOf/1/properties/id'
+                          type:
+                            $ref: '#/paths/~1api~1container-settings~1v1~1organization~1%7Borganization%7D~1settings~1%7Bsetting_name%7D/put/requestBody/content/application~1vnd.api%2Bjson/schema/properties/data/oneOf/0/properties/type'
+                          attributes:
+                            description: Container setting for Organization
+                            type: object
+                            properties:
+                              value:
+                                $ref: '#/paths/~1api~1container-settings~1v1~1app~1%7Bapp_id%7D~1settings~1%7Bsetting_name%7D/put/requestBody/content/application~1vnd.api%2Bjson/schema/properties/data/oneOf/1/properties/attributes/properties/value'
+                            required:
+                              - value
+                            additionalProperties: false
+                        additionalProperties: false
+                        required:
+                          - id
+                          - type
+                          - attributes
+                required:
+                  - data
+              example:
+                data:
+                  type: container/organization/setting
+                  id: automatic_scroll_tracking
+                  attributes:
+                    value:
+                      is_enabled: true
+                      thresholds:
+                        - 5
+                        - 50
+                        - 95
+        '400':
+          $ref: '#/paths/~1api~1container-settings~1v1~1app~1%7Bapp_id%7D~1settings/get/responses/400'
+        '401':
+          $ref: '#/paths/~1api~1container-settings~1v1~1app~1%7Bapp_id%7D~1settings/get/responses/401'
+        '404':
+          $ref: '#/paths/~1api~1container-settings~1v1~1app~1%7Bapp_id%7D~1settings/get/responses/404'
+        '500':
+          $ref: '#/paths/~1api~1container-settings~1v1~1app~1%7Bapp_id%7D~1settings/get/responses/500'
+      tags:
+        - Container Settings
+    put:
+      summary: Modify organization\'s container setting
+      requestBody:
+        required: true
+        content:
+          application/vnd.api+json:
+            schema:
+              description: Edit organization's container setting request
+              type: object
+              properties:
+                data:
+                  oneOf:
+                    - title: Automatic scroll tracking for Organization
+                      type: object
+                      properties:
+                        id:
+                          $ref: '#/paths/~1api~1container-settings~1v1~1app~1%7Bapp_id%7D~1settings~1%7Bsetting_name%7D/put/requestBody/content/application~1vnd.api%2Bjson/schema/properties/data/oneOf/0/properties/id'
+                        type:
+                          description: Container setting for organization resource type
+                          type: string
+                          enum:
+                            - container/organization/setting
+                        attributes:
+                          description: Container setting for Organization
+                          type: object
+                          properties:
+                            value:
+                              $ref: '#/paths/~1api~1container-settings~1v1~1app~1%7Bapp_id%7D~1settings~1%7Bsetting_name%7D/put/requestBody/content/application~1vnd.api%2Bjson/schema/properties/data/oneOf/0/properties/attributes/properties/value'
+                          required:
+                            - value
+                          additionalProperties: false
+                      additionalProperties: false
+                      required:
+                        - id
+                        - type
+                        - attributes
+                    - title: SPA tracking for Organization
+                      type: object
+                      properties:
+                        id:
+                          $ref: '#/paths/~1api~1container-settings~1v1~1app~1%7Bapp_id%7D~1settings~1%7Bsetting_name%7D/put/requestBody/content/application~1vnd.api%2Bjson/schema/properties/data/oneOf/1/properties/id'
+                        type:
+                          $ref: '#/paths/~1api~1container-settings~1v1~1organization~1%7Borganization%7D~1settings~1%7Bsetting_name%7D/put/requestBody/content/application~1vnd.api%2Bjson/schema/properties/data/oneOf/0/properties/type'
+                        attributes:
+                          description: Container setting for Organization
+                          type: object
+                          properties:
+                            value:
+                              $ref: '#/paths/~1api~1container-settings~1v1~1app~1%7Bapp_id%7D~1settings~1%7Bsetting_name%7D/put/requestBody/content/application~1vnd.api%2Bjson/schema/properties/data/oneOf/1/properties/attributes/properties/value'
+                          required:
+                            - value
+                          additionalProperties: false
+                      additionalProperties: false
+                      required:
+                        - id
+                        - type
+                        - attributes
+              additionalProperties: false
+              required:
+                - data
+            example:
+              data:
+                id: automatic_scroll_tracking
+                type: container/organization/setting
+                attributes:
+                  value:
+                    is_enabled: true
+                    thresholds:
+                      - 5
+                      - 50
+                      - 95
+      responses:
+        '204':
+          description: No content
+        '400':
+          $ref: '#/paths/~1api~1container-settings~1v1~1app~1%7Bapp_id%7D~1settings/get/responses/400'
+        '401':
+          $ref: '#/paths/~1api~1container-settings~1v1~1app~1%7Bapp_id%7D~1settings/get/responses/401'
+        '404':
+          $ref: '#/paths/~1api~1container-settings~1v1~1app~1%7Bapp_id%7D~1settings/get/responses/404'
+        '500':
+          $ref: '#/paths/~1api~1container-settings~1v1~1app~1%7Bapp_id%7D~1settings/get/responses/500'
+      tags:
+        - Container Settings

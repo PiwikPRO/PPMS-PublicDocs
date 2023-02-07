@@ -1,0 +1,1280 @@
+openapi: 3.0.0
+info:
+  title: Tag Manager API
+  version: '1.0'
+security:
+  - BearerAuth: []
+servers:
+  - url: 'https://example.piwik.pro'
+paths:
+  '/api/tag/v1/{app_id}/versions':
+    parameters:
+      - in: path
+        name: app_id
+        required: true
+        description: Application identifier
+        schema:
+          title: UUID
+          type: string
+          pattern: '^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$'
+        example: 1f74dda5-b598-41d6-a9e4-f501ef4379e1
+    get:
+      summary: List of versions
+      description: |
+        ### JSON API compatibility divergence
+
+        #### Filters
+        In JSON API standard (https://jsonapi.org/recommendations/#filtering) one can request elements with multiple
+        filter values by simply providing them separated by coma:
+
+        `versions?filter[version_type][]=published,draft`
+
+        This notation will not work here. You can achieve this functionality by providing multiple filters for the same parameter:
+
+        `versions?filter[version_type][]=published&filter[version_type][]=draft`
+      parameters:
+        - in: query
+          name: 'page[limit]'
+          required: false
+          description: Limits the number of returned items
+          schema:
+            type: integer
+            minimum: 1
+          example: 10
+        - in: query
+          name: 'page[offset]'
+          required: false
+          description: Sets offset for list of items
+          schema:
+            type: integer
+            minimum: 0
+          example: 20
+        - in: query
+          name: 'filter[version_type]'
+          required: false
+          description: Filter version by version_type attribute
+          schema:
+            type: string
+            description: Version type
+            enum:
+              - published
+              - draft
+              - historic
+          example: draft
+        - in: query
+          name: sort
+          required: false
+          description: 'Comma-separated sort list with given attributes: created_at, updated_at'
+          schema:
+            type: array
+            items:
+              type: string
+              enum:
+                - created_at
+                - '-created_at'
+                - updated_at
+                - '-updated_at'
+            minItems: 1
+          example:
+            - '-created_at'
+            - updated_at
+      responses:
+        '200':
+          description: List of versions
+          content:
+            application/vnd.api+json:
+              schema:
+                description: Versions list response
+                type: object
+                properties:
+                  data:
+                    title: 'JSON:API 1.0 list response data'
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions~1draft/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/id'
+                        type:
+                          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions~1import/post/requestBody/content/application~1vnd.api%2Bjson/schema/properties/data/properties/type'
+                        attributes:
+                          description: Version attributes
+                          type: object
+                          properties:
+                            version_type:
+                              $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions/get/parameters/2/schema'
+                            version_major:
+                              $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions~1draft/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/properties/version_major'
+                            version_minor:
+                              $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions~1draft/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/properties/version_minor'
+                            created_at:
+                              $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions~1draft/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/properties/created_at'
+                            updated_at:
+                              $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions~1draft/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/properties/created_at'
+                          required:
+                            - version_type
+                            - version_major
+                            - version_minor
+                            - created_at
+                            - updated_at
+                          additionalProperties: false
+                      required:
+                        - id
+                        - type
+                        - attributes
+                      additionalProperties: false
+                  meta:
+                    type: object
+                    description: Meta information about resources
+                    properties:
+                      total:
+                        description: Total number of elements
+                        type: integer
+                        minimum: 0
+                    additionalProperties: false
+                    required:
+                      - total
+                  links:
+                    type: object
+                    description: Pagination links
+                    properties:
+                      self:
+                        description: Link to current page
+                        $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/links/properties/last/oneOf/0'
+                      first:
+                        description: Link to first page
+                        oneOf:
+                          - $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/links/properties/last/oneOf/0'
+                          - $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions~1draft/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/properties/published_at'
+                      last:
+                        description: Link to last page
+                        oneOf:
+                          - type: string
+                            format: uri
+                          - $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions~1draft/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/properties/published_at'
+                      prev:
+                        description: Link to previous page
+                        oneOf:
+                          - $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/links/properties/last/oneOf/0'
+                          - $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions~1draft/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/properties/published_at'
+                      next:
+                        description: Link to next page
+                        oneOf:
+                          - $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/links/properties/last/oneOf/0'
+                          - $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions~1draft/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/properties/published_at'
+                    additionalProperties: false
+                    required:
+                      - self
+                required:
+                  - data
+                  - meta
+                  - links
+                additionalProperties: false
+              example:
+                data:
+                  - id: 2bf66a4f-3ca6-4d17-90e4-f75b632a309b
+                    type: version
+                    attributes:
+                      version_type: published
+                      version_major: 0
+                      version_minor: 0
+                      created_at: '2020-01-29T13:43:57+00:00'
+                      updated_at: '2020-01-29T13:43:57+00:00'
+                meta:
+                  total: 25
+                links:
+                  prev: '/api/tag/v1/1f74dda5-b598-41d6-a9e4-f501ef4379e1/versions?page[offset]=0&page[limit]=10'
+                  self: '/api/tag/v1/1f74dda5-b598-41d6-a9e4-f501ef4379e1/versions?page[offset]=10&page[limit]=10'
+                  next: '/api/tag/v1/1f74dda5-b598-41d6-a9e4-f501ef4379e1/versions?page[offset]=20&page[limit]=10'
+        '400':
+          description: Bad request parameter
+          content:
+            application/vnd.api+json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          description: 'An application-specific error code, expressed as a string value.'
+                        detail:
+                          type: string
+                          description: A human-readable explanation specific to this occurrence of the problem.
+                        source:
+                          type: object
+                          description: An object containing references to the source of the error.
+                          properties:
+                            pointer:
+                              type: string
+                              description: 'A JSON Pointer [RFC6901] to the associated entity in the request document.'
+                            parameter:
+                              type: string
+                              description: A string indicating which URI parameter caused the error.
+                          additionalProperties: false
+                        meta:
+                          type: object
+                          description: An object containing additional application-specific information about error.
+                          properties:
+                            keyword:
+                              type: string
+                            keyword_args:
+                              type: object
+                          additionalProperties: false
+                      additionalProperties: false
+                      required:
+                        - code
+                        - detail
+                    minItems: 1
+                additionalProperties: false
+                required:
+                  - errors
+              example:
+                errors:
+                  - code: INVALID_URI_PARAMETER_ERROR
+                    detail: Application identifier should be of type UUID
+                    source:
+                      parameter: app_id
+        '401':
+          description: Unauthorized
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions/get/responses/400/content/application~1vnd.api%2Bjson/schema'
+              example:
+                errors:
+                  - code: UNAUTHORIZED_ERROR
+                    detail: Access token not authorized
+        '404':
+          description: Not found
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions/get/responses/400/content/application~1vnd.api%2Bjson/schema'
+              example:
+                errors:
+                  - code: NOT_FOUND_ERROR
+                    detail: 'There is no application with given identifier: 5c39070d-9e0b-40a2-ae56-392f05711f74'
+                    source:
+                      parameter: app_id
+        '500':
+          description: Internal server error
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions/get/responses/400/content/application~1vnd.api%2Bjson/schema'
+              example:
+                errors:
+                  - code: INTERNAL_SERVER_ERROR
+                    detail: MySQL server has gone away
+      tags:
+        - Tag Manager
+  '/api/tag/v1/{app_id}/versions/{version_id}':
+    parameters:
+      - $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions/parameters/0'
+      - in: path
+        name: version_id
+        required: true
+        description: Version identifier
+        schema:
+          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions/parameters/0/schema'
+        example: 10023b8c-5de0-4d77-93e3-f9727d2ee3cd
+    get:
+      summary: Get version
+      responses:
+        '200':
+          description: Version data
+          content:
+            application/vnd.api+json:
+              schema:
+                description: Version get response
+                type: object
+                properties:
+                  data:
+                    title: 'JSON:API 1.0 response data'
+                    type: object
+                    properties:
+                      id:
+                        $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions~1draft/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/id'
+                      type:
+                        $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions~1import/post/requestBody/content/application~1vnd.api%2Bjson/schema/properties/data/properties/type'
+                      attributes:
+                        description: Version attributes
+                        type: object
+                        properties:
+                          version_type:
+                            $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions/get/parameters/2/schema'
+                          has_changes:
+                            $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions~1draft/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/properties/has_changes'
+                          version_major:
+                            $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions~1draft/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/properties/version_major'
+                          version_minor:
+                            $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions~1draft/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/properties/version_minor'
+                          author:
+                            $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions~1draft/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/properties/author'
+                          publisher:
+                            description: User who published the version (nullable)
+                            oneOf:
+                              - $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions~1published/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/properties/publisher'
+                              - $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions~1draft/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/properties/published_at'
+                          published_at:
+                            description: ISO 8601 (nullable)
+                            oneOf:
+                              - $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions~1draft/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/properties/created_at'
+                              - $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions~1draft/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/properties/published_at'
+                          parent_id:
+                            $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions~1draft/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/properties/parent_id'
+                          created_at:
+                            $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions~1draft/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/properties/created_at'
+                          updated_at:
+                            $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions~1draft/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/properties/created_at'
+                        required:
+                          - version_type
+                          - has_changes
+                          - version_major
+                          - version_minor
+                          - author
+                          - created_at
+                          - updated_at
+                        additionalProperties: false
+                    required:
+                      - id
+                      - type
+                      - attributes
+                    additionalProperties: false
+                required:
+                  - data
+                additionalProperties: false
+              example:
+                data:
+                  id: 2bf66a4f-3ca6-4d17-90e4-f75b632a309b
+                  type: version
+                  attributes:
+                    version_type: historic
+                    version_major: 1
+                    version_minor: 0
+                    created_at: '2020-01-29T13:43:57+00:00'
+                    updated_at: '2020-01-31T12:10:57+00:00'
+                    published_at: '2020-01-31T12:10:57+00:00'
+                    parent_id: 2bf66a4f-3ca6-4d17-90e4-f75b632a309b
+                    author:
+                      email: john@doe.com
+                      id: 10385e5a-d603-4cc7-a986-abc691ae3e03
+                    publisher:
+                      email: john@doe.com
+                      id: 10385e5a-d603-4cc7-a986-abc691ae3e03
+        '400':
+          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions/get/responses/400'
+        '401':
+          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions/get/responses/401'
+        '404':
+          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions/get/responses/404'
+        '500':
+          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions/get/responses/500'
+      tags:
+        - Tag Manager
+  '/api/tag/v1/{app_id}/versions/draft':
+    parameters:
+      - $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions/parameters/0'
+    get:
+      summary: Get draft version
+      responses:
+        '200':
+          description: Version data
+          content:
+            application/vnd.api+json:
+              schema:
+                description: Version get response
+                type: object
+                properties:
+                  data:
+                    title: 'JSON:API 1.0 response data'
+                    type: object
+                    properties:
+                      id:
+                        description: Version identifier
+                        title: UUID
+                        type: string
+                        pattern: '^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$'
+                      type:
+                        $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions~1import/post/requestBody/content/application~1vnd.api%2Bjson/schema/properties/data/properties/type'
+                      attributes:
+                        description: Version attributes
+                        type: object
+                        properties:
+                          version_type:
+                            type: string
+                            description: Version type
+                            enum:
+                              - draft
+                          has_changes:
+                            description: 'When draft version differs from published version then true, false otherwise'
+                            type: boolean
+                          version_major:
+                            type: integer
+                            minimum: 0
+                            description: Version number before dot
+                          version_minor:
+                            type: integer
+                            minimum: 0
+                            description: Version number after dot
+                          author:
+                            description: User who created the version (nullable)
+                            oneOf:
+                              - type: object
+                                description: User who created the version
+                                properties:
+                                  id:
+                                    allOf:
+                                      - $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions/parameters/0/schema'
+                                      - description: User identifier
+                                  email:
+                                    $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions~1published/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/properties/publisher/properties/email'
+                                required:
+                                  - id
+                                  - email
+                                additionalProperties: false
+                              - $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions~1draft/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/properties/published_at'
+                          publisher:
+                            description: User who published the version
+                            allOf:
+                              - $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions~1draft/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/properties/published_at'
+                          published_at:
+                            title: 'null'
+                            description: ''
+                            enum:
+                              - null
+                          parent_id:
+                            description: Parent version identifier (nullable)
+                            oneOf:
+                              - $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions/parameters/0/schema'
+                              - $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions~1draft/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/properties/published_at'
+                          created_at:
+                            title: DateTime
+                            description: ISO 8601
+                            type: string
+                            pattern: '^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}\+[0-9]{2}:[0-9]{2}$'
+                          updated_at:
+                            $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions~1draft/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/properties/created_at'
+                        required:
+                          - version_type
+                          - has_changes
+                          - version_major
+                          - version_minor
+                          - author
+                          - created_at
+                          - updated_at
+                        additionalProperties: false
+                    required:
+                      - id
+                      - type
+                      - attributes
+                    additionalProperties: false
+                required:
+                  - data
+                additionalProperties: false
+              example:
+                data:
+                  id: 2bf66a4f-3ca6-4d17-90e4-f75b632a309b
+                  type: version
+                  attributes:
+                    version_type: draft
+                    version_major: 2
+                    version_minor: 1
+                    created_at: '2020-01-29T13:43:57+00:00'
+                    updated_at: '2020-01-31T11:20:57+00:00'
+                    published_at: null
+                    parent_id: 2bf66a4f-3ca6-4d17-90e4-f75b632a309b
+                    author:
+                      email: john@doe.com
+                      id: 10385e5a-d603-4cc7-a986-abc691ae3e03
+                    publisher: null
+        '400':
+          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions/get/responses/400'
+        '401':
+          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions/get/responses/401'
+        '404':
+          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions/get/responses/404'
+        '500':
+          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions/get/responses/500'
+      tags:
+        - Tag Manager
+  '/api/tag/v1/{app_id}/versions/published':
+    parameters:
+      - $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions/parameters/0'
+    get:
+      summary: Get published version
+      responses:
+        '200':
+          description: Version data
+          content:
+            application/vnd.api+json:
+              schema:
+                description: Version get response
+                type: object
+                properties:
+                  data:
+                    title: 'JSON:API 1.0 response data'
+                    type: object
+                    properties:
+                      id:
+                        $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions~1draft/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/id'
+                      type:
+                        $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions~1import/post/requestBody/content/application~1vnd.api%2Bjson/schema/properties/data/properties/type'
+                      attributes:
+                        description: Version attributes
+                        type: object
+                        properties:
+                          version_type:
+                            type: string
+                            description: Version type
+                            enum:
+                              - published
+                          has_changes:
+                            description: Always false for published and historic versions
+                            enum:
+                              - false
+                          version_major:
+                            $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions~1draft/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/properties/version_major'
+                          version_minor:
+                            $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions~1draft/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/properties/version_minor'
+                          author:
+                            $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions~1draft/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/properties/author'
+                          publisher:
+                            type: object
+                            description: User who published the version
+                            properties:
+                              id:
+                                allOf:
+                                  - $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions/parameters/0/schema'
+                                  - description: User identifier
+                              email:
+                                title: Email
+                                type: string
+                                pattern: '^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$'
+                            required:
+                              - id
+                              - email
+                            additionalProperties: false
+                          published_at:
+                            $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions~1draft/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/properties/created_at'
+                          parent_id:
+                            $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions~1draft/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/properties/parent_id'
+                          created_at:
+                            $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions~1draft/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/properties/created_at'
+                          updated_at:
+                            $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions~1draft/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/properties/created_at'
+                        required:
+                          - version_type
+                          - has_changes
+                          - version_major
+                          - version_minor
+                          - author
+                          - publisher
+                          - published_at
+                          - created_at
+                          - updated_at
+                        additionalProperties: false
+                    required:
+                      - id
+                      - type
+                      - attributes
+                    additionalProperties: false
+                required:
+                  - data
+                additionalProperties: false
+              example:
+                data:
+                  id: 2bf66a4f-3ca6-4d17-90e4-f75b632a309b
+                  type: version
+                  attributes:
+                    version_type: published
+                    version_major: 1
+                    version_minor: 1
+                    created_at: '2020-01-29T13:43:57+00:00'
+                    updated_at: '2020-01-30T14:20:00+00:00'
+                    published_at: '2020-01-30T14:20:00+00:00'
+                    parent_id: 2bf66a4f-3ca6-4d17-90e4-f75b632a309b
+                    author:
+                      email: john@doe.com
+                      id: 10385e5a-d603-4cc7-a986-abc691ae3e03
+                    publisher:
+                      email: john@doe.com
+                      id: 10385e5a-d603-4cc7-a986-abc691ae3e03
+        '400':
+          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions/get/responses/400'
+        '401':
+          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions/get/responses/401'
+        '404':
+          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions/get/responses/404'
+        '500':
+          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions/get/responses/500'
+      tags:
+        - Tag Manager
+  '/api/tag/v1/{app_id}/versions/published/restore':
+    parameters:
+      - $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions/parameters/0'
+    post:
+      summary: Restore published version
+      responses:
+        '202':
+          description: Version data
+          content:
+            application/vnd.api+json:
+              schema:
+                description: Version restore response
+                type: object
+                properties:
+                  data:
+                    title: 'JSON:API 1.0 response data'
+                    type: object
+                    properties:
+                      id:
+                        $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions~1draft/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/id'
+                      type:
+                        $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions~1import/post/requestBody/content/application~1vnd.api%2Bjson/schema/properties/data/properties/type'
+                      relationships:
+                        type: object
+                        description: Version relationships
+                        properties:
+                          operation:
+                            description: Operation
+                            type: object
+                            properties:
+                              data:
+                                title: 'JSON:API 1.0 relationship data'
+                                description: Operation data
+                                type: object
+                                properties:
+                                  id:
+                                    $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions~1import/post/responses/202/content/application~1vnd.api%2Bjson/schema/properties/data/properties/relationships/properties/operation/properties/data/properties/id'
+                                  type:
+                                    $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions~1import/post/responses/202/content/application~1vnd.api%2Bjson/schema/properties/data/properties/relationships/properties/operation/properties/data/properties/type'
+                                required:
+                                  - id
+                                  - type
+                                additionalProperties: false
+                            required:
+                              - data
+                            additionalProperties: false
+                        required:
+                          - operation
+                        additionalProperties: false
+                    required:
+                      - id
+                      - type
+                      - relationships
+                    additionalProperties: false
+                required:
+                  - data
+                additionalProperties: false
+              example:
+                data:
+                  id: dad7f9c5-67cb-417a-b66f-a97f355379d3
+                  type: version
+                  relationships:
+                    operation:
+                      data:
+                        id: bf7ed591-a71d-4530-a25a-dd92a18090d6
+                        type: operation
+        '400':
+          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions~1import/post/responses/400'
+        '401':
+          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions/get/responses/401'
+        '404':
+          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions/get/responses/404'
+        '500':
+          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions/get/responses/500'
+        '503':
+          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions~1import/post/responses/503'
+      tags:
+        - Tag Manager
+  '/api/tag/v1/{app_id}/versions/{version_id}/restore':
+    parameters:
+      - $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions/parameters/0'
+      - $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions~1%7Bversion_id%7D/parameters/1'
+    post:
+      summary: Restore version by id
+      responses:
+        '202':
+          description: Version data
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions~1published~1restore/post/responses/202/content/application~1vnd.api%2Bjson/schema'
+              example:
+                $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions~1published~1restore/post/responses/202/content/application~1vnd.api%2Bjson/example'
+        '400':
+          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions~1import/post/responses/400'
+        '401':
+          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions/get/responses/401'
+        '404':
+          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions/get/responses/404'
+        '500':
+          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions/get/responses/500'
+        '503':
+          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions~1import/post/responses/503'
+      tags:
+        - Tag Manager
+  '/api/tag/v1/{app_id}/versions/draft/snapshot':
+    parameters:
+      - $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions/parameters/0'
+    post:
+      summary: Snapshot draft version
+      responses:
+        '202':
+          description: Version data
+          content:
+            application/vnd.api+json:
+              schema:
+                description: Version snapshot response
+                type: object
+                properties:
+                  data:
+                    title: 'JSON:API 1.0 response data'
+                    type: object
+                    properties:
+                      id:
+                        $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions~1draft/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/id'
+                      type:
+                        $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions~1import/post/requestBody/content/application~1vnd.api%2Bjson/schema/properties/data/properties/type'
+                      relationships:
+                        description: Version relationships
+                        type: object
+                        properties:
+                          operation:
+                            description: Operation
+                            type: object
+                            properties:
+                              data:
+                                title: 'JSON:API 1.0 relationship data'
+                                description: Operation data
+                                type: object
+                                properties:
+                                  id:
+                                    $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions~1import/post/responses/202/content/application~1vnd.api%2Bjson/schema/properties/data/properties/relationships/properties/operation/properties/data/properties/id'
+                                  type:
+                                    $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions~1import/post/responses/202/content/application~1vnd.api%2Bjson/schema/properties/data/properties/relationships/properties/operation/properties/data/properties/type'
+                                required:
+                                  - id
+                                  - type
+                                additionalProperties: false
+                            required:
+                              - data
+                            additionalProperties: false
+                        required:
+                          - operation
+                        additionalProperties: false
+                    required:
+                      - id
+                      - type
+                      - relationships
+                    additionalProperties: false
+                required:
+                  - data
+                additionalProperties: false
+              example:
+                data:
+                  id: dad7f9c5-67cb-417a-b66f-a97f355379d3
+                  type: version
+                  relationships:
+                    operation:
+                      data:
+                        id: e63b976d-8957-4dd4-bab6-2b94fcd24514
+                        type: operation
+        '400':
+          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions~1import/post/responses/400'
+        '401':
+          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions/get/responses/401'
+        '404':
+          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions/get/responses/404'
+        '500':
+          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions/get/responses/500'
+        '503':
+          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions~1import/post/responses/503'
+      tags:
+        - Tag Manager
+  '/api/tag/v1/{app_id}/versions/{version_id}/export-files':
+    parameters:
+      - $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions/parameters/0'
+      - $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions~1%7Bversion_id%7D/parameters/1'
+    post:
+      summary: Create export file
+      responses:
+        '202':
+          description: Export file data
+          content:
+            application/vnd.api+json:
+              schema:
+                description: Export version to file response
+                type: object
+                properties:
+                  data:
+                    title: 'JSON:API 1.0 response data'
+                    type: object
+                    properties:
+                      id:
+                        $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions~1%7Bversion_id%7D~1export-files/post/requestBody/content/application~1vnd.api%2Bjson/schema/properties/data/properties/id'
+                      type:
+                        $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions~1%7Bversion_id%7D~1export-files/post/requestBody/content/application~1vnd.api%2Bjson/schema/properties/data/properties/type'
+                      relationships:
+                        type: object
+                        description: Export file relationships
+                        properties:
+                          operation:
+                            description: Operation
+                            type: object
+                            properties:
+                              data:
+                                title: 'JSON:API 1.0 relationship data'
+                                description: Operation data
+                                type: object
+                                properties:
+                                  id:
+                                    $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions~1import/post/responses/202/content/application~1vnd.api%2Bjson/schema/properties/data/properties/relationships/properties/operation/properties/data/properties/id'
+                                  type:
+                                    $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions~1import/post/responses/202/content/application~1vnd.api%2Bjson/schema/properties/data/properties/relationships/properties/operation/properties/data/properties/type'
+                                required:
+                                  - id
+                                  - type
+                                additionalProperties: false
+                            required:
+                              - data
+                            additionalProperties: false
+                        required:
+                          - operation
+                        additionalProperties: false
+                    required:
+                      - id
+                      - type
+                      - relationships
+                    additionalProperties: false
+                required:
+                  - data
+                additionalProperties: false
+              example:
+                data:
+                  id: dad7f9c5-67cb-417a-b66f-a97f355379d3
+                  type: export_file
+                  relationships:
+                    operation:
+                      data:
+                        id: bf7ed591-a71d-4530-a25a-dd92a18090d6
+                        type: operation
+        '400':
+          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions/get/responses/400'
+        '401':
+          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions/get/responses/401'
+        '404':
+          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions/get/responses/404'
+        '500':
+          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions/get/responses/500'
+        '503':
+          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions~1import/post/responses/503'
+      requestBody:
+        required: true
+        content:
+          application/vnd.api+json:
+            schema:
+              description: Export version to file request
+              type: object
+              properties:
+                data:
+                  title: 'JSON:API 1.0 request data'
+                  type: object
+                  properties:
+                    id:
+                      allOf:
+                        - description: Export file identifier
+                        - $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions/parameters/0/schema'
+                    type:
+                      description: Export file resource type
+                      type: string
+                      enum:
+                        - export_file
+                  required:
+                    - type
+                  additionalProperties: false
+              required:
+                - data
+              additionalProperties: false
+            example:
+              data:
+                id: dad7f9c5-67cb-417a-b66f-a97f355379d3
+                type: export_file
+      tags:
+        - Tag Manager
+  '/api/tag/v1/{app_id}/versions/{version_id}/export-files/{export_file_id}':
+    parameters:
+      - $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions/parameters/0'
+      - $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions~1%7Bversion_id%7D/parameters/1'
+      - in: path
+        name: export_file_id
+        required: true
+        description: Export file identifier
+        schema:
+          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions/parameters/0/schema'
+        example: 5a71cdce-e77f-43d7-b43b-377b94e7d582
+    get:
+      summary: Get export file
+      responses:
+        '200':
+          description: Export file
+          content:
+            application/vnd.api+json:
+              schema:
+                description: Get export file response
+                type: object
+                properties:
+                  data:
+                    title: 'JSON:API 1.0 response data'
+                    type: object
+                    properties:
+                      id:
+                        $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions~1%7Bversion_id%7D~1export-files/post/requestBody/content/application~1vnd.api%2Bjson/schema/properties/data/properties/id'
+                      type:
+                        $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions~1%7Bversion_id%7D~1export-files/post/requestBody/content/application~1vnd.api%2Bjson/schema/properties/data/properties/type'
+                      attributes:
+                        description: Export file attributes
+                        type: object
+                        properties:
+                          content:
+                            description: File content (json string)
+                            type: string
+                          created_at:
+                            $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions~1draft/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/attributes/properties/created_at'
+                        required:
+                          - content
+                          - created_at
+                        additionalProperties: false
+                    required:
+                      - id
+                      - type
+                      - attributes
+                    additionalProperties: false
+                  meta:
+                    type: object
+                    properties:
+                      file_name:
+                        description: System generated file name
+                        type: string
+                    required:
+                      - file_name
+                    additionalProperties: false
+                required:
+                  - data
+                  - meta
+                additionalProperties: false
+              example:
+                data:
+                  id: 2172fd9e-3e95-46f0-9901-94d4e8714a61
+                  type: export_file
+                  attributes:
+                    content: '{"version":"9.0.0","checksum":"47fa3dd948254dc850e926485094ca4f","app":{"type":"web"},"tags":[],"triggers":[],"variables":[]}'
+                    created_at: '2020-08-31T11:18:42+00:00'
+                meta:
+                  file_name: 2020-08-31 11-18-44 - Website clearcode.cc (5815c9f1-5157-4f1b-b05c-4eb03283f5c6).json
+        '400':
+          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions~1import/post/responses/400'
+        '401':
+          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions/get/responses/401'
+        '404':
+          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions/get/responses/404'
+        '500':
+          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions/get/responses/500'
+      tags:
+        - Tag Manager
+  '/api/tag/v1/{app_id}/versions/draft/publish':
+    parameters:
+      - $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions/parameters/0'
+    post:
+      summary: Publish draft version
+      responses:
+        '202':
+          description: Version data
+          content:
+            application/vnd.api+json:
+              schema:
+                description: Version publish response
+                type: object
+                properties:
+                  data:
+                    title: 'JSON:API 1.0 response data'
+                    type: object
+                    properties:
+                      id:
+                        $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions~1draft/get/responses/200/content/application~1vnd.api%2Bjson/schema/properties/data/properties/id'
+                      type:
+                        $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions~1import/post/requestBody/content/application~1vnd.api%2Bjson/schema/properties/data/properties/type'
+                      relationships:
+                        description: Version relationships
+                        type: object
+                        properties:
+                          operation:
+                            description: Operation
+                            type: object
+                            properties:
+                              data:
+                                title: 'JSON:API 1.0 relationship data'
+                                description: Operation data
+                                type: object
+                                properties:
+                                  id:
+                                    $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions~1import/post/responses/202/content/application~1vnd.api%2Bjson/schema/properties/data/properties/relationships/properties/operation/properties/data/properties/id'
+                                  type:
+                                    $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions~1import/post/responses/202/content/application~1vnd.api%2Bjson/schema/properties/data/properties/relationships/properties/operation/properties/data/properties/type'
+                                required:
+                                  - id
+                                  - type
+                                additionalProperties: false
+                            required:
+                              - data
+                            additionalProperties: false
+                        required:
+                          - operation
+                        additionalProperties: false
+                    required:
+                      - id
+                      - type
+                      - relationships
+                    additionalProperties: false
+                required:
+                  - data
+                additionalProperties: false
+              example:
+                data:
+                  id: dad7f9c5-67cb-417a-b66f-a97f355379d3
+                  type: version
+                  relationships:
+                    operation:
+                      data:
+                        id: e63b976d-8957-4dd4-bab6-2b94fcd24514
+                        type: operation
+        '400':
+          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions~1import/post/responses/400'
+        '401':
+          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions/get/responses/401'
+        '404':
+          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions/get/responses/404'
+        '500':
+          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions/get/responses/500'
+        '503':
+          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions~1import/post/responses/503'
+      tags:
+        - Tag Manager
+  '/api/tag/v1/{app_id}/versions/{version_id}/publish':
+    parameters:
+      - $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions/parameters/0'
+      - $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions~1%7Bversion_id%7D/parameters/1'
+    post:
+      summary: Publish version by id
+      responses:
+        '202':
+          description: Version data
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions~1draft~1publish/post/responses/202/content/application~1vnd.api%2Bjson/schema'
+              example:
+                $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions~1draft~1publish/post/responses/202/content/application~1vnd.api%2Bjson/example'
+        '400':
+          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions~1import/post/responses/400'
+        '401':
+          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions/get/responses/401'
+        '404':
+          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions/get/responses/404'
+        '500':
+          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions/get/responses/500'
+        '503':
+          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions~1import/post/responses/503'
+      tags:
+        - Tag Manager
+  '/api/tag/v1/{app_id}/versions/import':
+    parameters:
+      - $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions/parameters/0'
+    post:
+      summary: Import version
+      responses:
+        '202':
+          description: Version data
+          content:
+            application/vnd.api+json:
+              schema:
+                description: Version import response
+                type: object
+                properties:
+                  data:
+                    title: 'JSON:API 1.0 response data'
+                    type: object
+                    properties:
+                      id:
+                        $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions~1import/post/requestBody/content/application~1vnd.api%2Bjson/schema/properties/data/properties/id'
+                      type:
+                        $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions~1import/post/requestBody/content/application~1vnd.api%2Bjson/schema/properties/data/properties/type'
+                      relationships:
+                        description: Version relationships
+                        type: object
+                        properties:
+                          operation:
+                            type: object
+                            description: Operation
+                            properties:
+                              data:
+                                title: 'JSON:API 1.0 relationship data'
+                                type: object
+                                description: Operation data
+                                properties:
+                                  id:
+                                    allOf:
+                                      - description: Operation identifier
+                                      - $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions/parameters/0/schema'
+                                  type:
+                                    description: Operation resource type
+                                    type: string
+                                    enum:
+                                      - operation
+                                required:
+                                  - id
+                                  - type
+                                additionalProperties: false
+                            required:
+                              - data
+                            additionalProperties: false
+                        required:
+                          - operation
+                        additionalProperties: false
+                    required:
+                      - id
+                      - type
+                      - relationships
+                    additionalProperties: false
+                required:
+                  - data
+                additionalProperties: false
+              example:
+                data:
+                  id: 677423b3-e529-4e03-88fd-d3b9dcacf2cf
+                  type: version
+                  relationships:
+                    operation:
+                      data:
+                        id: 3d9d7fed-ec31-4e87-9ba9-f8159c577321
+                        type: operation
+        '400':
+          description: Bad request
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions/get/responses/400/content/application~1vnd.api%2Bjson/schema'
+              example:
+                errors:
+                  - code: INVALID_JSON_ERROR
+                    detail: The attribute expected to be of type string but integer given.
+                    source:
+                      pointer: /data/attributes/trigger_type
+                    meta:
+                      keyword: type
+                      keyword_args:
+                        expected: string
+                        used: integer
+        '401':
+          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions/get/responses/401'
+        '404':
+          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions/get/responses/404'
+        '500':
+          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions/get/responses/500'
+        '503':
+          description: Service unavailable
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions/get/responses/400/content/application~1vnd.api%2Bjson/schema'
+              example:
+                errors:
+                  - code: SERVICE_UNAVAILABLE
+                    detail: 'Maintenance mode enabled for organization (organization: default)'
+          headers:
+            X-Reason:
+              schema:
+                type: string
+              description: Reason for service being unavailable
+              example: maintenance-mode
+      requestBody:
+        required: true
+        content:
+          application/vnd.api+json:
+            schema:
+              description: Version import request
+              type: object
+              properties:
+                data:
+                  title: 'JSON:API 1.0 request data'
+                  type: object
+                  properties:
+                    id:
+                      description: Source version identifier
+                      title: UUID
+                      type: string
+                      pattern: '^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$'
+                    type:
+                      description: Version resource type
+                      type: string
+                      enum:
+                        - version
+                  required:
+                    - id
+                    - type
+                  additionalProperties: false
+              required:
+                - data
+              additionalProperties: false
+            example:
+              data:
+                id: 677423b3-e529-4e03-88fd-d3b9dcacf2cf
+                type: version
+      tags:
+        - Tag Manager
+  '/api/tag/v1/{app_id}/versions/import-file':
+    parameters:
+      - $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions/parameters/0'
+    post:
+      summary: Import version from file
+      responses:
+        '202':
+          description: Version data
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions~1import/post/responses/202/content/application~1vnd.api%2Bjson/schema'
+              example:
+                $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions~1import/post/responses/202/content/application~1vnd.api%2Bjson/example'
+        '400':
+          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions~1import/post/responses/400'
+        '401':
+          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions/get/responses/401'
+        '404':
+          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions/get/responses/404'
+        '500':
+          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions/get/responses/500'
+        '503':
+          $ref: '#/paths/~1api~1tag~1v1~1%7Bapp_id%7D~1versions~1import/post/responses/503'
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: application/json
+      tags:
+        - Tag Manager
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
