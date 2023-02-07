@@ -140,7 +140,7 @@
                         },
                         {
                             "title": "Meta Pixel",
-                            "$ref": "../../tags/schema/tag_templates/facebook_retargeting_pixel_attributes.json#/definitions/template_options"
+                            "$ref": "../../tags/schema/tag_templates/facebook_retargeting_pixel_attributes.json#/definitions/template_options_create_edit"
                         },
                         {
                             "title": "Google Ads Remarketing",

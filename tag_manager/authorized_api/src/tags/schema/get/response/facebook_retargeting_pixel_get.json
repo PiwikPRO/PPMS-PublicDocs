@@ -54,7 +54,7 @@
                             "$ref": "../../tag_templates/facebook_retargeting_pixel_attributes.json#/definitions/template"
                         },
                         "template_options": {
-                            "$ref": "../../tag_templates/facebook_retargeting_pixel_attributes.json#/definitions/template_options"
+                            "$ref": "../../tag_templates/facebook_retargeting_pixel_attributes.json#/definitions/template_options_get"
                         },
                         "created_at": {
                             "$ref": "../../../../common/schema/common_types.json#/definitions/datetime"
