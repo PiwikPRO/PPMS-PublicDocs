@@ -258,6 +258,7 @@ paths:
         - $ref: "#/components/parameters/Limit"
         - $ref: "#/components/parameters/Offset"
         - $ref: "#/components/parameters/Search"
+        - $ref: "#/components/parameters/SortApps"
       responses:
         "200":
           description: OK
@@ -291,6 +292,7 @@ paths:
         - $ref: "#/components/parameters/Limit"
         - $ref: "#/components/parameters/Offset"
         - $ref: "#/components/parameters/Search"
+        - $ref: "#/components/parameters/SortApps"
       responses:
         "200":
           description: OK
@@ -521,6 +523,23 @@ components:
           - -type
           - -created_at
         default: name
+    SortApps:
+      in: query
+      name: sort
+      description: Sort field - can be reversed by adding dash before field name e.g (-name)
+      required: false
+      schema:
+        type: string
+        enum:
+          - name
+          - created_at
+          - updated_at
+          - cnil
+          - -name
+          - -created_at
+          - -updated_at
+          - -cnil
+        default: name
   responses:
     ListBadRequest:
       description: Bad Request
@@ -626,6 +645,8 @@ components:
           $ref: "#/components/schemas/ECommerceTracking"
         sharepoint_integration:
           $ref: "#/components/schemas/SharepointIntegration"
+        cnil:
+          $ref: "#/components/schemas/Cnil"
         created_at:
           $ref: "#/components/schemas/CreatedAt"
         updated_at:
@@ -755,6 +776,10 @@ components:
       description: Enable sharepoint integration
       example: false
       default: false
+    Cnil:
+      type: boolean
+      description: CNIL integration enabled (true if any of apps in meta site has CNIL integration enabled)
+      example: false
     CreatedAt:
       type: string
       format: date-time
@@ -798,6 +823,7 @@ components:
             - name
             - timezone
             - currency
+            - cnil
           properties:
             name:
               $ref: "#/components/schemas/AppName"
@@ -805,6 +831,8 @@ components:
               $ref: "#/components/schemas/Timezone"
             currency:
               $ref: "#/components/schemas/Currency"
+            cnil:
+              $ref: "#/components/schemas/Cnil"
     ErrorObject:
       type: object
       required:

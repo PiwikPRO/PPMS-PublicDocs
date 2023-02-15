@@ -185,8 +185,6 @@ paths:
             application/vnd.api+json:
               schema:
                 $ref: '#/components/schemas/JsonApi_User_Object'
-        404:
-          $ref: '#/components/responses/Not_Found'
         400:
           description: Bad Request
           content:
@@ -199,6 +197,8 @@ paths:
                   $ref: "#/components/examples/invalid_uuid"
         403:
           $ref: '#/components/responses/Forbidden'
+        404:
+          $ref: '#/components/responses/Not_Found'
 
     delete:
       summary: Delete user
@@ -206,8 +206,6 @@ paths:
       responses:
         204:
           $ref: '#/components/schemas/No_Content'
-        404:
-          $ref: '#/components/responses/Not_Found'
         400:
           description: Bad Request
           content:
@@ -232,6 +230,8 @@ paths:
               examples:
                 Forbidden:
                   $ref: "#/components/examples/forbidden"
+        404:
+          $ref: '#/components/responses/Not_Found'
 
     patch:
       summary: Edit user
@@ -830,7 +830,7 @@ components:
           - status: '400'
             title: Invalid form
             code: users.error.unsupported-language
-            detail: 'Language "pl" is not supported (supported are en, de, fi, jp, fr, nl)'
+            detail: 'Language "pl" is not supported (supported are en, de, fi, fr, nl, sv)'
             source:
               pointer: /language
     unsupported_language_tag:

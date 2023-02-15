@@ -32,14 +32,42 @@
                 "InitiateCheckout",
                 "AddPaymentInfo",
                 "Lead",
-                "CompleteRegistration"
+                "CompleteRegistration",
+                "SubmitApplication",
+                "Schedule",
+                "FindLocation",
+                "Donate",
+                "CustomizeProduct",
+                "Contact",
+                "Purchase",
+                "Subscribe",
+                "StartTrial"
             ]
+        },
+        "template_options_event_parameter": {
+            "description": "JavaScript object will be created and put as a third argument for Meta Pixel Tag",
+            "type": "object",
+            "properties": {
+                "property_name": {
+                    "$ref": "../tag_types.json#/definitions/non_empty_string"
+                },
+                "property_value": {
+                    "type": "string"
+                }
+            }
+        },
+        "template_options_event_parameters_map": {
+            "description": "Additional event parameters",
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/template_options_event_parameter"
+            }
         },
         "template_options_audience": {
             "description": "Audience to export to Facebook Ads Manager (same audience should be set on trigger)",
             "$ref": "../tag_types.json#/definitions/non_empty_string"
         },
-        "template_options": {
+        "template_options_create_edit": {
             "description": "[Tag template options](#tag-template-options)",
             "type": "object",
             "properties": {
@@ -51,12 +79,39 @@
                 },
                 "audience": {
                     "$ref": "#/definitions/template_options_audience"
+                },
+                "event_properties": {
+                    "$ref": "#/definitions/template_options_event_parameters_map"
                 }
             },
             "additionalProperties": false,
             "required": [
                 "pixel_id",
                 "event"
+            ]
+        },
+        "template_options_get": {
+            "description": "[Tag template options](#tag-template-options)",
+            "type": "object",
+            "properties": {
+                "pixel_id": {
+                    "$ref": "#/definitions/template_options_pixel_id"
+                },
+                "event": {
+                    "$ref": "#/definitions/template_options_event"
+                },
+                "audience": {
+                    "$ref": "#/definitions/template_options_audience"
+                },
+                "event_properties": {
+                    "$ref": "#/definitions/template_options_event_parameters_map"
+                }
+            },
+            "additionalProperties": false,
+            "required": [
+                "pixel_id",
+                "event",
+                "event_properties"
             ]
         }
     }
