@@ -18,6 +18,7 @@ Channel detection approach
 -----------------
 
 This section describes how Piwik PRO Analytics detects a channel from the tracked event. The order this section is arranged by represents the order of detection. Detection stops when the conditions of the currently processed step are met.
+
     .. note::
         Despite detected channel, dimensions ``source``, ``medium``, ``referrer_keyword`` and ``keyword``  can be overwritten by passed in url campaign parameters. Such parameters are called ``unnamed campaign parameters``, as they miss ``campaign name`` parameter, which would assign such event to the ``campaign`` category.
         **Example**: you've configured ``utm_source`` as campaign source. when you track URL ``http://facebook.com?utm_source=MySource``, the detected channel is ``Social``, but ``source`` parameter is ``MySource`` , not ``Referal``, as it was overwritten by unnamed campaign parameter. 
