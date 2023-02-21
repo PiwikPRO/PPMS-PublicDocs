@@ -38,6 +38,30 @@ yarn add @piwikpro/next-piwik-pro
 
 ### Basic setup
 
+
+Some Next.js project have problems with importing ESM libraries. To handle that you need to install `next-transpile-modules` lib.
+
+```
+npm install --save next-transpile-modules
+```
+
+Then you need to make some adaptions in your `next.config.js` file. Please adapt your file as example below. If it's no exist please create it in main project directory.
+
+##### next.config.json
+
+```ts
+/** @type {import('next').NextConfig} */
+
+const withTM = require('next-transpile-modules')(['@piwikpro/next-piwik-pro'])
+
+const nextConfig = {
+  /* Your Next.js config */
+}
+
+module.exports = withTM(nextConfig)
+
+```
+
 In your Next.js Project, include the default `PiwikProProvider` in the `_app.tsx` file. To set up the Piwik PRO Tag Manager container in the app, include the initialization code in your `App`.
 
 In the arguments, pass your account name and your container id as parameters (marked 'accountName' and 'containerId' in the example below).
