@@ -154,8 +154,8 @@ If your tracking domain is custom, then you need to define it with ``img-src`` a
 
 .. code-block:: javascript
 
-	img-src <your-sources> your-custom-cpp-domain.com;
-	script-src <your-sources> your-custom-cpp-domain.com/ppms.js;
+	img-src <your-sources> your-custom-domain.com;
+	script-src <your-sources> your-custom-domain.com/ppms.js;
 
 
 Example Content Security Policy definition
@@ -173,8 +173,8 @@ Following example configuration of CSP assumes:
 
 .. code-block:: text
 
-    Content-Security-Policy: default-src 'self';
-                             script-src  'self' client.piwik.pro/ppms.js 'nonce-nceIOfn39fn3e9h3sd';
+    Content-Security-Policy: default-src 'none';
+                             script-src  'self' https://client.piwik.pro/ppms.js 'nonce-nceIOfn39fn3e9h3sd';
                              connect-src 'self' client.containers.piwik.pro client.piwik.pro;
                              img-src     'self' client.containers.piwik.pro client.piwik.pro;
                              font-src    'self' client.containers.piwik.pro;
