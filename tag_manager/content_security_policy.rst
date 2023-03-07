@@ -106,9 +106,9 @@ To load all necessary assets from Tag Manager debugger you need to define source
 
 .. code-block:: javascript
 
-	img-src <your-sources> client.containers.piwik.pro;
-	font-src <your-sources> client.containers.piwik.pro;
-	style-src <your-sources> client.containers.piwik.pro;
+	img-src <your-sources> https://client.containers.piwik.pro;
+	font-src <your-sources> https://client.containers.piwik.pro;
+	style-src <your-sources> https://client.containers.piwik.pro;
 
 
 Consent Manager form assets
@@ -118,7 +118,7 @@ If your website is GDPR compliant then you need to describe ``connect-src``, ``s
 
 .. code-block:: javascript
 
-	connect-src <your-sources> client.piwik.pro client.containers.piwik.pro;
+	connect-src <your-sources> https://client.piwik.pro https://client.containers.piwik.pro;
 	style-src <your-sources> 'nonce-INSERT_VALID_NONCE_VALUE';
 
 .. note::
@@ -154,8 +154,8 @@ If your tracking domain is custom, then you need to define it with ``img-src`` a
 
 .. code-block:: javascript
 
-	img-src <your-sources> your-custom-domain.com;
-	script-src <your-sources> your-custom-domain.com/ppms.js;
+	img-src <your-sources> https://your-custom-domain.com;
+	script-src <your-sources> https://your-custom-domain.com/ppms.js;
 
 
 Example Content Security Policy definition
@@ -175,7 +175,7 @@ Following example configuration of CSP assumes:
 
     Content-Security-Policy: default-src 'none';
                              script-src  'self' https://client.piwik.pro/ppms.js 'nonce-nceIOfn39fn3e9h3sd';
-                             connect-src 'self' client.containers.piwik.pro client.piwik.pro;
-                             img-src     'self' client.containers.piwik.pro client.piwik.pro;
-                             font-src    'self' client.containers.piwik.pro;
-                             style-src   'self' client.containers.piwik.pro 'nonce-nceIOfn39fn3e9h3sd';
+                             connect-src 'self' https://client.containers.piwik.pro https://client.piwik.pro;
+                             img-src     'self' https://client.containers.piwik.pro https://client.piwik.pro;
+                             font-src    'self' https://client.containers.piwik.pro;
+                             style-src   'self' https://client.containers.piwik.pro 'nonce-nceIOfn39fn3e9h3sd';
