@@ -131,7 +131,7 @@ components:
     app_url:
       name: app_url
       in: query
-      description: App URL
+      description: App URL. The URL must meet requirements of [RFC-3986](https://www.rfc-editor.org/rfc/rfc3986)
       required: true
       schema:
         type: string
@@ -399,7 +399,7 @@ components:
     Urls:
       type: array
       description: |
-        List of app valid urls.  Used mostly to detect referrers and to exclude traffic if `exclude_unknown_urls` is enabled.
+        List of app valid ([RFC-3986](https://www.rfc-editor.org/rfc/rfc3986)) urls. Used mostly to detect referrers and to exclude traffic if `exclude_unknown_urls` is enabled.
         ```
         This value is created when a new website is added.
         ```
