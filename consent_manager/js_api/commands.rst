@@ -6,7 +6,7 @@ All commands work in the context of the current visitor and website. Additionall
 
 .. note::
     For examples of how to use a specific command in your custom consent form
-    implementation (including how to track consent stats), reffer to the
+    implementation (including how to track consent stats), refer to the
     `Piwik PRO - Custom consent form example`_
 
 
@@ -27,7 +27,19 @@ Code::
 
         Example::
 
-            ["remarketing", "analytics"]
+            ['remarketing', 'analytics']
+
+        Available items are any of::
+
+             [
+                'analytics',
+                'ab_testing_and_personalization',
+                'custom_consent',
+                'user_feedback',
+                'marketing_automation',
+                'remarketing',
+                'conversion_tracking'
+            ]
 
 .. function:: onRejected(error)
 
@@ -52,7 +64,19 @@ Code::
 
         Example::
 
-            ["remarketing", "analytics"]
+            ['remarketing', 'analytics']
+
+        Available items are any of::
+
+            [
+                'analytics',
+                'ab_testing_and_personalization',
+                'custom_consent',
+                'user_feedback',
+                'marketing_automation',
+                'remarketing',
+                'conversion_tracking'
+            ]
 
 .. function:: onRejected(error)
 
@@ -64,7 +88,7 @@ Code::
 Set initial compliance settings
 ```````````````````````````````
 Sets initial compliance settings (no decision signal for each consent type) in the cookie.
-Use this command to save "no decision" for the available consent types, to further know that a visitor has seen the form.
+Use this command to save 'no decision' for the available consent types, to further know that a visitor has seen the form.
 Result from `getNewComplianceTypes` method can be passed directly.
 
 Code::
@@ -85,6 +109,18 @@ Code::
         Example::
 
             ['analytics']
+
+        Where allowed items are any of::
+
+             [
+                'analytics',
+                'ab_testing_and_personalization',
+                'custom_consent',
+                'user_feedback',
+                'marketing_automation',
+                'remarketing',
+                'conversion_tracking'
+            ]
 
 .. function:: onFulfilled()
 
@@ -115,7 +151,21 @@ Code::
 
             {consents: {analytics: {status: 1}}}
 
-    Where ``consent.analytics`` is consent type and status indicate:
+        Where object key names are any of::
+
+             [
+                'analytics',
+                'ab_testing_and_personalization',
+                'custom_consent',
+                'user_feedback',
+                'marketing_automation',
+                'remarketing',
+                'conversion_tracking'
+            ]
+
+        (apostrophes can be omitted)
+
+    And where ``consent.{consent_type}`` is consent type and status indicate:
 
     * ``0`` - user has rejected the consent
     * ``1`` - user has approved the consent
@@ -215,20 +265,20 @@ Code::
 
         Example::
 
-            "ppms_cm_consent_popup_30a851b6-6bf4-45f9-9a53-583401bb5d60"
+            'ppms_cm_consent_popup_30a851b6-6bf4-45f9-9a53-583401bb5d60'
 
     :param array<string> consentTypes: Array of consent types
 
 
         Example::
 
-            ["analytics", "conversion_tracking", "remarketing"]
+            ['analytics', 'conversion_tracking', 'remarketing']
 
     :param array<string> consents: Array list of all given consents
 
         Example::
 
-            ["analytics", "remarketing"]
+            ['analytics', 'remarketing']
 
 .. function:: onRejected(error)
 
