@@ -29,17 +29,8 @@ Code::
 
             ['remarketing', 'analytics']
 
-        Available items are any of::
-
-             [
-                'analytics',
-                'ab_testing_and_personalization',
-                'custom_consent',
-                'user_feedback',
-                'marketing_automation',
-                'remarketing',
-                'conversion_tracking'
-            ]
+        .. note::
+            Available consent types and their format you'll find here: `Compliance types reference`_
 
 .. function:: onRejected(error)
 
@@ -66,17 +57,8 @@ Code::
 
             ['remarketing', 'analytics']
 
-        Available items are any of::
-
-            [
-                'analytics',
-                'ab_testing_and_personalization',
-                'custom_consent',
-                'user_feedback',
-                'marketing_automation',
-                'remarketing',
-                'conversion_tracking'
-            ]
+        .. note::
+            Available consent types and their format you'll find here: `Compliance types reference`_
 
 .. function:: onRejected(error)
 
@@ -110,17 +92,8 @@ Code::
 
             ['analytics']
 
-        Where allowed items are any of::
-
-             [
-                'analytics',
-                'ab_testing_and_personalization',
-                'custom_consent',
-                'user_feedback',
-                'marketing_automation',
-                'remarketing',
-                'conversion_tracking'
-            ]
+        .. note::
+            Available consent types and their format you'll find here: `Compliance types reference`_
 
 .. function:: onFulfilled()
 
@@ -151,24 +124,8 @@ Code::
 
             {consents: {analytics: {status: 1}}}
 
-        Where object key names are any of::
-
-             [
-                'analytics',
-                'ab_testing_and_personalization',
-                'custom_consent',
-                'user_feedback',
-                'marketing_automation',
-                'remarketing',
-                'conversion_tracking'
-            ]
-
-        (apostrophes can be omitted)
-
-    And where ``consent.{consent_type}`` is consent type and status indicate:
-
-    * ``0`` - user has rejected the consent
-    * ``1`` - user has approved the consent
+        .. note::
+            Available consent types and their format you'll find here: `Compliance types reference`_
 
 .. function:: onFulfilled()
 
@@ -418,3 +375,35 @@ Code::
     The rejection handler callback (called with error code). If not specified, the exception will be thrown in the main stack trace.
 
     :param string|object error: **Required** Error code or exception
+
+Compliance types reference
+``````````````````````````
+    Available consent types::
+
+        [
+            'analytics',
+            'ab_testing_and_personalization',
+            'custom_consent',
+            'user_feedback',
+            'marketing_automation',
+            'remarketing',
+            'conversion_tracking'
+        ]
+
+    Those values can be stored also in an object::
+
+        {
+            analytics: { status: 1 },
+            ab_testing_and_personalization: { status: 1 },
+            custom_consent: { status: 1 },
+            user_feedback: { status: 1 },
+            marketing_automation: { status: 1 },
+            remarketing: { status: 1 },
+            conversion_tracking: { status: 1 }
+        ]
+    
+    Key ``consent.{consent_type}.status`` is indicating:
+
+        * ``-1`` - user has not interacted, e.g. has closed a consent popup without any decision
+        * ``0``  - user has rejected the consent
+        * ``1``  - user has approved the consent
