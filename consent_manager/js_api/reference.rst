@@ -1,5 +1,3 @@
-.. _`Piwik PRO - Custom consent form example`: https://piwikpro.github.io/ConsentManager-CustomConsentFormExample/
-
 Consent types reference
 -----------------------
 
