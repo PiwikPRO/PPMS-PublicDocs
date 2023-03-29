@@ -54,5 +54,45 @@
     [
         14,
         "Consent decision"
+    ],
+    [
+        15,
+        "Custom Ping"
+    ],
+    [
+        16,
+        "Cart update"
+    ],
+    [
+        17,
+        "Broken event"
+    ],
+    [
+        18,
+        "Excluded event"
+    ],
+    [
+        19,
+        "Heartbeat"
+    ],
+    [
+        20,
+        "Deanonymization"
+    ],
+    [
+        21,
+        "Page performance"
+    ],
+    [
+        22,
+        "Product detail view"
+    ],
+    [
+        23,
+        "Add to cart"
+    ],
+    [
+        24,
+        "Remove from cart"
     ]
 ]
