@@ -272,7 +272,7 @@ E-commerce v2
 
     Tracks action of adding product to a cart.
 
-    :param object product: Product representation. Expected attributes:
+    :param object product: **Required** Product representation. Expected attributes:
 
         * sku - **Required** [string] Product stock-keeping unit
         * name - **Optional** [string] Product name (default: "")
@@ -304,7 +304,7 @@ E-commerce v2
 
     Tracks action of removing product from a cart.
 
-    :param object product: Product representation. Expected attributes:
+    :param object product: **Required** Product representation. Expected attributes:
 
         * sku - **Required** [string] Product stock-keeping unit
         * name - **Optional** [string] Product name (default: "")
@@ -336,7 +336,7 @@ E-commerce v2
 
     Tracks action of viewing product page.
 
-    :param object product: Product representation. Expected attributes:
+    :param object product: **Required** Product representation. Expected attributes:
 
         * sku - **Required** [string] Product stock-keeping unit
         * name - **Optional** [string] Product name (default: "")
@@ -364,7 +364,7 @@ E-commerce v2
 
 .. _jtc-api-ecommerceCartUpdate:
 
-.. function:: ecommerceCartUpdate(products, paymentInformation)
+.. function:: ecommerceCartUpdate(products, grandTotal)
 
     Tracks current state of a cart.
 
@@ -373,7 +373,7 @@ E-commerce v2
         Should be executed once for each page (immidiately after page is loaded).
         It's used to synchronize state of a cart with Piwik PRO.
 
-    :param Array<object> products: List of product representations. Expected attributes of each product:
+    :param Array<object> products: **Required** List of product representations. Expected attributes of each product:
 
         * sku - **Required** [string] Product stock-keeping unit
         * name - **Optional** [string] Product name (default: "")
@@ -383,9 +383,7 @@ E-commerce v2
         * brand - **Optional** [string] Product brand (default: "")
         * variant - **Optional** [string] Product variant (default: "")
 
-    :param object paymentInformation: Total payment information about products in a cart. Expected attributes:
-
-        * grandTotal - **Required** [string] The total value of items in a cart
+    :param number grandTotal: **Required** [number|string] The total value of items in a cart.
 
     Example of usage:
 
@@ -401,7 +399,7 @@ E-commerce v2
                         {sku: "craft-311", name: "Unicorn Iron on Patch", category: "Crafts & Sewing", price: 500, quantity: 3, brand: "DMZ", variant: "blue"}
                         {sku: "craft-312", name: "Unicorn Iron on Grass", category: "Crafts & Sewing", price: 300, quantity: 1, brand: "DMZ", variant: "red"}
                     ],
-                    { grandTotal: "1800" }
+                    "1800"
                 ]);
 
         .. group-tab:: JavaScript Tracking Client object
@@ -413,7 +411,7 @@ E-commerce v2
                         {sku: "craft-311", name: "Unicorn Iron on Patch", category: "Crafts & Sewing", price: 500, quantity: 3, brand: "DMZ", variant: "blue"}
                         {sku: "craft-312", name: "Unicorn Iron on Grass", category: "Crafts & Sewing", price: 300, quantity: 1, brand: "DMZ", variant: "red"}
                     ],
-                    { grandTotal: "1800" }
+                    "1800"
                 );
 
 .. _jtc-api-ecommerceConversion:
@@ -422,7 +420,7 @@ E-commerce v2
 
     Tracks conversion (including products and payment details).
 
-    :param Array<object> products: List of product representations. Expected attributes of each product:
+    :param Array<object> products: **Required** List of product representations. Expected attributes of each product:
 
         * sku - **Required** [string] Product stock-keeping unit
         * name - **Optional** [string] Product name (default: "")
@@ -435,11 +433,11 @@ E-commerce v2
     :param object paymentInformation: Total payment information about products in a cart. Expected attributes:
 
         * orderId - **Required** [string] Unique identifier of an order
-        * grandTotal - **Required** [string] Total value of items in a cart
-        * subTotal - **Optional** [string] Total value of items in a cart without shipping
-        * tax - **Optional** [string] Total tax amount
-        * shipping - **Optional** [string] Total shipping cost
-        * discount - **Optional** [string] Total discount
+        * grandTotal - **Required** [number|string] Total value of items in a cart
+        * subTotal - **Optional** [number|string] Total value of items in a cart without shipping
+        * tax - **Optional** [number|string] Total tax amount
+        * shipping - **Optional** [number|string] Total shipping cost
+        * discount - **Optional** [number|string] Total discount
 
     Example of usage:
 
