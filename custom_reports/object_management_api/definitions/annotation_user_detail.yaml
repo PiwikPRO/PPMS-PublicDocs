@@ -1,6 +1,6 @@
 type: object
 allOf:
-  - $ref: '#/definitions/AnnotationUser'
+  - $ref: '../index.yaml#/components/schemas/AnnotationUser'
 required:
   - type
   - attributes

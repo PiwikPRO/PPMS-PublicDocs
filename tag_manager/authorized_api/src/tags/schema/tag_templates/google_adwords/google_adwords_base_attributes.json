@@ -13,7 +13,7 @@
                     "$ref": "../../tag_types.json#/definitions/positive_integer"
                 },
                 {
-                    "$ref": "../../tag_types.json#/definitions/variable_reference"
+                    "$ref": "../../../../common/schema/common_types.json#/definitions/variable_reference"
                 }
             ]
         }

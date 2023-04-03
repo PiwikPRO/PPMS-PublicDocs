@@ -14,6 +14,6 @@ properties:
   attributes:
     properties:
       event:
-        $ref: '#/definitions/CustomDimensionSlot'
+        $ref: '../index.yaml#/components/schemas/CustomDimensionSlot'
       session:
-        $ref: '#/definitions/CustomDimensionSlot'
+        $ref: '../index.yaml#/components/schemas/CustomDimensionSlot'

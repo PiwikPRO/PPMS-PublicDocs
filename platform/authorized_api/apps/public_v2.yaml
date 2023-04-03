@@ -101,6 +101,7 @@ components:
     App_Name:
       type: string
       description: App name
+      maxLength: 90
       example: AppName
     App_Urls:
       type: array
@@ -131,6 +132,11 @@ components:
       type: string
       description: Organization to which an app belongs to
       example: default
+    New_App_Id:
+      type: string
+      description: App ID
+      example: 985ed9d7-b652-47b8-b9cf-c17d62735261
+      format: uuid
     New_App_App_Type:
       type: string
       description: App type
@@ -186,6 +192,8 @@ components:
                 - urls
               allOf:
                 - properties:
+                    id:
+                      $ref: "#/components/schemas/New_App_Id"
                     appType:
                       $ref: "#/components/schemas/New_App_App_Type"
                 - $ref: "#/components/schemas/App_Editable_Attributes"
@@ -503,6 +511,36 @@ paths:
                 $ref: "#/components/schemas/App_JsonApi"
         400:
           description: Bad Request
+          content:
+            application/vnd.api+json:
+              schema:
+                allOf:
+                  - $ref: "../users/public_v2.yaml#/components/schemas/ErrorObject"
+              examples:
+                Too long app name:
+                  value:
+                    errors:
+                      - status: '400'
+                        title: Invalid form
+                        detail: This value is too long. It should have 90 characters or less.
+                        code: error.default
+                        source:
+                          pointer: /name
+                Add demo app forbidden:
+                  value:
+                    errors:
+                      - status: '400'
+                        title: Invalid form
+                        detail: AppType "demo" is not supported (supported are sharepoint, web)
+                        code: error.default
+                        source:
+                          pointer: /appType
+                App id already exists:
+                  value:
+                    errors:
+                      - status: '400'
+                        title: 'App with id: "985ed9d7-b652-47b8-b9cf-c17d62735261" already exists'
+                        code: error.default
         409:
           description: Conflict
           content:

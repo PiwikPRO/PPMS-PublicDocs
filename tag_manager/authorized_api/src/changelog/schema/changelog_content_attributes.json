@@ -115,23 +115,23 @@
                             "$ref": "../../tags/schema/tag_templates/crazy_egg_attributes.json#/definitions/template_options"
                         },
                         {
-                            "title": "DoubleClick Floodlight Sales (item sold)",
+                            "title": "Floodlight Sales (item sold)",
                             "$ref": "../../tags/schema/tag_templates/doubleclick_floodlight/doubleclick_floodlight_sales_item_sold_attributes.json#/definitions/template_options"
                         },
                         {
-                            "title": "DoubleClick Floodlight Sales (transactions)",
+                            "title": "Floodlight Sales (transactions)",
                             "$ref": "../../tags/schema/tag_templates/doubleclick_floodlight/doubleclick_floodlight_sales_transactions_attributes.json#/definitions/template_options"
                         },
                         {
-                            "title": "DoubleClick Floodlight Counter (session)",
+                            "title": "Floodlight Counter (session)",
                             "$ref": "../../tags/schema/tag_templates/doubleclick_floodlight/doubleclick_floodlight_counter_session_attributes.json#/definitions/template_options"
                         },
                         {
-                            "title": "DoubleClick Floodlight Counter (standard_method)",
+                            "title": "Floodlight Counter (standard_method)",
                             "$ref": "../../tags/schema/tag_templates/doubleclick_floodlight/doubleclick_floodlight_counter_standard_method_attributes.json#/definitions/template_options"
                         },
                         {
-                            "title": "DoubleClick Floodlight Counter (unique_method)",
+                            "title": "Floodlight Counter (unique_method)",
                             "$ref": "../../tags/schema/tag_templates/doubleclick_floodlight/doubleclick_floodlight_counter_unique_method_attributes.json#/definitions/template_options"
                         },
                         {
@@ -139,8 +139,8 @@
                             "$ref": "../../tags/schema/tag_templates/google_adwords/google_adwords_doubleclick_attributes.json#/definitions/template_options"
                         },
                         {
-                            "title": "Facebook Retargeting Pixel",
-                            "$ref": "../../tags/schema/tag_templates/facebook_retargeting_pixel_attributes.json#/definitions/template_options"
+                            "title": "Meta Pixel",
+                            "$ref": "../../tags/schema/tag_templates/facebook_retargeting_pixel_attributes.json#/definitions/template_options_create_edit"
                         },
                         {
                             "title": "Google Ads Remarketing",
@@ -314,6 +314,10 @@
                                             {
                                                 "title": "Url parameter variable options",
                                                 "$ref": "../../variables/schema/variable_type_attributes.json#/definitions/url_parameter_options_attribute"
+                                            },
+                                            {
+                                                "title": "Lookup table variable options",
+                                                "$ref": "../../variables/schema/variable_type_attributes.json#/definitions/lookup_table_variable_options_attribute"
                                             }
                                         ]
                                     }
@@ -371,6 +375,10 @@
                         {
                             "$ref": "../../variables/schema/variable_type_attributes.json#/definitions/url_parameter_options_attribute",
                             "title": "Url parameter variable options"
+                        },
+                        {
+                            "title": "Lookup table variable options",
+                            "$ref": "../../variables/schema/variable_type_attributes.json#/definitions/lookup_table_variable_options_attribute"
                         }
                     ]
                 }

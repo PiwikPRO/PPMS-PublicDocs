@@ -1,10 +1,12 @@
 {
-    "title": "DoubleClick Conversion tag",
+    "title": "DoubleClick Conversion tag [DEPRECATED]",
     "description": "DoubleClick Conversion tag edit request",
+    "deprecated": true,
     "type": "object",
     "properties": {
         "data": {
             "title": "JSON:API 1.0 request data",
+            "deprecated": true,
             "type": "object",
             "properties": {
                 "id": {

@@ -18,7 +18,7 @@ properties:
   attributes:
     type: object
     allOf:
-      - $ref: '#/definitions/Annotation'
+      - $ref: '../index.yaml#/components/schemas/Annotation'
     required:
       - content
       - website_id

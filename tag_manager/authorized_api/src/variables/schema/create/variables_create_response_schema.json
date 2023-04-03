@@ -45,6 +45,10 @@
                     "title": "query"
                 }
             ]
+        },
+        {
+            "$ref": "../get/response/lookup_table_schema.json",
+            "title": "lookup_table"
         }
     ]
 }

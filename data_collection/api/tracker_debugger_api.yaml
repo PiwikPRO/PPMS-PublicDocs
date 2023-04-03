@@ -368,7 +368,7 @@ components:
           description: Number of results on search results list
           type: integer
           minimum: 0
-          maximum: 65535
+          maximum: 4294967295
           example: 7
         custom_event_category:
           description: Custom event category

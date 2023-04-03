@@ -20,7 +20,7 @@
             "description": "Custom dimension id",
             "type": "integer",
             "minimum": 1,
-            "maximum": 200
+            "maximum": 400
         },
         "template_options_element_selectors": {
             "description": "Video element CSS selectors",

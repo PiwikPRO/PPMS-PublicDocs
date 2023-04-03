@@ -5,6 +5,7 @@ Dedicated Piwik PRO library that helps with implementing Piwik PRO Tag Manager a
 * [Installation](#installation)
   * [NPM](#npm)
   * [Basic setup](#basic-setup)
+  * [Setup with nonce](#setup-with-nonce)
   * [Routing setup](#set-up-the-routing-module)
   * [Advanced routing setup](#advanced-setup-for-the-routing-module)
 * [Piwik PRO Services](#piwik-pro-services)
@@ -20,6 +21,7 @@ Dedicated Piwik PRO library that helps with implementing Piwik PRO Tag Manager a
   * [Download and outlink Service](#download-and-outlink-service)
   * [Goal Conversions](#goal-conversions)
   * [Custom Dimensions](#custom-dimensions)
+  * [Data Layer](#data-layer)
 
 ## Installation
 
@@ -28,18 +30,18 @@ Dedicated Piwik PRO library that helps with implementing Piwik PRO Tag Manager a
 To use this package in your project, run the following command.
 
 ```
-npm install @piwik-pro/ngx-piwik-pro
+npm install @piwikpro/ngx-piwik-pro
 ```
 
 
 ### Basic setup
 
-In your Angular Project, include the `NgxPiwikProModule` in the highest level application module. ie `AddModule`. 
-To set up the Piwik PRO Tag Manager container in the app, the easiest way is to call the `forRoot()` method. 
+In your Angular Project, include the `NgxPiwikProModule` in the highest level application module. ie `AddModule`.
+To set up the Piwik PRO Tag Manager container in the app, the easiest way is to call the `forRoot()` method.
 In the arguments, pass your app ID and your account URL as parameters (marked 'container-id' and 'container-url' in the example below).
 
 ```ts  
-import { NgxPiwikProModule } from '@piwik-pro/ngx-piwik-pro';  
+import { NgxPiwikProModule } from '@piwikpro/ngx-piwik-pro';  
   
 @NgModule({  
   declarations: [  
@@ -52,7 +54,31 @@ import { NgxPiwikProModule } from '@piwik-pro/ngx-piwik-pro';
   ],  
   providers: [],  
   bootstrap: [AppComponent]  
-})  
+})
+export class AppModule { }  
+```
+
+### Setup with nonce
+
+The nonce attribute is useful to allow-list specific elements, such as a particular inline script or style elements. It can help you to avoid using the CSP unsafe-inline directive, which would allow-list all inline scripts or styles.
+
+If you want your nonce to be passed to the script, pass it as the third argument when calling the script initialization method.
+
+```ts
+import { NgxPiwikProModule } from '@piwikpro/ngx-piwik-pro';
+
+@NgModule({
+  declarations: [
+    AppComponent
+  ],
+  imports: [
+    BrowserModule,
+    NgxPiwikProModule.forRoot('container-id', 'container-url', 'nonce-hash')
+    // ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^  
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
 export class AppModule { }  
 ```
 
@@ -66,7 +92,7 @@ Add ```NgxPiwikProRouterModule``` on AppModule to enable auto track `Router` eve
 **IMPORTANT:** This Module subscribes to Router events when the bootstrap component is created, and then cleans up any subscriptions related to previous component when it is destroyed. You may get some issues if using this module with server side rendering or multiple bootstrap components. If that's the case, we recommend subscribing to the page view events manually.
 
 ```ts  
-import { NgxPiwikProModule, NgxPiwikProRouterModule } from '@piwik-pro/ngx-piwik-pro';  
+import { NgxPiwikProModule, NgxPiwikProRouterModule } from '@piwikpro/ngx-piwik-pro';  
 ...  
   
 @NgModule({  
@@ -89,7 +115,7 @@ You can customize some rules to include/exclude routes on `NgxPiwikProRouterModu
 * Regular Expression route matching: `{ include: [ /^\/public\/.*/ ] }`;
 
 ```ts  
-import { NgxPiwikProModule, NgxPiwikProRouterModule } from '@piwik-pro/ngx-piwik-pro';  
+import { NgxPiwikProModule, NgxPiwikProRouterModule } from '@piwikpro/ngx-piwik-pro';  
 ...  
   
 @NgModule({  
@@ -148,6 +174,23 @@ export class TestPageComponent implements OnInit {
     this.pageViewsService.trackPageView('Title')  
   }  
   
+}  
+```
+
+### Send an event with Data Layer
+
+```ts
+@Component(...)
+export class TestPageComponent implements OnInit {
+
+  constructor(
+    protected dataLayerService: DataLayerService
+  ) {}
+
+  ngOnInit() {
+    this.dataLayerService.push({ event: 'test-event' })
+  }
+
 }  
 ```
 
@@ -221,3 +264,8 @@ Goals let you define important actions registered in your application and track 
 * `deleteCustomDimension(customDimensionId: string)` - Removes a custom dimension with the specified ID.
 * `getCustomDimensionValue(customDimensionId: string | number)` - Returns the value of a custom dimension with the specified ID.
 
+### Data Layer
+A data layer is a data structure on your site or app where you can store data and access it with tools like Tag Manager. You can include any data you want in your data layer.
+
+#### Methods
+* `push(dataLayerObject: Object)`  - Adds an event to a data layer.

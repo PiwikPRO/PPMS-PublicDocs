@@ -6,12 +6,13 @@
         },
         "template": {
             "$ref": "../../tag_attributes.json#/definitions/template",
+            "description": "Tag template. Despite rebranding the tag name, the template value remained the same due to maintaining backward compatibility.",
             "enum": [
                 "doubleclick_floodlight"
             ]
         },
         "template_options_type_descritpion": {
-            "description": "DoubleClick Floodlight type",
+            "description": "Floodlight type. Despite rebranding the tag name, the template options type value remained the same due to maintaining backward compatibility.",
             "type": "string"
         },
         "template_options_type_sales": {
@@ -33,7 +34,7 @@
                     "$ref": "../../tag_types.json#/definitions/non_empty_string"
                 },
                 {
-                    "$ref": "../../tag_types.json#/definitions/variable_reference"
+                    "$ref": "../../../../common/schema/common_types.json#/definitions/variable_reference"
                 }
             ]
         },
@@ -44,7 +45,7 @@
                     "$ref": "../../tag_types.json#/definitions/non_empty_string"
                 },
                 {
-                    "$ref": "../../tag_types.json#/definitions/variable_reference"
+                    "$ref": "../../../../common/schema/common_types.json#/definitions/variable_reference"
                 }
             ]
         },
@@ -55,7 +56,7 @@
                     "$ref": "../../tag_types.json#/definitions/non_empty_string"
                 },
                 {
-                    "$ref": "../../tag_types.json#/definitions/variable_reference"
+                    "$ref": "../../../../common/schema/common_types.json#/definitions/variable_reference"
                 }
             ]
         },
@@ -72,7 +73,7 @@
                     "$ref": "../../tag_types.json#/definitions/non_empty_string"
                 },
                 {
-                    "$ref": "../../tag_types.json#/definitions/variable_reference"
+                    "$ref": "../../../../common/schema/common_types.json#/definitions/variable_reference"
                 }
             ]
         },
@@ -89,7 +90,7 @@
                     "$ref": "../../tag_types.json#/definitions/non_empty_string"
                 },
                 {
-                    "$ref": "../../tag_types.json#/definitions/variable_reference"
+                    "$ref": "../../../../common/schema/common_types.json#/definitions/variable_reference"
                 }
             ]
         },
@@ -117,7 +118,7 @@
                                 "$ref": "../../tag_types.json#/definitions/non_empty_string"
                             },
                             {
-                                "$ref": "../../tag_types.json#/definitions/variable_reference"
+                                "$ref": "../../../../common/schema/common_types.json#/definitions/variable_reference"
                             }
                         ]
                     }

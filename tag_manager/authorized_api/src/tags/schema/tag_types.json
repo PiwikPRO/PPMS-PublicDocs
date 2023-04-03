@@ -74,12 +74,6 @@
             "type": "integer",
             "minimum": 0
         },
-        "variable_reference": {
-            "title": "Variable reference",
-            "description": "Tag Manager's variable reference, example `{{ Campaign }}`",
-            "type": "string",
-            "pattern": "^{{((?:.(?!}}))+.)}}$"
-        },
         "tag_new_identifier": {
             "$ref": "../../common/schema/common_types.json#/definitions/uuid",
             "description": "New tag's identifier"

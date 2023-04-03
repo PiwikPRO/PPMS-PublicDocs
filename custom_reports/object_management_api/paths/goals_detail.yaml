@@ -6,8 +6,8 @@ get:
     Returns a definition of a specific goal.
     Please note that each request must be authenticated.
   parameters:
-    - $ref: '#/parameters/Id'
-    - $ref: '#/parameters/WebsiteId'
+    - $ref: '../index.yaml#/components/parameters/Id'
+    - $ref: '../index.yaml#/components/parameters/WebsiteId'
   responses:
     '200':
       description: OK
@@ -19,7 +19,7 @@ get:
               - data
             properties:
               data:
-                $ref: '#/definitions/GoalDetails'
+                $ref: '../index.yaml#/components/schemas/GoalDetails'
     '403':
       description: Forbidden
 put:
@@ -30,7 +30,7 @@ put:
     Update an existing goal.
     Please note that each request must be authenticated.
   parameters:
-    - $ref: '#/parameters/Id'
+    - $ref: '../index.yaml#/components/parameters/Id'
   requestBody:
     content:
       application/vnd.api+json:
@@ -42,7 +42,7 @@ put:
               data:
                 type: object
                 allOf:
-                  - $ref: '#/definitions/Goal'
+                  - $ref: '../index.yaml#/components/schemas/Goal'
                 required:
                   - type
                   - attributes
@@ -66,7 +66,7 @@ put:
               - data
             properties:
               data:
-                $ref: '#/definitions/GoalDetails'
+                $ref: '../index.yaml#/components/schemas/GoalDetails'
     '400':
       description: Bad Request
     '403':
@@ -79,8 +79,8 @@ delete:
     Delete the specified goal.
     Please note that each request must be authenticated.
   parameters:
-    - $ref: '#/parameters/Id'
-    - $ref: '#/parameters/WebsiteId'
+    - $ref: '../index.yaml#/components/parameters/Id'
+    - $ref: '../index.yaml#/components/parameters/WebsiteId'
   responses:
     '204':
       description: No Content

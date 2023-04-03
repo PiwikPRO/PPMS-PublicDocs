@@ -41,11 +41,42 @@ paths:
                           language:
                             $ref: '#/components/schemas/Language'
         400:
-          $ref: '#/components/schemas/Bad_Request'
+          description: Bad Request
+          content:
+            application/vnd.api+json:
+              schema:
+                allOf:
+                  - $ref: "#/components/schemas/ErrorObject"
+              examples:
+                User already exists:
+                  $ref: "#/components/examples/user_already_exists"
+                Unsupported language:
+                  $ref: "#/components/examples/unsupported_language"
+                Unsupported language tag:
+                  $ref: "#/components/examples/unsupported_language_tag"
+                Unsupported language region:
+                  $ref: "#/components/examples/unsupported_language_region"
+                Email should not be blank:
+                  $ref: "#/components/examples/email_should_not_be_blank"
+                Email invalid value:
+                  $ref: "#/components/examples/email_invalid_value"
+                Email invalid type:
+                  $ref: "#/components/examples/email_invalid_type"
+                Invalid JSON API resource type:
+                  $ref: "#/components/examples/invalid_json_api_type"
+                Invalid content type:
+                  $ref: "#/components/examples/invalid_content_type"
+                Invalid JSON API content:
+                  $ref: "#/components/examples/invalid_json_api_content"
         403:
-          $ref: '#/components/schemas/Forbidden'
+          $ref: '#/components/responses/Forbidden'
+
   /api/users/v2:
     post:
+      deprecated: true
+      description: |
+        Please use <a href="#operation/api_users_invited_v2">Invite user</a> instead.<br><br>
+        It adds user.
       summary: Create user
       operationId: api_users_add_v2
       requestBody:
@@ -68,17 +99,32 @@ paths:
                 allOf:
                   - $ref: "#/components/schemas/ErrorObject"
               examples:
-                Required characters missing in password:
-                  value:
-                    errors:
-                      - status: '400'
-                        title: Invalid form
-                        detail: Password is invalid. It must contain at least one numeric digit, one uppercase, and one lowercase letter
-                        code: users.error.invalid-new-password
-                        source:
-                          pointer: /password
+                User already exists:
+                  $ref: "#/components/examples/user_already_exists"
+                Unsupported language:
+                  $ref: "#/components/examples/unsupported_language"
+                Unsupported language tag:
+                  $ref: "#/components/examples/unsupported_language_tag"
+                Unsupported language region:
+                  $ref: "#/components/examples/unsupported_language_region"
+                Email should not be blank:
+                  $ref: "#/components/examples/email_should_not_be_blank"
+                Email invalid value:
+                  $ref: "#/components/examples/email_invalid_value"
+                Email invalid type:
+                  $ref: "#/components/examples/email_invalid_type"
+                Invalid password policy:
+                  $ref: "#/components/examples/invalid_password_policy"
+                Invalid role:
+                  $ref: "#/components/examples/invalid_role"
+                Invalid JSON API resource type:
+                  $ref: "#/components/examples/invalid_json_api_type"
+                Invalid content type:
+                  $ref: "#/components/examples/invalid_content_type"
+                Invalid JSON API content:
+                  $ref: "#/components/examples/invalid_json_api_content"
         403:
-          $ref: '#/components/schemas/Forbidden'
+          $ref: '#/components/responses/Forbidden'
     get:
       summary: Get users list
       operationId: api_users_list_v2
@@ -102,6 +148,24 @@ paths:
                     type: array
                     items:
                       $ref: '#/components/schemas/JsonApi_User'
+        400:
+          description: Bad Request
+          content:
+            application/vnd.api+json:
+              schema:
+                allOf:
+                  - $ref: "#/components/schemas/ErrorObject"
+              examples:
+                Invalid offset:
+                  $ref: "#/components/examples/invalid_offset"
+                Invalid limit:
+                  $ref: "#/components/examples/invalid_limit"
+                Invalid limit over:
+                  $ref: "#/components/examples/invalid_limit_over"
+                Invalid sort:
+                  $ref: "#/components/examples/invalid_sort"
+        403:
+          $ref: '#/components/responses/Forbidden'
 
   /api/users/v2/{userId}:
     get:
@@ -121,6 +185,20 @@ paths:
             application/vnd.api+json:
               schema:
                 $ref: '#/components/schemas/JsonApi_User_Object'
+        400:
+          description: Bad Request
+          content:
+            application/vnd.api+json:
+              schema:
+                allOf:
+                  - $ref: "#/components/schemas/ErrorObject"
+              examples:
+                Invalid UUID:
+                  $ref: "#/components/examples/invalid_uuid"
+        403:
+          $ref: '#/components/responses/Forbidden'
+        404:
+          $ref: '#/components/responses/Not_Found'
 
     delete:
       summary: Delete user
@@ -129,11 +207,31 @@ paths:
         204:
           $ref: '#/components/schemas/No_Content'
         400:
-          $ref: '#/components/schemas/Bad_Request'
+          description: Bad Request
+          content:
+            application/vnd.api+json:
+              schema:
+                allOf:
+                  - $ref: "#/components/schemas/ErrorObject"
+              examples:
+                Invalid UUID:
+                  $ref: "#/components/examples/invalid_uuid"
+                Cannot delete last owner:
+                  $ref: "#/components/examples/cannot_delete_last_owner"
+                Cannot delete own account:
+                  $ref: "#/components/examples/cannot_delete_own_account"
         403:
-          $ref: '#/components/schemas/Forbidden'
+          description: Forbidden
+          content:
+            application/vnd.api+json:
+              schema:
+                allOf:
+                  - $ref: "#/components/schemas/ErrorObject"
+              examples:
+                Forbidden:
+                  $ref: "#/components/examples/forbidden"
         404:
-          $ref: '#/components/schemas/Not_Found'
+          $ref: '#/components/responses/Not_Found'
 
     patch:
       summary: Edit user
@@ -147,11 +245,45 @@ paths:
         204:
           $ref: '#/components/schemas/No_Content'
         400:
-          $ref: '#/components/schemas/Bad_Request'
+          description: Bad Request
+          content:
+            application/vnd.api+json:
+              schema:
+                allOf:
+                  - $ref: "#/components/schemas/ErrorObject"
+              examples:
+                Invalid UUID:
+                  $ref: "#/components/examples/invalid_uuid"
+                Cannot change own role:
+                  $ref: "#/components/examples/cannot_change_own_role"
+                Unsupported language:
+                  $ref: "#/components/examples/unsupported_language"
+                Unsupported language tag:
+                  $ref: "#/components/examples/unsupported_language_tag"
+                Unsupported language region:
+                  $ref: "#/components/examples/unsupported_language_region"
+                Invalid role:
+                  $ref: "#/components/examples/invalid_role"
+                Invalid JSON API resource type:
+                  $ref: "#/components/examples/invalid_json_api_type"
+                JSON API id not provided:
+                  $ref: "#/components/examples/json_api_id_not_provided"
+                Invalid content type:
+                  $ref: "#/components/examples/invalid_content_type"
+                Invalid JSON API content:
+                  $ref: "#/components/examples/invalid_json_api_content"
         403:
-          $ref: '#/components/schemas/Forbidden'
+          description: Forbidden
+          content:
+            application/vnd.api+json:
+              schema:
+                allOf:
+                  - $ref: "#/components/schemas/ErrorObject"
+              examples:
+                Forbidden:
+                  $ref: "#/components/examples/forbidden"
         404:
-          $ref: '#/components/schemas/Not_Found'
+          $ref: '#/components/responses/Not_Found'
 
   /api/users/v2/{userId}/change-role:
     patch:
@@ -173,11 +305,39 @@ paths:
         204:
           $ref: '#/components/schemas/No_Content'
         400:
-          $ref: '#/components/schemas/Bad_Request'
+          description: Bad Request
+          content:
+            application/vnd.api+json:
+              schema:
+                allOf:
+                  - $ref: "#/components/schemas/ErrorObject"
+              examples:
+                Invalid UUID:
+                  $ref: "#/components/examples/invalid_uuid"
+                Cannot change own role:
+                  $ref: "#/components/examples/cannot_change_own_role"
+                Invalid role:
+                  $ref: "#/components/examples/invalid_role"
+                Invalid JSON API resource type:
+                  $ref: "#/components/examples/invalid_json_api_type"
+                JSON API id not provided:
+                  $ref: "#/components/examples/json_api_id_not_provided"
+                Invalid content type:
+                  $ref: "#/components/examples/invalid_content_type"
+                Invalid JSON API content:
+                  $ref: "#/components/examples/invalid_json_api_content"
         403:
-          $ref: '#/components/schemas/Forbidden'
+          description: Forbidden
+          content:
+            application/vnd.api+json:
+              schema:
+                allOf:
+                  - $ref: "#/components/schemas/ErrorObject"
+              examples:
+                Forbidden:
+                  $ref: "#/components/examples/forbidden"
         404:
-          $ref: '#/components/schemas/Not_Found'
+          $ref: '#/components/responses/Not_Found'
 
   /api/users/v2/me/change-password:
     patch:
@@ -199,21 +359,29 @@ paths:
                 allOf:
                   - $ref: "#/components/schemas/ErrorObject"
               examples:
-                Required characters missing in password:
-                  value:
-                    errors:
-                      - status: '400'
-                        title: Invalid form
-                        detail: Password is invalid. It must contain at least one numeric digit, one uppercase, and one lowercase letter
-                        code: users.error.invalid-new-password
-                        source:
-                          pointer: /newPassword
+                Invalid current password:
+                  $ref: "#/components/examples/invalid_current_password"
+                Invalid current password type:
+                  $ref: "#/components/examples/invalid_current_password_type"
+                Invalid new password:
+                  $ref: "#/components/examples/invalid_new_password"
+                Invalid JSON API resource type:
+                  $ref: "#/components/examples/invalid_json_api_type"
+                JSON API id not provided:
+                  $ref: "#/components/examples/json_api_id_not_provided"
+                Invalid content type:
+                  $ref: "#/components/examples/invalid_content_type"
+                Invalid JSON API content:
+                  $ref: "#/components/examples/invalid_json_api_content"
         404:
-          $ref: '#/components/schemas/Not_Found'
+          $ref: '#/components/responses/Not_Found'
+
   /api/users/v2/me/details:
     get:
       deprecated: true
-      description: Use GET /api/users/v2/me
+      description: |
+        Please use <a href="#operation/api_users_me_details_v2">Current user details</a> instead.<br><br>
+        It gets current user details.
       summary: Current user details
       operationId: deprecated_api_user_details_v2
       responses:
@@ -254,11 +422,35 @@ paths:
         204:
           $ref: '#/components/schemas/No_Content'
         400:
-          $ref: '#/components/schemas/Bad_Request'
+          description: Bad Request
+          content:
+            application/vnd.api+json:
+              schema:
+                allOf:
+                  - $ref: "#/components/schemas/ErrorObject"
+              examples:
+                Cannot change own role:
+                  $ref: "#/components/examples/cannot_change_own_role"
+                Unsupported language:
+                  $ref: "#/components/examples/unsupported_language"
+                Unsupported language tag:
+                  $ref: "#/components/examples/unsupported_language_tag"
+                Unsupported language region:
+                  $ref: "#/components/examples/unsupported_language_region"
+                Invalid role:
+                  $ref: "#/components/examples/invalid_role"
+                Invalid JSON API resource type:
+                  $ref: "#/components/examples/invalid_json_api_type"
+                JSON API id not provided:
+                  $ref: "#/components/examples/json_api_id_not_provided"
+                Invalid content type:
+                  $ref: "#/components/examples/invalid_content_type"
+                Invalid JSON API content:
+                  $ref: "#/components/examples/invalid_json_api_content"
         403:
-          $ref: '#/components/schemas/Forbidden'
+          $ref: '#/components/responses/Forbidden'
         404:
-          $ref: '#/components/schemas/Not_Found'
+          $ref: '#/components/responses/Not_Found'
 
 components:
   parameters:
@@ -286,7 +478,7 @@ components:
     search:
       name: search
       in: query
-      description: User search query
+      description: User search query. You can search by email or id.
       required: false
       schema:
         type: string
@@ -350,6 +542,7 @@ components:
       format: 'IETF-language-tag'
       description: User Interface language with IETF language tag format
       example: 'en-US'
+      default: 'en-US'
 
     JsonApi_Id:
       type: string
@@ -438,14 +631,9 @@ components:
 
     JsonApi_User_Invite:
       type: object
-      required:
-        - data
       properties:
         data:
           type: object
-          required:
-            - type
-            - attributes
           properties:
             type:
               type: string
@@ -460,7 +648,6 @@ components:
                   $ref: '#/components/schemas/Language'
               required:
                 - email
-                - language
 
     JsonApi_Edit_User:
       type: object
@@ -538,58 +725,273 @@ components:
           description: Total number of items
           example: 1
 
-    Bad_Request:
-      description: Bad Request
-    Forbidden:
-      description: Forbidden
-    Not_Found:
-      description: Not Found
     No_Content:
       description: No content
 
     ErrorObject:
       type: object
-      required:
-        - status
-        - title
       properties:
-        status:
-          type: string
-          description: the HTTP status code applicable to this problem, expressed as a
-            string value
-          example: "400"
-        code:
-          type: string
-          description: an application-specific error code, expressed as a string value
-          example: error.default
-        title:
-          type: string
-          description: >
-            a short, human-readable summary of the problem that SHOULD NOT
-            change from occurrence to occurrence of the problem, except for
-            purposes of localization
-          example: Invalid form
-        detail:
-          type: string
-          description: >
-            a human-readable explanation specific to this occurrence of the
-            problem. Like `title`, this field’s value can be localized
-          example: This field is invalid
-        source:
-          type: object
-          description: >
-            an object containing references to the source of the error,
-            optionally including any of the following members: [pointer,
-            parameter]
-          properties:
-            pointer:
-              type: string
-              example: /data/attributes/name
-              description: >
-                a JSON Pointer [RFC6901] to the associated entity in the request
-                document [e.g. "/data" for a primary data object, or
-                "/data/attributes/name" for a specific attribute]
-            parameter:
-              type: string
-              example: offset
-              description: a string indicating which URI query parameter caused the error
+        errors:
+          type: array
+          items:
+            type: object
+            required:
+              - status
+              - title
+            properties:
+              status:
+                type: string
+                description: the HTTP status code applicable to this problem, expressed as a
+                  string value
+                example: "400"
+              code:
+                type: string
+                description: an application-specific error code, expressed as a string value
+                example: error.default
+              title:
+                type: string
+                description: >
+                  a short, human-readable summary of the problem that SHOULD NOT
+                  change from occurrence to occurrence of the problem, except for
+                  purposes of localization
+                example: Invalid form
+              detail:
+                type: string
+                description: >
+                  a human-readable explanation specific to this occurrence of the
+                  problem. Like `title`, this field’s value can be localized
+                example: This field is invalid
+              source:
+                type: object
+                description: >
+                  an object containing references to the source of the error,
+                  optionally including any of the following members: [pointer,
+                  parameter]
+                properties:
+                  pointer:
+                    type: string
+                    example: /data/attributes/name
+                    description: >
+                      a JSON Pointer [RFC6901] to the associated entity in the request
+                      document [e.g. "/data" for a primary data object, or
+                      "/data/attributes/name" for a specific attribute]
+                  parameter:
+                    type: string
+                    example: offset
+                    description: a string indicating which URI query parameter caused the error
+  
+  responses:
+    Forbidden:
+      description: Forbidden
+      content:
+        application/vnd.api+json:
+          schema:
+            allOf:
+              - $ref: "#/components/schemas/ErrorObject"
+          examples:
+            Forbidden:
+              $ref: "#/components/examples/forbidden"
+    Not_Found:
+      description: Not Found
+      content:
+        application/vnd.api+json:
+          schema:
+            allOf:
+              - $ref: "#/components/schemas/ErrorObject"
+          examples:
+            User does not exist:
+              $ref: "#/components/examples/user_does_not_exist"
+
+  examples:
+    forbidden:
+      value:
+        errors:
+          - status: '403'
+            title: Forbidden
+            code: error.default
+    user_does_not_exist:
+      value:
+        errors:
+          - status: '404'
+            title: "User with id: 6e82f3aa-43a3-45e8-8caf-b9db9503d795 does not exist"
+            code: users.error.user-does-not-exist
+    user_already_exists:
+      value:
+        errors:
+          - status: '400'
+            title: Invalid form
+            detail: "User with email: 'example@piwik.pro' already exists."
+            code: users.error.user-already-exists
+            source:
+              pointer: /email
+    unsupported_language:
+      value:
+        errors:
+          - status: '400'
+            title: Invalid form
+            code: users.error.unsupported-language
+            detail: 'Language "pl" is not supported (supported are en, de, fi, fr, nl, sv)'
+            source:
+              pointer: /language
+    unsupported_language_tag:
+      value:
+        errors:
+          - status: '400'
+            title: Invalid form
+            code: users.error.unsupported-language-tag
+            detail: "Invalid language - use IETF language tag format - for example: 'en-US'"
+            source:
+              pointer: /language
+    unsupported_language_region:
+      value:
+        errors:
+          - status: '400'
+            title: Invalid form
+            code: users.error.unsupported-language
+            detail: "Region code 'EN' is not supported - use valid ISO 3166-1 alpha-2 code"
+            source:
+              pointer: /language
+    email_should_not_be_blank:
+      value:
+        errors:
+          - status: '400'
+            title: Invalid form
+            code: error.not-blank
+            detail: This value should not be blank.
+            source:
+              pointer: /email
+    email_invalid_value:
+      value:
+        errors:
+          - status: '400'
+            title: Invalid form
+            code: users.error.invalid-email
+            detail: '"example.com" is not a valid email address.'
+            source:
+              pointer: /email
+    email_invalid_type:
+      value:
+        errors:
+          - status: '400'
+            title: Invalid form
+            code: error.default
+            detail: This value is not valid.
+            source:
+              pointer: /email
+    invalid_password_policy:
+      value:
+        errors:
+          - status: '400'
+            title: Invalid form
+            code: users.error.invalid-new-password
+            detail: Password is invalid. It must contain at least one numeric digit, one uppercase, and one lowercase letter
+            source:
+              pointer: /password
+    invalid_role:
+      value:
+        errors:
+          - status: '400'
+            title: Invalid form
+            code: users.error.invalid-role
+            detail: 'Role "invalid_role" is not supported (supported are OWNER, USER)'
+            source:
+              pointer: /role
+    invalid_json_api_type:
+      value:
+        errors:
+          - status: '400'
+            title: '"invalid/type" is not a valid resource type, use "ppms/user" instead'
+            code: error.json-api-resource-type
+    invalid_uuid:
+      value:
+        errors:
+          - status: '400'
+            title: '"example" is not a valid UUID.'
+            code: error.default
+    cannot_delete_last_owner:
+      value:
+        errors:
+          - status: '400'
+            title: Cannot delete last owner
+            code: users.error.cannot-delete-last-owner
+    cannot_delete_own_account:
+      value:
+        errors:
+          - status: '400'
+            title: User can't delete own account.
+            code: users.error.cannot-delete-own-account
+    cannot_change_own_role:
+      value:
+        errors:
+          - status: '400'
+            title: Cannot change own role
+            code: users.error.cannot-change-own-role
+    json_api_id_not_provided:
+      value:
+        errors:
+          - status: '400'
+            title: Resource id is not provided - make sure you have id field in request payload data object
+            code: error.json-api-resource-id-not-provided
+    invalid_current_password:
+      value:
+        errors:
+          - status: '400'
+            title: Invalid form
+            code: users.error.invalid-current-password
+            detail: This value should be the user's current password.
+            source:
+              pointer: /currentPassword
+    invalid_current_password_type:
+      value:
+        errors:
+          - status: '400'
+            title: Invalid form
+            code: error.default
+            detail: This value is not valid.
+            source:
+              pointer: /currentPassword
+    invalid_new_password:
+      value:
+        errors:
+          - status: '400'
+            title: Invalid form
+            code: users.error.invalid-new-password
+            detail: Password is invalid. It must contain at least one numeric digit, one uppercase, and one lowercase letter
+            source:
+              pointer: /newPassword
+    invalid_content_type:
+      value:
+        errors:
+          - status: '400'
+            title: '"application/json" is not a valid JsonApi Content-Type header, use "application/vnd.api+json" instead'
+            code: error.json-api-content-type
+    invalid_json_api_content:
+      value:
+        errors:
+          - status: '400'
+            title: Invalid jsonapi message received
+            code: error.default
+    invalid_offset:
+      value:
+        errors:
+          - status: '400'
+            title: Invalid query parameter 'offset' - value should be a positive integer - got '-1'
+            code: error.default
+    invalid_limit:
+      value:
+        errors:
+          - status: '400'
+            title: Invalid query parameter 'limit' - value should be a positive integer - got '-1'
+            code: error.default
+    invalid_limit_over:
+      value:
+        errors:
+          - status: '400'
+            title: 'Limit parameter exceeded maximum "1000" value, "1001" given'
+            code: error.default
+    invalid_sort:
+      value:
+        errors:
+          - status: '400'
+            title: Invalid query parameter 'sort' - available options are [email,addedAt,role] - got 'example'
+            code: error.default

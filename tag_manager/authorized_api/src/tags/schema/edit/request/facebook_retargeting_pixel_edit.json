@@ -1,6 +1,6 @@
 {
-    "title": "Facebook retargeting pixel tag",
-    "description": "Facebook retargeting pixel tag edit request",
+    "title": "Meta pixel tag",
+    "description": "Meta pixel tag edit request. (Rebranded from Facebook Retargeting Pixel)",
     "type": "object",
     "properties": {
         "data": {
@@ -14,7 +14,7 @@
                     "$ref": "../../tag_types.json#/definitions/tag_resource_type"
                 },
                 "attributes": {
-                    "description": "Facebook retargeting pixel tag attributes",
+                    "description": "Meta pixel tag attributes",
                     "type": "object",
                     "properties": {
                         "disable_in_debug_mode": {
@@ -39,7 +39,7 @@
                             "$ref": "../../tag_attributes.json#/definitions/consent_type"
                         },
                         "template_options": {
-                            "$ref": "../../tag_templates/facebook_retargeting_pixel_attributes.json#/definitions/template_options"
+                            "$ref": "../../tag_templates/facebook_retargeting_pixel_attributes.json#/definitions/template_options_create_edit"
                         }
                     },
                     "additionalProperties": false

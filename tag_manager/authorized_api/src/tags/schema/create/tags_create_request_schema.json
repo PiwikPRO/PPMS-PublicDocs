@@ -41,9 +41,6 @@
             "$ref": "request/bing_ads_create.json"
         },
         {
-            "$ref": "request/click_tale_create.json"
-        },
-        {
             "$ref": "request/crazy_egg_create.json"
         },
         {
@@ -60,9 +57,6 @@
         },
         {
             "$ref": "request/doubleclick_floodlight_counter_unique_method_create.json"
-        },
-        {
-            "$ref": "request/google_adwords_doubleclick_create.json"
         },
         {
             "$ref": "request/facebook_retargeting_pixel_create.json"
@@ -114,6 +108,12 @@
         },
         {
             "$ref": "request/heatmaps_create.json"
+        },
+        {
+            "$ref": "request/click_tale_create.json"
+        },
+        {
+            "$ref": "request/google_adwords_doubleclick_create.json"
         }
     ]
 }
