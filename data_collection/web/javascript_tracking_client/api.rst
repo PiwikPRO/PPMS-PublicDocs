@@ -98,8 +98,8 @@ the ``Piwik.getAsyncTracker``.
 
         _paq.push([function () {
             // *this* is a JavaScript Tracking Client object
-            this.addEcommerceItem("01725334", "USB-C chord")
-            console.log(this.getEcommerceItems());
+            this.setSiteId("45e07cbf-c8b3-42f3-a6d6-a5a176f623ef");
+            console.log(this.getSiteId());
         }]);
 
     .. warning::
@@ -261,10 +261,235 @@ Site search
 
                 jstc.trackSiteSearch("stove", undefined, 20);
 
+.. _jtc-api-ecommerce-v2:
+
+E-commerce v2
+^^^^^^^^^^^^^
+
+.. _jtc-api-ecommerceAddToCart:
+
+.. function:: ecommerceAddToCart(product)
+
+    Tracks action of adding product to a cart.
+
+    :param object product: **Required** Product representation. Expected attributes:
+
+        * sku - **Required** [string] Product stock-keeping unit
+        * name - **Optional** [string] Product name (default: "")
+        * category - **Optional** [string|Array<string>] Product category or an array of up to 5 categories (default: "")
+        * price - **Optional** [number] Product price (default: 0)
+        * quantity - **Optional** [number] Product quantity (default: 1)
+        * brand - **Optional** [string] Product brand (default: "")
+        * variant - **Optional** [string] Product variant (default: "")
+
+    Example of usage:
+
+    .. tabs::
+
+        .. group-tab:: Command queue
+
+            .. code-block:: javascript
+
+                _paq.push(["ecommerceAddToCart", {sku: "craft-311", name: "Unicorn Iron on Patch", category: "Crafts & Sewing", price: 499, quantity: 3, brand: "DMZ", variant: "blue"}]);
+
+        .. group-tab:: JavaScript Tracking Client object
+
+            .. code-block:: javascript
+
+                jstc.ecommerceAddToCart({sku: "craft-311", name: "Unicorn Iron on Patch", category: "Crafts & Sewing", price: 499, quantity: 3, brand: "DMZ", variant: "blue"});
+
+.. _jtc-api-ecommerceRemoveFromCart:
+
+.. function:: ecommerceRemoveFromCart(product)
+
+    Tracks action of removing product from a cart.
+
+    :param object product: **Required** Product representation. Expected attributes:
+
+        * sku - **Required** [string] Product stock-keeping unit
+        * name - **Optional** [string] Product name (default: "")
+        * category - **Optional** [string|Array<string>] Product category or an array of up to 5 categories (default: "")
+        * price - **Optional** [number] Product price (default: 0)
+        * quantity - **Optional** [number] Product quantity (default: 1)
+        * brand - **Optional** [string] Product brand (default: "")
+        * variant - **Optional** [string] Product variant (default: "")
+
+    Example of usage:
+
+    .. tabs::
+
+        .. group-tab:: Command queue
+
+            .. code-block:: javascript
+
+                _paq.push(["ecommerceRemoveFromCart", {sku: "craft-311", name: "Unicorn Iron on Patch", category: "Crafts & Sewing", price: 499, quantity: 3, brand: "DMZ", variant: "blue"}]);
+
+        .. group-tab:: JavaScript Tracking Client object
+
+            .. code-block:: javascript
+
+                jstc.ecommerceRemoveFromCart({sku: "craft-311", name: "Unicorn Iron on Patch", category: "Crafts & Sewing", price: 499, quantity: 3, brand: "DMZ", variant: "blue"});
+
+.. _jtc-api-ecommerceProductDetailView:
+
+.. function:: ecommerceProductDetailView(product)
+
+    Tracks action of viewing product page.
+
+    :param object product: **Required** Product representation. Expected attributes:
+
+        * sku - **Required** [string] Product stock-keeping unit
+        * name - **Optional** [string] Product name (default: "")
+        * category - **Optional** [string|Array<string>] Product category or an array of up to 5 categories (default: "")
+        * price - **Optional** [number] Product price (default: 0)
+        * quantity - **Optional** [number] Product quantity (default: 1)
+        * brand - **Optional** [string] Product brand (default: "")
+        * variant - **Optional** [string] Product variant (default: "")
+
+    Example of usage:
+
+    .. tabs::
+
+        .. group-tab:: Command queue
+
+            .. code-block:: javascript
+
+                _paq.push(["ecommerceProductDetailView", {sku: "craft-311", name: "Unicorn Iron on Patch", category: "Crafts & Sewing", price: 499, quantity: 3, brand: "DMZ", variant: "blue"}]);
+
+        .. group-tab:: JavaScript Tracking Client object
+
+            .. code-block:: javascript
+
+                jstc.ecommerceProductDetailView({sku: "craft-311", name: "Unicorn Iron on Patch", category: "Crafts & Sewing", price: 499, quantity: 3, brand: "DMZ", variant: "blue"});
+
+.. _jtc-api-ecommerceCartUpdate:
+
+.. function:: ecommerceCartUpdate(products, grandTotal)
+
+    Tracks current state of a cart.
+
+    .. note::
+
+        Should be executed once for each page (immidiately after page is loaded).
+        It's used to synchronize state of a cart with Piwik PRO.
+
+    :param Array<object> products: **Required** List of product representations. Expected attributes of each product:
+
+        * sku - **Required** [string] Product stock-keeping unit
+        * name - **Optional** [string] Product name (default: "")
+        * category - **Optional** [string|Array<string>] Product category or an array of up to 5 categories (default: "")
+        * price - **Optional** [number] Product price (default: 0)
+        * quantity - **Optional** [number] Product quantity (default: 1)
+        * brand - **Optional** [string] Product brand (default: "")
+        * variant - **Optional** [string] Product variant (default: "")
+
+    :param number grandTotal: **Required** [number|string] The total value of items in a cart.
+
+    Example of usage:
+
+    .. tabs::
+
+        .. group-tab:: Command queue
+
+            .. code-block:: javascript
+
+                _paq.push([
+                    "ecommerceCartUpdate",
+                    [
+                        {sku: "craft-311", name: "Unicorn Iron on Patch", category: "Crafts & Sewing", price: 500, quantity: 3, brand: "DMZ", variant: "blue"}
+                        {sku: "craft-312", name: "Unicorn Iron on Grass", category: "Crafts & Sewing", price: 300, quantity: 1, brand: "DMZ", variant: "red"}
+                    ],
+                    "1800"
+                ]);
+
+        .. group-tab:: JavaScript Tracking Client object
+
+            .. code-block:: javascript
+
+                jstc.ecommerceCartUpdate(
+                    [
+                        {sku: "craft-311", name: "Unicorn Iron on Patch", category: "Crafts & Sewing", price: 500, quantity: 3, brand: "DMZ", variant: "blue"}
+                        {sku: "craft-312", name: "Unicorn Iron on Grass", category: "Crafts & Sewing", price: 300, quantity: 1, brand: "DMZ", variant: "red"}
+                    ],
+                    "1800"
+                );
+
+.. _jtc-api-ecommerceConversion:
+
+.. function:: ecommerceConversion(products, paymentInformation)
+
+    Tracks conversion (including products and payment details).
+
+    :param Array<object> products: **Required** List of product representations. Expected attributes of each product:
+
+        * sku - **Required** [string] Product stock-keeping unit
+        * name - **Optional** [string] Product name (default: "")
+        * category - **Optional** [string|Array<string>] Product category or an array of up to 5 categories (default: "")
+        * price - **Optional** [number] Product price (default: 0)
+        * quantity - **Optional** [number] Product quantity (default: 1)
+        * brand - **Optional** [string] Product brand (default: "")
+        * variant - **Optional** [string] Product variant (default: "")
+
+    :param object paymentInformation: Total payment information about products in a cart. Expected attributes:
+
+        * orderId - **Required** [string] Unique identifier of an order
+        * grandTotal - **Required** [number|string] Total value of items in a cart
+        * subTotal - **Optional** [number|string] Total value of items in a cart without shipping
+        * tax - **Optional** [number|string] Total tax amount
+        * shipping - **Optional** [number|string] Total shipping cost
+        * discount - **Optional** [number|string] Total discount
+
+    Example of usage:
+
+    .. tabs::
+
+        .. group-tab:: Command queue
+
+            .. code-block:: javascript
+
+                _paq.push([
+                    "ecommerceConversion",
+                    [
+                        {sku: "craft-311", name: "Unicorn Iron on Patch", category: "Crafts & Sewing", price: 500, quantity: 3, brand: "DMZ", variant: "blue"}
+                        {sku: "craft-312", name: "Unicorn Iron on Grass", category: "Crafts & Sewing", price: 300, quantity: 1, brand: "DMZ", variant: "red"}
+                    ],
+                    {
+                        orderId: "order-3415",
+                        grandTotal: "1800",
+                        subTotal: "1200",
+                        tax: "396",
+                        shipping: "600",
+                        discount: "180"
+                    }
+                ]);
+
+        .. group-tab:: JavaScript Tracking Client object
+
+            .. code-block:: javascript
+
+                jstc.ecommerceConversion(
+                    [
+                        {sku: "craft-311", name: "Unicorn Iron on Patch", category: "Crafts & Sewing", price: 500, quantity: 3, brand: "DMZ", variant: "blue"}
+                        {sku: "craft-312", name: "Unicorn Iron on Grass", category: "Crafts & Sewing", price: 300, quantity: 1, brand: "DMZ", variant: "red"}
+                    ],
+                    {
+                        orderId: "order-3415",
+                        grandTotal: "1800",
+                        subTotal: "1200",
+                        tax: "396",
+                        shipping: "600",
+                        discount: "180"
+                    }
+                );
+
 .. _jtc-api-ecommerce:
 
 E-commerce
 ^^^^^^^^^^
+
+.. deprecated:: TBA
+    Older ecommerce API deprecated in favor of e-commerce V2.
+    New API allows to track more actions (e.g. ecommerceAddToCart) and is easier to use.
 
 .. _jtc-api-addEcommerceItem:
 
