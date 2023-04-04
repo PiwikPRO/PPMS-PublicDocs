@@ -39,6 +39,7 @@ info:
         | Audience manager audience 	| 86068b14-804c-4b44-8a48-68ab37244ffc  	| Contains the audience list of the visitor |
         | Consents                  	| 67f49c79-bab6-4b0f-95c8-3bf624b6398f  	| Contains information about the current and previous state of visitor consents. |
         | Found elements               	| 7dead2a9-5804-4cdd-8d73-b04d338952e9  	| Variable used in Element presence trigger. It contains the class name of the found elements that the trigger was set to look for. |
+        | CDP Audience                  | 46505189-34d1-4d98-8418-bd827c3a7c57      | The variable contains a list of audiences to which the visitor belongs. It is only available when licensed for CDP is enabled |
 
         </details>
 

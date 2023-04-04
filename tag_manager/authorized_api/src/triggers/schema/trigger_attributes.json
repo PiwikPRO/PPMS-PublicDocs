@@ -18,7 +18,8 @@
                 "debounced_history",
                 "form_submission",
                 "click",
-                "element_presence"
+                "element_presence",
+                "cdp_audience_detection"
             ],
             "description": "Trigger type"
         },
