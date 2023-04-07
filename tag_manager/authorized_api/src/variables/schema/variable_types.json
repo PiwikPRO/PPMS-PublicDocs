@@ -16,6 +16,23 @@
                 "document",
                 "random",
                 "url",
+                "lookup_table",
+                "piwik_anonymization",
+                "cdp_audience"
+            ],
+            "description": "Variable type"
+        },
+        "upsertable_variable_type": {
+            "type": "string",
+            "enum": [
+                "custom_javascript",
+                "constant",
+                "cookie",
+                "data_layer",
+                "dom_element",
+                "document",
+                "random",
+                "url",
                 "lookup_table"
             ],
             "description": "Variable type"

@@ -1,5 +1,10 @@
 {
     "definitions": {
+        "cdp_variable_type_attribute": {
+            "type": "string",
+            "enum": ["cdp_audience"],
+            "description": "Variable cdp_audience type"
+        },
         "custom_javascript_variable_type_attribute": {
             "type": "string",
             "enum": ["custom_javascript"],
