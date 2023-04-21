@@ -319,11 +319,11 @@ E-commerce v2
 
 .. _jtc-api-ecommerceAddToCart:
 
-.. function:: ecommerceAddToCart(product)
+.. function:: ecommerceAddToCart(products)
 
-    Tracks action of adding product to a cart.
+    Tracks action of adding products to a cart.
 
-    :param object product: **Required** Product representation. Expected attributes:
+    :param Array<object> products: **Required** List of product representations. Expected attributes of each product:
 
         * sku - **Required** [string] Product stock-keeping unit
         * name - **Optional** [string] Product name (default: "")
@@ -343,7 +343,7 @@ E-commerce v2
 
                 _paq.push([
                     "ecommerceAddToCart",
-                    {
+                    [{
                         sku: "craft-311",
                         name: "Unicorn Iron on Patch",
                         category: "Crafts & Sewing",
@@ -351,14 +351,14 @@ E-commerce v2
                         quantity: 3,
                         brand: "DMZ",
                         variant: "blue"
-                    }
+                    }]
                 ]);
 
         .. group-tab:: JavaScript Tracking Client object
 
             .. code-block:: javascript
 
-                jstc.ecommerceAddToCart({
+                jstc.ecommerceAddToCart([{
                     sku: "craft-311",
                     name: "Unicorn Iron on Patch",
                     category: "Crafts & Sewing",
@@ -366,15 +366,15 @@ E-commerce v2
                     quantity: 3,
                     brand: "DMZ",
                     variant: "blue"
-                });
+                }]);
 
 .. _jtc-api-ecommerceRemoveFromCart:
 
-.. function:: ecommerceRemoveFromCart(product)
+.. function:: ecommerceRemoveFromCart(products)
 
     Tracks action of removing product from a cart.
 
-    :param object product: **Required** Product representation. Expected attributes:
+    :param Array<object> products: **Required** List of product representations. Expected attributes of each product:
 
         * sku - **Required** [string] Product stock-keeping unit
         * name - **Optional** [string] Product name (default: "")
@@ -394,7 +394,7 @@ E-commerce v2
 
                 _paq.push([
                     "ecommerceRemoveFromCart",
-                    {
+                    [{
                         sku: "craft-311",
                         name: "Unicorn Iron on Patch",
                         category: "Crafts & Sewing",
@@ -402,14 +402,14 @@ E-commerce v2
                         quantity: 3,
                         brand: "DMZ",
                         variant: "blue"
-                    }
+                    }]
                 ]);
 
         .. group-tab:: JavaScript Tracking Client object
 
             .. code-block:: javascript
 
-                jstc.ecommerceRemoveFromCart({
+                jstc.ecommerceRemoveFromCart([{
                     sku: "craft-311",
                     name: "Unicorn Iron on Patch",
                     category: "Crafts & Sewing",
@@ -417,7 +417,7 @@ E-commerce v2
                     quantity: 3,
                     brand: "DMZ",
                     variant: "blue"
-                });
+                }]);
 
 .. _jtc-api-ecommerceCartUpdate:
 
