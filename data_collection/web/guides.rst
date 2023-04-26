@@ -221,8 +221,8 @@ indicate no value.
 
 
 
-E-commerce v2
--------------
+E-commerce
+----------
 
 
 E-commerce v2 API supports 3 types of e-commerce interactions:
