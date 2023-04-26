@@ -244,15 +244,17 @@ Example:
 
   _paq.push([
       "ecommerceProductDetailView",
-      {
-          sku: "craft-311",
-          name: "Unicorn Iron on Patch",
-          category: "Crafts & Sewing",
-          price: "49.90",
-          quantity: 3,
-          brand: "DMZ",
-          variant: "blue"
-      }
+      [
+          {
+              sku: "craft-311",
+              name: "Unicorn Iron on Patch",
+              category: "Crafts & Sewing",
+              price: "49.90",
+              quantity: 3,
+              brand: "DMZ",
+             variant: "blue"
+          }
+      ]
   ]);
 
 Attribute ``category`` of the product sent via :ref:`ecommerceProductDetailView<jtc-api-ecommerceProductDetailView>` function accepts not only string values, but also arrays of strings. This is useful for tracking products that belong to more than one category:
@@ -318,16 +320,17 @@ Example:
   ]);
 
 
-Product addition and removal commands are used immidiately when visitor adds to a cart or removes from a cart any product.
+Product addition and removal commands are used immidiately when visitor adds to a cart or removes from a cart any products.
 These commands let us track how visitor interacted with a cart and update a cart state.
 
-Adding prodict to a cart:
+Adding products to a cart:
 
 .. code-block:: javascript
 
   _paq.push([
       "ecommerceAddToCart",
-      {
+      [
+        {
           sku: "craft-311",
           name: "Unicorn Iron on Patch",
           category: "Crafts & Sewing",
@@ -335,24 +338,27 @@ Adding prodict to a cart:
           quantity: 3,
           brand: "DMZ",
           variant: "blue"
-      }
+        }
+      ]
   ]);
 
-Removing product from a cart:
+Removing products from a cart:
 
 .. code-block:: javascript
 
   _paq.push([
       "ecommerceRemoveFromCart",
-      {
-          sku: "craft-311",
-          name: "Unicorn Iron on Patch",
-          category: "Crafts & Sewing",
-          price: "49.90",
-          quantity: 3,
-          brand: "DMZ",
-          variant: "blue"
-      }
+      [
+          {
+              sku: "craft-311",
+              name: "Unicorn Iron on Patch",
+              category: "Crafts & Sewing",
+              price: "49.90",
+              quantity: 3,
+              brand: "DMZ",
+              variant: "blue"
+          }
+      ]
   ]);
 
 .. _guide_tracking_orders:
