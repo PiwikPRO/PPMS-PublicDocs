@@ -236,7 +236,7 @@ E-commerce v2 API supports 3 types of e-commerce interactions:
 Tracking product views
 ^^^^^^^^^^^^^^^^^^^^^^
 
-Usually, the first action of a visitor related to e-commerce is checking products details. :ref:`ecommerceProductDetailView<jtc-api-ecommerceProductDetailView>` function allows us to track product view details (including product category).
+Usually, the first action of a visitor, related to e-commerce, is product details view. :ref:`ecommerceProductDetailView<jtc-api-ecommerceProductDetailView>` function allows us to track it (including product category).
 
 Example:
 
