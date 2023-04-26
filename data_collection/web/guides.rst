@@ -225,7 +225,7 @@ E-commerce
 ----------
 
 
-E-commerce v2 API supports 3 types of e-commerce interactions:
+E-commerce API supports 3 types of e-commerce interactions:
 
   * :ref:`Product views<guide_tracking_product_views>`
   * :ref:`Cart updates<guide_tracking_cart_updates>`
