@@ -268,11 +268,11 @@ E-commerce v2
 
 .. _jtc-api-ecommerceProductDetailView:
 
-.. function:: ecommerceProductDetailView(product)
+.. function:: ecommerceProductDetailView(products)
 
     Tracks action of viewing product page.
 
-    :param object product: **Required** Product representation. Expected attributes:
+    :param Array<object> products: **Required** List of product representations. Expected attributes of each product:
 
         * sku - **Required** [string] Product stock-keeping unit
         * name - **Optional** [string] Product name (default: "")
@@ -292,7 +292,7 @@ E-commerce v2
 
                 _paq.push([
                     "ecommerceProductDetailView",
-                    {
+                    [{
                         sku: "craft-311",
                         name: "Unicorn Iron on Patch",
                         category: "Crafts & Sewing",
@@ -300,14 +300,14 @@ E-commerce v2
                         quantity: 3,
                         brand: "DMZ",
                         variant: "blue"
-                    }
+                    }]
                 ]);
 
         .. group-tab:: JavaScript Tracking Client object
 
             .. code-block:: javascript
 
-                jstc.ecommerceProductDetailView({
+                jstc.ecommerceProductDetailView([{
                     sku: "craft-311",
                     name: "Unicorn Iron on Patch",
                     category: "Crafts & Sewing",
@@ -315,7 +315,7 @@ E-commerce v2
                     quantity: 3,
                     brand: "DMZ",
                     variant: "blue"
-                });
+                }]);
 
 .. _jtc-api-ecommerceAddToCart:
 
