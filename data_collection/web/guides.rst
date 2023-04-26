@@ -257,7 +257,7 @@ Example:
       ]
   ]);
 
-Attribute ``category`` of the product sent via :ref:`ecommerceProductDetailView<jtc-api-ecommerceProductDetailView>` function accepts not only string values, but also arrays of strings. This is useful for tracking products that belong to more than one category:
+Attribute ``category`` sent via :ref:`ecommerceProductDetailView<jtc-api-ecommerceProductDetailView>` function accepts not only string values, but also arrays of strings. This is useful for tracking products that belong to more than one category:
 
 .. code-block:: javascript
 
@@ -280,7 +280,7 @@ Tracking cart updates
 ^^^^^^^^^^^^^^^^^^^^^
 
 Another type of e-commerce activity you can track is an update of a shopping cart.
-With it, we are able to measure how often visitors add or remove specific products to the cart and what products stay in abandoned carts.
+It enables you to measure how often visitors add or remove specific products to the cart and what products stay in abandoned carts.
 
 Tracking a cart update has two steps:
 
@@ -288,7 +288,7 @@ Tracking a cart update has two steps:
   * product addition and removal (:ref:`ecommerceAddToCart<jtc-api-ecommerceAddToCart>` and :ref:`ecommerceRemoveFromCart<jtc-api-ecommerceRemoveFromCart>`)
 
 Cart update allows us to synchronize longer living cart session (containing previously selected products) with short living visitor session.
-This command is optional but recommended. It should be used once per page (immidiately after loading).
+This command is optional but recommended. It should be used once per page (immediately after loading).
 
 Example:
 
@@ -321,7 +321,7 @@ Example:
 
 
 Product addition and removal commands are used immidiately when visitor adds to a cart or removes from a cart any products.
-These commands let us track how visitor interacted with a cart and update a cart state.
+These commands let us track how a visitor interacted with a cart and update a cart state.
 
 Adding products to a cart:
 
@@ -367,7 +367,7 @@ Tracking orders
 ^^^^^^^^^^^^^^^
 
 Perhaps the most important element of an e-commerce implementation is tracking orders.
-E-commerce v2 API is using :ref:`ecommerceConversion<jtc-api-ecommerceConversion>` for this task.
+E-commerce API offers :ref:`ecommerceConversion<jtc-api-ecommerceConversion>` for this task.
 
 Example:
 

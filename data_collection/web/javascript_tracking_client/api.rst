@@ -372,7 +372,7 @@ E-commerce v2
 
 .. function:: ecommerceRemoveFromCart(products)
 
-    Tracks action of removing product from a cart.
+    Tracks action of removing a product from a cart.
 
     :param Array<object> products: **Required** List of product representations. Expected attributes of each product:
 
@@ -810,7 +810,7 @@ E-commerce
         Data gathered by this function is not used in any predefined ecommerce reports in new Analytics UI.
         It is still used in legacy UI.
 
-        Please mgrate to the :ref:`e-commerce v2<jtc-api-ecommerce-v2>` function :ref:`ecommerceProductDetailView<jtc-api-ecommerceProductDetailView>`.
+        Please migrate to the :ref:`e-commerce v2<jtc-api-ecommerce-v2>` function :ref:`ecommerceProductDetailView<jtc-api-ecommerceProductDetailView>`.
 
     Example of usage:
 
