@@ -323,7 +323,7 @@ Example:
 Product addition and removal commands are used immidiately when visitor adds to a cart or removes from a cart any products.
 These commands let us track how visitor interacted with a cart and update a cart state.
 
-Adding prodicts to a cart:
+Adding products to a cart:
 
 .. code-block:: javascript
 
