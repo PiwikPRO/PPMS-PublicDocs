@@ -244,15 +244,17 @@ Example:
 
   _paq.push([
       "ecommerceProductDetailView",
-      {
-          sku: "craft-311",
-          name: "Unicorn Iron on Patch",
-          category: "Crafts & Sewing",
-          price: "49.90",
-          quantity: 3,
-          brand: "DMZ",
-          variant: "blue"
-      }
+      [
+          {
+              sku: "craft-311",
+              name: "Unicorn Iron on Patch",
+              category: "Crafts & Sewing",
+              price: "49.90",
+              quantity: 3,
+              brand: "DMZ",
+             variant: "blue"
+          }
+      ]
   ]);
 
 Attribute ``category`` of the product sent via :ref:`ecommerceProductDetailView<jtc-api-ecommerceProductDetailView>` function accepts not only string values, but also arrays of strings. This is useful for tracking products that belong to more than one category:
