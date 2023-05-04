@@ -25,7 +25,9 @@ paths:
 
                 `triggers?filter[trigger_type]=click,event`
 
-                Unfortunately it is not possible in this endpoint.
+                This notation will not work here. You can achieve this functionality by providing multiple filters for the same parameter:
+                
+                `triggers?filter[trigger_type][]=click&filter[trigger_type][]=event`
             parameters:
                 - $ref: 'common/api/common_request_parameters.json#/components/parameters/page[limit]'
                 - $ref: 'common/api/common_request_parameters.json#/components/parameters/page[offset]'
