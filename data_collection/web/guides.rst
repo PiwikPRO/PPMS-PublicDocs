@@ -367,14 +367,14 @@ Tracking orders
 ^^^^^^^^^^^^^^^
 
 Perhaps the most important element of an e-commerce implementation is tracking orders.
-E-commerce API offers :ref:`ecommerceConversion<jtc-api-ecommerceConversion>` for this task.
+E-commerce API offers :ref:`ecommerceOrder<jtc-api-ecommerceOrder>` for this task.
 
 Example:
 
 .. code-block:: javascript
 
   _paq.push([
-      "ecommerceConversion",
+      "ecommerceOrder",
       [
           {
               sku: "craft-311",
