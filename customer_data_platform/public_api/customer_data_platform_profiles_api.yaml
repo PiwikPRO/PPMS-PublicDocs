@@ -1,0 +1,49 @@
+openapi: 3.1.0
+info:
+  title: CDP Profiles API Documentation
+  version: 0.0.0
+  description: This is the documentation of the CDP Profiles API service.
+servers:
+  - url: https://organization.piwik.pro
+paths:
+  /api/cdp/profiles/public/v1/app/{app_id}/profile/{cookie_id}/audiences:
+    get:
+      summary: Fetch audiences the profile belongs to
+      tags:
+        - profiles
+      security: []
+      operationId: get-profile-audiences
+      description: Get audiences the profile belongs to
+      parameters:
+        - $ref: "components.yaml#/components/parameters/AppId"
+        - in: path
+          name: cookie_id
+          description: Cookie ID stored in cookies
+          schema:
+            type: string
+            example: "3a0133748b3e524c"
+          required: true
+      responses:
+        200:
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: "#/components/schemas/ProfileAudienceIdList"
+          description: An array of last activation log entries
+        400:
+          $ref: "components.yaml#/components/responses/BadRequestError"
+        402:
+          $ref: "components.yaml#/components/responses/ModuleDisabledError"
+        404:
+          $ref: "components.yaml#/components/responses/NotFoundError"
+        500:
+          $ref: "components.yaml#/components/responses/InternalServerError"
+components:
+  schemas:
+    ProfileAudienceIdList:
+      type: array
+      description: List of Audience ID the profile belongs to.
+      items:
+        type: string
+        format: uuid
+        example: "2fb368ff-c0ca-45b9-bac5-421e40a34ff0"

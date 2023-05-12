@@ -48,6 +48,7 @@ api_definitions = {
     'tag_manager_authorized_api_versions.json': 'tag_manager/authorized_api/src/versions.yaml',
     'tag_manager_authorized_api_changelog.json': 'tag_manager/authorized_api/src/changelog.yaml',
     'tag_manager_authorized_api_operations.json': 'tag_manager/authorized_api/src/operations.yaml',
+    'customer_data_platform_profiles_api.json': 'customer_data_platform/public_api/customer_data_platform_profiles_api.yaml',
 }
 
 

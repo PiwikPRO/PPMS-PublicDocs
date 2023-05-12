@@ -20,6 +20,7 @@ Developer docs and guides
    custom_reports/index
    data_collection/index
    audience_manager/index
+   customer_data_platform/index
    consent_manager/index
    tag_manager/index
    platform/index
