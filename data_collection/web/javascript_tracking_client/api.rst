@@ -277,8 +277,8 @@ E-commerce v2
         * sku - **Required** [string] Product stock-keeping unit
         * name - **Optional** [string] Product name (default: "")
         * category - **Optional** [string|Array<string>] Product category or an array of up to 5 categories (default: "")
-        * price - **Optional** [number] Product price (default: 0)
-        * quantity - **Optional** [number] Product quantity (default: 1)
+        * price - **Optional** [number|string] Product price has to be a float number or a string containing float number representation (default: 0)
+        * quantity - **Optional** [number|string] Product quantity has to be an integer number or a string containing integer representation (default: 1)
         * brand - **Optional** [string] Product brand (default: "")
         * variant - **Optional** [string] Product variant (default: "")
 
@@ -295,7 +295,7 @@ E-commerce v2
                     [{
                         sku: "craft-311",
                         name: "Unicorn Iron on Patch",
-                        category: "Crafts & Sewing",
+                        category: ["Crafts & Sewing", "Toys"],
                         price: "49.90",
                         quantity: 3,
                         brand: "DMZ",
@@ -328,8 +328,8 @@ E-commerce v2
         * sku - **Required** [string] Product stock-keeping unit
         * name - **Optional** [string] Product name (default: "")
         * category - **Optional** [string|Array<string>] Product category or an array of up to 5 categories (default: "")
-        * price - **Optional** [number] Product price (default: 0)
-        * quantity - **Optional** [number] Product quantity (default: 1)
+        * price - **Optional** [number|string] Product price has to be a float number or a string containing float number representation (default: 0)
+        * quantity - **Optional** [number|string] Product quantity has to be an integer number or a string containing integer representation (default: 1)
         * brand - **Optional** [string] Product brand (default: "")
         * variant - **Optional** [string] Product variant (default: "")
 
@@ -379,8 +379,8 @@ E-commerce v2
         * sku - **Required** [string] Product stock-keeping unit
         * name - **Optional** [string] Product name (default: "")
         * category - **Optional** [string|Array<string>] Product category or an array of up to 5 categories (default: "")
-        * price - **Optional** [number] Product price (default: 0)
-        * quantity - **Optional** [number] Product quantity (default: 1)
+        * price - **Optional** [number|string] Product price has to be a float number or a string containing float number representation (default: 0)
+        * quantity - **Optional** [number|string] Product quantity has to be an integer number or a string containing integer representation (default: 1)
         * brand - **Optional** [string] Product brand (default: "")
         * variant - **Optional** [string] Product variant (default: "")
 
@@ -435,12 +435,12 @@ E-commerce v2
         * sku - **Required** [string] Product stock-keeping unit
         * name - **Optional** [string] Product name (default: "")
         * category - **Optional** [string|Array<string>] Product category or an array of up to 5 categories (default: "")
-        * price - **Optional** [number] Product price (default: 0)
-        * quantity - **Optional** [number] Product quantity (default: 1)
+        * price - **Optional** [number|string] Product price has to be a float number or a string containing float number representation (default: 0)
+        * quantity - **Optional** [number|string] Product quantity has to be an integer number or a string containing integer representation (default: 1)
         * brand - **Optional** [string] Product brand (default: "")
         * variant - **Optional** [string] Product variant (default: "")
 
-    :param number grandTotal: **Required** [number|string] The total value of items in a cart.
+    :param number grandTotal: **Required** [number|string] The total value of items in a cart has to be a float number or a string containing float number representation
 
     Example of usage:
 
@@ -503,9 +503,9 @@ E-commerce v2
                     "180.00"
                 );
 
-.. _jtc-api-ecommerceConversion:
+.. _jtc-api-ecommerceOrder:
 
-.. function:: ecommerceConversion(products, paymentInformation)
+.. function:: ecommerceOrder(products, paymentInformation)
 
     Tracks conversion (including products and payment details).
 
@@ -514,19 +514,19 @@ E-commerce v2
         * sku - **Required** [string] Product stock-keeping unit
         * name - **Optional** [string] Product name (default: "")
         * category - **Optional** [string|Array<string>] Product category or an array of up to 5 categories (default: "")
-        * price - **Optional** [number] Product price (default: 0)
-        * quantity - **Optional** [number] Product quantity (default: 1)
+        * price - **Optional** [number|string] Product price has to be a float number or a string containing float number representation (default: 0)
+        * quantity - **Optional** [number|string] Product quantity has to be an integer number or a string containing integer representation (default: 1)
         * brand - **Optional** [string] Product brand (default: "")
         * variant - **Optional** [string] Product variant (default: "")
 
     :param object paymentInformation: Total payment information about products in a cart. Expected attributes:
 
         * orderId - **Required** [string] Unique identifier of an order
-        * grandTotal - **Required** [number|string] Total value of items in a cart
-        * subTotal - **Optional** [number|string] Total value of items in a cart without shipping
-        * tax - **Optional** [number|string] Total tax amount
-        * shipping - **Optional** [number|string] Total shipping cost
-        * discount - **Optional** [number|string] Total discount
+        * grandTotal - **Required** [number|string] The total value of items in a cart has to be a float number or a string containing float number representation
+        * subTotal - **Optional** [number|string] Total value of items in a cart without shipping has to be a float number or a string containing float number representation
+        * tax - **Optional** [number|string] Total tax amount has to be a float number or a string containing float number representation
+        * shipping - **Optional** [number|string] Total shipping cost has to be a float number or a string containing float number representation
+        * discount - **Optional** [number|string] Total discount has to be a float number or a string containing float number representation
 
     Example of usage:
 
@@ -537,7 +537,7 @@ E-commerce v2
             .. code-block:: javascript
 
                 _paq.push([
-                    "ecommerceConversion",
+                    "ecommerceOrder",
                     [
                         {
                             sku: "craft-311",
@@ -572,7 +572,7 @@ E-commerce v2
 
             .. code-block:: javascript
 
-                jstc.ecommerceConversion(
+                jstc.ecommerceOrder(
                     [
                         {
                             sku: "craft-311",
