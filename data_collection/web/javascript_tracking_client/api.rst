@@ -461,7 +461,7 @@ E-commerce v2
                             quantity: 3,
                             brand: "DMZ",
                             variant: "blue"
-                        }
+                        },
                         {
                             sku: "craft-312",
                             name: "Unicorn Iron on Grass",
@@ -489,7 +489,7 @@ E-commerce v2
                             quantity: 3,
                             brand: "DMZ",
                             variant: "blue"
-                        }
+                        },
                         {
                             sku: "craft-312",
                             name: "Unicorn Iron on Grass",
@@ -547,7 +547,7 @@ E-commerce v2
                             quantity: 3,
                             brand: "DMZ",
                             variant: "blue"
-                        }
+                        },
                         {
                             sku: "craft-312",
                             name: "Unicorn Iron on Grass",
@@ -582,7 +582,7 @@ E-commerce v2
                             quantity: 3,
                             brand: "DMZ",
                             variant: "blue"
-                        }
+                        },
                         {
                             sku: "craft-312",
                             name: "Unicorn Iron on Grass",

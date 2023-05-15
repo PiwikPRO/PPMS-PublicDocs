@@ -305,7 +305,7 @@ Example:
               quantity: 3,
               brand: "DMZ",
               variant: "blue"
-          }
+          },
           {
               sku: "craft-312",
               name: "Unicorn Iron on Grass",
@@ -384,7 +384,7 @@ Example:
               quantity: 3,
               brand: "DMZ",
               variant: "blue"
-          }
+          },
           {
               sku: "craft-312",
               name: "Unicorn Iron on Grass",
