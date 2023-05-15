@@ -49,10 +49,11 @@
     let menuArray = [
         'custom_reports',
         'data_collection',
-        'audience_manager',
+        'customer_data_platform',
         'consent_manager',
         'tag_manager',
         'platform',
+        'audience_manager',
         'glossary.html',
     ];
     let linkIndex = menuArray.indexOf(window.location.pathname.split('/')[3]);
@@ -80,8 +81,13 @@
         content.parentElement.insertBefore(newMenu, content);
     }
     let activeMenu = document.querySelectorAll('.topbar-menu a')[linkIndex];
+    let topbarLinks = document.querySelectorAll('.topbar-menu a');
     if(activeMenu) {
         activeMenu.classList.add('active', 'current');
+    }
+    if(topbarLinks) {
+        topbarLinks[2].innerHTML += '<div class="Badge blue" style="display: inline-block;"><div class="BadgeInner"><div class="BadgeText">BETA</div></div></div>'
+        topbarLinks[6].innerHTML += '<div class="Badge gray" style="display: inline-block;"><div class="BadgeInner"><div class="BadgeText">OLD</div></div></div>'
     }
     let breadCrumbs = document.querySelector('.wy-breadcrumbs');
     if(breadCrumbs) {
