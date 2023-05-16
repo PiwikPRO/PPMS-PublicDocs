@@ -29,20 +29,25 @@ paths:
             application/vnd.api+json:
               schema:
                 $ref: "#/components/schemas/ProfileAudienceIdList"
-          description: An array of last activation log entries
+          description: An array of audience IDs profile belongs to
         400:
           $ref: "components.yaml#/components/responses/BadRequestError"
         402:
           $ref: "components.yaml#/components/responses/ModuleDisabledError"
         404:
-          $ref: "components.yaml#/components/responses/NotFoundError"
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: 404 page not found
+          description: Profile with given cookie_id or organization was not found
         500:
           $ref: "components.yaml#/components/responses/InternalServerError"
 components:
   schemas:
     ProfileAudienceIdList:
       type: array
-      description: List of Audience ID the profile belongs to.
+      description: Array of audience IDs profile belongs to
       items:
         type: string
         format: uuid
