@@ -444,6 +444,8 @@ Once the event is triggered, the dimensions are deleted and will not be sent wit
 ### Tracking user profile attributes
 *Requires Audience Manager*
 
+> **Warning:** Audience Manager is deprecated and will be replaced by Customer Data Platform module. [Learn more](https://help.piwik.pro/support/audiences/audience-manager-sunset/).
+
 The Audience Manager stores visitors' profiles which have data from a variety of sources. One of them can be a mobile application. It is possible to enrich the profiles with more attributes by passing any key-value pair e.g. gender: male, favourite food: Italian, etc. It is recommended to set additional user identifiers such as [email](#user-email-address) or [User ID](#user-id) which will allow the enrichment of existing profiles or merging of profiles rather than creating a new profile. For example, if the user visited the website, performed some actions, filled in a form with his email (his data was tracked and profile created in Audience Manager) and *Used only by Audience Manager* started using a mobile application, the existing profile will be enriched only if the email was set. Otherwise, a new profile will be created.
 
 For sending profile attributes use ``audienceManagerSetProfileAttribute`` method:
@@ -475,6 +477,8 @@ Audience manager events are dispatched together with analytics events. Therefore
 ### Reading user profile attributes
 *Requires Audience Manager*
 
+> **Warning:** Audience Manager is deprecated and will be replaced by Customer Data Platform module. [Learn more](https://help.piwik.pro/support/audiences/audience-manager-sunset/).
+
 It is possible to read the attributes of a given profile, however, with some limitations. Due to security reasons (to avoid personal data leakage), it is possible to read only attributes that were enabled for API access (whitelisted) in the Attributes section in Audience Manager. To get user profile attributes use the ``audienceManagerGetProfileAttributes`` method:
 
 ```java
@@ -500,6 +504,8 @@ It is possible to read the attributes of a given profile, however, with some lim
 
 ### Checking audience membership
 *Requires Audience Manager*
+
+> **Warning:** Audience Manager is deprecated and will be replaced by Customer Data Platform module. [Learn more](https://help.piwik.pro/support/audiences/audience-manager-sunset/).
 
 Audiences are allowed to check whether or not the user belongs to a specific group of users defined in the data manger panel based on analytics data and audience manager profile attributes. You can check if the user belongs to a given audience, for example, to show a special offer. To check it, use the ``checkAudienceMembership`` method:
 

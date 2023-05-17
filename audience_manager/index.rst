@@ -1,6 +1,9 @@
 Audience Manager
 ================
 
+.. warning::
+  Audience Manager is deprecated and will be replaced by Customer Data Platform module. `Learn more <https://help.piwik.pro/support/audiences/audience-manager-sunset/>`_.
+
 .. toctree::
   :maxdepth: 2
 

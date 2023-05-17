@@ -2,7 +2,7 @@
     //Hack to fix issue PPTECHDOC-54
     //RTD is building docs differently since ~ 22-03-2019
     //Without it custom.css is introduced before theme.css and is overwritten
-    let style = document.querySelector('link[href$="/custom_1653024076375.css"]');
+    let style = document.querySelector('link[href$="/custom_1684133308817.css"]');
     let head = document.querySelector('head');
     let detectedUnicorn = function () {
         let element = document.createElement('div');

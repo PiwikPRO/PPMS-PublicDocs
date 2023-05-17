@@ -346,6 +346,8 @@ await FlutterPiwikPro.sharedInstance.trackCustomDimension(id: 1, value: 'english
 
 _Requires Audience Manager_
 
+> **Warning:** Audience Manager is deprecated and will be replaced by Customer Data Platform module. [Learn more](https://help.piwik.pro/support/audiences/audience-manager-sunset/).
+
 The Audience Manager stores visitors’ profiles, which have data from a variety of sources. One of them can be a mobile application. It is possible to enrich the profiles with more attributes by passing any key-value pair like gender: male, favourite food: Italian, etc. It is recommended to set additional user identifiers such as email or User ID. This will allow the enrichment of existing profiles or merging profiles rather than creating a new profile. For example, if the user visited the website, browsed or filled in a form with his/her email (his data was tracked and profile created in Audience Manager) and, afterwards started using a mobile application, the existing profile will be enriched only if the email was set. Otherwise, a new profile will be created.
 To set profile attributes you can use the `trackProfileAttribute` method:
 
@@ -370,6 +372,8 @@ Aside from attributes, each event also sends parameters which are retrieved from
 
 _Requires Audience Manager_
 
+> **Warning:** Audience Manager is deprecated and will be replaced by Customer Data Platform module. [Learn more](https://help.piwik.pro/support/audiences/audience-manager-sunset/).
+
 It is possible to read the attributes of a given profile, however, with some limitations. Due to of security reasons to avoid personal data leakage, it is possible to read only attributes that were enabled for API access (whitelisted) in the Attributes section of Audience Manager. To get user profile attributes you can use the `readUserProfileAttributes` method:
 
 ```dart
@@ -383,6 +387,8 @@ await FlutterPiwikPro.sharedInstance.readUserProfileAttributes()
 ### Checking Audience Membership
 
 _Requires Audience Manager_
+
+> **Warning:** Audience Manager is deprecated and will be replaced by Customer Data Platform module. [Learn more](https://help.piwik.pro/support/audiences/audience-manager-sunset/).
 
 Checking audience membership allows one to check if the user belongs to a specific group of users defined in the audience manger panel based on analytics data and audience manager profile attributes. You can check if a user belongs to a given audience, for example, to display him/her some type of special offer.
 You can check audience membership using the `checkAudienceMembership` method:
