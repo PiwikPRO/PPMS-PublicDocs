@@ -17,6 +17,8 @@ paths:
       summary: Tracking endpoint
       description: |
         Endpoint tracking events (page views, goal conversions, custom events).
+
+        *IMPORTANT:* All of `string` type values HAVE TO be urlencoded in raw URL, according to https://url.spec.whatwg.org/ specification, as shown in examples. Decoded value is provided in at the end of description.
       parameters:
         - name: idsite
           in: query
@@ -47,17 +49,21 @@ paths:
 
             *IMPORTANT*: URL/URI has to have authority or `mailto` scheme.
             You can lean more about authority and scheme [here](https://en.wikipedia.org/wiki/Uniform_Resource_Identifier#Example_URIs).
+
+            Decoded value: ``https://example.com/path/to/page.html``
           schema:
             type: string
             format: URL
-          example: https://example.com/path/to/page.html
+          example: https%3A%2F%2Fexample.com%2Fpath%2Fto%2Fpage.html
         - name: action_name
           in: query
           description: |
             **Recommended** Name of event. Could be page title or custom-built path expressing the location in application.
+
+            Decoded value: ``help/delivery/shipping``
           schema:
             type: string
-          example: help/delivery/shipping
+          example: help%2Fdelivery%2Fshipping
         - name: _id
           in: query
           description: |
@@ -91,44 +97,48 @@ paths:
 
             *IMPORTANT*: URL/URI has to have authority or `mailto` scheme.
             You can lean more about authority and scheme [here](https://en.wikipedia.org/wiki/Uniform_Resource_Identifier#Example_URIs).
+
+            Decoded value: ``http://example.com/path/to/previous/page.html``
           schema:
             type: string
             format: URL
-          example: http://example.com/path/to/previous/page.html
+          example: http%3A%2F%2Fexample.com%2Fpath%2Fto%2Fprevious%2Fpage.html
         - name: _cvar
           in: query
           description: |
             [Custom variables](https://help.piwik.pro/analytics/custom-variables/) set in the ``session`` scope.
 
-            Format: Object serialized with JSON:
+            *IMPORTANT:* value have to be urlencoded in raw URL, below is decoded JSON, do not use it directly in raw URL.
 
+            Decoded value: ``{"1":["AspectRatio","16:9"],"2":["Height","1080"],"3":["Width","1920"]}``
+
+            Format: Object serialized with JSON:
               - key - (`string`) Custom variable ID
               - value - Array with:
                 - (`string`) Custom variable name, max length: 200 characters
                 - (`string`) Custom variable value, max length: 200 characters
-
-            *IMPORTANT:* value should be urlencoded - example presented here is not encoded for readability reasons.
           schema:
             type: string
             format: JSON
-          example: '{"1":["AspectRatio","16:9"],"2":["Height","1080"],"3":["Width","1920"]}'
+          example: '%7B%221%22%3A%5B%22AspectRatio%22%2C%2216%3A9%22%5D%2C%222%22%3A%5B%22Height%22%2C%221080%22%5D%2C%223%22%3A%5B%22Width%22%2C%221920%22%5D%7D'
         - name: cvar
           in: query
           description: |
             [Custom variables](https://help.piwik.pro/analytics/custom-variables/) set in the ``event`` scope.
 
-            Format: Object serialized with JSON:
+            *IMPORTANT:* value have to be urlencoded in raw URL, below is decoded JSON, do not use it directly in raw URL.
 
+            Decoded value: ``{"1":["AspectRatio","16:9"],"2":["Height","1080"],"3":["Width","1920"]}``
+
+            Format: Object serialized with JSON:
               - key - (`string`) Custom variable ID
               - value - Array with:
                 - (`string`) Custom variable name, max length: 200 characters
                 - (`string`) Custom variable value, max length: 200 characters
-
-            *IMPORTANT:* value should be urlencoded - example presented here is not encoded for readability reasons.
           schema:
             type: string
             format: JSON
-          example: '{"1":["AspectRatio","16:9"],"2":["Height","1080"],"3":["Width","1920"]}'
+          example: '%7B%221%22%3A%5B%22AspectRatio%22%2C%2216%3A9%22%5D%2C%222%22%3A%5B%22Height%22%2C%221080%22%5D%2C%223%22%3A%5B%22Width%22%2C%221920%22%5D%7D'
         - name: _idvc
           in: query
           description: |
@@ -192,19 +202,23 @@ paths:
             `User-Agent` browser value. It can be used to override value send in request HTTP header.
 
             It is used to detect Visitors browser and operating system.
+
+            Decoded value: ``Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.162 Safari/537.36``
           schema:
             type: string
           example: |
-            Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.162 Safari/537.36
+            Mozilla%2F5.0%20(X11%3B%20Linux%20x86_64)%20AppleWebKit%2F537.36%20(KHTML%2C%20like%20Gecko)%20Chrome%2F65.0.3325.162%20Safari%2F537.36
         - name: lang
           in: query
           description: |
             `Accept-Language` browser value. It can be used to override value send in request HTTP header.
 
             It's used to guess Visitors country when GeoIP is not able to determine it.
+
+            Decoded value: ``en-US,en;q=0.9,pl;q=0.8``
           schema:
             type: string
-          example: en-US,en;q=0.9,pl;q=0.8
+          example: en-US%2Cen%3Bq%3D0.9%2Cpl%3Bq%3D0.8
         - name: uid
           in: query
           description: |
@@ -212,10 +226,12 @@ paths:
 
             Can be used to identify Visitor by the application (e.g. login name, email address or internal
             user ID). See: [Recognizing Visitors](https://help.piwik.pro/analytics/recognizing-visitors/).
+
+            Decoded value ``PhilipFry@example.com``
           schema:
             type: string
             minLength: 1
-          example: PhilipFry
+          example: PhilipFry%40example.com
         - name: cid
           in: query
           description: |
@@ -251,9 +267,11 @@ paths:
             `dimension999`).
 
             It is possible to override page view's event custom dimension by sending ping request with updated dimension value.
+
+            Decoded value: ``blue crab cult(not that blue)``
           schema:
             type: string
-          example: blue
+          example: blue%20crab%20cult(not%20that%20blue)
         - name: link
           in: query
           description: |
@@ -261,10 +279,12 @@ paths:
             
             *IMPORTANT*: URL/URI has to have authority or `mailto` scheme.
             You can lean more about authority and scheme [here](https://en.wikipedia.org/wiki/Uniform_Resource_Identifier#Example_URIs).
+
+            Decoded value: ``http://help-example.com/how-to/register.html``
           schema:
             type: string
             format: URL
-          example: http://help-example.com/how-to/register.html
+          example: http%3A%2F%2Fhelp-example.com%2Fhow-to%2Fregister.html
         - name: download
           in: query
           #TODO: Should we recommend setting url parameter to same value?
@@ -273,10 +293,12 @@ paths:
 
             *IMPORTANT*: URL/URI has to have authority or `mailto` scheme.
             You can lean more about authority and scheme [here](https://en.wikipedia.org/wiki/Uniform_Resource_Identifier#Example_URIs).
+
+            Decoded value: ``http://example.com/files/TermsOfService.pdf``
           schema:
             type: string
             format: URL
-          example: http://example.com/files/TermsOfService.pdf
+          example: http%3A%2F%2Fexample.com%2Ffiles%2FTermsOfService.pdf
         - name: search
           in: query
           description: |
@@ -284,9 +306,11 @@ paths:
             See: [Site search](https://help.piwik.pro/support/reports/internal-search-report/).
 
             Requests with this parameter create Search events.
+
+            Decoded value: ``sherlock holmes``
           schema:
             type: string
-          example: sherlock holmes
+          example: sherlock%20holmes
         - name: search_cat
           in: query
           deprecated: true
@@ -297,24 +321,28 @@ paths:
             Requests with this parameter create Search events.
 
             Deprecated in favor of `search_cats` parameter.
+
+            Decoded value: ``Movies & TV``
           schema:
             type: string
-          example: Movies & TV
+          example: Movies%20%26%20TV
         - name: search_cats
           in: query
           description: |
             Internal search categories. Used for tracking categories the visitor specified during a search in the application.
             See: [Site search](https://help.piwik.pro/support/reports/internal-search-report/).
 
+            *IMPORTANT:* value have to be urlencoded in raw URL, below is decoded JSON, do not use it directly in raw URL.
+
+            Decoded value: ["Movies & TV","Cartoons","Video games"]
+
             Requests with this parameter create Search events.
 
             The provided value must be a JSON-serialized array of strings.
-
-            *IMPORTANT:* value should be urlencoded - example presented here is not encoded for readability reasons.
           schema:
             type: string
             format: JSON
-          example: '["Movies & TV","Cartoons","Video games"]'
+          example: '%5B%22Movies%20%26%20TV%22%2C%22Cartoons%22%2C%22Video%20games%22%5D'
         - name: search_count
           in: query
           description: |
@@ -366,7 +394,7 @@ paths:
           schema:
             type: string
             enum:
-              - ecommerce-conversion # 9
+              - order # 9
               - cart-update # 16
               - product-detail-view # 22
               - add-to-cart # 23
@@ -374,33 +402,46 @@ paths:
           example: "add-to-cart"
         - name: ec_id
           in: query
-          description: E-commerce order ID.
+          description: | 
+            E-commerce order ID.
+
+            Decoded value: ``order-123 customer-321``
           schema:
             type: string
-          example: order-123-customer-321
+          example: order-123%20customer-321
         - name: ec_items
           in: query
+          description: 'Alias for `ec_products`. Use new parameter `ec_products`.'
+          deprecated: true
+          schema:
+            type: string
+        - name: ec_products
+          in: query
           description: |
-            Contents of the E-commerce cart in form of two dimensional JSON array.
+            Contents of the E-commerce cart in form of two dimensional, index positioned JSON array. This is NOT an assiociative array.
 
-            Each item on the list can contain:
+            *IMPORTANT:* value have to be urlencoded in raw URL, below is decoded JSON, do not use it directly in raw URL.
 
-              - sku: `string` (required) Stock keeping unit. Max 1024 bytes long.
-              - name: `string` (optional) Name of an item. Max 1024 bytes long.
-              - category: `string|Array<string>` (optional) Category of an item. Max 100 items, each 1024 bytes long.
-              - price: `number` (optional) Price of an item.
+            Decoded value: ``[["craft-311","Unicorn Iron on Patch","Crafts & Sewing",4.99,3,"FairyTales","3-color rainbow"],["craft-312","Unicorn Lamp",["Crafts & Sewing", "Lamps"],13.25,1,"FairyTales","black-and-white"]]``
+
+            Each product on the list can contain:
+  
+              - [0] sku: `string` (required) Stock keeping unit. Max 1024 bytes long.
+              - [1] name: `string` (optional) Name of a product. Max 1024 bytes long.
+              - [2] category: `string|Array<string>` (optional) Category of a product. Max 5 categories, each 1024 bytes long.
+              - [3] price: `number` (optional) Price of a product.
                 Currency of this value does not matter, but only one should be used by the application (e.g. USD).
-              - quantity: `integer` (optional, default to 1) Quantity of an item.
-              - brand: a brand of the product
-              - variant: a variant of the product
+              - [4] quantity: `integer` (optional, default to 1) Quantity of a product.
+              - [5] brand: `string` (optional) a brand of the product
+              - [6] variant: `string` (optional) a variant of the product
 
-            E-commerce cart must not contain more than 100 items.
+            Legend: [index] name: `data type` (requisite) Desctiption. Restrictions.
 
-            *IMPORTANT:* value should be urlencoded - example presented here is not encoded for readability reasons.
+            E-commerce cart must not contain more than 100 products.
           schema:
             type: string
             format: JSON
-          example: '[["craft-311","Unicorn Iron on Patch","Crafts & Sewing",4.99,3,"FairyTales","3-color rainbow"],["craft-312","Unicorn Lamp","Crafts & Sewing",13.25,1,"FairyTales","black-and-white"]]'
+          example: '%5B%5B%22craft-311%22%2C%22Unicorn%20Iron%20on%20Patch%22%2C%22Crafts%20%26%20Sewing%22%2C4.99%2C3%2C%22FairyTales%22%2C%223-color%20rainbow%22%5D%2C%5B%22craft-312%22%2C%22Unicorn%20Lamp%22%2C%5B%22Crafts%20%26%20Sewing%22%2C%20%22Lamps%22%5D%2C13.25%2C1%2C%22FairyTales%22%2C%22black-and-white%22%5D%5D'
         - name: ec_st
           in: query
           description: |
@@ -605,28 +646,37 @@ paths:
           example: recommended-products
         - name: c_p
           in: query
-          description: '[Content](https://help.piwik.pro/support/reports/content-performance-report/) piece.'
+          description: |
+            '[Content](https://help.piwik.pro/support/reports/content-performance-report/) piece.'
+
+            Decoded value: ``Unicorn Iron on Patch``
           schema:
             type: string
             minLength: 1
             maxLength: 1024
-          example: Unicorn Iron on Patch
+          example: Unicorn%20Iron%20on%20Patch
         - name: c_t
           in: query
-          description: '[Content](https://help.piwik.pro/support/reports/content-performance-report/) target.'
+          description: |
+            '[Content](https://help.piwik.pro/support/reports/content-performance-report/) target.'
+
+            Decoded value: ``http://example.com/product/unicorn-iron-on-path.html``
           schema:
             type: string
             minLength: 1
             maxLength: 1024
-          example: http://example.com/product/unicorn-iron-on-path.html
+          example: http%3A%2F%2Fexample.com%2Fproduct%2Funicorn-iron-on-path.html
         - name: c_i
           in: query
-          description: '[Content](https://help.piwik.pro/support/reports/content-performance-report/) interaction.'
+          description: |
+            '[Content](https://help.piwik.pro/support/reports/content-performance-report/) interaction.'
+
+            Decoded value: ``show details``
           schema:
             type: string
             minLength: 1
             maxLength: 1024
-          example: show details
+          example: show%20details
         - name: send_image
           in: query
           description: |
@@ -656,10 +706,12 @@ paths:
           in: query
           description: |
             Override request time. You can use it when importing HTTP logs.
+
+            Decoded value: ``2018-02-24 15:34:48``
           schema:
             type: string
             format: UNIX timestamp|UTC DateTime<YYYY-MM-DD hh:mm:ss>
-          example: '2018-02-24 15:34:48'
+          example: '2018-02-24%2015%3A34%3A48'
         - name: country
           in: query
           description: |
@@ -686,9 +738,11 @@ paths:
           in: query
           description: |
             Override city.
+
+            Decoded value: ``New York``
           schema:
             type: string
-          example: New York
+          example: New%20York
         - name: lat
           in: query
           description: |
@@ -928,9 +982,11 @@ paths:
           in: query
           description: |
             Name of a library used for tracking.
+
+            Decoded value: ``iOs SDK``
           schema:
             type: string
-          example: ios
+          example: iOs%20SDK
         - name: ts_v
           in: query
           description: |
