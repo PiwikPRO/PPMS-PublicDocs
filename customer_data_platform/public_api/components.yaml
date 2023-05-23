@@ -1,0 +1,586 @@
+openapi: 3.1.0
+info:
+  title: Common components
+  version: 0.0.0
+servers:
+  - url: https://organization.piwik.pro
+paths: {}
+components:
+  parameters:
+    Id:
+      name: id
+      in: path
+      required: true
+      schema:
+        $ref: "#/components/schemas/Id"
+    AppId:
+      name: app_id
+      in: path
+      required: true
+      schema:
+        $ref: "#/components/schemas/AppId"
+    WebsiteId:
+      name: website_id
+      in: query
+      required: true
+      schema:
+        $ref: "#/components/schemas/WebsiteId"
+    Search:
+      name: search
+      in: query
+      schema:
+        $ref: "#/components/schemas/Search"
+    IsAuthor:
+      name: is_author
+      in: query
+      schema:
+        $ref: "#/components/schemas/IsAuthor"
+    DefaultOrdering:
+      name: ordering
+      in: query
+      schema:
+        $ref: "#/components/schemas/DefaultOrdering"
+  responses:
+    BadRequestError:
+      content:
+        text/plain:
+          schema:
+            type: string
+            example: "Request parameters deserialization error."
+      description: "Bad request response (e.g. missing GET parameter, parameter value out of bounds)"
+    UnprocessableEntity:
+      content:
+        text/plain:
+          schema:
+            type: string
+            example: "Unprocessable Entity"
+      description: "Data in body does not meet requirements (e.g. missing field)"
+    ModuleDisabledError:
+      content:
+        text/plain:
+          schema:
+            type: string
+            example: Module disabled.
+      description: CDP module is disabled
+    UnauthorizedError:
+      content:
+        text/plain:
+          schema:
+            type: string
+            example: ""
+      description: Access token is missing or invalid
+    ForbiddenError:
+      content:
+        text/plain:
+          schema:
+            type: string
+            example: "403 forbidden"
+      description: User does not have permissions for this action
+    NotFoundError:
+      content:
+        text/plain:
+          schema:
+            type: string
+            example: 404 page not found
+      description: Resource not found (bad ID or resource deleted)
+    InternalServerError:
+      content:
+        text/plain:
+          schema:
+            type: string
+            example: Internal error occurred. Check logs
+      description: Internal application error response (some service encountered unexpected error)
+  schemas:
+    Id:
+      type: string
+      format: uuid
+      description: ID of the object.
+    AppId:
+      type: string
+      format: uuid
+      description: ID of the app.
+      example: 3929d56c-cd62-4001-a4fc-013f5f954691
+    WebsiteId:
+      type: string
+      format: uuid
+      description: ID of the website.
+    Search:
+      type: string
+      description: Filter results by a fragment of its name (case insensitive).
+    IsAuthor:
+      type: boolean
+      description: Narrow results to the objects created by currently logged in user
+      default: true
+    DefaultOrdering:
+      type: string
+      enum:
+        - created_at
+        - updated_at
+        - name
+      default: updated_at
+    WebhookBodyAttributes:
+      oneOf:
+        - type: array
+          description: Profile's attributes used in a simple webhook request. Used for constructing body template on front-end.
+          items:
+            $ref: '#/components/schemas/WebhookAttribute'
+        - type: 'null'
+    WebhookAttribute:
+      description: An attribute that is used by an activation
+      required:
+        - key
+        - value
+      type: object
+      properties:
+        key:
+          description: Key (parameter) name used to pass an attribute to a webhook
+          type: string
+          example: 'lang'
+        value:
+          description: Name (column_id) of profile attribute used as a source for this attribute's value
+          type: string
+          example: 'device_type'
+        column_meta:
+          $ref: 'components.yaml#/components/schemas/ColumnMeta'
+        extraction:
+          description: How to extract value from source attribute. Should be skipped when profile attribute stores only one value.
+          type: string
+          enum:
+            - all
+            - first
+            - last
+          example: first
+        custom_value:
+          description: Custom value that can be provided manually for given attribute
+          type: string
+          example: 'my custom value'
+    WebhookBodyTemplate:
+      description: Template of a webhook request body with attribute placeholders. Backend fills this template with profile attributes and sends it to webhook_url.
+      type: string
+      example: |
+        {
+          "const": "hello there",
+          "text": "Hi {user_id:first}! Thanks for making a {total_revenue} dollar purchase."
+        }
+    ColumnMeta:
+      type: object
+      description: Column metadata (readonly).
+      properties:
+        column_name:
+          type: string
+          description: Name of the column.
+          example: Browser Type
+        column_type:
+          type: string
+          description: Type of the column.
+          enum:
+            - number
+            - string
+            - ipv4
+            - ipv6
+            - bool
+            - int
+            - uuid
+            - hex
+          example: string
+        column_unit:
+          type: string
+          description: Unit of the column.
+          enum:
+            - currency
+            - url
+            - days
+            - pixels
+            - none
+            - millisecond
+            - ""
+          example: currency
+        column_category:
+          type: array
+          items:
+            type: string
+            example: "Device"
+          description: Categories of the column.
+        analytics_column_id:
+          type: string
+          description: Name of the column in Analytics module. Used to calculate audience count.
+          example: goal_revenue
+        analytics_transformation_id:
+          type: string
+          description: Transformation name used in Analytics module to calculate audience count. Currently one option available.
+          enum:
+            - sum
+          example: sum
+        value_selectors:
+          type: array
+          items:
+            type: string
+            enum:
+              - first
+              - last
+              - any
+          minItems: 0
+          example: [first]
+          description: List of value selectors possible for given column.
+        extractions:
+          type: array
+          items:
+            type: string
+            enum:
+              - first
+              - last
+              - all
+          minItems: 0
+          example: [first]
+          description: List of extractions possible for given column.
+        scope:
+          type: string
+          description: Defines the scope of dimension.
+          enum:
+            - event
+            - profile
+          example: event
+    AttributeOptions:
+      type: object
+      description: Defines additional options for attribute
+      properties:
+        type:
+          type: string
+          description: Type of the column. Used for filtering (frontend).
+          enum:
+            - number
+            - string
+            - ipv4
+            - ipv6
+            - bool
+            - int
+            - uuid
+            - hex
+          example: string
+        column_unit:
+          type: string
+          description: Unit of the column. Used for filtering (frontend).
+          enum:
+            - currency
+            - url
+            - days
+            - pixels
+            - none
+            - ""
+          example: currency
+    ConsentType:
+      description: Actions a visitor may give consent for
+      type: string
+      enum:
+        - ab_testing
+        - analytics
+        - conversion
+        - marketing
+        - remarketing
+        - user_feedback
+        - custom1
+    Definition:
+      description: Audience definition
+      type: object
+      required:
+        - operator
+        - conditions
+      properties:
+        operator:
+          type: string
+          const: and
+          description: Logical operator to be used between conditions.
+        conditions:
+          type: array
+          minItems: 1
+          maxItems: 10
+          description: List of conditions. Maximum number of conditions (sum of profile and event conditions) is 10.
+          items:
+            type: object
+            description: Definition of condition
+            required:
+              - operator
+              - conditions
+            properties:
+              operator:
+                type: string
+                const: or
+                description: Logical operator to be used between conditions.
+                example: or
+              conditions:
+                type: array
+                description: List of conditions.
+                minItems: 1
+                maxItems: 10
+                items:
+                  anyOf:
+                    - $ref: "#/components/schemas/ProfileCondition"
+                    - $ref: "#/components/schemas/EventCondition"
+    ProfileCondition:
+      type: object
+      description: Audience definition condition based on profile attributes
+      required:
+        - condition_type
+        - column_id
+        - condition
+      properties:
+        condition_type:
+          type: string
+          const: profile
+        column_id:
+          type: string
+          description: Event attribute to compare.
+          example: country_iso_code
+        column_meta:
+          $ref: "#/components/schemas/ColumnMeta"
+        value_selector:
+          type: string
+          enum:
+            - "first"
+            - "last"
+            - "any"
+            - "na"
+        condition:
+          type: object
+          description: Filtering criteria.
+          required:
+            - operator
+            - value
+          properties:
+            operator:
+              $ref: "#/components/schemas/ConditionOperator"
+            value:
+              oneOf:
+                - type: string
+                - type: number
+                - type: boolean
+              description: Filtering value with type matching specified column.
+              example: "pl"
+            label:
+              description: Filtering value to display.
+              example: "Poland"
+    EventConditionDuringMinutes:
+      type: object
+      description: Time limit for behavioral condition to occur in minutes
+      required:
+        - seconds
+        - unit
+      properties:
+        seconds:
+          type: integer
+          description: Time limit for behavioral condition is always expressed in seconds, regardless of the unit
+          minimum: 60
+          maximum: 2592000
+          multipleOf: 60
+          example: 3600
+        unit:
+          type: string
+          const: minutes
+          example: minutes
+    EventConditionDuringHours:
+      type: object
+      description: Time limit for behavioral condition to occur in hours
+      required:
+        - seconds
+        - unit
+      properties:
+        seconds:
+          type: integer
+          description: Time limit for behavioral condition is always expressed in seconds, regardless of the unit
+          minimum: 3600
+          maximum: 2592000
+          multipleOf: 3600
+          example: 3600
+        unit:
+          type: string
+          const: hours
+          example: hours
+    EventConditionDuringDays:
+      type: object
+      description: Time limit for behavioral condition to occur in days
+      required:
+        - seconds
+        - unit
+      properties:
+        seconds:
+          type: integer
+          description: Time limit for behavioral condition is always expressed in seconds, regardless of the unit
+          minimum: 86400
+          maximum: 2592000
+          multipleOf: 86400
+          example: 86400
+        unit:
+          type: string
+          const: days
+          example: days
+    EventAttributeCondition:
+      type: object
+      description: Internal behavioral audience condition
+      required:
+        - column_id
+        - condition
+      properties:
+        column_id:
+          type: string
+          description: Event attribute to compare.
+          example: country_iso_code
+        column_meta:
+          $ref: "#/components/schemas/ColumnMeta"
+        condition:
+          type: object
+          description: Filtering criteria.
+          required:
+            - operator
+            - value
+          properties:
+            operator:
+              $ref: "#/components/schemas/ConditionOperator"
+            value:
+              oneOf:
+                - type: string
+                - type: number
+                - type: boolean
+              description: Filtering value with type matching specified column.
+              example: "pl"
+    EventCondition:
+      type: object
+      description: Audience definition condition based on event attributes (behavioral)
+      required:
+        - condition_type
+        - times
+        - condition
+      properties:
+        condition_type:
+          type: string
+          const: event
+        times:
+          type: object
+          description: How many times given event occurred
+          required:
+            - operator
+            - value
+          properties:
+            operator:
+              type: string
+              description: Whether an event should appear exactly, more often than, etc. X times. If event should not occur, the operator should be 'eq'.
+              enum:
+                - eq
+                - gt
+                - gte
+                - lt
+                - lte
+              example: is
+            value:
+              type: integer
+              description: How many times an event should occur. '0' means an event should not occur at all.
+              minimum: 0
+              maximum: 50
+              example: 2
+        during:
+          oneOf:
+            - $ref: "#/components/schemas/EventConditionDuringMinutes"
+            - $ref: "#/components/schemas/EventConditionDuringHours"
+            - $ref: "#/components/schemas/EventConditionDuringDays"
+        condition:
+          type: object
+          required:
+            - operator
+            - conditions
+          properties:
+            operator:
+              type: string
+              const: and
+              example: and
+            conditions:
+              type: array
+              description: Set of behavioral condition's sub-conditions
+              minItems: 1
+              maxItems: 5
+              items:
+                $ref: "#/components/schemas/EventAttributeCondition"
+    ConditionOperator:
+      type: string
+      description: |
+        <p>
+          Filtering operator. Available choices depend on attribute type.
+        </p>
+        <p>
+          number operators:
+          <code>eq</code>,
+          <code>neq</code>,
+          <code>gt</code>,
+          <code>gte</code>,
+          <code>lt</code>,
+          <code>lte</code>.
+        </p>
+        <p>
+          string operators:
+          <code>eq</code>,
+          <code>neq</code>,
+          <code>contains</code>,
+          <code>not_contains</code>,
+          <code>icontains</code>,
+          <code>not_icontains</code>,
+          <code>starts_with</code>,
+          <code>ends_with</code>,
+          <code>matches</code>,
+          <code>not_matches</code>.
+        </p>
+        <p>
+          ipv4 operators:
+          <code>eq</code>,
+          <code>neq</code>,
+          <code>gt</code>,
+          <code>gte</code>,
+          <code>lt</code>,
+          <code>lte</code>.
+        </p>
+        <p>
+          ipv6 operators:
+          <code>eq</code>,
+          <code>neq</code>,
+          <code>gt</code>,
+          <code>gte</code>,
+          <code>lt</code>,
+          <code>lte</code>.
+        </p>
+        <p>
+          bool operators:
+          <code>eq</code>,
+          <code>neq</code>.
+        </p>
+        <p>
+          int operators:
+          <code>eq</code>,
+          <code>neq</code>,
+          <code>gt</code>,
+          <code>gte</code>,
+          <code>lt</code>,
+          <code>lte</code>.
+        </p>
+        <p>
+          uuid operators:
+          <code>eq</code>,
+          <code>neq</code>.
+        </p>
+        <p>
+          hex operators:
+          <code>eq</code>,
+          <code>neq</code>.
+        </p>
+      enum:
+        - eq
+        - neq
+        - gt
+        - gte
+        - lt
+        - lte
+        - contains
+        - not_contains
+        - icontains
+        - not_icontains
+        - starts_with
+        - ends_with
+        - matches
+        - not_matches
+      example: eq
