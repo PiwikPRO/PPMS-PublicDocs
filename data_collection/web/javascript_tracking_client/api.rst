@@ -1957,6 +1957,29 @@ User management
 
                 jstc.setSessionIdStrictPrivacyMode(true);
 
+.. function:: setIpTracking(status)
+
+    Enables or disables recording of IP option in the tracker.
+    When disabled backend tracker will not record IP information attached to following requests.
+
+    :param boolean status: **Required** Defines if backend tracker will record IP information attached to following requests. Values: ``true`` - record IP data, ``false`` - ignore IP data (default value is ``true``).
+
+    Example of usage:
+
+    .. tabs::
+
+        .. group-tab:: Command queue
+
+            .. code-block:: javascript
+
+                _paq.push(["setIpTracking", false]);
+
+        .. group-tab:: JavaScript Tracking Client object
+
+            .. code-block:: javascript
+
+                jstc.setIpTracking(false);
+
 .. _jtc-api-getVisitorId:
 
 .. function:: getVisitorId()
