@@ -221,187 +221,190 @@ indicate no value.
 
 
 
-
 E-commerce
 ----------
 
-JavaScript API supports 3 types of e-commerce interactions: :ref:`Category and product views<guide_tracking_category_and_product_views>`, :ref:`Cart updates<guide_tracking_cart_updates>` and :ref:`Orders<guide_tracking_orders>`.
 
-.. _guide_tracking_category_and_product_views:
+E-commerce API supports 3 types of e-commerce interactions:
 
-Tracking category and product views
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  * :ref:`Product views<guide_tracking_product_views>`
+  * :ref:`Cart updates<guide_tracking_cart_updates>`
+  * :ref:`Orders<guide_tracking_orders>`
 
-Usually, the first e-commerce-related action a visitor performs on a website is browsing products. :ref:`setEcommerceView<jtc-api-setEcommerceView>` function allows us to track both category views and product views.
+.. _guide_tracking_product_views:
 
-To track a category view, use :ref:`setEcommerceView<jtc-api-setEcommerceView>` function **before** tracking the page view, like this:
+Tracking product views
+^^^^^^^^^^^^^^^^^^^^^^
 
-.. code-block:: javascript
+Usually, the first action of a visitor, related to e-commerce, is product details view. :ref:`ecommerceProductDetailView<jtc-api-ecommerceProductDetailView>` function allows us to track it (including product category).
 
-    // set category to "Smartphones"
-    _paq.push(["setEcommerceView", undefined, undefined, "Smartphones"]);
-
-    // track page view
-    _paq.push(["trackPageView"]);
-
-The same function can be used for tracking product views. Again, it must be called **before** tracking a page view. Example:
+Example:
 
 .. code-block:: javascript
 
-    // set product with...
-    _paq.push(["setEcommerceView",
-        "71253029",              // SKU (stock-keeping unit)
-        "SUPER Phone A40 White", // name
-        "Smartphones",           // category
-        1499.99                  // price
-    ]);
+  _paq.push([
+      "ecommerceProductDetailView",
+      [
+          {
+              sku: "craft-311",
+              name: "Unicorn Iron on Patch",
+              category: "Crafts & Sewing",
+              price: "49.90",
+              quantity: 3,
+              brand: "DMZ",
+             variant: "blue"
+          }
+      ]
+  ]);
 
-    // track page view
-    _paq.push(["trackPageView"]);
-
-``category`` parameter of the :ref:`setEcommerceView<jtc-api-setEcommerceView>` function accepts not only string values, but also arrays of strings. This is useful for tracking products that belong to more than one category, or tracking pages that list products from multiple categories.
+Attribute ``category`` sent via :ref:`ecommerceProductDetailView<jtc-api-ecommerceProductDetailView>` function accepts not only string values, but also arrays of strings. This is useful for tracking products that belong to more than one category:
 
 .. code-block:: javascript
 
-    // set product with...
-    _paq.push(["setEcommerceView",
-        "00492710",                    // SKU (stock-keeping unit)
-        "SUPER Watch B20 Silver",      // name
-        ["New offer", "Smartwatches"], // categories
-        700.00                         // price
-    ]);
-
-    // track page view
-    _paq.push(["trackPageView"]);
+  _paq.push([
+      "ecommerceProductDetailView",
+      {
+          sku: "craft-311",
+          name: "Unicorn Iron on Patch",
+          category: ["Crafts & Sewing", "Toys"],
+          price: "49.90",
+          quantity: 3,
+          brand: "DMZ",
+          variant: "blue"
+      }
+  ]);
 
 .. _guide_tracking_cart_updates:
 
 Tracking cart updates
 ^^^^^^^^^^^^^^^^^^^^^
 
-Another type of e-commerce activity you can track is an update of a shopping cart. With it, we are able to measure how often visitors don't complete the ordering process and what products stay in abandoned carts.
+Another type of e-commerce activity you can track is an update of a shopping cart.
+It enables you to measure how often visitors add or remove specific products to the cart and what products stay in abandoned carts.
 
-Tracking a cart update has two steps: registering items from the cart and sending them. The following example uses two functions - :ref:`addEcommerceItem<jtc-api-addEcommerceItem>` and :ref:`trackEcommerceCartUpdate<jtc-api-trackEcommerceCartUpdate>` - to achieve exactly that.
+Tracking a cart update has two steps:
 
-.. code-block:: javascript
+  * cart update (:ref:`ecommerceCartUpdate<jtc-api-ecommerceCartUpdate>`)
+  * product addition and removal (:ref:`ecommerceAddToCart<jtc-api-ecommerceAddToCart>` and :ref:`ecommerceRemoveFromCart<jtc-api-ecommerceRemoveFromCart>`)
 
-    // visitor added one chocolate bar to an empty shopping cart
+Cart update allows us to synchronize longer living cart session (containing previously selected products) with short living visitor session.
+This command is optional but recommended. It should be used once per page (immediately after loading).
 
-    // register chocolate bar with...
-    _paq.push(["addEcommerceItem",
-        "82775027",                 // SKU (stock-keeping unit)
-        "MEGA Milk Chocolate 200g", // name
-        "Candy",                    // category
-        6.00,                       // price
-        1                           // quantity
-    ]);
-
-    // track cart update with a total value of 6.00
-    _paq.push(["trackEcommerceCartUpdate", 6.00]);
-
-This code snippet sends a cart update event with a cart containing one item (SKU *candy-12837*, name *MEGA Milk Chocolate 200g*, category *Candy*, price *6.00*) and having total value of *6.00*.
-
-The list of registered items is stored only in memory. **Reloading the page will clear the list** and the previously registered items will have to be added again.
+Example:
 
 .. code-block:: javascript
 
-    // visitor added one mango fruit to a shopping cart with one chocolate bar
+  _paq.push([
+      "ecommerceCartUpdate",
+      [
+          {
+              sku: "craft-311",
+              name: "Unicorn Iron on Patch",
+              category: "Crafts & Sewing",
+              price: "50.00",
+              quantity: 3,
+              brand: "DMZ",
+              variant: "blue"
+          },
+          {
+              sku: "craft-312",
+              name: "Unicorn Iron on Grass",
+              category: "Crafts & Sewing",
+              price: "30.00",
+              quantity: 1,
+              brand: "DMZ",
+              variant: "red"
+          }
+      ],
+      "180.00"
+  ]);
 
-    // register previously added items
-    _paq.push(["addEcommerceItem", "82775027", "MEGA Milk Chocolate 200g", "Candy", 6.00, 1]);
 
-    // register the new item
-    _paq.push(["addEcommerceItem", "01809926", "FRUTASTIC Mango", "Fruits & vegetables", 4.00, 1]);
+Product addition and removal commands are used immidiately when visitor adds to a cart or removes from a cart any products.
+These commands let us track how a visitor interacted with a cart and update a cart state.
 
-    // track cart update with a total value of 10.00
-    _paq.push(["trackEcommerceCartUpdate", 10.00]);
-
-.. note::
-
-    If you are not sure what items have been registered, use :ref:`getEcommerceCart<jtc-api-getEcommerceItems>` function.
-
-    .. code-block:: javascript
-
-        _paq.push([function() { console.log(this.getEcommerceItems()); }]);
-
-Because single page applications do not refresh the page when a visitor manipulates the cart, an e-commerce implementation in SPAs must either:
-
-1. Clear the cart using :ref:`clearEcommerceCart<jtc-api-clearEcommerceCart>` and register all items from the cart before tracking cart update, e.g.
-
-.. code-block:: javascript
-
-    // visitor added one chocolate bar to an empty shopping cart
-    _paq.push(["clearEcommerceCart"]);
-    _paq.push(["addEcommerceItem", "82775027", "MEGA Milk Chocolate 200g", "Candy", 6.00, 1]);
-    _paq.push(["trackEcommerceCartUpdate", 6.00]);
-
-    // visitor added one mango fruit to a shopping cart with one chocolate bar
-    _paq.push(["clearEcommerceCart"]);
-    _paq.push(["addEcommerceItem", "82775027", "MEGA Milk Chocolate 200g", "Candy", 6.00, 1]);
-    _paq.push(["addEcommerceItem", "01809926", "FRUTASTIC Mango", "Fruits & vegetables", 4.00, 1]);
-    _paq.push(["trackEcommerceCartUpdate", 10.00]);
-
-    // visitor removed one chocolate from a shopping cart with one chocolate bar and one mango
-    _paq.push(["clearEcommerceCart"]);
-    _paq.push(["addEcommerceItem", "01809926", "FRUTASTIC Mango", "Fruits & vegetables", 4.00, 1]);
-    _paq.push(["trackEcommerceCartUpdate", 4.00]);
-
-2. Replicate visitor's interactions with the cart using functions :ref:`addEcommerceItem<jtc-api-addEcommerceItem>`, :ref:`removeEcommerceItem<jtc-api-addEcommerceItem>`, :ref:`clearEcommerceCart<jtc-api-clearEcommerceCart>`.
+Adding products to a cart:
 
 .. code-block:: javascript
 
-    // visitor added one chocolate bar to an empty shopping cart
-    _paq.push(["addEcommerceItem", "82775027", "MEGA Milk Chocolate 200g", "Candy", 6.00, 1]);
-    _paq.push(["trackEcommerceCartUpdate", 6.00]);
+  _paq.push([
+      "ecommerceAddToCart",
+      [
+        {
+          sku: "craft-311",
+          name: "Unicorn Iron on Patch",
+          category: "Crafts & Sewing",
+          price: "49.90",
+          quantity: 3,
+          brand: "DMZ",
+          variant: "blue"
+        }
+      ]
+  ]);
 
-    // visitor added one mango fruit to a shopping cart with one chocolate bar
-    _paq.push(["addEcommerceItem", "01809926", "FRUTASTIC Mango", "Fruits & vegetables", 4.00, 1]);
-    _paq.push(["trackEcommerceCartUpdate", 10.00]);
+Removing products from a cart:
 
-    // visitor removed one chocolate bar from a shopping cart with one chocolate bar and one mango
-    _paq.push(["removeEcommerceItem", "82775027"]);
-    _paq.push(["trackEcommerceCartUpdate", 4.00]);
+.. code-block:: javascript
+
+  _paq.push([
+      "ecommerceRemoveFromCart",
+      [
+          {
+              sku: "craft-311",
+              name: "Unicorn Iron on Patch",
+              category: "Crafts & Sewing",
+              price: "49.90",
+              quantity: 3,
+              brand: "DMZ",
+              variant: "blue"
+          }
+      ]
+  ]);
 
 .. _guide_tracking_orders:
 
 Tracking orders
 ^^^^^^^^^^^^^^^
 
-Perhaps the most important element of an e-commerce implementation is tracking orders. Just like with :ref:`cart updates<guide_tracking_cart_updates>`, tracking orders has two steps: registering items that have been purchased and tracking the order. Registering items looks exactly the same - we use :ref:`addEcommerceItem<jtc-api-addEcommerceItem>`, :ref:`removeEcommerceItem<jtc-api-addEcommerceItem>` and :ref:`clearEcommerceCart<jtc-api-clearEcommerceCart>`. The actual tracking of an order is done with a call to :ref:`trackEcommerceOrder<jtc-api-trackEcommerceOrder>` function.
+Perhaps the most important element of an e-commerce implementation is tracking orders.
+E-commerce API offers :ref:`ecommerceOrder<jtc-api-ecommerceOrder>` for this task.
+
+Example:
 
 .. code-block:: javascript
 
-    // register all purchased items
+  _paq.push([
+      "ecommerceOrder",
+      [
+          {
+              sku: "craft-311",
+              name: "Unicorn Iron on Patch",
+              category: "Crafts & Sewing",
+              price: "50.00",
+              quantity: 3,
+              brand: "DMZ",
+              variant: "blue"
+          },
+          {
+              sku: "craft-312",
+              name: "Unicorn Iron on Grass",
+              category: "Crafts & Sewing",
+              price: "30.00",
+              quantity: 1,
+              brand: "DMZ",
+              variant: "red"
+          }
+      ],
+      {
+          orderId: "order-3415",
+          grandTotal: "180.00",
+          subTotal: "120.00",
+          tax: "39.60",
+          shipping: "60.00",
+          discount: "18.00"
+      }
+  ]);
 
-    _paq.push(["addEcommerceItem",
-        "66251929",               // SKU
-        "Red Unicorn Coffee Mug", // name
-        "Tableware",              // category
-        8.00,                     // price
-        1                         // quantity
-    ]);
-
-    _paq.push(["addEcommerceItem",
-        "08273511",               // SKU
-        "SUPER Blue Ink Pen 0.2", // name
-        "Office products",        // category
-        2.00,                     // price
-        2                         // quantity
-    ]);
-
-    // track order
-    _paq.push(["trackEcommerceOrder",
-        "online-5289",            // ID
-        16.00,                    // grand total (value + tax + discount + shipping)
-        10.00,                    // sub total (value + tax + discount)
-        1.00,                     // tax
-        6.00,                     // shipping
-        2.00                      // discount
-    ]);
-
-.. warning::
-
-    :ref:`trackEcommerceOrder<jtc-api-trackEcommerceOrder>` function clears the list with registered e-commerce items.
 
 
 

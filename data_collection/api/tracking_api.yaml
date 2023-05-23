@@ -360,6 +360,18 @@ paths:
           schema:
             type: number
           example: 4.99
+        - name: e_t
+          in: query
+          description: Type of event in tracking request. Used for some event types. Decides how other parameters will be interpreted.
+          schema:
+            type: string
+            enum:
+              - ecommerce-conversion # 9
+              - cart-update # 16
+              - product-detail-view # 22
+              - add-to-cart # 23
+              - remove-from-cart # 24
+          example: "add-to-cart"
         - name: ec_id
           in: query
           description: E-commerce order ID.
@@ -379,6 +391,8 @@ paths:
               - price: `number` (optional) Price of an item.
                 Currency of this value does not matter, but only one should be used by the application (e.g. USD).
               - quantity: `integer` (optional, default to 1) Quantity of an item.
+              - brand: a brand of the product
+              - variant: a variant of the product
 
             E-commerce cart must not contain more than 100 items.
 
@@ -386,7 +400,7 @@ paths:
           schema:
             type: string
             format: JSON
-          example: '[["craft-311","Unicorn Iron on Patch","Crafts & Sewing",4.99,3],["craft-312","Unicorn Lamp","Crafts & Sewing",13.25,1]]'
+          example: '[["craft-311","Unicorn Iron on Patch","Crafts & Sewing",4.99,3,"FairyTales","3-color rainbow"],["craft-312","Unicorn Lamp","Crafts & Sewing",13.25,1,"FairyTales","black-and-white"]]'
         - name: ec_st
           in: query
           description: |
