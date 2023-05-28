@@ -425,11 +425,6 @@ E-commerce v2
 
     Tracks current state of a cart.
 
-    .. note::
-
-        Should be executed once for each page (immidiately after page is loaded).
-        It's used to synchronize state of a cart with Piwik PRO.
-
     :param Array<object> products: **Required** List of product representations. Expected attributes of each product:
 
         * sku - **Required** [string] Product stock-keeping unit
