@@ -15,7 +15,7 @@ paths:
       operationId: get-profile-audiences
       description: Get audiences the profile belongs to
       parameters:
-        - $ref: "components.yaml#/components/parameters/AppId"
+        - $ref: "../components.yaml#/components/parameters/AppId"
         - in: path
           name: cookie_id
           description: Cookie ID stored in cookies
@@ -31,9 +31,9 @@ paths:
                 $ref: "#/components/schemas/ProfileAudienceIdList"
           description: An array of audience IDs profile belongs to
         400:
-          $ref: "components.yaml#/components/responses/BadRequestError"
+          $ref: "../components.yaml#/components/responses/BadRequestError"
         402:
-          $ref: "components.yaml#/components/responses/ModuleDisabledError"
+          $ref: "../components.yaml#/components/responses/ModuleDisabledError"
         404:
           content:
             text/plain:
@@ -42,7 +42,7 @@ paths:
                 example: 404 page not found
           description: Profile with given cookie_id or organization was not found
         500:
-          $ref: "components.yaml#/components/responses/InternalServerError"
+          $ref: "../components.yaml#/components/responses/InternalServerError"
 components:
   schemas:
     ProfileAudienceIdList:
