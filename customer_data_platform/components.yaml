@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: Common components
+  title: Common CDP components
   version: 0.0.0
 servers:
   - url: https://organization.piwik.pro
