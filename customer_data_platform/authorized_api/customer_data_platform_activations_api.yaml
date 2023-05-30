@@ -190,7 +190,7 @@ paths:
       security:
         - JWTAuth: []
       operationId: post-activation-deactivate
-      description: Mark the activation as not not activated
+      description: Mark the activation as not activated
       responses:
         200:
           description: An activation that has been deactivated
