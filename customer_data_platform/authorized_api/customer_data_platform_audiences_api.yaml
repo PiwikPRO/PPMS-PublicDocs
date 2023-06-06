@@ -1,0 +1,287 @@
+openapi: 3.1.0
+info:
+  title: CDP Audiences API Documentation
+  version: 0.0.0
+  description: This is the documentation of the CDP Audiences API service.
+servers:
+  - url: https://organization.piwik.pro
+paths:
+  /api/cdp/settings/v1/app/{app_id}/audience:
+    post:
+      summary: Create audience
+      security:
+        - JWTAuth: []
+      operationId: post-audience
+      description: 'Create a new Audience'
+      parameters:
+        - $ref: '../components.yaml#/components/parameters/AppId'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AudienceInput'
+      responses:
+        201:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AudienceFull'
+          description: 'Created'
+        400:
+          $ref: '../components.yaml#/components/responses/BadRequestError'
+        401:
+          $ref: '../components.yaml#/components/responses/UnauthorizedError'
+        402:
+          $ref: '../components.yaml#/components/responses/ModuleDisabledError'
+        404:
+          $ref: '../components.yaml#/components/responses/NotFoundError'
+        422:
+          $ref: '../components.yaml#/components/responses/UnprocessableEntity'
+        500:
+          $ref: '../components.yaml#/components/responses/InternalServerError'
+    get:
+      summary: List audiences
+      security:
+        - JWTAuth: []
+      operationId: get-audiences
+      description: 'List Audiences'
+      parameters:
+        - $ref: '../components.yaml#/components/parameters/AppId'
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AudienceShort'
+          description: 'OK'
+        400:
+          $ref: '../components.yaml#/components/responses/BadRequestError'
+        401:
+          $ref: '../components.yaml#/components/responses/UnauthorizedError'
+        402:
+          $ref: '../components.yaml#/components/responses/ModuleDisabledError'
+        404:
+          $ref: '../components.yaml#/components/responses/NotFoundError'
+        500:
+          $ref: '../components.yaml#/components/responses/InternalServerError'
+  /api/cdp/settings/v1/app/{app_id}/audience/{id}:
+    get:
+      summary: Fetch audience
+      security:
+        - JWTAuth: []
+      operationId: get-audience
+      description: 'Get single Audience'
+      parameters:
+        - $ref: '../components.yaml#/components/parameters/AppId'
+        - $ref: '../components.yaml#/components/parameters/Id'
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AudienceFull'
+          description: 'OK'
+        400:
+          $ref: '../components.yaml#/components/responses/BadRequestError'
+        401:
+          $ref: '../components.yaml#/components/responses/UnauthorizedError'
+        402:
+          $ref: '../components.yaml#/components/responses/ModuleDisabledError'
+        404:
+          $ref: '../components.yaml#/components/responses/NotFoundError'
+        500:
+          $ref: '../components.yaml#/components/responses/InternalServerError'
+    put:
+      summary: Update audience
+      security:
+        - JWTAuth: []
+      operationId: put-audience
+      description: 'Update existing Audience'
+      parameters:
+        - $ref: '../components.yaml#/components/parameters/AppId'
+        - $ref: '../components.yaml#/components/parameters/Id'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AudienceInput'
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AudienceFull'
+          description: 'OK'
+        400:
+          $ref: '../components.yaml#/components/responses/BadRequestError'
+        401:
+          $ref: '../components.yaml#/components/responses/UnauthorizedError'
+        402:
+          $ref: '../components.yaml#/components/responses/ModuleDisabledError'
+        404:
+          $ref: '../components.yaml#/components/responses/NotFoundError'
+        422:
+          $ref: '../components.yaml#/components/responses/UnprocessableEntity'
+        500:
+          $ref: '../components.yaml#/components/responses/InternalServerError'
+    delete:
+      summary: Delete audience
+      security:
+        - JWTAuth: []
+      operationId: delete-audience
+      description: 'Delete existing audience'
+      parameters:
+        - $ref: '../components.yaml#/components/parameters/AppId'
+        - $ref: '../components.yaml#/components/parameters/Id'
+      responses:
+        204:
+          description: 'No content'
+        400:
+          $ref: '../components.yaml#/components/responses/BadRequestError'
+        401:
+          $ref: '../components.yaml#/components/responses/UnauthorizedError'
+        402:
+          $ref: '../components.yaml#/components/responses/ModuleDisabledError'
+        404:
+          $ref: '../components.yaml#/components/responses/NotFoundError'
+        500:
+          $ref: '../components.yaml#/components/responses/InternalServerError'
+components:
+  securitySchemes:
+    JWTAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    AudienceFull:
+      description: "Full audience object"
+      type: object
+      required:
+        - id
+        - app_id
+        - created_at
+        - updated_at
+        - name
+        - description
+        - membership_duration_days
+        - definition
+        - author
+        - is_author
+        - version
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: "ID of the audience"
+        app_id:
+          type: string
+          format: uuid
+          description: "ID of the app"
+        created_at:
+          type: string
+          format: date-time
+          description: "Audience creation date"
+        updated_at:
+          type: string
+          format: date-time
+          description: "Latest audience update date"
+        name:
+          type: string
+          description: "Name of the audience"
+        description:
+          type: string
+          description: "Description of the audience"
+        membership_duration_days:
+          type: integer
+          description: "Time (in days) after which profiles are removed from an audience"
+        definition:
+          $ref: '../components.yaml#/components/schemas/Definition'
+        author:
+          type: object
+          properties:
+            email:
+              type: string
+          description: "User who created this audience"
+        is_author:
+          type: boolean
+          description: "Whether the audience was created by the user who issues the request"
+        version:
+          type: integer
+          description: "Version number, incremented on every update of definition or membership_duration_days"
+          minimum: 1
+    AudienceShort:
+      description: "Audience object without definition"
+      type: object
+      required:
+        - id
+        - app_id
+        - created_at
+        - updated_at
+        - name
+        - description
+        - membership_duration_days
+        - author
+        - is_author
+        - version
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: "ID of the audience"
+        app_id:
+          type: string
+          format: uuid
+          description: "ID of the app"
+        created_at:
+          type: string
+          format: date-time
+          description: "Audience creation date"
+        updated_at:
+          type: string
+          format: date-time
+          description: "Latest audience update date"
+        name:
+          type: string
+          description: "Name of the audience"
+        description:
+          type: string
+          description: "Description of the audience"
+        membership_duration_days:
+          type: integer
+          description: "Time (in days) after which profiles are removed from an audience"
+        author:
+          type: object
+          properties:
+            email:
+              type: string
+          description: "User who created this audience"
+        is_author:
+          type: boolean
+          description: "Whether the audience was created by the user who issues the request"
+        version:
+          type: integer
+          description: "Version number, incremented on every update of definition or membership_duration_days"
+          minimum: 1
+    AudienceInput:
+      description: "Audience object used for adding and updating audiences"
+      type: object
+      required:
+        - name
+        - description
+        - definition
+        - membership_duration_days
+      properties:
+        name:
+          type: string
+          maxLength: 100
+        description:
+          type: string
+          maxLength: 200
+        definition:
+          $ref: '../components.yaml#/components/schemas/Definition'
+        membership_duration_days:
+          type: integer
+          minimum: 1
+          maximum: 60
