@@ -34,7 +34,7 @@
                 "once_per_session",
                 "visitor_belongs_to",
                 "visitor_not_belongs_to",
-                "cannot_identify_audience"
+                "abandoned"
             ],
             "description": "Condition type"
         },

@@ -1,0 +1,74 @@
+{
+    "definitions": {
+        "page_view_trigger_type_attribute": {
+            "type": "string",
+            "enum": ["page_view"],
+            "description": "Trigger page_view type"
+        },
+        "page_load_trigger_type_attribute": {
+            "type": "string",
+            "enum": ["page_load"],
+            "description": "Trigger page_load type"
+        },
+        "dom_ready_trigger_type_attribute": {
+            "type": "string",
+            "enum": ["dom_ready"],
+            "description": "Trigger dom_ready type"
+        },
+        "leave_content_trigger_type_attribute": {
+            "type": "string",
+            "enum": ["leave_content"],
+            "description": "Trigger leave_content type"
+        },
+        "page_scroll_trigger_type_attribute": {
+            "type": "string",
+            "enum": ["page_scroll"],
+            "description": "Trigger page_scroll type"
+        },
+        "time_on_website_trigger_type_attribute": {
+            "type": "string",
+            "enum": ["time_on_website"],
+            "description": "Trigger time_on_website type"
+        },
+        "event_trigger_type_attribute": {
+            "type": "string",
+            "enum": ["event"],
+            "description": "Trigger event type"
+        },
+        "history_trigger_type_attribute": {
+            "type": "string",
+            "enum": ["history"],
+            "description": "Trigger history type"
+        },
+        "debounced_history_trigger_type_attribute": {
+            "type": "string",
+            "enum": ["debounced_history"],
+            "description": "Trigger debounced_history type"
+        },
+        "form_submission_trigger_type_attribute": {
+            "type": "string",
+            "enum": ["form_submission"],
+            "description": "Trigger form_submission type"
+        },
+        "click_trigger_type_attribute": {
+            "type": "string",
+            "enum": ["click"],
+            "description": "Trigger click type"
+        },
+        "element_presence_trigger_type_attribute": {
+            "type": "string",
+            "enum": ["element_presence"],
+            "description": "Trigger element_presence type"
+        },
+        "cdp_audience_detection_trigger_type_attribute": {
+            "type": "string",
+            "enum": ["cdp_audience_detection"],
+            "description": "Trigger cdp_audience_detection type"
+        },
+        "abandoned_trigger_type_attribute": {
+            "type": "string",
+            "enum": ["abandoned"],
+            "description": "Trigger abandoned type"
+        }
+    }
+}

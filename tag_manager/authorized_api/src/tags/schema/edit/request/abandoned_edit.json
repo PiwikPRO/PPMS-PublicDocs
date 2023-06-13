@@ -1,6 +1,6 @@
 {
-    "title": "Piwik PRO Audience Manager Form Tracker tag",
-    "description": "Piwik PRO Audience Manager Form Tracker tag create request",
+    "title": "Abandoned tag",
+    "description": "Abandoned tag edit request",
     "type": "object",
     "properties": {
         "data": {
@@ -14,43 +14,41 @@
                     "$ref": "../../tag_types.json#/definitions/tag_resource_type"
                 },
                 "attributes": {
-                    "description": "Audience Manager Form Tracker tag attributes",
+                    "description": "Abandoned tag attributes",
                     "type": "object",
                     "properties": {
+                        "code": {
+                            "$ref": "../../tag_attributes.json#/definitions/code"
+                        },
                         "disable_in_debug_mode": {
-                            "$ref": "../../tag_attributes.json#/definitions/disable_in_debug_mode_default"
+                            "$ref": "../../tag_attributes.json#/definitions/disable_in_debug_mode"
+                        },
+                        "document_write": {
+                            "$ref": "../../tag_attributes.json#/definitions/document_write"
                         },
                         "is_active": {
-                            "$ref": "../../tag_attributes.json#/definitions/is_active_default"
+                            "$ref": "../../tag_attributes.json#/definitions/is_active"
                         },
                         "priority": {
-                            "$ref": "../../tag_attributes.json#/definitions/priority_default"
+                            "$ref": "../../tag_attributes.json#/definitions/priority"
                         },
                         "name": {
                             "$ref": "../../tag_attributes.json#/definitions/name"
                         },
                         "respect_visitors_privacy": {
-                            "$ref": "../../tag_attributes.json#/definitions/respect_visitors_privacy_default"
+                            "$ref": "../../tag_attributes.json#/definitions/respect_visitors_privacy"
                         },
                         "scheduler": {
                             "$ref": "../../tag_attributes.json#/definitions/scheduler"
                         },
                         "consent_type": {
-                            "$ref": "../../tag_templates/audience_manager_attributes.json#/definitions/consent_type_default"
-                        },
-                        "template": {
-                            "$ref": "../../tag_templates/audience_manager_attributes.json#/definitions/template"
+                            "$ref": "../../tag_attributes.json#/definitions/consent_type"
                         },
                         "template_options": {
-                            "$ref": "../../tag_templates/audience_manager_attributes.json#/definitions/template_options_create_edit"
+                            "$ref": "../../tag_templates/abandoned_attributes.json#/definitions/template_options"
                         }
                     },
-                    "additionalProperties": false,
-                    "required": [
-                        "name",
-                        "template",
-                        "template_options"
-                    ]
+                    "additionalProperties": false
                 },
                 "relationships": {
                     "allOf": [
@@ -64,18 +62,15 @@
                                     "$ref": "../../tag_types.json#/definitions/trigger_relationship"
                                 }
                             },
-                            "additionalProperties": false,
-                            "required": [
-                                "triggers"
-                            ]
+                            "additionalProperties": false
                         }
                     ]
                 }
             },
             "additionalProperties": false,
             "required": [
-                "type",
-                "attributes"
+                "id",
+                "type"
             ]
         }
     },

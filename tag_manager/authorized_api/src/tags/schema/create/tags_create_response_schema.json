@@ -17,9 +17,6 @@
             "$ref": "../get/response/piwik_get.json"
         },
         {
-            "$ref": "../get/response/audience_manager_get.json"
-        },
-        {
             "$ref": "../get/response/piwik_custom_dimension_get.json"
         },
         {
@@ -114,6 +111,9 @@
         },
         {
             "$ref": "../get/response/heatmaps_get.json"
+        },
+        {
+            "$ref": "../get/response/abandoned_get.json"
         }
     ]
 }

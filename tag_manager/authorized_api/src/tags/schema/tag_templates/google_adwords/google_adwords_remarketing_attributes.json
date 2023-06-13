@@ -12,10 +12,11 @@
             ]
         },
         "template_options_audience": {
-            "description": "Audience to export to Google Ads (same audience should be set on trigger)",
-            "$ref": "../../tag_types.json#/definitions/non_empty_string"
+            "description": "Audience to export to Google Ads (same audience should be set on trigger). This value is abandoned and it won't be used even if you will pass it.",
+            "$ref": "../../tag_types.json#/definitions/non_empty_string",
+            "deprecated": true
         },
-        "template_options": {
+        "template_options_create_edit": {
             "description": "[Tag template options](#tag-template-options)",
             "type": "object",
             "properties": {
@@ -27,6 +28,23 @@
                 },
                 "audience": {
                     "$ref": "#/definitions/template_options_audience"
+                }
+            },
+            "additionalProperties": false,
+            "required": [
+                "type",
+                "conversion_id"
+            ]
+        },
+        "template_options_get": {
+            "description": "[Tag template options](#tag-template-options)",
+            "type": "object",
+            "properties": {
+                "type": {
+                    "$ref": "#/definitions/template_options_type"
+                },
+                "conversion_id": {
+                    "$ref": "google_adwords_base_attributes.json#/definitions/template_options_conversion_id"
                 }
             },
             "additionalProperties": false,

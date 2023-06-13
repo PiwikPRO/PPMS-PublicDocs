@@ -39,7 +39,7 @@
                             "$ref": "../../tag_attributes.json#/definitions/consent_type"
                         },
                         "template_options": {
-                            "$ref": "../../tag_templates/google_adwords/google_adwords_conversion_tracking_attributes.json#/definitions/template_options"
+                            "$ref": "../../tag_templates/google_adwords/google_adwords_conversion_tracking_attributes.json#/definitions/template_options_create_edit"
                         }
                     },
                     "additionalProperties": false

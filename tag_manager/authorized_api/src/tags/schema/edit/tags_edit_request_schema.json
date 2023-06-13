@@ -17,9 +17,6 @@
             "$ref": "request/piwik_edit.json"
         },
         {
-            "$ref": "request/audience_manager_edit.json"
-        },
-        {
             "$ref": "request/piwik_custom_dimension_edit.json"
         },
         {
@@ -114,6 +111,9 @@
         },
         {
             "$ref": "request/google_adwords_doubleclick_edit.json"
+        },
+        {
+            "$ref": "request/abandoned_edit.json"
         }
     ]
 }

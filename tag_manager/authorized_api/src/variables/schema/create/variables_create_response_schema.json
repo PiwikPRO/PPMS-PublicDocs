@@ -49,6 +49,10 @@
         {
             "$ref": "../get/response/lookup_table_schema.json",
             "title": "lookup_table"
+        },
+        {
+            "$ref": "../get/response/abandoned_schema.json",
+            "title": "abandoned"
         }
     ]
 }

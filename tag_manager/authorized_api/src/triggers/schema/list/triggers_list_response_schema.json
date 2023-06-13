@@ -10,6 +10,16 @@
                 "properties": {
                     "id": {"$ref": "../trigger_types.json#/definitions/trigger_identifier"},
                     "type": {"$ref": "../trigger_types.json#/definitions/trigger_resource_type"},
+                    "meta": {
+                        "type": "object",
+                        "description": "Trigger meta data",
+                        "properties": {
+                            "has_abandoned_conditions": {"$ref": "../trigger_attributes.json#/definitions/trigger_has_abandoned_conditions_meta"},
+                            "has_conditions_with_abandoned_variable": {"$ref": "../trigger_attributes.json#/definitions/trigger_has_conditions_with_abandoned_variable_meta"}
+                        },
+                        "required": ["has_abandoned_conditions", "has_conditions_with_abandoned_variable"],
+                        "additionalProperties": false
+                    },
                     "attributes": {
                         "type": "object",
                         "description": "Trigger attributes",
@@ -24,7 +34,7 @@
                         "additionalProperties": false
                     }
                 },
-                "required": ["id", "type", "attributes"],
+                "required": ["id", "type", "meta","attributes"],
                 "additionalProperties": false
             }
         },

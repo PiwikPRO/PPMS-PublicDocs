@@ -175,7 +175,6 @@
             "enum": [
                 "ab_tasty",
                 "adroll",
-                "audience_manager",
                 "bing_ads",
                 "click_tale",
                 "crazy_egg",
@@ -203,7 +202,8 @@
                 "visual_website_optimizer",
                 "video_html5",
                 "video_youtube",
-                "heatmaps"
+                "heatmaps",
+                "abandoned"
             ]
         },
         "template_options_empty": {
