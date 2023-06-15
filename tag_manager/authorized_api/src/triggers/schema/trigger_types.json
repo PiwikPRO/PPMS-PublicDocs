@@ -2,7 +2,9 @@
     "definitions": {
         "trigger_resource_type": {
             "type": "string",
-            "enum": ["trigger"],
+            "enum": [
+                "trigger"
+            ],
             "description": "Trigger resource type"
         },
         "trigger_identifier": {

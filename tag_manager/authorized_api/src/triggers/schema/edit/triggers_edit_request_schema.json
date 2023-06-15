@@ -1,44 +1,57 @@
 {
-    "description": "Edit trigger request",
-    "type": "object",
-    "properties": {
-        "data": {
-            "title": "JSON:API 1.0 request data",
-            "type": "object",
-            "properties": {
-                "id": {"$ref": "../trigger_types.json#/definitions/trigger_identifier"},
-                "type": {"$ref": "../trigger_types.json#/definitions/trigger_resource_type"},
-                "attributes": {
-                    "type": "object",
-                    "description": "Trigger attributes",
-                    "properties": {
-                        "name": {"$ref": "../trigger_attributes.json#/definitions/trigger_name_attribute"},
-                        "trigger_type": {"$ref": "../trigger_attributes.json#/definitions/trigger_type_attribute"},
-                        "conditions": {"$ref": "../trigger_attributes.json#/definitions/trigger_conditions_attribute"}
-                    },
-                    "additionalProperties": false
-                },
-                "relationships": {
-                    "allOf": [
-                        {
-                            "$ref": "../trigger_types.json#/definitions/relationships_description"
-                        },
-                        {
-                            "type": "object",
-                            "properties": {
-                                "tags": {
-                                    "$ref": "../trigger_types.json#/definitions/tag_relationship"
-                                }
-                            },
-                            "additionalProperties": false
-                        }
-                    ]
-                }
-            },
-            "required": ["id", "type"],
-            "additionalProperties": false
+    "description": "Trigger edit request",
+    "oneOf": [
+        {
+            "$ref": "request/page_view_schema.json",
+            "title": "page_view"
+        },
+        {
+            "$ref": "request/page_load_schema.json",
+            "title": "page_load"
+        },
+        {
+            "$ref": "request/dom_ready_schema.json",
+            "title": "dom_ready"
+        },
+        {
+            "$ref": "request/leave_content_schema.json",
+            "title": "leave_content"
+        },
+        {
+            "$ref": "request/page_scroll_schema.json",
+            "title": "page_scroll"
+        },
+        {
+            "$ref": "request/time_on_website_schema.json",
+            "title": "time_on_website"
+        },
+        {
+            "$ref": "request/event_schema.json",
+            "title": "event"
+        },
+        {
+            "$ref": "request/history_schema.json",
+            "title": "history"
+        },
+        {
+            "$ref": "request/debounced_history_schema.json",
+            "title": "debounced_history"
+        },
+        {
+            "$ref": "request/form_submission_schema.json",
+            "title": "form_submission"
+        },
+        {
+            "$ref": "request/click_schema.json",
+            "title": "click"
+        },
+        {
+            "$ref": "request/element_presence_schema.json",
+            "title": "element_presence"
+        },
+        {
+            "$ref": "request/cdp_audience_detection_schema.json",
+            "title": "cdp_audience_detection"
         }
-    },
-    "required": ["data"],
-    "additionalProperties": false
+    ]
 }

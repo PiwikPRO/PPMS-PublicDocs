@@ -114,6 +114,11 @@
             },
             "required": ["default_value", "mapping"],
             "additionalProperties": false
+        },
+        "abandoned_variable_type_attribute": {
+            "type": "string",
+            "enum": ["abandoned"],
+            "description": "Variable abandoned type"
         }
     }
 }

@@ -12,10 +12,11 @@
             ]
         },
         "template_options_audience": {
-            "description": "Audience to export to Google Ads (same audience should be set on trigger)",
-            "$ref": "../../tag_types.json#/definitions/non_empty_string"
+            "description": "Audience to export to Google Ads (same audience should be set on trigger). This value is abandoned and it won't be used even if you will pass it.",
+            "$ref": "../../tag_types.json#/definitions/non_empty_string",
+            "deprecated": true
         },
-        "template_options": {
+        "template_options_create_edit": {
             "description": "[Tag template options](#tag-template-options)",
             "type": "object",
             "properties": {
@@ -59,6 +60,56 @@
                 },
                 "audience": {
                     "$ref": "#/definitions/template_options_audience"
+                }
+            },
+            "additionalProperties": false,
+            "required": [
+                "type",
+                "conversion_id",
+                "conversion_tracking"
+            ]
+        },
+        "template_options_get": {
+            "description": "[Tag template options](#tag-template-options)",
+            "type": "object",
+            "properties": {
+                "type": {
+                    "$ref": "#/definitions/template_options_type"
+                },
+                "conversion_id": {
+                    "$ref": "google_adwords_base_attributes.json#/definitions/template_options_conversion_id"
+                },
+                "conversion_tracking": {
+                    "description": "Conversion tracking definition",
+                    "type": "object",
+                    "properties": {
+                        "conversion_label": {
+                            "description": "Conversion label",
+                            "anyOf": [
+                                {
+                                    "$ref": "../../tag_types.json#/definitions/non_empty_string"
+                                },
+                                {
+                                    "$ref": "../../../../common/schema/common_types.json#/definitions/variable_reference"
+                                }
+                            ]
+                        },
+                        "conversion_value": {
+                            "description": "Conversion value",
+                            "oneOf": [
+                                {
+                                    "$ref": "../../tag_types.json#/definitions/positive_number"
+                                },
+                                {
+                                    "$ref": "../../../../common/schema/common_types.json#/definitions/variable_reference"
+                                }
+                            ]
+                        }
+                    },
+                    "additionalProperties": false,
+                    "required": [
+                        "conversion_label"
+                    ]
                 }
             },
             "additionalProperties": false,

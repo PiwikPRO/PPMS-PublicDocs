@@ -42,7 +42,7 @@
                             "$ref": "../../tag_templates/google_adwords/google_adwords_base_attributes.json#/definitions/template"
                         },
                         "template_options": {
-                            "$ref": "../../tag_templates/google_adwords/google_adwords_remarketing_attributes.json#/definitions/template_options"
+                            "$ref": "../../tag_templates/google_adwords/google_adwords_remarketing_attributes.json#/definitions/template_options_create_edit"
                         }
                     },
                     "additionalProperties": false,

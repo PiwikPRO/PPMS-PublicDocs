@@ -1,0 +1,14 @@
+{
+    "definitions": {
+        "template": {
+            "$ref": "../tag_attributes.json#/definitions/template",
+            "enum": [
+                "abandoned"
+            ]
+        },
+        "template_options": {
+            "description": "[Tag template options](#tag-template-options)",
+            "type": "object"
+        }
+    }
+}

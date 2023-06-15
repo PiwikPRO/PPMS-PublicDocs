@@ -53,6 +53,10 @@
         {
             "$ref": "response/cdp_audience_schema.json",
             "title": "cdp_audience"
+        },
+        {
+            "$ref": "response/abandoned_schema.json",
+            "title": "abandoned"
         }
     ]
 }

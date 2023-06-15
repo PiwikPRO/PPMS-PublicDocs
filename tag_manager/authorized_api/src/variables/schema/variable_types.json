@@ -18,7 +18,8 @@
                 "url",
                 "lookup_table",
                 "piwik_anonymization",
-                "cdp_audience"
+                "cdp_audience",
+                "abandoned"
             ],
             "description": "Variable type"
         },

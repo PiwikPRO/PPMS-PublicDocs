@@ -54,7 +54,7 @@
                             "$ref": "../../tag_templates/google_adwords/google_adwords_base_attributes.json#/definitions/template"
                         },
                         "template_options": {
-                            "$ref": "../../tag_templates/google_adwords/google_adwords_conversion_tracking_attributes.json#/definitions/template_options"
+                            "$ref": "../../tag_templates/google_adwords/google_adwords_conversion_tracking_attributes.json#/definitions/template_options_get"
                         },
                         "created_at": {
                             "$ref": "../../../../common/schema/common_types.json#/definitions/datetime"
