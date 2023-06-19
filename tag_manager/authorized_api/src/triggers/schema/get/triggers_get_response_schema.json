@@ -1,62 +1,61 @@
 {
-    "description": "Get trigger response",
-    "type": "object",
-    "properties": {
-        "data": {
-            "title": "JSON:API 1.0 response data",
-            "type": "object",
-            "properties": {
-                "id": {"$ref": "../trigger_types.json#/definitions/trigger_identifier"},
-                "type": {"$ref": "../trigger_types.json#/definitions/trigger_resource_type"},
-                "attributes": {
-                    "type": "object",
-                    "description": "Trigger attributes",
-                    "properties": {
-                        "name": {"$ref": "../trigger_attributes.json#/definitions/trigger_name_attribute"},
-                        "trigger_type": {"$ref": "../trigger_attributes.json#/definitions/trigger_type_attribute"},
-                        "is_published": {"$ref": "../trigger_attributes.json#/definitions/trigger_is_published_attribute"},
-                        "conditions": {"$ref": "../trigger_attributes.json#/definitions/trigger_conditions_attribute"},
-                        "created_at": {"$ref": "../../../common/schema/common_types.json#/definitions/datetime"},
-                        "updated_at": {"$ref": "../../../common/schema/common_types.json#/definitions/datetime"}
-                    },
-                    "required": ["name", "trigger_type", "is_published", "conditions", "created_at", "updated_at"],
-                    "additionalProperties": false
-                },
-                "relationships": {
-                    "type": "object",
-                    "description": "Trigger relationships",
-                    "properties": {
-                        "tags": {
-                            "type": "object",
-                            "description": "Related tags",
-                            "properties": {
-                                "data": {
-                                    "title": "JSON:API 1.0 relationship data",
-                                    "type": "array",
-                                    "description": "Tag resource identifiers",
-                                    "items": {
-                                        "type": "object",
-                                        "properties": {
-                                            "id": {"$ref": "../../../tags/schema/tag_types.json#/definitions/tag_identifier"},
-                                            "type": {"$ref": "../../../tags/schema/tag_types.json#/definitions/tag_resource_type"}
-                                        },
-                                        "required": ["id", "type"],
-                                        "additionalProperties": false
-                                    }
-                                }
-                            },
-                            "required": ["data"],
-                            "additionalProperties": false
-                        }
-                    },
-                    "required": ["tags"],
-                    "additionalProperties": false
-                }
-            },
-            "required": ["id", "type", "attributes", "relationships"],
-            "additionalProperties": false
+    "description": "Trigger create response",
+    "oneOf": [
+        {
+            "$ref": "../get/response/page_view_schema.json",
+            "title": "page_view"
+        },
+        {
+            "$ref": "../get/response/page_load_schema.json",
+            "title": "page_load"
+        },
+        {
+            "$ref": "../get/response/dom_ready_schema.json",
+            "title": "dom_ready"
+        },
+        {
+            "$ref": "../get/response/leave_content_schema.json",
+            "title": "leave_content"
+        },
+        {
+            "$ref": "../get/response/page_scroll_schema.json",
+            "title": "page_scroll"
+        },
+        {
+            "$ref": "../get/response/time_on_website_schema.json",
+            "title": "time_on_website"
+        },
+        {
+            "$ref": "../get/response/event_schema.json",
+            "title": "event"
+        },
+        {
+            "$ref": "../get/response/history_schema.json",
+            "title": "history"
+        },
+        {
+            "$ref": "../get/response/debounced_history_schema.json",
+            "title": "debounced_history"
+        },
+        {
+            "$ref": "../get/response/form_submission_schema.json",
+            "title": "form_submission"
+        },
+        {
+            "$ref": "../get/response/click_schema.json",
+            "title": "click"
+        },
+        {
+            "$ref": "../get/response/element_presence_schema.json",
+            "title": "element_presence"
+        },
+        {
+            "$ref": "../get/response/cdp_audience_detection_schema.json",
+            "title": "cdp_audience_detection"
+        },
+        {
+            "$ref": "../get/response/abandoned_schema.json",
+            "title": "abandoned"
         }
-    },
-    "required": ["data"],
-    "additionalProperties": false
+    ]
 }

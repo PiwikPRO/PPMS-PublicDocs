@@ -13,6 +13,10 @@
         {
             "type": "trigger",
             "id": "252eebdd-99a6-4942-9805-7a94c717d2fa",
+            "meta": {
+                "has_abandoned_conditions": false,
+                "has_conditions_with_abandoned_variable": false
+            },
             "attributes": {
                 "name": "Trigger Page view",
                 "trigger_type": "page_view",
@@ -24,6 +28,10 @@
         {
             "type": "trigger",
             "id": "57a653c9-07c0-4f9a-85f6-1cda14eb5e3e",
+            "meta": {
+                "has_abandoned_conditions": false,
+                "has_conditions_with_abandoned_variable": false
+            },
             "attributes": {
                 "name": "Trigger page view for custom campaign",
                 "trigger_type": "page_view",

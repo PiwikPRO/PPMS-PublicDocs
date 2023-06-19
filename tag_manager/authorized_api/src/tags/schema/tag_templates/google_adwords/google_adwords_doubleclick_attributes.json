@@ -12,8 +12,9 @@
             ]
         },
         "template_options_audience": {
-            "description": "Audience to export to DoubleClick (same audience should be set on trigger)",
-            "$ref": "../../tag_types.json#/definitions/non_empty_string"
+            "description": "Audience to export to DoubleClick (same audience should be set on trigger). This value is abandoned and it won't be used even if you will pass it.",
+            "$ref": "../../tag_types.json#/definitions/non_empty_string",
+            "deprecated": true
         },
         "template_options": {
             "description": "[Tag template options](#tag-template-options)",

@@ -3407,8 +3407,10 @@ Miscellaneous
 
 .. function:: setCustomRequestProcessing(function)
 
-    Allows to access and modify query string before sending a page view or ping
-    request.
+    Allows to access and modify query string before sending a tracking request.
+
+    You may even prevent the tracking request from being sent at all by clearing out the `query` parameter
+    (returning an empty string).
 
     :param function function: **Required** Function accepting a query string and returning another query string.
 
@@ -3436,9 +3438,8 @@ Miscellaneous
 
     .. todo::
 
-        Consider removing/deprecating this method for two reasons:
-        1. It only affects pings and page views
-        2. It is hard to use - doing anything useful with it requires parsing query parameter string
+        Consider removing/deprecating this method because it is hard to use - doing anything useful with it requires
+        parsing query parameter string
 
 .. _jtc-api-enableJSErrorTracking:
 

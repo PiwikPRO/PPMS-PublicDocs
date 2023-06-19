@@ -31,6 +31,13 @@
                     "options": {
                         "selector_type": "css"
                     }
+                },
+                {
+                    "condition_id": "0f97455d-c1f7-4b11-b27f-1f26b7e6a72f",
+                    "variable_id": "86068b14-804c-4b44-8a48-68ab37244ffc",
+                    "condition_type": "visitor_belongs_to",
+                    "value": "1fc2548c-b5cb-4c1e-8729-437799485899",
+                    "options": {}
                 }
             ]
         },

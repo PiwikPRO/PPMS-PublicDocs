@@ -75,10 +75,6 @@
                             "$ref": "../../tags/schema/tag_templates/piwik_attributes.json#/definitions/template_options_get"
                         },
                         {
-                            "title": "Piwik PRO Audience Manager Form Tracker",
-                            "$ref": "../../tags/schema/tag_templates/audience_manager_attributes.json#/definitions/template_options_get"
-                        },
-                        {
                             "title": "Piwik PRO Custom Dimensions",
                             "$ref": "../../tags/schema/tag_templates/piwik_custom_dimension_attributes.json#/definitions/template_options"
                         },
@@ -140,15 +136,15 @@
                         },
                         {
                             "title": "Meta Pixel",
-                            "$ref": "../../tags/schema/tag_templates/facebook_retargeting_pixel_attributes.json#/definitions/template_options_create_edit"
+                            "$ref": "../../tags/schema/tag_templates/facebook_retargeting_pixel_attributes.json#/definitions/template_options_get"
                         },
                         {
                             "title": "Google Ads Remarketing",
-                            "$ref": "../../tags/schema/tag_templates/google_adwords/google_adwords_remarketing_attributes.json#/definitions/template_options"
+                            "$ref": "../../tags/schema/tag_templates/google_adwords/google_adwords_remarketing_attributes.json#/definitions/template_options_get"
                         },
                         {
                             "title": "Google Ads Tracking Conversion",
-                            "$ref": "../../tags/schema/tag_templates/google_adwords/google_adwords_remarketing_attributes.json#/definitions/template_options"
+                            "$ref": "../../tags/schema/tag_templates/google_adwords/google_adwords_remarketing_attributes.json#/definitions/template_options_get"
                         },
                         {
                             "title": "Google Analytics",
@@ -205,6 +201,10 @@
                         {
                             "title": "Heatmaps",
                             "$ref": "../../tags/schema/tag_templates/heatmaps_attributes.json#/definitions/template_options"
+                        },
+                        {
+                            "title": "Abandoned",
+                            "$ref": "../../tags/schema/tag_templates/abandoned_attributes.json#/definitions/template_options"
                         }
                     ]
                 },
@@ -361,7 +361,7 @@
                     "$ref": "../../variables/schema/variable_attributes.json#/definitions/variable_name_attribute"
                 },
                 "variable_type": {
-                    "$ref": "../../variables/schema/variable_types.json#/definitions/upsertable_variable_type"
+                    "$ref": "../../variables/schema/variable_types.json#/definitions/variable_type"
                 },
                 "value": {
                     "$ref": "../../variables/schema/variable_attributes.json#/definitions/variable_value_attribute"
