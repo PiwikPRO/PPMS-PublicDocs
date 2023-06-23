@@ -281,6 +281,7 @@ E-commerce v2
         * quantity - **Optional** [number|string] Product quantity has to be an integer number or a string containing integer representation (default: 1)
         * brand - **Optional** [string] Product brand (default: "")
         * variant - **Optional** [string] Product variant (default: "")
+        * customDimensions - **Optional** [object] Product custom dimentions (default: {})
 
     Example of usage:
 
@@ -299,7 +300,11 @@ E-commerce v2
                         price: "49.90",
                         quantity: 3,
                         brand: "DMZ",
-                        variant: "blue"
+                        variant: "blue",
+                        customDimensions: {
+                            1: 'coupon-2020',
+                            2: '20%'
+                        }
                     }]
                 ]);
 
@@ -314,7 +319,11 @@ E-commerce v2
                     price: "49.90",
                     quantity: 3,
                     brand: "DMZ",
-                    variant: "blue"
+                    variant: "blue",
+                    customDimensions: {
+                        1: 'coupon-2020',
+                        2: '20%'
+                    }
                 }]);
 
 .. _jtc-api-ecommerceAddToCart:
@@ -332,6 +341,7 @@ E-commerce v2
         * quantity - **Optional** [number|string] Product quantity has to be an integer number or a string containing integer representation (default: 1)
         * brand - **Optional** [string] Product brand (default: "")
         * variant - **Optional** [string] Product variant (default: "")
+        * customDimensions - **Optional** [object] Product custom dimentions (default: {})
 
     Example of usage:
 
@@ -350,7 +360,11 @@ E-commerce v2
                         price: "49.90",
                         quantity: 3,
                         brand: "DMZ",
-                        variant: "blue"
+                        variant: "blue",
+                        customDimensions: {
+                            1: 'coupon-2020',
+                            2: '20%'
+                        }
                     }]
                 ]);
 
@@ -365,7 +379,11 @@ E-commerce v2
                     price: "49.90",
                     quantity: 3,
                     brand: "DMZ",
-                    variant: "blue"
+                    variant: "blue",
+                    customDimensions: {
+                        1: 'coupon-2020',
+                        2: '20%'
+                    }
                 }]);
 
 .. _jtc-api-ecommerceRemoveFromCart:
@@ -383,6 +401,7 @@ E-commerce v2
         * quantity - **Optional** [number|string] Product quantity has to be an integer number or a string containing integer representation (default: 1)
         * brand - **Optional** [string] Product brand (default: "")
         * variant - **Optional** [string] Product variant (default: "")
+        * customDimensions - **Optional** [object] Product custom dimentions (default: {})
 
     Example of usage:
 
@@ -401,7 +420,11 @@ E-commerce v2
                         price: "49.90",
                         quantity: 3,
                         brand: "DMZ",
-                        variant: "blue"
+                        variant: "blue",
+                        customDimensions: {
+                            1: 'coupon-2020',
+                            2: '20%'
+                        }
                     }]
                 ]);
 
@@ -416,7 +439,11 @@ E-commerce v2
                     price: "49.90",
                     quantity: 3,
                     brand: "DMZ",
-                    variant: "blue"
+                    variant: "blue",
+                    customDimensions: {
+                        1: 'coupon-2020',
+                        2: '20%'
+                    }
                 }]);
 
 .. _jtc-api-ecommerceCartUpdate:
@@ -434,6 +461,7 @@ E-commerce v2
         * quantity - **Optional** [number|string] Product quantity has to be an integer number or a string containing integer representation (default: 1)
         * brand - **Optional** [string] Product brand (default: "")
         * variant - **Optional** [string] Product variant (default: "")
+        * customDimensions - **Optional** [object] Product custom dimentions (default: {})
 
     :param number grandTotal: **Required** [number|string] The total value of items in a cart has to be a float number or a string containing float number representation
 
@@ -455,7 +483,11 @@ E-commerce v2
                             price: "50.00",
                             quantity: 3,
                             brand: "DMZ",
-                            variant: "blue"
+                            variant: "blue",
+                            customDimensions: {
+                                1: 'coupon-2020',
+                                2: '20%'
+                            }
                         },
                         {
                             sku: "craft-312",
@@ -464,7 +496,11 @@ E-commerce v2
                             price: "30.00",
                             quantity: 1,
                             brand: "DMZ",
-                            variant: "red"
+                            variant: "red",
+                            customDimensions: {
+                                1: 'coupon-2020',
+                                2: '20%'
+                            }
                         }
                     ],
                     "180.00"
@@ -483,7 +519,11 @@ E-commerce v2
                             price: "50.00",
                             quantity: 3,
                             brand: "DMZ",
-                            variant: "blue"
+                            variant: "blue",
+                            customDimensions: {
+                                1: 'coupon-2020',
+                                2: '20%'
+                            }
                         },
                         {
                             sku: "craft-312",
@@ -492,7 +532,11 @@ E-commerce v2
                             price: "30.00",
                             quantity: 1,
                             brand: "DMZ",
-                            variant: "red"
+                            variant: "red",
+                            customDimensions: {
+                                1: 'coupon-2020',
+                                2: '20%'
+                            }
                         }
                     ],
                     "180.00"
@@ -513,6 +557,7 @@ E-commerce v2
         * quantity - **Optional** [number|string] Product quantity has to be an integer number or a string containing integer representation (default: 1)
         * brand - **Optional** [string] Product brand (default: "")
         * variant - **Optional** [string] Product variant (default: "")
+        * customDimensions - **Optional** [object] Product custom dimentions (default: {})
 
     :param object paymentInformation: Total payment information about products in a cart. Expected attributes:
 
@@ -541,7 +586,11 @@ E-commerce v2
                             price: "50.00",
                             quantity: 3,
                             brand: "DMZ",
-                            variant: "blue"
+                            variant: "blue",
+                            customDimensions: {
+                                1: 'coupon-2020',
+                                2: '20%'
+                            }
                         },
                         {
                             sku: "craft-312",
@@ -550,7 +599,11 @@ E-commerce v2
                             price: "30.00",
                             quantity: 1,
                             brand: "DMZ",
-                            variant: "red"
+                            variant: "red",
+                            customDimensions: {
+                                1: 'coupon-2020',
+                                2: '20%'
+                            }
                         }
                     ],
                     {
@@ -576,7 +629,11 @@ E-commerce v2
                             price: "50.00",
                             quantity: 3,
                             brand: "DMZ",
-                            variant: "blue"
+                            variant: "blue",
+                            customDimensions: {
+                                1: 'coupon-2020',
+                                2: '20%'
+                            }
                         },
                         {
                             sku: "craft-312",
@@ -585,7 +642,11 @@ E-commerce v2
                             price: "30.00",
                             quantity: 1,
                             brand: "DMZ",
-                            variant: "red"
+                            variant: "red",
+                            customDimensions: {
+                                1: 'coupon-2020',
+                                2: '20%'
+                            }
                         }
                     ],
                     {
