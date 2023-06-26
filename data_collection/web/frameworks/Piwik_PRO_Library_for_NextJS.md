@@ -64,7 +64,7 @@ module.exports = withTM(nextConfig)
 
 In your Next.js Project, include the default `PiwikProProvider` in the `_app.tsx` file. To set up the Piwik PRO Tag Manager container in the app, include the initialization code in your `App`.
 
-In the arguments, pass your account name and your container id as parameters (marked 'accountName' and 'containerId' in the example below).
+In the arguments, pass your container id and your container url as parameters (marked `container-id` and `container-url` in the example below).
 
 #### \_app.tsx
 
@@ -75,8 +75,8 @@ function App({ Component, pageProps }: AppProps) {
   return (
     <>
       <PiwikProProvider
-        accountName='accountName'
-        containerId='43e4bca4-e220-43df-acfc-40fef7e25105'
+        containerId='container-id'
+        containerUrl='container-url' 
       >
         <Component {...pageProps} />
       </PiwikProProvider>
@@ -92,8 +92,8 @@ If you plan to use environmental variables to config your Piwik account you can 
 #### .env
 
 ``` sh
-NEXT_PUBLIC_ACCOUNT_NAME=accountName
-NEXT_PUBLIC_CONTAINER_ID=43e4bca4-e220-43df-acfc-40fef7e25105
+NEXT_PUBLIC_CONTAINER_ID=container-id
+NEXT_PUBLIC_CONTAINER_URL=container-url
 ```
 
 #### \_app.tsx
@@ -103,8 +103,8 @@ function App({ Component, pageProps }: AppProps) {
   return (
     <>
       <PiwikProProvider
-        accountName={process.env.NEXT_PUBLIC_ACCOUNT_NAME}
         containerId={process.env.NEXT_PUBLIC_CONTAINER_ID}
+        containerUrl={process.env.NEXT_PUBLIC_CONTAINER_URL}
       >
         <Component {...pageProps} />
       </PiwikProProvider>
@@ -128,8 +128,8 @@ function App({ Component, pageProps }: AppProps) {
   return (
     <>
       <PiwikProProvider
-        accountName='accountName'
-        containerId='43e4bca4-e220-43df-acfc-40fef7e25105'
+        containerId='container-id'
+        containerUrl='container-url'
         nonce='nonce-string'
       >
         <Component {...pageProps} />
