@@ -808,7 +808,7 @@ Goal tracking
 -------------
 
 At this point we have tracked many different types of events. We have regular page views, downloads, outlinks, custom events and others. Above them all there's one more event type we can track: a conversion.
-And goal tracking is about tracking conversions. If you can point out parts of your website/application more important from your business perspective, you could :ref:`define those parts as goals<https://help.piwik.pro/support/analytics-new/goals/>`.
+And goal tracking is about tracking conversions. If you can point out parts of your website/application more important from your business perspective, you could `define those parts as goals <https://help.piwik.pro/support/analytics-new/goals/>`_.
 Visiting a specific landing page, submitting a contact form, downloading a PDF file with your product manual - these are popular examples of goal definitions. You can even define a goal based on the custom event you are tracking.
 
 If a goal with automatic tracking is defined in Analytics, every time an events matching the goal's definition is tracked, we create an additional conversion event and save it along the original event. We call this procedure an "automatic conversion".
@@ -844,7 +844,7 @@ To set JavaScript Tracking client to mark requests as anonymized call :ref:`setU
 
     _paq.push(["setUserIsAnonymous"]);
 
-From now on all following requests sent by :ref:`trackPageView<jtc-api-trackPageView>` or any other function that sends requests to :term:`Collecting & Processing Pipeline`, will be marked as a request that should be anonymized. :ref:`Learn more how Piwik PRO anonymizes visitors data<https://piwik.pro/blog/how-to-do-useful-analytics-without-personal-data/>`.
+From now on all following requests sent by :ref:`trackPageView<jtc-api-trackPageView>` or any other function that sends requests to :term:`Collecting & Processing Pipeline`, will be marked as a request that should be anonymized. `Learn more how Piwik PRO anonymizes visitors data <https://piwik.pro/blog/how-to-do-useful-analytics-without-personal-data/>`_.
 
 .. note::
 
