@@ -766,7 +766,7 @@ paths:
           description: |
             Whether the user should be tracked anonymously.
 
-            - ``1`` - all IP bytes will be masked (0.0.0.0), GeoIP data below Contry level will be anonymized
+            - ``1`` - all IP bytes will be masked (0.0.0.0), GeoIP data below Country level will be anonymized
             - ``0`` - available visitor data will be added to the session
           schema:
             type: integer

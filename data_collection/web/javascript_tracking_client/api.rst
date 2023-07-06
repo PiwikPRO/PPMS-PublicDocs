@@ -1888,7 +1888,7 @@ User management
     :param boolean isAnonymous: **Required** Whether visitor is anonymous
 
 
-    - ``true`` - all IP bytes will be masked (0.0.0.0), GeoIP data below Contry level will be anonymized
+    - ``true`` - all IP bytes will be masked (0.0.0.0), GeoIP data below Country level will be anonymized
     - ``false`` - available visitor data will be added to the session
 
     Example of usage:
