@@ -82,7 +82,7 @@ Glossary
         Personally Identifiable Information.
 
     Tracking Tag
-        A HTML tag, that is created and configured by Tag Manager. It is loaded to the website with Tag Manager Container. Using a Tracking Tag is an alternative for implementing a JavaScript Tracking Snippet. You can :ref:`learn more about Tracking Tag here<https://help.piwik.pro/support/tag-manager/piwik-pro-tag/>`.
+        A HTML tag, that is created and configured by Tag Manager. It is loaded to the website with Tag Manager Container. Using a Tracking Tag is an alternative for implementing a JavaScript Tracking Snippet. You can `learn more about Tracking Tag here <https://help.piwik.pro/support/tag-manager/piwik-pro-tag/>`_.
 
     User ID
         Permanent ID assigned to :term:`visitor` by :term:`application` (e.g. username). You can read more about it
