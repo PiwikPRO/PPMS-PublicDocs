@@ -39,9 +39,13 @@ In the arguments, pass your app ID and your account URL as parameters (marked 'c
 ```ts
 import PiwikPro from '@piwikpro/react-piwik-pro';
 
-PiwikPro.initialize('container-id', 'container-url');
+PiwikPro.initialize('0a0b8661-8c10-4d59-e8fg-1h926ijkl184', 'https://example.piwik.pro');
 
 ReactDOM.render(<App />, document.getElementById('root'))
+```
+
+```
+> Previously, we used 'accountName' to configure PiwikProProvider. The parameter has now been replaced by 'container-url'. The 'accountName' parameter is deprecated and will be removed in the future.
 ```
 
 ## Piwik PRO Services
