@@ -64,7 +64,7 @@ module.exports = withTM(nextConfig)
 
 In your Next.js Project, include the default `PiwikProProvider` in the `_app.tsx` file. To set up the Piwik PRO Tag Manager container in the app, include the initialization code in your `App`.
 
-In the arguments, pass your account name and your container id as parameters (marked 'accountName' and 'containerId' in the example below).
+In the arguments, pass your container id and your container url as parameters (marked `container-id` and `container-url` in the example below).
 
 #### \_app.tsx
 
@@ -75,8 +75,8 @@ function App({ Component, pageProps }: AppProps) {
   return (
     <>
       <PiwikProProvider
-        accountName='accountName'
-        containerId='43e4bca4-e220-43df-acfc-40fef7e25105'
+        containerId='0a0b8661-8c10-4d59-e8fg-1h926ijkl184'
+        containerUrl='https://example.piwik.pro' 
       >
         <Component {...pageProps} />
       </PiwikProProvider>
@@ -92,8 +92,8 @@ If you plan to use environmental variables to config your Piwik account you can 
 #### .env
 
 ``` sh
-NEXT_PUBLIC_ACCOUNT_NAME=accountName
-NEXT_PUBLIC_CONTAINER_ID=43e4bca4-e220-43df-acfc-40fef7e25105
+NEXT_PUBLIC_CONTAINER_ID=0a0b8661-8c10-4d59-e8fg-1h926ijkl184
+NEXT_PUBLIC_CONTAINER_URL=https://example.piwik.pro
 ```
 
 #### \_app.tsx
@@ -103,14 +103,16 @@ function App({ Component, pageProps }: AppProps) {
   return (
     <>
       <PiwikProProvider
-        accountName={process.env.NEXT_PUBLIC_ACCOUNT_NAME}
         containerId={process.env.NEXT_PUBLIC_CONTAINER_ID}
+        containerUrl={process.env.NEXT_PUBLIC_CONTAINER_URL}
       >
         <Component {...pageProps} />
       </PiwikProProvider>
     </>
   )
 }
+```
+> Previously, we used 'accountName' to configure PiwikProProvider. The parameter has now been replaced by 'container-url'. The 'accountName' parameter is deprecated and will be removed in the future.
 ```
 
 ### Setup with nonce
@@ -128,8 +130,8 @@ function App({ Component, pageProps }: AppProps) {
   return (
     <>
       <PiwikProProvider
-        accountName='accountName'
-        containerId='43e4bca4-e220-43df-acfc-40fef7e25105'
+        containerId='container-id'
+        containerUrl='container-url'
         nonce='nonce-string'
       >
         <Component {...pageProps} />
