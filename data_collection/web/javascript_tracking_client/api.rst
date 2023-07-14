@@ -1882,11 +1882,14 @@ User management
 
 .. function:: setUserIsAnonymous(isAnonymous)
 
-    Enables or disables anonymous tracking (anonymous = without consent). Does
-    not send any data to :term:`Collecting & Processing Pipeline`. The next emitted event will have
+    Enables or disables anonymous tracking (anonymous = without consent). The next emitted event will have
     anonymous mode set accordingly.
 
     :param boolean isAnonymous: **Required** Whether visitor is anonymous
+
+
+    - ``true`` - all IP bytes will be masked (0.0.0.0), GeoIP data below Country level will be anonymized
+    - ``false`` - available visitor data will be added to the session
 
     Example of usage:
 
