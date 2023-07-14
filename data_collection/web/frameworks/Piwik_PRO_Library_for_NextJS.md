@@ -75,8 +75,8 @@ function App({ Component, pageProps }: AppProps) {
   return (
     <>
       <PiwikProProvider
-        containerId='container-id'
-        containerUrl='container-url' 
+        containerId='0a0b8661-8c10-4d59-e8fg-1h926ijkl184'
+        containerUrl='https://example.piwik.pro' 
       >
         <Component {...pageProps} />
       </PiwikProProvider>
@@ -92,8 +92,8 @@ If you plan to use environmental variables to config your Piwik account you can 
 #### .env
 
 ``` sh
-NEXT_PUBLIC_CONTAINER_ID=container-id
-NEXT_PUBLIC_CONTAINER_URL=container-url
+NEXT_PUBLIC_CONTAINER_ID=0a0b8661-8c10-4d59-e8fg-1h926ijkl184
+NEXT_PUBLIC_CONTAINER_URL=https://example.piwik.pro
 ```
 
 #### \_app.tsx
@@ -111,6 +111,8 @@ function App({ Component, pageProps }: AppProps) {
     </>
   )
 }
+```
+> Previously, we used 'accountName' to configure PiwikProProvider. The parameter has now been replaced by 'container-url'. The 'accountName' parameter is deprecated and will be removed in the future.
 ```
 
 ### Setup with nonce

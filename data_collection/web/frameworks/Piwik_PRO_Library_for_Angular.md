@@ -48,14 +48,18 @@ import { NgxPiwikProModule } from '@piwikpro/ngx-piwik-pro';
     AppComponent  
   ],  
   imports: [  
-    BrowserModule,  
-    NgxPiwikProModule.forRoot('container-id', 'container-url')  
+    BrowserModule,
+    NgxPiwikProModule.forRoot('0a0b8661-8c10-4d59-e8fg-1h926ijkl184', 'https://example.piwik.pro')  
   // ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^  
   ],  
   providers: [],  
   bootstrap: [AppComponent]  
 })
 export class AppModule { }  
+```
+
+```
+> Previously, we used 'accountName' to configure PiwikProProvider. The parameter has now been replaced by 'container-url'. The 'accountName' parameter is deprecated and will be removed in the future.
 ```
 
 ### Setup with nonce
@@ -73,7 +77,7 @@ import { NgxPiwikProModule } from '@piwikpro/ngx-piwik-pro';
   ],
   imports: [
     BrowserModule,
-    NgxPiwikProModule.forRoot('container-id', 'container-url', 'nonce-hash')
+    NgxPiwikProModule.forRoot('0a0b8661-8c10-4d59-e8fg-1h926ijkl184, 'https://example.piwik.pro', 'nonce-hash')
     // ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^  
   ],
   providers: [],
@@ -98,8 +102,8 @@ import { NgxPiwikProModule, NgxPiwikProRouterModule } from '@piwikpro/ngx-piwik-
 @NgModule({  
   ...  
   imports: [  
-    ...  
-    NgxPiwikProModule.forRoot('container-id'),  
+    ...
+    NgxPiwikProModule.forRoot('0a0b8661-8c10-4d59-e8fg-1h926ijkl184', 'https://example.piwik.pro'),  
     NgxPiwikProRouterModule  
 //  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^  
   ]  
@@ -121,9 +125,9 @@ import { NgxPiwikProModule, NgxPiwikProRouterModule } from '@piwikpro/ngx-piwik-
 @NgModule({  
   ...  
   imports: [  
-    ...  
-    NgxPiwikProModule.forRoot('container-id'),  
-    NgxPiwikProRouterModule.forRoot({ include: [...], exclude: [...] })  
+    ...
+  NgxPiwikProModule.forRoot('0a0b8661-8c10-4d59-e8fg-1h926ijkl184', 'https://example.piwik.pro'),
+  NgxPiwikProRouterModule.forRoot({ include: [...], exclude: [...] })  
 //  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^  
   ]  
 })  
