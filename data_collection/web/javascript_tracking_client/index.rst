@@ -8,3 +8,4 @@ JavaScript Tracking Client
    installation.rst
    api.rst
    reserved_names.rst
+   content_security_policy.rst
