@@ -361,7 +361,7 @@ components:
                 enable_fingerprinting_across_websites:
                   $ref: '#/components/schemas/EnableFingerprintingAcrossWebsites'
                 set_ip_tracking:
-                  $ref: '#/components/schemas/SetIpTracking'
+                  $ref: '#/components/schemas/SetIpTracking'  
                 exclude_crawlers:
                   $ref: '#/components/schemas/ExcludeCrawlers'
                 exclude_unknown_urls:
@@ -732,10 +732,10 @@ components:
         ```
       example: false
 
-    SetIpTracking:
+    SetIpTracking: 
       type: boolean
       description: |
-        When disabled, JSTC will set `setIpTracking` to `false` and with each traking request an additional `rmip=1` parameter will be send.
+        When disabled, JSTC will set `setIpTracking` to `false` and with each tracking request an additional `rmip=1` parameter will be sent.
         With `rmip=1` query parameter sent to Tracker, tracker will remove all IP information from tracking request on early stage of request processing. IP address will not be stored anywhere, even in raw tracking request database (table `log`).
         ```
         Initial global value for a new organization:
