@@ -361,7 +361,7 @@ components:
                 enable_fingerprinting_across_websites:
                   $ref: '#/components/schemas/EnableFingerprintingAcrossWebsites'
                 set_ip_tracking:
-                  $ref: '#/components/schemas/SetIpTracking'  
+                  $ref: '#/components/schemas/SetIpTracking'
                 exclude_crawlers:
                   $ref: '#/components/schemas/ExcludeCrawlers'
                 exclude_unknown_urls:
