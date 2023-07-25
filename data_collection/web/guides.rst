@@ -84,7 +84,7 @@ Full abstract example, might look like this:
 
 .. warning::
 
-    Do not clear `User ID` by setting it to some seemingly empty value, like ``_paq.push(["setUserId", " "]);`` or ``_paq.push(["setUserId", ""]);``. This way some value might be still send to Collecting & Processing Pipeline. What seems to be an empty value to a human, might not be to a machine. Only using ``resetUserId`` will properly clear the `User ID` value.
+    Do not clear `User ID` by setting it to some seemingly empty value, like ``_paq.push(["setUserId", " "]);`` or ``_paq.push(["setUserId", ""]);``. This way some value might be still send to Tracker. What seems to be an empty value to a human, might not be to a machine. Only using ``resetUserId`` will properly clear the `User ID` value.
 
 .. note::
 
@@ -178,7 +178,7 @@ Site search tracking gives you insight into how visitors interact with the
 search engine on your website - what they search for and how many results they
 get back.
 
-Our data collecting and processing pipeline automatically converts page views
+Our Tracker data processor automatically converts page views
 into site search events if the URL contains site search query parameters:
 ``q``, ``query``, ``s``, ``search``, ``searchword`` and ``keyword``.  You can
 customize these parameters on the website settings page. Site search events can
@@ -844,7 +844,7 @@ To set JavaScript Tracking client to mark requests as anonymized call :ref:`setU
 
     _paq.push(["setUserIsAnonymous"]);
 
-From now on all following requests sent by :ref:`trackPageView<jtc-api-trackPageView>` or any other function that sends requests to :term:`Collecting & Processing Pipeline`, will be marked as a request that should be anonymized. `Learn more how Piwik PRO anonymizes visitors data <https://piwik.pro/blog/how-to-do-useful-analytics-without-personal-data/>`_.
+From now on all following requests sent by :ref:`trackPageView<jtc-api-trackPageView>` or any other function that sends requests to :term:`Tracker`, will be marked as a request that should be anonymized. `Learn more how Piwik PRO anonymizes visitors data <https://piwik.pro/blog/how-to-do-useful-analytics-without-personal-data/>`_.
 
 .. note::
 
@@ -856,7 +856,7 @@ When a visitor gives consent for tracking or you want to enrich anonymous data t
 
     _paq.push(["deanonymizeUser"]);
 
-This will send special deanonymization request to :term:`Collecting & Processing Pipeline`, that will enrich visitor's data with all the information that was stripped from previous requests.
+This will send special deanonymization request to :term:`Tracker`, that will enrich visitor's data with all the information that was stripped from previous requests.
 
 To sum up:
 
