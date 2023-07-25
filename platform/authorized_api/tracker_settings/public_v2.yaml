@@ -732,7 +732,7 @@ components:
         ```
       example: false
 
-    SetIpTracking: 
+    SetIpTracking:
       type: boolean
       description: |
         When disabled, JSTC will set `setIpTracking` to `false` and with each tracking request an additional `rmip=1` parameter will be sent.
