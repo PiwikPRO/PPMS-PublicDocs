@@ -1,5 +1,5 @@
-Collecting & Processing Pipeline debugger API
-=============================================
+Tracker debugger API
+====================
 
 .. raw:: html
 

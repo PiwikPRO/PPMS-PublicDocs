@@ -112,7 +112,7 @@ the ``Piwik.getAsyncTracker``.
 Tracking functions
 ------------------
 
-Tracking functions collect and send data to :term:`Collecting & Processing Pipeline`. They can be
+Tracking functions collect and send data to :term:`Tracker`. They can be
 called on a :ref:`JavaScript Tracking Client object<jtc-api-jstc-object>` or pushed to
 the :ref:`command queue<jtc-api-command-queue>` as commands.
 
@@ -613,7 +613,7 @@ E-commerce
 
     Adds a product to a virtual shopping cart. If a product with the same SKU
     is in the cart, it will be removed first. Does not send any data to the
-    :term:`Collecting & Processing Pipeline`.
+    :term:`Tracker`.
 
     :param string productSKU: **Required** Product stock-keeping unit
     :param string productName: **Optional** Product name
@@ -639,7 +639,7 @@ E-commerce
 
     .. note::
 
-        This function does not send any data to :term:`Collecting & Processing Pipeline`. It only
+        This function does not send any data to :term:`Tracker`. It only
         prepares the virtual shopping cart to be sent with
         :ref:`trackEcommerceCartUpdate<jtc-api-trackEcommerceCartUpdate>`
         or :ref:`trackEcommerceOrder<jtc-api-trackEcommerceOrder>`.
@@ -676,7 +676,7 @@ E-commerce
 
     Removes a product with the provided SKU from a virtual shopping cart. If
     multiple units of that product are in the virtual cart, all of them will be
-    removed. Does not send any data to the :term:`Collecting & Processing Pipeline`.
+    removed. Does not send any data to the :term:`Tracker`.
 
     :param string productSKU: **Required** stock-keeping unit of a product to remove
 
@@ -698,7 +698,7 @@ E-commerce
 
     .. note::
 
-        This function does not send any data to :term:`Collecting & Processing Pipeline`. It only
+        This function does not send any data to :term:`Tracker`. It only
         prepares the virtual shopping cart to be sent with
         :ref:`trackEcommerceCartUpdate<jtc-api-trackEcommerceCartUpdate>`
         or :ref:`trackEcommerceOrder<jtc-api-trackEcommerceOrder>`.
@@ -713,7 +713,7 @@ E-commerce
 .. function:: clearEcommerceCart()
 
     Removes all items from a virtual shopping cart. Does not send any data to
-    the :term:`Collecting & Processing Pipeline`.
+    the :term:`Tracker`.
 
     Example of usage:
 
@@ -732,7 +732,7 @@ E-commerce
                 jstc.clearEcommerceCart();
 
     .. note::
-        This function does not send any data to :term:`Collecting & Processing Pipeline`. It only
+        This function does not send any data to :term:`Tracker`. It only
         prepares the virtual shopping cart to be sent with
         :ref:`trackEcommerceCartUpdate<jtc-api-trackEcommerceCartUpdate>`
         or :ref:`trackEcommerceOrder<jtc-api-trackEcommerceOrder>`.
@@ -747,7 +747,7 @@ E-commerce
 .. function:: getEcommerceItems()
 
     Returns a copy of items from a virtual shopping cart. Does not send any
-    data to the :term:`Collecting & Processing Pipeline`.
+    data to the :term:`Tracker`.
 
     :returns: Object containing all tracked items (format: ``Object<productSKU, Array[productSKU, productName, productCategory, price, quantity]>``)
     :rtype: object
@@ -1066,7 +1066,7 @@ Custom Dimensions
 
     .. warning::
 
-        This function does not send any data to the :term:`Collecting & Processing Pipeline`. It
+        This function does not send any data to the :term:`Tracker`. It
         prepares a custom dimension to be sent with following events, e.g. page
         view, e-commerce events, outlink or download events.
 
@@ -1161,7 +1161,7 @@ Custom Dimensions
         tracking requests within a page load.
 
     .. warning::
-        This function does not send any data to the :term:`Collecting & Processing Pipeline`. It sets a
+        This function does not send any data to the :term:`Tracker`. It sets a
         Custom Dimension to be sent with following events, e.g. page view,
         e-commerce events, outlink or download events.
 
@@ -1911,7 +1911,7 @@ User management
 
 .. function:: deanonymizeUser()
 
-    Disables anonymous tracking and sends deanonymization event to the :term:`Collecting & Processing Pipeline`.
+    Disables anonymous tracking and sends deanonymization event to the :term:`Tracker`.
     Recommended method for disabling anonymous tracking.
 
     Example of usage:
@@ -3154,7 +3154,7 @@ JavaScript Tracking Client configuration
     article or watching a video), we don't know if they are still on the page.
     This might skew page statistics, e.g. *time on page* value. *Heartbeat timer*
     allows us to determine how much time visitors spend on a page by sending
-    heartbeats to the :term:`Collecting & Processing Pipeline` as long as the page is in focus.
+    heartbeats to the :term:`Tracker` as long as the page is in focus.
 
     Example of usage:
 
@@ -3207,11 +3207,11 @@ JavaScript Tracking Client configuration
     e.g. when opening a link, the request might get cancelled. To avoid loosing
     the last event this way, JavaScript Tracking Client will lock the page for a fraction of a
     second (if wait time hasn't passed), giving the request time to reach the
-    :term:`Collecting & Processing Pipeline`.
+    :term:`Tracker`.
 
     ``setLinkTrackingTimer`` allows to change the default lock/wait time of 500ms.
 
-    :param number milliseconds: **Required** How many milliseconds a request needs to reach the :term:`Collecting & Processing Pipeline`.
+    :param number milliseconds: **Required** How many milliseconds a request needs to reach the :term:`Tracker`.
 
     Example of usage:
 

@@ -299,7 +299,7 @@ Collection of methods to handle e-commerce events through the Piwik PRO API.
 
 ##### Methods
 
-- `eCommerce.addEcommerceItem(productSKU[, productName[, productCategory[, productPrice[, productQuantity]]]])` - Adds a product to a virtual shopping cart. If a product with the same SKU is in the cart, it will be removed first. Does not send any data to the Collecting & Processing Pipeline.
+- `eCommerce.addEcommerceItem(productSKU[, productName[, productCategory[, productPrice[, productQuantity]]]])` - Adds a product to a virtual shopping cart. If a product with the same SKU is in the cart, it will be removed first. Does not send any data to the `Tracker`.
 
   - `productSKU (string)` – Required Product stock-keeping unit
   - `productName (string)` – Optional Product name
@@ -307,13 +307,13 @@ Collection of methods to handle e-commerce events through the Piwik PRO API.
   - `productPrice (number)` – Optional Product price
   - `productQuantity (number)` – Optional The number of units
 
-- `eCommerce.removeEcommerceItem(productSKU)` - Removes a product with the provided SKU from a virtual shopping cart. If multiple units of that product are in the virtual cart, all of them will be removed. Does not send any data to the Collecting & Processing Pipeline.
+- `eCommerce.removeEcommerceItem(productSKU)` - Removes a product with the provided SKU from a virtual shopping cart. If multiple units of that product are in the virtual cart, all of them will be removed. Does not send any data to the `Tracker`.
 
   - `productSKU (string)` – Required stock-keeping unit of a product to remove
 
-- `eCommerce.clearEcommerceCart()` - Removes all items from a virtual shopping cart. Does not send any data to the Collecting & Processing Pipeline.
+- `eCommerce.clearEcommerceCart()` - Removes all items from a virtual shopping cart. Does not send any data to the `Tracker`.
 
-- `eCommerce.getEcommerceItems()` - Returns a copy of items from a virtual shopping cart. Does not send any data to the Collecting & Processing Pipeline. Returns: Object containing all tracked items (format: `Object<productSKU, Array[productSKU, productName, productCategory, price, quantity]>`)
+- `eCommerce.getEcommerceItems()` - Returns a copy of items from a virtual shopping cart. Does not send any data to the `Tracker`. Returns: Object containing all tracked items (format: `Object<productSKU, Array[productSKU, productName, productCategory, price, quantity]>`)
 
 - `eCommerce.setEcommerceView([productSKU[, productName[, productCategory[, productPrice]]]])` - Tracks product or category view. Must be followed by a page view.
 
@@ -447,9 +447,9 @@ Collection of methods to manually tracks outlink or download events through the 
 
   - `extensions (Array<string>)` – Required List of extensions to remove as an array, e.g. ["zip", "rar"].
 
-- `DownloadAndOutlink.setLinkTrackingTimer(milliseconds)` - When a visitor produces an events and closes the page immediately afterwards, e.g. when opening a link, the request might get cancelled. To avoid loosing the last event this way, JavaScript Tracking Client will lock the page for a fraction of a second (if wait time hasn’t passed), giving the request time to reach the Collecting & Processing Pipeline. `setLinkTrackingTimer` allows to change the default lock/wait time of 500ms.
+- `DownloadAndOutlink.setLinkTrackingTimer(milliseconds)` - When a visitor produces an events and closes the page immediately afterwards, e.g. when opening a link, the request might get cancelled. To avoid loosing the last event this way, JavaScript Tracking Client will lock the page for a fraction of a second (if wait time hasn’t passed), giving the request time to reach the `Tracker`. `setLinkTrackingTimer` allows to change the default lock/wait time of 500ms.
 
-  - `milliseconds (number)` – Required How many milliseconds a request needs to reach the Collecting & Processing Pipeline.
+  - `milliseconds (number)` – Required How many milliseconds a request needs to reach the `Tracker`.
 
 - `DownloadAndOutlink.setIgnoreClasses(classes)` - Set a list of class names that indicate a link should not be tracked.
   - `classes (Array<string>)` – Required CSS class name or an array of class names
