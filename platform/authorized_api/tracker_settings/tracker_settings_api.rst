@@ -1,5 +1,5 @@
-Collecting & Processing Pipeline Settings API
-=============================================
+Tracker Settings API
+====================
 
 .. raw:: html
 
