@@ -145,10 +145,10 @@ import { SiteSearch } from '@piwikpro/react-piwik-pro'
 import { eCommerce } from '@piwikpro/react-piwik-pro'
 ```
 #### Methods
-* `addEcommerceItem(productSKU: string, productName: string, productCategory: string | string[], productPrice: number, productQuantity: number)` - Adds a product to a virtual shopping cart. If a product with the same SKU is in the cart, it will be removed first. Does not send any data to the Collecting & Processing Pipeline.
-* `removeEcommerceItem(productSKU: string)` - Removes a product with the provided SKU from a virtual shopping cart. If multiple units of that product are in the virtual cart, all of them will be removed. Does not send any data to the Collecting & Processing Pipeline.
-* `clearEcommerceCart()` - Removes all items from a virtual shopping cart. Does not send any data to the Collecting & Processing Pipeline.
-* `getEcommerceItems()` - Returns a copy of items from a virtual shopping cart. Does not send any data to the Collecting & Processing Pipeline
+* `addEcommerceItem(productSKU: string, productName: string, productCategory: string | string[], productPrice: number, productQuantity: number)` - Adds a product to a virtual shopping cart. If a product with the same SKU is in the cart, it will be removed first. Does not send any data to the `Tracker`.
+* `removeEcommerceItem(productSKU: string)` - Removes a product with the provided SKU from a virtual shopping cart. If multiple units of that product are in the virtual cart, all of them will be removed. Does not send any data to the `Tracker`.
+* `clearEcommerceCart()` - Removes all items from a virtual shopping cart. Does not send any data to the `Tracker`.
+* `getEcommerceItems()` - Returns a copy of items from a virtual shopping cart. Does not send any data to the `Tracker`
 * `trackEcommerceOrder()` - Tracks a successfully placed e-commerce order with items present in a virtual cart (registered using addEcommerceItem).
 * `trackEcommerceCartUpdate(cartAmount: number)` - Tracks items present in a virtual shopping cart (registered with addEcommerceItem)
 * `setEcommerceView(productSKU: string, productName?: string, productCategory?: string[], productPrice?: string)` - Tracks product or category view. Must be followed by a page view.
@@ -176,7 +176,7 @@ import { DownloadAndOutlink } from '@piwikpro/react-piwik-pro'
 * `setDownloadExtensions(extensions: string[])`  - Overwrites the list of file extensions indicating that a link is a download.
 * `addDownloadExtensions(extensions: string[])`  - Adds new extensions to the download extensions list.
 * `removeDownloadExtensions(extensions: string[])`  - Removes extensions from the download extensions list.
-* `setLinkTrackingTimer(time: number)`  - When a visitor produces an events and closes the page immediately afterwards, e.g. when opening a link, the request might get cancelled. To avoid loosing the last event this way, JavaScript Tracking Client will lock the page for a fraction of a second (if wait time hasn’t passed), giving the request time to reach the Collecting & Processing Pipeline.
+* `setLinkTrackingTimer(time: number)`  - When a visitor produces an events and closes the page immediately afterwards, e.g. when opening a link, the request might get cancelled. To avoid loosing the last event this way, JavaScript Tracking Client will lock the page for a fraction of a second (if wait time hasn’t passed), giving the request time to reach the `Tracker`.
 * `getLinkTrackingTimer()`  - Returns lock/wait time after a request set by setLinkTrackingTimer.
 * `setIgnoreClasses(classes: string[])` - Set a list of class names that indicate a link should not be tracked.
 
