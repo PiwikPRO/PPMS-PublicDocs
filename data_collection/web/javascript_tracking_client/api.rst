@@ -281,7 +281,7 @@ E-commerce v2
         * quantity - **Optional** [number|string] Product quantity has to be an integer number or a string containing integer representation (default: 1)
         * brand - **Optional** [string] Product brand (default: "")
         * variant - **Optional** [string] Product variant (default: "")
-        * customDimensions - **Optional** [object] Product custom dimentions (default: {})
+        * customDimensions - **Optional** [object] Product custom dimensions (default: {})
 
     Example of usage:
 
