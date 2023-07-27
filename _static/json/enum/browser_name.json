@@ -1,19 +1,119 @@
 [
     [
+        "V1",
+        "Via"
+    ],
+    [
+        "1P",
+        "Pure Mini Browser"
+    ],
+    [
+        "4P",
+        "Pure Lite Browser"
+    ],
+    [
+        "1R",
+        "Raise Fast Browser"
+    ],
+    [
+        "R1",
+        "Rabbit Private Browser"
+    ],
+    [
+        "FQ",
+        "Fast Browser UC Lite"
+    ],
+    [
+        "FJ",
+        "Fast Explorer"
+    ],
+    [
+        "1L",
+        "Lightning Browser"
+    ],
+    [
+        "1C",
+        "Cake Browser"
+    ],
+    [
+        "1I",
+        "IE Browser Fast"
+    ],
+    [
+        "1V",
+        "Vegas Browser"
+    ],
+    [
+        "1O",
+        "OH Browser"
+    ],
+    [
+        "3O",
+        "OH Private Browser"
+    ],
+    [
+        "1X",
+        "XBrowser Mini"
+    ],
+    [
+        "1S",
+        "Sharkee Browser"
+    ],
+    [
+        "2L",
+        "Lark Browser"
+    ],
+    [
+        "3P",
+        "Pluma"
+    ],
+    [
+        "1A",
+        "Anka Browser"
+    ],
+    [
+        "AZ",
+        "Azka Browser"
+    ],
+    [
+        "1D",
+        "Dragon Browser"
+    ],
+    [
+        "1E",
+        "Easy Browser"
+    ],
+    [
+        "DW",
+        "Dark Web Browser"
+    ],
+    [
+        "18",
+        "18+ Privacy Browser"
+    ],
+    [
         "1B",
         "115 Browser"
+    ],
+    [
+        "DM",
+        "1DM Browser"
+    ],
+    [
+        "1M",
+        "1DM+ Browser"
     ],
     [
         "2B",
         "2345 Browser"
     ],
     [
-        "36",
-        "360 Phone Browser"
-    ],
-    [
         "3B",
         "360 Browser"
+    ],
+    [
+        "36",
+        "360 Phone Browser"
     ],
     [
         "7B",
@@ -26,6 +126,14 @@
     [
         "AB",
         "ABrowse"
+    ],
+    [
+        "BW",
+        "AdBlock Browser"
+    ],
+    [
+        "A7",
+        "Adult Browser"
     ],
     [
         "AF",
@@ -48,6 +156,14 @@
         "Amaya"
     ],
     [
+        "A3",
+        "Amaze Browser"
+    ],
+    [
+        "A5",
+        "Amerigo"
+    ],
+    [
         "AO",
         "Amigo"
     ],
@@ -62,6 +178,18 @@
     [
         "AD",
         "AOL Shield"
+    ],
+    [
+        "A4",
+        "AOL Shield Pro"
+    ],
+    [
+        "A6",
+        "AppBrowzer"
+    ],
+    [
+        "AP",
+        "APUS Browser"
     ],
     [
         "AR",
@@ -80,8 +208,20 @@
         "Amiga Aweb"
     ],
     [
+        "PN",
+        "APN Browser"
+    ],
+    [
         "AI",
         "Arvin"
+    ],
+    [
+        "AK",
+        "Ask.com"
+    ],
+    [
+        "AU",
+        "Asus Browser"
     ],
     [
         "A0",
@@ -90,6 +230,10 @@
     [
         "AT",
         "Atomic Web Browser"
+    ],
+    [
+        "A2",
+        "Atlas"
     ],
     [
         "AS",
@@ -120,6 +264,14 @@
         "BlackBerry Browser"
     ],
     [
+        "H1",
+        "BrowseHere"
+    ],
+    [
+        "B8",
+        "Browser Hup Pro"
+    ],
+    [
         "BD",
         "Baidu Browser"
     ],
@@ -128,16 +280,40 @@
         "Baidu Spark"
     ],
     [
+        "B9",
+        "Bangla Browser"
+    ],
+    [
         "BI",
         "Basilisk"
+    ],
+    [
+        "BV",
+        "Belva Browser"
+    ],
+    [
+        "B5",
+        "Beyond Private Browser"
     ],
     [
         "BE",
         "Beonex"
     ],
     [
+        "B2",
+        "Berry Browser"
+    ],
+    [
+        "BT",
+        "Bitchute Browser"
+    ],
+    [
         "BH",
         "BlackHawk"
+    ],
+    [
+        "B0",
+        "Bloket"
     ],
     [
         "BJ",
@@ -146,6 +322,10 @@
     [
         "BL",
         "B-Line"
+    ],
+    [
+        "B6",
+        "Black Lion Browser"
     ],
     [
         "BU",
@@ -168,12 +348,20 @@
         "BriskBard"
     ],
     [
+        "B3",
+        "Browspeed Browser"
+    ],
+    [
         "BX",
         "BrowseX"
     ],
     [
         "BZ",
         "Browzar"
+    ],
+    [
+        "B7",
+        "Browlser"
     ],
     [
         "BY",
@@ -184,6 +372,10 @@
         "Byffox"
     ],
     [
+        "B4",
+        "BF Browser"
+    ],
+    [
         "CA",
         "Camino"
     ],
@@ -192,12 +384,20 @@
         "CCleaner"
     ],
     [
+        "C8",
+        "CG Browser"
+    ],
+    [
         "CJ",
         "ChanjetCloud"
     ],
     [
         "C6",
         "Chedot"
+    ],
+    [
+        "C9",
+        "Cherry Browser"
     ],
     [
         "C0",
@@ -232,6 +432,10 @@
         "CM Browser"
     ],
     [
+        "C7",
+        "CM Mini"
+    ],
+    [
         "CF",
         "Chrome Frame"
     ],
@@ -256,12 +460,20 @@
         "Chrome Mobile"
     ],
     [
+        "3C",
+        "Chowbo"
+    ],
+    [
         "CN",
         "CoolNovo"
     ],
     [
         "CO",
         "CometBird"
+    ],
+    [
+        "2C",
+        "Comfort Browser"
     ],
     [
         "CB",
@@ -316,12 +528,24 @@
         "Chrome Webview"
     ],
     [
+        "YC",
+        "CyBrowser"
+    ],
+    [
         "DB",
         "dbrowser"
     ],
     [
         "PD",
         "Peeps dBrowser"
+    ],
+    [
+        "D1",
+        "Debuggable Browser"
+    ],
+    [
+        "DC",
+        "Decentr"
     ],
     [
         "DE",
@@ -340,12 +564,20 @@
         "Delta Browser"
     ],
     [
+        "D0",
+        "Desi Browser"
+    ],
+    [
         "DS",
         "DeskBrowse"
     ],
     [
         "DF",
         "Dolphin"
+    ],
+    [
+        "DZ",
+        "Dolphin Zero"
     ],
     [
         "DO",
@@ -362,6 +594,10 @@
     [
         "DI",
         "Dillo"
+    ],
+    [
+        "DU",
+        "DUC Browser"
     ],
     [
         "DD",
@@ -384,12 +620,20 @@
         "Elinks"
     ],
     [
+        "EN",
+        "EinkBro"
+    ],
+    [
         "EB",
         "Element Browser"
     ],
     [
         "EE",
         "Elements Browser"
+    ],
+    [
+        "EX",
+        "Explore Browser"
     ],
     [
         "EZ",
@@ -404,6 +648,10 @@
         "GNOME Web"
     ],
     [
+        "G1",
+        "G Browser"
+    ],
+    [
         "ES",
         "Espial TV Browser"
     ],
@@ -414,6 +662,10 @@
     [
         "FX",
         "Faux Browser"
+    ],
+    [
+        "F4",
+        "Fiery Browser"
     ],
     [
         "F1",
@@ -448,12 +700,28 @@
         "Firefox Rocket"
     ],
     [
+        "1F",
+        "Firefox Klar"
+    ],
+    [
+        "F0",
+        "Float Browser"
+    ],
+    [
         "FL",
         "Flock"
     ],
     [
+        "FP",
+        "Floorp"
+    ],
+    [
         "FO",
         "Flow"
+    ],
+    [
+        "F2",
+        "Flow Browser"
     ],
     [
         "FM",
@@ -476,12 +744,28 @@
         "Flast"
     ],
     [
+        "F5",
+        "Flyperlink"
+    ],
+    [
         "FU",
         "FreeU"
     ],
     [
+        "F3",
+        "Frost+"
+    ],
+    [
+        "FI",
+        "Fulldive"
+    ],
+    [
         "GA",
         "Galeon"
+    ],
+    [
+        "G8",
+        "Gener8"
     ],
     [
         "GH",
@@ -498,6 +782,10 @@
     [
         "GE",
         "Google Earth"
+    ],
+    [
+        "GP",
+        "Google Earth Pro"
     ],
     [
         "GO",
@@ -520,8 +808,20 @@
         "Hawk Turbo Browser"
     ],
     [
+        "HQ",
+        "Hawk Quick Browser"
+    ],
+    [
         "HE",
         "Helio"
+    ],
+    [
+        "HX",
+        "Hexa Web Browser"
+    ],
+    [
+        "HI",
+        "Hi Browser"
     ],
     [
         "HO",
@@ -532,12 +832,20 @@
         "HotJava"
     ],
     [
+        "HT",
+        "HTC Browser"
+    ],
+    [
         "HU",
         "Huawei Browser Mobile"
     ],
     [
         "HP",
         "Huawei Browser"
+    ],
+    [
+        "H3",
+        "HUB Browser"
     ],
     [
         "IO",
@@ -550,6 +858,10 @@
     [
         "IB",
         "IBrowse"
+    ],
+    [
+        "I6",
+        "iDesktop PC Browser"
     ],
     [
         "IC",
@@ -584,8 +896,20 @@
         "Iceweasel"
     ],
     [
+        "IN",
+        "Inspect Browser"
+    ],
+    [
         "IE",
         "Internet Explorer"
+    ],
+    [
+        "I7",
+        "Internet Browser Secure"
+    ],
+    [
+        "I5",
+        "Indian UC Mini Browser"
     ],
     [
         "IM",
@@ -608,6 +932,10 @@
         "JavaFX"
     ],
     [
+        "JL",
+        "Jelly"
+    ],
+    [
         "JI",
         "Jig Browser"
     ],
@@ -620,8 +948,20 @@
         "Jio Browser"
     ],
     [
+        "J1",
+        "JioPages"
+    ],
+    [
         "KB",
         "K.Browser"
+    ],
+    [
+        "KF",
+        "Keepsafe Browser"
+    ],
+    [
+        "KS",
+        "Kids Safe Browser"
     ],
     [
         "KI",
@@ -652,6 +992,10 @@
         "Kode Browser"
     ],
     [
+        "KT",
+        "KUTO Mini Browser"
+    ],
+    [
         "KY",
         "Kylo"
     ],
@@ -668,6 +1012,14 @@
         "Lagatos Browser"
     ],
     [
+        "LR",
+        "Lexi Browser"
+    ],
+    [
+        "LV",
+        "Lenovo Browser"
+    ],
+    [
         "LF",
         "LieBaoFast"
     ],
@@ -678,6 +1030,10 @@
     [
         "LH",
         "Light"
+    ],
+    [
+        "L1",
+        "Lilo"
     ],
     [
         "LI",
@@ -716,6 +1072,10 @@
         "Lynx"
     ],
     [
+        "L2",
+        "Lynket Browser"
+    ],
+    [
         "MD",
         "Mandarin"
     ],
@@ -740,12 +1100,20 @@
         "Mercury"
     ],
     [
+        "M2",
+        "Me Browser"
+    ],
+    [
         "MF",
         "Mobile Safari"
     ],
     [
         "MI",
         "Midori"
+    ],
+    [
+        "M3",
+        "Midori Lite"
     ],
     [
         "MO",
@@ -772,8 +1140,16 @@
         "Maxthon"
     ],
     [
+        "M4",
+        "MaxTube Browser"
+    ],
+    [
         "MA",
         "Maelstrom"
+    ],
+    [
+        "MM",
+        "Mmx Browser"
     ],
     [
         "NM",
@@ -794,6 +1170,14 @@
     [
         "NW",
         "Navigateur Web"
+    ],
+    [
+        "NK",
+        "Naked Browser"
+    ],
+    [
+        "NA",
+        "Naked Browser Pro"
     ],
     [
         "NR",
@@ -836,6 +1220,10 @@
         "Netscape"
     ],
     [
+        "WR",
+        "NextWord Browser"
+    ],
+    [
         "NT",
         "NTENT Browser"
     ],
@@ -856,6 +1244,10 @@
         "Odin"
     ],
     [
+        "2O",
+        "Odin Browser"
+    ],
+    [
         "H2",
         "OceanHero"
     ],
@@ -868,12 +1260,20 @@
         "Off By One"
     ],
     [
+        "O5",
+        "Office Browser"
+    ],
+    [
         "HH",
         "OhHai Browser"
     ],
     [
         "OE",
         "ONE Browser"
+    ],
+    [
+        "Y1",
+        "Opera Crypto"
     ],
     [
         "OX",
@@ -936,6 +1336,18 @@
         "OpenFin"
     ],
     [
+        "O4",
+        "Open Browser"
+    ],
+    [
+        "4U",
+        "Open Browser 4U"
+    ],
+    [
+        "5G",
+        "Open Browser fast 5G"
+    ],
+    [
         "OW",
         "OmniWeb"
     ],
@@ -968,6 +1380,10 @@
         "Puffin"
     ],
     [
+        "2P",
+        "Puffin Web Browser"
+    ],
+    [
         "PW",
         "Palm WebPro"
     ],
@@ -978,6 +1394,10 @@
     [
         "PE",
         "Perfect Browser"
+    ],
+    [
+        "P1",
+        "Phantom.me"
     ],
     [
         "PH",
@@ -996,6 +1416,10 @@
         "PlayFree Browser"
     ],
     [
+        "PK",
+        "PocketBook Browser"
+    ],
+    [
         "PO",
         "Polaris"
     ],
@@ -1012,8 +1436,24 @@
         "PrivacyWall"
     ],
     [
+        "P4",
+        "Privacy Explorer Fast Safe"
+    ],
+    [
+        "P2",
+        "Pi Browser"
+    ],
+    [
+        "P0",
+        "PronHub Browser"
+    ],
+    [
         "PC",
         "PSI Secure Browser"
+    ],
+    [
+        "RW",
+        "Reqwireless WebViewer"
     ],
     [
         "PS",
@@ -1034,6 +1474,10 @@
     [
         "QQ",
         "QQ Browser"
+    ],
+    [
+        "QS",
+        "Quick Browser"
     ],
     [
         "QT",
@@ -1088,8 +1532,24 @@
         "Sogou Explorer"
     ],
     [
+        "SO",
+        "Sogou Mobile Browser"
+    ],
+    [
+        "RF",
+        "SOTI Surf"
+    ],
+    [
+        "2S",
+        "Soul Browser"
+    ],
+    [
         "SF",
         "Safari"
+    ],
+    [
+        "PV",
+        "Safari Technology Preview"
     ],
     [
         "S5",
@@ -1098,6 +1558,14 @@
     [
         "SW",
         "SalamWeb"
+    ],
+    [
+        "VN",
+        "Savannah Browser"
+    ],
+    [
+        "SD",
+        "SavySoda"
     ],
     [
         "S9",
@@ -1112,8 +1580,16 @@
         "Shiira"
     ],
     [
+        "K1",
+        "Sidekick"
+    ],
+    [
         "S1",
         "SimpleBrowser"
+    ],
+    [
+        "3S",
+        "SilverMob US"
     ],
     [
         "SY",
@@ -1128,6 +1604,10 @@
         "Seraphic Sraf"
     ],
     [
+        "KK",
+        "SiteKiosk"
+    ],
+    [
         "SL",
         "Sleipnir"
     ],
@@ -1140,12 +1620,28 @@
         "SP Browser"
     ],
     [
+        "9S",
+        "Sony Small Browser"
+    ],
+    [
+        "8S",
+        "Secure Private Browser"
+    ],
+    [
         "T1",
         "Stampy Browser"
     ],
     [
         "7S",
         "7Star"
+    ],
+    [
+        "SQ",
+        "Smart Browser"
+    ],
+    [
+        "6S",
+        "Smart Search & Web Browser"
     ],
     [
         "LE",
@@ -1158,10 +1654,6 @@
     [
         "SN",
         "Snowshoe"
-    ],
-    [
-        "SO",
-        "Sogou Mobile Browser"
     ],
     [
         "B1",
@@ -1188,12 +1680,20 @@
         "Super Fast Browser"
     ],
     [
+        "5S",
+        "SuperFast Browser"
+    ],
+    [
         "HR",
         "Sushi Browser"
     ],
     [
         "S3",
         "surf"
+    ],
+    [
+        "4S",
+        "Surf Browser"
     ],
     [
         "SG",
@@ -1220,6 +1720,14 @@
         "Seznam Browser"
     ],
     [
+        "W1",
+        "Sweet Browser"
+    ],
+    [
+        "2X",
+        "SX Browser"
+    ],
+    [
         "TP",
         "T+Browser"
     ],
@@ -1244,8 +1752,20 @@
         "Tenta Browser"
     ],
     [
+        "TE",
+        "Tesla Browser"
+    ],
+    [
         "TZ",
         "Tizen Browser"
+    ],
+    [
+        "TI",
+        "Tint Browser"
+    ],
+    [
+        "TC",
+        "TUC Mini Browser"
     ],
     [
         "TU",
@@ -1262,6 +1782,10 @@
     [
         "TV",
         "TV Bro"
+    ],
+    [
+        "U0",
+        "U Browser"
     ],
     [
         "UB",
@@ -1284,6 +1808,10 @@
         "UC Browser Turbo"
     ],
     [
+        "UI",
+        "Ui Browser Mini"
+    ],
+    [
         "UR",
         "UR Browser"
     ],
@@ -1292,8 +1820,28 @@
         "Uzbl"
     ],
     [
+        "UE",
+        "Ume Browser"
+    ],
+    [
+        "V0",
+        "vBrowser"
+    ],
+    [
+        "VA",
+        "Vast Browser"
+    ],
+    [
         "VE",
         "Venus Browser"
+    ],
+    [
+        "N0",
+        "Nova Video Downloader Pro"
+    ],
+    [
+        "VS",
+        "Viasat Browser"
     ],
     [
         "VI",
@@ -1302,6 +1850,10 @@
     [
         "VV",
         "vivo Browser"
+    ],
+    [
+        "V2",
+        "Vivid Browser Mini"
     ],
     [
         "VB",
@@ -1320,12 +1872,20 @@
         "Web Explorer"
     ],
     [
+        "W3",
+        "Web Browser & Explorer"
+    ],
+    [
         "WE",
         "WebPositive"
     ],
     [
         "WF",
         "Waterfox"
+    ],
+    [
+        "WB",
+        "Wave Browser"
     ],
     [
         "WH",
@@ -1338,6 +1898,14 @@
     [
         "WT",
         "WeTab Browser"
+    ],
+    [
+        "WL",
+        "Wolvic"
+    ],
+    [
+        "YG",
+        "YAGI"
     ],
     [
         "YJ",
@@ -1356,8 +1924,44 @@
         "Yaani Browser"
     ],
     [
+        "Y2",
+        "Yo Browser"
+    ],
+    [
         "YB",
         "Yolo Browser"
+    ],
+    [
+        "YO",
+        "YouCare"
+    ],
+    [
+        "YZ",
+        "Yuzu Browser"
+    ],
+    [
+        "XR",
+        "xBrowser"
+    ],
+    [
+        "XB",
+        "X Browser Lite"
+    ],
+    [
+        "X0",
+        "X-VPN"
+    ],
+    [
+        "X1",
+        "xBrowser Pro Super Fast"
+    ],
+    [
+        "XN",
+        "XNX Browser"
+    ],
+    [
+        "XT",
+        "XtremeCast"
     ],
     [
         "XS",
@@ -1366,6 +1970,10 @@
     [
         "XI",
         "Xiino"
+    ],
+    [
+        "XO",
+        "Xooloo Internet"
     ],
     [
         "XV",
@@ -1378,5 +1986,9 @@
     [
         "ZV",
         "Zvu"
+    ],
+    [
+        "ZI",
+        "Zirco Browser"
     ]
 ]
