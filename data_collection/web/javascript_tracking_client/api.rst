@@ -281,7 +281,7 @@ E-commerce v2
         * quantity - **Optional** [number|string] Product quantity has to be an integer number or a string containing integer representation (default: 1)
         * brand - **Optional** [string] Product brand (default: "")
         * variant - **Optional** [string] Product variant (default: "")
-        * customDimensions - **Optional** [object] Product custom dimentions (default: {})
+        * customDimensions - **Optional** [object] Product custom dimensions (default: {})
 
     Example of usage:
 
@@ -341,7 +341,7 @@ E-commerce v2
         * quantity - **Optional** [number|string] Product quantity has to be an integer number or a string containing integer representation (default: 1)
         * brand - **Optional** [string] Product brand (default: "")
         * variant - **Optional** [string] Product variant (default: "")
-        * customDimensions - **Optional** [object] Product custom dimentions (default: {})
+        * customDimensions - **Optional** [object] Product custom dimensions (default: {})
 
     Example of usage:
 
@@ -401,7 +401,7 @@ E-commerce v2
         * quantity - **Optional** [number|string] Product quantity has to be an integer number or a string containing integer representation (default: 1)
         * brand - **Optional** [string] Product brand (default: "")
         * variant - **Optional** [string] Product variant (default: "")
-        * customDimensions - **Optional** [object] Product custom dimentions (default: {})
+        * customDimensions - **Optional** [object] Product custom dimensions (default: {})
 
     Example of usage:
 
@@ -461,7 +461,7 @@ E-commerce v2
         * quantity - **Optional** [number|string] Product quantity has to be an integer number or a string containing integer representation (default: 1)
         * brand - **Optional** [string] Product brand (default: "")
         * variant - **Optional** [string] Product variant (default: "")
-        * customDimensions - **Optional** [object] Product custom dimentions (default: {})
+        * customDimensions - **Optional** [object] Product custom dimensions (default: {})
 
     :param number grandTotal: **Required** [number|string] The total value of items in a cart has to be a float number or a string containing float number representation
 
@@ -557,7 +557,7 @@ E-commerce v2
         * quantity - **Optional** [number|string] Product quantity has to be an integer number or a string containing integer representation (default: 1)
         * brand - **Optional** [string] Product brand (default: "")
         * variant - **Optional** [string] Product variant (default: "")
-        * customDimensions - **Optional** [object] Product custom dimentions (default: {})
+        * customDimensions - **Optional** [object] Product custom dimensions (default: {})
 
     :param object paymentInformation: Total payment information about products in a cart. Expected attributes:
 
