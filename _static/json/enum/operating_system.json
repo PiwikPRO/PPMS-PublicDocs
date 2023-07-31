@@ -8,6 +8,14 @@
         "Android"
     ],
     [
+        "ADR",
+        "Android TV"
+    ],
+    [
+        "AMZ",
+        "Amazon Linux"
+    ],
+    [
         "AMG",
         "AmigaOS"
     ],
@@ -21,7 +29,7 @@
     ],
     [
         "BOT",
-        "Bot"
+        "bot"
     ],
     [
         "BTR",
@@ -44,6 +52,10 @@
         "BlackBerry Tablet OS"
     ],
     [
+        "BOS",
+        "Bliss OS"
+    ],
+    [
         "BMP",
         "Brew"
     ],
@@ -56,8 +68,24 @@
         "CentOS"
     ],
     [
+        "CST",
+        "CentOS Stream"
+    ],
+    [
+        "CLR",
+        "ClearOS Mobile"
+    ],
+    [
         "COS",
         "Chrome OS"
+    ],
+    [
+        "CRS",
+        "Chromium OS"
+    ],
+    [
+        "CHN",
+        "China OS"
     ],
     [
         "CYN",
@@ -96,6 +124,10 @@
         "Fire OS"
     ],
     [
+        "FOR",
+        "Foresight Linux"
+    ],
+    [
         "FRE",
         "Freebox"
     ],
@@ -106,6 +138,10 @@
     [
         "FYD",
         "FydeOS"
+    ],
+    [
+        "FUC",
+        "Fuchsia"
     ],
     [
         "GNT",
@@ -156,8 +192,16 @@
         "KaiOS"
     ],
     [
+        "KAN",
+        "Kanotix"
+    ],
+    [
         "KNO",
         "Knoppix"
+    ],
+    [
+        "KTV",
+        "KreaTV"
     ],
     [
         "KBT",
@@ -166,6 +210,18 @@
     [
         "LIN",
         "GNU/Linux"
+    ],
+    [
+        "LND",
+        "LindowsOS"
+    ],
+    [
+        "LNS",
+        "Linspire"
+    ],
+    [
+        "LEN",
+        "Lineage OS"
     ],
     [
         "LBT",
@@ -204,6 +260,10 @@
         "MocorDroid"
     ],
     [
+        "MON",
+        "moonOS"
+    ],
+    [
         "MIN",
         "Mint"
     ],
@@ -236,6 +296,10 @@
         "Nintendo Mobile"
     ],
     [
+        "NOV",
+        "Nova"
+    ],
+    [
         "OS2",
         "OS/2"
     ],
@@ -252,12 +316,24 @@
         "OpenWrt"
     ],
     [
+        "OTV",
+        "Opera TV"
+    ],
+    [
         "ORD",
         "Ordissimo"
     ],
     [
+        "PAR",
+        "Pardus"
+    ],
+    [
         "PCL",
         "PCLinuxOS"
+    ],
+    [
+        "PLA",
+        "Plasma Mobile"
     ],
     [
         "PSP",
@@ -268,8 +344,20 @@
         "PlayStation"
     ],
     [
+        "PUR",
+        "PureOS"
+    ],
+    [
         "RHT",
         "Red Hat"
+    ],
+    [
+        "RED",
+        "RedOS"
+    ],
+    [
+        "REV",
+        "Revenge OS"
     ],
     [
         "ROS",
@@ -284,8 +372,16 @@
         "Rosa"
     ],
     [
+        "ROU",
+        "RouterOS"
+    ],
+    [
         "REM",
         "Remix OS"
+    ],
+    [
+        "RRS",
+        "Resurrection Remix OS"
     ],
     [
         "REX",
@@ -310,6 +406,10 @@
     [
         "SEE",
         "SeewoOS"
+    ],
+    [
+        "SIR",
+        "Sirin OS"
     ],
     [
         "SLW",
@@ -342,6 +442,10 @@
     [
         "SY3",
         "Symbian^3"
+    ],
+    [
+        "TEN",
+        "TencentOS"
     ],
     [
         "TDX",
@@ -406,6 +510,14 @@
     [
         "YNS",
         "YunOS"
+    ],
+    [
+        "ZEN",
+        "Zenwalk"
+    ],
+    [
+        "ZOR",
+        "ZorinOS"
     ],
     [
         "IOS",
