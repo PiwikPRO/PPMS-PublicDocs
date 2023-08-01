@@ -422,7 +422,7 @@ paths:
 
             *IMPORTANT:* value have to be urlencoded in raw URL, below is decoded JSON, do not use it directly in raw URL.
 
-            Decoded value: ``[["craft-311","Unicorn Iron on Patch","Crafts & Sewing",4.99,3,"FairyTales","3-color rainbow"],["craft-312","Unicorn Lamp",["Crafts & Sewing", "Lamps"],13.25,1,"FairyTales","black-and-white"]]``
+            Decoded value: ``[["craft-311","Unicorn Iron on Patch","Crafts & Sewing",4.99,3,"FairyTales","3-color rainbow"],["craft-312","Unicorn Lamp",["Crafts & Sewing","Lamps"],13.25,1,"FairyTales","black-and-white",{"1":"custom glitter"}]]``
 
             Each product on the list can contain:
   
@@ -434,6 +434,7 @@ paths:
               - [4] quantity: `integer` (optional, default to 1) Quantity of a product.
               - [5] brand: `string` (optional) a brand of the product
               - [6] variant: `string` (optional) a variant of the product
+              - [7] product custom dimensions: `Object<string, string>` a dictionary of custom dimension values, numeric string ID and a string with value. Max 20 product custom dimensions, 20 is max ID.
 
             Legend: [index] name: `data type` (requisite) Desctiption. Restrictions.
 
@@ -441,7 +442,7 @@ paths:
           schema:
             type: string
             format: JSON
-          example: '%5B%5B%22craft-311%22%2C%22Unicorn%20Iron%20on%20Patch%22%2C%22Crafts%20%26%20Sewing%22%2C4.99%2C3%2C%22FairyTales%22%2C%223-color%20rainbow%22%5D%2C%5B%22craft-312%22%2C%22Unicorn%20Lamp%22%2C%5B%22Crafts%20%26%20Sewing%22%2C%20%22Lamps%22%5D%2C13.25%2C1%2C%22FairyTales%22%2C%22black-and-white%22%5D%5D'
+          example: '%5B%5B%22craft-311%22%2C%22Unicorn%20Iron%20on%20Patch%22%2C%22Crafts%20%26%20Sewing%22%2C4.99%2C3%2C%22FairyTales%22%2C%223-color%20rainbow%22%5D%2C%5B%22craft-312%22%2C%22Unicorn%20Lamp%22%2C%5B%22Crafts%20%26%20Sewing%22%2C%22Lamps%22%5D%2C13.25%2C1%2C%22FairyTales%22%2C%22black-and-white%22%2C%7B%221%22%3A%22custom%20glitter%22%7D%5D%5D'
         - name: ec_st
           in: query
           description: |

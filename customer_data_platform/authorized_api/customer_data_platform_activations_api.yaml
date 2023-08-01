@@ -293,6 +293,7 @@ components:
         - updated_at
         - required_consents
         - multiple
+        - multiple_user_ids
       type: object
       properties:
         id:
@@ -380,6 +381,10 @@ components:
           description: Activate single profile multiple times, regardless if it was already activated
           type: boolean
           example: true
+        multiple_user_ids:
+          description: Activate profiles containing multiple (more than 1) user IDs
+          type: boolean
+          example: false
     ActivationModify:
       description: An object representing activation data to insert
       required:
@@ -393,6 +398,7 @@ components:
         - webhook_body_template
         - required_consents
         - multiple
+        - multiple_user_ids
       type: object
       properties:
         website_id:
@@ -446,6 +452,10 @@ components:
           description: Activate single profile multiple times, regardless if it was already activated
           type: boolean
           example: true
+        multiple_user_ids:
+          description: Activate profiles containing multiple (more than 1) user IDs
+          type: boolean
+          example: false
     Author:
       description: Author of an activation
       required:
