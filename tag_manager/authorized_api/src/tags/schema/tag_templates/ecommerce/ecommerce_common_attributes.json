@@ -1,0 +1,77 @@
+{
+    "definitions": {
+        "products_array": {
+            "type": "string",
+            "description": "Object key with products array"
+        },
+        "category_mapping_type": {
+            "type": "string",
+            "description": "Category mapping type",
+            "enum":  [
+                "disabled",
+                "split_by_delimiter",
+                "use_mapping"
+            ]
+        },
+        "category_mapping": {
+            "type": "object",
+            "description": "Category mapping",
+            "properties": {
+                "category2": {
+                    "type": "string",
+                    "description": "2nd category object key"
+                },
+                "category3": {
+                    "type": "string",
+                    "description": "3rd category object key"
+                },
+                "category4": {
+                    "type": "string",
+                    "description": "4th category object key"
+                },
+                "category5": {
+                    "type": "string",
+                    "description": "5th category object key"
+                }
+            },
+            "additionalProperties": false
+        },
+        "product_mapping": {
+            "type": "object",
+            "properties": {
+                "sku": {
+                    "type": "string",
+                    "description": "Object key with product SKU"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Object key with product name"
+                },
+                "category": {
+                    "type": "string",
+                    "description": "Object key with product category"
+                },
+                "price": {
+                    "type": "string",
+                    "description": "Object key with product price"
+                },
+                "quantity": {
+                    "type": "string",
+                    "description": "Object key with product quantity"
+                },
+                "brand": {
+                    "type": "string",
+                    "description": "Object key with product brand"
+                },
+                "variant": {
+                    "type": "string",
+                    "description": "Object key with product variant"
+                }
+            },
+            "additionalProperties": false,
+            "required": [
+                "sku"
+            ]
+        }
+    }
+}
