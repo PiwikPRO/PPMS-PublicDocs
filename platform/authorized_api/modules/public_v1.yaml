@@ -229,11 +229,10 @@ components:
         type: string
         enum:
           - analytics
-          - piwik
           - consent_manager
+          - customer_data_platform
           - tag_manager
           - administration
-          - audience_manager
     UserId:
       in: path
       name: user_id
@@ -255,8 +254,8 @@ components:
                     - status: "404"
                       code: module.not-exists
                       title: Module 'personalization' does not exist. Available
-                        modules are [analytics, piwik, consent_manager,
-                        tag_manager, administration, audience_manager]
+                        modules are [analytics, consent_manager, customer_data_platform,
+                        tag_manager, administration]
     NotFoundUser:
       description: Not Found
       content:
@@ -390,11 +389,10 @@ components:
       type: string
       enum:
         - analytics
-        - piwik
         - consent_manager
+        - customer_data_platform
         - tag_manager
         - administration
-        - audience_manager
       description: ID of a module
     UserIdentifier:
       type: object
