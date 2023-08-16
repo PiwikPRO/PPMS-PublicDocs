@@ -1,0 +1,73 @@
+{
+    "definitions": {
+        "template": {
+            "$ref": "../../tag_attributes.json#/definitions/template",
+            "enum": [
+                "ecommerce_order"
+            ]
+        },
+        "template_options_order": {
+            "type": "object",
+            "description": "Order details",
+            "properties": {
+                "order_id": {
+                    "type": "string",
+                    "description": "Object key with order ID"
+                },
+                "grand_total": {
+                    "type": "string",
+                    "description": "Object key with grand total"
+                },
+                "subtotal": {
+                    "type": "string",
+                    "description": "Object key with subtotal"
+                },
+                "tax": {
+                    "type": "string",
+                    "description": "Object key with tax"
+                },
+                "shipping": {
+                    "type": "string",
+                    "description": "Object key with shipping"
+                },
+                "discount": {
+                    "type": "string",
+                    "description": "Object key with discount"
+                }
+            },
+            "additionalProperties": false,
+            "required": [
+                "order_id",
+                "grand_total"
+            ]
+        },
+        "template_options": {
+            "type": "object",
+            "properties": {
+                "product_mapping": {
+                    "$ref": "ecommerce_common_attributes.json#/definitions/product_mapping",
+                    "description": "Product mapping"
+                },
+                "category_mapping_type": {
+                    "$ref": "ecommerce_common_attributes.json#/definitions/category_mapping_type"
+                },
+                "category_mapping": {
+                    "$ref": "ecommerce_common_attributes.json#/definitions/category_mapping"
+                },
+                "products_array": {
+                    "$ref": "ecommerce_common_attributes.json#/definitions/products_array"
+                },
+                "order": {
+                    "$ref": "ecommerce_order_attributes.json#/definitions/template_options_order"
+                }
+            },
+            "additionalProperties": false,
+            "required": [
+                "product_mapping",
+                "category_mapping_type",
+                "products_array",
+                "order"
+            ]
+        }
+    }
+}

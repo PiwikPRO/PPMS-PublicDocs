@@ -1,0 +1,86 @@
+{
+    "title": "Ecommerce Remove from cart",
+    "description": "Ecommerce Remove from cart create request",
+    "type": "object",
+    "properties": {
+        "data": {
+            "title": "JSON:API 1.0 request data",
+            "type": "object",
+            "properties": {
+                "id": {
+                    "$ref": "../../tag_types.json#/definitions/tag_identifier"
+                },
+                "type": {
+                    "$ref": "../../tag_types.json#/definitions/tag_resource_type"
+                },
+                "attributes": {
+                    "description": "Ecommerce Remove from cart attributes",
+                    "type": "object",
+                    "properties": {
+                        "disable_in_debug_mode": {
+                            "$ref": "../../tag_attributes.json#/definitions/disable_in_debug_mode"
+                        },
+                        "is_active": {
+                            "$ref": "../../tag_attributes.json#/definitions/is_active"
+                        },
+                        "priority": {
+                            "$ref": "../../tag_attributes.json#/definitions/priority"
+                        },
+                        "name": {
+                            "$ref": "../../tag_attributes.json#/definitions/name"
+                        },
+                        "respect_visitors_privacy": {
+                            "$ref": "../../tag_attributes.json#/definitions/respect_visitors_privacy"
+                        },
+                        "scheduler": {
+                            "$ref": "../../tag_attributes.json#/definitions/scheduler"
+                        },
+                        "consent_type": {
+                            "$ref": "../../tag_attributes.json#/definitions/consent_type"
+                        },
+                        "template": {
+                            "$ref": "../../tag_templates/ecommerce/ecommerce_remove_from_cart_attributes.json#/definitions/template"
+                        },
+                        "template_options": {
+                            "$ref": "../../tag_templates/ecommerce/ecommerce_remove_from_cart_attributes.json#/definitions/template_options"
+                        }
+                    },
+                    "additionalProperties": false,
+                    "required": [
+                        "name",
+                        "template",
+                        "template_options"
+                    ]
+                },
+                "relationships": {
+                    "allOf": [
+                        {
+                            "$ref": "../../tag_types.json#/definitions/relationships_description"
+                        },
+                        {
+                            "type": "object",
+                            "properties": {
+                                "triggers": {
+                                    "$ref": "../../tag_types.json#/definitions/trigger_relationship"
+                                }
+                            },
+                            "additionalProperties": false,
+                            "required": [
+                                "triggers"
+                            ]
+                        }
+                    ]
+                }
+            },
+            "additionalProperties": false,
+            "required": [
+                "type",
+                "attributes"
+            ]
+        }
+    },
+    "additionalProperties": false,
+    "required": [
+        "data"
+    ]
+}

@@ -114,6 +114,18 @@
         },
         {
             "$ref": "response/abandoned_get.json"
+        },
+        {
+            "$ref": "response/ecommerce_order_get.json"
+        },
+        {
+            "$ref": "response/ecommerce_add_to_cart_get.json"
+        },
+        {
+            "$ref": "response/ecommerce_remove_from_cart_get.json"
+        },
+        {
+            "$ref": "response/ecommerce_product_detail_view_get.json"
         }
     ]
 }
