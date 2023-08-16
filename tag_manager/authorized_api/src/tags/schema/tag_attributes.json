@@ -203,7 +203,11 @@
                 "video_html5",
                 "video_youtube",
                 "heatmaps",
-                "abandoned"
+                "abandoned",
+                "ecommerce_order",
+                "ecommerce_add_to_cart",
+                "ecommerce_remove_from_cart",
+                "ecommerce_product_detail_view"
             ]
         },
         "template_options_empty": {
