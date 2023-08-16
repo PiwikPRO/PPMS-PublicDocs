@@ -1,0 +1,34 @@
+{
+    "definitions": {
+        "template": {
+            "$ref": "../../tag_attributes.json#/definitions/template",
+            "enum": [
+                "ecommerce_add_to_cart"
+            ]
+        },
+        "template_options": {
+            "type": "object",
+            "properties": {
+                "product_mapping": {
+                    "$ref": "ecommerce_common_attributes.json#/definitions/product_mapping",
+                    "description": "Product mapping"
+                },
+                "category_mapping_type": {
+                    "$ref": "ecommerce_common_attributes.json#/definitions/category_mapping_type"
+                },
+                "category_mapping": {
+                    "$ref": "ecommerce_common_attributes.json#/definitions/category_mapping"
+                },
+                "products_array": {
+                    "$ref": "ecommerce_common_attributes.json#/definitions/products_array"
+                }
+            },
+            "additionalProperties": false,
+            "required": [
+                "product_mapping",
+                "category_mapping_type",
+                "products_array"
+            ]
+        }
+    }
+}
