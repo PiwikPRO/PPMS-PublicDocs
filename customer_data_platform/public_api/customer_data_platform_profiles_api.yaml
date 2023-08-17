@@ -9,8 +9,6 @@ paths:
   /api/cdp/profiles/public/v1/app/{app_id}/profile/{cookie_id}/audiences:
     get:
       summary: Fetch audiences the profile belongs to
-      tags:
-        - profiles
       security: []
       operationId: get-profile-audiences
       description: Get audiences the profile belongs to
@@ -43,6 +41,38 @@ paths:
           description: Profile with given cookie_id or organization was not found
         500:
           $ref: "../components.yaml#/components/responses/InternalServerError"
+  /api/cdp/profiles/v1/app/{app_id}/update-profile:
+    post:
+      summary: Create or update profile attributes
+      security:
+      operationId: post-profile-attributes
+      description: |
+        A single request can be used to create or update multiple profile attributes.
+        The data payload should consist of a key-value map where each attribute's name is denoted by a key, along with its corresponding value.
+        It will exclusively impact the app associated with the provided `app_id` in the URL path.
+        Provided data must have at least one identifier:
+          - ``id``
+          - ``user_id``
+          - ``cookie_id``
+      parameters:
+        - $ref: "../components.yaml#/components/parameters/AppId"
+      requestBody:
+        required: true
+        description: User's custom attributes
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ProfileCustomAttributesUpdateInput"
+      responses:
+        202:
+          description: Request accepted and waiting for processing.
+        400:
+          $ref: "../components.yaml#/components/responses/BadRequestError"
+        402:
+          $ref: "../components.yaml#/components/responses/ModuleDisabledError"
+        500:
+          $ref: "../components.yaml#/components/responses/InternalServerError"
+
 components:
   schemas:
     ProfileAudienceIdList:
@@ -52,3 +82,59 @@ components:
         type: string
         format: uuid
         example: "2fb368ff-c0ca-45b9-bac5-421e40a34ff0"
+    ProfileCustomAttributesUpdateInput:
+      type: object
+      description: Profile attributes object for creating and updating user custom attributes.
+      required:
+        - identifiers
+        - attributes
+      properties:
+        identifiers:
+          description: Identifiers associated with a user.
+          anyOf:
+            - $ref: "#/components/schemas/UserID"
+            - $ref: "#/components/schemas/CookieID"
+            - $ref: "#/components/schemas/ID"
+          example:
+            user_id: tom1987@bob.com
+            cookie_id: "176a5215ff7b62e3"
+        attributes:
+          type: object
+          description: Attributes of the occurred event.
+          additionalProperties:
+            oneOf:
+              - type: string
+              - type: number
+              - type: boolean
+              - type: date-time
+                description: A string that follows the ISO 8601 date-time notation, such as `2023-07-21T17:32:28Z`.
+          example:
+            occupation: teacher
+            mood: happy
+            contract_end: 2023-07-21T17:32:28Z
+    UserID:
+      type: object
+      required: user_id
+      properties:
+        user_id:
+          description: User ID identifier
+          type: string
+          example: "tom1987@bob.com"
+    CookieID:
+      type: object
+      required: cookie_id
+      properties:
+        cookie_id:
+          type: string
+          description: Cookie ID identifier
+          example: "176a5215ff7b62e3"
+          format: hex
+    ID:
+      type: object
+      required: id
+      properties:
+        id:
+          type: string
+          description: Profile ID identifier
+          example: "836fa2fea2cf988b"
+          format: hex
