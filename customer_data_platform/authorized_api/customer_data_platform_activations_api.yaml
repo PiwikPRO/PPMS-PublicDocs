@@ -274,7 +274,7 @@ components:
           type: array
           items:
             $ref: '../components.yaml#/components/schemas/ConsentType'
-          example: ["remarketing", "ab_testing"]
+          example: ["ab_testing_and_personalization", "remarketing"]
     Activation:
       description: An object representing activation with all data for display
       required:
@@ -376,7 +376,7 @@ components:
           type: array
           items:
             $ref: '../components.yaml#/components/schemas/ConsentType'
-          example: ["remarketing", "ab_testing"]
+          example: ["ab_testing_and_personalization", "remarketing"]
         multiple:
           description: Activate single profile multiple times, regardless if it was already activated
           type: boolean
@@ -447,7 +447,7 @@ components:
           type: array
           items:
             $ref: '../components.yaml#/components/schemas/ConsentType'
-          example: ["remarketing", "ab_testing"]
+          example: ["ab_testing_and_personalization", "remarketing"]
         multiple:
           description: Activate single profile multiple times, regardless if it was already activated
           type: boolean
