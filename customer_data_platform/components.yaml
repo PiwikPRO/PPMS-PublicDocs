@@ -272,13 +272,13 @@ components:
       description: Actions a visitor may give consent for
       type: string
       enum:
-        - ab_testing
         - analytics
-        - conversion
-        - marketing
+        - ab_testing_and_personalization
+        - conversion_tracking
+        - marketing_automation
         - remarketing
         - user_feedback
-        - custom1
+        - custom_consent
     Definition:
       description: Audience definition
       type: object
