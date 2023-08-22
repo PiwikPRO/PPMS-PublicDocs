@@ -1003,7 +1003,7 @@ paths:
           description: |
             Provides on-demand control of the SessionId feature (0=disabled, 1=enabled)
 
-            When this parameter is not used, processing service will default to the current value from the TrackerSettings.
+            When this parameter is not used, processing service will default to the current value from the Privacy tab in global or app settings.
           schema:
             type: integer
             enum:
