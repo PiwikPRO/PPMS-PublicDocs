@@ -22,13 +22,15 @@ paths:
       parameters:
         - name: idsite
           in: query
-          description: Application ID (previously Website ID).
-          required: true
+          description: |
+            **Recommended** Application ID (previously Website ID).
+
+            *IMPORTANT*: Requests should contain `idsite` parameter with actual UUID of one of your apps, otherwise they won't appear in reports.
           schema:
             type: string
             format: UUID
-            minLength: 32
-            maxLength: 32
+            minLength: 36
+            maxLength: 36
           example: 892d04bd-6e2b-4914-bfb4-bac721b37235
         - name: rec
           in: query
@@ -422,7 +424,32 @@ paths:
 
             *IMPORTANT:* value have to be urlencoded in raw URL, below is decoded JSON, do not use it directly in raw URL.
 
-            Decoded value: ``[["craft-311","Unicorn Iron on Patch","Crafts & Sewing",4.99,3,"FairyTales","3-color rainbow"],["craft-312","Unicorn Lamp",["Crafts & Sewing","Lamps"],13.25,1,"FairyTales","black-and-white",{"1":"custom glitter"}]]``
+            Decoded value: ```[
+              [
+                  "craft-311",
+                  "Unicorn Iron on Patch",
+                  "Crafts & Sewing",
+                  4.99,
+                  3,
+                  "FairyTales",
+                  "3-color rainbow"
+              ],
+              [
+                  "craft-312",
+                  "Unicorn Lamp",
+                  [
+                    "Crafts & Sewing",
+                    "Lamps"
+                  ],
+                  13.25,
+                  1,
+                  "FairyTales",
+                  "black-and-white",
+                  {
+                    "1":"custom glitter"
+                  }
+              ]
+            ]```
 
             Each product on the list can contain:
   
