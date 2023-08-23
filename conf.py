@@ -245,9 +245,9 @@ html_theme_options = {
 ogp_image = "https://developers.piwik.pro/en/latest/_static/images/image-thumb.png"
 
 def setup(app):
-    app.add_css_file('css/custom_1684133308817.css')
+    app.add_css_file('css/custom_1692341858952.css')
     app.add_js_file('js/unicornDetector.js')
-    app.add_js_file('js/custom1653024076375.js')
+    app.add_js_file('js/custom1692341858952.js')
 
 # Example configuration for intersphinx: refer to the Python standard library.
 intersphinx_mapping = {'https://docs.python.org/': None}

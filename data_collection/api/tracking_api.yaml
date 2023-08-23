@@ -424,7 +424,32 @@ paths:
 
             *IMPORTANT:* value have to be urlencoded in raw URL, below is decoded JSON, do not use it directly in raw URL.
 
-            Decoded value: ``[["craft-311","Unicorn Iron on Patch","Crafts & Sewing",4.99,3,"FairyTales","3-color rainbow"],["craft-312","Unicorn Lamp",["Crafts & Sewing","Lamps"],13.25,1,"FairyTales","black-and-white",{"1":"custom glitter"}]]``
+            Decoded value: ```[
+              [
+                  "craft-311",
+                  "Unicorn Iron on Patch",
+                  "Crafts & Sewing",
+                  4.99,
+                  3,
+                  "FairyTales",
+                  "3-color rainbow"
+              ],
+              [
+                  "craft-312",
+                  "Unicorn Lamp",
+                  [
+                    "Crafts & Sewing",
+                    "Lamps"
+                  ],
+                  13.25,
+                  1,
+                  "FairyTales",
+                  "black-and-white",
+                  {
+                    "1":"custom glitter"
+                  }
+              ]
+            ]```
 
             Each product on the list can contain:
   
