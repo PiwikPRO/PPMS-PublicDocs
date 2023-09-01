@@ -41,10 +41,10 @@ paths:
           description: Profile with given cookie_id or organization was not found
         500:
           $ref: "../components.yaml#/components/responses/InternalServerError"
-  /api/cdp/profiles/v1/app/{app_id}/update-profile:
+  /api/cdp/profiles/public/v1/app/{app_id}/update-profile:
     post:
       summary: Create or update profile attributes
-      security:
+      security: []
       operationId: post-profile-attributes
       description: |
         A single request can be used to create or update multiple profile attributes.
@@ -106,7 +106,8 @@ components:
               - type: string
               - type: number
               - type: boolean
-              - type: date-time
+              - type: string
+                format: date-time
                 description: A string that follows the ISO 8601 date-time notation, such as `2023-07-21T17:32:28Z`.
           example:
             occupation: teacher
@@ -114,7 +115,8 @@ components:
             contract_end: 2023-07-21T17:32:28Z
     UserID:
       type: object
-      required: user_id
+      required:
+        - user_id
       properties:
         user_id:
           description: User ID identifier
@@ -122,7 +124,8 @@ components:
           example: "tom1987@bob.com"
     CookieID:
       type: object
-      required: cookie_id
+      required:
+        - cookie_id
       properties:
         cookie_id:
           type: string
@@ -131,7 +134,8 @@ components:
           format: hex
     ID:
       type: object
-      required: id
+      required:
+        - id
       properties:
         id:
           type: string
