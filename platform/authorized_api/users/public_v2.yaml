@@ -68,6 +68,8 @@ paths:
                   $ref: "#/components/examples/invalid_content_type"
                 Invalid JSON API content:
                   $ref: "#/components/examples/invalid_json_api_content"
+                Invalid attributes:
+                  $ref: "#/components/examples/invalid_attributes"
         403:
           $ref: '#/components/responses/Forbidden'
 
@@ -123,6 +125,8 @@ paths:
                   $ref: "#/components/examples/invalid_content_type"
                 Invalid JSON API content:
                   $ref: "#/components/examples/invalid_json_api_content"
+                Invalid attributes:
+                  $ref: "#/components/examples/invalid_attributes"
         403:
           $ref: '#/components/responses/Forbidden'
     get:
@@ -232,7 +236,8 @@ paths:
                   $ref: "#/components/examples/forbidden"
         404:
           $ref: '#/components/responses/Not_Found'
-
+        409:
+          $ref: "#/components/responses/id_mismatch"
     patch:
       summary: Edit user
       operationId: api_users_edit_v2
@@ -272,6 +277,8 @@ paths:
                   $ref: "#/components/examples/invalid_content_type"
                 Invalid JSON API content:
                   $ref: "#/components/examples/invalid_json_api_content"
+                Invalid attributes:
+                  $ref: "#/components/examples/invalid_attributes"
         403:
           description: Forbidden
           content:
@@ -284,7 +291,8 @@ paths:
                   $ref: "#/components/examples/forbidden"
         404:
           $ref: '#/components/responses/Not_Found'
-
+        409:
+          $ref: "#/components/responses/id_mismatch"
   /api/users/v2/{userId}/change-role:
     patch:
       summary: Change user role
@@ -326,6 +334,8 @@ paths:
                   $ref: "#/components/examples/invalid_content_type"
                 Invalid JSON API content:
                   $ref: "#/components/examples/invalid_json_api_content"
+                Invalid attributes:
+                  $ref: "#/components/examples/invalid_attributes"
         403:
           description: Forbidden
           content:
@@ -338,6 +348,8 @@ paths:
                   $ref: "#/components/examples/forbidden"
         404:
           $ref: '#/components/responses/Not_Found'
+        409:
+          $ref: "#/components/responses/id_mismatch"
 
   /api/users/v2/me/change-password:
     patch:
@@ -373,8 +385,12 @@ paths:
                   $ref: "#/components/examples/invalid_content_type"
                 Invalid JSON API content:
                   $ref: "#/components/examples/invalid_json_api_content"
+                Invalid attributes:
+                  $ref: "#/components/examples/invalid_attributes"
         404:
           $ref: '#/components/responses/Not_Found'
+        409:
+          $ref: "#/components/responses/id_mismatch"
 
   /api/users/v2/me/details:
     get:
@@ -447,11 +463,14 @@ paths:
                   $ref: "#/components/examples/invalid_content_type"
                 Invalid JSON API content:
                   $ref: "#/components/examples/invalid_json_api_content"
+                Invalid attributes:
+                  $ref: "#/components/examples/invalid_attributes"
         403:
           $ref: '#/components/responses/Forbidden'
         404:
           $ref: '#/components/responses/Not_Found'
-
+        409:
+          $ref: "#/components/responses/id_mismatch"
 components:
   parameters:
     Offset:
@@ -463,7 +482,7 @@ components:
         minimum: 0
         default: 0
       required: false
-  
+
     Limit:
       in: query
       name: limit
@@ -474,7 +493,7 @@ components:
         minimum: 0
         maximum: 1000
       required: false
-  
+
     search:
       name: search
       in: query
@@ -483,7 +502,7 @@ components:
       schema:
         type: string
         default: ''
-  
+
     search_query:
       name: search_query
       in: query
@@ -779,7 +798,7 @@ components:
                     type: string
                     example: offset
                     description: a string indicating which URI query parameter caused the error
-  
+
   responses:
     Forbidden:
       description: Forbidden
@@ -791,6 +810,22 @@ components:
           examples:
             Forbidden:
               $ref: "#/components/examples/forbidden"
+    id_mismatch:
+        description: Conflict
+        content:
+            application/vnd.api+json:
+                schema:
+                    allOf:
+                        -   $ref: "#/components/schemas/ErrorObject"
+                examples:
+                    Id mismatch:
+                      value:
+                        errors:
+                          - status: '409'
+                            code: error
+                            detail: "The resource object's id (985ed9d7-b652-47b8-b9cf-c17d62735261) does not match url's lookup id (8209367f-691b-475e-84c3-d1c69f46075b)"
+                            source:
+                               pointer: /data
     Not_Found:
       description: Not Found
       content:
@@ -801,7 +836,6 @@ components:
           examples:
             User does not exist:
               $ref: "#/components/examples/user_does_not_exist"
-
   examples:
     forbidden:
       value:
@@ -830,7 +864,7 @@ components:
           - status: '400'
             title: Invalid form
             code: users.error.unsupported-language
-            detail: 'Language "pl" is not supported (supported are en, de, fi, fr, nl, sv)'
+            detail: 'Language "pl" is not supported (supported are de, en, fi, fr, nl, sv)'
             source:
               pointer: /language
     unsupported_language_tag:
@@ -994,4 +1028,10 @@ components:
         errors:
           - status: '400'
             title: Invalid query parameter 'sort' - available options are [email,addedAt,role] - got 'example'
+            code: error.default
+    invalid_attributes:
+      value:
+        errors:
+          - status: '400'
+            title: "Invalid field 'attributes' - value should be an object - got 'int'"
             code: error.default

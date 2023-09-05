@@ -315,8 +315,8 @@ components:
         eCommerceTracking:
           type: boolean
           description: Enables e-commerce reports, additional tab is shown in Analytics module with e-commerce logs. Sales can be easily tracked using this setting.
-          default: false
-          example: false
+          default: true
+          example: true
         siteSearchTracking:
           deprecated: true
           type: boolean
