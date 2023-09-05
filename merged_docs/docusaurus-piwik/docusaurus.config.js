@@ -130,6 +130,7 @@ const config = {
                 href: "https://twitter.com/docusaurus",
               },
             ],
+
           },
           {
             title: "More",
