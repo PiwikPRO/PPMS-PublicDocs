@@ -26,9 +26,6 @@
                                         "title": "Add",
                                         "description": "Add tag",
                                         "properties": {
-                                            "version_id": {
-                                                "$ref": "../../../versions/schema/version_types.json#/definitions/version_identifier"
-                                            },
                                             "author": {
                                                 "$ref": "../changelog_attributes.json#/definitions/changelog_author_nullable_attribute"
                                             },
@@ -60,9 +57,6 @@
                                         "title": "Edit",
                                         "description": "Edit tag",
                                         "properties": {
-                                            "version_id": {
-                                                "$ref": "../../../versions/schema/version_types.json#/definitions/version_identifier"
-                                            },
                                             "author": {
                                                 "$ref": "../changelog_attributes.json#/definitions/changelog_author_nullable_attribute"
                                             },
@@ -94,9 +88,6 @@
                                         "title": "Delete",
                                         "description": "Delete tag",
                                         "properties": {
-                                            "version_id": {
-                                                "$ref": "../../../versions/schema/version_types.json#/definitions/version_identifier"
-                                            },
                                             "author": {
                                                 "$ref": "../changelog_attributes.json#/definitions/changelog_author_nullable_attribute"
                                             },
@@ -134,9 +125,6 @@
                                         "title": "Add",
                                         "description": "Add trigger",
                                         "properties": {
-                                            "version_id": {
-                                                "$ref": "../../../versions/schema/version_types.json#/definitions/version_identifier"
-                                            },
                                             "author": {
                                                 "$ref": "../changelog_attributes.json#/definitions/changelog_author_nullable_attribute"
                                             },
@@ -168,9 +156,6 @@
                                         "title": "Edit",
                                         "description": "Edit trigger",
                                         "properties": {
-                                            "version_id": {
-                                                "$ref": "../../../versions/schema/version_types.json#/definitions/version_identifier"
-                                            },
                                             "author": {
                                                 "$ref": "../changelog_attributes.json#/definitions/changelog_author_nullable_attribute"
                                             },
@@ -202,9 +187,6 @@
                                         "title": "Delete",
                                         "description": "Delete trigger",
                                         "properties": {
-                                            "version_id": {
-                                                "$ref": "../../../versions/schema/version_types.json#/definitions/version_identifier"
-                                            },
                                             "author": {
                                                 "$ref": "../changelog_attributes.json#/definitions/changelog_author_nullable_attribute"
                                             },
@@ -242,9 +224,6 @@
                                         "title": "Add",
                                         "description": "Add variable",
                                         "properties": {
-                                            "version_id": {
-                                                "$ref": "../../../versions/schema/version_types.json#/definitions/version_identifier"
-                                            },
                                             "author": {
                                                 "$ref": "../changelog_attributes.json#/definitions/changelog_author_nullable_attribute"
                                             },
@@ -276,9 +255,6 @@
                                         "title": "Edit",
                                         "description": "Edit variable",
                                         "properties": {
-                                            "version_id": {
-                                                "$ref": "../../../versions/schema/version_types.json#/definitions/version_identifier"
-                                            },
                                             "author": {
                                                 "$ref": "../changelog_attributes.json#/definitions/changelog_author_nullable_attribute"
                                             },
@@ -310,9 +286,6 @@
                                         "title": "Delete",
                                         "description": "Delete variable",
                                         "properties": {
-                                            "version_id": {
-                                                "$ref": "../../../versions/schema/version_types.json#/definitions/version_identifier"
-                                            },
                                             "author": {
                                                 "$ref": "../changelog_attributes.json#/definitions/changelog_author_nullable_attribute"
                                             },
@@ -343,7 +316,6 @@
                             }
                         ],
                         "required": [
-                            "version_id",
                             "author",
                             "change_type",
                             "resource_id",

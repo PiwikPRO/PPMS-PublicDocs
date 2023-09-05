@@ -54,7 +54,7 @@
                             "$ref": "../../tag_templates/piwik_event_attributes.json#/definitions/template"
                         },
                         "template_options": {
-                            "$ref": "../../tag_templates/piwik_event_attributes.json#/definitions/template_options"
+                            "$ref": "../../tag_templates/piwik_event_attributes_get.json#/definitions/template_options"
                         },
                         "created_at": {
                             "$ref": "../../../../common/schema/common_types.json#/definitions/datetime"
