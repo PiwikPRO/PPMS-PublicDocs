@@ -173,15 +173,7 @@ components:
         column_type:
           type: string
           description: Type of the column.
-          enum:
-            - number
-            - string
-            - ipv4
-            - ipv6
-            - bool
-            - int
-            - uuid
-            - hex
+          $ref: "#/components/schemas/ColumnType"
           example: string
         column_unit:
           type: string
@@ -240,6 +232,30 @@ components:
             - event
             - profile
           example: event
+    DataType:
+      description: Type of the data.
+      type: string
+      enum:
+        - number
+        - bool
+        - ip
+        - datetime
+        - string
+      example: string
+    ColumnType:
+      description: Type of the column.
+      type: string
+      enum:
+        - number
+        - string
+        - ipv4
+        - ipv6
+        - bool
+        - int
+        - uuid
+        - hex
+        - datetime
+      example: string
     AttributeOptions:
       type: object
       description: Defines additional options for attribute

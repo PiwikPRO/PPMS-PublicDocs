@@ -6,3 +6,4 @@ Authorized HTTP API
 
   audiences
   activations
+  attributes

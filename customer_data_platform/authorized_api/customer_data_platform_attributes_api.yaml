@@ -1,0 +1,290 @@
+openapi: 3.1.0
+info:
+  title: CDP Attributes API Documentation
+  version: 0.0.0
+  description: This is the documentation of the CDP Attributes API service.
+servers:
+  - url: https://organization.piwik.pro
+paths:
+  /api/cdp/settings/v1/app/{app_id}/attribute:
+    get:
+      summary: List attributes
+      security:
+        - JWTAuth: []
+      operationId: get-settings-app-attributes
+      description: Returns a list of all profiles attributes available in CDP for given app.
+      parameters:
+        - $ref: "../components.yaml#/components/parameters/AppId"
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Attribute"
+        401:
+          $ref: '../components.yaml#/components/responses/UnauthorizedError'
+        402:
+          $ref: '../components.yaml#/components/responses/ModuleDisabledError'
+        404:
+          $ref: '../components.yaml#/components/responses/NotFoundError'
+        500:
+          $ref: '../components.yaml#/components/responses/InternalServerError'
+    post:
+      summary: Create custom attribute
+      security:
+        - JWTAuth: []
+      operationId: post-settings-app-custom-attribute
+      description: 'Creates a new custom attribute'
+      parameters:
+        - $ref: "../components.yaml#/components/parameters/AppId"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CustomAttributeInput'
+      responses:
+        201:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomAttribute'
+          description: 'Created'
+        400:
+          $ref: '../components.yaml#/components/responses/BadRequestError'
+        401:
+          $ref: '../components.yaml#/components/responses/UnauthorizedError'
+        402:
+          $ref: '../components.yaml#/components/responses/ModuleDisabledError'
+        404:
+          $ref: '../components.yaml#/components/responses/NotFoundError'
+        422:
+          $ref: '../components.yaml#/components/responses/UnprocessableEntity'
+        500:
+          $ref: '../components.yaml#/components/responses/InternalServerError'
+  /api/cdp/settings/v1/app/{app_id}/attribute/bulk:
+    post:
+      summary: Create custom attribute bulk
+      security:
+        - JWTAuth: []
+      operationId: post-settings-app-custom-attribute-bulk
+      description: 'Creates multiple new custom attributes'
+      parameters:
+        - $ref: "../components.yaml#/components/parameters/AppId"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/CustomAttributeInput'
+      responses:
+        201:
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CustomAttribute'
+          description: 'Created'
+        400:
+          $ref: '../components.yaml#/components/responses/BadRequestError'
+        401:
+          $ref: '../components.yaml#/components/responses/UnauthorizedError'
+        402:
+          $ref: '../components.yaml#/components/responses/ModuleDisabledError'
+        404:
+          $ref: '../components.yaml#/components/responses/NotFoundError'
+        422:
+          $ref: '../components.yaml#/components/responses/UnprocessableEntity'
+        500:
+          $ref: '../components.yaml#/components/responses/InternalServerError'
+  /api/cdp/settings/v1/app/{app_id}/attribute/{column_id}:
+    put:
+      summary: Update custom attribute
+      security:
+        - JWTAuth: []
+      operationId: put-settings-app-custom-attribute
+      description: 'Updates name of the existing custom attribute'
+      parameters:
+        - $ref: "../components.yaml#/components/parameters/AppId"
+        - in: path
+          name: column_id
+          description: Column ID of an attribute
+          required: true
+          schema:
+            type: string
+            example: custom_attribute_1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CustomAttributeUpdateInput'
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomAttributeUpdated'
+
+          description: 'OK'
+        400:
+          $ref: '../components.yaml#/components/responses/BadRequestError'
+        401:
+          $ref: '../components.yaml#/components/responses/UnauthorizedError'
+        402:
+          $ref: '../components.yaml#/components/responses/ModuleDisabledError'
+        404:
+          $ref: '../components.yaml#/components/responses/NotFoundError'
+        422:
+          $ref: '../components.yaml#/components/responses/UnprocessableEntity'
+        500:
+          $ref: '../components.yaml#/components/responses/InternalServerError'
+components:
+  securitySchemes:
+    JWTAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    Attribute:
+      type: object
+      required:
+        - column_id
+        - incoming_key
+        - immutable
+        - column_meta
+      properties:
+        column_id:
+          type: string
+          description: Unique ID of column.
+        incoming_key:
+          type: string
+          description: Key of the imported data value or name of Tracker event dimension to populate attribute.
+          example: "user_age"
+        immutable:
+          type: boolean
+          example: false
+          description: |
+            A flag indicating whether the attribute is immutable.
+
+            If `immutable` is set to `true`, the attribute is considered
+            read-only and cannot be modified. If set to `false`, the
+            attribute can be modified.
+        column_meta:
+          $ref: "../components.yaml#/components/schemas/ColumnMeta"
+    CustomAttributeInput:
+      type: object
+      required:
+        - name
+        - incoming_key
+        - data_type
+        - aggregation
+      properties:
+        name:
+          $ref: '#/components/schemas/CustomAttributeInputName'
+        incoming_key:
+          $ref: '#/components/schemas/CustomAttributeInputIncomingKey'
+        data_type:
+          $ref: '#/components/schemas/CustomAttributeInputDataType'
+        aggregation:
+          type: string
+          description: |
+            Aggregation type for attribute values.
+
+            Allowed values depend on selected `data_type`:
+
+            | data_type | first | last | first_last | list | list_unique | min | max | sum |
+            |-----------|-------|------|------------|------|-------------|-----|-----|-----|
+            | number    | ✓     | ✓    | ✓          | ✓    | ✓           | ✓   | ✓   | ✓   |
+            | bool      |       | ✓    |            |      |             |     |     |     |
+            | ip        |       |      | ✓          |      |             |     |     |     |
+            | datetime  |       |      |            |      |             | ✓   | ✓   |     |
+            | string    | ✓     | ✓    | ✓          | ✓    | ✓           |     |     |     |
+          enum:
+            - first
+            - last
+            - first_last
+            - list
+            - list_unique
+            - min
+            - max
+            - sum
+          example: first
+    CustomAttributeUpdateInput:
+      type: object
+      properties:
+        name:
+          $ref: '#/components/schemas/CustomAttributeInputName'
+        incoming_key:
+          $ref: '#/components/schemas/CustomAttributeInputIncomingKey'
+    CustomAttribute:
+      allOf:
+        - $ref: '#/components/schemas/Attribute'
+        - type: object
+          properties:
+            column_id:
+              example: custom_attribute_3
+            column_meta:
+              $ref: "#/components/schemas/CustomAttributeColumnMeta"
+    CustomAttributeInputName:
+      type: string
+      maxLength: 255
+      minLength: 1
+      description: Name of the attribute.
+      example: Age of the user
+    CustomAttributeInputDataType:
+      type: string
+      description: |
+        Type of the column.
+
+        If `incoming_key` is a key of a [predefined event dimension](/customer_data_platform/event_dimensions.html),
+        `data_type` must be type of that event dimension.
+      enum:
+        - number
+        - bool
+        - ip
+        - datetime
+        - string
+      example: string
+    CustomAttributeInputIncomingKey:
+      type: string
+      maxLength: 255
+      minLength: 1
+      description: |
+        Key of an event dimension (custom or one of [predefined event dimensions](/customer_data_platform/event_dimensions.html)),
+        whose values will be collected in the attribute.
+    CustomAttributeUpdated:
+      allOf:
+        - $ref: '#/components/schemas/CustomAttribute'
+        - type: object
+          properties:
+            column_meta:
+              properties:
+                column_name:
+                  example: Age of the user
+    CustomAttributeColumnMeta:
+      allOf:
+        - $ref: "../components.yaml#/components/schemas/ColumnMeta"
+        - type: object
+          properties:
+            column_name:
+              example: User's Age
+            data_type:
+              example: number
+            column_unit:
+              example: ""
+            column_category:
+              example: ["Custom attribute"]
+            analytics_column_id:
+              example: null
+            analytics_transformation_id:
+              example: null
+            value_selectors:
+              example: [first]
+            extractions:
+              example: [first]
+            scope:
+              example: "profile"
