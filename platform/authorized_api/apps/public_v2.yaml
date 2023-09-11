@@ -33,6 +33,18 @@ components:
       schema:
         type: integer
         default: 10000
+    permission:
+      name: permission
+      in: query
+      description: Filter apps by permission (actually by an `action`)
+      required: false
+      schema:
+        type: string
+        enum:
+          - view
+          - edit
+          - publish
+          - manage
     search:
       name: search
       in: query
@@ -315,8 +327,8 @@ components:
         eCommerceTracking:
           type: boolean
           description: Enables e-commerce reports, additional tab is shown in Analytics module with e-commerce logs. Sales can be easily tracked using this setting.
-          default: false
-          example: false
+          default: true
+          example: true
         siteSearchTracking:
           deprecated: true
           type: boolean
@@ -474,7 +486,7 @@ paths:
         Get list of apps<br><br>
         Full example:
         ```
-        /api/apps/v2?offset=100&limit=10&sort=name&search=nifty+marketing
+        /api/apps/v2?offset=100&limit=10&sort=name&search=nifty+marketing&permission=view
         ```
         this will list 10 apps ordered ascending by `name` starting on 101th matching search query "nifty marketing".
       operationId: api_app_list_v2
@@ -484,6 +496,7 @@ paths:
         - $ref: "#/components/parameters/search_query"
         - $ref: "#/components/parameters/sort"
         - $ref: "#/components/parameters/search"
+        - $ref: "#/components/parameters/permission"
       responses:
         200:
           description: OK

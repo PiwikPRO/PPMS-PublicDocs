@@ -40,7 +40,6 @@
             "id": "118151e9-e0f8-4aeb-adb6-c1c659e5472f",
             "type": "changelog",
             "attributes": {
-                "version_id": "1ff0fd82-beac-4798-bede-13c6e7433fae",
                 "created_at": "2020-04-10T09:39:32+00:00",
                 "author": "john@doe.com",
                 "change_type": "edit",
@@ -91,7 +90,6 @@
             "id": "a351a4b1-6568-4309-bbc2-29e1f317efa1",
             "type": "changelog",
             "attributes": {
-                "version_id": "1ff0fd82-beac-4798-bede-13c6e7433fae",
                 "created_at": "2020-03-31T08:47:01+00:00",
                 "author": "john@doe.com",
                 "change_type": "delete",

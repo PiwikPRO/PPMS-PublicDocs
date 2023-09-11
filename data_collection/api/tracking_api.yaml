@@ -1023,6 +1023,18 @@ paths:
             type: string
             format: SemVer
           example: 3.4.1
+        - name: fp
+          in: query
+          description: |
+            Provides on-demand control of the SessionId feature (0=disabled, 1=enabled)
+
+            When this parameter is not used, processing service will default to the current value from the Privacy tab in global or app settings.
+          schema:
+            type: integer
+            enum:
+              - 0
+              - 1
+          example: 1
       responses:
         202:
           description: Request accepted and waiting for processing

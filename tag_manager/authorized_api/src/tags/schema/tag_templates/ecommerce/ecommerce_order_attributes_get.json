@@ -72,7 +72,9 @@
                 "product_mapping",
                 "category_mapping_type",
                 "products_array",
-                "order"
+                "order",
+                "product_dimensions",
+                "custom_dimensions"
             ]
         }
     }

@@ -313,7 +313,8 @@
                 "tracker_domains",
                 "tracker_php_url",
                 "tracker_js_url",
-                "tracker_site_id"
+                "tracker_site_id",
+                "piwik_custom_dimensions"
             ]
         }
     }
