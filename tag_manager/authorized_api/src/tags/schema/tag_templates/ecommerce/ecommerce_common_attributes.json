@@ -1,5 +1,50 @@
 {
     "definitions": {
+        "product_dimensions_item": {
+            "description": "Product dimension",
+            "type": "object",
+            "properties": {
+                "id": {
+                    "description": "Product dimension number",
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 20
+                },
+                "value": {
+                    "description": "Product dimension value",
+                    "anyOf": [
+                        {
+                            "type": "integer"
+                        },
+                        {
+                            "type": "number"
+                        },
+                        {
+                            "type": "boolean"
+                        },
+                        {
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 255
+                        }
+                    ]
+                }
+            },
+            "additionalProperties": false,
+            "required": [
+                "id",
+                "value"
+            ]
+        },
+        "product_dimensions": {
+            "description": "Product dimensions",
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/product_dimensions_item"
+            },
+            "minItems": 0,
+            "maxItems": 20
+        },
         "products_array": {
             "type": "string",
             "description": "Object key with products array"

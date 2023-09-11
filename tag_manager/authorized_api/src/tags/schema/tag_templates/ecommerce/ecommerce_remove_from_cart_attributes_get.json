@@ -3,7 +3,7 @@
         "template": {
             "$ref": "../../tag_attributes.json#/definitions/template",
             "enum": [
-                "ecommerce_add_to_cart"
+                "ecommerce_remove_from_cart"
             ]
         },
         "template_options": {
@@ -33,7 +33,9 @@
             "required": [
                 "product_mapping",
                 "category_mapping_type",
-                "products_array"
+                "products_array",
+                "product_dimensions",
+                "custom_dimensions"
             ]
         }
     }

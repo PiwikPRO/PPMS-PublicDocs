@@ -51,7 +51,7 @@
                             "$ref": "../../tag_templates/ecommerce/ecommerce_remove_from_cart_attributes.json#/definitions/template"
                         },
                         "template_options": {
-                            "$ref": "../../tag_templates/ecommerce/ecommerce_remove_from_cart_attributes.json#/definitions/template_options"
+                            "$ref": "../../tag_templates/ecommerce/ecommerce_remove_from_cart_attributes_get.json#/definitions/template_options"
                         },
                         "created_at": {
                             "$ref": "../../../../common/schema/common_types.json#/definitions/datetime"
