@@ -415,6 +415,7 @@ Expected attributes of each product:
 
 ### Tracking ecommerce transactions
 *Requires Analytics*
+> **Warning:** Deprecated since version 1.2.0: Older ecommerce API deprecated in favor of e-commerce V2. New API allows to track more actions ([e.g. ecommerceAddToCart](#tracking-e-commerce-add-to-cart)) and is easier to use.
 
 Ecommerce transactions (in-app purchases) can be tracked to help you improve your business strategy. To track a transaction you must provide two required values - the transaction identifier and `grandTotal`. Optionally, you can also provide values for `subTotal`, `tax`, `shippingCost`, `discount` and list of purchased items as in the example below.
 ```

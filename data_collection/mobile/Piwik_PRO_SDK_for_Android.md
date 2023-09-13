@@ -487,7 +487,8 @@ Expected attributes of each product:
 
 ### Tracking ecommerce transactions
 *Requires Analytics*
-> **Warning:** Tracking ecommerce transactions is deprecated and will be replaced by [e-commerce order](#tracking-e-commerce-order).
+
+> **Warning:** Deprecated since version 1.2.0: Older ecommerce API deprecated in favor of e-commerce V2. New API allows to track more actions ([e.g. ecommerceAddToCart](#tracking-e-commerce-add-to-cart)) and is easier to use.
 
 If your organization depends on online sales, you need detailed analysis to transform raw e-commerce stats into actionable insights. Revenue, orders, conversion rates, and a host of other product statistics can be analyzed by integrating Piwik with your e-commerce solution.
 
