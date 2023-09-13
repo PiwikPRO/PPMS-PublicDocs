@@ -30,7 +30,9 @@ Then add the dependency to the application module `build.gradle` file:
   }
 ```
 
-Replace `VERSION` with the latest release name, e.g. ``1.0.3``.
+Replace `VERSION` with the latest release name, e.g. ``1.2.0``.
+You can check the latest version of the SDK on the [GitHub repository](https://github.com/PiwikPRO/sdk-framework-android) or on [JitPack](https://jitpack.io/#PiwikPRO/sdk-framework-android).
+The changelog is available [here](https://github.com/PiwikPRO/sdk-framework-android/blob/master/CHANGELOG.md).
 
 #### Configuration
 
@@ -76,12 +78,12 @@ When we edit a Kotlin class file and type in a reference to the Piwik PRO SDK co
 Example of using the method to track a view in Java:
 ```java
 Tracker tracker = ((PiwikApplication) getApplication()).getTracker();
-TrackHelper.track().screen("your_activity_path").title("Title").with(tracker);
+TrackHelper.track().screen("your_activity_path").with(tracker);
 ```
 Same example in Kotlin:
 ```java
 val tracker: Tracker = (application as PiwikApplication).tracker
-TrackHelper.track().screen("your_activity_path").title("Title").with(tracker)
+TrackHelper.track().screen("your_activity_path").with(tracker)
 ```
 
 For more on using existing Java code in Kotlin files, see the documentation ["Calling Java from Kotlin﻿"](https://kotlinlang.org/docs/java-interop.html).
@@ -136,13 +138,14 @@ public class YourActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Tracker tracker = ((PiwikApplication) getApplication()).getTracker();
-        TrackHelper.track().screen("your_activity_path").title("Title").with(tracker);
+        TrackHelper.track().screen("your_activity_path").with(tracker);
     }
 }
 
 ```
 * A path (required) – each screen should be mapped to the URL path
 
+**Warning:** The title method is deprecated and will soon be removed. We recommend not to use it.
 * A title (optional) – the title of the action being tracked.
 
 To automatically use the activity-stack as a path and activity title as a name, use the overloaded screen method:
@@ -235,7 +238,7 @@ Tracking [campaigns](https://help.piwik.pro/support/reports/campaign-report/) UR
     TrackHelper.track().campaign("https://www.example.com?pk_campaign=Email-SummerDeals&pk_keyword=LearnMore");
 ```
 
-* A URL (required) – the campaign URL. HTTPS, HTTP and FTP are valid, however, the URL must contain campaign name and keyword parameters.
+* A URL (required) – the campaign URL. The URL must contain campaign name and keyword parameters.
 
 The information contained in the campaign URL or the deep link will be tracked when the first screen event is triggered.
 
@@ -269,7 +272,7 @@ Application installation is only tracked during the first launch. In the case of
 For tracking outlinks to external websites or other apps opened from your application use the ``outlink`` method:
 
 ```java
-TrackHelper.track().outlink(new URL("yourScheme://address.app")).with(getTracker());
+TrackHelper.track().outlink("yourScheme://address.app").with(getTracker());
 ```
 * A outlink (required) – defines the outlink target.
 
@@ -315,7 +318,7 @@ TrackHelper.track().interaction("Android content impression", "click").piece("ba
 By default, goals are defined as "matching" parts of the screen path or screen title. If you want to trigger a conversion manually or track some user interaction, call the method ``goal``. [Read more about what a goal is in the Help Center.](https://help.piwik.pro/support/reports/goals/)
 
 ```java
-TrackHelper.track().goal("27ecc5e3-8ae0-40c3-964b-5bd8ee3da059").revenue(revenue).with(tracker)
+TrackHelper.track().goal("27ecc5e3-8ae0-40c3-964b-5bd8ee3da059").revenue(revenue).with(tracker);
 ```
 * A goal (required) – a tracking request will trigger a conversion for the goal of the website being tracked with this ID.
 
@@ -323,8 +326,168 @@ TrackHelper.track().goal("27ecc5e3-8ae0-40c3-964b-5bd8ee3da059").revenue(revenue
 
 Create, view or manage goals is available in the Analytics tab, "Goals" left menu, "Manage goals" section.
 
+### Tracking e-commerce product detail view
+Tracks action of viewing product page.
+
+```java
+EcommerceProducts products = new EcommerceProducts();
+HashMap<Integer, String> customDimensions = new HashMap<Integer,String>();
+dimensions.put(1, "coupon-2020");
+dimensions.put(2: "20%");
+products.add(new EcommerceProducts.Product("craft-311")
+                .name("Unicorn Iron on Patch")
+                .category(new String[]{"Crafts & Sewing", "Toys"})
+                .price("49.90")
+                .quantity(3)
+                .brand("DMZ")
+                .variant("blue")
+                .customDimensions(customDimensions))
+TrackHelper.track().ecommerceProductDetailView(products).with(tracker);
+```
+
+* A products (required) – list of product representations
+Expected attributes of each product:
+> * sku (required) - product stock-keeping unit
+> * name (optional) -  product name (default: “”)
+> * category (optional) - product category or an array of up to 5 categories (default: “”)
+> * price (optional) - product price (default: 0)
+> * quantity (optional) - roduct quantity (default: 1)
+> * brand (optional) - product brand (default: “”)
+> * variant (optional) - product variant (default: “”)
+> * customDimensions (optional) - product custom dimensions. Max 20 product custom dimensions, 20 is max ID. (default: {})
+
+### Tracking e-commerce add to cart
+Tracks action of adding products to a cart.
+
+```java
+EcommerceProducts products = new EcommerceProducts();
+HashMap<Integer, String> customDimensions = new HashMap<Integer,String>();
+dimensions.put(1, "coupon-2020");
+dimensions.put(2: "20%");
+products.add(new EcommerceProducts.Product("craft-311")
+                .name("Unicorn Iron on Patch")
+                .category(new String[]{"Crafts & Sewing", "Toys"})
+                .price("49.90")
+                .quantity(3)
+                .brand("DMZ")
+                .variant("blue")
+                .customDimensions(customDimensions))
+TrackHelper.track().ecommerceAddToCart(products).with(tracker);
+```
+
+* A products (required) – list of product representations 
+Expected attributes of each product:
+> * sku (required) - product stock-keeping unit
+> * name (optional) -  product name (default: “”)
+> * category (optional) - product category or an array of up to 5 categories (default: “”)
+> * price (optional) - product price (default: 0)
+> * quantity (optional) - roduct quantity (default: 1)
+> * brand (optional) - product brand (default: “”)
+> * variant (optional) - product variant (default: “”)
+> * customDimensions (optional) - product custom dimensions. Max 20 product custom dimensions, 20 is max ID. (default: {})
+
+### Tracking e-commerce remove from cart
+Tracks action of removing a product from a cart.
+
+```java
+EcommerceProducts products = new EcommerceProducts();
+HashMap<Integer, String> customDimensions = new HashMap<Integer,String>();
+dimensions.put(1, "coupon-2020");
+dimensions.put(2: "20%");
+products.add(new EcommerceProducts.Product("craft-311")
+                .name("Unicorn Iron on Patch")
+                .category(new String[]{"Crafts & Sewing", "Toys"})
+                .price("49.90")
+                .quantity(3)
+                .brand("DMZ")
+                .variant("blue")
+                .customDimensions(customDimensions))
+TrackHelper.track().ecommerceRemoveFromCart(products).with(tracker);
+```
+
+* A products (required) – list of product representations 
+Expected attributes of each product:
+> * sku (required) - product stock-keeping unit
+> * name (optional) -  product name (default: “”)
+> * category (optional) - product category or an array of up to 5 categories (default: “”)
+> * price (optional) - product price (default: 0)
+> * quantity (optional) - roduct quantity (default: 1)
+> * brand (optional) - product brand (default: “”)
+> * variant (optional) - product variant (default: “”)
+> * customDimensions (optional) - product custom dimensions. Max 20 product custom dimensions, 20 is max ID. (default: {})
+
+### Tracking e-commerce cart update
+Tracks current state of a cart.
+
+```java
+EcommerceProducts products = new EcommerceProducts();
+HashMap<Integer, String> customDimensions = new HashMap<Integer,String>();
+dimensions.put(1, "coupon-2020");
+dimensions.put(2: "20%");
+products.add(new EcommerceProducts.Product("craft-311")
+                .name("Unicorn Iron on Patch")
+                .category(new String[]{"Crafts & Sewing", "Toys"})
+                .price("49.90")
+                .quantity(3)
+                .brand("DMZ")
+                .variant("blue")
+                .customDimensions(customDimensions))
+TrackHelper.track().ecommerceCartUpdate(products, "60000.78").with(tracker);
+```
+
+* A products (required) – list of product representations 
+Expected attributes of each product:
+> * sku (required) - product stock-keeping unit
+> * name (optional) -  product name (default: “”)
+> * category (optional) - product category or an array of up to 5 categories (default: “”)
+> * price (optional) - product price (default: 0)
+> * quantity (optional) - roduct quantity (default: 1)
+> * brand (optional) - product brand (default: “”)
+> * variant (optional) - product variant (default: “”)
+> * customDimensions (optional) - product custom dimensions. Max 20 product custom dimensions, 20 is max ID. (default: {})
+
+* grandTotal (required) – the total value of items in a cart
+
+### Tracking e-commerce order
+Tracks conversion.
+
+```java
+EcommerceProducts products = new EcommerceProducts();
+HashMap<Integer, String> customDimensions = new HashMap<Integer,String>();
+dimensions.put(1, "coupon-2020");
+dimensions.put(2: "20%");
+products.add(new EcommerceProducts.Product("craft-311")
+                .name("Unicorn Iron on Patch")
+                .category(new String[]{"Crafts & Sewing", "Toys"})
+                .price("49.90")
+                .quantity(3)
+                .brand("DMZ")
+                .variant("blue")
+                .customDimensions(customDimensions))
+TrackHelper.track().ecommerceOrder("order-3415", "180.00", products).subTotal("120.00").tax("39.60").shipping("60.00").discount("18.00").with(mTracker);
+```
+
+* A products (required) – list of product representations 
+Expected attributes of each product:
+> * sku (required) - product stock-keeping unit
+> * name (optional) -  product name (default: “”)
+> * category (optional) - product category or an array of up to 5 categories (default: “”)
+> * price (optional) - product price (default: 0)
+> * quantity (optional) - roduct quantity (default: 1)
+> * brand (optional) - product brand (default: “”)
+> * variant (optional) - product variant (default: “”)
+> * customDimensions (optional) - product custom dimensions. Max 20 product custom dimensions, 20 is max ID. (default: {})
+
+* orderId (required) - unique identifier of an order
+* grandTotal (required) – the total value of items in a cart
+* subTotal (optional) - total value of items in a cart without shipping
+* tax (optional) - total tax amount
+* shipping (optional) - total shipping cost
+* discount (optional) - total discount
+
 ### Tracking ecommerce transactions
 *Requires Analytics*
+> **Warning:** Tracking ecommerce transactions is deprecated and will be replaced by [e-commerce order](#tracking-e-commerce-order).
 
 If your organization depends on online sales, you need detailed analysis to transform raw e-commerce stats into actionable insights. Revenue, orders, conversion rates, and a host of other product statistics can be analyzed by integrating Piwik with your e-commerce solution.
 
@@ -438,6 +601,7 @@ TrackHelper.track()
        .with(tracker);
 ```
 ``1`` and ``2`` are our dimension slots and ``visit``, ``billing`` are the dimension values for the tracked event.
+The length of the custom dimension value can be 1024 characters.
 
 Once the event is triggered, the dimensions are deleted and will not be sent with the next event. If you want to send dimensions with the next event, you must set them again.
 
@@ -561,13 +725,7 @@ Setting up an email helps the Audience Manager to enrich existing profiles or me
 ### Device ID
 *Used only by Audience Manager*
 
-The device ID is used to track the AAID (identifier for advertising). The AAID is an additional, non-empty unique string identifying the device. By default, device ID fetched automatically when the tracker instance is created.
-
-To turn off automatic fetch, use the ``setTrackDeviceId(boolean isTracked)`` method:
-
-```java
-getTracker().setTrackDeviceId(false);
-```
+The device ID is an additional, non-empty unique string identifying the device. By default, device ID is empty. You can set it using the ``setDeviceId(String deviceID)`` method.
 
 To set custom deviceID, use the ``setDeviceId(String deviceID)`` method:
 
@@ -575,7 +733,6 @@ To set custom deviceID, use the ``setDeviceId(String deviceID)`` method:
 getTracker().setDeviceId(String deviceID);
 ```
 
-If custom ``deviceID`` value is not set, then default automatically generated ``deviceID`` value is assigned.
 You can get ``deviceID`` via ``getDeviceId()`` method:
 
 ```java
@@ -599,7 +756,7 @@ Every unique visitor must be assigned a different ID and this ID must not change
 
 ### Sessions
 
-A session represents a set of user's interactions with your app. By default, Analytics is closing the session after 30 minutes of inactivity, counting from the last recorded event in session and when the user will open up the app again the new session is started. You can configure the tracker to automatically close the session when users have placed your app in the background for a period of time. That period is defined by the ``setSessionTimeout`` method.
+A session represents a set of user's interactions with your app. By default, Analytics is closing the session after 30 minutes of inactivity, counting from the last recorded event in session. You can configure the tracker to automatically close the session when users have placed your app in the background for a period of time. That period is defined by the ``setSessionTimeout`` method.
 
 ```java
 tracker.setSessionTimeout(30 * 60 * 1000);
@@ -609,8 +766,9 @@ tracker.setSessionTimeout(30 * 60 * 1000);
 You can manually start a new session when sending a hit to Piwik by using the ``startNewSession`` method.
 
 ```java
-tracker.startNewSession();
+tracker.startNewSession(Boolean preserveSessionParameters);
 ```
+* A preserveSessionParameters (optional) – Boolean value that specifies whether campaign/deep link data, custom dimensions and custom variables are transferred to the next session. By default is set to false. 
 
 ### Dispatching
 
@@ -627,7 +785,7 @@ Tracked events are stored temporarily on the queue and by default dispatched in 
     try {
         cartItems = getCartItems();
     } catch (Exception e) {
-        tracker.trackException(e, e.getMessage(), false);
+        TrackHelper.track().exception(e).description(e.getMessage());
         tracker.dispatch();
         cartItems = null;
     }
@@ -687,6 +845,8 @@ You can enable an app-level opt-out flag that will disable Piwik PRO tracking ac
 ```java
 getTracker().setOptOut(true);
 ```
+
+**Warning:** Be aware that setting the opt-out flag will empty the queue of pending events before they are sent.
 
 ### Dry run
 

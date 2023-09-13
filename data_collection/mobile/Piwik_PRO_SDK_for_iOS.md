@@ -16,8 +16,9 @@ Use the following in your Podfile:
 pod 'PiwikPROSDK', '~> VERSION'
 ```
 
-Replace `VERSION` with the latest release name, e.g. ``'~> 1.1.5'``.
+Replace `VERSION` with the latest release name, e.g. ``'~> 1.2.0'``.
 You can check the latest version of the SDK on the [project page](https://cocoapods.org/pods/PiwikPROSDK).
+The changelog is available [here](https://github.com/PiwikPRO/piwik-pro-sdk-framework-ios/blob/master/CHANGELOG.md).
 
 
 Then run ``pod install``. In every file you wish to use the PiwikPROSDK, don't forget to import it.
@@ -258,6 +259,159 @@ Goaltracking is used to measure and improve your business objectives. To track g
 
 * `revenue` (optional) – a monetary value that was generated as revenue by this goal conversion.
 
+### Tracking e-commerce product detail view
+Tracks action of viewing product page.
+
+```java
+EcommerceProducts *products = [[EcommerceProducts alloc] init];
+[ecommerceProducts addProductWithSku:@"craft-311"
+                                name:@"Unicorn Iron on Patch"
+                            category:@[@"Crafts & Sewing", @"Toys"]
+                               price:@"49.90"
+                            quantity:@3
+                               brand:@"DMZ"
+                             variant:@"blue"
+                    customDimensions:@{@1: @"coupon-2020", @2: @"20%"}];
+[[PiwikTracker sharedInstance] ecommerceProductDetailView: products];
+```
+
+* A products (required) – list of product representations
+Expected attributes of each product:
+> * sku (required) - product stock-keeping unit
+> * name (optional) -  product name (default: “”)
+> * category (optional) - product category or an array of up to 5 categories (default: “”)
+> * price (optional) - product price (default: 0)
+> * quantity (optional) - roduct quantity (default: 1)
+> * brand (optional) - product brand (default: “”)
+> * variant (optional) - product variant (default: “”)
+> * customDimensions (optional) - product custom dimensions. Max 20 product custom dimensions, 20 is max ID. (default: {})
+
+### Tracking e-commerce add to cart
+Tracks action of adding products to a cart.
+
+```java
+Product *product = [Product productWithSku:@"craft-311"
+                                      name:@"Unicorn Iron on Patch"
+                                  category:@[@"Crafts & Sewing", @"Toys"]
+                                     price:@"49.90"
+                                  quantity:@3
+                                     brand:@"DMZ"
+                                   variant:@"blue"
+                          customDimensions:@{@1: "coupon-2020", @2: @"20%"}];
+EcommerceProducts *products = [[EcommerceProducts alloc] init];
+[products addProduct: product];
+[[PiwikTracker sharedInstance] ecommerceAddToCart: products];
+```
+
+* A products (required) – list of product representations
+Expected attributes of each product:
+> * sku (required) - product stock-keeping unit
+> * name (optional) -  product name (default: “”)
+> * category (optional) - product category or an array of up to 5 categories (default: “”)
+> * price (optional) - product price (default: 0)
+> * quantity (optional) - roduct quantity (default: 1)
+> * brand (optional) - product brand (default: “”)
+> * variant (optional) - product variant (default: “”)
+> * customDimensions (optional) - product custom dimensions. Max 20 product custom dimensions, 20 is max ID. (default: {})
+
+### Tracking e-commerce remove from cart
+Tracks action of removing a product from a cart.
+
+```java
+Product *product = [Product productWithSku:@"craft-311"
+                                      name:@"Unicorn Iron on Patch"
+                                  category:@[@"Crafts & Sewing", @"Toys"]
+                                     price:@"49.90"
+                                  quantity:@3
+                                     brand:@"DMZ"
+                                   variant:@"blue"
+                          customDimensions:@{@1: "coupon-2020", @2: @"20%"}];
+EcommerceProducts *products = [[EcommerceProducts alloc] init];
+[products addProducts:@[product]];
+[[PiwikTracker sharedInstance] ecommerceRemoveFromCart: products];
+```
+
+* A products (required) – list of product representations 
+Expected attributes of each product:
+> * sku (required) - product stock-keeping unit
+> * name (optional) -  product name (default: “”)
+> * category (optional) - product category or an array of up to 5 categories (default: “”)
+> * price (optional) - product price (default: 0)
+> * quantity (optional) - roduct quantity (default: 1)
+> * brand (optional) - product brand (default: “”)
+> * variant (optional) - product variant (default: “”)
+> * customDimensions (optional) - product custom dimensions. Max 20 product custom dimensions, 20 is max ID. (default: {})
+
+### Tracking e-commerce cart update
+Tracks current state of a cart.
+
+```java
+Product *product = [Product productWithSku:@"craft-311"
+                                      name:@"Unicorn Iron on Patch"
+                                  category:@[@"Crafts & Sewing", @"Toys"]
+                                     price:@"49.90"
+                                  quantity:@3
+                                     brand:@"DMZ"
+                                   variant:@"blue"
+                          customDimensions:@{@1: "coupon-2020", @2: @"20%"}];
+EcommerceProducts *products = [[EcommerceProducts alloc] init];
+[products addProduct: product];
+[[PiwikTracker sharedInstance] ecommerceCartUpdate:products grandTotal:@"180.00"];
+```
+
+* A products (required) – list of product representations 
+Expected attributes of each product:
+> * sku (required) - product stock-keeping unit
+> * name (optional) -  product name (default: “”)
+> * category (optional) - product category or an array of up to 5 categories (default: “”)
+> * price (optional) - product price (default: 0)
+> * quantity (optional) - roduct quantity (default: 1)
+> * brand (optional) - product brand (default: “”)
+> * variant (optional) - product variant (default: “”)
+> * customDimensions (optional) - product custom dimensions. Max 20 product custom dimensions, 20 is max ID. (default: {})
+
+* grandTotal (required) – the total value of items in a cart
+
+### Tracking e-commerce order
+Tracks conversion.
+
+```java
+Product *product = [Product productWithSku:@"craft-311"
+                                      name:@"Unicorn Iron on Patch"
+                                  category:@[@"Crafts & Sewing", @"Toys"]
+                                     price:@"49.90"
+                                  quantity:@3
+                                     brand:@"DMZ"
+                                   variant:@"blue"
+                          customDimensions:@{@1: "coupon-2020", @2: @"20%"}];
+EcommerceProducts *products = [[EcommerceProducts alloc] init];
+[products addProduct: product];
+[[PiwikTracker sharedInstance] ecommerceOrder:products
+                                      orderId:@"order-3415"
+                                   grandTotal:@"180.00"
+                                     subTotal:@"120.00"
+                                          tax:@"39.60"
+                                     shipping:@"60.00"
+                                     discount:@"18.00"];
+```
+
+* A products (required) – list of product representations 
+Expected attributes of each product:
+> * sku (required) - product stock-keeping unit
+> * name (optional) -  product name (default: “”)
+> * category (optional) - product category or an array of up to 5 categories (default: “”)
+> * price (optional) - product price (default: 0)
+> * quantity (optional) - roduct quantity (default: 1)
+> * brand (optional) - product brand (default: “”)
+> * variant (optional) - product variant (default: “”)
+> * customDimensions (optional) - product custom dimensions. Max 20 product custom dimensions, 20 is max ID. (default: {})
+
+* orderId (required) - unique identifier of an order
+* grandTotal (required) – the total value of items in a cart
+* subTotal (optional) - total value of items in a cart without shipping
+* tax (optional) - total tax amount
+* shipping (optional) - total shipping cost
+* discount (optional) - total discount
 
 ### Tracking ecommerce transactions
 *Requires Analytics*
@@ -333,7 +487,7 @@ You can also use custom dimensions to track custom values as below.
 
 * An index (required) – a given custom dimension must always be stored in the same "index" per session, similar to custom variables. In example ``1`` is our dimension slot.
 
-* A value (required) – this String defines the value of a specific custom dimension such as "English". Limited to 200 characters. 
+* A value (required) – this String defines the value of a specific custom dimension such as "English". Limited to 1024 characters. 
 
 Assigning a value to an already used index will overwrite the previously assigned value.
 Note that the custom dimensions data is not sent by itself, but only with other tracking events.
@@ -455,11 +609,12 @@ A session represents a set of user's interactions with your app. By default, Ana
 ```
 * sessionTimeout (required) – session timeout time in seconds. Default: 1800 seconds (30 minutes).
 
-You can manually start a new session when sending a hit to Piwik by using the ``startNewSession`` method.
+You can manually start a new session when sending a hit to Piwik by using the ``startNewSession:(BOOL) preserveSessionParameters`` method.
 
 ```
-[PiwikTracker sharedInstance].startNewSession;
+[[PiwikTracker sharedInstance] startNewSession:NO];
 ```
+* A preserveSessionParameters (optional) – Boolean value that specifies whether campaign/deep link data, custom dimensions and custom variables are transferred to the next session. By default, calling this method clears all data of the current session.
 
 ### Device ID
 *Used only by Audience Manager*
@@ -509,7 +664,7 @@ You can set limits for storing events related to maximum size and time for which
 
 * `maxNumberOfQueuedEvents` (required) – the maximum number of events after which events in the queue are deleted. By default, the limit is set to 500.
 
-* `maxAgeOfQueuedEvents` (required) – time in ms after which events are deleted. By default, the limit is set to 24 * 60 * 60 = 24 hours.
+* `maxAgeOfQueuedEvents` (required) – time in seconds after which events are deleted. By default, the limit is set to 24 * 60 * 60 = 24 hours.
 
 
 ### Opt-out
