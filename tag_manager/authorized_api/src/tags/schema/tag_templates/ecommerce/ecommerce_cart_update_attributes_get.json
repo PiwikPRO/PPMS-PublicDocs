@@ -1,0 +1,47 @@
+{
+    "definitions": {
+        "template": {
+            "$ref": "../../tag_attributes.json#/definitions/template",
+            "enum": [
+                "ecommerce_cart_update"
+            ]
+        },
+        "template_options": {
+            "type": "object",
+            "properties": {
+                "product_mapping": {
+                    "$ref": "ecommerce_common_attributes.json#/definitions/product_mapping",
+                    "description": "Product mapping"
+                },
+                "category_mapping_type": {
+                    "$ref": "ecommerce_common_attributes.json#/definitions/category_mapping_type"
+                },
+                "category_mapping": {
+                    "$ref": "ecommerce_common_attributes.json#/definitions/category_mapping"
+                },
+                "products_array": {
+                    "$ref": "ecommerce_common_attributes.json#/definitions/products_array"
+                },
+                "grand_total": {
+                    "type": "string",
+                    "description": "Object key with grand total"
+                },
+                "product_dimensions": {
+                    "$ref": "ecommerce_common_attributes.json#/definitions/product_dimensions"
+                },
+                "custom_dimensions": {
+                    "$ref": "../piwik_base_attributes.json#/definitions/custom_dimensions"
+                }
+            },
+            "additionalProperties": false,
+            "required": [
+                "product_mapping",
+                "category_mapping_type",
+                "products_array",
+                "grand_total",
+                "product_dimensions",
+                "custom_dimensions"
+            ]
+        }
+    }
+}

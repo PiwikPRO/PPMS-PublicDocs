@@ -141,8 +141,9 @@
             ]
         },
         "template_options_disable_cookies": {
-            "description": "Disables all first party cookies",
-            "type": "boolean"
+            "description": "Disables all first party cookies (is ignored and will be removed in next version). This setting is now reflected in privacyUseCookies attribute in App scope.",
+            "type": "boolean",
+            "deprecated": true
         },
         "template_options_secure_cookie": {
             "description": "Enable secure cookie flag on all first party cookies. This should be used when your website is only available under HTTPS so that all tracking cookies are always sent over secure connection.",
