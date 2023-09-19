@@ -207,7 +207,8 @@
                 "ecommerce_order",
                 "ecommerce_add_to_cart",
                 "ecommerce_remove_from_cart",
-                "ecommerce_product_detail_view"
+                "ecommerce_product_detail_view",
+                "ecommerce_cart_update"
             ]
         },
         "template_options_empty": {

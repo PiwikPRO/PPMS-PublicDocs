@@ -126,6 +126,9 @@
         },
         {
             "$ref": "../get/response/ecommerce_product_detail_view_get.json"
+        },
+        {
+            "$ref": "../get/response/ecommerce_cart_update_get.json"
         }
     ]
 }
