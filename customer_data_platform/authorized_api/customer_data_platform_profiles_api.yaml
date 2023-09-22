@@ -88,7 +88,7 @@ components:
             format: date-time
             type: string
             description: Date and time when profile matched audience definition. From this date audience membership duration is counted.
-            example: "2022-11-08T07:18:29.698861280Z"
+            example: "2023-09-22T17:39:49.066433Z"
           expired:
             type: boolean
             default: false
@@ -122,12 +122,12 @@ components:
           format: date-time
           type: string
           description: Date and time when profile was created.
-          example: "2022-11-08T07:18:29.844423Z"
+          example: "2023-09-22T17:39:22.830453Z"
         updated_at:
           format: date-time
           type: string
           description: Date and time when profile was updated.
-          example: "2022-11-08T07:18:29.844423Z"
+          example: "2023-09-22T17:42:07.443853Z"
         event_count:
           type: integer
           description: Number of events for profile.
@@ -140,7 +140,7 @@ components:
           type: string
           format: date-time
           description: Date and time when the profile will be updated.
-          example: "2022-11-09T07:18:29.199871Z"
+          example: "2023-10-22T17:42:07.443853Z"
         audiences:
           $ref: "#/components/schemas/ProfileAudiences"
         activations_done:
