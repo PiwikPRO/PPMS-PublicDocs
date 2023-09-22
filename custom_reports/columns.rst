@@ -39,4 +39,5 @@ Transformations
 The tables below list all transformations that may be used to transform
 dimensions to metrics or different dimensions.
 
-.. include:: columns__transformations.rst
+.. include:: columns__dimension_to_metric_transformations.rst
+.. include:: columns__dimension_to_dimension_transformations.rst
