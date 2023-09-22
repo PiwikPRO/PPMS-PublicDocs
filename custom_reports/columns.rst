@@ -29,9 +29,15 @@ Note: "Database type" column presents the type of source column of the dimension
 
 .. include:: columns__dimensions.rst
 
+.. _slots:
 .. note::
     Please note that the number of available custom slots (dimensions,
     variables) depends on your organisation's configuration.
+    Standard number of slots is:
+
+    - session_custom_dimension/event_custom_dimension: 200
+    - session_custom_variable/event_custom_variable: 10
+    - product_custom_dimension: 20
 
 Transformations
 ---------------
