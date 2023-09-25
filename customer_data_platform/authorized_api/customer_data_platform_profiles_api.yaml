@@ -74,6 +74,7 @@ components:
           - audience_id
           - audience_version
           - last_match_time
+          - expired
         properties:
           audience_id:
             type: string
@@ -97,6 +98,7 @@ components:
       type: object
       description: Profile
       required:
+        - version
         - id
         - app_id
         - created_at
@@ -104,11 +106,17 @@ components:
         - event_count
         - broken
         - remind_at
+        - audiences
+        - activations_done
         - identifiers
         - predefined_attributes
         - custom_dimension_attributes
         - custom_attributes
       properties:
+        version:
+          type: number
+          description: Profile schema version.
+          example: 1
         id:
           type: string
           description: Unique identifier of a profile.
@@ -256,8 +264,8 @@ components:
           type: object
           description: List of all attributes from custom dimensions collected for profile.
           example:
-            custom_dimension_1: ["Male"]
-            custom_dimension_5: ["Thursday", "Friday"]
+            session_custom_dimension_1: ["Male"]
+            session_custom_dimension_5: ["Thursday", "Friday"]
         custom_attributes:
           type: object
           description: List of all custom attributes collected for profile.
