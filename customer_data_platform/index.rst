@@ -8,4 +8,4 @@ Customer Data Platform
 
   public_api/public_api
   authorized_api/index
-  event_dimensions
+  event_data_keys

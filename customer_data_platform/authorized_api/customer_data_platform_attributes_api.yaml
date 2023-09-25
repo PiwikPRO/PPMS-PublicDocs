@@ -25,52 +25,52 @@ paths:
                 items:
                   $ref: "#/components/schemas/Attribute"
         401:
-          $ref: '../components.yaml#/components/responses/UnauthorizedError'
+          $ref: "../components.yaml#/components/responses/UnauthorizedError"
         402:
-          $ref: '../components.yaml#/components/responses/ModuleDisabledError'
+          $ref: "../components.yaml#/components/responses/ModuleDisabledError"
         404:
-          $ref: '../components.yaml#/components/responses/NotFoundError'
+          $ref: "../components.yaml#/components/responses/NotFoundError"
         500:
-          $ref: '../components.yaml#/components/responses/InternalServerError'
+          $ref: "../components.yaml#/components/responses/InternalServerError"
     post:
       summary: Create custom attribute
       security:
         - JWTAuth: []
       operationId: post-settings-app-custom-attribute
-      description: 'Creates a new custom attribute'
+      description: "Creates a new custom attribute"
       parameters:
         - $ref: "../components.yaml#/components/parameters/AppId"
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/CustomAttributeInput'
+              $ref: "#/components/schemas/CustomAttributeInput"
       responses:
         201:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CustomAttribute'
-          description: 'Created'
+                $ref: "#/components/schemas/CustomAttribute"
+          description: "Created"
         400:
-          $ref: '../components.yaml#/components/responses/BadRequestError'
+          $ref: "../components.yaml#/components/responses/BadRequestError"
         401:
-          $ref: '../components.yaml#/components/responses/UnauthorizedError'
+          $ref: "../components.yaml#/components/responses/UnauthorizedError"
         402:
-          $ref: '../components.yaml#/components/responses/ModuleDisabledError'
+          $ref: "../components.yaml#/components/responses/ModuleDisabledError"
         404:
-          $ref: '../components.yaml#/components/responses/NotFoundError'
+          $ref: "../components.yaml#/components/responses/NotFoundError"
         422:
-          $ref: '../components.yaml#/components/responses/UnprocessableEntity'
+          $ref: "../components.yaml#/components/responses/UnprocessableEntity"
         500:
-          $ref: '../components.yaml#/components/responses/InternalServerError'
+          $ref: "../components.yaml#/components/responses/InternalServerError"
   /api/cdp/settings/v1/app/{app_id}/attribute/bulk:
     post:
       summary: Create custom attribute bulk
       security:
         - JWTAuth: []
       operationId: post-settings-app-custom-attribute-bulk
-      description: 'Creates multiple new custom attributes'
+      description: "Creates multiple new custom attributes"
       parameters:
         - $ref: "../components.yaml#/components/parameters/AppId"
       requestBody:
@@ -79,7 +79,7 @@ paths:
             schema:
               type: array
               items:
-                $ref: '#/components/schemas/CustomAttributeInput'
+                $ref: "#/components/schemas/CustomAttributeInput"
       responses:
         201:
           content:
@@ -87,27 +87,27 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/CustomAttribute'
-          description: 'Created'
+                  $ref: "#/components/schemas/CustomAttribute"
+          description: "Created"
         400:
-          $ref: '../components.yaml#/components/responses/BadRequestError'
+          $ref: "../components.yaml#/components/responses/BadRequestError"
         401:
-          $ref: '../components.yaml#/components/responses/UnauthorizedError'
+          $ref: "../components.yaml#/components/responses/UnauthorizedError"
         402:
-          $ref: '../components.yaml#/components/responses/ModuleDisabledError'
+          $ref: "../components.yaml#/components/responses/ModuleDisabledError"
         404:
-          $ref: '../components.yaml#/components/responses/NotFoundError'
+          $ref: "../components.yaml#/components/responses/NotFoundError"
         422:
-          $ref: '../components.yaml#/components/responses/UnprocessableEntity'
+          $ref: "../components.yaml#/components/responses/UnprocessableEntity"
         500:
-          $ref: '../components.yaml#/components/responses/InternalServerError'
+          $ref: "../components.yaml#/components/responses/InternalServerError"
   /api/cdp/settings/v1/app/{app_id}/attribute/{column_id}:
     put:
       summary: Update custom attribute
       security:
         - JWTAuth: []
       operationId: put-settings-app-custom-attribute
-      description: 'Updates name of the existing custom attribute'
+      description: "Updates name of the existing custom attribute"
       parameters:
         - $ref: "../components.yaml#/components/parameters/AppId"
         - in: path
@@ -121,27 +121,27 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/CustomAttributeUpdateInput'
+              $ref: "#/components/schemas/CustomAttributeUpdateInput"
       responses:
         200:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CustomAttributeUpdated'
+                $ref: "#/components/schemas/CustomAttributeUpdated"
 
-          description: 'OK'
+          description: "OK"
         400:
-          $ref: '../components.yaml#/components/responses/BadRequestError'
+          $ref: "../components.yaml#/components/responses/BadRequestError"
         401:
-          $ref: '../components.yaml#/components/responses/UnauthorizedError'
+          $ref: "../components.yaml#/components/responses/UnauthorizedError"
         402:
-          $ref: '../components.yaml#/components/responses/ModuleDisabledError'
+          $ref: "../components.yaml#/components/responses/ModuleDisabledError"
         404:
-          $ref: '../components.yaml#/components/responses/NotFoundError'
+          $ref: "../components.yaml#/components/responses/NotFoundError"
         422:
-          $ref: '../components.yaml#/components/responses/UnprocessableEntity'
+          $ref: "../components.yaml#/components/responses/UnprocessableEntity"
         500:
-          $ref: '../components.yaml#/components/responses/InternalServerError'
+          $ref: "../components.yaml#/components/responses/InternalServerError"
 components:
   securitySchemes:
     JWTAuth:
@@ -153,14 +153,14 @@ components:
       type: object
       required:
         - column_id
-        - incoming_key
+        - event_data_key
         - immutable
         - column_meta
       properties:
         column_id:
           type: string
           description: Unique ID of column.
-        incoming_key:
+        event_data_key:
           type: string
           description: Key of the imported data value or name of Tracker event dimension to populate attribute.
           example: "user_age"
@@ -179,16 +179,16 @@ components:
       type: object
       required:
         - name
-        - incoming_key
+        - event_data_key
         - data_type
         - aggregation
       properties:
         name:
-          $ref: '#/components/schemas/CustomAttributeInputName'
-        incoming_key:
-          $ref: '#/components/schemas/CustomAttributeInputIncomingKey'
+          $ref: "#/components/schemas/CustomAttributeInputName"
+        event_data_key:
+          $ref: "#/components/schemas/CustomAttributeInputEventDataKey"
         data_type:
-          $ref: '#/components/schemas/CustomAttributeInputDataType'
+          $ref: "#/components/schemas/CustomAttributeInputDataType"
         aggregation:
           type: string
           description: |
@@ -217,12 +217,12 @@ components:
       type: object
       properties:
         name:
-          $ref: '#/components/schemas/CustomAttributeInputName'
-        incoming_key:
-          $ref: '#/components/schemas/CustomAttributeInputIncomingKey'
+          $ref: "#/components/schemas/CustomAttributeInputName"
+        event_data_key:
+          $ref: "#/components/schemas/CustomAttributeInputEventDataKey"
     CustomAttribute:
       allOf:
-        - $ref: '#/components/schemas/Attribute'
+        - $ref: "#/components/schemas/Attribute"
         - type: object
           properties:
             column_id:
@@ -240,8 +240,7 @@ components:
       description: |
         Type of the column.
 
-        If `incoming_key` is a key of a [predefined event dimension](/customer_data_platform/event_dimensions.html),
-        `data_type` must be type of that event dimension.
+        `data_type` must be the same for all attributes sharing one `event_data_key`. Otherwise, creation of an attribute will fail.
       enum:
         - number
         - bool
@@ -249,16 +248,23 @@ components:
         - datetime
         - string
       example: string
-    CustomAttributeInputIncomingKey:
+    CustomAttributeInputEventDataKey:
       type: string
       maxLength: 255
       minLength: 1
       description: |
-        Key of an event dimension (custom or one of [predefined event dimensions](/customer_data_platform/event_dimensions.html)),
-        whose values will be collected in the attribute.
+        Determines from which key in an event the attribute will be populated.
+        The value can be either:
+        * known analytics event data key (e.g. `analytics.source_medium`)
+        * custom event data key (`^[a-zA-Z0-9_-]{1,255}$`, e.g. `user_score`) - can be used to update attributes via API
+
+        If an attribute with the given `event_data_key` already exists, its type must match;
+        otherwise, an appropriate error will be returned.
+
+        Event data keys are explained in detail on [Event data keys page](/customer_data_platform/event_data_keys.html).
     CustomAttributeUpdated:
       allOf:
-        - $ref: '#/components/schemas/CustomAttribute'
+        - $ref: "#/components/schemas/CustomAttribute"
         - type: object
           properties:
             column_meta:
@@ -272,7 +278,7 @@ components:
           properties:
             column_name:
               example: User's Age
-            data_type:
+            column_type:
               example: number
             column_unit:
               example: ""
@@ -285,6 +291,8 @@ components:
             value_selectors:
               example: [first]
             extractions:
+              example: [first]
+            aggregation:
               example: [first]
             scope:
               example: "profile"

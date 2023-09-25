@@ -225,6 +225,19 @@ components:
           minItems: 0
           example: [first]
           description: List of extractions possible for given column.
+        aggregation:
+          type: string
+          description: Aggregation for attribute values.
+          enum:
+            - first
+            - last
+            - first_last
+            - list
+            - list_unique
+            - min
+            - max
+            - sum
+          example: first
         scope:
           type: string
           description: Defines the scope of dimension.
