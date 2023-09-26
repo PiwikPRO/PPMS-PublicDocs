@@ -51,6 +51,7 @@ api_definitions = {
     'customer_data_platform_profiles_api.json': 'customer_data_platform/public_api/customer_data_platform_profiles_api.yaml',
     'customer_data_platform_activations_api.json': 'customer_data_platform/authorized_api/customer_data_platform_activations_api.yaml',
     'customer_data_platform_audiences_api.json': 'customer_data_platform/authorized_api/customer_data_platform_audiences_api.yaml',
+    'customer_data_platform_attributes_api.json': 'customer_data_platform/authorized_api/customer_data_platform_attributes_api.yaml',
 }
 
 
