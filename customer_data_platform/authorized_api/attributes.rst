@@ -7,6 +7,6 @@ Attributes API
     </div>
     <script>
         (function() {
-            Redoc.init('../../_static/api/customer_data_platform_attributes_api.json', {}, document.getElementById('redoc-container'), () => {window.prepareRedocMenu ? window.prepareRedocMenu() : setTimeout(()=>{window.prepareRedocMenu()}, 2000)});
+            Redoc.init('../../_static/api/customer_data_platform_authorized_attributes_api.json', {}, document.getElementById('redoc-container'), () => {window.prepareRedocMenu ? window.prepareRedocMenu() : setTimeout(()=>{window.prepareRedocMenu()}, 2000)});
         })();
     </script>
