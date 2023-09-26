@@ -1,5 +1,5 @@
-Event data keys
-===============
+Profile attributes
+==================
 
 Profile attributes in Customer Data Platform are populated with values attached
 to events coming from your website, or those sent through `Profile update API <../customer_data_platform/public_api/public_api.html#operation/post-profile-attributes>`_.
@@ -7,16 +7,16 @@ For example, user attribute *Medium* collects values associated with event data
 key ``analytics.medium``.
 
 When creating custom attributes, either through UI or `Attributes API <../customer_data_platform/authorized_api/attributes.html#operation/post-settings-app-custom-attribute>`_,
-you specify from what event data key values will be collected. You can provide
+you specify from which event data key values will be collected. You can provide
 an event data key used by another attribute to collect the same data twice
 (potentially with different aggregations), or a new key to collect data
 independently.
 
 Events send through `Profile update API <../customer_data_platform/public_api/public_api.html#operation/post-profile-attributes>`_
-may specify values for analytics event data keys, as well as those configured
-during creation of custom user attributes. This allows you to update profile
-data gathered from your website or enrich profiles with information from other
-sources, like a CRM system.
+can specify values for analytics event data keys, as well as custom keys
+configured during creation of custom user attributes. This allows you to update
+profile data gathered from your website or enrich profiles with information
+from other sources, like a CRM system.
 
 Example profile update request body:
 
@@ -300,12 +300,12 @@ The following table shows all event data keys available right from the start.
      -
    * - analytics.search_keyword
      - Search keyword
-     - ``running shoes``
+     - ``"running shoes"``
      - string
      -
    * - analytics.search_category
      - Search category
-     - ``footwear``
+     - ``"footwear"``
      - string
      -
    * - analytics.search_results_count
@@ -453,73 +453,3 @@ The following table shows all event data keys available right from the start.
      - ``true``
      - bool
      -
-   * - analytics.sharepoint_action
-     - Sharepoint action
-     - ``1``
-     - number
-     - Deprecated. Possible values: :download:`sharepoint_action.json </_static/json/enum/sharepoint_action.json>`
-   * - analytics.sharepoint_object_type
-     - Sharepoint object type
-     - ``2``
-     - number
-     - Deprecated. Possible values: :download:`sharepoint_object_type.json </_static/json/enum/sharepoint_object_type.json>`
-   * - analytics.sharepoint_content_type
-     - Sharepoint content type
-     - ``"document"``
-     - string
-     - Deprecated
-   * - analytics.sharepoint_display_name
-     - Sharepoint display name
-     - ``"Trixie Smith"``
-     - string
-     - Deprecated
-   * - analytics.sharepoint_office
-     - Sharepoint office
-     - ``"Human Resources office"``
-     - string
-     - Deprecated
-   * - analytics.sharepoint_department
-     - Sharepoint department
-     - ``"Human Resources"``
-     - string
-     - Deprecated
-   * - analytics.sharepoint_job_title
-     - Sharepoint job title
-     - ``"Human Resources Manager"``
-     - string
-     - Deprecated
-   * - analytics.sharepoint_author
-     - Sharepoint author
-     - ``"rob.thompson@example.com"``
-     - string
-     - Deprecated
-   * - analytics.sharepoint_author_display_name
-     - Sharepoint author display name
-     - ``"Rob Thompson"``
-     - string
-     - Deprecated
-   * - analytics.sharepoint_author_office
-     - Sharepoint author office
-     - ``"Security office"``
-     - string
-     - Deprecated
-   * - analytics.sharepoint_author_department
-     - Sharepoint author department
-     - ``"Security and Compliance"``
-     - string
-     - Deprecated
-   * - analytics.sharepoint_author_job_title
-     - Sharepoint author job title
-     - ``"Security Researcher"``
-     - string
-     - Deprecated
-   * - analytics.sharepoint_file_url
-     - Sharepoint file URL
-     - ``"https://example.com/documents/report.pdf"``
-     - string
-     - Deprecated
-   * - analytics.sharepoint_file_type
-     - Sharepoint File Type
-     - ``"pdf"``
-     - string
-     - Deprecated
