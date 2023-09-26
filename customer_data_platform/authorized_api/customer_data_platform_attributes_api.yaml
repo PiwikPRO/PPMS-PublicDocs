@@ -261,7 +261,7 @@ components:
         If an attribute with the given `event_data_key` already exists, its type must match;
         otherwise, an appropriate error will be returned.
 
-        Event data keys are explained in detail on [Event data keys page](/customer_data_platform/event_data_keys.html).
+        Event data keys are explained in detail on [Event data keys page](../../customer_data_platform/event_data_keys.html).
     CustomAttributeUpdated:
       allOf:
         - $ref: "#/components/schemas/CustomAttribute"
