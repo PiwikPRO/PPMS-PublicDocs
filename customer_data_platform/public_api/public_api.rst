@@ -7,6 +7,6 @@ Public HTTP API
     </div>
     <script>
         (function() {
-            Redoc.init('../../_static/api/customer_data_platform_profiles_api.json', {}, document.getElementById('redoc-container'), () => {window.prepareRedocMenu ? window.prepareRedocMenu() : setTimeout(()=>{window.prepareRedocMenu()}, 2000)});
+            Redoc.init('../../_static/api/customer_data_platform_public_profiles_api.json', {}, document.getElementById('redoc-container'), () => {window.prepareRedocMenu ? window.prepareRedocMenu() : setTimeout(()=>{window.prepareRedocMenu()}, 2000)});
         })();
     </script>

@@ -1,0 +1,274 @@
+openapi: 3.1.0
+info:
+  title: CDP Profiles API Documentation
+  version: 0.0.0
+  description: This is the documentation of the CDP Profiles API service.
+servers:
+  - url: https://organization.piwik.pro
+paths:
+  /api/cdp/profiles/v1/app/{app_id}/profile/{identifier_type}/{identifier_value}:
+    get:
+      summary: Get profile by identifier
+      security:
+        - JWTAuth: []
+      operationId: get-profile-by-identifier
+      description: Return profile by `id`, `cookie_id`, `user_id` or `visitor_id`.
+      parameters:
+        - $ref: "../components.yaml#/components/parameters/AppId"
+        - in: path
+          name: identifier_type
+          description: Type of identifier
+          schema:
+            type: string
+            enum: [id, cookie_id, user_id, visitor_id]
+          required: true
+        - in: path
+          name: identifier_value
+          description: Value of identifier
+          schema:
+            type: string
+            example: "3a0133748b3e524c"
+          required: true
+      responses:
+        200:
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: "#/components/schemas/Profile"
+          description: Profile object
+        400:
+          $ref: "../components.yaml#/components/responses/BadRequestError"
+        402:
+          $ref: "../components.yaml#/components/responses/ModuleDisabledError"
+        403:
+          $ref: "../components.yaml#/components/responses/ForbiddenError"
+        404:
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: 404 page not found
+          description: Profile with given identifier or organization was not found.
+        500:
+          $ref: "../components.yaml#/components/responses/InternalServerError"
+components:
+  securitySchemes:
+    JWTAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    ProfileActivationIdList:
+      type: array
+      description: List of Activation IDs that were sent for profile.
+      items:
+        type: string
+        format: uuid
+        example: "2fb368ff-c0ca-45b9-bac5-421e40a34ff0"
+    ProfileAudiences:
+      type: array
+      description: List of Audiences profile belongs to.
+      items:
+        type: object
+        required:
+          - audience_id
+          - audience_version
+          - last_match_time
+          - expired
+        properties:
+          audience_id:
+            type: string
+            format: uuid
+            description: Audience identifier.
+            example: "ef3601bf-f770-4f88-a62f-55d4cccf955d"
+          audience_version:
+            type: integer
+            description: Audience version number, incremented on every update of definition or membership_duration_days.
+            example: 1
+          last_match_time:
+            format: date-time
+            type: string
+            description: Date and time when profile matched audience definition. From this date audience membership duration is counted.
+            example: "2023-09-22T17:39:49.066433Z"
+          expired:
+            type: boolean
+            default: false
+            description: "Whether audience membership has expired - membership_duration_days has passed since last_match_time."
+    Profile:
+      type: object
+      description: Profile
+      required:
+        - version
+        - id
+        - app_id
+        - created_at
+        - updated_at
+        - event_count
+        - broken
+        - remind_at
+        - audiences
+        - activations_done
+        - identifiers
+        - predefined_attributes
+        - custom_dimension_attributes
+        - custom_attributes
+      properties:
+        version:
+          type: number
+          description: Profile schema version.
+          example: 1
+        id:
+          type: string
+          description: Unique identifier of a profile.
+          example: "fc82690c0aa9f4a0"
+        app_id:
+          type: string
+          format: uuid
+          example: "05ab11d9-1876-4f00-b533-596d02572c4d"
+          description: "ID of the app"
+        created_at:
+          format: date-time
+          type: string
+          description: Date and time when profile was created.
+          example: "2023-09-22T17:39:22.830453Z"
+        updated_at:
+          format: date-time
+          type: string
+          description: Date and time when profile was updated.
+          example: "2023-09-22T17:42:07.443853Z"
+        event_count:
+          type: integer
+          description: Number of events for profile.
+          example: 34
+        broken:
+          type: boolean
+          description: Flag if profile is broken (e.g. due to being too large).
+          example: false
+        remind_at:
+          type: string
+          format: date-time
+          description: Date and time when the profile will be updated.
+          example: "2023-10-22T17:42:07.443853Z"
+        audiences:
+          $ref: "#/components/schemas/ProfileAudiences"
+        activations_done:
+          $ref: "#/components/schemas/ProfileActivationIdList"
+        identifiers:
+          type: object
+          description: List of all known identifiers for profile.
+          example:
+            cookie_id: ["176a5215ff7b62e3"]
+            user_id: ["tom1987@bob.com"]
+        predefined_attributes:
+          type: object
+          description: List of all predefined attributes collected for profile.
+          example:
+            browser_engine:
+            - Blink
+            - Blink
+            browser_language_iso639:
+            - - en
+              - English
+            - - en
+              - English
+            browser_name:
+            - - CH
+              - Chrome
+            - - CH
+              - Chrome
+            browser_version:
+            - '117.0'
+            - '117.0'
+            consent_type_ab_testing_personalization: true
+            consent_type_analytics: true
+            consent_type_marketing_automation: true
+            consent_type_remarketing: true
+            device_type:
+            - - 0
+              - Desktop
+            - - 0
+              - Desktop
+            first_activity: '2023-09-22T17:39:22.830453Z'
+            first_page_url: https://piwik.pro/
+            goal_uuids:
+            - f6bc167f-960f-4666-b208-e066dd430404
+            - 71ff815b-9558-43b9-be72-f784f8985461
+            - c83656ee-882d-4d31-be10-3ac7eb5ffde5
+            - b206480d-9ed7-4bd9-83fb-ba644df81385
+            ipv4_address:
+            - 146.59.92.216
+            - 178.238.11.6
+            last_activity: '2023-09-22T17:42:07.443853Z'
+            last_order_time: '2023-09-22T17:39:49.066433Z'
+            last_page_url: https://piwik.pro/
+            location_city_geoname_id:
+            - - 756135
+              - Warsaw
+            - - 2643741
+              - London
+            location_continent_iso_code:
+            - - EU
+              - Europe
+            - - EU
+              - Europe
+            location_country_iso_code:
+            - - PL
+              - Poland
+            - - GB
+              - United Kingdom
+            location_latitude:
+            - 52.2251
+            - 51.5118
+            location_longitude:
+            - 21.0477
+            - -0.0036065
+            location_organization:
+            - OVH Sp. z o. o
+            - Packethub S.A
+            location_provider:
+            - OVH SAS
+            - Clouvider Limited
+            location_subdivision_1_iso_code:
+            - - '14'
+              - Mazovia
+            - - ENG
+              - England
+            medium:
+            - direct
+            - direct
+            operating_system:
+            - - LIN
+              - GNU/Linux
+            - - LIN
+              - GNU/Linux
+            referrer_type:
+            - - 1
+              - Direct entry
+            - - 1
+              - Direct entry
+            resolution_height:
+            - 1080
+            - 1080
+            resolution_width:
+            - 1920
+            - 1920
+            source:
+            - direct
+            - direct
+            source_medium:
+            - direct / direct
+            - direct / direct
+            total_goal_revenue: 70
+            total_revenue: 3075
+        custom_dimension_attributes:
+          type: object
+          description: List of all attributes from custom dimensions collected for profile.
+          example:
+            session_custom_dimension_1: ["Male"]
+            session_custom_dimension_5: ["Thursday", "Friday"]
+        custom_attributes:
+          type: object
+          description: List of all custom attributes collected for profile.
+          example:
+            custom_attribute_1: "admin"
+            custom_attribute_2: 10.23
