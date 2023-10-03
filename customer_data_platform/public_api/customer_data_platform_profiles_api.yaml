@@ -9,6 +9,8 @@ paths:
   /api/cdp/profiles/public/v1/app/{app_id}/profile/{cookie_id}/audiences:
     get:
       summary: Fetch audiences the profile belongs to
+      tags:
+        - profiles
       security: []
       operationId: get-profile-audiences
       description: Get audiences the profile belongs to
