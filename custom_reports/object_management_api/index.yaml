@@ -19,6 +19,10 @@ paths:
     $ref: ./paths/custom_dimensions_detail.yaml
   /api/analytics/v1/manage/custom-dimensions/slots/:
     $ref: ./paths/custom_dimensions_slots.yaml
+  /api/analytics/v1/manage/product-custom-dimensions/:
+    $ref: ./paths/product_custom_dimensions.yaml
+  /api/analytics/v1/manage/product-custom-dimensions/{id}/:
+    $ref: ./paths/product_custom_dimensions_detail.yaml
   /api/analytics/v1/manage/annotation/user/:
     $ref: ./paths/annotation_user.yaml
   /api/analytics/v1/manage/annotation/user/{id}/:
@@ -108,6 +112,12 @@ components:
       $ref: ./definitions/custom_dimension_details.yaml
     CustomDimensionUpdate:
       $ref: ./definitions/custom_dimension_update.yaml
+    ProductCustomDimension:
+      $ref: ./definitions/product_custom_dimension.yaml
+    ProductCustomDimensionDetail:
+      $ref: ./definitions/product_custom_dimension_details.yaml
+    ProductCustomDimensionUpdate:
+      $ref: ./definitions/product_custom_dimension_update.yaml
     CustomDimensionSlot:
       $ref: ./definitions/custom_dimension_slot.yaml
     CustomDimensionSlots:
