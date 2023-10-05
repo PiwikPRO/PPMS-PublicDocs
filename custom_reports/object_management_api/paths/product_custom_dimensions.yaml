@@ -1,0 +1,64 @@
+post:
+  tags:
+    - Product Custom Dimensions
+  summary: Create product custom dimension
+  description: |
+    Configure new custom dimension.
+  requestBody:
+    content:
+      application/vnd.api+json:
+        schema:
+          type: object
+          required:
+            - data
+          properties:
+            data:
+              $ref: '../index.yaml#/components/schemas/ProductCustomDimensionDetail'
+    required: true
+  responses:
+    '201':
+      description: OK
+      content:
+        application/vnd.api+json:
+          schema:
+            type: object
+            required:
+              - data
+            properties:
+              data:
+                $ref: '../index.yaml#/components/schemas/ProductCustomDimensionDetail'
+    '400':
+      description: Bad Request
+    '403':
+      description: Forbidden
+get:
+  tags:
+    - Product Custom Dimensions
+  summary: List product custom dimensions
+  description: |
+    Returns a list all custom dimensions available for a website.
+  parameters:
+    - $ref: '../index.yaml#/components/parameters/WebsiteId'
+  responses:
+    '200':
+      description: OK
+      content:
+        application/vnd.api+json:
+          schema:
+            type: object
+            required:
+              - data
+              - meta
+            properties:
+              meta:
+                type: object
+                allOf:
+                  - $ref: '../index.yaml#/components/schemas/Meta'
+              data:
+                type: array
+                items:
+                  $ref: '../index.yaml#/components/schemas/ProductCustomDimensionDetail'
+    '400':
+      description: Bad Request
+    '403':
+      description: Forbidden

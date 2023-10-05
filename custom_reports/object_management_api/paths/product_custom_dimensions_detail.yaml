@@ -1,0 +1,70 @@
+get:
+  tags:
+    - Product Custom Dimensions
+  summary: Get product custom dimension
+  description: |
+    Returns a definition of a specific custom dimension.
+  parameters:
+    - $ref: '../index.yaml#/components/parameters/Id'
+    - $ref: '../index.yaml#/components/parameters/WebsiteId'
+  responses:
+    '200':
+      description: OK
+      content:
+        application/vnd.api+json:
+          schema:
+            type: object
+            required:
+              - data
+            properties:
+              data:
+                $ref: '../index.yaml#/components/schemas/ProductCustomDimensionDetail'
+    '403':
+      description: Forbidden
+put:
+  tags:
+    - Product Custom Dimensions
+  summary: Update product custom dimension
+  description: |
+    Configure existing custom dimension.
+  parameters:
+    - $ref: '../index.yaml#/components/parameters/Id'
+  requestBody:
+    content:
+      application/vnd.api+json:
+        schema:
+            type: object
+            required:
+              - data
+            properties:
+              data:
+                type: object
+                allOf:
+                  - $ref: '../index.yaml#/components/schemas/ProductCustomDimensionUpdate'
+                required:
+                  - type
+                  - attributes
+                  - id
+                properties:
+                  id:
+                    type: string
+                    description: ID of a annotation.
+                    format: uuid
+                    readOnly: false
+                    example: 677fe0d3-b4f7-43ed-852d-1a9e7b8e59fb
+  responses:
+    '200':
+      description: OK
+      content:
+        application/vnd.api+json:
+          schema:
+            type: object
+            required:
+              - data
+            properties:
+              data:
+                $ref: '../index.yaml#/components/schemas/ProductCustomDimensionUpdate'
+    '400':
+      description: Bad Request
+    '403':
+      description: Forbidden
