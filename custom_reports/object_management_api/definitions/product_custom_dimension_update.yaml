@@ -1,0 +1,15 @@
+type: object
+allOf:
+  - $ref: '../index.yaml#/components/schemas/ProductCustomDimension'
+  - type: object
+    properties:
+      attributes:
+        type: object
+        required:
+          - slot
+        properties:
+          slot:
+            type: integer
+            description: Slot number for product custom dimension.
+            minimum: 1
+            readOnly: true
