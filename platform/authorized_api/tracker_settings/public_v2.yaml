@@ -169,6 +169,8 @@ components:
           - strip_site_search_query_parameters
           - tracking_fingerprint_disabled
           - trust_visitors_cookies
+          - use_session_hash
+          - use_anonymous_session_hash
           - url_query_parameter_to_exclude_from_url
           - urls
   responses:
@@ -314,6 +316,10 @@ components:
                   $ref: '#/components/schemas/TrackingFingerprintDisabled'
                 trust_visitors_cookies:
                   $ref: '#/components/schemas/TrustVisitorsCookies'
+                use_session_hash:
+                  $ref: '#/components/schemas/UseSessionHash'
+                use_anonymous_session_hash:
+                  $ref: '#/components/schemas/UseAnonymousSessionHash'
                 url_query_parameter_to_exclude_from_url:
                   $ref: '#/components/schemas/UrlQueryParameterToExcludeFromUrl'
                 urls:
@@ -390,6 +396,10 @@ components:
                   $ref: '#/components/schemas/TrackingFingerprintDisabled'
                 trust_visitors_cookies:
                   $ref: '#/components/schemas/TrustVisitorsCookies'
+                use_session_hash:
+                  $ref: '#/components/schemas/UseSessionHash'
+                use_anonymous_session_hash:
+                  $ref: '#/components/schemas/UseAnonymousSessionHash'
                 url_query_parameter_to_exclude_from_url:
                   $ref: '#/components/schemas/UrlQueryParameterToExcludeFromUrl'
                 updated_at:
@@ -616,13 +626,36 @@ components:
 
     TrustVisitorsCookies:
       type: boolean
+      deprecated: true
       description: |
+        DEPRECATED! Use `use_session_hash` / `use_anonymous_session_hash` instead.
+
         When enabled, session events wont be matched by a device fingerprint. Only vistor side generated `_id` paramater will be taken into account.
         ```
         Initial global value:
           false
         ```
       example: false
+
+    UseSessionHash:
+      type: boolean
+      description: |
+        When enabled, session events that are tracked non-anonymously will be matched by a Session Hash. When disabled only vistor side generated `_id` paramater will be taken into account.
+        ```
+        Initial global value:
+          true
+        ```
+      example: true
+
+    UseAnonymousSessionHash:
+      type: boolean
+      description: |
+        When enabled, session events that are tracked anonymously will be matched by a Session Hash. When disabled only vistor side generated `_id` paramater will be taken into account.
+        ```
+        Initial global value:
+          true
+        ```
+      example: true
 
     CampaignNameParams:
       type: array
