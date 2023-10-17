@@ -1026,7 +1026,7 @@ paths:
         - name: sh
           in: query
           description: |
-            Provides on-demand control of the SessionId feature (0=disabled, 1=enabled)
+            Provides on-demand control of the SessionHash feature (0=disabled, 1=enabled)
 
             When this parameter is not used, processing service will default to the current value from the Privacy tab in global or app settings.
           schema:
