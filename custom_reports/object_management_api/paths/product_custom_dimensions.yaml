@@ -1,6 +1,6 @@
 post:
   tags:
-    - Product Custom Dimensions
+    - Custom Dimensions
   summary: Create product custom dimension
   description: |
     Configure new custom dimension.
@@ -33,7 +33,7 @@ post:
       description: Forbidden
 get:
   tags:
-    - Product Custom Dimensions
+    - Custom Dimensions
   summary: List product custom dimensions
   description: |
     Returns a list all custom dimensions available for a website.

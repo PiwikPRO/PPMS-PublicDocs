@@ -12,3 +12,15 @@ allOf:
             type: integer
             description: Slot number for product custom dimension.
             minimum: 1
+          updated_at:
+            type: string
+            readOnly: true
+            format: datetime
+            description: Last update datetime.
+            example: '2017-07-14T08:33:53.215948Z'
+          created_at:
+            type: string
+            readOnly: true
+            format: datetime
+            description: Created datetime.
+            example: '2017-07-14T08:33:53.215948Z'
