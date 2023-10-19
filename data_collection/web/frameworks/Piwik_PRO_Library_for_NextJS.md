@@ -38,49 +38,31 @@ yarn add @piwikpro/next-piwik-pro
 
 ### Basic setup
 
-
-Some Next.js project have problems with importing ESM libraries. To handle that you need to install `next-transpile-modules` lib.
-
-```
-npm install --save next-transpile-modules
-```
-
-Then you need to make some adaptions in your `next.config.js` file. Please adapt your file as example below. If it's no exist please create it in main project directory.
-
-##### next.config.json
-
-```ts
-/** @type {import('next').NextConfig} */
-
-const withTM = require('next-transpile-modules')(['@piwikpro/next-piwik-pro'])
-
-const nextConfig = {
-  /* Your Next.js config */
-}
-
-module.exports = withTM(nextConfig)
-
-```
-
-In your Next.js Project, include the default `PiwikProProvider` in the `_app.tsx` file. To set up the Piwik PRO Tag Manager container in the app, include the initialization code in your `App`.
+In your Next.js Project, include the default `PiwikProProvider` in the `layout.tsx` file. To set up the Piwik PRO Tag Manager container in the app.
 
 In the arguments, pass your container id and your container url as parameters (marked `container-id` and `container-url` in the example below).
 
-#### \_app.tsx
+#### layout.tsx
 
 ```ts
+'use client'
+
 import PiwikProProvider from '@piwikpro/next-piwik-pro'
 
-function App({ Component, pageProps }: AppProps) {
+export default function RootLayout({ children }: {
+  children: React.ReactNode
+}) {
   return (
-    <>
-      <PiwikProProvider
-        containerId='0a0b8661-8c10-4d59-e8fg-1h926ijkl184'
-        containerUrl='https://example.piwik.pro' 
-      >
-        <Component {...pageProps} />
-      </PiwikProProvider>
-    </>
+    <html lang="en">
+      <body>
+        <PiwikProProvider
+          containerId="container-id"
+          containerUrl="container-url"
+        >
+          {children}
+        </PiwikProProvider>
+      </body>
+    </html>
   )
 }
 ```
@@ -96,21 +78,30 @@ NEXT_PUBLIC_CONTAINER_ID=0a0b8661-8c10-4d59-e8fg-1h926ijkl184
 NEXT_PUBLIC_CONTAINER_URL=https://example.piwik.pro
 ```
 
-#### \_app.tsx
+#### layout.tsx
 
 ```ts
-function App({ Component, pageProps }: AppProps) {
+'use client'
+
+import PiwikProProvider from '@piwikpro/next-piwik-pro'
+
+export default function RootLayout({ children }: {
+  children: React.ReactNode
+}) {
   return (
-    <>
-      <PiwikProProvider
-        containerId={process.env.NEXT_PUBLIC_CONTAINER_ID}
-        containerUrl={process.env.NEXT_PUBLIC_CONTAINER_URL}
-      >
-        <Component {...pageProps} />
-      </PiwikProProvider>
-    </>
+    <html lang="en">
+      <body>
+        <PiwikProProvider
+          containerUrl={process.env.NEXT_PUBLIC_CONTAINER_URL}
+          containerId={process.env.NEXT_PUBLIC_CONTAINER_ID}
+        >
+          {children}
+        </PiwikProProvider>
+      </body>
+    </html>
   )
 }
+```
 ```
 > Previously, we used 'accountName' to configure PiwikProProvider. The parameter has now been replaced by 'container-url'. The 'accountName' parameter is deprecated and will be removed in the future.
 ```
@@ -121,22 +112,28 @@ The nonce attribute is useful to allow-list specific elements, such as a particu
 
 If you want your nonce to be passed to the script, pass it as the third argument when calling the script initialization method.
 
-#### \_app.tsx
+#### layout.tsx
 
 ```ts
+'use client'
+
 import PiwikProProvider from '@piwikpro/next-piwik-pro'
 
-function App({ Component, pageProps }: AppProps) {
+export default function RootLayout({ children }: {
+  children: React.ReactNode
+}) {
   return (
-    <>
-      <PiwikProProvider
-        containerId='container-id'
-        containerUrl='container-url'
-        nonce='nonce-string'
-      >
-        <Component {...pageProps} />
-      </PiwikProProvider>
-    </>
+    <html lang="en">
+      <body>
+        <PiwikProProvider
+          containerId="container-id"
+          containerUrl="container-url"
+          nonce="nonce-string"
+        >
+          {children}
+        </PiwikProProvider>
+      </body>
+    </html>
   )
 }
 ```
