@@ -1023,12 +1023,24 @@ paths:
             type: string
             format: SemVer
           example: 3.4.1
-        - name: fp
+        - name: sh
           in: query
           description: |
-            Provides on-demand control of the SessionId feature (0=disabled, 1=enabled)
+            Provides on-demand control of the SessionHash feature (0=disabled, 1=enabled)
 
             When this parameter is not used, processing service will default to the current value from the Privacy tab in global or app settings.
+          schema:
+            type: integer
+            enum:
+              - 0
+              - 1
+          example: 1
+        - name: rmip
+          in: query
+          description: |
+            Forces tracker to erase IP information from `cip` query parameter, common headers and socket address when provided with value `1`.
+            
+            The erasure happens before the processing, so that IP information is not stored.
           schema:
             type: integer
             enum:
