@@ -100,7 +100,7 @@ To track screen views you can use the `trackScreen` method:
 
 ##### Additional Android only parameters:
 
-- `String? title` (optional) – the title of the action being tracked.
+- `String? title` (optional) – the title of the action being tracked. **Warning:** The title parameter is deprecated and will soon be removed. We recommend not to use it.
 
 #### Tracking Custom Events
 
@@ -129,18 +129,17 @@ await FlutterPiwikPro.sharedInstance.trackCustomEvent(
 
 ### Tracking Exceptions
 
-Tracking exceptions allow the measurement of exceptions and errors in your app. Exceptions are tracked on the server in a similar way as screen views, however, URLs internally generated for exceptions always use the fatal or caught prefix.
+Tracking exceptions allow the measurement of exceptions and errors in your app. Exceptions are tracked on the server in a similar way as screen views.
 
 To track exceptions you can use the `trackException` method:
 
 ```dart
-await FlutterPiwikPro.sharedInstance.trackException(description: "description of an exception", isFatal: false);
+await FlutterPiwikPro.sharedInstance.trackException(description: "description of an exception");
 ```
 
 ##### iOS and Android parameters:
 
 - `String description` – provides the exception message.
-- `bool isFatal` – true if an exception is fatal.
 
 ### Tracking Social Interactions
 
@@ -151,15 +150,13 @@ To track social interactions you can use the `trackSocialInteraction` method:
 ```dart
 await FlutterPiwikPro.sharedInstance.trackSocialInteraction(
     interaction: 'like',
-    network: 'Facebook',
-    target: 'Dogs');
+    network: 'Facebook);
 ```
 
 ##### iOS and Android parameters
 
 - `String interaction` – defines the social interaction, e.g. “Like”.
 - `String network` – defines the social network associated with interaction, e.g. “Facebook”
-- `String? target` (optional) – the target for which this interaction occurred, e.g. “Dogs”.
 
 ### Tracking Downloads
 
@@ -257,10 +254,184 @@ await FlutterPiwikPro.sharedInstance.trackGoal(goal: "27ecc5e3-8ae0-40c3-964b-5b
 
 ##### iOS and Android parameters
 
-- `int goal` – a tracking request will trigger a conversion for the goal of the website being tracked with this ID.
+- `String goal` – a tracking request will trigger a conversion for the goal of the website being tracked with this ID.
 - `double? revenue` (optional) – a monetary value that has been generated as revenue by goal conversion.
 
+### Tracking e-commerce product detail view
+Tracks action of viewing product page.
+
+```dart
+final ecommerceproducts = [
+EcommerceProduct(sku: 'craft-311', 
+                name: 'Unicorn Iron on Patch', 
+                category: ['Crafts & Sewing', 'Toys'], 
+                price: '49.9089', 
+                quantity: 3, 
+                brand: 'DMZ', 
+                variant: 'blue',  
+                customDimensions: {1: 'coupon-2020', 2: '20%'}),
+EcommerceProduct(sku: 'dert-456')
+];
+await FlutterPiwikPro.sharedInstance.trackEcommerceProductDetailView(
+    products: ecommerceProducts,
+);
+```
+
+- `List<EcommerceProduct> products` - list of product representations 
+Expected attributes of each product:
+- `String sku` - product stock-keeping unit
+- `String? name` (optional) -  product name (default: “”)
+- `List<String>? category` (optional) - product category or an array of up to 5 categories (default: “”)
+- `String? price` (optional) - product price (default: 0)
+- `int? quantity` (optional) - roduct quantity (default: 1)
+- `String? brand` (optional) - product brand (default: “”)
+- `String? variant` (optional) - product variant (default: “”)
+- `Map<int, String>? customDimensions` (optional) - product custom dimensions. Max 20 product custom dimensions, 20 is max ID. (default: {})
+
+### Tracking e-commerce add to cart
+Tracks action of adding products to a cart.
+
+```dart
+final ecommerceproducts = [
+EcommerceProduct(sku: 'craft-311', 
+                name: 'Unicorn Iron on Patch', 
+                category: ['Crafts & Sewing', 'Toys'], 
+                price: '49.9089', 
+                quantity: 3, 
+                brand: 'DMZ', 
+                variant: 'blue',  
+                customDimensions: {1: 'coupon-2020', 2: '20%'}),
+EcommerceProduct(sku: 'dert-456')
+];
+await FlutterPiwikPro.sharedInstance.trackEcommerceAddToCart(
+    products: ecommerceProducts,
+);
+```
+
+- `List<EcommerceProduct> products` - list of product representations 
+Expected attributes of each product:
+- `String sku` - product stock-keeping unit
+- `String? name` (optional) -  product name (default: “”)
+- `List<String>? category` (optional) - product category or an array of up to 5 categories (default: “”)
+- `String? price` (optional) - product price (default: 0)
+- `int? quantity` (optional) - roduct quantity (default: 1)
+- `String? brand` (optional) - product brand (default: “”)
+- `String? variant` (optional) - product variant (default: “”)
+- `Map<int, String>? customDimensions` (optional) - product custom dimensions. Max 20 product custom dimensions, 20 is max ID. (default: {})
+
+### Tracking e-commerce remove from cart
+Tracks action of removing a product from a cart.
+
+```dart
+final ecommerceproducts = [
+EcommerceProduct(sku: 'craft-311', 
+                name: 'Unicorn Iron on Patch', 
+                category: ['Crafts & Sewing', 'Toys'], 
+                price: '49.9089', 
+                quantity: 3, 
+                brand: 'DMZ', 
+                variant: 'blue',  
+                customDimensions: {1: 'coupon-2020', 2: '20%'}),
+EcommerceProduct(sku: 'dert-456')
+];
+await FlutterPiwikPro.sharedInstance.trackEcommerceRemoveFromCart(
+    products: ecommerceProducts,
+);
+```
+
+- `List<EcommerceProduct> products` - list of product representations 
+Expected attributes of each product:
+- `String sku` - product stock-keeping unit
+- `String? name` (optional) -  product name (default: “”)
+- `List<String>? category` (optional) - product category or an array of up to 5 categories (default: “”)
+- `String? price` (optional) - product price (default: 0)
+- `int? quantity` (optional) - roduct quantity (default: 1)
+- `String? brand` (optional) - product brand (default: “”)
+- `String? variant` (optional) - product variant (default: “”)
+- `Map<int, String>? customDimensions` (optional) - product custom dimensions. Max 20 product custom dimensions, 20 is max ID. (default: {})
+
+### Tracking e-commerce cart update
+Tracks current state of a cart.
+
+```dart
+final ecommerceproducts = [
+EcommerceProduct(sku: 'craft-311', 
+                name: 'Unicorn Iron on Patch', 
+                category: ['Crafts & Sewing', 'Toys'], 
+                price: '49.9089', 
+                quantity: 3, 
+                brand: 'DMZ', 
+                variant: 'blue',  
+                customDimensions: {1: 'coupon-2020', 2: '20%'}),
+EcommerceProduct(sku: 'dert-456')
+];
+await FlutterPiwikPro.sharedInstance.trackEcommerceCartUpdate(
+    grandTotal: '6000.43',
+    products: ecommerceProducts,
+);
+```
+
+##### iOS and Android parameters
+
+- `int grandTotal` – the total value of items in a cart
+- `List<EcommerceProduct> products` - list of product representations 
+Expected attributes of each product:
+- `String sku` - product stock-keeping unit
+- `String? name` (optional) -  product name (default: “”)
+- `List<String>? category` (optional) - product category or an array of up to 5 categories (default: “”)
+- `String? price` (optional) - product price (default: 0)
+- `int? quantity` (optional) - roduct quantity (default: 1)
+- `String? brand` (optional) - product brand (default: “”)
+- `String? variant` (optional) - product variant (default: “”)
+- `Map<int, String>? customDimensions` (optional) - product custom dimensions. Max 20 product custom dimensions, 20 is max ID. (default: {})
+
+### Tracking e-commerce order
+Tracks order.
+
+```dart
+final ecommerceproducts = [
+EcommerceProduct(sku: 'craft-311', 
+                name: 'Unicorn Iron on Patch', 
+                category: ['Crafts & Sewing', 'Toys'], 
+                price: '49.9089', 
+                quantity: 3, 
+                brand: 'DMZ', 
+                variant: 'blue',  
+                customDimensions: {1: 'coupon-2020', 2: '20%'}),
+EcommerceProduct(sku: 'dert-456')
+];
+await FlutterPiwikPro.sharedInstance.trackEcommerceOrder(
+    identifier: 'order-3415',
+    grandTotal: '10000',
+    subTotal: '120.00',
+    tax: '39.60',
+    shippingCost: '60.00',
+    discount: '18.00',
+    products: ecommerceProducts,
+);
+```
+
+##### iOS and Android parameters
+
+- `String identifier` - unique identifier of an order
+- `int grandTotal` – the total value of items in a cart
+- `int? subTotal` (optional) - total value of items in a cart without shipping
+- `int? tax` (optional) - total tax amount
+- `int? shippingCost` (optional) - total shipping cost
+- `int? discount` (optional) - total discount
+- `List<EcommerceProduct> products` - list of product representations 
+Expected attributes of each product:
+- `String sku` - product stock-keeping unit
+- `String? name` (optional) -  product name (default: “”)
+- `List<String>? category` (optional) - product category or an array of up to 5 categories (default: “”)
+- `String? price` (optional) - product price (default: 0)
+- `int? quantity` (optional) - roduct quantity (default: 1)
+- `String? brand` (optional) - product brand (default: “”)
+- `String? variant` (optional) - product variant (default: “”)
+- `Map<int, String>? customDimensions` (optional) - product custom dimensions. Max 20 product custom dimensions, 20 is max ID. (default: {})
+
 ### Tracking Ecommerce Transactions
+> **Warning:** Tracking ecommerce transactions is deprecated and will be replaced by [e-commerce order](#tracking-e-commerce-order).
 
 Ecommerce transactions (in-app purchases) can be tracked to help you improve your business strategy. To track a transaction you must provide two required values - the transaction identifier and grandTotal. Optionally, you can also provide values for subTotal, tax, shippingCost, discount and list of purchased items.
 To track an ecommerce transaction you can use the `trackEcommerceTransaction` method:
@@ -303,7 +474,7 @@ await FlutterPiwikPro.sharedInstance.trackCampaign("http://example.org/offer.htm
 
 ##### iOS and Android parameters
 
-- `String url` - the campaign URL. HTTPS, HTTP and FTP are valid - the URL must contain a campaign name and keyword parameters.
+- `String url` - the campaign URL. The URL must contain campaign name and keyword parameters.
 
 ### Tracking Custom Variables
 
@@ -340,7 +511,7 @@ await FlutterPiwikPro.sharedInstance.trackCustomDimension(id: 1, value: 'english
 ##### iOS and Android parameters
 
 - `int index` – a given custom dimension must always be stored in the same “index” per session, similar to custom variables. In example 1 is our dimension slot.
-- `String value` – this String defines the value of a specific custom dimension such as “English”. Limited to 200 characters.
+- `String value` – this String defines the value of a specific custom dimension such as “English”. Limited to 1024 characters.
 
 ### Tracking Profile Attributes
 
@@ -366,7 +537,7 @@ Aside from attributes, each event also sends parameters which are retrieved from
 - `USER_ID` – if set.
 - `EMAIL` – if set.
 - `VISITOR_ID` – always sent, ID of the mobile application user, generated by the SDK.
-- `DEVICE_ID` – Advertising ID that, by default, is fetched automatically when the tracker instance is created (only on Android).
+- `DEVICE_ID` – The device ID is an additional, non-empty unique string identifying the device. By default, device ID is empty.
 
 ### Reading User Profile Attributes
 
@@ -451,8 +622,8 @@ await FlutterPiwikPro.sharedInstance.setVisitorId('Id');
 
 ### Setting Session Timeout
 
-A session represents a set of user’s interactions with your app. By default, Analytics is closing the session after 30 minutes of inactivity, counting from the last recorded event in session and when the user will open up the app again the new session is started. You can configure the tracker to automatically close the session when users have placed your app in the background for a period of time.
-You can change the session timeout using the `setSessionTimeout` method:
+A session represents a set of user's interactions with your app. By default, Analytics is closing the session after 30 minutes of inactivity, counting from the last recorded event in session. You can configure the tracker to automatically close the session when users have placed your app in the background for a period of time. That period is defined by the ``setSessionTimeout`` method.
+
 
 ```dart
 await FlutterPiwikPro.sharedInstance.setSessionTimeout(1000)
@@ -493,6 +664,7 @@ await FlutterPiwikPro.sharedInstance.setIncludeDefaultVariables(false);
 ### Opt-Out
 
 You can disable all tracking in the application by using the opt-out feature. No events will be sent to the server if the opt-out is set. By default, opt-out is not set and events are tracked.
+**Warning:** Be aware that setting the opt-out flag will empty the queue of pending events before they are sent.
 You can opt out of tracking using the `optOut` method:
 
 ```dart
