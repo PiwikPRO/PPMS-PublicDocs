@@ -17,3 +17,6 @@ properties:
         $ref: '../index.yaml#/components/schemas/CustomDimensionSlot'
       session:
         $ref: '../index.yaml#/components/schemas/CustomDimensionSlot'
+      product:
+        $ref: '../index.yaml#/components/schemas/CustomDimensionSlot'
+

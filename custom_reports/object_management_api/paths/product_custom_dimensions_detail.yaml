@@ -1,6 +1,6 @@
 get:
   tags:
-    - Product Custom Dimensions
+    - Custom Dimensions
   summary: Get product custom dimension
   description: |
     Returns a definition of a specific custom dimension.
@@ -23,7 +23,7 @@ get:
       description: Forbidden
 put:
   tags:
-    - Product Custom Dimensions
+    - Custom Dimensions
   summary: Update product custom dimension
   description: |
     Configure existing custom dimension.
