@@ -20,6 +20,13 @@ paths:
 
         *IMPORTANT:* All of `string` type values HAVE TO be urlencoded in raw URL, according to https://url.spec.whatwg.org/ specification, as shown in examples. Decoded value is provided in at the end of description.
       parameters:
+        - name: User-Agent
+          in: header
+          description: |
+            **Recommended**  User agent of the browser that sent the request
+          schema:
+            type: string
+          example: curl/7.64.1
         - name: idsite
           in: query
           description: |
