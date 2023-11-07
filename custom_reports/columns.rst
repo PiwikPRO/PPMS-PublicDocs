@@ -47,3 +47,62 @@ dimensions to metrics or different dimensions.
 
 .. include:: columns__dimension_to_metric_transformations.rst
 .. include:: columns__dimension_to_dimension_transformations.rst
+
+Exporter
+--------
+
+The tables in the following sections shows all columns that may be easily used in Exporter config.
+For sessions and events scope there is preferred list of columns due to performance and reliability reasons.
+
+.. note::
+    The table below presents a short description of the selected fields.
+
++--------------------------------+-------------------------------------------------------+
+| Column                         | Description                                           |
++================================+=======================================================+
+| app_uuid                       | Binary format (16 bytes).                             |
++--------------------------------+-------------------------------------------------------+
+| server_time                    | In UTC.                                               |
++--------------------------------+-------------------------------------------------------+
+| location_ipv4                  | May be partially anonymized. Binary format (4 bytes). |
++--------------------------------+-------------------------------------------------------+
+| location_ipv6                  | May be partially anonymized. Binary format (16 bytes).|
++--------------------------------+-------------------------------------------------------+
+| session_custom_dimension_1     | Number of custom dimension slots is configurable.     |
++--------------------------------+-------------------------------------------------------+
+| event_custom_dimension_1       | Number of custom dimension slots is configurable.     |
++--------------------------------+-------------------------------------------------------+
+| session_custom_variable_key_1  | Number of custom variable slots is configurable.      |
++--------------------------------+-------------------------------------------------------+
+| event_custom_variable_key_1    | Number of custom variable slots is configurable.      |
++--------------------------------+-------------------------------------------------------+
+| event_index                    | Starts from 0.                                        |
++--------------------------------+-------------------------------------------------------+
+| page_view_index                | Starts from 0.                                        |
++--------------------------------+-------------------------------------------------------+
+
+
+Sessions scope - preferred
+``````````````````````````
+
+.. include:: columns__exporter_preferred_sessions_columns.rst
+
+Sessions scope
+``````````````
+
+.. include:: columns__exporter_all_sessions_columns.rst
+
+Events scope - preferred
+````````````````````````
+
+.. include:: columns__exporter_preferred_events_columns.rst
+
+Events scope
+````````````
+
+.. include:: columns__exporter_all_events_columns.rst
+
+Google Ads scope
+````````````````
+
+.. include:: columns__exporter_all_google_ads_columns.rst
