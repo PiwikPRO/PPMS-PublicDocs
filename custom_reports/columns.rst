@@ -59,31 +59,6 @@ For sessions and events scope there is preferred list of columns due to performa
     as well as ``"timestamp," "session_id," "visitor_id," "event_id"`` within the event scope,
     are exported by default. It's unnecessary to specify them explicitly in the ``"columns": [...]``.
 
-The following outlines a brief overview of the chosen fields.
-
-+--------------------------------+-------------------------------------------------------+
-| Column                         | Description                                           |
-+================================+=======================================================+
-| website_name                   | Binary format (16 bytes).                             |
-+--------------------------------+-------------------------------------------------------+
-| timestamp                      | In UTC.                                               |
-+--------------------------------+-------------------------------------------------------+
-| ipv4_address                   | May be partially anonymized. Binary format (4 bytes). |
-+--------------------------------+-------------------------------------------------------+
-| ipv6_address                   | May be partially anonymized. Binary format (16 bytes).|
-+--------------------------------+-------------------------------------------------------+
-| session_custom_dimension_1     | Number of custom dimension slots is configurable.     |
-+--------------------------------+-------------------------------------------------------+
-| event_custom_dimension_1       | Number of custom dimension slots is configurable.     |
-+--------------------------------+-------------------------------------------------------+
-| session_custom_variable_key_1  | Number of custom variable slots is configurable.      |
-+--------------------------------+-------------------------------------------------------+
-| event_custom_variable_key_1    | Number of custom variable slots is configurable.      |
-+--------------------------------+-------------------------------------------------------+
-| event_index                    | Starts from 0.                                        |
-+--------------------------------+-------------------------------------------------------+
-| page_view_index                | Starts from 0.                                        |
-+--------------------------------+-------------------------------------------------------+
 
 Sessions scope - preferred
 ``````````````````````````
