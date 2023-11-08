@@ -60,13 +60,13 @@ For sessions and events scope there is preferred list of columns due to performa
 +--------------------------------+-------------------------------------------------------+
 | Column                         | Description                                           |
 +================================+=======================================================+
-| app_uuid                       | Binary format (16 bytes).                             |
+| website_name                   | Binary format (16 bytes).                             |
 +--------------------------------+-------------------------------------------------------+
-| server_time                    | In UTC.                                               |
+| timestamp                      | In UTC.                                               |
 +--------------------------------+-------------------------------------------------------+
-| location_ipv4                  | May be partially anonymized. Binary format (4 bytes). |
+| ipv4_address                   | May be partially anonymized. Binary format (4 bytes). |
 +--------------------------------+-------------------------------------------------------+
-| location_ipv6                  | May be partially anonymized. Binary format (16 bytes).|
+| ipv6_address                   | May be partially anonymized. Binary format (16 bytes).|
 +--------------------------------+-------------------------------------------------------+
 | session_custom_dimension_1     | Number of custom dimension slots is configurable.     |
 +--------------------------------+-------------------------------------------------------+
