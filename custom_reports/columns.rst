@@ -51,11 +51,15 @@ dimensions to metrics or different dimensions.
 Exporter
 --------
 
-The tables in the following sections shows all columns that may be easily used in Exporter config.
+The tables in the following sections shows all columns that may be easily used in raw data exports config.
 For sessions and events scope there is preferred list of columns due to performance and reliability reasons.
 
 .. note::
-    The table below presents a short description of the selected fields.
+    The columns ``"timestamp," "session_id," "visitor_id"`` within the session scope,
+    as well as ``"timestamp," "session_id," "visitor_id," "event_id"`` within the event scope,
+    are exported by default. It's unnecessary to specify them explicitly in the ``"columns": [...]``.
+
+The following outlines a brief overview of the chosen fields.
 
 +--------------------------------+-------------------------------------------------------+
 | Column                         | Description                                           |
@@ -80,7 +84,6 @@ For sessions and events scope there is preferred list of columns due to performa
 +--------------------------------+-------------------------------------------------------+
 | page_view_index                | Starts from 0.                                        |
 +--------------------------------+-------------------------------------------------------+
-
 
 Sessions scope - preferred
 ``````````````````````````
