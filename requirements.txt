@@ -6,3 +6,4 @@ sphinx-rtd-theme==0.2.5b2
 PyYAML==6.0.1
 docutils==0.17
 jinja2==3.0.0
+sphinx-copybutton==0.5.2
