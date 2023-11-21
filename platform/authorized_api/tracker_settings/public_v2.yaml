@@ -493,7 +493,10 @@ components:
 
     FingerprintBasedOnAnonymizedIp:
       type: boolean
+      deprecated: true
       description: |
+        DEPRECATED! This is no longer in use.
+
         When enabled, visitor geolocation calculation is based on anonymized IP instead of real one.
         ```
         Initial global value:
@@ -778,7 +781,10 @@ components:
 
     TrackingFingerprintDisabled:
       type: boolean
+      deprecated: true
       description: |
+        DEPRECATED! This is no longer in use.
+
         Enabling this, will make tracker to use fingerprint from cookie. If you want to use this setting make sure to enable `trust_visitors_cookies`.
         ```
         Initial global value:

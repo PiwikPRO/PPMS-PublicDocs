@@ -47,3 +47,40 @@ dimensions to metrics or different dimensions.
 
 .. include:: columns__dimension_to_metric_transformations.rst
 .. include:: columns__dimension_to_dimension_transformations.rst
+
+Exporter
+--------
+
+The tables in the following sections shows all columns that may be easily used in raw data exports config.
+For sessions and events scope there is preferred list of columns due to performance and reliability reasons.
+
+.. note::
+    The columns ``"timestamp," "session_id," "visitor_id"`` within the session scope,
+    as well as ``"timestamp," "session_id," "visitor_id," "event_id"`` within the event scope,
+    are exported by default. It's unnecessary to specify them explicitly in the ``"columns": [...]``.
+
+
+Sessions scope - preferred
+``````````````````````````
+
+.. include:: columns__exporter_preferred_sessions_columns.rst
+
+Sessions scope
+``````````````
+
+.. include:: columns__exporter_all_sessions_columns.rst
+
+Events scope - preferred
+````````````````````````
+
+.. include:: columns__exporter_preferred_events_columns.rst
+
+Events scope
+````````````
+
+.. include:: columns__exporter_all_events_columns.rst
+
+Google Ads scope
+````````````````
+
+.. include:: columns__exporter_all_google_ads_columns.rst

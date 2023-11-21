@@ -71,7 +71,8 @@ extensions = ['sphinx.ext.autodoc',
     'sphinx.ext.todo',
     'sphinx.ext.mathjax',
     'opengraphext',
-    'sphinx_tabs.tabs']
+    'sphinx_tabs.tabs',
+    'sphinx_copybutton']
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -95,7 +96,7 @@ author = u'Piwik PRO'
 # built documents.
 #
 # The short X.Y version.
-version = u'18.5'
+version = u'18.6'
 # The full version, including alpha/beta/rc tags.
 release = version
 
