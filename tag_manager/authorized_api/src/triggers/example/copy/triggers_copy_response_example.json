@@ -3,7 +3,7 @@
         "id": "12e11cbe-16f4-43b7-93ee-10795ccda34e",
         "type": "trigger",
         "attributes": {
-            "name": "Trigger - copy"
+            "name": "Trigger (copy)"
         },
         "relationships": {
             "operation": {
