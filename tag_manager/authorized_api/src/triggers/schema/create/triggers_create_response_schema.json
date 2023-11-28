@@ -46,6 +46,10 @@
             "title": "click"
         },
         {
+            "$ref": "../get/response/capturing_click_schema.json",
+            "title": "capturing_click"
+        },
+        {
             "$ref": "../get/response/element_presence_schema.json",
             "title": "element_presence"
         },

@@ -18,6 +18,7 @@
                 "debounced_history",
                 "form_submission",
                 "click",
+                "capturing_click",
                 "element_presence",
                 "cdp_audience_detection",
                 "abandoned"
@@ -38,6 +39,7 @@
                 "debounced_history",
                 "form_submission",
                 "click",
+                "capturing_click",
                 "element_presence",
                 "cdp_audience_detection"
             ],
