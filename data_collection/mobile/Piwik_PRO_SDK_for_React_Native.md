@@ -71,7 +71,7 @@ await PiwikProSdk.trackScreen(`your_screen_path`, options);
 Parameters:
 - `path: string` *(required)* – screen path (it will be mapped to the URL path).
 - `options` – screen tracking options, object containing four properties (all of them are optional):
-    - `title: string` – the title of the action being tracked (it will be omitted in iOS application).
+    - `title: string` – the title of the action being tracked (it will be omitted in iOS application). **Warning:** The title parameter is deprecated and will soon be removed. We recommend not to use it.
     - `customDimensions` – the object specifying [custom dimensions](#tracking-custom-dimensions).
     - `screenCustomVariables` – the object specifying [screen custom variables](#tracking-custom-variables).
     - `visitCustomVariables` – the object specifying [visit custom variables](#tracking-custom-variables).
@@ -111,7 +111,7 @@ For more resources, please visit [documentation](https://help.piwik.pro/support/
 
 *Requires Analytics*
 
-Caught exceptions are errors in your app for which you’ve defined an exception handling code, such as the occasional timeout of a network connection during a request for data. Exceptions are tracked on the server in a similar way as screen views, however, action internally generated for exceptions always uses the `'fatal'` or `'caught'` [prefix](#prefixing), and additionally the `'exception'` prefix if `isPrefixingOn()` option is enabled (`true`).
+Caught exceptions are errors in your app for which you’ve defined an exception handling code, such as the occasional timeout of a network connection during a request for data. Exceptions are tracked on the server in a similar way as screen views.
 
 Measure a caught exception by setting the exception field values on the tracker and sending the hit, as with this example:
 
@@ -120,11 +120,10 @@ const options = {
   visitCustomVariables: { 4: { name: 'food', value: 'pizza' } },
   customDimensions: { 1: 'some custom dimension value' },
 };
-await PiwikProSdk.trackException('exception', false, options);
+await PiwikProSdk.trackException('exception', options);
 ```
 Parameters:
 - `description: string` *(required)* – the exception message.
-- `isFatal: boolean` *(required)* – true if an exception is fatal. Determines whether the exception prefix will be `'fatal'` or `'caught'`.
 - `options` – exception tracking options, object containing two properties (all of them are optional):
     - `customDimensions` – the object specifying [custom dimensions](#tracking-custom-dimensions).
     - `visitCustomVariables` – the object specifying [visit custom variables](#tracking-custom-variables).
@@ -135,12 +134,11 @@ Parameters:
 
 *Requires Analytics*
 
-Social interactions such as likes, shares and comments in various social networks can be tracked as below. This, again, is tracked in a similar way as with screen views but the `'social'` [prefix](#prefixing) is used when the default `isPrefixing()` option is enabled.
+Social interactions such as likes, shares and comments in various social networks can be tracked as below. This, again, is tracked in a similar way as with screen views.
 
 ```js
 const options = {
-  visitCustomVariables: { 4: { name: 'food', value: 'pizza' } },
-  target: 'Photo',
+  visitCustomVariables: { 4: { name: 'food', value: 'pizza' } }
 };
 await PiwikProSdk.trackSocialInteraction(`Like`, 'Facebook', options);
 ```
@@ -148,7 +146,6 @@ Parameters:
 - `interaction: string` *(required)* – the social interaction, e.g. 'Like'.
 - `network: string` *(required)* – social network associated with interaction, e.g. 'Facebook'.
 - `options` – social interaction tracking options, object containing three properties (all of them are optional):
-    - `target: string` – the target for which this interaction occurred, e.g. 'Photo'.
     - `customDimensions` – the object specifying [custom dimensions](#tracking-custom-dimensions).
     - `visitCustomVariables` – the object specifying [visit custom variables](#tracking-custom-variables).
 
@@ -275,10 +272,10 @@ const options = {
   visitCustomVariables: 4: { name: 'food', value: 'pizza' },
   customDimensions: { 1: 'beta', 2: 'gamma', },
 };
-await PiwikProSdk.trackGoal(1, options);
+await PiwikProSdk.trackGoal('27ecc5e3-8ae0-40c3-964b-5bd8ee3da059', options);
 ```
 Parameters:
-- `goal: number` *(required)* – tracking request will trigger a conversion for the goal of the website being tracked with this ID.
+- `goal: string` *(required)* – tracking request will trigger a conversion for the goal of the website being tracked with this ID.
 - `options` – goal tracking options, object containing three properties (all of them are optional):
     - `revenue: number` – monetary value that was generated as revenue by this goal conversion.
     - `customDimensions` – object specifying [custom dimensions](#tracking-custom-dimensions).
@@ -287,6 +284,7 @@ Parameters:
 
 
 ### Tracking ecommerce transactions
+> **Warning:** Tracking ecommerce transactions is deprecated and will be replaced by [e-commerce order](#tracking-e-commerce-order).
 
 *Requires Analytics*
 
@@ -331,6 +329,234 @@ Parameters:
 
 
 
+### Tracking e-commerce product detail view
+Tracks action of viewing product page.
+
+```js
+const options: CommonEventOptions = {
+  visitCustomVariables: { 4: { name: 'food', value: 'pizza' },
+  customDimensions: { 1: 'beta', 2: 'gamma', },
+};
+const ecommerceProduct: EcommerceProduct[] = [
+    {
+      sku: 'craft-311',
+      name: 'Unicorn Iron on Patch',
+      category: ['Crafts & Sewing', 'Toys', 'Cosmetics'],
+      price: '49,9089',
+      quantity: 3,
+      brand: 'DMZ',
+      variant: 'blue',
+      customDimensions: {
+        1: 'coupon-2020',
+        2: '20%',
+      },
+    },
+];
+await PiwikProSdk.trackEcommerceProductDetailView(ecommerceProduct, options);
+```
+Parameters:
+- `products: EcommerceProduct[]` *(required)* – list of product representations
+  Expected attributes of each product:
+  - `sku string` *(required)* - product stock-keeping unit
+  - `name string` (optional) -  product name (default: “”)
+  - `category string[]` (optional) - product category or an array of up to 5 categories (default: “”)
+  - `price string` (optional) - product price (default: 0)
+  - `quantity number` (optional) - roduct quantity (default: 1)
+  - `brand string` (optional) - product brand (default: “”)
+  - `variant string` (optional) - product variant (default: “”)
+  - `customDimensions CustomDimensions` (optional) - product [custom dimensions](#tracking-custom-dimensions). Max 20 product custom dimensions, 20 is max ID. (default: {})
+
+- `options` – object containing two properties (all of them are optional):
+    - `customDimensions` – object specifying [custom dimensions](#tracking-custom-dimensions).
+    - `visitCustomVariables` – object specifying [visit custom variables](#tracking-custom-variables).
+
+
+
+### Tracking e-commerce add to cart
+Tracks action of adding products to a cart.
+
+```js
+const options: CommonEventOptions = {
+  visitCustomVariables: { 4: { name: 'food', value: 'pizza' },
+  customDimensions: { 1: 'beta', 2: 'gamma', },
+};
+const ecommerceProduct: EcommerceProduct[] = [
+    {
+      sku: 'craft-311',
+      name: 'Unicorn Iron on Patch',
+      category: ['Crafts & Sewing', 'Toys', 'Cosmetics'],
+      price: '49,9089',
+      quantity: 3,
+      brand: 'DMZ',
+      variant: 'blue',
+      customDimensions: {
+        1: 'coupon-2020',
+        2: '20%',
+      },
+    },
+];
+await PiwikProSdk.trackEcommerceAddToCart(ecommerceProduct, options);
+```
+Parameters:
+- `products: EcommerceProduct[]` *(required)* – list of product representations
+  Expected attributes of each product:
+  - `sku string` *(required)* - product stock-keeping unit
+  - `name string` (optional) -  product name (default: “”)
+  - `category string[]` (optional) - product category or an array of up to 5 categories (default: “”)
+  - `price string` (optional) - product price (default: 0)
+  - `quantity number` (optional) - roduct quantity (default: 1)
+  - `brand string` (optional) - product brand (default: “”)
+  - `variant string` (optional) - product variant (default: “”)
+  - `customDimensions CustomDimensions` (optional) - product custom dimensions. Max 20 product custom dimensions, 20 is max ID. (default: {})
+
+- `options` – object containing two properties (all of them are optional):
+    - `customDimensions` – object specifying [custom dimensions](#tracking-custom-dimensions).
+    - `visitCustomVariables` – object specifying [visit custom variables](#tracking-custom-variables).
+
+
+
+### Tracking e-commerce remove from cart
+Tracks action of removing a product from a cart.
+
+```js
+const options: CommonEventOptions = {
+  visitCustomVariables: { 4: { name: 'food', value: 'pizza' },
+  customDimensions: { 1: 'beta', 2: 'gamma', },
+};
+const ecommerceProduct: EcommerceProduct[] = [
+    {
+      sku: 'craft-311',
+      name: 'Unicorn Iron on Patch',
+      category: ['Crafts & Sewing', 'Toys', 'Cosmetics'],
+      price: '49,9089',
+      quantity: 3,
+      brand: 'DMZ',
+      variant: 'blue',
+      customDimensions: {
+        1: 'coupon-2020',
+        2: '20%',
+      },
+    },
+];
+await PiwikProSdk.trackEcommerceRemoveFromCart(ecommerceProduct, options);
+```
+Parameters:
+- `products: EcommerceProduct[]` *(required)* – list of product representations
+  Expected attributes of each product:
+  - `sku string` *(required)* - product stock-keeping unit
+  - `name string` (optional) -  product name (default: “”)
+  - `category string[]` (optional) - product category or an array of up to 5 categories (default: “”)
+  - `price string` (optional) - product price (default: 0)
+  - `quantity number` (optional) - roduct quantity (default: 1)
+  - `brand string` (optional) - product brand (default: “”)
+  - `variant string` (optional) - product variant (default: “”)
+  - `customDimensions CustomDimensions` (optional) - product custom dimensions. Max 20 product custom dimensions, 20 is max ID. (default: {})
+
+- `options` – object containing two properties (all of them are optional):
+    - `customDimensions` – object specifying [custom dimensions](#tracking-custom-dimensions).
+    - `visitCustomVariables` – object specifying [visit custom variables](#tracking-custom-variables).
+
+
+
+### Tracking e-commerce cart update
+Tracks current state of a cart.
+
+```js
+const options: CommonEventOptions = {
+  visitCustomVariables: { 4: { name: 'food', value: 'pizza' },
+  customDimensions: { 1: 'beta', 2: 'gamma', },
+};
+const ecommerceProduct: EcommerceProduct[] = [
+    {
+      sku: 'craft-311',
+      name: 'Unicorn Iron on Patch',
+      category: ['Crafts & Sewing', 'Toys', 'Cosmetics'],
+      price: '49,9089',
+      quantity: 3,
+      brand: 'DMZ',
+      variant: 'blue',
+      customDimensions: {
+        1: 'coupon-2020',
+        2: '20%',
+      },
+    },
+];
+let grandTotal: String = '10000';
+await PiwikProSdk.trackEcommerceCartUpdate(ecommerceProduct, grandTotal, options);
+```
+Parameters:
+- `products: EcommerceProduct[]` *(required)* – list of product representations
+  Expected attributes of each product:
+  - `sku string` *(required)* - product stock-keeping unit
+  - `name string` (optional) -  product name (default: “”)
+  - `category string[]` (optional) - product category or an array of up to 5 categories (default: “”)
+  - `price string` (optional) - product price (default: 0)
+  - `quantity number` (optional) - roduct quantity (default: 1)
+  - `brand string` (optional) - product brand (default: “”)
+  - `variant string` (optional) - product variant (default: “”)
+  - `customDimensions CustomDimensions` (optional) - product custom dimensions. Max 20 product custom dimensions, 20 is max ID. (default: {})
+
+- `grandTotal: number` *(required)* – the total value of items in a cart
+- `options` – object containing two properties (all of them are optional):
+    - `customDimensions` – object specifying [custom dimensions](#tracking-custom-dimensions).
+    - `visitCustomVariables` – object specifying [visit custom variables](#tracking-custom-variables).
+
+
+### Tracking e-commerce order
+Tracks order.
+
+```js
+const options: TrackEcommerceOrderOptions = {
+  visitCustomVariables: { 4: { name: 'food', value: 'pizza' },
+  customDimensions: { 1: 'beta', 2: 'gamma', },
+  discount: '18',
+  shipping: '60',
+  subTotal: '120',
+  tax: '39.6',
+};
+
+const ecommerceProduct: EcommerceProduct[] = [
+    {
+      sku: 'craft-311',
+      name: 'Unicorn Iron on Patch',
+      category: ['Crafts & Sewing', 'Toys', 'Cosmetics'],
+      price: '49,9089',
+      quantity: 3,
+      brand: 'DMZ',
+      variant: 'blue',
+      customDimensions: {
+        1: 'coupon-2020',
+        2: '20%',
+      },
+    },
+];
+
+let grandTotal: String = '10000';
+let orderId: String = 'order-3415';
+await PiwikProSdk.trackEcommerceOrder(orderId, grandTotal, ecommerceProduct, options);
+```
+Parameters:
+- `orderId: string` *(required)* – unique identifier of an order
+- `grandTotal: number` *(required)* – the total value of items in a cart
+- `products: EcommerceProduct[]` *(required)* – list of product representations
+  Expected attributes of each product:
+  - `sku string` *(required)* - product stock-keeping unit
+  - `name string` (optional) -  product name (default: “”)
+  - `category string[]` (optional) - product category or an array of up to 5 categories (default: “”)
+  - `price string` (optional) - product price (default: 0)
+  - `quantity number` (optional) - roduct quantity (default: 1)
+  - `brand string` (optional) - product brand (default: “”)
+  - `variant string` (optional) - product variant (default: “”)
+  - `customDimensions CustomDimensions` (optional) - product custom dimensions. Max 20 product custom dimensions, 20 is max ID. (default: {})
+
+- `options` – object containing six properties (all of them are optional):
+    - `customDimensions` – object specifying [custom dimensions](#tracking-custom-dimensions).
+    - `visitCustomVariables` – object specifying [visit custom variables](#tracking-custom-variables).
+    - `subTotal: string` – total value of items in a cart without shipping
+    - `tax: string` – total tax amount
+    - `shipping: string` – total shipping cost
+    - `discount: string` – total discount
+
 ### Tracking campaigns
 
 *Requires Analytics*
@@ -345,7 +571,7 @@ const options = {
 await PiwikProSdk.trackCampaign('http://example.org/offer.html?pk_campaign=Email-SummerDeals&pk_keyword=LearnMore', options);
 ```
 Parameters:
-- `url: string` *(required)* – the campaign URL. HTTPS, HTTP and FTP are valid, however, the URL must contain campaign name and keyword parameters.
+- `url: string` *(required)* – the campaign URL. The URL must contain campaign name and keyword parameters.
 - `options` – campaign tracking options, object containing two properties (all of them are optional):
     - `customDimensions` – object specifying [custom dimensions](#tracking-custom-dimensions).
     - `visitCustomVariables` – object specifying [visit custom variables](#tracking-custom-variables).
@@ -403,7 +629,7 @@ const customDimensions = {
 await PiwikProSdk.trackScreen(`your_screen_path`, { customDimensions });
 ```
 
-`1` and `2` are dimension IDs. `dashboard`, `menu` are the dimension values for the tracked screen view event.
+`1` and `2` are dimension IDs. `dashboard`, `menu` are the dimension values for the tracked screen view event. Limit of characters for custom dimension value is set to 1024.
 
 
 
@@ -436,7 +662,8 @@ Aside from attributes, each event also sends parameters which are retrieved from
 - `USER_ID` – if set. Read more about the [User ID](#user-id).
 - `EMAIL` – if set. Read more about the [email](#user-email-address).
 - `VISITOR_ID` – always sent, ID of the mobile application user, generated by the SDK.
-- `DEVICE_ID` – Advertising ID that, by default, is fetched automatically when the tracker instance is created (only on Android).
+- `DEVICE_ID` – The device ID is an additional, non-empty unique string identifying the device. By default, device ID is empty.
+
 
 
 Profile attributes for the user that are tracked will be shown on the `Audience Manager` -> `Profile Browser` tab.
@@ -548,7 +775,8 @@ Returns:
 
 ### Sessions
 
-A session represents a set of user’s interactions with your app. By default, Analytics is closing the session after 30 minutes of inactivity, counting from the last recorded event in session and when the user will open up the app again the new session is started. You can configure the tracker to automatically close the session when users have placed your app in the background for a period of time. That period is defined by the `setSessionTimeout`:
+A session represents a set of user's interactions with your app. By default, Analytics is closing the session after 30 minutes of inactivity, counting from the last recorded event in session. You can configure the tracker to automatically close the session when users have placed your app in the background for a period of time. That period is defined by the ``setSessionTimeout`` method.
+
 ```js
 await PiwikProSdk.setSessionTimeout(1800);
 ```
@@ -624,6 +852,8 @@ You can set an app-level opt-out flag that will disable Piwik PRO tracking acros
 ```js
 await PiwikProSdk.setOptOut(true);
 ```
+**Warning:** Be aware that setting the opt-out flag will empty the queue of pending events before they are sent.
+
 Parameters:
 - `optOut: boolean` *(required)* – flag that determines whether opt-out is enabled.
 
