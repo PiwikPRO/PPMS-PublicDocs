@@ -199,9 +199,9 @@ components:
             | data_type | first | last | first_last | list | list_unique | min | max | sum |
             |-----------|-------|------|------------|------|-------------|-----|-----|-----|
             | number    | ✓     | ✓    | ✓          | ✓    | ✓           | ✓   | ✓   | ✓   |
-            | bool      |       | ✓    |            |      |             |     |     |     |
-            | ip        |       |      | ✓          |      |             |     |     |     |
-            | datetime  |       |      |            |      |             | ✓   | ✓   |     |
+            | bool      | ✓     | ✓    | ✓          | ✓    | ✓           |     |     |     |
+            | ip        | ✓     | ✓    | ✓          | ✓    | ✓           |     |     |     |
+            | datetime  | ✓     | ✓    | ✓          | ✓    | ✓           | ✓   | ✓   |     |
             | string    | ✓     | ✓    | ✓          | ✓    | ✓           |     |     |     |
           enum:
             - first
