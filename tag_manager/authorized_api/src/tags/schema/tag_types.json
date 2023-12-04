@@ -76,7 +76,7 @@
         },
         "tag_new_identifier": {
             "$ref": "../../common/schema/common_types.json#/definitions/uuid",
-            "description": "New tag's identifier"
+            "description": "New tag's identifier. Forbidden in the case of overwriting tags in other apps."
         },
         "tag_new_name": {
             "$ref": "../../common/schema/common_types.json#/definitions/name",

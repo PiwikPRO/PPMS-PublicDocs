@@ -34,7 +34,7 @@
                         "source_trigger_id": "81dde686-86f3-432a-a08f-bfcf796d36fb",
                         "target_trigger_id": "11c32a79-5409-4427-9809-7ce1937fd401",
                         "source_name": "Trigger name",
-                        "target_name": "Trigger name - copy",
+                        "target_name": "Trigger name (copy)",
                         "is_renamed": true
                     }
                 ],

@@ -864,7 +864,7 @@ components:
           - status: '400'
             title: Invalid form
             code: users.error.unsupported-language
-            detail: 'Language "pl" is not supported (supported are de, en, fi, fr, nl, sv)'
+            detail: 'Language "pl" is not supported (supported are ca, de, en, es, fi, fr, nl, sv)'
             source:
               pointer: /language
     unsupported_language_tag:

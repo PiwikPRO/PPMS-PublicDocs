@@ -55,6 +55,11 @@
             "enum": ["click"],
             "description": "Trigger click type"
         },
+        "capturing_click_trigger_type_attribute": {
+            "type": "string",
+            "enum": ["capturing_click"],
+            "description": "Trigger capturing_click type"
+        },
         "element_presence_trigger_type_attribute": {
             "type": "string",
             "enum": ["element_presence"],
