@@ -67,7 +67,7 @@ properties:
         example: false
       case_sensitive:
         type: bool
-        description: Specifies if goal can be converted more than once per visit.
+        description: If set to true the pattern matching will consider uppercase and lowercase characters as distinct.
         example: false
       revenue:
         type: string
