@@ -29,12 +29,12 @@ properties:
   date_from:
     type: string
     format: date
-    description: Start date for the query (inclusive). Cannot be used with relative_date field at
+    description: Start date for the query (inclusive, in website's timezone). Cannot be used with relative_date field at
       the same time. Mandatory if ``relative_date`` is not used.
   date_to:
     type: string
     format: date
-    description: End date for the query (inclusive). Cannot be used with ``relative_date`` field at
+    description: End date for the query (inclusive, in website's timezone). Cannot be used with ``relative_date`` field at
       the same time. Mandatory if ``relative_date`` is not used.
   relative_date:
     type: string
@@ -46,7 +46,7 @@ properties:
       - last_year
       - last_X_days
     description: |
-      Use relative date in query. Cannot be used with absolute date fields at
+      Use relative date in query (in website's timezone). Cannot be used with absolute date fields at
       the same time. ``X`` in ``last_X_days`` must be in range 1 <= ``X`` <= 365.
       Note that ``last_X_days`` does not include data from today.
       Mandatory if absolute date fields are not used.
