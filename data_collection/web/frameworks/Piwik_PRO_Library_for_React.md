@@ -169,6 +169,58 @@ type Product = {
 * `updateEcommerceCart(products: Product[], grandTotal: PaymentInformation['grandTotal'])` - Tracks current state of a cart.
 * `ecommerceProductDetailView(products: Product[])` - Tracks product or category view. Must be followed by a page view.
 
+##### Example usage
+
+```ts
+const { eCommerce } = usePiwikPro()
+
+const products = [{
+  sku: 'sku-4',
+  name: 'Product 4',
+  category: ['product-category', 'product-category-4'],
+  brand: 'Brand 4',
+  variant: 'Variant 4',
+  price: 39.96,
+  customDimensions: {
+    dimension1: 'value1',
+    dimension2: 'value2'
+  }
+}]
+
+const subTotal = products.reduce((acc, product) => {
+  if (product.price) {
+    return acc + product.price
+  }
+  return acc
+}, 0)
+
+const tax = 10
+const shipping = 4
+const discount = 5
+
+const paymentInformation: PaymentInformation = {
+  orderId: 'order-123',
+  grandTotal: subTotal + tax + shipping - discount,
+  subTotal,
+  tax,
+  shipping,
+  discount
+}
+
+eCommerce.addEcommerceItem(products)
+
+eCommerce.removeEcommerceItem(products)
+
+ecommerce.ecommerceOrder(products, paymentInformation)
+
+eCommerce.updateEcommerceCart(products, paymentInformation.grandTotal)
+
+eCommerce.ecommerceProductDetailView(products)
+
+ecommerce.getEcommerceItems()
+
+```
+
 ### Content Tracking Service
 Content Tracking lets you track what content is visible on your site and how users interact with it.
 #### Import

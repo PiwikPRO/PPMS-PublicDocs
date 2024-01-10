@@ -324,17 +324,51 @@ type Product = {
 ```ts
 const { eCommerce } = usePiwikPro()
 
-eCommerce.addEcommerceItem('1', 'ProductName', 'Items', 69, 1)
+const products = [{
+  sku: 'sku-4',
+  name: 'Product 4',
+  category: ['product-category', 'product-category-4'],
+  brand: 'Brand 4',
+  variant: 'Variant 4',
+  price: 39.96,
+  customDimensions: {
+    dimension1: 'value1',
+    dimension2: 'value2'
+  }
+}]
 
-eCommerce.removeEcommerceItem('1')
+const subTotal = products.reduce((acc, product) => {
+  if (product.price) {
+    return acc + product.price
+  }
+  return acc
+}, 0)
 
-eCommerce.trackEcommerceOrder('id', 50)
+const tax = 10
+const shipping = 4
+const discount = 5
 
-eCommerce.trackEcommerceCartUpdate(2)
+const paymentInformation: PaymentInformation = {
+  orderId: 'order-123',
+  grandTotal: subTotal + tax + shipping - discount,
+  subTotal,
+  tax,
+  shipping,
+  discount
+}
 
-eCommerce.setEcommerceView('1')
+eCommerce.addEcommerceItem(products)
 
-eCommerce.clearEcommerceCart()
+eCommerce.removeEcommerceItem(products)
+
+ecommerce.ecommerceOrder(products, paymentInformation)
+
+eCommerce.updateEcommerceCart(products, paymentInformation.grandTotal)
+
+eCommerce.ecommerceProductDetailView(products)
+
+ecommerce.getEcommerceItems()
+
 ```
 
 Some of the methods are getting data from the API and they need to be called asynchronously. They provide data that can be shown no the page. This need to be done with defining async function in your hook body and setting the state of the variable. Like on example below.
