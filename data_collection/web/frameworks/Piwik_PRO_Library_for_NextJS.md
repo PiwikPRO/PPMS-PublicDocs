@@ -296,40 +296,28 @@ Collection of methods to handle e-commerce events through the Piwik PRO API.
 
 ##### Methods
 
-- `eCommerce.addEcommerceItem(productSKU[, productName[, productCategory[, productPrice[, productQuantity]]]])` - Adds a product to a virtual shopping cart. If a product with the same SKU is in the cart, it will be removed first. Does not send any data to the `Tracker`.
+```ts
+// maximum length of the array is 5
+type LimitedArrayFiveStrings<T extends string[] = []> = [string, ...T] | [string, string, string, string, string];
 
-  - `productSKU (string)` – Required Product stock-keeping unit
-  - `productName (string)` – Optional Product name
-  - `productCategory (string|Array<string>)` – Optional Product category or an array of up to 5 categories
-  - `productPrice (number)` – Optional Product price
-  - `productQuantity (number)` – Optional The number of units
+type Product = {
+  sku: string;
+  name?: string;
+  category?: LimitedArrayFiveStrings<string[]>;
+  price?: number;
+  quantity?: number;
+  brand?: string;
+  variant?: string;
+  customDimensions?: object;
+};
+```
 
-- `eCommerce.removeEcommerceItem(productSKU)` - Removes a product with the provided SKU from a virtual shopping cart. If multiple units of that product are in the virtual cart, all of them will be removed. Does not send any data to the `Tracker`.
-
-  - `productSKU (string)` – Required stock-keeping unit of a product to remove
-
-- `eCommerce.clearEcommerceCart()` - Removes all items from a virtual shopping cart. Does not send any data to the `Tracker`.
-
-- `eCommerce.getEcommerceItems()` - Returns a copy of items from a virtual shopping cart. Does not send any data to the `Tracker`. Returns: Object containing all tracked items (format: `Object<productSKU, Array[productSKU, productName, productCategory, price, quantity]>`)
-
-- `eCommerce.setEcommerceView([productSKU[, productName[, productCategory[, productPrice]]]])` - Tracks product or category view. Must be followed by a page view.
-
-  - `productSKU (string)` – Optional Product stock-keeping unit
-  - `productName (string)` – Optional Product name
-  - `productCategory (string|Array<string>)` – Optional Category or an array of up to 5 categories
-  - `productPrice (number)` – Optional Product price
-
-- `eCommerce.trackEcommerceCartUpdate(cartAmount)` - Tracks items present in a virtual shopping cart (registered with addEcommerceItem).
-
-  - `cartAmount` (number) – Required The total value of items in the cart
-
-- `eCommerce.trackEcommerceOrder(orderID, orderGrandTotal[, orderSubTotal[, orderTax[, orderShipping[, orderDiscount]]]])` - Tracks a successfully placed e-commerce order with items present in a virtual cart (registered using addEcommerceItem).
-  - `orderID (string)` – Required String uniquely identifying an order
-  - `orderGrandTotal (number)` – Required Order Revenue grand total - tax, shipping and discount included
-  - `orderSubTotal (number)`– Optional Order subtotal - without shipping
-  - `orderTax (number)`– Optional Order tax amount
-  - `orderShipping (number)` – Optional Order shipping cost
-  - `orderDiscount (number)` – Optional Order discount amount
+- `ecommerce.addEcommerceItem(products: Product[])` - Tracks action of adding products to a cart.
+- `ecommerce.removeEcommerceItem(products: Product[])` - Tracks action of removing a product from a cart.
+- `ecommerce.getEcommerceItems()` - Returns a copy of items from a virtual shopping cart. Does not send any data to the Collecting & Processing Pipeline
+- `ecommerce.ecommerceOrder(products: Product[], paymentInformation: PaymentInformation)` - Tracks conversion (including products and payment details).
+- `ecommerce.updateEcommerceCart(products: Product[], grandTotal: PaymentInformation['grandTotal'])` - Tracks current state of a cart.
+- `ecommerce.ecommerceProductDetailView(products: Product[])` - Tracks product or category view. Must be followed by a page view.
 
 ##### Example usage
 
