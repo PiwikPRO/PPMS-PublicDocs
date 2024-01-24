@@ -4,5 +4,5 @@
 Example implementation
 ----------------------
 
-Visit `Piwik PRO - Custom consent form example`_ page to discover a live demo of Custom consent form implementation
-(including examples of how to track consent stats using `JavaScript API`_).
+Visit `Piwik PRO - Custom consent form example`_ page to discover a live demo of the custom consent form implementation
+(including examples of how to track consent stats using the `JavaScript API`_).
