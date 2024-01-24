@@ -378,3 +378,22 @@ Code::
     The rejection handler callback (called with error code). If not specified, the exception will be thrown in the main stack trace.
 
     :param string|object error: **Required** Error code or exception
+
+Clear privacy settings
+````````````````````````
+.. versionadded:: 18.11
+Command used to clear visitor's privacy settings. Removes `ppms_privacy_[appId]` cookie and updates the value of the `Consents` variable.
+
+Code::
+
+    ppms.cm.api('clearPrivacySettings', onFulfilled, onRejected);
+
+.. function:: onFulfilled()
+
+    The fulfillment handler callback
+
+.. function:: onRejected(error)
+
+    The rejection handler callback (called with error code). If not specified, the exception will be thrown in the main stack trace.
+
+    :param string|object error: **Required** Error code or exception
