@@ -7,7 +7,7 @@ All commands work in the context of the current visitor and site or app. Additio
 .. note::
     For examples of how to use a specific command in your custom consent form
     implementation (including how to track consent stats), refer to the
-    `Piwik PRO - Custom consent form example`_
+    `Piwik PRO - Custom consent form example`_.
 
 
 Get compliance types

@@ -11,7 +11,7 @@ Consent Manager provides a JavaScript API that allows the user to:
     * Send data subject request
     * .. versionadded:: 12.0 Open consent form
     * .. versionadded:: 15.3 Track consent stats
-    * .. versionadded:: 18.11 Clear privacy settings
+    * .. versionadded:: 18.11 Clear consent settings
 
 JavaScript API is implemented by providing a global JavaScript objects queue responsible for executing commands:
 
