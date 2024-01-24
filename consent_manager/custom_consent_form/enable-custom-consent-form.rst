@@ -10,6 +10,7 @@ To turn on Custom consent form mode:
   #. Go to the Administration module
   #. Go to `Sites & apps` tab
   #. Choose your site or app from the sidebar
+  #. Select `Privacy` tab
   #. Ensure that `Ask visitors for consent` is turned on
   #. In the `Consent` section, find `Consent settings` and click `View`
   #. Enable the `Use a custom consent form` option
