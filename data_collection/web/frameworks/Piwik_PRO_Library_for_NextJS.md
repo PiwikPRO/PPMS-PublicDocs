@@ -290,11 +290,11 @@ const { SiteSearch } = usePiwikPro()
 SiteSearch.trackSiteSearch('keyword', 'category', 5)
 ```
 
-#### E-commerce
-
-Collection of methods to handle e-commerce events through the Piwik PRO API.
-
-##### Methods
+### E-Commerce Service
+#### Import
+```ts
+import { eCommerce } from '@piwikpro/react-piwik-pro'
+```
 
 ```ts
 // maximum length of the array is 5
@@ -312,12 +312,12 @@ type Product = {
 };
 ```
 
-- `ecommerce.addEcommerceItem(products: Product[])` - Tracks action of adding products to a cart.
-- `ecommerce.removeEcommerceItem(products: Product[])` - Tracks action of removing a product from a cart.
-- `ecommerce.getEcommerceItems()` - Returns a copy of items from a virtual shopping cart. Does not send any data to the Collecting & Processing Pipeline
-- `ecommerce.ecommerceOrder(products: Product[], paymentInformation: PaymentInformation)` - Tracks conversion (including products and payment details).
-- `ecommerce.updateEcommerceCart(products: Product[], grandTotal: PaymentInformation['grandTotal'])` - Tracks current state of a cart.
-- `ecommerce.ecommerceProductDetailView(products: Product[])` - Tracks product or category view. Must be followed by a page view.
+#### Methods
+* `ecommerceAddToCart(products: Product[])` - Tracks action of adding products to a cart.
+* `ecommerceRemoveFromCart(products: Product[])` - Tracks action of removing a products from a cart.
+* `ecommerceOrder(products: Product[], paymentInformation: PaymentInformation)` - Tracks conversion (including products and payment details).
+* `ecommerceCartUpdate(products: Product[], grandTotal: PaymentInformation['grandTotal'])` - Tracks current state of a cart.
+* `ecommerceProductDetailView(products: Product[])` - Tracks product or category view. Must be followed by a page view.
 
 ##### Example usage
 
@@ -357,42 +357,16 @@ const paymentInformation: PaymentInformation = {
   discount
 }
 
-eCommerce.addEcommerceItem(products)
+eCommerce.ecommerceAddToCart(products)
 
-eCommerce.removeEcommerceItem(products)
+eCommerce.ecommerceRemoveFromCart(products)
 
 ecommerce.ecommerceOrder(products, paymentInformation)
 
-eCommerce.updateEcommerceCart(products, paymentInformation.grandTotal)
+eCommerce.ecommerceCartUpdate(products, paymentInformation.grandTotal)
 
 eCommerce.ecommerceProductDetailView(products)
 
-ecommerce.getEcommerceItems()
-
-```
-
-Some of the methods are getting data from the API and they need to be called asynchronously. They provide data that can be shown no the page. This need to be done with defining async function in your hook body and setting the state of the variable. Like on example below.
-
-```ts
-const { eCommerce } = usePiwikPro()
-
-const [eCommerceItems, setECommerceInfo] = useState<any>('')
-
-const callAsyncMethods = async () => {
-  const ecItem = await eCommerce.getEcommerceItems()
-  setECommerceInfo(ecItem)
-}
-
-callAsyncMethods()
-```
-
-You have access to those variables in you page body. Example below.
-
-```html
-<p>
-  <code>eCommerce.getEcommerceItems()</code> -{' '}
-  {JSON.stringify(eCommerceItems)}
-</p>
 ```
 
 #### Content Tracking
