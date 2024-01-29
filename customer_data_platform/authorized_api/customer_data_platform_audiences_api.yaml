@@ -36,7 +36,7 @@ paths:
         404:
           $ref: '../components.yaml#/components/responses/NotFoundError'
         422:
-          $ref: '../components.yaml#/components/responses/UnprocessableEntity'
+          $ref: '../components.yaml#/components/responses/UnprocessableEntityError'
         500:
           $ref: '../components.yaml#/components/responses/InternalServerError'
     get:
@@ -123,7 +123,7 @@ paths:
         404:
           $ref: '../components.yaml#/components/responses/NotFoundError'
         422:
-          $ref: '../components.yaml#/components/responses/UnprocessableEntity'
+          $ref: '../components.yaml#/components/responses/UnprocessableEntityError'
         500:
           $ref: '../components.yaml#/components/responses/InternalServerError'
     delete:
