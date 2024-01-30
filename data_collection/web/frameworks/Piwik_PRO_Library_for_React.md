@@ -144,14 +144,79 @@ import { SiteSearch } from '@piwikpro/react-piwik-pro'
 ```ts
 import { eCommerce } from '@piwikpro/react-piwik-pro'
 ```
+
+```ts
+// maximum length of the array is 5
+type LimitedArrayFiveStrings<T extends string[] = []> = [string, ...T] | [string, string, string, string, string];
+
+type Product = {
+  sku: string;
+  name?: string;
+  category?: LimitedArrayFiveStrings<string[]>;
+  price?: number;
+  quantity?: number;
+  brand?: string;
+  variant?: string;
+  customDimensions?: object;
+};
+```
+
 #### Methods
-* `addEcommerceItem(productSKU: string, productName: string, productCategory: string | string[], productPrice: number, productQuantity: number)` - Adds a product to a virtual shopping cart. If a product with the same SKU is in the cart, it will be removed first. Does not send any data to the `Tracker`.
-* `removeEcommerceItem(productSKU: string)` - Removes a product with the provided SKU from a virtual shopping cart. If multiple units of that product are in the virtual cart, all of them will be removed. Does not send any data to the `Tracker`.
-* `clearEcommerceCart()` - Removes all items from a virtual shopping cart. Does not send any data to the `Tracker`.
-* `getEcommerceItems()` - Returns a copy of items from a virtual shopping cart. Does not send any data to the `Tracker`
-* `trackEcommerceOrder()` - Tracks a successfully placed e-commerce order with items present in a virtual cart (registered using addEcommerceItem).
-* `trackEcommerceCartUpdate(cartAmount: number)` - Tracks items present in a virtual shopping cart (registered with addEcommerceItem)
-* `setEcommerceView(productSKU: string, productName?: string, productCategory?: string[], productPrice?: string)` - Tracks product or category view. Must be followed by a page view.
+* `ecommerceAddToCart(products: Product[])` - Tracks action of adding products to a cart.
+* `ecommerceRemoveFromCart(products: Product[])` - Tracks action of removing a products from a cart.
+* `ecommerceOrder(products: Product[], paymentInformation: PaymentInformation)` - Tracks conversion (including products and payment details).
+* `ecommerceCartUpdate(products: Product[], grandTotal: PaymentInformation['grandTotal'])` - Tracks current state of a cart.
+* `ecommerceProductDetailView(products: Product[])` - Tracks product or category view. Must be followed by a page view.
+
+##### Example usage
+
+```ts
+const { eCommerce } = usePiwikPro()
+
+const products = [{
+  sku: 'sku-4',
+  name: 'Product 4',
+  category: ['product-category', 'product-category-4'],
+  brand: 'Brand 4',
+  variant: 'Variant 4',
+  price: 39.96,
+  customDimensions: {
+    dimension1: 'value1',
+    dimension2: 'value2'
+  }
+}]
+
+const subTotal = products.reduce((acc, product) => {
+  if (product.price) {
+    return acc + product.price
+  }
+  return acc
+}, 0)
+
+const tax = 10
+const shipping = 4
+const discount = 5
+
+const paymentInformation: PaymentInformation = {
+  orderId: 'order-123',
+  grandTotal: subTotal + tax + shipping - discount,
+  subTotal,
+  tax,
+  shipping,
+  discount
+}
+
+eCommerce.ecommerceAddToCart(products)
+
+eCommerce.ecommerceRemoveFromCart(products)
+
+ecommerce.ecommerceOrder(products, paymentInformation)
+
+eCommerce.ecommerceCartUpdate(products, paymentInformation.grandTotal)
+
+eCommerce.ecommerceProductDetailView(products)
+
+```
 
 ### Content Tracking Service
 Content Tracking lets you track what content is visible on your site and how users interact with it.
