@@ -162,11 +162,10 @@ type Product = {
 ```
 
 #### Methods
-* `addEcommerceItem(products: Product[])` - Tracks action of adding products to a cart.
-* `removeEcommerceItem(products: Product[])` - Tracks action of removing a product from a cart.
-* `getEcommerceItems()` - Returns a copy of items from a virtual shopping cart. Does not send any data to the Collecting & Processing Pipeline
+* `ecommerceAddToCart(products: Product[])` - Tracks action of adding products to a cart.
+* `ecommerceRemoveFromCart(products: Product[])` - Tracks action of removing a products from a cart.
 * `ecommerceOrder(products: Product[], paymentInformation: PaymentInformation)` - Tracks conversion (including products and payment details).
-* `updateEcommerceCart(products: Product[], grandTotal: PaymentInformation['grandTotal'])` - Tracks current state of a cart.
+* `ecommerceCartUpdate(products: Product[], grandTotal: PaymentInformation['grandTotal'])` - Tracks current state of a cart.
 * `ecommerceProductDetailView(products: Product[])` - Tracks product or category view. Must be followed by a page view.
 
 ##### Example usage
@@ -207,17 +206,15 @@ const paymentInformation: PaymentInformation = {
   discount
 }
 
-eCommerce.addEcommerceItem(products)
+eCommerce.ecommerceAddToCart(products)
 
-eCommerce.removeEcommerceItem(products)
+eCommerce.ecommerceRemoveFromCart(products)
 
 ecommerce.ecommerceOrder(products, paymentInformation)
 
-eCommerce.updateEcommerceCart(products, paymentInformation.grandTotal)
+eCommerce.ecommerceCartUpdate(products, paymentInformation.grandTotal)
 
 eCommerce.ecommerceProductDetailView(products)
-
-ecommerce.getEcommerceItems()
 
 ```
 
