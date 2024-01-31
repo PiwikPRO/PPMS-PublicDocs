@@ -48,7 +48,7 @@ components:
             type: string
             example: "Request parameters deserialization error."
       description: "Bad request response (e.g. missing GET parameter, parameter value out of bounds)"
-    UnprocessableEntity:
+    UnprocessableEntityError:
       content:
         text/plain:
           schema:

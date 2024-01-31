@@ -61,7 +61,7 @@ paths:
         404:
           $ref: "../components.yaml#/components/responses/NotFoundError"
         422:
-          $ref: "../components.yaml#/components/responses/UnprocessableEntity"
+          $ref: "../components.yaml#/components/responses/UnprocessableEntityError"
         500:
           $ref: "../components.yaml#/components/responses/InternalServerError"
   /api/cdp/settings/v1/app/{app_id}/attribute/bulk:
@@ -98,7 +98,7 @@ paths:
         404:
           $ref: "../components.yaml#/components/responses/NotFoundError"
         422:
-          $ref: "../components.yaml#/components/responses/UnprocessableEntity"
+          $ref: "../components.yaml#/components/responses/UnprocessableEntityError"
         500:
           $ref: "../components.yaml#/components/responses/InternalServerError"
   /api/cdp/settings/v1/app/{app_id}/attribute/{column_id}:
@@ -139,7 +139,7 @@ paths:
         404:
           $ref: "../components.yaml#/components/responses/NotFoundError"
         422:
-          $ref: "../components.yaml#/components/responses/UnprocessableEntity"
+          $ref: "../components.yaml#/components/responses/UnprocessableEntityError"
         500:
           $ref: "../components.yaml#/components/responses/InternalServerError"
 components:
