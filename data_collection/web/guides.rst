@@ -282,43 +282,10 @@ Tracking cart updates
 Another type of e-commerce activity you can track is an update of a shopping cart.
 It enables you to measure how often visitors add or remove specific products to the cart and what products stay in abandoned carts.
 
-Tracking a cart update has two steps:
+Tracking a cart update may be done with one of these commands:
 
-  * cart update (:ref:`ecommerceCartUpdate<jtc-api-ecommerceCartUpdate>`)
   * product addition and removal (:ref:`ecommerceAddToCart<jtc-api-ecommerceAddToCart>` and :ref:`ecommerceRemoveFromCart<jtc-api-ecommerceRemoveFromCart>`)
-
-Cart update allows us to synchronize longer living cart session (containing previously selected products) with short living visitor session.
-This command is optional but recommended. It should be used once per page (immediately after loading).
-
-Example:
-
-.. code-block:: javascript
-
-  _paq.push([
-      "ecommerceCartUpdate",
-      [
-          {
-              sku: "craft-311",
-              name: "Unicorn Iron on Patch",
-              category: "Crafts & Sewing",
-              price: "50.00",
-              quantity: 3,
-              brand: "DMZ",
-              variant: "blue"
-          },
-          {
-              sku: "craft-312",
-              name: "Unicorn Iron on Grass",
-              category: "Crafts & Sewing",
-              price: "30.00",
-              quantity: 1,
-              brand: "DMZ",
-              variant: "red"
-          }
-      ],
-      "180.00"
-  ]);
-
+  * cart update (:ref:`ecommerceCartUpdate<jtc-api-ecommerceCartUpdate>`)
 
 Product addition and removal commands are used immidiately when visitor adds to a cart or removes from a cart any products.
 These commands let us track how a visitor interacted with a cart and update a cart state.
@@ -359,6 +326,38 @@ Removing products from a cart:
               variant: "blue"
           }
       ]
+  ]);
+
+Cart update allows us to synchronize longer living cart session (containing previously selected products) with short living visitor session.
+This command is optional. It is not needed when visitor finishes his buying order during session but mey be useful to refresh all selected products in new session.
+
+Example:
+
+.. code-block:: javascript
+
+  _paq.push([
+      "ecommerceCartUpdate",
+      [
+          {
+              sku: "craft-311",
+              name: "Unicorn Iron on Patch",
+              category: "Crafts & Sewing",
+              price: "50.00",
+              quantity: 3,
+              brand: "DMZ",
+              variant: "blue"
+          },
+          {
+              sku: "craft-312",
+              name: "Unicorn Iron on Grass",
+              category: "Crafts & Sewing",
+              price: "30.00",
+              quantity: 1,
+              brand: "DMZ",
+              variant: "red"
+          }
+      ],
+      "180.00"
   ]);
 
 .. _guide_tracking_orders:
