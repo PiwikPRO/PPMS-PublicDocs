@@ -263,9 +263,9 @@ example:
   offset: 0
   limit: 100
   order_by:
-    - - 1
+    - - 0
       - desc
-    - - 2
+    - - 1
       - asc
   format: json
   options:
