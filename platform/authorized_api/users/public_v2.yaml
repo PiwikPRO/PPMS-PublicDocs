@@ -547,7 +547,7 @@ components:
 
     User_Password:
       type: string
-      description: Valid password (length between 8 and 128 chars, it must contain at least one digit, one uppercase and one lowercase letter)
+      description: Valid password (length between 12 and 128 chars, it must contain at least one digit, one uppercase and one lowercase letter)
       example: Secret1337
 
     Date:
