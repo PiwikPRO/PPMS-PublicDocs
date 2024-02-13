@@ -6,13 +6,215 @@ info:
 servers:
   - url: https://organization.piwik.pro
 paths:
-  /api/cdp/activations/v1/activations/{app_id}:
+  /api/cdp/settings/v1/app/{app_id}/activation:
+    parameters:
+      - $ref: "../components.yaml#/components/parameters/AppId"
     get:
       summary: List activations
       security:
         - JWTAuth: []
+      operationId: get-settings-activations
+      description: Get all activations.
+      parameters:
+        - in: query
+          name: audience_id
+          description: When provided, only activations with this audience will be returned
+          schema:
+            type: string
+            format: uuid
+            example: aaa1550f-b5a5-4626-a4ac-2f99ff8148fe
+          required: false
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/ActivationBasic"
+          description: An array of activations matching given criteria
+        400:
+          $ref: "../components.yaml#/components/responses/BadRequestError"
+        401:
+          $ref: "../components.yaml#/components/responses/UnauthorizedError"
+        402:
+          $ref: "../components.yaml#/components/responses/ModuleDisabledError"
+        404:
+          $ref: "../components.yaml#/components/responses/NotFoundError"
+        422:
+          $ref: "../components.yaml#/components/responses/UnprocessableEntityError"
+        500:
+          $ref: "../components.yaml#/components/responses/InternalServerError"
+    post:
+      summary: Create activation
+      security:
+        - JWTAuth: []
+      operationId: post-settings-activation
+      description: Create new activation.
+      parameters:
+        - $ref: "../components.yaml#/components/parameters/AppId"
+      requestBody:
+        required: true
+        description: Activation update object
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ActivationUpdate"
+      responses:
+        201:
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Activation"
+          description: Created activation object
+        400:
+          $ref: "../components.yaml#/components/responses/BadRequestError"
+        401:
+          $ref: "../components.yaml#/components/responses/UnauthorizedError"
+        404:
+          $ref: "../components.yaml#/components/responses/NotFoundError"
+        422:
+          $ref: "../components.yaml#/components/responses/UnprocessableEntityError"
+        500:
+          $ref: "../components.yaml#/components/responses/InternalServerError"
+  /api/cdp/settings/v1/app/{app_id}/activation/{id}:
+    parameters:
+      - $ref: "../components.yaml#/components/parameters/AppId"
+      - $ref: "../components.yaml#/components/parameters/Id"
+    get:
+      summary: Fetch activation
+      security:
+        - JWTAuth: []
+      operationId: get-settings-activation
+      description: Get a single activation.
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Activation"
+          description: Activation object matching given ID
+        400:
+          $ref: "../components.yaml#/components/responses/BadRequestError"
+        401:
+          $ref: "../components.yaml#/components/responses/UnauthorizedError"
+        404:
+          $ref: "../components.yaml#/components/responses/NotFoundError"
+        422:
+          $ref: "../components.yaml#/components/responses/UnprocessableEntityError"
+        500:
+          $ref: "../components.yaml#/components/responses/InternalServerError"
+    put:
+      summary: Update activation
+      security:
+        - JWTAuth: []
+      operationId: put-settings-activation
+      description: Update a single activation.
+      requestBody:
+        required: true
+        description: Activation update object
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ActivationUpdate"
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Activation"
+          description: Activation object after update
+        400:
+          $ref: "../components.yaml#/components/responses/BadRequestError"
+        401:
+          $ref: "../components.yaml#/components/responses/UnauthorizedError"
+        404:
+          $ref: "../components.yaml#/components/responses/NotFoundError"
+        422:
+          $ref: "../components.yaml#/components/responses/UnprocessableEntityError"
+        500:
+          $ref: "../components.yaml#/components/responses/InternalServerError"
+    delete:
+      summary: Delete activation
+      security:
+        - JWTAuth: []
+      operationId: delete-settings-activation
+      description: Delete a single activation.
+      responses:
+        204:
+          description: Activation deleted, empty response
+        400:
+          $ref: "../components.yaml#/components/responses/BadRequestError"
+        401:
+          $ref: "../components.yaml#/components/responses/UnauthorizedError"
+        404:
+          $ref: "../components.yaml#/components/responses/NotFoundError"
+        422:
+          $ref: "../components.yaml#/components/responses/UnprocessableEntityError"
+        500:
+          $ref: "../components.yaml#/components/responses/InternalServerError"
+  /api/cdp/settings/v1/app/{app_id}/activation/{id}/activate:
+    parameters:
+      - $ref: "../components.yaml#/components/parameters/AppId"
+      - $ref: "../components.yaml#/components/parameters/Id"
+    post:
+      summary: Activate activation
+      security:
+        - JWTAuth: []
+      operationId: post-settings-activation-activate
+      description: Mark activation as active.
+      responses:
+        200:
+          description: An activation that has been activated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Activation"
+        400:
+          $ref: "../components.yaml#/components/responses/BadRequestError"
+        401:
+          $ref: "../components.yaml#/components/responses/UnauthorizedError"
+        404:
+          $ref: "../components.yaml#/components/responses/NotFoundError"
+        422:
+          $ref: "../components.yaml#/components/responses/UnprocessableEntityError"
+        500:
+          $ref: "../components.yaml#/components/responses/InternalServerError"
+  /api/cdp/settings/v1/app/{app_id}/activation/{id}/deactivate:
+    parameters:
+      - $ref: "../components.yaml#/components/parameters/AppId"
+      - $ref: "../components.yaml#/components/parameters/Id"
+    post:
+      summary: Deactivate activation
+      security:
+        - JWTAuth: []
+      operationId: post-settings-activation-deactivate
+      description: Mark activation as inactive.
+      responses:
+        200:
+          description: An activation that has been deactivated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Activation"
+        400:
+          $ref: "../components.yaml#/components/responses/BadRequestError"
+        401:
+          $ref: "../components.yaml#/components/responses/UnauthorizedError"
+        404:
+          $ref: "../components.yaml#/components/responses/NotFoundError"
+        422:
+          $ref: "../components.yaml#/components/responses/UnprocessableEntityError"
+        500:
+          $ref: "../components.yaml#/components/responses/InternalServerError"
+  /api/cdp/activations/v1/activations/{app_id}:
+    get:
+      summary: List activations
+      deprecated: true
+      security:
+        - JWTAuth: []
       operationId: get-activations
-      description: Get list of available activations.
+      description: Use [the new endpoint instead](#operation/get-settings-activations).
       parameters:
         - $ref: "../components.yaml#/components/parameters/AppId"
         - in: query
@@ -30,47 +232,48 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/ActivationBasic'
+                  $ref: "#/components/schemas/ActivationBasicDeprecated"
           description: An array of activations matching given criteria
         400:
-          $ref: '../components.yaml#/components/responses/BadRequestError'
+          $ref: "../components.yaml#/components/responses/BadRequestError"
         401:
-          $ref: '../components.yaml#/components/responses/UnauthorizedError'
+          $ref: "../components.yaml#/components/responses/UnauthorizedError"
         402:
-          $ref: '../components.yaml#/components/responses/ModuleDisabledError'
+          $ref: "../components.yaml#/components/responses/ModuleDisabledError"
         404:
-          $ref: '../components.yaml#/components/responses/NotFoundError'
+          $ref: "../components.yaml#/components/responses/NotFoundError"
         500:
-          $ref: '../components.yaml#/components/responses/InternalServerError'
+          $ref: "../components.yaml#/components/responses/InternalServerError"
   /api/cdp/activations/v1/activation:
     post:
       summary: Create activation
+      deprecated: true
       security:
         - JWTAuth: []
       operationId: post-activation
-      description: Create new activation
+      description: Use [the new endpoint instead](#operation/post-settings-activation).
       requestBody:
         required: true
         description: Activation object
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/ActivationModify'
+              $ref: "#/components/schemas/ActivationModifyDeprecated"
       responses:
         201:
           content:
             application/vnd.api+json:
               schema:
-                $ref: '#/components/schemas/Activation'
+                $ref: "#/components/schemas/ActivationDeprecated"
           description: Created activation object
         400:
-          $ref: '../components.yaml#/components/responses/BadRequestError'
+          $ref: "../components.yaml#/components/responses/BadRequestError"
         401:
-          $ref: '../components.yaml#/components/responses/UnauthorizedError'
+          $ref: "../components.yaml#/components/responses/UnauthorizedError"
         404:
-          $ref: '../components.yaml#/components/responses/NotFoundError'
+          $ref: "../components.yaml#/components/responses/NotFoundError"
         500:
-          $ref: '../components.yaml#/components/responses/InternalServerError'
+          $ref: "../components.yaml#/components/responses/InternalServerError"
   /api/cdp/activations/v1/activation/{id}:
     parameters:
       - in: path
@@ -82,70 +285,73 @@ paths:
           format: uuid
     get:
       summary: Fetch activation
+      deprecated: true
       security:
         - JWTAuth: []
       operationId: get-activation
-      description: Get single activation definition
+      description: Use [the new endpoint instead](#operation/get-settings-activation).
       responses:
         200:
           content:
             application/vnd.api+json:
               schema:
-                $ref: '#/components/schemas/Activation'
+                $ref: "#/components/schemas/ActivationDeprecated"
           description: Activation object matching given ID
         400:
-          $ref: '../components.yaml#/components/responses/BadRequestError'
+          $ref: "../components.yaml#/components/responses/BadRequestError"
         401:
-          $ref: '../components.yaml#/components/responses/UnauthorizedError'
+          $ref: "../components.yaml#/components/responses/UnauthorizedError"
         404:
-          $ref: '../components.yaml#/components/responses/NotFoundError'
+          $ref: "../components.yaml#/components/responses/NotFoundError"
         500:
-          $ref: '../components.yaml#/components/responses/InternalServerError'
+          $ref: "../components.yaml#/components/responses/InternalServerError"
     put:
       summary: Update activation
+      deprecated: true
       security:
         - JWTAuth: []
       operationId: put-activation
-      description: Update single activation definition
+      description: Use [the new endpoint instead](#operation/put-settings-activation).
       requestBody:
         required: true
         description: Updated activation object
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/ActivationModify'
+              $ref: "#/components/schemas/ActivationModifyDeprecated"
       responses:
         200:
           content:
             application/vnd.api+json:
               schema:
-                $ref: '#/components/schemas/Activation'
+                $ref: "#/components/schemas/ActivationDeprecated"
           description: Activation object after update
         400:
-          $ref: '../components.yaml#/components/responses/BadRequestError'
+          $ref: "../components.yaml#/components/responses/BadRequestError"
         401:
-          $ref: '../components.yaml#/components/responses/UnauthorizedError'
+          $ref: "../components.yaml#/components/responses/UnauthorizedError"
         404:
-          $ref: '../components.yaml#/components/responses/NotFoundError'
+          $ref: "../components.yaml#/components/responses/NotFoundError"
         500:
-          $ref: '../components.yaml#/components/responses/InternalServerError'
+          $ref: "../components.yaml#/components/responses/InternalServerError"
     delete:
       summary: Delete activation
+      deprecated: true
       security:
         - JWTAuth: []
       operationId: delete-activation
-      description: Delete single activation definition
+      description: Use [the new endpoint instead](#operation/delete-settings-activation).
       responses:
         204:
-          description: Activation object after update
+          description: Activation deleted, empty response
         400:
-          $ref: '../components.yaml#/components/responses/BadRequestError'
+          $ref: "../components.yaml#/components/responses/BadRequestError"
         401:
-          $ref: '../components.yaml#/components/responses/UnauthorizedError'
+          $ref: "../components.yaml#/components/responses/UnauthorizedError"
         404:
-          $ref: '../components.yaml#/components/responses/NotFoundError'
+          $ref: "../components.yaml#/components/responses/NotFoundError"
         500:
-          $ref: '../components.yaml#/components/responses/InternalServerError'
+          $ref: "../components.yaml#/components/responses/InternalServerError"
   /api/cdp/activations/v1/activation/{id}/activate:
     parameters:
       - in: path
@@ -157,25 +363,26 @@ paths:
           format: uuid
     post:
       summary: Activate activation
+      deprecated: true
       security:
         - JWTAuth: []
       operationId: post-activation-activate
-      description: Mark the activation as active
+      description: Use [the new endpoint instead](#operation/post-settings-activation-activate).
       responses:
         200:
           description: An activation that has been activated
           content:
             application/vnd.api+json:
               schema:
-                $ref: '#/components/schemas/Activation'
+                $ref: "#/components/schemas/ActivationDeprecated"
         400:
-          $ref: '../components.yaml#/components/responses/BadRequestError'
+          $ref: "../components.yaml#/components/responses/BadRequestError"
         401:
-          $ref: '../components.yaml#/components/responses/UnauthorizedError'
+          $ref: "../components.yaml#/components/responses/UnauthorizedError"
         404:
-          $ref: '../components.yaml#/components/responses/NotFoundError'
+          $ref: "../components.yaml#/components/responses/NotFoundError"
         500:
-          $ref: '../components.yaml#/components/responses/InternalServerError'
+          $ref: "../components.yaml#/components/responses/InternalServerError"
   /api/cdp/activations/v1/activation/{id}/deactivate:
     parameters:
       - in: path
@@ -187,25 +394,26 @@ paths:
           format: uuid
     post:
       summary: Deactivate activation
+      deprecated: true
       security:
         - JWTAuth: []
       operationId: post-activation-deactivate
-      description: Mark the activation as not activated
+      description: Use [the new endpoint instead](#operation/post-settings-activation-deactivate).
       responses:
         200:
           description: An activation that has been deactivated
           content:
             application/vnd.api+json:
               schema:
-                $ref: '#/components/schemas/Activation'
+                $ref: "#/components/schemas/ActivationDeprecated"
         400:
-          $ref: '../components.yaml#/components/responses/BadRequestError'
+          $ref: "../components.yaml#/components/responses/BadRequestError"
         401:
-          $ref: '../components.yaml#/components/responses/UnauthorizedError'
+          $ref: "../components.yaml#/components/responses/UnauthorizedError"
         404:
-          $ref: '../components.yaml#/components/responses/NotFoundError'
+          $ref: "../components.yaml#/components/responses/NotFoundError"
         500:
-          $ref: '../components.yaml#/components/responses/InternalServerError'
+          $ref: "../components.yaml#/components/responses/InternalServerError"
 components:
   securitySchemes:
     JWTAuth:
@@ -214,6 +422,222 @@ components:
       bearerFormat: JWT
   schemas:
     ActivationBasic:
+      description: Activation for display in activation lists. Contains only the most basic information needed for display and filtering.
+      readOnly: true
+      type: object
+      required:
+        - id
+        - name
+        - status
+        - required_consents
+        - created_at
+        - updated_at
+        - author
+        - is_author
+        - type
+      properties:
+        id:
+          description: Activation ID
+          type: string
+          format: uuid
+          example: ca2f7459-e6e6-466b-a4a9-d9af89682c3b
+        name:
+          description: Activation name
+          type: string
+          example: "My activation"
+        status:
+          $ref: "#/components/schemas/ActivationStatus"
+        required_consents:
+          description: Consent types a profile must contain to be activated
+          type: array
+          items:
+            $ref: "../components.yaml#/components/schemas/ConsentType"
+          example: ["ab_testing_and_personalization", "remarketing"]
+        created_at:
+          description: Activation creation time
+          type: string
+          format: date-time
+          example: "2020-07-14T13:30:07Z"
+        updated_at:
+          description: Activation last update time
+          type: string
+          format: date-time
+          example: "2020-07-14T13:30:07Z"
+        author:
+          $ref: "#/components/schemas/Author"
+        is_author:
+          description: Whether the current user is the author of this activation
+          type: boolean
+          example: false
+        type:
+          $ref: "#/components/schemas/ActivationType"
+    Activation:
+      description: Activation with all type-specific data
+      oneOf:
+        - $ref: "#/components/schemas/WebhookActivation"
+    BaseActivation:
+      description: Common parts of all types of activation
+      required:
+        - id
+        - name
+        - description
+        - status
+        - trigger
+        - required_consents
+        - multiple
+        - multiple_user_ids
+        - created_at
+        - updated_at
+        - author
+        - is_author
+      type: object
+      properties:
+        id:
+          description: Activation ID
+          type: string
+          format: uuid
+          example: ca2f7459-e6e6-466b-a4a9-d9af89682c3b
+        name:
+          description: Activation name
+          type: string
+          example: "My activation"
+        description:
+          description: Activation description
+          type: string
+          example: "Description of my activation"
+        status:
+          $ref: "#/components/schemas/ActivationStatus"
+        trigger:
+          $ref: "#/components/schemas/ActivationTrigger"
+        audience:
+          description: Audience to be activated. Might be missing if the related `audience` gets removed.
+          $ref: "#/components/schemas/ActivatedAudience"
+        required_consents:
+          description: Consent types a profile must contain to be activated
+          type: array
+          items:
+            $ref: "../components.yaml#/components/schemas/ConsentType"
+          example: ["ab_testing_and_personalization", "remarketing"]
+        multiple:
+          description: Whether one profile can be activated multiple times
+          type: boolean
+          example: true
+        multiple_user_ids:
+          description: Whether a profile containing more than one user ID can be activated
+          type: boolean
+          example: false
+        created_at:
+          description: Activation creation time
+          type: string
+          format: date-time
+          example: "2020-07-14T13:30:07Z"
+        updated_at:
+          description: Activation last update time
+          type: string
+          format: date-time
+          example: "2020-07-14T13:30:07Z"
+        author:
+          $ref: "#/components/schemas/Author"
+        is_author:
+          description: Whether the current user is the author of this activation
+          type: boolean
+          example: false
+    WebhookActivation:
+      allOf:
+        - $ref: "#/components/schemas/BaseActivation"
+        - type: object
+          required:
+            - type
+            - webhook_url
+            - webhook_body_attributes
+            - webhook_body_template
+          properties:
+            type:
+              description: Type of activation
+              type: string
+              enum:
+                - webhook
+            webhook_url:
+              description: Webhook URL pointing at some external system
+              type: string
+              example: "http://domain.tld/path.php?c=param"
+            webhook_body_attributes:
+              $ref: "../components.yaml#/components/schemas/WebhookBodyAttributes"
+            webhook_body_template:
+              $ref: "../components.yaml#/components/schemas/WebhookBodyTemplate"
+    ActivationUpdate:
+      oneOf:
+        - $ref: "#/components/schemas/WebhookActivationUpdate"
+    BaseActivationUpdate:
+      description: Common parts of all type of activation update objects
+      required:
+        - name
+        - description
+        - status
+        - trigger
+        - audience_id
+        - required_consents
+        - multiple
+        - multiple_user_ids
+      type: object
+      properties:
+        name:
+          description: Activation name
+          type: string
+          maxLength: 100
+          example: "My activation"
+        description:
+          description: Activation description
+          type: string
+          maxLength: 200
+          example: "Description of my activation"
+        status:
+          $ref: "#/components/schemas/ActivationStatus"
+        trigger:
+          $ref: "#/components/schemas/ActivationTrigger"
+        audience_id:
+          description: ID of an audience to be activated
+          type: string
+          format: uuid
+          example: 0d454742-0e95-4321-a200-fd9d1c4b8031
+        required_consents:
+          description: Consent types a profile must contain to be activated
+          type: array
+          items:
+            $ref: "../components.yaml#/components/schemas/ConsentType"
+          example: ["ab_testing_and_personalization", "remarketing"]
+        multiple:
+          description: Whether one profile can be activated multiple times
+          type: boolean
+          example: true
+        multiple_user_ids:
+          description: Whether a profile containing more than one user ID can be activated
+          type: boolean
+          example: false
+    WebhookActivationUpdate:
+      allOf:
+        - $ref: "#/components/schemas/BaseActivationUpdate"
+        - type: object
+          required:
+            - type
+            - webhook_url
+            - webhook_body_attributes
+            - webhook_body_template
+          properties:
+            type:
+              description: Type of activation
+              type: string
+              enum:
+                - webhook
+            webhook_url:
+              description: Webhook URL pointing at some external system
+              type: string
+              example: "http://domain.tld/path.php?c=param"
+            webhook_body_attributes:
+              $ref: "../components.yaml#/components/schemas/WebhookBodyAttributes"
+            webhook_body_template:
+              $ref: "../components.yaml#/components/schemas/WebhookBodyTemplate"
+    ActivationBasicDeprecated:
       description: An object representing activation - simplified version for activations list
       readOnly: true
       required:
@@ -243,11 +667,11 @@ components:
           type: string
           minLength: 1
           maxLength: 50
-          example: 'My activation'
+          example: "My activation"
         author:
           description: An author of an activation
           type: object
-          $ref: '#/components/schemas/Author'
+          $ref: "#/components/schemas/Author"
         is_author:
           description: Is current user an author of the activation
           type: boolean
@@ -256,26 +680,26 @@ components:
           description: Status of activation
           type: string
           enum:
-            - 'active'
-            - 'inactive'
-          example: 'active'
+            - "active"
+            - "inactive"
+          example: "active"
         created_at:
           type: string
           format: date-time
           description: Date and time of activations's creation
-          example: '2020-07-14T13:30:07Z'
+          example: "2020-07-14T13:30:07Z"
         updated_at:
           type: string
           format: date-time
           description: Date and time of activations's last update
-          example: '2020-07-14T13:30:07Z'
+          example: "2020-07-14T13:30:07Z"
         required_consents:
           description: What consent types a profile contains are required in order to perform activation
           type: array
           items:
-            $ref: '../components.yaml#/components/schemas/ConsentType'
+            $ref: "../components.yaml#/components/schemas/ConsentType"
           example: ["ab_testing_and_personalization", "remarketing"]
-    Activation:
+    ActivationDeprecated:
       description: An object representing activation with all data for display
       required:
         - id
@@ -311,17 +735,17 @@ components:
           type: string
           minLength: 1
           maxLength: 50
-          example: 'My activation'
+          example: "My activation"
         description:
           description: Description of an activation
           type: string
           minLength: 0
           maxLength: 200
-          example: 'Description of my activation'
+          example: "Description of my activation"
         audience:
           description: Audience that is activated
           type: object
-          $ref: '#/components/schemas/ActivatedAudience'
+          $ref: "#/components/schemas/ActivatedAudience"
         is_active:
           description: Is an activation active
           type: boolean
@@ -336,24 +760,24 @@ components:
         webhook_url:
           description: Template URL that will be used to create webhook's final URL
           type: string
-          example: 'http://domain.tld/path.php?c=param'
+          example: "http://domain.tld/path.php?c=param"
         webhook_body_attributes:
-          $ref: '../components.yaml#/components/schemas/WebhookBodyAttributes'
+          $ref: "../components.yaml#/components/schemas/WebhookBodyAttributes"
         webhook_body_template:
-          $ref: '../components.yaml#/components/schemas/WebhookBodyTemplate'
+          $ref: "../components.yaml#/components/schemas/WebhookBodyTemplate"
         author:
           description: An author of an activation
           type: object
-          $ref: '#/components/schemas/Author'
+          $ref: "#/components/schemas/Author"
         is_author:
           description: Is current user an author of the activation
           type: boolean
           example: false
         activated_at:
-          description: 'Date and time of last activation request'
+          description: "Date and time of last activation request"
           type: string
           format: date-time
-          example: '2020-07-14T13:30:07Z'
+          example: "2020-07-14T13:30:07Z"
         status:
           description: Status merge of active/inactive/activation failed
           type: string
@@ -365,17 +789,17 @@ components:
           type: string
           format: date-time
           description: Date and time of activations's creation
-          example: '2020-07-14T13:30:07Z'
+          example: "2020-07-14T13:30:07Z"
         updated_at:
           type: string
           format: date-time
           description: Date and time of activations's last update
-          example: '2020-07-14T13:30:07Z'
+          example: "2020-07-14T13:30:07Z"
         required_consents:
           description: What consent types a profile contains are required in order to perform activation
           type: array
           items:
-            $ref: '../components.yaml#/components/schemas/ConsentType'
+            $ref: "../components.yaml#/components/schemas/ConsentType"
           example: ["ab_testing_and_personalization", "remarketing"]
         multiple:
           description: Activate single profile multiple times, regardless if it was already activated
@@ -385,7 +809,7 @@ components:
           description: Activate profiles containing multiple (more than 1) user IDs
           type: boolean
           example: false
-    ActivationModify:
+    ActivationModifyDeprecated:
       description: An object representing activation data to insert
       required:
         - website_id
@@ -411,13 +835,13 @@ components:
           type: string
           minLength: 1
           maxLength: 100
-          example: 'My activation'
+          example: "My activation"
         description:
           description: Description of an activation
           type: string
           minLength: 0
           maxLength: 200
-          example: 'Description of my activation'
+          example: "Description of my activation"
         audience_id:
           description: ID of an audience that is activated
           type: string
@@ -437,16 +861,16 @@ components:
         webhook_url:
           description: Template URL that will be used to create webhook's final URL
           type: string
-          example: 'http://domain.tld/path.php?c=param'
+          example: "http://domain.tld/path.php?c=param"
         webhook_body_attributes:
-          $ref: '../components.yaml#/components/schemas/WebhookBodyAttributes'
+          $ref: "../components.yaml#/components/schemas/WebhookBodyAttributes"
         webhook_body_template:
-          $ref: '../components.yaml#/components/schemas/WebhookBodyTemplate'
+          $ref: "../components.yaml#/components/schemas/WebhookBodyTemplate"
         required_consents:
           description: What consent types a profile contains are required in order to perform activation
           type: array
           items:
-            $ref: '../components.yaml#/components/schemas/ConsentType'
+            $ref: "../components.yaml#/components/schemas/ConsentType"
           example: ["ab_testing_and_personalization", "remarketing"]
         multiple:
           description: Activate single profile multiple times, regardless if it was already activated
@@ -466,7 +890,7 @@ components:
           description: Email (login) of an author
           type: string
           format: email
-          example: 'author@piwik.pro'
+          example: "author@piwik.pro"
     ActivatedAudience:
       description: Basic audience object
       required:
@@ -482,4 +906,29 @@ components:
         name:
           description: Name of an audience that is activated
           type: string
-          example: 'My audience'
+          example: "My audience"
+    ActivationType:
+      description: Type of activation
+      type: string
+      enum:
+        - webhook
+    ActivationStatus:
+      description: |
+        Activation status.
+        `active` enables profiles activation, `inactive` disables profile activation.
+        If activation has no audience associated with it, Activation API will always return `inactive`.
+      type: string
+      enum:
+        - active
+        - inactive
+      example: active
+    ActivationTrigger:
+      description: |
+        Signal that triggers an activation.
+        `onjoin` makes joining an audience trigger activation.
+        `onleave` makes leaving an audience trigger activation.
+      type: string
+      enum:
+        - onjoin
+        - onleave
+      example: onjoin

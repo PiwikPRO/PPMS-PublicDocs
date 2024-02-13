@@ -240,6 +240,31 @@ Collection of methods to handle eCommerce events through the Piwik PRO API.
 
 ##### Methods
 
+```ts
+// maximum length of the array is 5
+type LimitedArrayFiveStrings<T extends string[] = []> = [string, ...T] | [string, string, string, string, string];
+
+type Product = {
+  sku: string;
+  name?: string;
+  category?: LimitedArrayFiveStrings<string[]>;
+  price?: number;
+  quantity?: number;
+  brand?: string;
+  variant?: string;
+  customDimensions?: object;
+};
+```
+
+- `ecommerceAddToCart(products: Product[])` - Tracks action of adding products to a cart.
+- `ecommerceRemoveFromCart(products: Product[])` - Tracks action of removing a products from a cart.
+- `ecommerceOrder(products: Product[], paymentInformation: PaymentInformation)` - Tracks conversion (including products and payment details).
+- `ecommerceCartUpdate(products: Product[], grandTotal: PaymentInformation['grandTotal'])` - Tracks current state of a cart.
+- `ecommerceProductDetailView(products: Product[])` - Tracks product or category view. Must be followed by a page view.
+
+
+Deprecated methods:
+
 - `eCommerce.addEcommerceItem(productSKU[, productName[, productCategory[, productPrice[, productQuantity]]]])` - Adds a product to a virtual shopping cart. If a product with the same SKU is in the cart, it will be removed first. Does not send any data to the Collecting & Processing Pipeline.
 
   - `productSKU (string)` – Required Product stock-keeping unit
