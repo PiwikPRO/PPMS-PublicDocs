@@ -1,0 +1,65 @@
+{
+    "definitions": {
+        "consent_type_default": {
+            "$ref": "../tag_attributes.json#/definitions/consent_type",
+            "default": "not_require_consent"
+        },
+        "template": {
+            "$ref": "../tag_attributes.json#/definitions/template",
+            "enum": [
+                "cookie_information_cmp_integration"
+            ]
+        },
+        "template_options": {
+            "description": "[Tag template options](#tag-template-options)",
+            "type": "object",
+            "properties": {
+                "consents_mapping": {
+                    "description": "Map Piwik PRO consents to Cookie Information consents",
+                    "type": "object",
+                    "properties": {
+                        "cookie_cat_functional": {
+                            "$ref": "#/definitions/piwik_pro_consent_types_array"
+                        },
+                        "cookie_cat_statistic": {
+                            "$ref": "#/definitions/piwik_pro_consent_types_array"
+                        },
+                        "cookie_cat_marketing": {
+                            "$ref": "#/definitions/piwik_pro_consent_types_array"
+                        },
+                        "cookie_cat_unclassified": {
+                            "$ref": "#/definitions/piwik_pro_consent_types_array"
+                        }
+                    },
+                    "additionalProperties": false,
+                    "required": [
+                        "cookie_cat_functional",
+                        "cookie_cat_statistic",
+                        "cookie_cat_marketing",
+                        "cookie_cat_unclassified"
+                    ]
+                }
+            },
+            "additionalProperties": false,
+            "required": [
+                "consents_mapping"
+            ]
+        },
+        "piwik_pro_consent_types_array": {
+            "description": "List of Piwik PRO consent types",
+            "type": "array",
+            "items": {
+                "type": "string",
+                "enum": [
+                    "analytics",
+                    "ab_testing_and_personalization",
+                    "conversion_tracking",
+                    "marketing_automation",
+                    "remarketing",
+                    "user_feedback",
+                    "custom_consent"
+                ]
+            }
+        }
+    }
+}
