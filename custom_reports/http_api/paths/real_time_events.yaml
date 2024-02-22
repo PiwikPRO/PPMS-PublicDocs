@@ -1,0 +1,111 @@
+post:
+  tags:
+    - Raw data
+  summary:
+    Fetch events
+  description: |
+    API that allows fetching raw events from the database. Please note that
+    each request must be authenticated.
+
+    #### Compression
+
+    When requesting large amount of data, make sure to include
+    an **Accept-Encoding: gzip** header to enable
+    compression.s
+
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../index.yaml#/components/schemas/RawDataRequest'
+  responses:
+    200:
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: array
+                description: Rows with results for the query.
+                items:
+                  type: object
+              meta:
+                type: object
+                description: Additional results metadata for the query.
+                properties:
+                  columns:
+                    type: array
+                    description: List of column IDs returned.
+                    items:
+                      type: str
+                  count:
+                    type: integer
+                    description: Total number of results available for this query.
+            example: { "data": [ [ "2132601","8131637","2ecf33167d400648","2018-12-03T00:21:03","375x667",[ 1,"Smartphone" ] ] ],"meta": { "columns": [ "session_id","event_id","visitor_id","timestamp","resolution","device_type" ],"count": 3448 } }
+    400:
+      description: Bad Request
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              errors:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    status:
+                      type: string
+                      description: HTTP status code for the error.
+                    detail:
+                      type: string
+                      description: Additional information about the error.
+                    source:
+                      type: object
+                      description: Source of the error (if available).
+                      properties:
+                        parameter:
+                          type: string
+                          description: Path to the parameter that caused the error.
+            example: { "errors": [ { "status": "400", "detail": "Dimension \"example\" does not exist.", "source": { "parameter": "columns.column_id" } } ] }
+    401:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              errors:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    status:
+                      type: string
+                      description: HTTP status code for the error.
+                    detail:
+                      type: string
+                      description: Additional information about the error.
+            example: { "errors": [ { "status": "401", "detail": "No valid credentials provided." } ] }
+    403:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              errors:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    status:
+                      type: string
+                      description: HTTP status code for the error.
+                    detail:
+                      type: string
+                      description: Additional information about the error.
+            example: { "errors": [ { "status": "403", "detail": "No valid license found." } ] }
