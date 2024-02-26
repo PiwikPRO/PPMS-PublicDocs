@@ -208,7 +208,8 @@
                 "ecommerce_add_to_cart",
                 "ecommerce_remove_from_cart",
                 "ecommerce_product_detail_view",
-                "ecommerce_cart_update"
+                "ecommerce_cart_update",
+                "cookie_information_cmp_integration"
             ]
         },
         "template_options_empty": {
