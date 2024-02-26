@@ -214,7 +214,7 @@ paths:
       security:
         - JWTAuth: []
       operationId: get-activations
-      description: Use [the new endpoint instead](#operation/get-settings-activations).
+      description: This endpoint will be removed in version 18.14, use [the new endpoint instead](#operation/get-settings-activations).
       parameters:
         - $ref: "../components.yaml#/components/parameters/AppId"
         - in: query
@@ -251,7 +251,7 @@ paths:
       security:
         - JWTAuth: []
       operationId: post-activation
-      description: Use [the new endpoint instead](#operation/post-settings-activation).
+      description: This endpoint will be removed in version 18.14, use [the new endpoint instead](#operation/post-settings-activation).
       requestBody:
         required: true
         description: Activation object
@@ -289,7 +289,7 @@ paths:
       security:
         - JWTAuth: []
       operationId: get-activation
-      description: Use [the new endpoint instead](#operation/get-settings-activation).
+      description: This endpoint will be removed in version 18.14, use [the new endpoint instead](#operation/get-settings-activation).
       responses:
         200:
           content:
@@ -311,7 +311,7 @@ paths:
       security:
         - JWTAuth: []
       operationId: put-activation
-      description: Use [the new endpoint instead](#operation/put-settings-activation).
+      description: This endpoint will be removed in version 18.14, use [the new endpoint instead](#operation/put-settings-activation).
       requestBody:
         required: true
         description: Updated activation object
@@ -340,7 +340,7 @@ paths:
       security:
         - JWTAuth: []
       operationId: delete-activation
-      description: Use [the new endpoint instead](#operation/delete-settings-activation).
+      description: This endpoint will be removed in version 18.14, use [the new endpoint instead](#operation/delete-settings-activation).
       responses:
         204:
           description: Activation deleted, empty response
@@ -367,7 +367,7 @@ paths:
       security:
         - JWTAuth: []
       operationId: post-activation-activate
-      description: Use [the new endpoint instead](#operation/post-settings-activation-activate).
+      description: This endpoint will be removed in version 18.14, use [the new endpoint instead](#operation/post-settings-activation-activate).
       responses:
         200:
           description: An activation that has been activated
@@ -398,7 +398,7 @@ paths:
       security:
         - JWTAuth: []
       operationId: post-activation-deactivate
-      description: Use [the new endpoint instead](#operation/post-settings-activation-deactivate).
+      description: This endpoint will be removed in version 18.14, use [the new endpoint instead](#operation/post-settings-activation-deactivate).
       responses:
         200:
           description: An activation that has been deactivated

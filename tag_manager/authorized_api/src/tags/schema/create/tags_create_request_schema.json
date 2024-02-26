@@ -129,6 +129,9 @@
         },
         {
             "$ref": "request/ecommerce_cart_update_create.json"
+        },
+        {
+            "$ref": "request/cookie_information_cmp_integration_create.json"
         }
     ]
 }
