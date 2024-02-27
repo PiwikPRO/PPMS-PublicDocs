@@ -7,12 +7,10 @@ Additional columns may become available through
 
 .. note::
     Each column listed in this document defines a *Scopes* attribute.
-    For performance reasons query is performed on "most broad" scope available (Session > Event > Product)
-    - i.e. if all columns in request contain *Session* scope report would be computed within that scope.
-    If you request a query that includes at least one column which doesn't support *Session*,
-    the entire query will be calculated using events, instead of sessions.
+    To get better performance, report is calculated from session scope whenever possible.
+    When using dimension that doesn't support a *Session* scope, then the report is computed from a relevant scope.
+    Example: if you request *product_name* column, report will be computed in *Product* scope.
     This might distort some custom metrics such as averages of a *Session* dimension (e.g. average session time).
-    Similarly if you request *product_name* column query will be computed in *Product* scope.
 
 Metrics
 -------
