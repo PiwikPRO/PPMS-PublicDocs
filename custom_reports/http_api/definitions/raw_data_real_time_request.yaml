@@ -3,7 +3,7 @@ properties:
   website_id:
     type: string
     format: uuid
-    description: ID of a website or a meta site.
+    description: ID of a website.
     example: 70236925-724f-404e-b634-7b5633bc0bcc
   columns:
     type: array
@@ -27,28 +27,12 @@ properties:
     example: [{"column_id":"resolution"},{"column_id":"device_type"}]
   date_from:
     type: string
-    format: date
-    description: Start date for the query (inclusive). Cannot be used with relative_date field at
-      the same time. Mandatory if ``relative_date`` is not used.
+    format: datetime
+    description: Start date (with time) for the query (inclusive, in website's timezone).
   date_to:
     type: string
-    format: date
-    description: End date for the query (inclusive). Cannot be used with ``relative_date`` field at
-      the same time. Mandatory if ``relative_date`` is not used.
-  relative_date:
-    type: string
-    enum:
-      - today
-      - yesterday
-      - last_week
-      - last_month
-      - last_year
-      - last_X_days
-    description: |
-      Use relative date in query. Cannot be used with absolute date fields at
-      the same time. ``X`` in ``last_X_days`` must be in range 1 <= ``X`` <= 365.
-      Note that ``last_X_days`` does not include data from today.
-      Mandatory if absolute date fields are not used.
+    format: datetime
+    description: End date (with time) for the query (exclusive, in website's timezone).
   filters:
     type: object
     description: |
@@ -147,13 +131,15 @@ properties:
 required:
   - website_id
   - columns
+  - date_from
+  - date_to
 example:
   website_id: 70236925-724f-404e-b634-7b5633bc0bcc
   columns:
     - column_id: resolution
     - column_id: device_type
-  date_from: '2020-02-10'
-  date_to: '2020-02-10'
+  date_from: '2024-02-10 12:23:00'
+  date_to: '2024-02-10 12:58:00'
   filters:
     operator: and
     conditions:

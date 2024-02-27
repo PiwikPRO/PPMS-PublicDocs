@@ -2,23 +2,22 @@ post:
   tags:
     - Raw data
   summary:
-    Fetch events
+    Fetch Real-time events
   description: |
-    API that allows fetching raw events from the database. Please note that
-    each request must be authenticated.
+    API that allows fetching raw Real-time events from the database.
+    Real-time data is retained for only an hour and may be available with a slight delay (up to a couple of minutes),
+    so we highly recommend getting the data older than 3 minutes (and newer than 60).
 
-    #### Compression
+    This API is not suitable for feeding external data warehouses as it is not a reliable source of complete data
+    \- for that purpose we recommend regular [Raw data API](#tag/Raw-data/paths/~1api~1analytics~1v1~1events~1/post) or Exports.
 
-    When requesting large amount of data, make sure to include
-    an **Accept-Encoding: gzip** header to enable
-    compression.s
-
+    Please note that each request must be authenticated.
   requestBody:
     required: true
     content:
       application/json:
         schema:
-          $ref: '../index.yaml#/components/schemas/RawDataRequest'
+          $ref: '../index.yaml#/components/schemas/RawDataRealTimeRequest'
   responses:
     200:
       description: OK
@@ -44,7 +43,7 @@ post:
                   count:
                     type: integer
                     description: Total number of results available for this query.
-            example: { "data": [ [ "2132601","8131637","2ecf33167d400648","2018-12-03T00:21:03","375x667",[ 1,"Smartphone" ] ] ],"meta": { "columns": [ "session_id","event_id","visitor_id","timestamp","resolution","device_type" ],"count": 3448 } }
+            example: { "data": [ [ "2018-12-03T00:21:03","375x667",[ 1,"Smartphone" ] ] ],"meta": { "columns": [ "timestamp","resolution","device_type" ],"count": 3448 } }
     400:
       description: Bad Request
       content:
