@@ -1,0 +1,110 @@
+post:
+  tags:
+    - Raw data
+  summary:
+    Fetch Real-time events
+  description: |
+    API that allows fetching raw Real-time events from the database.
+    Real-time data is retained for only an hour and may be available with a slight delay (up to a couple of minutes),
+    so we highly recommend getting the data older than 3 minutes (and newer than 60).
+
+    This API is not suitable for feeding external data warehouses as it is not a reliable source of complete data
+    \- for that purpose we recommend regular [Raw data API](#tag/Raw-data/paths/~1api~1analytics~1v1~1events~1/post) or Exports.
+
+    Please note that each request must be authenticated.
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../index.yaml#/components/schemas/RawDataRealTimeRequest'
+  responses:
+    200:
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: array
+                description: Rows with results for the query.
+                items:
+                  type: object
+              meta:
+                type: object
+                description: Additional results metadata for the query.
+                properties:
+                  columns:
+                    type: array
+                    description: List of column IDs returned.
+                    items:
+                      type: str
+                  count:
+                    type: integer
+                    description: Total number of results available for this query.
+            example: { "data": [ [ "2018-12-03T00:21:03","375x667",[ 1,"Smartphone" ] ] ],"meta": { "columns": [ "timestamp","resolution","device_type" ],"count": 3448 } }
+    400:
+      description: Bad Request
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              errors:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    status:
+                      type: string
+                      description: HTTP status code for the error.
+                    detail:
+                      type: string
+                      description: Additional information about the error.
+                    source:
+                      type: object
+                      description: Source of the error (if available).
+                      properties:
+                        parameter:
+                          type: string
+                          description: Path to the parameter that caused the error.
+            example: { "errors": [ { "status": "400", "detail": "Dimension \"example\" does not exist.", "source": { "parameter": "columns.column_id" } } ] }
+    401:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              errors:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    status:
+                      type: string
+                      description: HTTP status code for the error.
+                    detail:
+                      type: string
+                      description: Additional information about the error.
+            example: { "errors": [ { "status": "401", "detail": "No valid credentials provided." } ] }
+    403:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              errors:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    status:
+                      type: string
+                      description: HTTP status code for the error.
+                    detail:
+                      type: string
+                      description: Additional information about the error.
+            example: { "errors": [ { "status": "403", "detail": "No valid license found." } ] }
