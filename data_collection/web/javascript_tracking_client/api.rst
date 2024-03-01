@@ -2947,7 +2947,7 @@ JavaScript Tracking Client configuration
 
 .. function:: setDomains(domains)
 
-    Allows to define a list of internal domains. Used in :ref:`outlink tracking<jtc-api-download-and-outlink>`
+    Allows to define a list of internal domains or mobile app URIs. Used in :ref:`outlink tracking<jtc-api-download-and-outlink>`
     for determining whether a link is an outlink and in :ref:`cross domain linking<jtc-api-cross-domain-linking>`
     for determining which links should have visitor ID parameter injected.
 
@@ -2961,19 +2961,19 @@ JavaScript Tracking Client configuration
 
             .. code-block:: javascript
 
-                _paq.push(["setDomains", [".example.com", ".example.co.uk"]]);
+                _paq.push(["setDomains", [".example.com", ".example.co.uk", "PiwikPRO://"]]);
 
         .. group-tab:: JavaScript Tracking Client object
 
             .. code-block:: javascript
 
-                jstc.setDomains([".example.com", ".example.co.uk"]);
+                jstc.setDomains([".example.com", ".example.co.uk", "PiwikPRO://"]);
 
 .. function:: getDomains()
 
     Returns list of internal domains (set with :func:`setDomains` and used in :ref:`outlink tracking<jtc-api-download-and-outlink>`).
 
-    :return: List of internal domains (e.g. ``[".example.com", ".example.co.uk"]``
+    :return: List of internal domains (e.g. ``[".example.com", ".example.co.uk"]``)
     :rtype: string[]
 
     Example of usage:
