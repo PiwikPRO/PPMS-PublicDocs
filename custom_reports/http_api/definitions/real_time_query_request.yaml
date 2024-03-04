@@ -28,7 +28,6 @@ properties:
     example: [{"column_id":"device_type"},{"column_id":"revenue","transformation_id":"sum"}]
   lookback_window:
     type: int
-    format: date
     description: |
       Period of time (in minutes) to query. Example: lookback_window=10 means "last 10 minutes of data".
   filters:
