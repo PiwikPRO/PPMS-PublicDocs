@@ -3,6 +3,7 @@ SharePoint
 
 Once SharePoint integration is enabled, additional metrics and dimensions will
 become available in the :ref:`custom-reports-http-api`.
+Sharepoint data isn't available in Real-time API.
 
 Metrics
 -------

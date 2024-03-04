@@ -6,16 +6,16 @@ Additional columns may become available through
 :ref:`custom-reports-integrations`.
 
 .. note::
-    Each column listed in this document defines a *Scope* attribute.
-    If you request a query that includes at least one column which requires
-    *event* scope, the entire query will be calculated using events,
-    instead of sessions. This might distort some custom metrics such as
-    averages of a *session* dimension (e.g. average session time).
+    Each column listed in this document defines a *Scopes* attribute.
+    To get better performance, report is calculated from *session* scope whenever possible.
+    When using dimension that doesn't support a *session* scope, then the report is computed from a relevant scope.
+    Example: if you request *product_name* column, report will be computed in *product* scope.
+    This might distort some custom metrics such as averages of a *session* dimension (e.g. average session time).
 
 Metrics
 -------
 
-The table below lists core metrics that may be used in queries.
+The table below lists core metrics that may be used in queries (they are not available in Raw data).
 Additional metrics may be created using dimension transformations.
 
 .. include:: columns__metrics.rst

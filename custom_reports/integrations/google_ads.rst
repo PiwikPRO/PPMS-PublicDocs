@@ -3,6 +3,7 @@ Google Ads
 
 The :ref:`custom-reports-http-api` supports querying Google Ads
 data just like the internal analytics data.
+Google Ads data isn't available in Real-time API.
 
 .. note::
     You must configure the Google Ads integration before any data
