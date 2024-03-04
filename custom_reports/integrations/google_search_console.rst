@@ -3,6 +3,7 @@ Google Search Console
 
 The :ref:`custom-reports-http-api` supports querying Google Search Console
 data just like the internal analytics data.
+Google Search Console data isn't available in Real-time API.
 
 .. note::
     You must configure the Google Search Console integration before any data

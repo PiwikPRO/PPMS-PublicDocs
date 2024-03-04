@@ -3,121 +3,121 @@
     +------------------------------------+-----------------------------------+-----------------------+---------+-----+--------------------------------------------------------------------+
     |            Metric Name             |             Column ID             |        Scopes         |Real-time|Type |                               Notes                                |
     +====================================+===================================+=======================+=========+=====+====================================================================+
-    |Events                              |events                             |Event, Product, Session|✔        |int  |                                                                    |
+    |Events                              |events                             |event, product, session|✔        |int  |                                                                    |
     +------------------------------------+-----------------------------------+-----------------------+---------+-----+--------------------------------------------------------------------+
-    |Consent form impressions            |consent_form_impressions           |Event, Product         |✔        |int  |                                                                    |
+    |Consent form impressions            |consent_form_impressions           |event, product         |✔        |int  |                                                                    |
     +------------------------------------+-----------------------------------+-----------------------+---------+-----+--------------------------------------------------------------------+
-    |Consent form clicks                 |consent_form_clicks                |Event, Product         |✔        |int  |                                                                    |
+    |Consent form clicks                 |consent_form_clicks                |event, product         |✔        |int  |                                                                    |
     +------------------------------------+-----------------------------------+-----------------------+---------+-----+--------------------------------------------------------------------+
-    |First consents                      |consents_first                     |Event, Product         |✔        |int  |                                                                    |
+    |First consents                      |consents_first                     |event, product         |✔        |int  |                                                                    |
     +------------------------------------+-----------------------------------+-----------------------+---------+-----+--------------------------------------------------------------------+
-    |Changed consents                    |consents_changed                   |Event, Product         |✔        |int  |                                                                    |
+    |Changed consents                    |consents_changed                   |event, product         |✔        |int  |                                                                    |
     +------------------------------------+-----------------------------------+-----------------------+---------+-----+--------------------------------------------------------------------+
-    |Full consents                       |consents_full                      |Event, Product         |✔        |int  |                                                                    |
+    |Full consents                       |consents_full                      |event, product         |✔        |int  |                                                                    |
     +------------------------------------+-----------------------------------+-----------------------+---------+-----+--------------------------------------------------------------------+
-    |Any consents                        |consents_any                       |Event, Product         |✔        |int  |                                                                    |
+    |Any consents                        |consents_any                       |event, product         |✔        |int  |                                                                    |
     +------------------------------------+-----------------------------------+-----------------------+---------+-----+--------------------------------------------------------------------+
-    |No consents                         |consents_none                      |Event, Product         |✔        |int  |                                                                    |
+    |No consents                         |consents_none                      |event, product         |✔        |int  |                                                                    |
     +------------------------------------+-----------------------------------+-----------------------+---------+-----+--------------------------------------------------------------------+
-    |No decisions                        |consents_no_decision               |Event, Product         |✔        |int  |                                                                    |
+    |No decisions                        |consents_no_decision               |event, product         |✔        |int  |                                                                    |
     +------------------------------------+-----------------------------------+-----------------------+---------+-----+--------------------------------------------------------------------+
-    |Analytics consents                  |consents_analytics                 |Event, Product         |✔        |int  |                                                                    |
+    |Analytics consents                  |consents_analytics                 |event, product         |✔        |int  |                                                                    |
     +------------------------------------+-----------------------------------+-----------------------+---------+-----+--------------------------------------------------------------------+
-    |A/B testing personalization consents|consents_ab_testing_personalization|Event, Product         |✔        |int  |                                                                    |
+    |A/B testing personalization consents|consents_ab_testing_personalization|event, product         |✔        |int  |                                                                    |
     +------------------------------------+-----------------------------------+-----------------------+---------+-----+--------------------------------------------------------------------+
-    |Conversion tracking consents        |consents_conversion_tracking       |Event, Product         |✔        |int  |                                                                    |
+    |Conversion tracking consents        |consents_conversion_tracking       |event, product         |✔        |int  |                                                                    |
     +------------------------------------+-----------------------------------+-----------------------+---------+-----+--------------------------------------------------------------------+
-    |Marketing automation consents       |consents_marketing_automation      |Event, Product         |✔        |int  |                                                                    |
+    |Marketing automation consents       |consents_marketing_automation      |event, product         |✔        |int  |                                                                    |
     +------------------------------------+-----------------------------------+-----------------------+---------+-----+--------------------------------------------------------------------+
-    |Remarketing consents                |consents_remarketing               |Event, Product         |✔        |int  |                                                                    |
+    |Remarketing consents                |consents_remarketing               |event, product         |✔        |int  |                                                                    |
     +------------------------------------+-----------------------------------+-----------------------+---------+-----+--------------------------------------------------------------------+
-    |User feedback consents              |consents_user_feedback             |Event, Product         |✔        |int  |                                                                    |
+    |User feedback consents              |consents_user_feedback             |event, product         |✔        |int  |                                                                    |
     +------------------------------------+-----------------------------------+-----------------------+---------+-----+--------------------------------------------------------------------+
-    |Custom consent 1                    |consents_custom_1                  |Event, Product         |✔        |int  |                                                                    |
+    |Custom consent 1                    |consents_custom_1                  |event, product         |✔        |int  |                                                                    |
     +------------------------------------+-----------------------------------+-----------------------+---------+-----+--------------------------------------------------------------------+
-    |Page views                          |page_views                         |Event, Product, Session|✔        |int  |                                                                    |
+    |Page views                          |page_views                         |event, product, session|✔        |int  |                                                                    |
     +------------------------------------+-----------------------------------+-----------------------+---------+-----+--------------------------------------------------------------------+
-    |Unique page views                   |unique_page_views                  |Event, Product, Session|✖        |int  |                                                                    |
+    |Unique page views                   |unique_page_views                  |event, product, session|✖        |int  |                                                                    |
     +------------------------------------+-----------------------------------+-----------------------+---------+-----+--------------------------------------------------------------------+
-    |Entries                             |entries                            |Event, Product, Session|✖        |int  |                                                                    |
+    |Entries                             |entries                            |event, product, session|✖        |int  |                                                                    |
     +------------------------------------+-----------------------------------+-----------------------+---------+-----+--------------------------------------------------------------------+
-    |Exits                               |exits                              |Event, Product, Session|✖        |int  |                                                                    |
+    |Exits                               |exits                              |event, product, session|✖        |int  |                                                                    |
     +------------------------------------+-----------------------------------+-----------------------+---------+-----+--------------------------------------------------------------------+
-    |Bounces                             |bounces                            |Event, Product, Session|✖        |int  |                                                                    |
+    |Bounces                             |bounces                            |event, product, session|✖        |int  |                                                                    |
     +------------------------------------+-----------------------------------+-----------------------+---------+-----+--------------------------------------------------------------------+
-    |Sessions                            |sessions                           |Event, Product, Session|✖        |int  |                                                                    |
+    |Sessions                            |sessions                           |event, product, session|✖        |int  |                                                                    |
     +------------------------------------+-----------------------------------+-----------------------+---------+-----+--------------------------------------------------------------------+
-    |Visitors                            |visitors                           |Event, Product, Session|✔        |int  |                                                                    |
+    |Visitors                            |visitors                           |event, product, session|✔        |int  |                                                                    |
     +------------------------------------+-----------------------------------+-----------------------+---------+-----+--------------------------------------------------------------------+
-    |% of returning visitors             |returning_visitors_rate            |Event, Product, Session|✖        |float|                                                                    |
+    |% of returning visitors             |returning_visitors_rate            |event, product, session|✖        |float|                                                                    |
     +------------------------------------+-----------------------------------+-----------------------+---------+-----+--------------------------------------------------------------------+
-    |Users                               |users                              |Event, Product, Session|✔        |int  |                                                                    |
+    |Users                               |users                              |event, product, session|✔        |int  |                                                                    |
     +------------------------------------+-----------------------------------+-----------------------+---------+-----+--------------------------------------------------------------------+
-    |Visitor IPs                         |visitor_ips                        |Event, Product, Session|✔        |int  |                                                                    |
+    |Visitor IPs                         |visitor_ips                        |event, product, session|✔        |int  |                                                                    |
     +------------------------------------+-----------------------------------+-----------------------+---------+-----+--------------------------------------------------------------------+
-    |Outlinks                            |outlinks                           |Event, Product, Session|✔        |int  |                                                                    |
+    |Outlinks                            |outlinks                           |event, product, session|✔        |int  |                                                                    |
     +------------------------------------+-----------------------------------+-----------------------+---------+-----+--------------------------------------------------------------------+
-    |Unique outlinks                     |unique_outlinks                    |Event, Product, Session|✖        |int  |                                                                    |
+    |Unique outlinks                     |unique_outlinks                    |event, product, session|✖        |int  |                                                                    |
     +------------------------------------+-----------------------------------+-----------------------+---------+-----+--------------------------------------------------------------------+
-    |Downloads                           |downloads                          |Event, Product, Session|✔        |int  |                                                                    |
+    |Downloads                           |downloads                          |event, product, session|✔        |int  |                                                                    |
     +------------------------------------+-----------------------------------+-----------------------+---------+-----+--------------------------------------------------------------------+
-    |Unique downloads                    |unique_downloads                   |Event, Product, Session|✖        |int  |                                                                    |
+    |Unique downloads                    |unique_downloads                   |event, product, session|✖        |int  |                                                                    |
     +------------------------------------+-----------------------------------+-----------------------+---------+-----+--------------------------------------------------------------------+
-    |Searches                            |searches                           |Event, Product, Session|✔        |int  |                                                                    |
+    |Searches                            |searches                           |event, product, session|✔        |int  |                                                                    |
     +------------------------------------+-----------------------------------+-----------------------+---------+-----+--------------------------------------------------------------------+
-    |Unique searches                     |unique_searches                    |Event, Product, Session|✖        |int  |                                                                    |
+    |Unique searches                     |unique_searches                    |event, product, session|✖        |int  |                                                                    |
     +------------------------------------+-----------------------------------+-----------------------+---------+-----+--------------------------------------------------------------------+
-    |Custom events                       |custom_events                      |Event, Product, Session|✔        |int  |                                                                    |
+    |Custom events                       |custom_events                      |event, product, session|✔        |int  |                                                                    |
     +------------------------------------+-----------------------------------+-----------------------+---------+-----+--------------------------------------------------------------------+
-    |Unique custom events                |unique_custom_events               |Event, Product, Session|✖        |int  |                                                                    |
+    |Unique custom events                |unique_custom_events               |event, product, session|✖        |int  |                                                                    |
     +------------------------------------+-----------------------------------+-----------------------+---------+-----+--------------------------------------------------------------------+
-    |Content impressions                 |content_impressions                |Event, Product, Session|✔        |int  |                                                                    |
+    |Content impressions                 |content_impressions                |event, product, session|✔        |int  |                                                                    |
     +------------------------------------+-----------------------------------+-----------------------+---------+-----+--------------------------------------------------------------------+
-    |Unique content impressions          |unique_content_impressions         |Event, Product, Session|✖        |int  |                                                                    |
+    |Unique content impressions          |unique_content_impressions         |event, product, session|✖        |int  |                                                                    |
     +------------------------------------+-----------------------------------+-----------------------+---------+-----+--------------------------------------------------------------------+
-    |Content interactions                |content_interactions               |Event, Product, Session|✔        |int  |                                                                    |
+    |Content interactions                |content_interactions               |event, product, session|✔        |int  |                                                                    |
     +------------------------------------+-----------------------------------+-----------------------+---------+-----+--------------------------------------------------------------------+
-    |Unique content interactions         |unique_content_interactions        |Event, Product, Session|✖        |int  |                                                                    |
+    |Unique content interactions         |unique_content_interactions        |event, product, session|✖        |int  |                                                                    |
     +------------------------------------+-----------------------------------+-----------------------+---------+-----+--------------------------------------------------------------------+
-    |Orders                              |ecommerce_conversions              |Event, Product, Session|✔        |int  |                                                                    |
+    |Orders                              |ecommerce_conversions              |event, product, session|✔        |int  |                                                                    |
     +------------------------------------+-----------------------------------+-----------------------+---------+-----+--------------------------------------------------------------------+
-    |Product detail views                |product_detail_views               |Event, Product, Session|✔        |int  |                                                                    |
+    |Product detail views                |product_detail_views               |event, product, session|✔        |int  |                                                                    |
     +------------------------------------+-----------------------------------+-----------------------+---------+-----+--------------------------------------------------------------------+
-    |Product adds to cart                |cart_additions                     |Event, Product, Session|✔        |int  |                                                                    |
+    |Product adds to cart                |cart_additions                     |event, product, session|✔        |int  |                                                                    |
     +------------------------------------+-----------------------------------+-----------------------+---------+-----+--------------------------------------------------------------------+
-    |Product removes from cart           |cart_removals                      |Event, Product, Session|✔        |int  |                                                                    |
+    |Product removes from cart           |cart_removals                      |event, product, session|✔        |int  |                                                                    |
     +------------------------------------+-----------------------------------+-----------------------+---------+-----+--------------------------------------------------------------------+
-    |Cart-to-detail rate                 |cart_to_detail_rate                |Event, Product, Session|✔        |float|                                                                    |
+    |Cart-to-detail rate                 |cart_to_detail_rate                |event, product, session|✔        |float|                                                                    |
     +------------------------------------+-----------------------------------+-----------------------+---------+-----+--------------------------------------------------------------------+
-    |Order-to-detail rate                |order_to_detail_rate               |Event, Product, Session|✔        |float|                                                                    |
+    |Order-to-detail rate                |order_to_detail_rate               |event, product, session|✔        |float|                                                                    |
     +------------------------------------+-----------------------------------+-----------------------+---------+-----+--------------------------------------------------------------------+
-    |Total quantity (deprecated)         |total_quantity                     |Event, Product         |✖        |int  |deprecated, use 'product_quantity' with 'sum' transformation instead|
+    |Total quantity (deprecated)         |total_quantity                     |event, product         |✖        |int  |deprecated, use 'product_quantity' with 'sum' transformation instead|
     +------------------------------------+-----------------------------------+-----------------------+---------+-----+--------------------------------------------------------------------+
-    |Abandoned carts                     |ecommerce_abandoned_carts          |Event, Product, Session|✖        |int  |                                                                    |
+    |Abandoned carts                     |ecommerce_abandoned_carts          |event, product, session|✖        |int  |                                                                    |
     +------------------------------------+-----------------------------------+-----------------------+---------+-----+--------------------------------------------------------------------+
-    |Unique purchases (deprecated)       |unique_purchases                   |Event, Product         |✖        |int  |deprecated, use 'ecommerce_conversions' instead                     |
+    |Unique purchases (deprecated)       |unique_purchases                   |event, product         |✖        |int  |deprecated, use 'ecommerce_conversions' instead                     |
     +------------------------------------+-----------------------------------+-----------------------+---------+-----+--------------------------------------------------------------------+
-    |Entry rate                          |entry_rate                         |Event, Product, Session|✖        |float|                                                                    |
+    |Entry rate                          |entry_rate                         |event, product, session|✖        |float|                                                                    |
     +------------------------------------+-----------------------------------+-----------------------+---------+-----+--------------------------------------------------------------------+
-    |Exit rate                           |exit_rate                          |Event, Product, Session|✖        |float|                                                                    |
+    |Exit rate                           |exit_rate                          |event, product, session|✖        |float|                                                                    |
     +------------------------------------+-----------------------------------+-----------------------+---------+-----+--------------------------------------------------------------------+
-    |Exit rate events                    |exit_rate_events                   |Event, Product, Session|✖        |float|                                                                    |
+    |Exit rate events                    |exit_rate_events                   |event, product, session|✖        |float|                                                                    |
     +------------------------------------+-----------------------------------+-----------------------+---------+-----+--------------------------------------------------------------------+
-    |Bounce rate                         |bounce_rate                        |Event, Product, Session|✖        |float|                                                                    |
+    |Bounce rate                         |bounce_rate                        |event, product, session|✖        |float|                                                                    |
     +------------------------------------+-----------------------------------+-----------------------+---------+-----+--------------------------------------------------------------------+
-    |Bounce rate                         |bounce_rate_events                 |Event, Product, Session|✖        |float|                                                                    |
+    |Bounce rate                         |bounce_rate_events                 |event, product, session|✖        |float|                                                                    |
     +------------------------------------+-----------------------------------+-----------------------+---------+-----+--------------------------------------------------------------------+
-    |Content interaction rate            |content_interaction_rate           |Event, Product, Session|✔        |float|                                                                    |
+    |Content interaction rate            |content_interaction_rate           |event, product, session|✔        |float|                                                                    |
     +------------------------------------+-----------------------------------+-----------------------+---------+-----+--------------------------------------------------------------------+
-    |Order rate                          |ecommerce_conversion_rate          |Event, Product, Session|✖        |float|                                                                    |
+    |Order rate                          |ecommerce_conversion_rate          |event, product, session|✖        |float|                                                                    |
     +------------------------------------+-----------------------------------+-----------------------+---------+-----+--------------------------------------------------------------------+
-    |Cart abandonment rate               |abandoned_cart_rate                |Event, Product, Session|✖        |float|                                                                    |
+    |Cart abandonment rate               |abandoned_cart_rate                |event, product, session|✖        |float|                                                                    |
     +------------------------------------+-----------------------------------+-----------------------+---------+-----+--------------------------------------------------------------------+
-    |Events per session                  |events_per_session                 |Event, Product, Session|✖        |float|                                                                    |
+    |Events per session                  |events_per_session                 |event, product, session|✖        |float|                                                                    |
     +------------------------------------+-----------------------------------+-----------------------+---------+-----+--------------------------------------------------------------------+
-    |Goal conversions                    |goal_conversions                   |Event, Product, Session|✔        |int  |                                                                    |
+    |Goal conversions                    |goal_conversions                   |event, product, session|✔        |int  |                                                                    |
     +------------------------------------+-----------------------------------+-----------------------+---------+-----+--------------------------------------------------------------------+
-    |Unique goal conversions             |unique_goal_conversions            |Event, Product, Session|✖        |int  |                                                                    |
+    |Unique goal conversions             |unique_goal_conversions            |event, product, session|✖        |int  |                                                                    |
     +------------------------------------+-----------------------------------+-----------------------+---------+-----+--------------------------------------------------------------------+
-    |Goal conversion rate                |goal_conversion_rate               |Event, Product, Session|✖        |float|                                                                    |
+    |Goal conversion rate                |goal_conversion_rate               |event, product, session|✖        |float|                                                                    |
     +------------------------------------+-----------------------------------+-----------------------+---------+-----+--------------------------------------------------------------------+

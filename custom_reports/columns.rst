@@ -7,10 +7,10 @@ Additional columns may become available through
 
 .. note::
     Each column listed in this document defines a *Scopes* attribute.
-    To get better performance, report is calculated from session scope whenever possible.
-    When using dimension that doesn't support a *Session* scope, then the report is computed from a relevant scope.
-    Example: if you request *product_name* column, report will be computed in *Product* scope.
-    This might distort some custom metrics such as averages of a *Session* dimension (e.g. average session time).
+    To get better performance, report is calculated from *session* scope whenever possible.
+    When using dimension that doesn't support a *session* scope, then the report is computed from a relevant scope.
+    Example: if you request *product_name* column, report will be computed in *product* scope.
+    This might distort some custom metrics such as averages of a *session* dimension (e.g. average session time).
 
 Metrics
 -------

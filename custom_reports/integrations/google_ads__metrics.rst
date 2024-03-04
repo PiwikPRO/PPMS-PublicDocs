@@ -13,5 +13,5 @@
     +------------------------+----------------------+--------------+-----+
     |CTR (Google Ads)        |google_ads_ctr        |Google Ads    |float|
     +------------------------+----------------------+--------------+-----+
-    |ROAS (Google Ads)       |google_ads_roas       |Event, Session|float|
+    |ROAS (Google Ads)       |google_ads_roas       |event, session|float|
     +------------------------+----------------------+--------------+-----+
