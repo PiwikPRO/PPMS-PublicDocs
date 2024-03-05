@@ -258,6 +258,7 @@ No prefixes are used for tracking downloads, but each event of this type use an 
 
 ### Tracking application installs
 *Requires Analytics*
+> **Warning:** Deprecated since version 1.2.1. We recommend using the new version of the method ([applicationInstall](#tracking-application-installation)).
 
 You can also track installations of your application. This event is sent to the server only once per application installation.
 
@@ -265,6 +266,25 @@ You can also track installations of your application. This event is sent to the 
     TrackHelper.track().sendApplicationDownload().with(getTracker());
 ```
 Application installation is only tracked during the first launch. In the case of the application being installed but not run, the app installation will not be tracked.
+
+### Tracking application installation
+*Requires Analytics*
+
+You can track installations of your application. This event is sent to the server only once per application installation.
+
+```java
+    TrackHelper.track().applicationInstall().with(getTracker());
+```
+In case of the application being installed but not run, the app installation will not be tracked.
+
+### Tracking application updated
+*Requires Analytics*
+
+This event is sent to the server only once per application version, when the version number of the application changes.
+
+```java
+    TrackHelper.track().applicationUpdate().with(getTracker());
+```
 
 ### Tracking outlinks
 *Requires Analytics*
