@@ -217,7 +217,7 @@ In case of the application being installed but not run, the app installation wil
 
 This event is sent to the server only once per application version, when the version number of the application changes.
 
-```java
+```
     [[PiwikTracker sharedInstance] applicationUpdate];
 ```
 
