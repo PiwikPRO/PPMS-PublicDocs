@@ -14,15 +14,23 @@ servers:
 paths:
   /api/analytics/v1/query/:
     $ref: ./paths/query.yaml
+  /api/analytics/v1/real-time-query/:
+    $ref: ./paths/real_time_query.yaml
   /api/analytics/v1/sessions/:
     $ref: ./paths/sessions.yaml
   /api/analytics/v1/events/:
     $ref: ./paths/events.yaml
+  /api/analytics/v1/real-time-events/:
+    $ref: ./paths/real_time_events.yaml
 components:
   schemas:
     QueryRequest:
       $ref: ./definitions/query_request.yaml
+    RealTimeQueryRequest:
+      $ref: ./definitions/real_time_query_request.yaml
     RawDataRequest:
       $ref: ./definitions/raw_data_request.yaml
+    RawDataRealTimeRequest:
+      $ref: ./definitions/raw_data_real_time_request.yaml
 
 

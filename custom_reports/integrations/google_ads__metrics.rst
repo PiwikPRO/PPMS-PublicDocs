@@ -1,17 +1,17 @@
 .. table:: Google Ads Metrics
 
-    +------------------------+----------------------+--------+-----+
-    |      Metric Name       |      Column ID       | Scope  |Type |
-    +========================+======================+========+=====+
-    |Impressions (Google Ads)|google_ads_impressions|external|int  |
-    +------------------------+----------------------+--------+-----+
-    |Clicks (Google Ads)     |google_ads_clicks     |external|int  |
-    +------------------------+----------------------+--------+-----+
-    |Cost (Google Ads)       |google_ads_cost       |external|float|
-    +------------------------+----------------------+--------+-----+
-    |Average CPC (Google Ads)|google_ads_average_cpc|external|float|
-    +------------------------+----------------------+--------+-----+
-    |CTR (Google Ads)        |google_ads_ctr        |external|float|
-    +------------------------+----------------------+--------+-----+
-    |ROAS (Google Ads)       |google_ads_roas       |session |float|
-    +------------------------+----------------------+--------+-----+
+    +------------------------+----------------------+--------------+-----+
+    |      Metric Name       |      Column ID       |    Scopes    |Type |
+    +========================+======================+==============+=====+
+    |Impressions (Google Ads)|google_ads_impressions|Google Ads    |int  |
+    +------------------------+----------------------+--------------+-----+
+    |Clicks (Google Ads)     |google_ads_clicks     |Google Ads    |int  |
+    +------------------------+----------------------+--------------+-----+
+    |Cost (Google Ads)       |google_ads_cost       |Google Ads    |float|
+    +------------------------+----------------------+--------------+-----+
+    |Average CPC (Google Ads)|google_ads_average_cpc|Google Ads    |float|
+    +------------------------+----------------------+--------------+-----+
+    |CTR (Google Ads)        |google_ads_ctr        |Google Ads    |float|
+    +------------------------+----------------------+--------------+-----+
+    |ROAS (Google Ads)       |google_ads_roas       |event, session|float|
+    +------------------------+----------------------+--------------+-----+
