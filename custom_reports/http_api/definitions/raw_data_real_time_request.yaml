@@ -1,0 +1,152 @@
+type: object
+properties:
+  website_id:
+    type: string
+    format: uuid
+    description: ID of a website.
+    example: 70236925-724f-404e-b634-7b5633bc0bcc
+  columns:
+    type: array
+    description: |
+      Definitions of additional columns that should be returned (timestamp and
+      identifiers will be returned by default).
+    items:
+      type: object
+      properties:
+        column_id:
+          type: string
+          description: ID of the dimension column.
+        transformation_id:
+          type: string
+          description: |
+            Optional ID of the transformation. Must be supported by
+            the column that was specified and must convert the column
+            into another dimension (and not a metric).
+      required:
+        - column_id
+    example: [{"column_id":"resolution"},{"column_id":"device_type"}]
+  date_from:
+    type: string
+    format: datetime
+    description: Start date (with time) for the query (inclusive, in website's timezone).
+  date_to:
+    type: string
+    format: datetime
+    description: End date (with time) for the query (exclusive, in website's timezone).
+  filters:
+    type: object
+    description: |
+      Dimension filters for the query. The top-level object must specify
+      AND/OR clause, but any nested objects may either specify another AND/OR
+      clause or a single filter.
+    properties:
+      operator:
+        type: string
+        description: Logical operator (AND/OR) for the clause.
+        enum:
+          - and
+          - or
+      conditions:
+        type: array
+        description: List of filters or recursively nested clauses.
+        items:
+          type: object
+          required:
+            - column_id
+            - condition
+          properties:
+            column_id:
+              type: string
+              description: ID of the dimension column.
+            transformation_id:
+              type: string
+              description: |
+                Optional ID of the transformation. Must be supported by
+                the column that was specified and must convert the column
+                into another dimension (and not a metric).
+            condition:
+              type: object
+              description: Definition of a the condition for this column.
+              properties:
+                operator:
+                  type: string
+                  description: |
+                    Filtering operator. Available choices depend on
+                    the specified column's type.
+
+                    String operators: ``eq``, ``neq``,
+                    ``starts_with``, ``ends_with``.
+                    ``starts_with``, ``ends_with``,
+                    ``matches``, ``not_matches``. For regular expressions (operators: ``matches`` and ``not_matches``)
+                    use [re2](https://github.com/google/re2/wiki/Syntax) syntax.
+
+                    Numeric operators: ``eq``, ``neq``, ``gt``, ``gte``,
+                    ``lt``, ``lte``.
+
+                    Boolean operators: ``eq``, ``neq``.
+
+                    Enum operators: ``eq``, ``neq``, ``empty``, ``not_empty``.
+                value:
+                  description: |
+                    Value that should be matched by filter. Value type must
+                    match the type of the specified column. For enumerated
+                    fields, you must use the ID value.
+              required:
+                - operator
+                - value
+          example: {"column_id":"browser_name","condition":{"operator":"eq","value":"FF"}}
+    required:
+      - operator
+      - conditions
+  offset:
+    type: integer
+    default: 0
+    minimum: 0
+    description: Number of rows to skip before beginning to return rows.
+  limit:
+    type: integer
+    default: 100
+    minimum: 1
+    maximum: 100000
+    description: Number of rows to return.
+  format:
+    type: string
+    enum:
+      - json
+      - json-kv
+      - csv
+    default: json
+    description: |
+      Data format of a successful response (error responses are always in json).
+  column_format:
+    type: string
+    enum:
+      - id
+      - name
+    default: id
+    description: |
+      Format of the columns header (in CSV responses) and metadata labels
+      (in JSON responses). By default uses identifiers (``id`` option), set to
+      ``name`` to use human-readable names.
+required:
+  - website_id
+  - columns
+  - date_from
+  - date_to
+example:
+  website_id: 70236925-724f-404e-b634-7b5633bc0bcc
+  columns:
+    - column_id: resolution
+    - column_id: device_type
+  date_from: '2024-02-10 12:23:00'
+  date_to: '2024-02-10 12:58:00'
+  filters:
+    operator: and
+    conditions:
+      - column_id: browser_name
+        condition:
+          operator: eq
+          value: FF
+  offset: 0
+  limit: 100
+  format: json
