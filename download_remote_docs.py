@@ -17,5 +17,8 @@ for folder, data in config.items():
 
         with open(os.path.join(folder, filename), 'w') as f:
             f.write(response.text)
+
+        with open(os.path.join(folder, 'index.rst'), 'a') as f:
+            f.write(f'   {filename}\n')
     except Exception as e:
-        print(f"Błąd podczas przetwarzania {folder}/{filename} z {url}: {e}")
+        print(f"Error processing: {folder}/{filename} z {url}: {e}")
