@@ -28,14 +28,22 @@ properties:
     example: [{"column_id":"device_type"},{"column_id":"revenue","transformation_id":"sum"}]
   date_from:
     type: string
-    format: date
-    description: Start date for the query (inclusive). Cannot be used with relative_date field at
-      the same time. Mandatory if ``relative_date`` is not used.
+    oneOf:
+      - format: date
+        description: Start date for the query (inclusive).
+      - format: datetime
+        description: Start datetime for the query (inclusive, in website's timezone).
+    description: Cannot be used with relative_date field at the same time.
+      Mandatory if ``relative_date`` is not used.
   date_to:
     type: string
-    format: date
-    description: End date for the query (inclusive). Cannot be used with ``relative_date`` field at
-      the same time. Mandatory if ``relative_date`` is not used.
+    oneOf:
+      - format: date
+        description: End date for the query (inclusive).
+      - format: datetime
+        description: End datetime for the query (exclusive, in website's timezone).
+    description: Cannot be used with ``relative_date`` field at the same time.
+      Mandatory if ``relative_date`` is not used.
   relative_date:
     type: string
     enum:
