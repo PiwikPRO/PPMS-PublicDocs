@@ -30,16 +30,16 @@ properties:
     type: string
     oneOf:
       - format: date
-        description: Start date for the query (inclusive).
+        description: Start date for the query (inclusive, in website's timezone).
       - format: datetime
         description: Start datetime for the query (inclusive, in website's timezone).
-    description: Cannot be used with relative_date field at the same time.
+    description: Cannot be used with ``relative_date`` field at the same time.
       Mandatory if ``relative_date`` is not used.
   date_to:
     type: string
     oneOf:
       - format: date
-        description: End date for the query (inclusive).
+        description: End date for the query (inclusive, in website's timezone).
       - format: datetime
         description: End datetime for the query (exclusive, in website's timezone).
     description: Cannot be used with ``relative_date`` field at the same time.
