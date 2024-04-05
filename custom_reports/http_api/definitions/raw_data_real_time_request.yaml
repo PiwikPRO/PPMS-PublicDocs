@@ -28,11 +28,11 @@ properties:
   date_from:
     type: string
     format: datetime
-    description: Start date (with time) for the query (inclusive, in website's timezone).
+    description: Start datetime for the query (inclusive, in website's timezone).
   date_to:
     type: string
     format: datetime
-    description: End date (with time) for the query (exclusive, in website's timezone).
+    description: End datetime for the query (exclusive, in website's timezone).
   filters:
     type: object
     description: |
