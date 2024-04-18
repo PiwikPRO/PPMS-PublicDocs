@@ -130,14 +130,14 @@ Developer docs and guides
             </a>
         </div>
         <div class="popular-links-el subdued">
-            <a class="link" href="audience_manager/public_api/public_api.html">
-                Audience manager public api
+            <a class="link" href="customer_data_platform/public_api/public_api.html">
+                Customer Data Platform public api
             </a>
-            <a class="link" href="audience_manager/api.html#javascript-api">
-                Audience manager tracking javascript api
+            <a class="link" href="customer_data_platform/authorized_api/index.html">
+                Customer Data Platform authorized api
             </a>
-            <a class="link" href="audience_manager/authorized_api/authorized_api.html">
-                Audience manager authorized api
+            <a class="link" href="customer_data_platform/profile_attributes.html">
+                Customer Data Platform profile attributes
             </a>
             <a class="link" href="consent_manager/js_api/index.html">
                 Consent Manager javascript api
