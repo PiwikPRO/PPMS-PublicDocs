@@ -7,4 +7,5 @@ Authorized HTTP API
   audiences
   activations
   attributes
+  log
   profiles
