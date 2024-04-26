@@ -58,12 +58,12 @@ paths:
       security:
         - JWTAuth: []
       operationId: get-log-audience-version-profile-last
-      description: Returns at most 1000 items
+      description: By default, returns the last 100 items. With the use of limit and offest parameters, it is possible to extract all profiles belonging to an audience.
       parameters:
         - $ref: "../components.yaml#/components/parameters/AppId"
         - in: path
           name: audience_id
-          description: An audience UUID for which profiles are requested
+          description: ID of the audience from which to fetch profiles.
           schema:
             type: string
             format: uuid
@@ -71,7 +71,7 @@ paths:
           required: true
         - in: path
           name: audience_version
-          description: An audience version for which profiles belong
+          description: Version of the audience. This should be the version reported by audiences API (link).
           schema:
             type: integer
             minimum: 0
@@ -79,7 +79,7 @@ paths:
           required: true
         - in: query
           name: limit
-          description: How many last profiles should be returned
+          description: How many last profiles to return
           schema:
             type: integer
             maximum: 1000
@@ -143,7 +143,7 @@ components:
           format: date-time
           example: "2022-10-17T09:49:16.123456Z"
         is_user:
-          description: Whether the profile can be identified as a user or is just a visitor
+          description: Whether the profile can be identified as a user (has user_id) or a visitor (does not have user_id).
           type: boolean
           example: true
         identifier:
