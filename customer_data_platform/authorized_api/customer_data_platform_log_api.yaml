@@ -1,0 +1,159 @@
+openapi: 3.1.0
+info:
+  title: Log API Documentation
+  version: 0.0.0
+  description: This is the documentation of the Log API service.
+servers:
+  - url: https://organization.piwik.pro
+paths:
+  /api/cdp/log/v1/app/{app_id}/audience/{audience_id}/version/{audience_version}/profile/count:
+    get:
+      summary: Count profiles in audience
+      security:
+        - JWTAuth: []
+      operationId: get-log-audience-version-profile-count
+      description: Audience's profiles count
+      parameters:
+        - $ref: "../components.yaml#/components/parameters/AppId"
+        - in: path
+          name: audience_id
+          description: An audience UUID for which profiles count is requested
+          schema:
+            type: string
+            format: uuid
+            example: 81217cfd-c29e-4c7b-9310-936598339971
+          required: true
+        - in: path
+          name: audience_version
+          description: An audience version for which we are counting profiles
+          schema:
+            type: integer
+            minimum: 0
+            example: 2
+          required: true
+      responses:
+        200:
+          content:
+            application/vnd.api+json:
+              schema:
+                type: integer
+                minimum: 0
+                example: 14
+          description: Number of profiles in given audience version
+        400:
+          $ref: "../components.yaml#/components/responses/BadRequestError"
+        401:
+          $ref: "../components.yaml#/components/responses/UnauthorizedError"
+        402:
+          $ref: "../components.yaml#/components/responses/ModuleDisabledError"
+        404:
+          $ref: "../components.yaml#/components/responses/NotFoundError"
+        422:
+          $ref: "../components.yaml#/components/responses/UnprocessableEntityError"
+        500:
+          $ref: "../components.yaml#/components/responses/InternalServerError"
+  /api/cdp/log/v1/app/{app_id}/audience/{audience_id}/version/{audience_version}/profile/last:
+    get:
+      summary: List last profiles belonging to given audience
+      security:
+        - JWTAuth: []
+      operationId: get-log-audience-version-profile-last
+      description: By default, returns the last 100 items. With the use of limit and offest parameters, it is possible to extract all profiles belonging to an audience.
+      parameters:
+        - $ref: "../components.yaml#/components/parameters/AppId"
+        - in: path
+          name: audience_id
+          description: ID of the audience from which to fetch profiles.
+          schema:
+            type: string
+            format: uuid
+            example: ca5b925e-6888-46fe-a0bc-55907c5af050
+          required: true
+        - in: path
+          name: audience_version
+          description: Version of the audience. This should be the version reported by audiences API.
+          schema:
+            type: integer
+            minimum: 0
+            example: 2
+          required: true
+        - in: query
+          name: limit
+          description: How many last profiles to return
+          schema:
+            type: integer
+            maximum: 1000
+            minimum: 1
+            default: 100
+            example: 10
+          required: false
+        - in: query
+          name: offset
+          description: How many profiles to skip (use in conjunction with limit for pagination)
+          schema:
+            type: integer
+            minimum: 0
+            default: 0
+            example: 10
+          required: false
+      responses:
+        200:
+          content:
+            application/vnd.api+json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/AudienceProfile"
+          description: List of profiles in given audience
+        400:
+          $ref: "../components.yaml#/components/responses/BadRequestError"
+        401:
+          $ref: "../components.yaml#/components/responses/UnauthorizedError"
+        402:
+          $ref: "../components.yaml#/components/responses/ModuleDisabledError"
+        404:
+          $ref: "../components.yaml#/components/responses/NotFoundError"
+        422:
+          $ref: "../components.yaml#/components/responses/UnprocessableEntityError"
+        500:
+          $ref: "../components.yaml#/components/responses/InternalServerError"
+components:
+  securitySchemes:
+    JWTAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    AudienceProfile:
+      type: object
+      description: Profile belonging to an audience with minimal data
+      required:
+        - joined_at
+        - last_activity_at
+        - is_user
+        - identifier
+        - profile_id
+      properties:
+        joined_at:
+          description: The first time profile joined the audience
+          type: string
+          format: date-time
+          example: "2022-10-17T09:46:16.343024Z"
+        last_activity_at:
+          description: Last time the profile met audience conditions
+          type: string
+          format: date-time
+          example: "2022-10-17T09:49:16.123456Z"
+        is_user:
+          description: Whether the profile can be identified as a user (has user_id) or a visitor (does not have user_id).
+          type: boolean
+          example: true
+        identifier:
+          description: An identifier to display on a list (user ID or cookie ID)
+          type: string
+          example: user@example.com
+        profile_id:
+          type: integer
+          format: int64
+          description: ID of single profile
+          example: 639204699
