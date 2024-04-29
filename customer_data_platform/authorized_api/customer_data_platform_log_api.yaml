@@ -71,7 +71,7 @@ paths:
           required: true
         - in: path
           name: audience_version
-          description: Version of the audience. This should be the version reported by audiences API (link).
+          description: Version of the audience. This should be the version reported by audiences API.
           schema:
             type: integer
             minimum: 0
