@@ -53,6 +53,7 @@ api_definitions = {
     'customer_data_platform_authorized_attributes_api.json': 'customer_data_platform/authorized_api/customer_data_platform_attributes_api.yaml',
     'customer_data_platform_authorized_audiences_api.json': 'customer_data_platform/authorized_api/customer_data_platform_audiences_api.yaml',
     'customer_data_platform_authorized_profiles_api.json': 'customer_data_platform/authorized_api/customer_data_platform_profiles_api.yaml',
+    'customer_data_platform_authorized_log_api.json': 'customer_data_platform/authorized_api/customer_data_platform_log_api.yaml',
 }
 
 
@@ -96,7 +97,7 @@ author = u'Piwik PRO'
 # built documents.
 #
 # The short X.Y version.
-version = u'18.16'
+version = u'18.17'
 # The full version, including alpha/beta/rc tags.
 release = version
 
