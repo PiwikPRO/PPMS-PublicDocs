@@ -1,3 +1,7 @@
 {
-  "data_collection/web/frameworks/": {"url": "https://raw.githubusercontent.com/PiwikPRO/vue-piwik-pro/master/README.md", "filename": "Piwik_PRO_Library_for_Vue.md"}
+  "Piwik_PRO_Library_for_Vue.md": {"url": "https://raw.githubusercontent.com/PiwikPRO/vue-piwik-pro/master/README.md", "path": "data_collection/web/frameworks/"},
+  "Piwik_PRO_Library_for_Angular.md": {"url": "https://raw.githubusercontent.com/PiwikPRO/ngx-piwik-pro/master/README.md", "path": "data_collection/web/frameworks/"},
+  "Piwik_PRO_Library_for_React.md": {"url": "https://raw.githubusercontent.com/PiwikPRO/react-piwik-pro/master/README.md", "path": "data_collection/web/frameworks/"},
+  "Piwik_PRO_Library_for_NextJS.md": {"url": "https://raw.githubusercontent.com/PiwikPRO/next-piwik-pro/master/README.md", "path": "data_collection/web/frameworks/"},
+  "Piwik_PRO_Plugin_for_Gatsby.md": {"url": "https://raw.githubusercontent.com/PiwikPRO/gatsby-plugin-piwik-pro/master/README.md", "path": "data_collection/web/frameworks/"}
 }
