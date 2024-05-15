@@ -5,9 +5,9 @@ import json
 with open('remote_docs_config.json', 'r') as f:
     config = json.load(f)
 
-for folder, data in config.items():
+for filename, data in config.items():
     url = data['url']
-    filename = data['filename']
+    folder = data['path']
 
     try:
         response = requests.get(url)
