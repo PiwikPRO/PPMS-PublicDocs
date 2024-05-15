@@ -54,7 +54,7 @@ Each key of the json file represents a desired directory. Then You need to provi
 example:
 
 ```json
-  "data_collection/web/frameworks/": {"url": "https://raw.githubusercontent.com/PiwikPRO/vue-piwik-pro/master/README.md", "filename": "Piwik_PRO_Library_for_Vue.md"}
+  "Piwik_PRO_Library_for_Vue.md": {"url": "https://raw.githubusercontent.com/PiwikPRO/vue-piwik-pro/master/README.md", "path": "data_collection/web/frameworks/"},
 ```
 
 To run the script You should have a projects container running (`docker compose up -d`). Then just run the script
