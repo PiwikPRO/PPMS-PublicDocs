@@ -572,11 +572,11 @@ components:
           schema:
             type: object
             required:
-              - error
+              - message
             properties:
-              error:
+              message:
                 type: string
-                example: access token not authorized
+                example: Unauthorized
     ForbiddenError:
       description: Forbidden
       content:
