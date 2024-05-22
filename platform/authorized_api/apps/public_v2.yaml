@@ -423,7 +423,7 @@ components:
         gdprLocationRecognition:
           type: boolean
           description: Use geolocation to detect UE visitors and present consent forms only to them
-          default: true
+          default: false
           example: true
         gdprDataAnonymization:
           type: boolean
