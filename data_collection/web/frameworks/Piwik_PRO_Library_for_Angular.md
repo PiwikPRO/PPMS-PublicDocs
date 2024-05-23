@@ -5,7 +5,6 @@ Dedicated Piwik PRO library that helps with implementing Piwik PRO Tag Manager a
 * [Installation](#installation)
   * [NPM](#npm)
   * [Basic setup](#basic-setup)
-  * [Setup with nonce](#setup-with-nonce)
   * [Routing setup](#set-up-the-routing-module)
   * [Advanced routing setup](#advanced-setup-for-the-routing-module)
 * [Piwik PRO Services](#piwik-pro-services)
@@ -21,7 +20,6 @@ Dedicated Piwik PRO library that helps with implementing Piwik PRO Tag Manager a
   * [Download and outlink Service](#download-and-outlink-service)
   * [Goal Conversions](#goal-conversions)
   * [Custom Dimensions](#custom-dimensions)
-  * [Data Layer](#data-layer)
 
 ## Installation
 
@@ -48,18 +46,14 @@ import { NgxPiwikProModule } from '@piwikpro/ngx-piwik-pro';
     AppComponent  
   ],  
   imports: [  
-    BrowserModule,
-    NgxPiwikProModule.forRoot('0a0b8661-8c10-4d59-e8fg-1h926ijkl184', 'https://example.piwik.pro')  
+    BrowserModule,  
+    NgxPiwikProModule.forRoot('container-id', 'container-url')  
   // ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^  
   ],  
   providers: [],  
   bootstrap: [AppComponent]  
 })
 export class AppModule { }  
-```
-
-```
-> Previously, we used 'accountName' to configure PiwikProProvider. The parameter has now been replaced by 'container-url'. The 'accountName' parameter is deprecated and will be removed in the future.
 ```
 
 ### Setup with nonce
@@ -77,7 +71,7 @@ import { NgxPiwikProModule } from '@piwikpro/ngx-piwik-pro';
   ],
   imports: [
     BrowserModule,
-    NgxPiwikProModule.forRoot('0a0b8661-8c10-4d59-e8fg-1h926ijkl184, 'https://example.piwik.pro', 'nonce-hash')
+    NgxPiwikProModule.forRoot('container-id', 'container-url', 'nonce-hash')
     // ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^  
   ],
   providers: [],
@@ -102,8 +96,8 @@ import { NgxPiwikProModule, NgxPiwikProRouterModule } from '@piwikpro/ngx-piwik-
 @NgModule({  
   ...  
   imports: [  
-    ...
-    NgxPiwikProModule.forRoot('0a0b8661-8c10-4d59-e8fg-1h926ijkl184', 'https://example.piwik.pro'),  
+    ...  
+    NgxPiwikProModule.forRoot('container-id'),  
     NgxPiwikProRouterModule  
 //  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^  
   ]  
@@ -113,7 +107,7 @@ export class AppModule {}
 
 ### Advanced setup for the Routing Module
 
-You can customize some rules to include/exclude routes on `NgxPiwikProRouterModule`. The include/exclude settings allow:
+#### You can customize some rules to include/exclude routes on `NgxPiwikProRouterModule`. The include/exclude settings allow:
 * Simple route matching: `{ include: [ '/full-uri-match' ] }`;
 * Wildcard route matching: `{ include: [ '*/public/*' ] }`;
 * Regular Expression route matching: `{ include: [ /^\/public\/.*/ ] }`;
@@ -125,9 +119,35 @@ import { NgxPiwikProModule, NgxPiwikProRouterModule } from '@piwikpro/ngx-piwik-
 @NgModule({  
   ...  
   imports: [  
-    ...
-  NgxPiwikProModule.forRoot('0a0b8661-8c10-4d59-e8fg-1h926ijkl184', 'https://example.piwik.pro'),
-  NgxPiwikProRouterModule.forRoot({ include: [...], exclude: [...] })  
+    ...  
+    NgxPiwikProModule.forRoot('container-id'),  
+    NgxPiwikProRouterModule.forRoot({ include: [...], exclude: [...] })  
+//  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^  
+  ]  
+})  
+export class AppModule {}  
+```
+
+
+#### Track of PageViews from the first visit to the site.
+
+The default 'Data Collection' settings assume that the 'Track page views in a single-page application' option is set to true. You will find an iformation that if this option is enabled, we will record every change in the state of the browser history on the page and report it as a page view in the reports. You need to know that this option should be disabled if you want to use the ngx-piwik-pro library.
+
+This setting can be found in:
+`Administration -> Sites & Apps -> (choose your site or apps ) -> Data Collection -> Track page views in a single-page application`
+
+In order to work according to the default Data Collection settings, the library skips the first PageViews so as not to cause duplicate entries. However, if you have taken care to disable the above settings, you should also pass the following settings to the library.
+
+```ts  
+import { NgxPiwikProModule, NgxPiwikProRouterModule } from '@piwikpro/ngx-piwik-pro';  
+...  
+  
+@NgModule({  
+  ...  
+  imports: [  
+    ...  
+    NgxPiwikProModule.forRoot('container-id'),  
+    NgxPiwikProRouterModule.forRoot({ skipFirstPageView: false })  
 //  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^  
   ]  
 })  
@@ -231,7 +251,14 @@ Site search tracking gives you insights into how visitors interact with the sear
 * `trackSiteSearch(keyword: string, category?: string, searchCount?: number, dimensions?: Object)` - Tracks search requests on a website.
 
 ### E-Commerce Service
-#### Methods
+#### Methods 
+* `ecommerceAddToCart(products: Product[])` - Tracks action of adding products to a cart.
+* `ecommerceRemoveFromCart(products: Product[])` - Tracks action of removing a products from a cart.
+* `ecommerceOrder(products: Product[], paymentInformation: PaymentInformation)` - Tracks conversion (including products and payment details).
+* `ecommerceCartUpdate(products: Product[], grandTotal: PaymentInformation['grandTotal'])` - Tracks current state of a cart.
+* `ecommerceProductDetailView(products: Product[])` - Tracks product or category view. Must be followed by a page view.
+
+#### Deprecated methods
 * `addEcommerceItem(productSKU: string, productName: string, productCategory: string | string[], productPrice: number, productQuantity: number)` - Adds a product to a virtual shopping cart. If a product with the same SKU is in the cart, it will be removed first. Does not send any data to the Collecting & Processing Pipeline.
 * `removeEcommerceItem(productSKU: string)` - Removes a product with the provided SKU from a virtual shopping cart. If multiple units of that product are in the virtual cart, all of them will be removed. Does not send any data to the Collecting & Processing Pipeline.
 * `clearEcommerceCart()` - Removes all items from a virtual shopping cart. Does not send any data to the Collecting & Processing Pipeline.
