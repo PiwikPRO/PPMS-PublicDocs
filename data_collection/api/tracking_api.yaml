@@ -427,7 +427,7 @@ paths:
         - name: ec_products
           in: query
           description: |
-            Contents of the E-commerce cart in form of two dimensional, index positioned JSON array. This is NOT an assiociative array.
+            Contents of the E-commerce cart in form of two dimensional, index positioned JSON array. This is NOT an associative array.
 
             *IMPORTANT:* value have to be urlencoded in raw URL, below is decoded JSON, do not use it directly in raw URL.
 
@@ -458,19 +458,21 @@ paths:
               ]
             ]```
 
+            `optional` parameters can be replaced with JSON `null` value, put in their respective position.
+
             Each product on the list can contain:
   
               - [0] sku: `string` (required) Stock keeping unit. Max 1024 bytes long.
               - [1] name: `string` (optional) Name of a product. Max 1024 bytes long.
               - [2] category: `string|Array<string>` (optional) Category of a product. Max 5 categories, each 1024 bytes long.
-              - [3] price: `number` (optional) Price of a product.
+              - [3] price: `number` (optional, defaults to 0.0) Price of a product.
                 Currency of this value does not matter, but only one should be used by the application (e.g. USD).
-              - [4] quantity: `integer` (optional, default to 1) Quantity of a product.
+              - [4] quantity: `integer` (optional, defaults to 1) Quantity of a product.
               - [5] brand: `string` (optional) a brand of the product
               - [6] variant: `string` (optional) a variant of the product
-              - [7] product custom dimensions: `Object<string, string>` a dictionary of custom dimension values, numeric string ID and a string with value. Max 20 product custom dimensions, 20 is max ID.
+              - [7] product custom dimensions: `Object<string, string>` (optional) a dictionary of custom dimension values, numeric string ID and a string with value. Max 20 product custom dimensions, 20 is max ID.
 
-            Legend: [index] name: `data type` (requisite) Desctiption. Restrictions.
+            Legend: [index] name: `data type` (requisite) Description. Restrictions.
 
             E-commerce cart must not contain more than 100 products.
           schema:
