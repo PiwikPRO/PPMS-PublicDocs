@@ -5,9 +5,6 @@
             "$ref": "request/custom_tag_async_create.json"
         },
         {
-            "$ref": "request/custom_tag_sync_create.json"
-        },
-        {
             "$ref": "request/custom_content_create.json"
         },
         {
@@ -27,9 +24,6 @@
         },
         {
             "$ref": "request/piwik_virtual_page_view_create.json"
-        },
-        {
-            "$ref": "request/ab_tasty_create.json"
         },
         {
             "$ref": "request/adroll_create.json"
@@ -83,9 +77,6 @@
             "$ref": "request/mautic_create.json"
         },
         {
-            "$ref": "request/optimizely_create.json"
-        },
-        {
             "$ref": "request/qualaroo_create.json"
         },
         {
@@ -95,9 +86,6 @@
             "$ref": "request/salesforce_pardot_create.json"
         },
         {
-            "$ref": "request/visual_website_optimizer_create.json"
-        },
-        {
             "$ref": "request/video_html5_create.json"
         },
         {
@@ -105,12 +93,6 @@
         },
         {
             "$ref": "request/heatmaps_create.json"
-        },
-        {
-            "$ref": "request/click_tale_create.json"
-        },
-        {
-            "$ref": "request/google_adwords_doubleclick_create.json"
         },
         {
             "$ref": "request/abandoned_create.json"
@@ -132,6 +114,24 @@
         },
         {
             "$ref": "request/cookie_information_cmp_integration_create.json"
+        },
+        {
+            "$ref": "request/custom_tag_sync_create.json"
+        },
+        {
+            "$ref": "request/ab_tasty_create.json"
+        },
+        {
+            "$ref": "request/click_tale_create.json"
+        },
+        {
+            "$ref": "request/google_adwords_doubleclick_create.json"
+        },
+        {
+            "$ref": "request/optimizely_create.json"
+        },
+        {
+            "$ref": "request/visual_website_optimizer_create.json"
         }
     ]
 }
