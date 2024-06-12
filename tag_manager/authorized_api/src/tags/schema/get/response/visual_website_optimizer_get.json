@@ -1,10 +1,12 @@
 {
-    "title": "Visual Website Optimizer tag",
+    "title": "Visual Website Optimizer tag [DEPRECATED]",
     "description": "Visual Website Optimizer tag response",
+    "deprecated": true,
     "type": "object",
     "properties": {
         "data": {
             "title": "JSON:API 1.0 response data",
+            "deprecated": true,
             "type": "object",
             "properties": {
                 "id": {

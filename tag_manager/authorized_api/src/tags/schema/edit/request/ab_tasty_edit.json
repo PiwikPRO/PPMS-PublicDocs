@@ -1,10 +1,12 @@
 {
-    "title": "A/B Tasty tag",
+    "title": "A/B Tasty tag [DEPRECATED]",
     "description": "A/B Tasty tag edit request",
+    "deprecated": true,
     "type": "object",
     "properties": {
         "data": {
             "title": "JSON:API 1.0 request data",
+            "deprecated": true,
             "type": "object",
             "properties": {
                 "id": {

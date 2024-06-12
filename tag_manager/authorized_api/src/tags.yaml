@@ -4,32 +4,37 @@ info:
     version: '1.0'
     description: |
         # Tag template options
-        One should send all attributes he wants to be set when using PATCH request.
-        
+        - It is essential to treat the template options as a cohesive object.
+        - When using a PATCH request, remember to include all the attributes you want to be set.
+
         # Deprecations and changes
-        
+
         <details>
         <summary>Deprecated tags</summary>
-        The tags listed below are marked as deprecated and will not be supported soon. 
+        The tags listed below are marked as deprecated and will not be supported soon.
         We strongly discourage using them.
-            
-        | Deprecated tags               |      
+
+        | Deprecated tags               |
         |---                            |
+        | Custom tag (synchronous)      |
+        | A/B Tasty tag                 |
         | Clicktale Tracking Code tag   |
         | DoubleClick Conversion tag    |
-        
+        | Optimizely tag                |
+        | Visual Website Optimizer tag  |
+
         </details>
-        
+
         <details>
         <summary>Renamed tags</summary>
         The following tags have been rebranded. However, their template attribute value remained the same due to maintaining backward compatibility.
-        
+
         | Old tag name                      | New tag name          |
         |---                                |---                    |
         | Facebook Retargeting Pixel tag    | Meta Pixel tag        |
         | DoubleClick Floodlight Sales tag  | Floodlight Sales tag  |
         | DoubleClick Floodlight Counter tag| Floodlight Counter tag|
-        
+
         </details>
 security:
     - BearerAuth: []

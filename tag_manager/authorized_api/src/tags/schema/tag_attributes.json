@@ -75,7 +75,8 @@
             "default": true
         },
         "tag_type": {
-            "description": "Field describing whether tag is synchronous (sync) or asynchronous (async)",
+            "description": "Field describing whether tag is synchronous (sync) or asynchronous (async). Please note that sync tags are deprecated.",
+            "deprecated": true,
             "type": "string",
             "enum": [
                 "sync",
@@ -173,24 +174,20 @@
             "description": "Tag template",
             "type": "string",
             "enum": [
-                "ab_tasty",
                 "adroll",
                 "bing_ads",
-                "click_tale",
                 "crazy_egg",
                 "custom_content",
                 "custom_popup",
                 "custom_tag",
                 "doubleclick_floodlight",
                 "facebook_retargeting_pixel",
-                "google_adwords",
                 "google_analytics",
                 "hot_jar",
                 "hub_spot",
                 "linkedin",
                 "marketo",
                 "mautic",
-                "optimizely",
                 "piwik",
                 "piwik_custom_dimension",
                 "piwik_event",
@@ -199,7 +196,6 @@
                 "qualaroo",
                 "sales_manago",
                 "salesforce_pardot",
-                "visual_website_optimizer",
                 "video_html5",
                 "video_youtube",
                 "heatmaps",
@@ -209,7 +205,12 @@
                 "ecommerce_remove_from_cart",
                 "ecommerce_product_detail_view",
                 "ecommerce_cart_update",
-                "cookie_information_cmp_integration"
+                "cookie_information_cmp_integration",
+                "ab_tasty",
+                "click_tale",
+                "google_adwords",
+                "optimizely",
+                "visual_website_optimizer"
             ]
         },
         "template_options_empty": {
