@@ -757,20 +757,6 @@ paths:
             type: string
             format: ISO 3166-1 alpha-2 code (lowercase)
           example: us
-        - name: region
-          in: query
-          description: |
-            Override region.
-
-            Format of [region codes](https://www.maxmind.com/download/geoip/misc/region_codes.csv) is defined in
-            [MaxMind's](https://www.maxmind.com/) GeoIP database.
-          schema:
-            type: string
-            #TODO: Check if Maxmind uses codes defined in any standard.
-            #TODO: Check if those codes are still accurate (migration to GeoIPv2).
-            #TODO: Check if codes should be uppercase.
-            format: 2 letter region code
-          example: AE
         - name: city
           in: query
           description: |

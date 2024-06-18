@@ -1,11 +1,13 @@
 {
-    "title": "Custom tag (synchronous)",
+    "title": "Custom tag (synchronous) [DEPRECATED]",
     "description": "Custom tag response",
+    "deprecated": true,
     "type": "object",
     "properties": {
         "data": {
             "title": "JSON:API 1.0 response data",
             "type": "object",
+            "deprecated": true,
             "properties": {
                 "id": {
                     "$ref": "../../tag_types.json#/definitions/tag_identifier"

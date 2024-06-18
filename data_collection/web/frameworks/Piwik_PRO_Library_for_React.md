@@ -6,9 +6,9 @@
 
 Dedicated Piwik PRO library that helps with implementing Piwik PRO Tag Manager and the Piwik PRO tracking client in React applications.
 
-## Installation
+### Installation
 
-### NPM
+#### NPM
 
 To use this package in your project, run the following command.
 
@@ -16,7 +16,7 @@ To use this package in your project, run the following command.
 npm install @piwikpro/react-piwik-pro
 ```
 
-### Basic setup
+#### Basic setup
 
 In your React Project, include the default `PiwikPro` in the highest level application module. ie `index`. To set up the Piwik PRO Tag Manager container in the app, the easiest way is to call the `PiwikPro.initialize()` method. `PiwikPro.initialize()` must be initialized using this function before any of the other tracking functions will record any data.
 
@@ -30,7 +30,7 @@ PiwikPro.initialize('container-id', 'container-url');
 ReactDOM.render(<App />, document.getElementById('root'))
 ```
 
-### Setup with nonce
+#### Setup with nonce
 
 The nonce attribute is useful to allow-list specific elements, such as a particular inline script or style elements. It can help you to avoid using the CSP unsafe-inline directive, which would allow-list all inline scripts or styles.
 
@@ -44,9 +44,9 @@ PiwikPro.initialize('container-id', 'container-url', 'nonce-string');
 ReactDOM.render(<App />, document.getElementById('root'))
 ```
 
-## Piwik PRO Services
+### Piwik PRO Services
 
-### Send Custom Events
+#### Send Custom Events
 
 ```ts
 import { CustomEvent } from '@piwikpro/react-piwik-pro'
@@ -71,7 +71,7 @@ export class TestFormComponent {
 
 ```
 
-### Send page views and virtual page views
+#### Send page views and virtual page views
 
 ```ts
 import { PageViews } from '@piwikpro/react-piwik-pro';
@@ -87,7 +87,7 @@ const App = () => {
 export default App
 ```
 
-### Send an event with Data Layer
+#### Send an event with Data Layer
 
 ```ts
 import { DataLayer } from '@piwikpro/react-piwik-pro';
@@ -108,9 +108,9 @@ export default App
 
 
 
-## Table of contents
+### Table of contents
 
-### Namespaces
+#### Namespaces
 
 - [ContentTracking](#modulescontenttrackingmd)
 - [CookieManagement](#modulescookiemanagementmd)
@@ -118,36 +118,51 @@ export default App
 - [CustomEvent](#modulescustomeventmd)
 - [DataLayer](#modulesdatalayermd)
 - [DownloadAndOutlink](#modulesdownloadandoutlinkmd)
+- [ErrorTracking](#moduleserrortrackingmd)
 - [GoalConversions](#modulesgoalconversionsmd)
 - [PageViews](#modulespageviewsmd)
 - [SiteSearch](#modulessitesearchmd)
 - [UserManagement](#modulesusermanagementmd)
 - [eCommerce](#modulesecommercemd)
 
-### Type Aliases
+#### Type Aliases
 
 - [Dimensions](#dimensions)
+- [InitOptions](#initoptions)
 - [PaymentInformation](#paymentinformation)
 - [Product](#product)
 - [VisitorInfo](#visitorinfo)
 
-### Variables
+#### Variables
 
 - [default](#default)
 
-## Type Aliases
+### Type Aliases
 
-### Dimensions
+#### Dimensions
 
 Ƭ **Dimensions**: `Record`\<\`dimension$\{number}\`, `string`\>
 
 ___
 
-### PaymentInformation
+#### InitOptions
+
+Ƭ **InitOptions**: `Object`
+
+##### Type declaration
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `dataLayerName?` | `string` | Defaults to 'dataLayer' |
+| `nonce?` | `string` | - |
+
+___
+
+#### PaymentInformation
 
 Ƭ **PaymentInformation**: `Object`
 
-#### Type declaration
+##### Type declaration
 
 | Name | Type |
 | :------ | :------ |
@@ -160,11 +175,11 @@ ___
 
 ___
 
-### Product
+#### Product
 
 Ƭ **Product**: `Object`
 
-#### Type declaration
+##### Type declaration
 
 | Name | Type |
 | :------ | :------ |
@@ -179,17 +194,17 @@ ___
 
 ___
 
-### VisitorInfo
+#### VisitorInfo
 
 Ƭ **VisitorInfo**: [isNew: "0" \| "1", visitorId: string, firstVisitTS: number, previousVisitCount: string \| number, currentVisitTS: number, lastVisitTS: number \| "", lastEcommerceOrderTS: number \| ""]
 
-## Variables
+### Variables
 
-### default
+#### default
 
 • `Const` **default**: `Object`
 
-#### Type declaration
+##### Type declaration
 
 | Name | Type |
 | :------ | :------ |
@@ -200,9 +215,9 @@ ___
 <a name="modulescontenttrackingmd"></a>
 
 
-# ContentTracking
+## ContentTracking
 
-## Table of contents
+### Table of contents
 
 
 - [logAllContentBlocksOnPage](#logallcontentblocksonpage)
@@ -213,21 +228,20 @@ ___
 - [trackContentInteractionNode](#trackcontentinteractionnode)
 - [trackVisibleContentImpressions](#trackvisiblecontentimpressions)
 
-## Functions
 
-### logAllContentBlocksOnPage
+#### logAllContentBlocksOnPage
 
 ▸ **logAllContentBlocksOnPage**(): `void`
 
 Print all content blocks to the console for debugging purposes
 
-#### Returns
+##### Returns
 
 `void`
 
 ___
 
-### trackAllContentImpressions
+#### trackAllContentImpressions
 
 ▸ **trackAllContentImpressions**(): `void`
 
@@ -235,17 +249,17 @@ Scans the entire DOM for content blocks and tracks impressions after all page
 elements load. It does not send duplicates on repeated calls unless
 trackPageView was called in between trackAllContentImpressions invocations
 
-#### Returns
+##### Returns
 
 `void`
 
 ___
 
-### trackContentImpression
+#### trackContentImpression
 
 ▸ **trackContentImpression**(`contentName`, `contentPiece`, `contentTarget`): `void`
 
-#### Parameters
+##### Parameters
 
 | Name | Type |
 | :------ | :------ |
@@ -253,35 +267,35 @@ ___
 | `contentPiece` | `string` |
 | `contentTarget` | `string` |
 
-#### Returns
+##### Returns
 
 `void`
 
 ___
 
-### trackContentImpressionsWithinNode
+#### trackContentImpressionsWithinNode
 
 ▸ **trackContentImpressionsWithinNode**(`domNode`): `void`
 
-#### Parameters
+##### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `domNode` | `Node` |
 
-#### Returns
+##### Returns
 
 `void`
 
 ___
 
-### trackContentInteraction
+#### trackContentInteraction
 
 ▸ **trackContentInteraction**(`contentInteraction`, `contentName`, `contentPiece`, `contentTarget`): `void`
 
 Tracks manual content interaction event
 
-#### Parameters
+##### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
@@ -290,45 +304,45 @@ Tracks manual content interaction event
 | `contentPiece` | `string` | Name of the content that was displayed (e.g. link to an image) |
 | `contentTarget` | `string` | Where the content leads to (e.g. URL of some external website) |
 
-#### Returns
+##### Returns
 
 `void`
 
 ___
 
-### trackContentInteractionNode
+#### trackContentInteractionNode
 
 ▸ **trackContentInteractionNode**(`domNode`, `contentInteraction?`): `void`
 
 Tracks interaction with a block in domNode. Can be called from code placed in onclick attribute
 
-#### Parameters
+##### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `domNode` | `Node` | Node marked as content block or containing content blocks. If content block can’t be found, nothing will tracked. |
 | `contentInteraction?` | `string` | Name of interaction (e.g. "click") |
 
-#### Returns
+##### Returns
 
 `void`
 
 ___
 
-### trackVisibleContentImpressions
+#### trackVisibleContentImpressions
 
 ▸ **trackVisibleContentImpressions**(`checkOnScroll?`, `watchInterval?`): `void`
 
 Scans DOM for all visible content blocks and tracks impressions
 
-#### Parameters
+##### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `checkOnScroll?` | `boolean` | Whether to scan for visible content on scroll event |
 | `watchInterval?` | `number` | Delay, in milliseconds, between scans for new visible content. Periodic checks can be disabled by passing 0 |
 
-#### Returns
+##### Returns
 
 `void`
 
@@ -336,9 +350,9 @@ Scans DOM for all visible content blocks and tracks impressions
 <a name="modulescookiemanagementmd"></a>
 
 
-# CookieManagement
+## CookieManagement
 
-## Table of contents
+### Table of contents
 
 
 - [deleteCookies](#deletecookies)
@@ -358,237 +372,236 @@ Scans DOM for all visible content blocks and tracks impressions
 - [setVisitorCookieTimeout](#setvisitorcookietimeout)
 - [setVisitorIdCookie](#setvisitoridcookie)
 
-## Functions
 
-### deleteCookies
+#### deleteCookies
 
 ▸ **deleteCookies**(): `void`
 
 Deletes existing tracking cookies on the next page view
 
-#### Returns
+##### Returns
 
 `void`
 
 ___
 
-### disableCookies
+#### disableCookies
 
 ▸ **disableCookies**(): `void`
 
 Disables all first party cookies. Existing cookies will be deleted in the next page view
 
-#### Returns
+##### Returns
 
 `void`
 
 ___
 
-### enableCookies
+#### enableCookies
 
 ▸ **enableCookies**(): `void`
 
 Enables all first party cookies. Cookies will be created on the next tracking request
 
-#### Returns
+##### Returns
 
 `void`
 
 ___
 
-### getConfigVisitorCookieTimeout
+#### getConfigVisitorCookieTimeout
 
 ▸ **getConfigVisitorCookieTimeout**(): `Promise`\<`number`\>
 
 Returns expiration time of visitor cookies (in milliseconds)
 
-#### Returns
+##### Returns
 
 `Promise`\<`number`\>
 
 ___
 
-### getCookieDomain
+#### getCookieDomain
 
 ▸ **getCookieDomain**(): `Promise`\<`string`\>
 
 Returns domain of the analytics tracking cookies (set with setCookieDomain()).
 
-#### Returns
+##### Returns
 
 `Promise`\<`string`\>
 
 ___
 
-### getCookiePath
+#### getCookiePath
 
 ▸ **getCookiePath**(): `Promise`\<`string`\>
 
 Returns the analytics tracking cookies path
 
-#### Returns
+##### Returns
 
 `Promise`\<`string`\>
 
 ___
 
-### getSessionCookieTimeout
+#### getSessionCookieTimeout
 
 ▸ **getSessionCookieTimeout**(): `Promise`\<`number`\>
 
 Returns expiration time of session cookies
 
-#### Returns
+##### Returns
 
 `Promise`\<`number`\>
 
 ___
 
-### hasCookies
+#### hasCookies
 
 ▸ **hasCookies**(): `Promise`\<`boolean`\>
 
 Returns true if cookies are enabled in this browser
 
-#### Returns
+##### Returns
 
 `Promise`\<`boolean`\>
 
 ___
 
-### setCookieDomain
+#### setCookieDomain
 
 ▸ **setCookieDomain**(`domain`): `void`
 
 Sets the domain for the analytics tracking cookies
 
-#### Parameters
+##### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `domain` | `string` |
 
-#### Returns
+##### Returns
 
 `void`
 
 ___
 
-### setCookieNamePrefix
+#### setCookieNamePrefix
 
 ▸ **setCookieNamePrefix**(`prefix`): `void`
 
 Sets the prefix for analytics tracking cookies. Default is "_pk_".
 
-#### Parameters
+##### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `prefix` | `string` |
 
-#### Returns
+##### Returns
 
 `void`
 
 ___
 
-### setCookiePath
+#### setCookiePath
 
 ▸ **setCookiePath**(`path`): `void`
 
 Sets the analytics tracking cookies path
 
-#### Parameters
+##### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `path` | `string` |
 
-#### Returns
+##### Returns
 
 `void`
 
 ___
 
-### setReferralCookieTimeout
+#### setReferralCookieTimeout
 
 ▸ **setReferralCookieTimeout**(`seconds`): `void`
 
 Sets the expiration time of referral cookies
 
-#### Parameters
+##### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `seconds` | `number` |
 
-#### Returns
+##### Returns
 
 `void`
 
 ___
 
-### setSecureCookie
+#### setSecureCookie
 
 ▸ **setSecureCookie**(`secure`): `void`
 
 Toggles the secure cookie flag on all first party cookies (if you are using HTTPS)
 
-#### Parameters
+##### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `secure` | `boolean` |
 
-#### Returns
+##### Returns
 
 `void`
 
 ___
 
-### setSessionCookieTimeout
+#### setSessionCookieTimeout
 
 ▸ **setSessionCookieTimeout**(`seconds`): `void`
 
 Sets the expiration time of session cookies
 
-#### Parameters
+##### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `seconds` | `number` |
 
-#### Returns
+##### Returns
 
 `void`
 
 ___
 
-### setVisitorCookieTimeout
+#### setVisitorCookieTimeout
 
 ▸ **setVisitorCookieTimeout**(`seconds`): `void`
 
 Sets the expiration time of visitor cookies
 
-#### Parameters
+##### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `seconds` | `number` |
 
-#### Returns
+##### Returns
 
 `void`
 
 ___
 
-### setVisitorIdCookie
+#### setVisitorIdCookie
 
 ▸ **setVisitorIdCookie**(): `void`
 
 Sets cookie containing [analytics ID](https://developers.piwik.pro/en/latest/glossary.html#term-analytics-id) in browser
 
-#### Returns
+##### Returns
 
 `void`
 
@@ -596,67 +609,66 @@ Sets cookie containing [analytics ID](https://developers.piwik.pro/en/latest/glo
 <a name="modulescustomdimensionsmd"></a>
 
 
-# CustomDimensions
+## CustomDimensions
 
-## Table of contents
+### Table of contents
 
 
 - [deleteCustomDimension](#deletecustomdimension)
 - [getCustomDimensionValue](#getcustomdimensionvalue)
 - [setCustomDimensionValue](#setcustomdimensionvalue)
 
-## Functions
 
-### deleteCustomDimension
+#### deleteCustomDimension
 
 ▸ **deleteCustomDimension**(`customDimensionId`): `void`
 
 Removes a custom dimension with the specified ID.
 
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `customDimensionId` | `string` |
-
-#### Returns
-
-`void`
-
-___
-
-### getCustomDimensionValue
-
-▸ **getCustomDimensionValue**(`customDimensionId`): `Promise`\<`string` \| `undefined`\>
-
-Returns the value of a custom dimension with the specified ID.
-
-#### Parameters
+##### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `customDimensionId` | `string` \| `number` |
 
-#### Returns
+##### Returns
+
+`void`
+
+___
+
+#### getCustomDimensionValue
+
+▸ **getCustomDimensionValue**(`customDimensionId`): `Promise`\<`string` \| `undefined`\>
+
+Returns the value of a custom dimension with the specified ID.
+
+##### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `customDimensionId` | `string` \| `number` |
+
+##### Returns
 
 `Promise`\<`string` \| `undefined`\>
 
 ___
 
-### setCustomDimensionValue
+#### setCustomDimensionValue
 
 ▸ **setCustomDimensionValue**(`customDimensionId`, `customDimensionValue`): `void`
 
 Sets a custom dimension value to be used later.
 
-#### Parameters
+##### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `customDimensionId` | `string` \| `number` |
 | `customDimensionValue` | `string` |
 
-#### Returns
+##### Returns
 
 `void`
 
@@ -664,22 +676,21 @@ Sets a custom dimension value to be used later.
 <a name="modulescustomeventmd"></a>
 
 
-# CustomEvent
+## CustomEvent
 
-## Table of contents
+### Table of contents
 
 
 - [trackEvent](#trackevent)
 
-## Functions
 
-### trackEvent
+#### trackEvent
 
 ▸ **trackEvent**(`category`, `action`, `name?`, `value?`, `dimensions?`): `void`
 
 Tracks a custom event, e.g. when a visitor interacts with the page
 
-#### Parameters
+##### Parameters
 
 | Name | Type |
 | :------ | :------ |
@@ -689,7 +700,7 @@ Tracks a custom event, e.g. when a visitor interacts with the page
 | `value?` | `number` |
 | `dimensions?` | [`Dimensions`](#dimensions) |
 
-#### Returns
+##### Returns
 
 `void`
 
@@ -697,38 +708,64 @@ Tracks a custom event, e.g. when a visitor interacts with the page
 <a name="modulesdatalayermd"></a>
 
 
-# DataLayer
+## DataLayer
 
-## Table of contents
+### Table of contents
+
+#### Type Aliases
+
+- [DataLayerEntry](#datalayerentry)
 
 
 - [push](#push)
+- [setDataLayerName](#setdatalayername)
 
-## Functions
+### Type Aliases
 
-### push
+#### DataLayerEntry
+
+Ƭ **DataLayerEntry**: `Record`\<`string`, `AnyData`\>
+
+
+#### push
 
 ▸ **push**(`data`): `number`
 
 Adds entry to a data layer
 
-#### Parameters
+##### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `data` | `any` |
+| `data` | [`DataLayerEntry`](#datalayerentry) |
 
-#### Returns
+##### Returns
 
 `number`
+
+___
+
+#### setDataLayerName
+
+▸ **setDataLayerName**(`name`): `void`
+
+##### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `name` | `string` |
+
+##### Returns
+
+`void`
 
 
 <a name="modulesdownloadandoutlinkmd"></a>
 
 
-# DownloadAndOutlink
+## DownloadAndOutlink
 
-## Table of contents
+### Table of contents
 
 
 - [addDownloadExtensions](#adddownloadextensions)
@@ -742,27 +779,26 @@ Adds entry to a data layer
 - [setLinkTrackingTimer](#setlinktrackingtimer)
 - [trackLink](#tracklink)
 
-## Functions
 
-### addDownloadExtensions
+#### addDownloadExtensions
 
 ▸ **addDownloadExtensions**(`extensions`): `void`
 
 Adds new extensions to the download extensions list
 
-#### Parameters
+##### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `extensions` | `string`[] |
 
-#### Returns
+##### Returns
 
 `void`
 
 ___
 
-### enableLinkTracking
+#### enableLinkTracking
 
 ▸ **enableLinkTracking**(`trackAlsoMiddleAndRightClicks?`): `void`
 
@@ -771,121 +807,121 @@ middle clicks on links will be treated as opening a link. Opening a links to
 an external site (different domain) creates an outlink event. Opening a link
 to a downloadable file creates a download event
 
-#### Parameters
+##### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `trackAlsoMiddleAndRightClicks?` | `boolean` |
 
-#### Returns
+##### Returns
 
 `void`
 
 ___
 
-### getLinkTrackingTimer
+#### getLinkTrackingTimer
 
 ▸ **getLinkTrackingTimer**(): `Promise`\<`number`\>
 
 Returns lock/wait time after a request set by setLinkTrackingTimer
 
-#### Returns
+##### Returns
 
 `Promise`\<`number`\>
 
 ___
 
-### removeDownloadExtensions
+#### removeDownloadExtensions
 
 ▸ **removeDownloadExtensions**(`extensions`): `void`
 
 Removes extensions from the download extensions list
 
-#### Parameters
+##### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `extensions` | `string`[] |
 
-#### Returns
+##### Returns
 
 `void`
 
 ___
 
-### setDownloadClasses
+#### setDownloadClasses
 
 ▸ **setDownloadClasses**(`classes`): `void`
 
 Sets a list of class names that indicate whether a list is a download and not an outlink
 
-#### Parameters
+##### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `classes` | `string`[] |
 
-#### Returns
+##### Returns
 
 `void`
 
 ___
 
-### setDownloadExtensions
+#### setDownloadExtensions
 
 ▸ **setDownloadExtensions**(`extensions`): `void`
 
 Overwrites the list of file extensions indicating that a link is a download
 
-#### Parameters
+##### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `extensions` | `string`[] |
 
-#### Returns
+##### Returns
 
 `void`
 
 ___
 
-### setIgnoreClasses
+#### setIgnoreClasses
 
 ▸ **setIgnoreClasses**(`classes`): `void`
 
 Set a list of class names that indicate a link should not be tracked
 
-#### Parameters
+##### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `classes` | `string`[] |
 
-#### Returns
+##### Returns
 
 `void`
 
 ___
 
-### setLinkClasses
+#### setLinkClasses
 
 ▸ **setLinkClasses**(`classes`): `void`
 
 Sets a list of class names that indicate whether a link is an outlink and not download
 
-#### Parameters
+##### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `classes` | `string`[] |
 
-#### Returns
+##### Returns
 
 `void`
 
 ___
 
-### setLinkTrackingTimer
+#### setLinkTrackingTimer
 
 ▸ **setLinkTrackingTimer**(`time`): `void`
 
@@ -895,25 +931,25 @@ the last event this way, JavaScript Tracking Client will lock the page for a
 fraction of a second (if wait time hasn’t passed), giving the request time to
 reach the Collecting & Processing Pipeline
 
-#### Parameters
+##### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `time` | `number` |
 
-#### Returns
+##### Returns
 
 `void`
 
 ___
 
-### trackLink
+#### trackLink
 
 ▸ **trackLink**(`url`, `linkType`, `dimensions?`, `callback?`): `void`
 
 Manually tracks outlink or download event with provided values
 
-#### Parameters
+##### Parameters
 
 | Name | Type |
 | :------ | :------ |
@@ -922,7 +958,56 @@ Manually tracks outlink or download event with provided values
 | `dimensions?` | [`Dimensions`](#dimensions) |
 | `callback?` | () => `void` |
 
-#### Returns
+##### Returns
+
+`void`
+
+
+<a name="moduleserrortrackingmd"></a>
+
+
+## ErrorTracking
+
+### Table of contents
+
+
+- [enableJSErrorTracking](#enablejserrortracking)
+- [trackError](#trackerror)
+
+
+#### enableJSErrorTracking
+
+▸ **enableJSErrorTracking**(`unique?`): `void`
+
+Enables tracking of unhandled JavaScript errors.
+
+##### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `unique?` | `boolean` | track only unique errors |
+
+##### Returns
+
+`void`
+
+___
+
+#### trackError
+
+▸ **trackError**(`error`): `void`
+
+Attempts to send error tracking request using same format as native errors caught by enableJSErrorTracking().
+Such error request will still follow rules set for tracker, so it will be sent only when JS error tracking is enabled
+([enableJSErrorTracking](#enablejserrortracking) function was called before this attempt). It will also respect rules for tracking only unique errors.
+
+##### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `error` | `Error` |
+
+##### Returns
 
 `void`
 
@@ -930,22 +1015,21 @@ Manually tracks outlink or download event with provided values
 <a name="modulesgoalconversionsmd"></a>
 
 
-# GoalConversions
+## GoalConversions
 
-## Table of contents
+### Table of contents
 
 
 - [trackGoal](#trackgoal)
 
-## Functions
 
-### trackGoal
+#### trackGoal
 
 ▸ **trackGoal**(`goalId`, `conversionValue`, `dimensions?`): `void`
 
 Tracks manual goal conversion
 
-#### Parameters
+##### Parameters
 
 | Name | Type |
 | :------ | :------ |
@@ -953,7 +1037,7 @@ Tracks manual goal conversion
 | `conversionValue` | `number` |
 | `dimensions?` | [`Dimensions`](#dimensions) |
 
-#### Returns
+##### Returns
 
 `void`
 
@@ -961,28 +1045,27 @@ Tracks manual goal conversion
 <a name="modulespageviewsmd"></a>
 
 
-# PageViews
+## PageViews
 
-## Table of contents
+### Table of contents
 
 
 - [trackPageView](#trackpageview)
 
-## Functions
 
-### trackPageView
+#### trackPageView
 
 ▸ **trackPageView**(`customPageTitle?`): `void`
 
 Tracks a visit on the page that the function was run on
 
-#### Parameters
+##### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `customPageTitle?` | `string` |
 
-#### Returns
+##### Returns
 
 `void`
 
@@ -990,22 +1073,21 @@ Tracks a visit on the page that the function was run on
 <a name="modulessitesearchmd"></a>
 
 
-# SiteSearch
+## SiteSearch
 
-## Table of contents
+### Table of contents
 
 
 - [trackSiteSearch](#tracksitesearch)
 
-## Functions
 
-### trackSiteSearch
+#### trackSiteSearch
 
 ▸ **trackSiteSearch**(`keyword`, `category?`, `searchCount?`, `dimensions?`): `void`
 
 Tracks search requests on a website
 
-#### Parameters
+##### Parameters
 
 | Name | Type |
 | :------ | :------ |
@@ -1014,7 +1096,7 @@ Tracks search requests on a website
 | `searchCount?` | `number` |
 | `dimensions?` | [`Dimensions`](#dimensions) |
 
-#### Returns
+##### Returns
 
 `void`
 
@@ -1022,9 +1104,9 @@ Tracks search requests on a website
 <a name="modulesusermanagementmd"></a>
 
 
-# UserManagement
+## UserManagement
 
-## Table of contents
+### Table of contents
 
 
 - [getUserId](#getuserid)
@@ -1033,57 +1115,56 @@ Tracks search requests on a website
 - [resetUserId](#resetuserid)
 - [setUserId](#setuserid)
 
-## Functions
 
-### getUserId
+#### getUserId
 
 ▸ **getUserId**(): `Promise`\<`string`\>
 
 The function that will return user ID
 
-#### Returns
+##### Returns
 
 `Promise`\<`string`\>
 
 ___
 
-### getVisitorId
+#### getVisitorId
 
 ▸ **getVisitorId**(): `Promise`\<`string`\>
 
 Returns 16-character hex ID of the visitor
 
-#### Returns
+##### Returns
 
 `Promise`\<`string`\>
 
 ___
 
-### getVisitorInfo
+#### getVisitorInfo
 
 ▸ **getVisitorInfo**(): `Promise`\<[`VisitorInfo`](#visitorinfo)\>
 
 Returns visitor information in an array
 
-#### Returns
+##### Returns
 
 `Promise`\<[`VisitorInfo`](#visitorinfo)\>
 
 ___
 
-### resetUserId
+#### resetUserId
 
 ▸ **resetUserId**(): `void`
 
 Clears previously set userID, e.g. when visitor logs out
 
-#### Returns
+##### Returns
 
 `void`
 
 ___
 
-### setUserId
+#### setUserId
 
 ▸ **setUserId**(`userId`): `void`
 
@@ -1091,13 +1172,13 @@ User ID is an additional parameter that allows you to aggregate data. When
 set up, you will be able to search through sessions by this parameter, filter
 reports through it or create Multi attribution reports using User ID
 
-#### Parameters
+##### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `userId` | `string` |
 
-#### Returns
+##### Returns
 
 `void`
 
@@ -1105,9 +1186,9 @@ reports through it or create Multi attribution reports using User ID
 <a name="modulesecommercemd"></a>
 
 
-# eCommerce
+## eCommerce
 
-## Table of contents
+### Table of contents
 
 
 - [addEcommerceItem](#addecommerceitem)
@@ -1123,13 +1204,12 @@ reports through it or create Multi attribution reports using User ID
 - [trackEcommerceCartUpdate](#trackecommercecartupdate)
 - [trackEcommerceOrder](#trackecommerceorder)
 
-## Functions
 
-### addEcommerceItem
+#### addEcommerceItem
 
 ▸ **addEcommerceItem**(`productSKU`, `productName`, `productCategory`, `productPrice`, `productQuantity`): `void`
 
-#### Parameters
+##### Parameters
 
 | Name | Type |
 | :------ | :------ |
@@ -1139,7 +1219,7 @@ reports through it or create Multi attribution reports using User ID
 | `productPrice` | `number` |
 | `productQuantity` | `number` |
 
-#### Returns
+##### Returns
 
 `void`
 
@@ -1149,11 +1229,11 @@ Please use the ecommerceAddToCart instead.
 
 ___
 
-### clearEcommerceCart
+#### clearEcommerceCart
 
 ▸ **clearEcommerceCart**(): `void`
 
-#### Returns
+##### Returns
 
 `void`
 
@@ -1161,103 +1241,103 @@ ___
 
 ___
 
-### ecommerceAddToCart
+#### ecommerceAddToCart
 
 ▸ **ecommerceAddToCart**(`products`): `void`
 
 Tracks action of adding products to a cart
 
-#### Parameters
+##### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `products` | [`Product`](#product)[] |
 
-#### Returns
+##### Returns
 
 `void`
 
 ___
 
-### ecommerceCartUpdate
+#### ecommerceCartUpdate
 
 ▸ **ecommerceCartUpdate**(`products`, `grandTotal`): `void`
 
 Tracks current state of a cart
 
-#### Parameters
+##### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `products` | [`Product`](#product)[] |
 | `grandTotal` | `string` \| `number` |
 
-#### Returns
+##### Returns
 
 `void`
 
 ___
 
-### ecommerceOrder
+#### ecommerceOrder
 
 ▸ **ecommerceOrder**(`products`, `paymentInformation`): `void`
 
 Tracks conversion, including products and payment details
 
-#### Parameters
+##### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `products` | [`Product`](#product)[] |
 | `paymentInformation` | [`PaymentInformation`](#paymentinformation) |
 
-#### Returns
+##### Returns
 
 `void`
 
 ___
 
-### ecommerceProductDetailView
+#### ecommerceProductDetailView
 
 ▸ **ecommerceProductDetailView**(`products`): `void`
 
 Tracks action of viewing product page
 
-#### Parameters
+##### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `products` | [`Product`](#product)[] |
 
-#### Returns
+##### Returns
 
 `void`
 
 ___
 
-### ecommerceRemoveFromCart
+#### ecommerceRemoveFromCart
 
 ▸ **ecommerceRemoveFromCart**(`products`): `void`
 
 Tracks action of removing a products from a cart
 
-#### Parameters
+##### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `products` | [`Product`](#product)[] |
 
-#### Returns
+##### Returns
 
 `void`
 
 ___
 
-### getEcommerceItems
+#### getEcommerceItems
 
 ▸ **getEcommerceItems**(): `Promise`\<`object`\>
 
-#### Returns
+##### Returns
 
 `Promise`\<`object`\>
 
@@ -1265,17 +1345,17 @@ ___
 
 ___
 
-### removeEcommerceItem
+#### removeEcommerceItem
 
 ▸ **removeEcommerceItem**(`productSKU`): `void`
 
-#### Parameters
+##### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `productSKU` | `string` |
 
-#### Returns
+##### Returns
 
 `void`
 
@@ -1285,11 +1365,11 @@ Please use the ecommerceRemoveFromCart instead.
 
 ___
 
-### setEcommerceView
+#### setEcommerceView
 
 ▸ **setEcommerceView**(`productSKU`, `productName?`, `productCategory?`, `productPrice?`): `void`
 
-#### Parameters
+##### Parameters
 
 | Name | Type |
 | :------ | :------ |
@@ -1298,7 +1378,7 @@ ___
 | `productCategory?` | `string`[] |
 | `productPrice?` | `string` |
 
-#### Returns
+##### Returns
 
 `void`
 
@@ -1306,17 +1386,17 @@ ___
 
 ___
 
-### trackEcommerceCartUpdate
+#### trackEcommerceCartUpdate
 
 ▸ **trackEcommerceCartUpdate**(`cartAmount`): `void`
 
-#### Parameters
+##### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `cartAmount` | `number` |
 
-#### Returns
+##### Returns
 
 `void`
 
@@ -1326,11 +1406,11 @@ Please use the ecommerceCartUpdate instead.
 
 ___
 
-### trackEcommerceOrder
+#### trackEcommerceOrder
 
 ▸ **trackEcommerceOrder**(`orderId`, `orderGrandTotal`, `orderSubTotal?`, `orderTax?`, `orderShipping?`, `orderDiscount?`): `void`
 
-#### Parameters
+##### Parameters
 
 | Name | Type |
 | :------ | :------ |
@@ -1341,7 +1421,7 @@ ___
 | `orderShipping?` | `number` |
 | `orderDiscount?` | `number` |
 
-#### Returns
+##### Returns
 
 `void`
 

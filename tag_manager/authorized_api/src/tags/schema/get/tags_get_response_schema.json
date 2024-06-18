@@ -5,9 +5,6 @@
             "$ref": "response/custom_tag_async_get.json"
         },
         {
-            "$ref": "response/custom_tag_sync_get.json"
-        },
-        {
             "$ref": "response/custom_content_get.json"
         },
         {
@@ -29,16 +26,10 @@
             "$ref": "response/piwik_virtual_page_view_get.json"
         },
         {
-            "$ref": "response/ab_tasty_get.json"
-        },
-        {
             "$ref": "response/adroll_get.json"
         },
         {
             "$ref": "response/bing_ads_get.json"
-        },
-        {
-            "$ref": "response/click_tale_get.json"
         },
         {
             "$ref": "response/crazy_egg_get.json"
@@ -57,9 +48,6 @@
         },
         {
             "$ref": "response/doubleclick_floodlight_counter_unique_method_get.json"
-        },
-        {
-            "$ref": "response/google_adwords_doubleclick_get.json"
         },
         {
             "$ref": "response/facebook_retargeting_pixel_get.json"
@@ -89,9 +77,6 @@
             "$ref": "response/mautic_get.json"
         },
         {
-            "$ref": "response/optimizely_get.json"
-        },
-        {
             "$ref": "response/qualaroo_get.json"
         },
         {
@@ -99,9 +84,6 @@
         },
         {
             "$ref": "response/salesforce_pardot_get.json"
-        },
-        {
-            "$ref": "response/visual_website_optimizer_get.json"
         },
         {
             "$ref": "response/video_html5_get.json"
@@ -132,6 +114,24 @@
         },
         {
             "$ref": "response/cookie_information_cmp_integration_get.json"
+        },
+        {
+            "$ref": "response/custom_tag_sync_get.json"
+        },
+        {
+            "$ref": "response/ab_tasty_get.json"
+        },
+        {
+            "$ref": "response/click_tale_get.json"
+        },
+        {
+            "$ref": "response/google_adwords_doubleclick_get.json"
+        },
+        {
+            "$ref": "response/optimizely_get.json"
+        },
+        {
+            "$ref": "response/visual_website_optimizer_get.json"
         }
     ]
 }

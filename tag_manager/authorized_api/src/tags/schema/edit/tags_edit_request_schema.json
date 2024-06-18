@@ -5,9 +5,6 @@
             "$ref": "request/custom_tag_async_edit.json"
         },
         {
-            "$ref": "request/custom_tag_sync_edit.json"
-        },
-        {
             "$ref": "request/custom_content_edit.json"
         },
         {
@@ -27,9 +24,6 @@
         },
         {
             "$ref": "request/piwik_virtual_page_view_edit.json"
-        },
-        {
-            "$ref": "request/ab_tasty_edit.json"
         },
         {
             "$ref": "request/adroll_edit.json"
@@ -83,9 +77,6 @@
             "$ref": "request/mautic_edit.json"
         },
         {
-            "$ref": "request/optimizely_edit.json"
-        },
-        {
             "$ref": "request/qualaroo_edit.json"
         },
         {
@@ -95,9 +86,6 @@
             "$ref": "request/salesforce_pardot_edit.json"
         },
         {
-            "$ref": "request/visual_website_optimizer_edit.json"
-        },
-        {
             "$ref": "request/video_html5_edit.json"
         },
         {
@@ -105,12 +93,6 @@
         },
         {
             "$ref": "request/heatmaps_edit.json"
-        },
-        {
-            "$ref": "request/click_tale_edit.json"
-        },
-        {
-            "$ref": "request/google_adwords_doubleclick_edit.json"
         },
         {
             "$ref": "request/abandoned_edit.json"
@@ -132,6 +114,24 @@
         },
         {
             "$ref": "request/cookie_information_cmp_integration_edit.json"
+        },
+        {
+            "$ref": "request/custom_tag_sync_edit.json"
+        },
+        {
+            "$ref": "request/ab_tasty_edit.json"
+        },
+        {
+            "$ref": "request/click_tale_edit.json"
+        },
+        {
+            "$ref": "request/google_adwords_doubleclick_edit.json"
+        },
+        {
+            "$ref": "request/optimizely_edit.json"
+        },
+        {
+            "$ref": "request/visual_website_optimizer_edit.json"
         }
     ]
 }
