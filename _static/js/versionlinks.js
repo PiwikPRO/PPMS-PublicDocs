@@ -1,14 +1,14 @@
 //CHANGE VERSION BEFORE NEW RELEASE
 if(document.location.pathname.indexOf('/en/latest') === 0) {
-    document.querySelector('.rst-current-version').innerHTML = document.querySelector('.rst-current-version').innerHTML.replace('v: latest', 'v: latest (18.19)')
+    document.querySelector('.rst-current-version').innerHTML = document.querySelector('.rst-current-version').innerHTML.replace('v: latest', 'v: latest (18.20)')
 }
 
 if(document.querySelector('.injected')){
-    document.querySelector('.injected > dl:nth-child(1) > dd:nth-child(2) > a').innerText = 'latest (18.19)';
+    document.querySelector('.injected > dl:nth-child(1) > dd:nth-child(2) > a').innerText = 'latest (18.20)';
 } else {
     let observer = new MutationObserver(() => {
         if (document.querySelector('.injected')) {
-            document.querySelector('.injected > dl:nth-child(1) > dd:nth-child(2) > a').innerText = 'latest (18.19)';
+            document.querySelector('.injected > dl:nth-child(1) > dd:nth-child(2) > a').innerText = 'latest (18.20)';
             observer.disconnect();
         }
     });
