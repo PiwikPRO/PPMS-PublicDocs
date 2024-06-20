@@ -46,7 +46,6 @@ post:
                 description: Rows with results for the query.
                 items:
                   type: object
-                  description:
               meta:
                 type: object
                 description: Additional results metadata for the query.
