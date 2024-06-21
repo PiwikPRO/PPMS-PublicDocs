@@ -179,6 +179,7 @@ properties:
                 value:
                   description: Value that should be matched by filter.
                   type: number
+                  format: float
                   example: 42.5
               required:
                 - operator
@@ -238,6 +239,7 @@ properties:
     properties:
       sampling:
         type: number
+        format: float
         description: |
           Apply sampling for query with given data percent. Sampling 0.1 means
           only 10% of data are used to calculate query results. Sampling 1
