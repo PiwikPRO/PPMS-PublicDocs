@@ -40,7 +40,7 @@ post:
                     type: array
                     description: List of column IDs returned.
                     items:
-                      type: str
+                      type: string
                   count:
                     type: integer
                     description: Total number of results available for this query.
