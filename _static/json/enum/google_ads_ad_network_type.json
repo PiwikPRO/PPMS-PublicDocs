@@ -30,5 +30,13 @@
     [
         "YOUTUBE_WATCH",
         "YouTube Watch"
+    ],
+    [
+        "YOUTUBE",
+        "YouTube"
+    ],
+    [
+        "GOOGLE_TV",
+        "Google TV"
     ]
 ]
