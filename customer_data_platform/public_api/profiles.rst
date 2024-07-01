@@ -1,4 +1,4 @@
-Public HTTP API
+Profiles HTTP API
 ===============
 
 .. raw:: html

@@ -83,6 +83,20 @@ components:
             type: string
             example: 404 page not found
       description: Resource not found (bad ID or resource deleted)
+    ContentTooLargeError:
+      content:
+        text/plain:
+          schema:
+            type: string
+            example: Payload exceeds 50kB size limit
+      description: Content too large
+    TooManyRequestsError:
+      content:
+        text/plain:
+          schema:
+            type: string
+            example: API Quota Exhaustion
+      description: Too Many Requests error response (API quota exhaustion or rate limit exceeded)
     InternalServerError:
       content:
         text/plain:
