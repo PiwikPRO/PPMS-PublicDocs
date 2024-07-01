@@ -32,7 +32,6 @@ post:
                 description: Rows with results for the query.
                 items:
                   type: object
-                  description:
               meta:
                 type: object
                 description: Additional results metadata for the query.
@@ -41,7 +40,7 @@ post:
                     type: array
                     description: List of column IDs returned.
                     items:
-                      type: str
+                      type: string
                   count:
                     type: integer
                     description: Total number of results available for this query.

@@ -4,6 +4,10 @@
         "2E"
     ],
     [
+        "5IV",
+        "5IVE"
+    ],
+    [
         "2F",
         "F2 Mobile"
     ],
@@ -48,8 +52,16 @@
         "A1"
     ],
     [
+        "AK1",
+        "A&K"
+    ],
+    [
         "00",
         "Accent"
+    ],
+    [
+        "ACC",
+        "Accesstyle"
     ],
     [
         "AE",
@@ -58,6 +70,10 @@
     [
         "AC",
         "Acer"
+    ],
+    [
+        "ACL",
+        "Aceline"
     ],
     [
         "3K",
@@ -76,6 +92,10 @@
         "Advance"
     ],
     [
+        "ADV",
+        "Advantage Air"
+    ],
+    [
         "76",
         "Adronix"
     ],
@@ -92,8 +112,16 @@
         "AGM"
     ],
     [
+        "AEE",
+        "AEEZO"
+    ],
+    [
         "J0",
         "AG Mobile"
+    ],
+    [
+        "AJI",
+        "Ajib"
     ],
     [
         "AZ",
@@ -118,6 +146,10 @@
     [
         "7U",
         "Airtel"
+    ],
+    [
+        "AIT",
+        "AirTouch"
     ],
     [
         "U0",
@@ -164,6 +196,10 @@
         "Alps"
     ],
     [
+        "XYA",
+        "XY Auto"
+    ],
+    [
         "7L",
         "ALDI NORD"
     ],
@@ -208,12 +244,24 @@
         "Altice"
     ],
     [
+        "ALM",
+        "Altimo"
+    ],
+    [
         "A5",
         "altron"
     ],
     [
+        "ALT",
+        "Altus"
+    ],
+    [
         "KN",
         "Amazon"
+    ],
+    [
+        "AMZ",
+        "Amazon Basics"
     ],
     [
         "AMA",
@@ -244,8 +292,16 @@
         "Andowl"
     ],
     [
+        "ANX",
+        "ANXONIT"
+    ],
+    [
         "6J",
         "Angelcare"
+    ],
+    [
+        "ANG",
+        "AngelTech"
     ],
     [
         "7A",
@@ -286,6 +342,10 @@
     [
         "AP",
         "Apple"
+    ],
+    [
+        "ARC",
+        "Ar\u00e7elik"
     ],
     [
         "AR",
@@ -352,6 +412,10 @@
         "Assistant"
     ],
     [
+        "ASS",
+        "ASSE"
+    ],
+    [
         "AU",
         "Asus"
     ],
@@ -362,6 +426,10 @@
     [
         "ATH",
         "Athesi"
+    ],
+    [
+        "ATE",
+        "Atlantic Electrics"
     ],
     [
         "5Q",
@@ -400,6 +468,10 @@
         "Autan"
     ],
     [
+        "AUP",
+        "AUPO"
+    ],
+    [
         "ZA",
         "Avenzo"
     ],
@@ -416,12 +488,20 @@
         "Avaya"
     ],
     [
+        "AXE",
+        "AXEN"
+    ],
+    [
         "AY",
         "Axxion"
     ],
     [
         "AXX",
         "AXXA"
+    ],
+    [
+        "AYA",
+        "AYA"
     ],
     [
         "YR",
@@ -440,6 +520,10 @@
         "Awow"
     ],
     [
+        "AWO",
+        "AWOX"
+    ],
+    [
         "XU",
         "AUX"
     ],
@@ -448,12 +532,28 @@
         "Backcell"
     ],
     [
+        "BFF",
+        "BAFF"
+    ],
+    [
         "BO",
         "BangOlufsen"
     ],
     [
         "BN",
         "Barnes & Noble"
+    ],
+    [
+        "BAR",
+        "BARTEC"
+    ],
+    [
+        "BAS",
+        "BASE"
+    ],
+    [
+        "BAU",
+        "BAUHN"
     ],
     [
         "BB",
@@ -494,6 +594,10 @@
     [
         "BL",
         "Beetel"
+    ],
+    [
+        "BEK",
+        "Beko"
     ],
     [
         "2X",
@@ -592,6 +696,10 @@
         "Black Bear"
     ],
     [
+        "BLK",
+        "Black Box"
+    ],
+    [
         "BF",
         "Black Fox"
     ],
@@ -684,6 +792,10 @@
         "bogo"
     ],
     [
+        "BOL",
+        "Bolva"
+    ],
+    [
         "BW",
         "Boway"
     ],
@@ -694,6 +806,10 @@
     [
         "BOK",
         "Bookeen"
+    ],
+    [
+        "BOT",
+        "Botech"
     ],
     [
         "BX",
@@ -744,8 +860,16 @@
         "Bubblegum"
     ],
     [
+        "BMW",
+        "BMW"
+    ],
+    [
         "C9",
         "CAGI"
+    ],
+    [
+        "CAD",
+        "CADENA"
     ],
     [
         "CT",
@@ -792,8 +916,28 @@
         "Cavion"
     ],
     [
+        "CAN",
+        "Canal+"
+    ],
+    [
         "4D",
         "Canal Digital"
+    ],
+    [
+        "CNG",
+        "Canguro"
+    ],
+    [
+        "CNT",
+        "CCIT"
+    ],
+    [
+        "CEC",
+        "Cecotec"
+    ],
+    [
+        "CEP",
+        "CEPTER"
     ],
     [
         "CEI",
@@ -828,6 +972,10 @@
         "Centric"
     ],
     [
+        "CEN",
+        "CENTEK"
+    ],
+    [
         "C2",
         "Changhong"
     ],
@@ -856,6 +1004,10 @@
         "Chico Mobile"
     ],
     [
+        "CIA",
+        "C Idea"
+    ],
+    [
         "CIP",
         "CipherLab"
     ],
@@ -874,6 +1026,14 @@
     [
         "25",
         "Claresta"
+    ],
+    [
+        "CLA",
+        "CLAYTON"
+    ],
+    [
+        "CLT",
+        "Clovertek"
     ],
     [
         "1J",
@@ -956,6 +1116,14 @@
         "Connectce"
     ],
     [
+        "CON",
+        "Conceptum"
+    ],
+    [
+        "CED",
+        "Continental Edison"
+    ],
+    [
         "9C",
         "Colors"
     ],
@@ -966,6 +1134,10 @@
     [
         "COO",
         "Coopers"
+    ],
+    [
+        "CDE",
+        "COOD-E"
     ],
     [
         "4R",
@@ -986,6 +1158,10 @@
     [
         "QG",
         "COYOTE"
+    ],
+    [
+        "CKK",
+        "CKK Mobile"
     ],
     [
         "YW",
@@ -1024,12 +1200,20 @@
         "Crown"
     ],
     [
+        "CTR",
+        "Ctroniq"
+    ],
+    [
         "CU",
         "Cube"
     ],
     [
         "CB",
         "CUBOT"
+    ],
+    [
+        "CUI",
+        "Cuiud"
     ],
     [
         "CV",
@@ -1054,6 +1238,14 @@
     [
         "DAN",
         "Dany"
+    ],
+    [
+        "DA1",
+        "DangcapHD"
+    ],
+    [
+        "DAR",
+        "Daria"
     ],
     [
         "DT",
@@ -1112,6 +1304,10 @@
         "Desay"
     ],
     [
+        "DSD",
+        "DSDevices"
+    ],
+    [
         "DSI",
         "DSIC"
     ],
@@ -1148,6 +1344,10 @@
         "Dialog"
     ],
     [
+        "DIA",
+        "DIALN"
+    ],
+    [
         "DI",
         "Dicam"
     ],
@@ -1172,6 +1372,10 @@
         "Digiland"
     ],
     [
+        "DIJ",
+        "DIJITSU"
+    ],
+    [
         "DIG",
         "Digit4G"
     ],
@@ -1184,8 +1388,16 @@
         "DIGIFORS"
     ],
     [
+        "DIK",
+        "DIKOM"
+    ],
+    [
         "DQ",
         "DISH"
+    ],
+    [
+        "DIS",
+        "Disney"
     ],
     [
         "9D",
@@ -1208,6 +1420,10 @@
         "Divisat"
     ],
     [
+        "DIO",
+        "DIORA"
+    ],
+    [
         "X6",
         "DIXON"
     ],
@@ -1222,6 +1438,10 @@
     [
         "DIN",
         "Dinax"
+    ],
+    [
+        "DNA",
+        "Dinalink"
     ],
     [
         "DM",
@@ -1264,6 +1484,10 @@
         "Dopod"
     ],
     [
+        "DPA",
+        "DPA"
+    ],
+    [
         "JQ",
         "Doppio"
     ],
@@ -1274,6 +1498,10 @@
     [
         "ZD",
         "DORLAND"
+    ],
+    [
+        "DRO",
+        "Droidlogic"
     ],
     [
         "D8",
@@ -1316,6 +1544,14 @@
         "Duubee"
     ],
     [
+        "DUR",
+        "Durabook"
+    ],
+    [
+        "DYO",
+        "Dyon"
+    ],
+    [
         "DTE",
         "D-Tech"
     ],
@@ -1330,6 +1566,14 @@
     [
         "IN2",
         "iNOVA"
+    ],
+    [
+        "IN3",
+        "inovo"
+    ],
+    [
+        "INH",
+        "Inhon"
     ],
     [
         "EB",
@@ -1356,12 +1600,20 @@
         "E-tel"
     ],
     [
+        "EAS",
+        "EAS Electric"
+    ],
+    [
         "EP",
         "Easypix"
     ],
     [
         "EQ",
         "Eagle"
+    ],
+    [
+        "EGS",
+        "EagleSoar"
     ],
     [
         "EA",
@@ -1394,6 +1646,10 @@
     [
         "ZZ",
         "ecom"
+    ],
+    [
+        "EDE",
+        "Edenwood"
     ],
     [
         "E6",
@@ -1432,6 +1688,10 @@
         "EKT"
     ],
     [
+        "EKI",
+        "EKINOX"
+    ],
+    [
         "7E",
         "ELARI"
     ],
@@ -1446,6 +1706,10 @@
     [
         "EL1",
         "Elecson"
+    ],
+    [
+        "ELK",
+        "Elektroland"
     ],
     [
         "L0",
@@ -1500,6 +1764,10 @@
         "Epik One"
     ],
     [
+        "EPK",
+        "Epic"
+    ],
+    [
         "XP",
         "Epson"
     ],
@@ -1534,6 +1802,10 @@
     [
         "6E",
         "eSTAR"
+    ],
+    [
+        "ETO",
+        "ETOE"
     ],
     [
         "EN",
@@ -1608,6 +1880,10 @@
         "Explay"
     ],
     [
+        "EXP",
+        "Express LUCK"
+    ],
+    [
         "E5",
         "Extrem"
     ],
@@ -1632,12 +1908,20 @@
         "EYU"
     ],
     [
+        "EYE",
+        "Eyemoo"
+    ],
+    [
         "UE1",
         "UE"
     ],
     [
         "5F",
         "F150"
+    ],
+    [
+        "FPS",
+        "F+"
     ],
     [
         "F6",
@@ -1684,6 +1968,10 @@
         "Fengxiang"
     ],
     [
+        "FEN",
+        "Fenoti"
+    ],
+    [
         "F7",
         "Fero"
     ],
@@ -1724,6 +2012,14 @@
         "FISE"
     ],
     [
+        "FIT",
+        "FITCO"
+    ],
+    [
+        "FLM",
+        "Filimo"
+    ],
+    [
         "FIL",
         "FILIX"
     ],
@@ -1736,12 +2032,20 @@
         "FLYCAT"
     ],
     [
+        "FLY",
+        "FLYCOAY"
+    ],
+    [
         "FLU",
         "Fluo"
     ],
     [
         "FN",
         "FNB"
+    ],
+    [
+        "FOB",
+        "Fobem"
     ],
     [
         "FD",
@@ -1788,8 +2092,20 @@
         "FOODO"
     ],
     [
+        "FOS",
+        "FOSSiBOT"
+    ],
+    [
+        "FRE",
+        "free"
+    ],
+    [
         "FT",
         "Freetel"
+    ],
+    [
+        "FEY",
+        "FreeYond"
     ],
     [
         "FRU",
@@ -1848,8 +2164,16 @@
         "G-Touch"
     ],
     [
+        "GFO",
+        "Gfone"
+    ],
+    [
         "GTM",
         "GTMEDIA"
+    ],
+    [
+        "GTX",
+        "GTX"
     ],
     [
         "0G",
@@ -1868,12 +2192,24 @@
         "Galaxy Innovations"
     ],
     [
+        "GA1",
+        "Galactic"
+    ],
+    [
+        "GAM",
+        "Gamma"
+    ],
+    [
         "GAZ",
         "Gazer"
     ],
     [
         "GEA",
         "Geanee"
+    ],
+    [
+        "GEN",
+        "Geant"
     ],
     [
         "GD",
@@ -1902,6 +2238,10 @@
     [
         "GEO",
         "GEOZON"
+    ],
+    [
+        "GNO",
+        "Getnord"
     ],
     [
         "GER",
@@ -1948,6 +2288,10 @@
         "Globex"
     ],
     [
+        "GLB",
+        "Globmall"
+    ],
+    [
         "38",
         "GLONYX"
     ],
@@ -1980,6 +2324,10 @@
         "GoldMaster"
     ],
     [
+        "GOB",
+        "GOLDBERG"
+    ],
+    [
         "GX",
         "GLX"
     ],
@@ -2004,12 +2352,20 @@
         "Gooweel"
     ],
     [
+        "GOO",
+        "GOODTEL"
+    ],
+    [
         "8G",
         "Gplus"
     ],
     [
         "GR",
         "Gradiente"
+    ],
+    [
+        "GRE",
+        "Graetz"
     ],
     [
         "GP",
@@ -2026,6 +2382,18 @@
     [
         "3G",
         "Greentel"
+    ],
+    [
+        "GRO",
+        "Green Orange"
+    ],
+    [
+        "GRL",
+        "Green Lion"
+    ],
+    [
+        "GR1",
+        "GroBerwert"
     ],
     [
         "GF",
@@ -2064,8 +2432,16 @@
         "HAOVM"
     ],
     [
+        "HAQ",
+        "HAOQIN"
+    ],
+    [
         "HA",
         "Haier"
+    ],
+    [
+        "HEC",
+        "HEC"
     ],
     [
         "XH",
@@ -2078,6 +2454,10 @@
     [
         "HE",
         "HannSpree"
+    ],
+    [
+        "HNS",
+        "Hanseatic"
     ],
     [
         "HK",
@@ -2104,6 +2484,10 @@
         "Hammer"
     ],
     [
+        "HAT",
+        "Hathway"
+    ],
+    [
         "H6",
         "Helio"
     ],
@@ -2124,6 +2508,10 @@
         "HeadWolf"
     ],
     [
+        "HEI",
+        "Heimat"
+    ],
+    [
         "HL",
         "Hi-Level"
     ],
@@ -2134,6 +2522,10 @@
     [
         "HIB",
         "Hiberg"
+    ],
+    [
+        "HBY",
+        "HiBy"
     ],
     [
         "HIH",
@@ -2152,12 +2544,24 @@
         "High Q"
     ],
     [
+        "HIG",
+        "HiGrace"
+    ],
+    [
         "1H",
         "Hipstreet"
     ],
     [
+        "HIR",
+        "Hiremco"
+    ],
+    [
         "HI",
         "Hisense"
+    ],
+    [
+        "HIP",
+        "HIPER"
     ],
     [
         "HC",
@@ -2180,16 +2584,32 @@
         "HLLO"
     ],
     [
+        "HKC",
+        "HKC"
+    ],
+    [
         "8W",
         "HKPro"
+    ],
+    [
+        "HOF",
+        "HOFER"
     ],
     [
         "H1",
         "Hoffmann"
     ],
     [
+        "HOM",
+        "Homatics"
+    ],
+    [
         "H0",
         "Hometech"
+    ],
+    [
+        "HLB",
+        "HOLLEBERG"
     ],
     [
         "HM",
@@ -2320,6 +2740,10 @@
         "I-INN"
     ],
     [
+        "IPL",
+        "I-Plus"
+    ],
+    [
         "OF",
         "iOutdoor"
     ],
@@ -2336,12 +2760,20 @@
         "iBrit"
     ],
     [
+        "IBO",
+        "ibowin"
+    ],
+    [
         "I2",
         "IconBIT"
     ],
     [
         "IC",
         "iDroid"
+    ],
+    [
+        "IDI",
+        "iDino"
     ],
     [
         "6Z",
@@ -2380,6 +2812,10 @@
         "iKon"
     ],
     [
+        "588",
+        "iKonia"
+    ],
+    [
         "I7",
         "iLA"
     ],
@@ -2400,8 +2836,16 @@
         "iMan"
     ],
     [
+        "ILE",
+        "iLepo"
+    ],
+    [
         "IL",
         "IMO Mobile"
+    ],
+    [
+        "IMA",
+        "Imaq"
     ],
     [
         "IM1",
@@ -2422,6 +2866,10 @@
     [
         "6I",
         "Inco"
+    ],
+    [
+        "INK",
+        "Inka"
     ],
     [
         "IW",
@@ -2446,6 +2894,10 @@
     [
         "II",
         "Inkti"
+    ],
+    [
+        "MIR",
+        "Infomir"
     ],
     [
         "81",
@@ -2616,6 +3068,10 @@
         "iXTech"
     ],
     [
+        "IOT",
+        "IOTWE"
+    ],
+    [
         "JA",
         "JAY-Tech"
     ],
@@ -2626,6 +3082,10 @@
     [
         "JD",
         "Jedi"
+    ],
+    [
+        "JEE",
+        "Jeep"
     ],
     [
         "J6",
@@ -2642,6 +3102,10 @@
     [
         "JG",
         "Jinga"
+    ],
+    [
+        "JIN",
+        "Jin Tu"
     ],
     [
         "JX",
@@ -2764,12 +3228,20 @@
         "Keneksi"
     ],
     [
+        "KHI",
+        "KENSHI"
+    ],
+    [
         "KX",
         "Kenxinda"
     ],
     [
         "KEN",
         "Kenbo"
+    ],
+    [
+        "KND",
+        "Kendo"
     ],
     [
         "KZG",
@@ -2786,6 +3258,10 @@
     [
         "KI",
         "Kingsun"
+    ],
+    [
+        "KIS",
+        "Kinstone"
     ],
     [
         "KF",
@@ -2810,6 +3286,10 @@
     [
         "0K",
         "Klipad"
+    ],
+    [
+        "KNM",
+        "KN Mobile"
     ],
     [
         "KC",
@@ -2876,12 +3356,20 @@
         "KRIP"
     ],
     [
+        "KRA",
+        "Kraft"
+    ],
+    [
         "KH",
         "KT-Tech"
     ],
     [
         "Z6",
         "KUBO"
+    ],
+    [
+        "KUG",
+        "KuGou"
     ],
     [
         "K8",
@@ -2898,6 +3386,10 @@
     [
         "6K",
         "Kurio"
+    ],
+    [
+        "KYD",
+        "Kydos"
     ],
     [
         "KY",
@@ -2948,6 +3440,10 @@
         "Lava"
     ],
     [
+        "LVI",
+        "Lville"
+    ],
+    [
         "LC",
         "LCT"
     ],
@@ -2990,6 +3486,10 @@
     [
         "W9",
         "LEMFO"
+    ],
+    [
+        "LEM",
+        "Lemco"
     ],
     [
         "LN",
@@ -3040,12 +3540,24 @@
         "Linsar"
     ],
     [
+        "LIN",
+        "Linsay"
+    ],
+    [
         "LF",
         "Lifemaxx"
     ],
     [
         "LI",
         "Lingwin"
+    ],
+    [
+        "LIB",
+        "Lingbo"
+    ],
+    [
+        "LIM",
+        "Lime"
     ],
     [
         "LJ",
@@ -3086,6 +3598,10 @@
     [
         "LM",
         "Logicom"
+    ],
+    [
+        "LOG",
+        "Logik"
     ],
     [
         "GY",
@@ -3152,6 +3668,10 @@
         "Mafe"
     ],
     [
+        "MAG",
+        "MAG"
+    ],
+    [
         "6Y",
         "Magicsee"
     ],
@@ -3212,6 +3732,10 @@
         "Matrix"
     ],
     [
+        "MAT",
+        "Matco Tools"
+    ],
+    [
         "7M",
         "Maxcom"
     ],
@@ -3230,6 +3754,10 @@
     [
         "0D",
         "MAXVI"
+    ],
+    [
+        "MAX",
+        "Maxwell"
     ],
     [
         "XZ",
@@ -3252,12 +3780,20 @@
         "Malata"
     ],
     [
+        "MAU",
+        "Maunfeld"
+    ],
+    [
         "28",
         "MBOX"
     ],
     [
         "FK",
         "MBI"
+    ],
+    [
+        "MBK",
+        "MBK"
     ],
     [
         "3D",
@@ -3284,6 +3820,10 @@
         "Mecool"
     ],
     [
+        "MEM",
+        "MeMobile"
+    ],
+    [
         "MC",
         "Mediacom"
     ],
@@ -3298,6 +3838,10 @@
     [
         "M2",
         "MEEG"
+    ],
+    [
+        "MEG",
+        "MEGA VISION"
     ],
     [
         "MP",
@@ -3328,12 +3872,20 @@
         "Metz"
     ],
     [
+        "MEO",
+        "MEO"
+    ],
+    [
         "MX",
         "MEU"
     ],
     [
         "MI",
         "MicroMax"
+    ],
+    [
+        "MIP",
+        "mipo"
     ],
     [
         "MS",
@@ -3366,6 +3918,10 @@
     [
         "M7",
         "Miray"
+    ],
+    [
+        "MIT",
+        "Mitchell & Brown"
     ],
     [
         "8M",
@@ -3402,6 +3958,10 @@
     [
         "LS",
         "MLS"
+    ],
+    [
+        "MLA",
+        "MLAB"
     ],
     [
         "5H",
@@ -3444,6 +4004,10 @@
         "Mobell"
     ],
     [
+        "MVO",
+        "Mobvoi"
+    ],
+    [
         "M4",
         "Modecom"
     ],
@@ -3454,6 +4018,10 @@
     [
         "MR",
         "Motorola"
+    ],
+    [
+        "MIV",
+        "Motiv"
     ],
     [
         "MV",
@@ -3506,6 +4074,10 @@
     [
         "1R",
         "Multilaser"
+    ],
+    [
+        "MPS",
+        "MultiPOS"
     ],
     [
         "1M",
@@ -3588,12 +4160,20 @@
         "NavRoad"
     ],
     [
+        "NAB",
+        "NABO"
+    ],
+    [
         "NAS",
         "NASCO"
     ],
     [
         "NP",
         "Naomi Phone"
+    ],
+    [
+        "NAN",
+        "Nanho"
     ],
     [
         "NE",
@@ -3632,6 +4212,10 @@
         "Neolix"
     ],
     [
+        "NET",
+        "NetBox"
+    ],
+    [
         "NA",
         "Netgear"
     ],
@@ -3642,6 +4226,14 @@
     [
         "NU",
         "NeuImage"
+    ],
+    [
+        "NEU",
+        "NeuTab"
+    ],
+    [
+        "NEV",
+        "NEVIR"
     ],
     [
         "NW",
@@ -3708,6 +4300,10 @@
         "NEXT"
     ],
     [
+        "NST",
+        "Next & NextStar"
+    ],
+    [
         "NJO",
         "nJoy"
     ],
@@ -3718,6 +4314,10 @@
     [
         "NZ",
         "NG Optics"
+    ],
+    [
+        "NZP",
+        "NGpon"
     ],
     [
         "NN",
@@ -3742,6 +4342,14 @@
     [
         "N6",
         "Nobby"
+    ],
+    [
+        "NOC",
+        "Novacom"
+    ],
+    [
+        "NOS",
+        "NoviSea"
     ],
     [
         "NOV",
@@ -3788,6 +4396,10 @@
         "Nordmende"
     ],
     [
+        "NOR",
+        "NORMANDE"
+    ],
+    [
         "7N",
         "NorthTech"
     ],
@@ -3806,6 +4418,10 @@
     [
         "NQ",
         "Novex"
+    ],
+    [
+        "NOD",
+        "noDROPOUT"
     ],
     [
         "NJ",
@@ -3832,6 +4448,10 @@
         "NYX Mobile"
     ],
     [
+        "NON",
+        "N-one"
+    ],
+    [
         "O3",
         "O+"
     ],
@@ -3850,6 +4470,10 @@
     [
         "OB",
         "Obi"
+    ],
+    [
+        "OBR",
+        "Ober"
     ],
     [
         "OQ",
@@ -3872,12 +4496,24 @@
         "Okapia"
     ],
     [
+        "OKI",
+        "Oking"
+    ],
+    [
         "OLA",
         "Olax"
     ],
     [
+        "OLK",
+        "Olkya"
+    ],
+    [
         "OLY",
         "Olympia"
+    ],
+    [
+        "OCE",
+        "OCEANIC"
     ],
     [
         "OLT",
@@ -3900,12 +4536,20 @@
         "OneClick"
     ],
     [
+        "ONL",
+        "OneLern"
+    ],
+    [
         "OAN",
         "Oangcc"
     ],
     [
         "OX",
         "Onix"
+    ],
+    [
+        "OIN",
+        "Onida"
     ],
     [
         "3O",
@@ -3918,6 +4562,14 @@
     [
         "9Q",
         "Onkyo"
+    ],
+    [
+        "ONV",
+        "ONVO"
+    ],
+    [
+        "OOR",
+        "Ooredoo"
     ],
     [
         "2O",
@@ -3950,6 +4602,10 @@
     [
         "OR",
         "Orange"
+    ],
+    [
+        "ORA",
+        "Orava"
     ],
     [
         "O5",
@@ -4048,6 +4704,18 @@
         "P-UP"
     ],
     [
+        "PRA",
+        "Pacific Research Alliance"
+    ],
+    [
+        "PAG",
+        "PAGRAER"
+    ],
+    [
+        "PAD",
+        "Padpro"
+    ],
+    [
         "YP",
         "Paladin"
     ],
@@ -4064,12 +4732,28 @@
         "Panasonic"
     ],
     [
+        "PNV",
+        "Panavox"
+    ],
+    [
         "PT",
         "Pantech"
     ],
     [
         "PAN",
         "Pano"
+    ],
+    [
+        "PND",
+        "Panodic"
+    ],
+    [
+        "PA1",
+        "Panoramic"
+    ],
+    [
+        "PLT",
+        "Platoon"
     ],
     [
         "94",
@@ -4106,6 +4790,10 @@
     [
         "PE",
         "PEAQ"
+    ],
+    [
+        "PEN",
+        "Penta"
     ],
     [
         "PG",
@@ -4182,6 +4870,10 @@
     [
         "9P",
         "Planet Computers"
+    ],
+    [
+        "PLA",
+        "Play Now"
     ],
     [
         "PY",
@@ -4268,6 +4960,10 @@
         "Premio"
     ],
     [
+        "PR1",
+        "Premier"
+    ],
+    [
         "PR",
         "Prestigio"
     ],
@@ -4308,6 +5004,10 @@
         "ProScan"
     ],
     [
+        "PRO",
+        "PROSONIC"
+    ],
+    [
         "P7",
         "Protruly"
     ],
@@ -4328,6 +5028,10 @@
         "Purism"
     ],
     [
+        "PUN",
+        "Punos"
+    ],
+    [
         "QFX",
         "QFX"
     ],
@@ -4346,6 +5050,10 @@
     [
         "QI",
         "Qilive"
+    ],
+    [
+        "QIN",
+        "QIN"
     ],
     [
         "QM",
@@ -4398,6 +5106,10 @@
     [
         "WJ",
         "Qware"
+    ],
+    [
+        "QWT",
+        "QWATT"
     ],
     [
         "R2",
@@ -4462,6 +5174,10 @@
     [
         "6F",
         "Redfox"
+    ],
+    [
+        "RE2",
+        "RedLine"
     ],
     [
         "RD",
@@ -4540,6 +5256,10 @@
         "Rokit"
     ],
     [
+        "ROI",
+        "ROiK"
+    ],
+    [
         "RK",
         "Roku"
     ],
@@ -4580,8 +5300,16 @@
         "Ruggex"
     ],
     [
+        "RUT",
+        "RuggeTech"
+    ],
+    [
         "RU",
         "Runbo"
+    ],
+    [
+        "RUP",
+        "Rupa"
     ],
     [
         "RL",
@@ -4600,6 +5328,10 @@
         "S-TELL"
     ],
     [
+        "8L1",
+        "S-Color"
+    ],
+    [
         "4O",
         "S2Tel"
     ],
@@ -4612,8 +5344,16 @@
         "Sewoo"
     ],
     [
+        "SE1",
+        "SEEWO"
+    ],
+    [
         "Y7",
         "Saiet"
+    ],
+    [
+        "SLF",
+        "SAILF"
     ],
     [
         "X1",
@@ -4622,6 +5362,10 @@
     [
         "SG",
         "Sagem"
+    ],
+    [
+        "SAG",
+        "Sagemcom"
     ],
     [
         "4L",
@@ -4634,6 +5378,10 @@
     [
         "SAT",
         "Samtech"
+    ],
+    [
+        "SAM",
+        "Samtron"
     ],
     [
         "SNA",
@@ -4688,6 +5436,10 @@
         "SEG"
     ],
     [
+        "SEX",
+        "SEHMAX"
+    ],
+    [
         "SD",
         "Sega"
     ],
@@ -4734,6 +5486,10 @@
     [
         "24",
         "Seeken"
+    ],
+    [
+        "SEB",
+        "SEBBE"
     ],
     [
         "61",
@@ -4792,12 +5548,20 @@
         "Silent Circle"
     ],
     [
+        "SIL",
+        "Silva Schneider"
+    ],
+    [
         "10",
         "Simbans"
     ],
     [
         "98",
         "Simply"
+    ],
+    [
+        "SIM",
+        "simfer"
     ],
     [
         "52",
@@ -4830,6 +5594,18 @@
     [
         "SKY",
         "Skyline"
+    ],
+    [
+        "SK1",
+        "SkyStream"
+    ],
+    [
+        "SKT",
+        "Skytech"
+    ],
+    [
+        "SKK",
+        "SKK Mobile"
     ],
     [
         "14",
@@ -4916,12 +5692,20 @@
         "Soda"
     ],
     [
+        "SOL",
+        "Solas"
+    ],
+    [
         "16",
         "Solone"
     ],
     [
         "OI",
         "Sonim"
+    ],
+    [
+        "SVE",
+        "Sveon"
     ],
     [
         "SO",
@@ -4936,6 +5720,10 @@
         "Soundmax"
     ],
     [
+        "SUL",
+        "SoulLink"
+    ],
+    [
         "8S",
         "Soyes"
     ],
@@ -4948,8 +5736,16 @@
         "Soho Style"
     ],
     [
+        "SOB",
+        "SobieTech"
+    ],
+    [
         "PK",
         "Spark"
+    ],
+    [
+        "SPX",
+        "Sparx"
     ],
     [
         "FS",
@@ -4970,6 +5766,10 @@
     [
         "84",
         "Sprint"
+    ],
+    [
+        "SPU",
+        "SPURT"
     ],
     [
         "QS",
@@ -5072,6 +5872,14 @@
         "SuperBOX"
     ],
     [
+        "SBR",
+        "Sber"
+    ],
+    [
+        "SGE",
+        "Super General"
+    ],
+    [
         "SU",
         "SuperSonic"
     ],
@@ -5082,6 +5890,10 @@
     [
         "S5",
         "Supra"
+    ],
+    [
+        "SUP",
+        "Supraim"
     ],
     [
         "ZS",
@@ -5112,10 +5924,6 @@
         "Swisstone"
     ],
     [
-        "W7",
-        "SWTV"
-    ],
-    [
         "SSK",
         "SSKY"
     ],
@@ -5132,12 +5940,20 @@
         "Syrox"
     ],
     [
+        "SYS",
+        "System76"
+    ],
+    [
         "TM",
         "T-Mobile"
     ],
     [
         "T96",
         "T96"
+    ],
+    [
+        "TAD",
+        "TADAAM"
     ],
     [
         "TK",
@@ -5162,6 +5978,10 @@
     [
         "7G",
         "TAG Tech"
+    ],
+    [
+        "TAU",
+        "TAUBE"
     ],
     [
         "T5",
@@ -5192,6 +6012,10 @@
         "Technika"
     ],
     [
+        "TE1",
+        "TechSmart"
+    ],
+    [
         "TX",
         "TechniSat"
     ],
@@ -5200,8 +6024,16 @@
         "TechnoTrend"
     ],
     [
+        "TTS",
+        "TECHNOSAT"
+    ],
+    [
         "TP",
         "TechPad"
+    ],
+    [
+        "TPS",
+        "TPS"
     ],
     [
         "9E",
@@ -5210,6 +6042,10 @@
     [
         "7F",
         "Technopc"
+    ],
+    [
+        "TCH",
+        "Techstorm"
     ],
     [
         "T7",
@@ -5226,6 +6062,10 @@
     [
         "91",
         "TEENO"
+    ],
+    [
+        "TLK",
+        "Telkom"
     ],
     [
         "2L",
@@ -5250,6 +6090,10 @@
     [
         "65",
         "Telia"
+    ],
+    [
+        "TLY",
+        "Telly"
     ],
     [
         "TEL",
@@ -5372,6 +6216,10 @@
         "Tooky"
     ],
     [
+        "TOO",
+        "TOOGO"
+    ],
+    [
         "T9",
         "Top House"
     ],
@@ -5390,6 +6238,14 @@
     [
         "TOD",
         "TOPDON"
+    ],
+    [
+        "TOP",
+        "TopDevice"
+    ],
+    [
+        "TO2",
+        "TOPSHOWS"
     ],
     [
         "7T",
@@ -5432,6 +6288,10 @@
         "Trevi"
     ],
     [
+        "TRI",
+        "TriaPlay"
+    ],
+    [
         "TJ",
         "Trifone"
     ],
@@ -5456,8 +6316,16 @@
         "Trio"
     ],
     [
+        "THT",
+        "Tsinghua Tongfang"
+    ],
+    [
         "5C",
         "TTEC"
+    ],
+    [
+        "TTF",
+        "TTfone"
     ],
     [
         "TTK",
@@ -5492,6 +6360,10 @@
         "TuCEL"
     ],
     [
+        "TUV",
+        "Tuvio"
+    ],
+    [
         "2U",
         "T\u00fcrk Telekom"
     ],
@@ -5512,12 +6384,24 @@
         "Twoe"
     ],
     [
+        "TWN",
+        "TwinMOS"
+    ],
+    [
         "15",
         "Tymes"
     ],
     [
         "UC",
         "U.S. Cellular"
+    ],
+    [
+        "UD1",
+        "UD"
+    ],
+    [
+        "UGI",
+        "UGINE"
     ],
     [
         "UG",
@@ -5600,6 +6484,10 @@
         "UNNO"
     ],
     [
+        "UOO",
+        "UOOGOU"
+    ],
+    [
         "UNB",
         "Unblock Tech"
     ],
@@ -5656,6 +6544,14 @@
         "VALTECH"
     ],
     [
+        "VAN",
+        "VANGUARD"
+    ],
+    [
+        "VAW",
+        "VANWIN"
+    ],
+    [
         "VB",
         "VC"
     ],
@@ -5700,6 +6596,10 @@
         "Vertu"
     ],
     [
+        "VET",
+        "VETAS"
+    ],
+    [
         "VL",
         "Verykool"
     ],
@@ -5714,6 +6614,10 @@
     [
         "V8",
         "Vesta"
+    ],
+    [
+        "VEK",
+        "Vekta"
     ],
     [
         "VT",
@@ -5772,6 +6676,10 @@
         "Virzo"
     ],
     [
+        "VIP",
+        "Viper"
+    ],
+    [
         "VI",
         "Vitelcom"
     ],
@@ -5800,6 +6708,10 @@
         "VIWA"
     ],
     [
+        "VII",
+        "VIIPOO"
+    ],
+    [
         "VID",
         "VIDA"
     ],
@@ -5812,8 +6724,16 @@
         "Vizmo"
     ],
     [
+        "VIT",
+        "Vityaz"
+    ],
+    [
         "9V",
         "Vision Touch"
+    ],
+    [
+        "VIL",
+        "Visual Land"
     ],
     [
         "VK",
@@ -5842,6 +6762,10 @@
     [
         "VM",
         "Vodacom"
+    ],
+    [
+        "VOC",
+        "VOCAL"
     ],
     [
         "VF",
@@ -5904,6 +6828,14 @@
         "Volt"
     ],
     [
+        "VOP",
+        "Volla"
+    ],
+    [
+        "V02",
+        "VOLIA"
+    ],
+    [
         "VH",
         "Vsmart"
     ],
@@ -5924,20 +6856,52 @@
         "VUCATIMES"
     ],
     [
+        "VO2",
+        "VOLKANO"
+    ],
+    [
         "VUE",
         "Vue Micro"
+    ],
+    [
+        "WAK",
+        "Walker"
     ],
     [
         "WA",
         "Walton"
     ],
     [
+        "WAF",
+        "WAF"
+    ],
+    [
+        "WAO",
+        "W&O"
+    ],
+    [
         "WAL",
         "Waltter"
     ],
     [
+        "WAI",
+        "Wainyok"
+    ],
+    [
         "WHI",
         "White Mobile"
+    ],
+    [
+        "WHO",
+        "Whoop"
+    ],
+    [
+        "WBL",
+        "We. by Loewe."
+    ],
+    [
+        "WCP",
+        "WeChip"
     ],
     [
         "WM",
@@ -6052,6 +7016,10 @@
         "Wolki"
     ],
     [
+        "WON",
+        "WONDER"
+    ],
+    [
         "WO",
         "Wonu"
     ],
@@ -6108,8 +7076,16 @@
         "X96Q"
     ],
     [
+        "A95",
+        "A95X"
+    ],
+    [
         "XG",
         "Xgody"
+    ],
+    [
+        "XGE",
+        "XGEM"
     ],
     [
         "QX",
@@ -6144,6 +7120,10 @@
         "Xshitou"
     ],
     [
+        "XSM",
+        "Xsmart"
+    ],
+    [
         "4X",
         "Xtouch"
     ],
@@ -6158,6 +7138,10 @@
     [
         "XCO",
         "XCOM"
+    ],
+    [
+        "XCL",
+        "Xcell"
     ],
     [
         "XWA",
@@ -6284,6 +7268,10 @@
         "Zebra"
     ],
     [
+        "ZE1",
+        "Zeblaze"
+    ],
+    [
         "ZE",
         "Zeemi"
     ],
@@ -6324,6 +7312,14 @@
         "ZIK"
     ],
     [
+        "ZKI",
+        "Z-Kai"
+    ],
+    [
+        "ZIG",
+        "Zigo"
+    ],
+    [
         "ZIN",
         "Zinox"
     ],
@@ -6342,6 +7338,10 @@
     [
         "ZOO",
         "ZoomSmart"
+    ],
+    [
+        "ZO1",
+        "Zoom"
     ],
     [
         "ZT",
@@ -6370,6 +7370,14 @@
     [
         "OW",
         "\u00f6wn"
+    ],
+    [
+        "WBF",
+        "Webfleet"
+    ],
+    [
+        "WSS",
+        "WS"
     ],
     [
         "WB",

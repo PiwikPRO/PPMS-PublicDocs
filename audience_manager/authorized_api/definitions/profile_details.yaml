@@ -32,11 +32,13 @@ allOf:
             description: Number of conversions.
             example: 4
           last_revenue:
-            type: float
+            type: number
+            format: float
             description: Amount of last transaction.
             example: 13.37
           total_revenue:
-            type: float
+            type: number
+            format: float
             description: Total amount of transactions tracked by audience manager.
             example: 13.37
       generic:

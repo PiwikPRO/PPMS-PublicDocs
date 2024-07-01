@@ -1,0 +1,399 @@
+openapi: 3.1.0
+info:
+  title: CDP Webhook API Documentation
+  version: 0.0.0
+  description: This is the documentation of the CDP Webhook API service.
+servers:
+  - url: https://organization.piwik.pro
+paths:
+  /api/cdp/settings/v1/app/{app_id}/webhook-import:
+    parameters:
+      - $ref: "../components.yaml#/components/parameters/AppId"
+    get:
+      summary: List webhook imports
+      security:
+        - JWTAuth: []
+      operationId: list-webhook-imports
+      description: Returns all registered webhook imports for the given app.
+      responses:
+        200:
+          content:
+            application/vnd.api+json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/WebhookImportGetData"
+          description: List of registered webhook imports.
+        400:
+          $ref: "../components.yaml#/components/responses/BadRequestError"
+        401:
+          $ref: "../components.yaml#/components/responses/UnauthorizedError"
+        402:
+          $ref: "../components.yaml#/components/responses/ModuleDisabledError"
+        404:
+          $ref: "../components.yaml#/components/responses/NotFoundError"
+        500:
+          $ref: "../components.yaml#/components/responses/InternalServerError"
+    post:
+      summary: Create webhook import
+      security:
+        - JWTAuth: []
+      operationId: post-webhook-import
+      description: Create a new webhook import definition. Webhook import ID is optional, if absent, it'll be randomly generated.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/WebhookImportPostData"
+      responses:
+        201:
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: "#/components/schemas/WebhookImportGetData"
+          description: Created webhook import object.
+        400:
+          $ref: "../components.yaml#/components/responses/BadRequestError"
+        401:
+          $ref: "../components.yaml#/components/responses/UnauthorizedError"
+        402:
+          $ref: "../components.yaml#/components/responses/ModuleDisabledError"
+        404:
+          $ref: "../components.yaml#/components/responses/NotFoundError"
+        500:
+          $ref: "../components.yaml#/components/responses/InternalServerError"
+  /api/cdp/settings/v1/app/{app_id}/webhook-import/{id}:
+    parameters:
+      - $ref: "../components.yaml#/components/parameters/AppId"
+      - $ref: "#/components/parameters/WebhookImportId"
+    get:
+      summary: Fetch webhook import
+      security:
+        - JWTAuth: []
+      operationId: get-webhook-import
+      description: Get single webhook import definition
+      responses:
+        200:
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: "#/components/schemas/WebhookImportGetData"
+          description: Webhook import object matching given ID
+        400:
+          $ref: "../components.yaml#/components/responses/BadRequestError"
+        401:
+          $ref: "../components.yaml#/components/responses/UnauthorizedError"
+        402:
+          $ref: "../components.yaml#/components/responses/ModuleDisabledError"
+        404:
+          $ref: "../components.yaml#/components/responses/NotFoundError"
+        500:
+          $ref: "../components.yaml#/components/responses/InternalServerError"
+    put:
+      summary: Update webhook import
+      security:
+        - JWTAuth: []
+      operationId: put-webhook-import
+      description: Update single webhook import definition
+      requestBody:
+        required: true
+        description: Updated webhook import object
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/WebhookImportPutData"
+      responses:
+        200:
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: "#/components/schemas/WebhookImportGetData"
+          description: Webhook import object after update
+        400:
+          $ref: "../components.yaml#/components/responses/BadRequestError"
+        401:
+          $ref: "../components.yaml#/components/responses/UnauthorizedError"
+        402:
+          $ref: "../components.yaml#/components/responses/ModuleDisabledError"
+        404:
+          $ref: "../components.yaml#/components/responses/NotFoundError"
+        500:
+          $ref: "../components.yaml#/components/responses/InternalServerError"
+    delete:
+      summary: Delete webhook import
+      security:
+        - JWTAuth: []
+      operationId: delete-webhook-import
+      description: Delete single webhook import definition
+      responses:
+        204:
+          description: Webhook import deleted, empty response
+        400:
+          $ref: "../components.yaml#/components/responses/BadRequestError"
+        401:
+          $ref: "../components.yaml#/components/responses/UnauthorizedError"
+        402:
+          $ref: "../components.yaml#/components/responses/ModuleDisabledError"
+        404:
+          $ref: "../components.yaml#/components/responses/NotFoundError"
+        500:
+          $ref: "../components.yaml#/components/responses/InternalServerError"
+  /api/cdp/settings/v1/app/{app_id}/webhook-import/{id}/activate:
+    parameters:
+      - $ref: "../components.yaml#/components/parameters/AppId"
+      - $ref: "#/components/parameters/WebhookImportId"
+    post:
+      summary: Activate webhook import
+      security:
+        - JWTAuth: []
+      operationId: post-webhook-import-activate
+      description: Mark the webhook import as active
+      responses:
+        200:
+          description: A webhook import that has been activated
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: "#/components/schemas/WebhookImportGetData"
+        400:
+          $ref: "../components.yaml#/components/responses/BadRequestError"
+        401:
+          $ref: "../components.yaml#/components/responses/UnauthorizedError"
+        402:
+          $ref: "../components.yaml#/components/responses/ModuleDisabledError"
+        404:
+          $ref: "../components.yaml#/components/responses/NotFoundError"
+        500:
+          $ref: "../components.yaml#/components/responses/InternalServerError"
+  /api/cdp/settings/v1/app/{app_id}/webhook-import/{id}/deactivate:
+    parameters:
+      - $ref: "../components.yaml#/components/parameters/AppId"
+      - $ref: "#/components/parameters/WebhookImportId"
+    post:
+      summary: Deactivate webhook import
+      security:
+        - JWTAuth: []
+      operationId: post-webhook-import-deactivate
+      description: Mark the webhook import as not activated
+      responses:
+        200:
+          description: A webhook import that has been deactivated
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: "#/components/schemas/WebhookImportGetData"
+        400:
+          $ref: "../components.yaml#/components/responses/BadRequestError"
+        401:
+          $ref: "../components.yaml#/components/responses/UnauthorizedError"
+        402:
+          $ref: "../components.yaml#/components/responses/ModuleDisabledError"
+        404:
+          $ref: "../components.yaml#/components/responses/NotFoundError"
+        500:
+          $ref: "../components.yaml#/components/responses/InternalServerError"
+  /api/cdp/webhook/v1/test:
+    get:
+      summary: Test webhook
+      security:
+        - JWTAuth: []
+      operationId: test-webhook
+      description: Send test webhook request to an external service
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/WebhookTestData"
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/WebhookTestResponse"
+          description: An array of webhooks matching given criteria
+        400:
+          $ref: "../components.yaml#/components/responses/BadRequestError"
+        401:
+          $ref: "../components.yaml#/components/responses/UnauthorizedError"
+        402:
+          $ref: "../components.yaml#/components/responses/ModuleDisabledError"
+        404:
+          $ref: "../components.yaml#/components/responses/NotFoundError"
+        500:
+          $ref: "../components.yaml#/components/responses/InternalServerError"
+components:
+  securitySchemes:
+    JWTAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  parameters:
+    WebhookImportId:
+      in: path
+      name: id
+      description: ID of a webhook import
+      required: true
+      schema:
+        type: string
+        format: uuid
+  schemas:
+    WebhookImportBase:
+      type: object
+      properties:
+        name:
+          type: string
+          minLength: 1
+          maxLength: 255
+        identifiers:
+          type: object
+          description: Mapping of incoming keys to profile identifiers, only `cookie_id` or `user_id` allowed as values for now.
+          minProperties: 1
+          maxProperties: 1
+          patternProperties:
+            "^[-_A-Za-z0-9\\.]{1,255}$":
+              type: string
+              enum: ["cookie_id", "user_id"]
+          example: { "email": "user_id" }
+        attributes:
+          type: object
+          description: Mapping of incoming keys to event data keys
+          maxProperties: 100
+          patternProperties:
+            "^[-_A-Za-z0-9\\.]{1,255}$":
+              type: string
+          example:
+            "url": "analytics.event_url"
+            "user.age": "age"
+            "transaction_id": "session_custom_dimension_5"
+        status:
+          type: string
+          enum:
+            - "active"
+            - "inactive"
+          description: Whether the webhook import is active. Cannot be toggled if webhook import has no identifiers or attributes.
+          example: inactive
+    WebhookImportID:
+      type: string
+      format: uuid
+      description: ID of the webhook import
+    TestRequestBodyObject:
+      type: object
+      properties:
+        test_request_body:
+          type: string
+          example: '{"user_id":"test","total_revenue":1}'
+          description: JSON body of the webhook request to store temporarily for setting up the webhook import attribute mappings.
+    CreatedUpdatedAtObject:
+      type: object
+      required:
+        - created_at
+        - updated_at
+      properties:
+        created_at:
+          type: string
+          format: date-time
+          example: "2022-10-17T09:49:16.123456Z"
+          description: Time of the creation of the webhook import.
+        updated_at:
+          type: string
+          format: date-time
+          example: "2022-10-17T09:49:16.123456Z"
+          description: Time when the webhook import's settings were updated.
+    WebhookImportPostData:
+      type: object
+      description: Data necessary for creating a webhook import.
+      required:
+        - name
+        - status
+      allOf:
+        - type: object
+          properties:
+            id:
+              $ref: "#/components/schemas/WebhookImportID"
+        - $ref: "#/components/schemas/WebhookImportBase"
+        - $ref: "#/components/schemas/TestRequestBodyObject"
+    WebhookImportPutData:
+      type: object
+      description: Data necessary for updating a webhook import.
+      required:
+        - name
+        - status
+      allOf:
+        - $ref: "#/components/schemas/WebhookImportBase"
+        - $ref: "#/components/schemas/TestRequestBodyObject"
+    WebhookImportGetData:
+      type: object
+      description: A webhook import object with all info.
+      required:
+        - id
+        - author
+        - name
+        - status
+      allOf:
+        - type: object
+          properties:
+            id:
+              $ref: "#/components/schemas/WebhookImportID"
+            author:
+              $ref: "#/components/schemas/Author"
+        - $ref: "#/components/schemas/WebhookImportBase"
+        - $ref: "#/components/schemas/TestRequestBodyObject"
+        - $ref: "#/components/schemas/CreatedUpdatedAtObject"
+    WebhookTestData:
+      type: object
+      required:
+        - app_id
+        - url
+        - message
+      properties:
+        app_id:
+          type: string
+          format: uuid
+        url:
+          type: string
+          format: url
+          example: "https://organization.piwik.pro/webhook/e83654a9-db71-4752-aac8-5514e8607e81/65ed06ef-b97b-4c83-88db-18b5f98c43ab"
+        message:
+          anyOf:
+            - type: "null"
+            - type: boolean
+            - type: number
+            - type: string
+            - type: object
+            - type: array
+          example:
+            user_id: test
+            total_revenue: 1.0
+    WebhookTestResponse:
+      type: object
+      required:
+        - status
+        - body
+      properties:
+        status:
+          description: Whether request was successful or not
+          type: string
+          enum:
+            - Success
+            - Error
+        response_code:
+          description: Status code (integer + name) of response
+          type: string
+          examples:
+            - 200 OK
+            - 404 Not Found
+        text:
+          description: Content of response body
+          type: string
+          example: OK
+    Author:
+      description: Author of a webhook
+      required:
+        - email
+      type: object
+      properties:
+        email:
+          description: Email of an author
+          type: string
+          format: email
+          example: "author@piwik.pro"
