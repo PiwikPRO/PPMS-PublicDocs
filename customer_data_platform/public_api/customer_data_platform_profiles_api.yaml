@@ -75,6 +75,140 @@ paths:
           $ref: "../components.yaml#/components/responses/ModuleDisabledError"
         500:
           $ref: "../components.yaml#/components/responses/InternalServerError"
+  /cdp/webhook/{app_id}/{import_webhook_id}:
+    get:
+      summary: Data webhook import GET request
+      security: []
+      operationId: get-import-webhook-request
+      description: |
+        Imports data into multiple attributes in an associated profile via webhook GET request.
+      parameters:
+        - $ref: "../components.yaml#/components/parameters/AppId"
+        - in: path
+          name: import_webhook_id
+          description: An webhook import UUID to which the request is sent
+          schema:
+            type: string
+            format: uuid
+            example: e898ae47-61cd-4c9d-9d67-e5a930eb9f39
+          required: true
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/DataImportWebhook"
+      responses:
+        202:
+          description: Request accepted and waiting for processing.
+        400:
+          $ref: "../components.yaml#/components/responses/BadRequestError"
+        402:
+          $ref: "../components.yaml#/components/responses/ModuleDisabledError"
+        404:
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: 404 page not found
+          description: Given application id was not found
+        413:
+          $ref: "../components.yaml#/components/responses/ContentTooLargeError"
+        422:
+          $ref: "../components.yaml#/components/responses/UnprocessableEntityError"
+        429:
+          $ref: "../components.yaml#/components/responses/TooManyRequestsError"
+        500:
+          $ref: "../components.yaml#/components/responses/InternalServerError"
+    post:
+      summary: Data webhook import POST request
+      security: []
+      operationId: post-import-webhook-request
+      description: |
+        Imports data into multiple attributes in an associated profile via webhook POST request.
+      parameters:
+        - $ref: "../components.yaml#/components/parameters/AppId"
+        - in: path
+          name: import_webhook_id
+          description: An webhook import UUID to which the request is sent
+          schema:
+            type: string
+            format: uuid
+            example: e898ae47-61cd-4c9d-9d67-e5a930eb9f39
+          required: true
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/DataImportWebhook"
+      responses:
+        202:
+          description: Request accepted and waiting for processing.
+        400:
+          $ref: "../components.yaml#/components/responses/BadRequestError"
+        402:
+          $ref: "../components.yaml#/components/responses/ModuleDisabledError"
+        404:
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: 404 page not found
+          description: Given application id was not found
+        413:
+          $ref: "../components.yaml#/components/responses/ContentTooLargeError"
+        422:
+          $ref: "../components.yaml#/components/responses/UnprocessableEntityError"
+        429:
+          $ref: "../components.yaml#/components/responses/TooManyRequestsError"
+        500:
+          $ref: "../components.yaml#/components/responses/InternalServerError"
+    put:
+      summary: Data webhook import PUT request
+      security: []
+      operationId: put-import-webhook-request
+      description: |
+        Imports data into multiple attributes in an associated profile via webhook PUT request.
+      parameters:
+        - $ref: "../components.yaml#/components/parameters/AppId"
+        - in: path
+          name: import_webhook_id
+          description: An webhook import UUID to which the request is sent
+          schema:
+            type: string
+            format: uuid
+            example: e898ae47-61cd-4c9d-9d67-e5a930eb9f39
+          required: true
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/DataImportWebhook"
+      responses:
+        202:
+          description: Request accepted and waiting for processing.
+        400:
+          $ref: "../components.yaml#/components/responses/BadRequestError"
+        402:
+          $ref: "../components.yaml#/components/responses/ModuleDisabledError"
+        404:
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: 404 page not found
+          description: Given application id was not found
+        413:
+          $ref: "../components.yaml#/components/responses/ContentTooLargeError"
+        422:
+          $ref: "../components.yaml#/components/responses/UnprocessableEntityError"
+        429:
+          $ref: "../components.yaml#/components/responses/TooManyRequestsError"
+        500:
+          $ref: "../components.yaml#/components/responses/InternalServerError"
+
 
 components:
   schemas:
@@ -145,3 +279,26 @@ components:
           description: Profile ID identifier
           example: "836fa2fea2cf988b"
           format: hex
+    DataImportWebhook:
+      type: object
+      additionalProperties:
+        description: |
+          Data that a profile will be enriched with. Properties in the provided object are mapped according to the webhook import configurations.
+
+          Limits:
+            * String values length limit - 1024 characters
+            * Array elements limit - 1024 elements
+            * Key names length limit - 256 characters
+            * Webhook request size limit - 50kB
+        oneOf:
+          - type: string
+          - type: number
+          - type: boolean
+          - type: string
+            format: date-time
+            description: A string that follows the ISO 8601 date-time notation, such as `2023-07-21T17:32:28Z`.
+      example:
+        occupation: electrician
+        mood: sad
+        contract_end: 2023-12-10T16:30:00Z
+        name: { "first": "john", "last": "doe" }

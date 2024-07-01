@@ -49,6 +49,7 @@ api_definitions = {
     'tag_manager_authorized_api_changelog.json': 'tag_manager/authorized_api/src/changelog.yaml',
     'tag_manager_authorized_api_operations.json': 'tag_manager/authorized_api/src/operations.yaml',
     'customer_data_platform_public_profiles_api.json': 'customer_data_platform/public_api/customer_data_platform_profiles_api.yaml',
+    'customer_data_platform_public_webhooks_api.json': 'customer_data_platform/public_api/customer_data_platform_webhooks_api.yaml',
     'customer_data_platform_authorized_activations_api.json': 'customer_data_platform/authorized_api/customer_data_platform_activations_api.yaml',
     'customer_data_platform_authorized_attributes_api.json': 'customer_data_platform/authorized_api/customer_data_platform_attributes_api.yaml',
     'customer_data_platform_authorized_audiences_api.json': 'customer_data_platform/authorized_api/customer_data_platform_audiences_api.yaml',
