@@ -478,6 +478,57 @@ components:
           type: integer
           description: Total count of objects
           example: 1
+    ErrorObject:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            required:
+              - status
+              - title
+            properties:
+              status:
+                type: string
+                description: the HTTP status code applicable to this problem, expressed as a
+                  string value
+                example: "400"
+              code:
+                type: string
+                description: an application-specific error code, expressed as a string value
+                example: error.default
+              title:
+                type: string
+                description: >
+                  a short, human-readable summary of the problem that SHOULD NOT
+                  change from occurrence to occurrence of the problem, except for
+                  purposes of localization
+                example: Invalid form
+              detail:
+                type: string
+                description: >
+                  a human-readable explanation specific to this occurrence of the
+                  problem. Like `title`, this field’s value can be localized
+                example: This field is invalid
+              source:
+                type: object
+                description: >
+                  an object containing references to the source of the error,
+                  optionally including any of the following members: [pointer,
+                  parameter]
+                properties:
+                  pointer:
+                    type: string
+                    example: /data/attributes/name
+                    description: >
+                      a JSON Pointer [RFC6901] to the associated entity in the request
+                      document [e.g. "/data" for a primary data object, or
+                      "/data/attributes/name" for a specific attribute]
+                  parameter:
+                    type: string
+                    example: offset
+                    description: a string indicating which URI query parameter caused the error
 paths:
   /api/apps/v2:
     get:
@@ -528,7 +579,7 @@ paths:
             application/vnd.api+json:
               schema:
                 allOf:
-                  - $ref: "../users/public_v2.yaml#/components/schemas/ErrorObject"
+                  - $ref: "#/components/schemas/ErrorObject"
               examples:
                 Too long app name:
                   value:
