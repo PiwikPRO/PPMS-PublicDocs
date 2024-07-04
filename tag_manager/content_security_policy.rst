@@ -51,6 +51,8 @@ Consequently, default container code requires following modifications to work:
         </script>
 
 -   **synchronous snippet** - following changes (highlighted) are required:
+.. note::
+    Deprecated: Synchronous containers and tags will be discontinued by October 7, 2024. We recommend removing them and adjusting your setups accordingly. (Read more: https://help.piwik.pro/support/tag-manager/sunset-of-synchronous-containers-and-tags-by-october-7-2024/)
 
     .. code-block:: html
         :emphasize-lines: 1, 8
