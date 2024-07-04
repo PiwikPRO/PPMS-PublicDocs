@@ -16,7 +16,7 @@ If you do not have Tag Manager on your website yet, follow `Install a container 
 #. Click on the "Websites" position.
 #. Choose the website for which you want to implement a tracking code.
 #. Select the "Installation" tab.
-#. The Tag Manager's snippet for your website is displayed under the "Website code for asynchronous tags" or "Website code for synchronous tags".
+#. The Tag Manager's snippet for your website is displayed under the "Website code for asynchronous tags".
 
 In case you do not want to install Tag Manager on your website, you can install tracking code via JavaScript Tracking Snippet. Guide how to do it is available here: :ref:`jtc-installation-installing-tracking-code-via-node-snippet`.
 
