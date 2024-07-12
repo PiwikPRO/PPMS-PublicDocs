@@ -209,11 +209,11 @@ Goal conversions
 
     Tracks manual goal conversion.
 
-    :param number|string goalID: **Required** Goal ID (integer or UUID)
+    :param string|number goalID: **Required** Goal ID (UUID or integer)
     :param number conversionValue: **Optional** Conversion value (revenue)
     :param object dimensions: **Optional** :ref:`Custom dimensions<jtc-api-custom-dimensions-object>` to pass along with the conversion
 
-    Example of usage (tracking conversion of goal *1* with value *15*):
+    Example of usage (tracking conversion of goal *436b0892-60b2-41a1-ac7e-6fb3dcdeb1c3* with value *15*):
 
     .. tabs::
 
@@ -221,13 +221,13 @@ Goal conversions
 
             .. code-block:: javascript
 
-                _paq.push(["trackGoal", 1, 15]);
+                _paq.push(["trackGoal", "436b0892-60b2-41a1-ac7e-6fb3dcdeb1c3", 15]);
 
         .. group-tab:: JavaScript Tracking Client object
 
             .. code-block:: javascript
 
-                jstc.trackGoal(1, 15);
+                jstc.trackGoal("436b0892-60b2-41a1-ac7e-6fb3dcdeb1c3", 15);
 
 .. _jtc-api-site-search:
 
