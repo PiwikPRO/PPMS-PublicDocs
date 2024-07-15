@@ -10,3 +10,4 @@ Frameworks
    Piwik_PRO_Library_for_Vue.md
    Piwik_PRO_Library_for_NextJS.md
    Piwik_PRO_Plugin_for_Gatsby.md
+   Piwik_PRO_Library_for_NuxtJS.md

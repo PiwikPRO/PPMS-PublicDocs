@@ -39,7 +39,17 @@ If you want your nonce to be passed to the script, pass it as the third argument
 ```ts
 import PiwikPro from '@piwikpro/react-piwik-pro';
 
-PiwikPro.initialize('container-id', 'container-url', 'nonce-string');
+PiwikPro.initialize('container-id', 'container-url', { nonce: 'nonce-string' });
+
+ReactDOM.render(<App />, document.getElementById('root'))
+```
+
+#### Custom Data Layer name
+
+```ts
+import PiwikPro from '@piwikpro/react-piwik-pro';
+
+PiwikPro.initialize('container-id', 'container-url', { dataLayerName: 'my-data-layer' });
 
 ReactDOM.render(<App />, document.getElementById('root'))
 ```

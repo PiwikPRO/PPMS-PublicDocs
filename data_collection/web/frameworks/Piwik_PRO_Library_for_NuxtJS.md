@@ -2,177 +2,147 @@
 <a name="readmemd"></a>
 
 
-# Piwik PRO Library for Next.js
+# Piwik PRO Library for Nuxt
 
-Dedicated Piwik PRO library that helps with implementing Piwik PRO Tag Manager and the Piwik PRO tracking client in
-Next.js applications.
+Dedicated Piwik PRO library that helps with implementing Piwik PRO Tag Manager and the Piwik PRO tracking client in Nuxt applications.
 
 ### Installation
 
+#### NPM
+
 To use this package in your project, run the following command.
 
-#### npm
-
-```sh
-npm install @piwikpro/next-piwik-pro
 ```
-
-#### Yarn
-
-```sh
-yarn add @piwikpro/next-piwik-pro
+npm install @piwikpro/nuxt-piwik-pro
 ```
 
 #### Basic setup
 
-In your Next.js Project, include the default `PiwikProProvider` in the `layout.tsx` file. To set up the Piwik PRO Tag
-Manager container in the app.
-
-In the arguments, pass your container id and your container url as parameters (marked `container-id` and `container-url`
-in the example below).
-
-##### layout.tsx
-
-```tsx
-import PiwikProProvider from '@piwikpro/next-piwik-pro'
-
-export default function RootLayout({
-  children
-}: {
-  children: React.ReactNode
-}) {
-  return (
-    <html lang='en'>
-      <body>
-        <PiwikProProvider
-          containerId='container-id'
-          containerUrl='container-url'
-        >
-          {children}
-        </PiwikProProvider>
-      </body>
-    </html>
-  )
-}
-```
-
-#### Setup with environmental variables
-
-If you plan to use environmental variables to config your Piwik account you can do it with adding them to your `.env`
-file. Remember that variables to be visible in component need to be named with `NEXT_PUBLIC_` prefix, in other cases
-they will be visible only in Node context but not in Next.
-
-##### .env
-
-```sh
-NEXT_PUBLIC_CONTAINER_ID=0a0b8661-8c10-4d59-e8fg-1h926ijkl184
-NEXT_PUBLIC_CONTAINER_URL=https://example.piwik.pro
-```
-
-##### layout.tsx
-
-```tsx
-import PiwikProProvider from '@piwikpro/next-piwik-pro'
-
-export default function RootLayout({
-  children
-}: {
-  children: React.ReactNode
-}) {
-  return (
-    <html lang='en'>
-      <body>
-        <PiwikProProvider
-          containerUrl={process.env.NEXT_PUBLIC_CONTAINER_URL}
-          containerId={process.env.NEXT_PUBLIC_CONTAINER_ID}
-        >
-          {children}
-        </PiwikProProvider>
-      </body>
-    </html>
-  )
-}
-```
-
-#### Setup with nonce
-
-The nonce attribute is useful to allow-list specific elements, such as a particular inline script or style elements. It
-can help you to avoid using the CSP unsafe-inline directive, which would allow-list all inline scripts or styles.
-
-If you want your nonce to be passed to the script, pass it as the third argument when calling the script initialization
-method.
-
-##### layout.tsx
-
-```tsx
-import PiwikProProvider from '@piwikpro/next-piwik-pro'
-
-export default function RootLayout({
-  children
-}: {
-  children: React.ReactNode
-}) {
-  return (
-    <html lang='en'>
-      <body>
-        <PiwikProProvider
-          containerId='container-id'
-          containerUrl='container-url'
-          nonce='nonce-string'
-        >
-          {children}
-        </PiwikProProvider>
-      </body>
-    </html>
-  )
-}
-```
-
-### Usage
-
-To use methods in your page you need to include `usePiwikPro` from the library.
-Make sure to use `usePiwikPro` in client components only, otherwise you will get an error.
-To make it work You need to use it in separated client component (`use component`)
+In your Nuxt Project, include `@piwikpro/nuxt-piwik-pro` as a nuxt module in `nuxt.config.ts` file. To set up the Piwik PRO Tag Manager container in the app, pass configuration object as a module inline-options. Configuration options can be found below.
 
 ```ts
-import { usePiwikPro } from '@piwikpro/next-piwik-pro'
+// nuxt.config.ts
+export default defineNuxtConfig({
+  //...
+  modules: [
+    [
+      "@piwikpro/nuxt-piwik-pro",
+      {
+        containerId: process.env.PIWIK_PRO_CONTAINER_ID,
+        containerUrl: process.env.PIWIK_PRO_CONTAINER_URL,
+      },
+    ],
+  ],
+  //...
+});
 ```
 
-Then you need to define modules you want to use and initialize it from previously included `usePiwikPro` context. In
-example below you can see the initialization of the `PageViews` module.
+##### Configuration options
 
 ```ts
-const { PageViews } = usePiwikPro()
+type ConfigOptions {
+ containerId: string;
+ containerUrl: string;
+ dataLayerName?: string;
+ nonce?: string;
+}
 ```
 
-You can use those methods in all hooks and props for ex. `useEffect` or `onClick`.
+##### Nonce
 
-#### useEffect
+The nonce attribute is useful to allow-list specific elements, such as a particular inline script or style elements. It can help you to avoid using the CSP unsafe-inline directive, which would allow-list all inline scripts or styles.
 
-```tsx
-useEffect(() => {
-  PageViews.trackPageView('optional title')
-}, [])
+If you want your nonce to be passed to the script, pass it as the third argument when calling the script initialization method.
+
+#### Usage
+
+Piwik PRO container will be initialized under the hood by `@piwikpro/nuxt-piwik-pro` module itself. Module also inject client-only plugin to Nuxt application instance which allow you to use all Piwik PRO services globally as a part of Nuxt context returned from `useNuxtApp()` composable as a `$piwikPRO`.
+
+> [!IMPORTANT]  
+> Remember that Piwik PRO is a client-only library. This means you won't have access to any of its services on the server side.
+
+```ts
+// In any component or other part of application code
+const { $piwikPRO } = useNuxtApp();
+// $piwikPRO won't be available on server-side code!
+if (module.meta.client) {
+  $piwikPRO.PageViews.trackPageView();
+  $piwikPRO.GoalConversions.trackGoal(1, 100);
+}
 ```
 
-#### onClick
+##### Usage with `usePiwikPro()`
 
-```tsx
-<button
-  onClick={() => {
-    CustomEvent.trackEvent('Post', pageData.title)
-  }}
+To use Piwik PRO services safety, you can import `usePiwikPro()` from `'@piwikpro/nuxt-piwik-pro/composables'`.
+
+```ts
+// In any component or other part of application code
+import { usePiwikPro } from "@piwikpro/nuxt-piwik-pro/composables";
+// callback can be sync or async function
+const userId = await usePiwikPro(({ PageViews, GoalConversions, UserManagement }) => {
+  PageViews.trackPageView();
+  GoalConversions.trackGoal(1, 100);
+  return UserManagement.getUserId();
+});
+```
+
+> [!TIP]
 >
-  CustomEvent.trackEvent button
-</button>
+> ###### export `usePiwikPro()` as a Nuxt composable
+>
+> To make this composable globally available, create `.ts` file in `/composables` directory and export `usePiwikPro()` from `'@piwikpro/nuxt-piwik-pro/composables'`.
+>
+> ```ts
+> // composables/usePiwikPro.ts
+> export { usePiwikPro } from "@piwikpro/nuxt-piwik-pro/composables";
+> ```
+>
+> ```ts
+> // In any component or other part of application code
+> const userId = await usePiwikPro(({ PageViews, GoalConversions, UserManagement }) => {
+>   PageViews.trackPageView();
+>   GoalConversions.trackGoal(1, 100);
+>   return UserManagement.getUserId();
+> });
+> ```
+
+##### Usage with `<ClientOnly/>` Nuxt component
+
+Alternatively, you can wrap Component with Piwik PRO usage by `<ClientOnly/>` nuxt component.
+
+```ts
+// In client-only <WithPiwikPROUsage/> component
+const { $piwikPRO } = useNuxtApp();
+$piwikPRO.PageViews.trackPageView();
+$piwikPRO.GoalConversions.trackGoal(1, 100);
 ```
+
+```ts
+// Server-side code
+<template>
+   <ClientOnly fallback-tag="span" fallback="Loading comments...">
+       <WithPiwikPROUsage/>
+   </ClientOnly>
+</template>
+```
+
+##### Usage in client-only page
+
+Or if you want use PiwikPRO services directly in Page component, you can add `client` to its file name.
+
+```ts
+// In piwik-pro.client.ts page component
+const { $piwikPRO } = useNuxtApp();
+$piwikPRO.PageViews.trackPageView();
+$piwikPRO.GoalConversions.trackGoal(1, 100);
+```
+
+### Examples of usage
+
+Please explore the `./example` directory to get to know how to use this package with a specific examples and it's various methods.
 
 
 <a name="modulesmd"></a>
-
-
-
-<a name="modulesnode_modules__piwikpro_react_piwik_pro_distmd"></a>
 
 
 
@@ -180,28 +150,33 @@ useEffect(() => {
 
 #### Namespaces
 
-- [ContentTracking](#modulesnode_modules__piwikpro_react_piwik_pro_distcontenttrackingmd)
-- [CookieManagement](#modulesnode_modules__piwikpro_react_piwik_pro_distcookiemanagementmd)
-- [CustomDimensions](#modulesnode_modules__piwikpro_react_piwik_pro_distcustomdimensionsmd)
-- [CustomEvent](#modulesnode_modules__piwikpro_react_piwik_pro_distcustomeventmd)
-- [DataLayer](#modulesnode_modules__piwikpro_react_piwik_pro_distdatalayermd)
-- [DownloadAndOutlink](#modulesnode_modules__piwikpro_react_piwik_pro_distdownloadandoutlinkmd)
-- [ErrorTracking](#modulesnode_modules__piwikpro_react_piwik_pro_disterrortrackingmd)
-- [GoalConversions](#modulesnode_modules__piwikpro_react_piwik_pro_distgoalconversionsmd)
-- [PageViews](#modulesnode_modules__piwikpro_react_piwik_pro_distpageviewsmd)
-- [SiteSearch](#modulesnode_modules__piwikpro_react_piwik_pro_distsitesearchmd)
-- [UserManagement](#modulesnode_modules__piwikpro_react_piwik_pro_distusermanagementmd)
-- [eCommerce](#modulesnode_modules__piwikpro_react_piwik_pro_distecommercemd)
+- [ContentTracking](#modulescontenttrackingmd)
+- [CookieManagement](#modulescookiemanagementmd)
+- [CustomDimensions](#modulescustomdimensionsmd)
+- [CustomEvent](#modulescustomeventmd)
+- [DataLayer](#modulesdatalayermd)
+- [DownloadAndOutlink](#modulesdownloadandoutlinkmd)
+- [ErrorTracking](#moduleserrortrackingmd)
+- [GoalConversions](#modulesgoalconversionsmd)
+- [PageViews](#modulespageviewsmd)
+- [SiteSearch](#modulessitesearchmd)
+- [UserManagement](#modulesusermanagementmd)
+- [eCommerce](#modulesecommercemd)
 
 #### Type Aliases
 
 - [Dimensions](#dimensions)
 - [InitOptions](#initoptions)
 - [PaymentInformation](#paymentinformation)
+- [PiwikPROHandler](#piwikprohandler)
+- [PiwikPROServicesType](#piwikproservicestype)
 - [Product](#product)
 - [VisitorInfo](#visitorinfo)
 
 #### Variables
+
+- [PiwikPRO](#piwikpro)
+
 
 - [default](#default)
 
@@ -243,6 +218,38 @@ ___
 
 ___
 
+#### PiwikPROHandler
+
+Ƭ **PiwikPROHandler**\<`T`\>: (`piwikPRO`: [`PiwikPROServicesType`](#piwikproservicestype)) => `T` \| `Promise`\<`T`\>
+
+##### Type parameters
+
+| Name | Type |
+| :------ | :------ |
+| `T` | `unknown` |
+
+##### Type declaration
+
+▸ (`piwikPRO`): `T` \| `Promise`\<`T`\>
+
+###### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `piwikPRO` | [`PiwikPROServicesType`](#piwikproservicestype) |
+
+###### Returns
+
+`T` \| `Promise`\<`T`\>
+
+___
+
+#### PiwikPROServicesType
+
+Ƭ **PiwikPROServicesType**: typeof `PiwikPROServices`
+
+___
+
 #### Product
 
 Ƭ **Product**: `Object`
@@ -268,9 +275,9 @@ ___
 
 ### Variables
 
-#### default
+#### PiwikPRO
 
-• `Const` **default**: `Object`
+• `Const` **PiwikPRO**: `Object`
 
 ##### Type declaration
 
@@ -280,12 +287,27 @@ ___
 | `initialize` | typeof `PiwikPro.init` |
 
 
+#### default
 
-<a name="modulesnode_modules__piwikpro_react_piwik_pro_distcontenttrackingmd"></a>
+▸ **default**(`this`, `inlineOptions`, `nuxt`): `_ModuleSetupReturn`
+
+##### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `this` | `void` |
+| `inlineOptions` | `PluginArgs` |
+| `nuxt` | `Nuxt` |
+
+##### Returns
+
+`_ModuleSetupReturn`
+
+
+<a name="modulescontenttrackingmd"></a>
 
 
 ## ContentTracking
-
 
 ### Table of contents
 
@@ -417,11 +439,10 @@ Scans DOM for all visible content blocks and tracks impressions
 `void`
 
 
-<a name="modulesnode_modules__piwikpro_react_piwik_pro_distcookiemanagementmd"></a>
+<a name="modulescookiemanagementmd"></a>
 
 
 ## CookieManagement
-
 
 ### Table of contents
 
@@ -677,11 +698,10 @@ Sets cookie containing [analytics ID](https://developers.piwik.pro/en/latest/glo
 `void`
 
 
-<a name="modulesnode_modules__piwikpro_react_piwik_pro_distcustomdimensionsmd"></a>
+<a name="modulescustomdimensionsmd"></a>
 
 
 ## CustomDimensions
-
 
 ### Table of contents
 
@@ -745,11 +765,10 @@ Sets a custom dimension value to be used later.
 `void`
 
 
-<a name="modulesnode_modules__piwikpro_react_piwik_pro_distcustomeventmd"></a>
+<a name="modulescustomeventmd"></a>
 
 
 ## CustomEvent
-
 
 ### Table of contents
 
@@ -778,11 +797,10 @@ Tracks a custom event, e.g. when a visitor interacts with the page
 `void`
 
 
-<a name="modulesnode_modules__piwikpro_react_piwik_pro_distdatalayermd"></a>
+<a name="modulesdatalayermd"></a>
 
 
 ## DataLayer
-
 
 ### Table of contents
 
@@ -834,11 +852,10 @@ ___
 `void`
 
 
-<a name="modulesnode_modules__piwikpro_react_piwik_pro_distdownloadandoutlinkmd"></a>
+<a name="modulesdownloadandoutlinkmd"></a>
 
 
 ## DownloadAndOutlink
-
 
 ### Table of contents
 
@@ -1038,11 +1055,10 @@ Manually tracks outlink or download event with provided values
 `void`
 
 
-<a name="modulesnode_modules__piwikpro_react_piwik_pro_disterrortrackingmd"></a>
+<a name="moduleserrortrackingmd"></a>
 
 
 ## ErrorTracking
-
 
 ### Table of contents
 
@@ -1088,11 +1104,10 @@ Such error request will still follow rules set for tracker, so it will be sent o
 `void`
 
 
-<a name="modulesnode_modules__piwikpro_react_piwik_pro_distgoalconversionsmd"></a>
+<a name="modulesgoalconversionsmd"></a>
 
 
 ## GoalConversions
-
 
 ### Table of contents
 
@@ -1119,11 +1134,10 @@ Tracks manual goal conversion
 `void`
 
 
-<a name="modulesnode_modules__piwikpro_react_piwik_pro_distpageviewsmd"></a>
+<a name="modulespageviewsmd"></a>
 
 
 ## PageViews
-
 
 ### Table of contents
 
@@ -1148,11 +1162,10 @@ Tracks a visit on the page that the function was run on
 `void`
 
 
-<a name="modulesnode_modules__piwikpro_react_piwik_pro_distsitesearchmd"></a>
+<a name="modulessitesearchmd"></a>
 
 
 ## SiteSearch
-
 
 ### Table of contents
 
@@ -1180,11 +1193,10 @@ Tracks search requests on a website
 `void`
 
 
-<a name="modulesnode_modules__piwikpro_react_piwik_pro_distusermanagementmd"></a>
+<a name="modulesusermanagementmd"></a>
 
 
 ## UserManagement
-
 
 ### Table of contents
 
@@ -1263,11 +1275,10 @@ reports through it or create Multi attribution reports using User ID
 `void`
 
 
-<a name="modulesnode_modules__piwikpro_react_piwik_pro_distecommercemd"></a>
+<a name="modulesecommercemd"></a>
 
 
 ## eCommerce
-
 
 ### Table of contents
 
@@ -1509,52 +1520,3 @@ ___
 **`Deprecated`**
 
 Please use the ecommerceOrder instead.
-
-
-
-<a name="modulessrcmd"></a>
-
-
-## Module: src
-
-### Table of contents
-
-#### Type Aliases
-
-- [PiwikProProviderProps](#piwikproproviderprops)
-
-
-- [default](#default)
-- [usePiwikPro](#usepiwikpro)
-
-### Type Aliases
-
-#### PiwikProProviderProps
-
-Ƭ **PiwikProProviderProps**: \{ `children`: `ReactNode` ; `containerId`: `string` ; `containerUrl`: `string`  } & [`InitOptions`](#initoptions)
-
-
-#### default
-
-▸ **default**(`props`, `context?`): `ReactNode`
-
-##### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `props` | [`PiwikProProviderProps`](#piwikproproviderprops) |
-| `context?` | `any` |
-
-##### Returns
-
-`ReactNode`
-
-___
-
-#### usePiwikPro
-
-▸ **usePiwikPro**(): `__module`
-
-##### Returns
-
-`__module`
