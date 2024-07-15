@@ -34,8 +34,6 @@ in the example below).
 ##### layout.tsx
 
 ```tsx
-'use client'
-
 import PiwikProProvider from '@piwikpro/next-piwik-pro'
 
 export default function RootLayout({
@@ -74,8 +72,6 @@ NEXT_PUBLIC_CONTAINER_URL=https://example.piwik.pro
 ##### layout.tsx
 
 ```tsx
-'use client'
-
 import PiwikProProvider from '@piwikpro/next-piwik-pro'
 
 export default function RootLayout({
@@ -109,8 +105,6 @@ method.
 ##### layout.tsx
 
 ```tsx
-'use client'
-
 import PiwikProProvider from '@piwikpro/next-piwik-pro'
 
 export default function RootLayout({
@@ -271,6 +265,20 @@ ___
 #### VisitorInfo
 
 Ƭ **VisitorInfo**: [isNew: "0" \| "1", visitorId: string, firstVisitTS: number, previousVisitCount: string \| number, currentVisitTS: number, lastVisitTS: number \| "", lastEcommerceOrderTS: number \| ""]
+
+### Variables
+
+#### default
+
+• `Const` **default**: `Object`
+
+##### Type declaration
+
+| Name | Type |
+| :------ | :------ |
+| `getInitScript` | typeof `PiwikPro.getInitScript` |
+| `initialize` | typeof `PiwikPro.init` |
+
 
 
 <a name="modulesnode_modules__piwikpro_react_piwik_pro_distcontenttrackingmd"></a>
@@ -1502,18 +1510,6 @@ ___
 
 Please use the ecommerceOrder instead.
 
-### Variables
-
-#### default
-
-• `Const` **default**: `Object`
-
-##### Type declaration
-
-| Name | Type |
-| :------ | :------ |
-| `getInitScript` | typeof `PiwikPro.getInitScript` |
-| `initialize` | typeof `PiwikPro.init` |
 
 
 <a name="modulessrcmd"></a>
