@@ -798,6 +798,22 @@ paths:
               - 1
             default: 0
           example: 1
+        - name: dda
+          in: query
+          description: |
+            Anonymize device dimensions/attributes and user agent of received request.
+
+            Notice: This parameter will have an effect only when `uia` is set to ``1``.
+
+            - ``1`` - anonymize 'User-Agent' header and device dimensions/attributes
+            - ``0`` - no anonymization will be applied
+          schema:
+            type: integer
+            enum:
+              - 0
+              - 1
+            default: 0
+          example: 1
         - name: ping
           in: query
           description: |

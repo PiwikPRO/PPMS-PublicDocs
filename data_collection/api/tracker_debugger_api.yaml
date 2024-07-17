@@ -3267,6 +3267,8 @@ components:
               - 'en-US,en;q=0.9'
             - - 'user-agent'
               - 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.117 Safari/537.36'
+            - - 'user-agent'
+              - '<anonymized>'
             - - 'x-geoip-longitude'
               - '<anonymized>'
             - - 'x-geoip-latitude'
@@ -3424,8 +3426,12 @@ components:
           description: 'Allows to track user anonymously'
           type: string
           example: '1'
+        dda:
+          description: 'Anonymize device data, including user agent'
+          type: string
+          example: '1'
         ua:
-          description: 'Override User-Agent header'
+          description: 'Override User-Agent header, anonymized if dda=1 parameter provided'
           type: string
           example: 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.162 Safari/537.36'
         lang:
