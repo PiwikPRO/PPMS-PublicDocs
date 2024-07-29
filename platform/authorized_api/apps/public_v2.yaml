@@ -458,6 +458,11 @@ components:
           description: Don't collect visitor’s device data (compliace with the German Data Protection Act - TTDSG)
           default: false
           example: false
+        realTimeDashboards:
+          type: boolean
+          description: Enable real time dashboards
+          default: false
+          example: false
     App_Attributes:
       type: object
       allOf:
