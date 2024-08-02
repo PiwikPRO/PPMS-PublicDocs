@@ -20,6 +20,13 @@ import os
 import sys
 import datetime
 
+# Set canonical URL from the Read the Docs Domain
+html_baseurl = os.environ.get("READTHEDOCS_CANONICAL_URL", "")
+
+# Tell Jinja2 templates the build is running on Read the Docs
+if os.environ.get("READTHEDOCS", "") == "True":
+    html_context["READTHEDOCS"] = True
+
 sys.path.insert(0, os.path.abspath('.'))
 
 from convert import write_open_api_json
