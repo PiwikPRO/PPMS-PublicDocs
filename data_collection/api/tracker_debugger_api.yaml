@@ -3431,7 +3431,7 @@ components:
           type: string
           example: '1'
         ua:
-          description: 'Override User-Agent header, anonymized if dda=1 parameter provided'
+          description: 'Override User-Agent header, anonymized if dda=1 tracking parameter was provided'
           type: string
           example: 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.162 Safari/537.36'
         lang:
