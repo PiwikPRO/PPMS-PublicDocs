@@ -39,7 +39,7 @@ Code::
 
 Get new compliance types
 ````````````````````````
-Fetches a list of the consent types that are new in the setup and for which the decision has not been saved in the `ppms_privacy_[appId]` cookie.
+Fetches a list of the consent types that are new in the setup and for which the decision has not yet been saved in the `ppms_privacy_[appId]` cookie.
 
 Code::
 
