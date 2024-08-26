@@ -236,7 +236,7 @@ paths:
       deprecated: true
       summary: Set permission group
       description: >
-        Please use `Set user group permission for a given app` or `Set user group permission for a given meta site` instead.<br><br>
+        Please use <a href="?path=./access-control/public_v2.yaml#operation/set_app_permission_for_user_group_v2">Set user group permission for a given app</a> or <a href="?path=./access-control/public_v2.yaml#operation/set_meta_site_permission_for_user_group_v2">Set user group permission for a given meta site</a> instead.<br><br>
         Sets permission group to entity for user group
       operationId: set_permission_group_for_user_group_v1
       parameters:
