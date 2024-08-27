@@ -4,7 +4,7 @@
 
 # Piwik PRO Library for Nuxt
 
-Dedicated Piwik PRO library that helps with implementing Piwik PRO Tag Manager and the Piwik PRO tracking client in Nuxt applications.
+Dedicated Piwik PRO library that helps with implementing Piwik PRO Tag Manager, Piwik PRO Consent Manager and Piwik PRO tracking client in Nuxt applications.
 
 ### Installation
 
@@ -58,8 +58,7 @@ If you want your nonce to be passed to the script, pass it as the third argument
 
 Piwik PRO container will be initialized under the hood by `@piwikpro/nuxt-piwik-pro` module itself. Module also inject client-only plugin to Nuxt application instance which allow you to use all Piwik PRO services globally as a part of Nuxt context returned from `useNuxtApp()` composable as a `$piwikPRO`.
 
-> [!IMPORTANT]  
-> Remember that Piwik PRO is a client-only library. This means you won't have access to any of its services on the server side.
+###### Remember that Piwik PRO is a client-only library. This means you won't have access to any of its services on the server side.
 
 ```ts
 // In any component or other part of application code
@@ -79,32 +78,34 @@ To use Piwik PRO services safety, you can import `usePiwikPro()` from `'@piwikpr
 // In any component or other part of application code
 import { usePiwikPro } from "@piwikpro/nuxt-piwik-pro/composables";
 // callback can be sync or async function
-const userId = await usePiwikPro(({ PageViews, GoalConversions, UserManagement }) => {
-  PageViews.trackPageView();
-  GoalConversions.trackGoal(1, 100);
-  return UserManagement.getUserId();
-});
+const userId = await usePiwikPro(
+  ({ PageViews, GoalConversions, UserManagement }) => {
+    PageViews.trackPageView();
+    GoalConversions.trackGoal(1, 100);
+    return UserManagement.getUserId();
+  }
+);
 ```
 
-> [!TIP]
->
-> ###### export `usePiwikPro()` as a Nuxt composable
->
-> To make this composable globally available, create `.ts` file in `/composables` directory and export `usePiwikPro()` from `'@piwikpro/nuxt-piwik-pro/composables'`.
->
-> ```ts
-> // composables/usePiwikPro.ts
-> export { usePiwikPro } from "@piwikpro/nuxt-piwik-pro/composables";
-> ```
->
-> ```ts
-> // In any component or other part of application code
-> const userId = await usePiwikPro(({ PageViews, GoalConversions, UserManagement }) => {
->   PageViews.trackPageView();
->   GoalConversions.trackGoal(1, 100);
->   return UserManagement.getUserId();
-> });
-> ```
+###### export `usePiwikPro()` as a Nuxt composable
+
+To make this composable globally available, create `.ts` file in `/composables` directory and export `usePiwikPro()` from `'@piwikpro/nuxt-piwik-pro/composables'`.
+
+```ts
+// composables/usePiwikPro.ts
+export { usePiwikPro } from "@piwikpro/nuxt-piwik-pro/composables";
+```
+
+```ts
+// In any component or other part of application code
+const userId = await usePiwikPro(
+  ({ PageViews, GoalConversions, UserManagement }) => {
+    PageViews.trackPageView();
+    GoalConversions.trackGoal(1, 100);
+    return UserManagement.getUserId();
+  }
+);
+```
 
 ##### Usage with `<ClientOnly/>` Nuxt component
 
