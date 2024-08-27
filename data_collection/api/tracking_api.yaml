@@ -179,7 +179,7 @@ paths:
           description: Resolution of the visitor's device in pixels.
           schema:
             type: string
-            format: '{height}x{width}'
+            format: '{width}x{height}'
           example: 1920x1080
         - name: h
           in: query
