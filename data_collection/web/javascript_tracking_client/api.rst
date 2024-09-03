@@ -3643,7 +3643,7 @@ Miscellaneous
 
     Appends provided query string to each tracking request.
 
-    :param string appendToUrl: **Required** Custom query string that will be attached to each tracking request (e.g. ``"lat=140&long=100"``).
+    :param string appendToUrl: **Required** Custom query string that will be attached to each tracking request (e.g. ``"lat=140&lon=100"``).
         Parameter names and values should be already URL encoded.
 
     Example of usage:
@@ -3654,13 +3654,13 @@ Miscellaneous
 
             .. code-block:: javascript
 
-                _paq.push(["appendToTrackingUrl", "lat=140&long=100"]);
+                _paq.push(["appendToTrackingUrl", "lat=140&lon=100"]);
 
         .. group-tab:: JavaScript Tracking Client object
 
             .. code-block:: javascript
 
-                jstc.appendToTrackingUrl("lat=140&long=100");
+                jstc.appendToTrackingUrl("lat=140&lon=100");
 
 .. function:: setDoNotTrack(enable)
 
