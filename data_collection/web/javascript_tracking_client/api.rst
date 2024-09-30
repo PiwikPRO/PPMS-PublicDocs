@@ -2961,19 +2961,19 @@ JavaScript Tracking Client configuration
 
             .. code-block:: javascript
 
-                _paq.push(["setDomains", [".example.com", ".example.co.uk", "PiwikPRO://path"]]);
+                _paq.push(["setDomains", [".example.com", ".example.co.uk", "example://path"]]);
 
         .. group-tab:: JavaScript Tracking Client object
 
             .. code-block:: javascript
 
-                jstc.setDomains([".example.com", ".example.co.uk", "PiwikPRO://path"]);
+                jstc.setDomains([".example.com", ".example.co.uk", "example://path"]);
 
 .. function:: getDomains()
 
     Returns list of internal domains (set with :func:`setDomains` and used in :ref:`outlink tracking<jtc-api-download-and-outlink>`).
 
-    :return: List of internal domains (e.g. ``[".example.com", ".example.co.uk"]``)
+    :return: List of internal domains (e.g. ``[".example.com", ".example.co.uk", "example://path"]``)
     :rtype: string[]
 
     Example of usage:
