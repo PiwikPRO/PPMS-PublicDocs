@@ -729,7 +729,7 @@ Parameter ``userAgent`` returns the default user agent parameter used in the Piw
  [PiwikTracker sharedInstance].sessionHash = Enabled;
 ```
 
-* sessionHash (required) - an enum with options:
+* sessionHash - an enum with options:
 > * Enabled - ``sh`` parameter will be set to 1
 > * Disabled - ``sh`` parameter will be set to 0
 > * NotSet - parameter ``sh`` will not be set. Processing service will default to the current value from the Privacy tab in global or app settings.

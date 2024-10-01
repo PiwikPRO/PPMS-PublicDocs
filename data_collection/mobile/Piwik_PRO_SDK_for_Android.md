@@ -886,7 +886,7 @@ If the feature session hash is enabled, or if you would like the tracking to be 
 Method ``getUserAgent()`` returns the default user agent parameter used in the Piwik Pro SDK.
 
 ```java
-    boolean userAgent = getTracker().getUserAgent();
+    String userAgent = getTracker().getUserAgent();
 ```
 
 ### Session hash
@@ -906,7 +906,7 @@ getTracker().setSessionHash(SessionHash sessionHash);
 
 Piwik Pro SDK will persist provided parameter and hold the state next time the SDK is initialised.
 
-You can get ``sessionHash`` using ``getSessionHash()`` method:
+You can get ``sessionHash`` value using ``getSessionHash()`` method:
 
 ```java
 getTracker().getSessionHash();
