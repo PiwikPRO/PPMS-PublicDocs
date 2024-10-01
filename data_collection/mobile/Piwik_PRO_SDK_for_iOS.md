@@ -685,3 +685,57 @@ The SDK provides a dryRun flag that, when set, prevents any data from being sent
 ```
 * dryRun (required) – a flag that indicates the state of dry run mode. Set it to `NO` to disable dry run.
 
+## Cross platform tracking
+
+You can set up visitor recognition across both an app and a website. This allows you to recognize the same visitor when they move from a webview within the app to the website in their mobile browser.
+
+You can also track how users navigate from a website to an app using deep links.
+
+### Tracking users transitioning from the mobile browser to the mobile application
+
+Method ``setVisitorIdFromDeepLink`` sets a visitor ID from ``pk_vid`` parameter from provided deep link:
+
+```ObjC
+    BOOL result = [[PiwikTracker sharedInstance] setVisitorIdFromDeepLink:@"piwik://example?pk_vid=25a3c7d060a94360"];
+```
+
+* deeplink – ``NSString`` representation of deep link. The ``deeplink`` must contain ``pk_vid`` parameter.
+
+In order to set the visitor ID parameter, you can also use the ``setVisitorIdFromURL`` method.
+
+```ObjC
+    BOOL result = [[PiwikTracker sharedInstance] setVisitorIdFromURL: [NSURL URLWithString: @"piwik://example?pk_vid=25a3c7d060a94360"]];
+```
+
+* deeplink – A custom app ``URL`` containing ``pk_vid`` parameter.
+
+Both methods returns ``YES`` if the ``visitor ID`` is successfully set, ``NO`` otherwise or when it is nothing to set.
+
+### Tracking users transitioning from the mobile application to the web view
+
+If the feature session hash is enabled, or if you would like the tracking to be more accurate, set the same user agent in the web view as is used in the Piwik Pro SDK.
+
+Parameter ``userAgent`` returns the default user agent parameter used in the Piwik Pro SDK.
+
+```ObjC
+    NSString *userAgent = [PiwikTracker sharedInstance].userAgent;
+```
+
+### Session hash
+
+``sessionHash`` field provides on-demand control of the Session Hash feature by sending the ``sh`` parameter to the Tracker.
+
+```ObjC
+ [PiwikTracker sharedInstance].sessionHash = Enabled;
+```
+
+* sessionHash (required) - an enum with options:
+> * Enabled - ``sh`` parameter will be set to 1
+> * Disabled - ``sh`` parameter will be set to 0
+> * NotSet - parameter ``sh`` will not be set. Processing service will default to the current value from the Privacy tab in global or app settings.
+
+Piwik Pro SDK will persist provided parameter and hold the state next time the SDK is initialised.
+
+You can get ``sessionHash`` value from the same field:
+
+Default value is set to ``Disabled``.
