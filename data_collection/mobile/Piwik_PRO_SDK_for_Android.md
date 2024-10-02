@@ -858,3 +858,58 @@ getTracker().setDryRunTarget(Collections.synchronizedList(new ArrayList<Packet>(
 ```
 * A dryRunTarget (required) – a data structure the data should be passed into ``List<Packet>`` type. Set it to null to disable dry run.
 
+
+## Cross platform tracking
+
+You can set up visitor recognition across both an app and a website. This allows you to recognize the same visitor when they move from a webview within the app to the website in their mobile browser.
+
+You can also track how users navigate from a website to an app using deep links.
+
+### Tracking users transitioning from the mobile browser to the mobile application
+
+Method `setVisitorIdFromDeepLink` sets a visitor ID from `pk_vid` parameter from provided deep link:
+
+```java
+    boolean result = getTracker().setVisitorIdFromDeepLink("piwik://example?pk_vid=25a3c7d060a94360");
+    
+    boolean result = getTracker().setVisitorIdFromDeepLink(Uri.parse("piwik://example?pk_vid=35a3c7d060a94360"));
+```
+
+* Deeplink – deepLink ``String`` (or ``Uri``) representation of deep link. The deeplink must contain ``pk_vid`` parameter.
+
+Method returns ``true`` if the ``visitor ID`` is successfully set, ``false`` otherwise or when it is nothing to set.
+
+### Tracking users transitioning from the mobile application to the web view
+
+If the feature session hash is enabled, or if you would like the tracking to be more accurate, set the same user agent in the web view as is used in the Piwik Pro SDK.
+
+Method ``getUserAgent()`` returns the default user agent parameter used in the Piwik Pro SDK.
+
+```java
+    String userAgent = getTracker().getUserAgent();
+```
+
+### Session hash
+
+``sessionHash`` field provides on-demand control of the Session Hash feature by sending the ``sh`` parameter to the Tracker.
+
+You can set it using the ``setSessionHash(SessionHash sessionHash)`` method:
+
+```java
+getTracker().setSessionHash(SessionHash sessionHash);
+```
+
+* sessionHash (required) - an enum with options:
+> * ENABLED - ``sh`` parameter will be set to 1
+> * DISABLED - ``sh`` parameter will be set to 0
+> * NOT_SET - parameter ``sh`` will not be set. Processing service will default to the current value from the Privacy tab in global or app settings.
+
+Piwik Pro SDK will persist provided parameter and hold the state next time the SDK is initialised.
+
+You can get ``sessionHash`` value using ``getSessionHash()`` method:
+
+```java
+getTracker().getSessionHash();
+```
+
+Default value is set to ``DISABLED``.
