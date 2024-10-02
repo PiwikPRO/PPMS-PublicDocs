@@ -867,7 +867,7 @@ You can also track how users navigate from a website to an app using deep links.
 
 ### Tracking users transitioning from the mobile browser to the mobile application
 
-Method ``setVisitorIdFromDeepLink`` sets a visitor ID from ``pk_vid`` parameter from provided deep link:
+Method `setVisitorIdFromDeepLink` sets a visitor ID from `pk_vid` parameter from provided deep link:
 
 ```java
     boolean result = getTracker().setVisitorIdFromDeepLink("piwik://example?pk_vid=25a3c7d060a94360");
