@@ -116,6 +116,7 @@ p {
 
 .rst-versions {
     border-top: none;
+    display: none;
 }
 
 div .rst-other-versions a, div .rst-other-versions a:hover, div .rst-other-versions a:visited {
