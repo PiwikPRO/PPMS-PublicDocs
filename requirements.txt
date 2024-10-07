@@ -1,11 +1,10 @@
 https://github.com/executablebooks/sphinx-tabs/releases/download/v1.1.13/sphinx-tabs-1.1.13.tar.gz
-Sphinx==7.3.7
+Sphinx==1.8.5
 commonmark==0.8.1
 recommonmark==0.5.0
+sphinx-rtd-theme==0.2.5b2
 PyYAML==6.0.1
-docutils==0.18.1
+docutils==0.17
 jinja2==3.0.0
 sphinx-copybutton==0.5.2
 requests==2.31.0
-sphinx-rtd-theme==2.1.0rc2
-git+https://github.com/readthedocs/sphinx-build-compatibility#egg=sphinx-build-compatibility
