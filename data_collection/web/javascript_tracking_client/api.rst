@@ -209,11 +209,11 @@ Goal conversions
 
     Tracks manual goal conversion.
 
-    :param number|string goalID: **Required** Goal ID (integer or UUID)
+    :param string|number goalID: **Required** Goal ID (UUID or integer)
     :param number conversionValue: **Optional** Conversion value (revenue)
     :param object dimensions: **Optional** :ref:`Custom dimensions<jtc-api-custom-dimensions-object>` to pass along with the conversion
 
-    Example of usage (tracking conversion of goal *1* with value *15*):
+    Example of usage (tracking conversion of goal *436b0892-60b2-41a1-ac7e-6fb3dcdeb1c3* with value *15*):
 
     .. tabs::
 
@@ -221,13 +221,13 @@ Goal conversions
 
             .. code-block:: javascript
 
-                _paq.push(["trackGoal", 1, 15]);
+                _paq.push(["trackGoal", "436b0892-60b2-41a1-ac7e-6fb3dcdeb1c3", 15]);
 
         .. group-tab:: JavaScript Tracking Client object
 
             .. code-block:: javascript
 
-                jstc.trackGoal(1, 15);
+                jstc.trackGoal("436b0892-60b2-41a1-ac7e-6fb3dcdeb1c3", 15);
 
 .. _jtc-api-site-search:
 
@@ -2947,7 +2947,7 @@ JavaScript Tracking Client configuration
 
 .. function:: setDomains(domains)
 
-    Allows to define a list of internal domains. Used in :ref:`outlink tracking<jtc-api-download-and-outlink>`
+    Allows to define a list of internal domains or mobile app URIs. Used in :ref:`outlink tracking<jtc-api-download-and-outlink>`
     for determining whether a link is an outlink and in :ref:`cross domain linking<jtc-api-cross-domain-linking>`
     for determining which links should have visitor ID parameter injected.
 
@@ -2961,19 +2961,19 @@ JavaScript Tracking Client configuration
 
             .. code-block:: javascript
 
-                _paq.push(["setDomains", [".example.com", ".example.co.uk"]]);
+                _paq.push(["setDomains", [".example.com", ".example.co.uk", "example://path"]]);
 
         .. group-tab:: JavaScript Tracking Client object
 
             .. code-block:: javascript
 
-                jstc.setDomains([".example.com", ".example.co.uk"]);
+                jstc.setDomains([".example.com", ".example.co.uk", "example://path"]);
 
 .. function:: getDomains()
 
     Returns list of internal domains (set with :func:`setDomains` and used in :ref:`outlink tracking<jtc-api-download-and-outlink>`).
 
-    :return: List of internal domains (e.g. ``[".example.com", ".example.co.uk"]``
+    :return: List of internal domains (e.g. ``[".example.com", ".example.co.uk", "example://path"]``)
     :rtype: string[]
 
     Example of usage:
@@ -3643,7 +3643,7 @@ Miscellaneous
 
     Appends provided query string to each tracking request.
 
-    :param string appendToUrl: **Required** Custom query string that will be attached to each tracking request (e.g. ``"lat=140&long=100"``).
+    :param string appendToUrl: **Required** Custom query string that will be attached to each tracking request (e.g. ``"lat=140&lon=100"``).
         Parameter names and values should be already URL encoded.
 
     Example of usage:
@@ -3654,13 +3654,13 @@ Miscellaneous
 
             .. code-block:: javascript
 
-                _paq.push(["appendToTrackingUrl", "lat=140&long=100"]);
+                _paq.push(["appendToTrackingUrl", "lat=140&lon=100"]);
 
         .. group-tab:: JavaScript Tracking Client object
 
             .. code-block:: javascript
 
-                jstc.appendToTrackingUrl("lat=140&long=100");
+                jstc.appendToTrackingUrl("lat=140&lon=100");
 
 .. function:: setDoNotTrack(enable)
 
