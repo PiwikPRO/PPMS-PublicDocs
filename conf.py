@@ -259,6 +259,7 @@ html_theme_options = {
 ogp_image = "https://developers.piwik.pro/en/latest/_static/images/image-thumb.png"
 
 def setup(app):
+    app.add_css_file('https://developers.piwik.pro/_/static/css/sphinx_rtd_theme.css')
     app.add_css_file('css/custom_1698211654405.css')
     app.add_js_file('js/unicornDetector.js')
     app.add_js_file('js/custom1698211654405.js')
