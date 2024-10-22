@@ -118,7 +118,7 @@ components:
     App_Urls:
       type: array
       description: |
-        List of URL's under which the app is available (each URL needs to start with ``http://`` or ``https://``)
+        List of URL's under which the app is available (deep linking is supported)
       items:
         type: string
       example: [ 'http://example.com' ]
