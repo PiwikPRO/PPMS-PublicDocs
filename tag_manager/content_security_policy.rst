@@ -116,12 +116,13 @@ To load all necessary assets from Tag Manager debugger you need to define source
 Consent Manager form assets
 ------------
 
-If your website is GDPR compliant then you need to describe ``connect-src``, ``style-src`` and ``img-src`` directives:
+If you have Consent Manager enabled then you need to describe ``connect-src``, ``style-src`` and ``img-src`` directives:
 
 .. code-block:: javascript
 
 	connect-src <your-sources> https://client.piwik.pro;
 	style-src <your-sources> 'nonce-INSERT_VALID_NONCE_VALUE';
+
 
 Consent Manager's data subject request widget
 ------------
