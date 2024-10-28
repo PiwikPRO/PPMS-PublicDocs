@@ -38,12 +38,12 @@ Consequently, default container code requires following modifications to work:
             (function(window, document, dataLayerName, id) {
             window[dataLayerName]=window[dataLayerName]||[],window[dataLayerName].push({start:(new Date).getTime(),event:"stg.start"});
             var scripts=document.getElementsByTagName('script')[0],tags=document.createElement('script');
-            function stgCreateCookie(a,b,c){var d="";if(c){var e=new Date;e.setTime(e.getTime()+24*c*60*60*1e3),d=";expires="+e.toUTCString()}document.cookie=a+"="+b+d+"; path=/"}
+            function stgCreateCookie(a,b,c){var d="";if(c){var e=new Date;e.setTime(e.getTime()+24*c*60*60*1e3),d="; expires="+e.toUTCString();f="; SameSite=Strict"}document.cookie=a+"="+b+d+f+"; path=/"}
             var isStgDebug=(window.location.href.match("stg_debug")||document.cookie.match("stg_debug"))&&!window.location.href.match("stg_disable_debug");
             stgCreateCookie("stg_debug",isStgDebug?1:"",isStgDebug?14:-1);
             var qP=[];dataLayerName!=="dataLayer"&&qP.push("data_layer_name="+dataLayerName),tags.nonce="INSERT_VALID_NONCE_VALUE",isStgDebug&&qP.push("stg_debug");
             var qPString=qP.length>0?("?"+qP.join("&")):"";
-            tags.async=!0,tags.src="https://client.containers.piwik.pro/"+id+".js"+qPString,
+            tags.async=!0,tags.src="https://client.piwik.pro/containers/"+id+".js"+qPString,
             scripts.parentNode.insertBefore(tags,scripts);
             !function(a,n,i){a[n]=a[n]||{};for(var c=0;c<i.length;c++)!function(i){a[n][i]=a[n][i]||{},a[n][i].api=a[n][i].api||function(){
             var a=[].slice.call(arguments,0);"string"==typeof a[0]&&window[dataLayerName].push({event:n+"."+i+":"+a[0],parameters:[].slice.call(arguments,1)})}}(i[c])}(window,"ppms",["tm","cm"]);
@@ -59,12 +59,12 @@ Consequently, default container code requires following modifications to work:
 
         <script type="text/javascript" nonce="INSERT_VALID_NONCE_VALUE">
             (function(window, document, dataLayerName, id) {
-            function stgCreateCookie(a,b,c){var d="";if(c){var e=new Date;e.setTime(e.getTime()+24*c*60*60*1e3),d=";expires="+e.toUTCString()}document.cookie=a+"="+b+d+"; path=/"}
+            function stgCreateCookie(a,b,c){var d="";if(c){var e=new Date;e.setTime(e.getTime()+24*c*60*60*1e3),d="; expires="+e.toUTCString();f="; SameSite=Strict"}document.cookie=a+"="+b+d+f+"; path=/"}
             var isStgDebug=(window.location.href.match("stg_debug")||document.cookie.match("stg_debug"))&&!window.location.href.match("stg_disable_debug");
             stgCreateCookie("stg_debug",isStgDebug?1:"",isStgDebug?14:-1);
             var qP=[];dataLayerName!=="dataLayer"&&qP.push("data_layer_name="+dataLayerName),isStgDebug&&qP.push("stg_debug");
             var qPString=qP.length>0?("?"+qP.join("&")):"";
-            document.write('<script src="https://client.containers.piwik.pro/'+id+'.sync.js' + qPString + '" nonce="INSERT_VALID_NONCE_VALUE"></' + 'script>');
+            document.write('<script src="https://client.piwik.pro/containers/'+id+'.sync.js' + qPString + '" nonce="INSERT_VALID_NONCE_VALUE"></' + 'script>');
             })(window, document, 'dataLayer', 'feacd61d-0232-40a1-96c3-7e469f7bfa7f');
         </script>
 
@@ -108,9 +108,9 @@ To load all necessary assets from Tag Manager debugger you need to define source
 
 .. code-block:: javascript
 
-	img-src <your-sources> https://client.containers.piwik.pro;
-	font-src <your-sources> https://client.containers.piwik.pro;
-	style-src <your-sources> https://client.containers.piwik.pro;
+	img-src <your-sources> https://client.piwik.pro;
+	font-src <your-sources> https://client.piwik.pro;
+	style-src <your-sources> https://client.piwik.pro;
 
 
 Consent Manager form assets
@@ -120,12 +120,8 @@ If your website is GDPR compliant then you need to describe ``connect-src``, ``s
 
 .. code-block:: javascript
 
-	connect-src <your-sources> https://client.piwik.pro https://client.containers.piwik.pro;
+	connect-src <your-sources> https://client.piwik.pro;
 	style-src <your-sources> 'nonce-INSERT_VALID_NONCE_VALUE';
-
-.. note::
-    Please note that we define here tracking domain **client.piwik.pro** for collecting visitor consents and container domain **client.containers.piwik.pro** for fetching consent form assets.
-
 
 Consent Manager's data subject request widget
 ------------
@@ -168,7 +164,6 @@ Following example configuration of CSP assumes:
 - client's website address: **client.com**
 - Consent Manager is enabled for the website
 - client's organization name in Piwik PRO: **client**
-- client's container domain: **client.containers.piwik.pro**
 - client has Piwik PRO tag with default tracking domain: **client.piwik.pro**
 - nonce value: **nceIOfn39fn3e9h3sd**
 - configuration allows ``'self'`` source which is: **client.com**
@@ -177,7 +172,7 @@ Following example configuration of CSP assumes:
 
     Content-Security-Policy: default-src 'none';
                              script-src  'self' https://client.piwik.pro/ppms.js 'nonce-nceIOfn39fn3e9h3sd';
-                             connect-src 'self' https://client.containers.piwik.pro https://client.piwik.pro;
-                             img-src     'self' https://client.containers.piwik.pro https://client.piwik.pro;
-                             font-src    'self' https://client.containers.piwik.pro;
-                             style-src   'self' https://client.containers.piwik.pro 'nonce-nceIOfn39fn3e9h3sd';
+                             connect-src 'self' https://client.piwik.pro;
+                             img-src     'self' https://client.piwik.pro;
+                             font-src    'self' https://client.piwik.pro;
+                             style-src   'self' https://client.piwik.pro 'nonce-nceIOfn39fn3e9h3sd';
