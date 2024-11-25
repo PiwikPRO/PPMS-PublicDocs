@@ -1,4 +1,5 @@
 openapi: 3.0.3
+x-api-category: Apps
 info:
   title: Apps Api
   version: auto
@@ -121,7 +122,7 @@ components:
         List of URL's under which the app is available (deep linking is supported)
       items:
         type: string
-      example: [ 'http://example.com' ]
+      example: ['https://example.com']
     App_Timezone:
       type: string
       description: It allows to specify the timezone for your app (using IANA format), and tracked data will show date & time of this time zone. Please note that changing the timezone will not affect previous logs in reports.
@@ -153,13 +154,13 @@ components:
       type: string
       description: App type
       example: web
-      enum: [ web, sharepoint ]
+      enum: [web, sharepoint]
       default: web
     App_Type:
       type: string
       description: App type
       example: web
-      enum: [ web, sharepoint, demo ]
+      enum: [web, sharepoint, demo]
       default: web
     JsonApi_Id:
       type: string
@@ -240,7 +241,7 @@ components:
                       type: array
                       items:
                         type: string
-                      example: [ view ]
+                      example: [view]
     App_User_Group_Permissions_JsonApi:
       type: object
       properties:
@@ -278,7 +279,7 @@ components:
             properties:
               type:
                 description: Resource type
-                enum: [ ppms/app ]
+                enum: [ppms/app]
                 type: string
               id:
                 $ref: "#/components/schemas/JsonApi_Id"
@@ -339,18 +340,18 @@ components:
           type: array
           description: |
             Site search query params for an app
-          default: [ q,query,s,search,searchword,keyword ]
+          default: [q, query, s, search, searchword, keyword]
           items:
             type: string
-          example: [ q,query,s,search,searchword,keyword ]
+          example: [q, query, s, search, searchword, keyword]
         siteSearchCategoryParams:
           type: array
           description: |
             Site search category params for an app
-          default: [ ]
+          default: []
           items:
             type: string
-          example: [ ]
+          example: []
         delay:
           type: integer
           description: Delay (in ms) is used to slow down actions (e.g. redirect) when waiting for tags to be resolved
@@ -360,7 +361,7 @@ components:
           type: array
           description: |
             List of IPs (IPv4 and IPv6) to blacklist from tracking, e.g `192.168.0.0` or `2607:f0d0:1002:51::4`. You can use wildcards, e.g. `1.2.3.*`, `1.2.*.*` or `::7:*`
-          default: [ ]
+          default: []
           items:
             type: string
           example:
@@ -373,7 +374,7 @@ components:
           type: array
           description: |
             URL query parameters excluded by default from tracking: `gclid`, `fb_xd_fragment`, `fb_comment_id`, `phpsessid`, `jsessid`, `aspsessid`, `doing_wp_cron`, `sid` and `pk_vid`. Regular expressions such as `/^sess.*|.*[dD]ate$/` are supported
-          default: [ ]
+          default: []
           items:
             type: string
           example:
@@ -385,7 +386,7 @@ components:
           type: array
           description: |
             If the visitor's user agent string contains any of the strings you specify, the visitor will be excluded from tracking
-          default: [ ]
+          default: []
           items:
             type: string
           example:
@@ -414,7 +415,7 @@ components:
         privacyCookieDomains:
           type: array
           description: List of privacy cookie domains for an app (works if `privacyCookieDomainsEnabled` is true), you can also use wildcards like ``*.example.com``
-          default: [ ]
+          default: []
           items:
             type: string
           example:
@@ -438,7 +439,7 @@ components:
         gdprDataAnonymizationMode:
           type: string
           description: Anonymization mode
-          enum: [ no_device_storage, session_cookie_id ]
+          enum: [no_device_storage, session_cookie_id]
           default: session_cookie_id
         privacyUseCookies:
           type: boolean
@@ -537,6 +538,7 @@ components:
 paths:
   /api/apps/v2:
     get:
+      x-api-publish: true
       summary: Apps list
       description: |
         Get list of apps<br><br>
@@ -561,6 +563,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/App_List_JsonApi"
     post:
+      x-api-publish: true
       summary: App add
       description: It adds app
       operationId: api_app_add_v2
@@ -643,6 +646,7 @@ paths:
                           example: Limit of apps has been reached
   /api/apps/v2/{app_id}:
     get:
+      x-api-publish: true
       summary: App details
       description: It gets app details
       operationId: api_apps_details_v2
@@ -658,6 +662,7 @@ paths:
         404:
           description: Not Found
     delete:
+      x-api-publish: true
       summary: App delete
       description: It deletes app with given ID
       operationId: api_app_delete_v2
@@ -669,6 +674,7 @@ paths:
         400:
           description: Bad Request
     patch:
+      x-api-publish: true
       summary: App edit
       description: It edits app
       operationId: api_app_edit_v2
@@ -688,6 +694,7 @@ paths:
           description: Bad Request
   /api/apps/v2/{app_id}/permissions:
     get:
+      x-api-publish: true
       deprecated: true
       summary: App permissions
       description: Get app permissions
@@ -709,6 +716,7 @@ paths:
           description: Not Found
   /api/apps/v2/user-group/{user_group_id}/permissions:
     get:
+      x-api-publish: true
       summary: Apps permission for user group
       description: Get apps permission for user group
       operationId: api_apps_user_group_permissions_v2

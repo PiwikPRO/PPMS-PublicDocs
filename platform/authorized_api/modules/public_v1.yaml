@@ -1,4 +1,5 @@
 openapi: 3.0.3
+x-api-category: Modules
 info:
   version: auto
   title: Modules API
@@ -7,6 +8,7 @@ servers:
 paths:
   /api/modules/v1:
     get:
+      x-api-publish: true
       summary: Modules list
       description: List of licensed modules with access for a current user
       operationId: list_modules_v1
@@ -44,6 +46,7 @@ paths:
           $ref: '#/components/responses/UnauthorizedError'
   /api/modules/v1/by-users:
     post:
+      x-api-publish: true
       summary: Modules list for given users
       description: List of modules with access for a list of users
       operationId: accessible_modules_for_users_batch
@@ -106,6 +109,7 @@ paths:
           $ref: '#/components/responses/UnsupportedMediaTypeError'
   "/api/modules/v1/{module}":
     get:
+      x-api-publish: true
       summary: Module
       description: Returns module if it is licensed and user has access to it
       operationId: get_module_v1
@@ -141,11 +145,13 @@ paths:
           $ref: "#/components/responses/NotFoundModule"
   "/api/modules/v1/access/user/{user_id}":
     get:
+      x-api-publish: true
       summary: Modules access list for a given user
       description: >
         Lists all modules to which a given user has access to.
 
         List contains both explicit access for a user and implicit access inherited from user groups which user belongs to.
+
       operationId: get_user_modules_access_v1
       parameters:
         - $ref: "#/components/parameters/UserId"
@@ -170,6 +176,7 @@ paths:
         "404":
           $ref: "#/components/responses/NotFoundUser"
     put:
+      x-api-publish: true
       summary: Set modules access for a given user
       description: Sets modules access for a given user
       operationId: set_modules_access_v1

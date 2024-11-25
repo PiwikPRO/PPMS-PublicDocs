@@ -7,6 +7,7 @@ servers:
 paths:
   /api/users/v2/invite:
     post:
+      x-api-publish: true
       summary: Invite user
       operationId: api_users_invited_v2
       requestBody:
@@ -72,9 +73,9 @@ paths:
                   $ref: "#/components/examples/invalid_attributes"
         403:
           $ref: '#/components/responses/Forbidden'
-
   /api/users/v2:
     post:
+      x-api-publish: true
       deprecated: true
       description: |
         Please use <a href="#operation/api_users_invited_v2">Invite user</a> instead.<br><br>
@@ -130,6 +131,7 @@ paths:
         403:
           $ref: '#/components/responses/Forbidden'
     get:
+      x-api-publish: true
       summary: Get users list
       operationId: api_users_list_v2
       parameters:
@@ -170,9 +172,9 @@ paths:
                   $ref: "#/components/examples/invalid_sort"
         403:
           $ref: '#/components/responses/Forbidden'
-
   /api/users/v2/{userId}:
     get:
+      x-api-publish: true
       summary: Get details of an user
       operationId: api_users_user_details_v2
       parameters:
@@ -203,8 +205,8 @@ paths:
           $ref: '#/components/responses/Forbidden'
         404:
           $ref: '#/components/responses/Not_Found'
-
     delete:
+      x-api-publish: true
       summary: Delete user
       operationId: api_users_delete_v2
       responses:
@@ -239,6 +241,7 @@ paths:
         409:
           $ref: "#/components/responses/id_mismatch"
     patch:
+      x-api-publish: true
       summary: Edit user
       operationId: api_users_edit_v2
       requestBody:
@@ -295,6 +298,7 @@ paths:
           $ref: "#/components/responses/id_mismatch"
   /api/users/v2/{userId}/change-role:
     patch:
+      x-api-publish: true
       summary: Change user role
       operationId: api_users_change_role_v2
       parameters:
@@ -350,9 +354,9 @@ paths:
           $ref: '#/components/responses/Not_Found'
         409:
           $ref: "#/components/responses/id_mismatch"
-
   /api/users/v2/me/change-password:
     patch:
+      x-api-publish: true
       summary: Change my password
       operationId: api_users_me_change_password_v2
       requestBody:
@@ -391,9 +395,9 @@ paths:
           $ref: '#/components/responses/Not_Found'
         409:
           $ref: "#/components/responses/id_mismatch"
-
   /api/users/v2/me/details:
     get:
+      x-api-publish: true
       deprecated: true
       description: |
         Please use <a href="#operation/api_users_me_details_v2">Current user details</a> instead.<br><br>
@@ -410,9 +414,9 @@ paths:
                 properties:
                   data:
                     $ref: '#/components/schemas/JsonApi_User'
-
   /api/users/v2/me:
     get:
+      x-api-publish: true
       summary: Current user details
       operationId: api_users_me_details_v2
       responses:
@@ -425,8 +429,8 @@ paths:
                 properties:
                   data:
                     $ref: '#/components/schemas/JsonApi_User'
-
     patch:
+      x-api-publish: true
       summary: Edit own account
       operationId: api_users_me_edit_v2
       requestBody:
@@ -482,7 +486,6 @@ components:
         minimum: 0
         default: 0
       required: false
-
     Limit:
       in: query
       name: limit
@@ -493,7 +496,6 @@ components:
         minimum: 0
         maximum: 1000
       required: false
-
     search:
       name: search
       in: query
@@ -502,7 +504,6 @@ components:
       schema:
         type: string
         default: ''
-
     search_query:
       name: search_query
       in: query
@@ -511,7 +512,6 @@ components:
         type: string
         default: ''
       required: false
-
     sort:
       in: query
       name: sort
@@ -527,58 +527,48 @@ components:
           - -addedAt
           - -role
       required: false
-
   schemas:
     User_Role:
       type: string
       description: User role
       example: USER
-      enum: [ OWNER, USER ]
-
+      enum: [OWNER, USER]
     User_Email:
       type: string
       description: Valid user email
       format: email
       example: john@doe.com
-
     User_Organization:
       type: string
       example: organization_name
-
     User_Password:
       type: string
       description: Valid password (length between 12 and 128 chars, it must contain at least one digit, one uppercase and one lowercase letter)
       example: Secret1337
-
     Date:
       type: string
       format: 'date-time'
       description: Datetime with time zone in ISO-8601 format
       example: '2018-06-25T07:28:52+01:00'
-
     Language:
       type: string
       format: 'IETF-language-tag'
       description: User Interface language with IETF language tag format
       example: 'en-US'
       default: 'en-US'
-
     JsonApi_Id:
       type: string
       format: uuid
       description: Resource ID
       example: 985ed9d7-b652-47b8-b9cf-c17d62735261
-
     JsonApi_Type:
       type: string
       description: Resource type, unique across whole PPAS
       example: ppms/user
-
     JsonApi_User_Type:
       type: string
-      enum: [ ppms/user ]
+      enum: [ppms/user]
       description: PPAS user resource type
-
     JsonApi_Resource_Object:
       type: object
       properties:
@@ -588,7 +578,6 @@ components:
           $ref: '#/components/schemas/JsonApi_Type'
         attributes:
           type: object
-
     JsonApi_User:
       allOf:
         - $ref: '#/components/schemas/JsonApi_Resource_Object'
@@ -609,13 +598,11 @@ components:
                   $ref: '#/components/schemas/Date'
                 language:
                   $ref: '#/components/schemas/Language'
-
     JsonApi_User_Object:
       type: object
       properties:
         data:
           $ref: '#/components/schemas/JsonApi_User'
-
     JsonApi_User_Create:
       type: object
       required:
@@ -629,7 +616,7 @@ components:
           properties:
             type:
               type: string
-              enum: [ ppms/user ]
+              enum: [ppms/user]
               description: Resource type, unique across whole PPAS
             attributes:
               type: object
@@ -647,7 +634,6 @@ components:
               required:
                 - email
                 - password
-
     JsonApi_User_Invite:
       type: object
       properties:
@@ -656,7 +642,7 @@ components:
           properties:
             type:
               type: string
-              enum: [ ppms/user ]
+              enum: [ppms/user]
               description: Resource type, unique across whole PPAS
             attributes:
               type: object
@@ -667,7 +653,6 @@ components:
                   $ref: '#/components/schemas/Language'
               required:
                 - email
-
     JsonApi_Edit_User:
       type: object
       required:
@@ -688,7 +673,6 @@ components:
                       $ref: '#/components/schemas/User_Role'
                     language:
                       $ref: '#/components/schemas/Language'
-
     JsonApi_Change_Role:
       type: object
       required:
@@ -709,7 +693,6 @@ components:
                       $ref: '#/components/schemas/User_Role'
                   required:
                     - role
-
     JsonApi_Change_Password:
       type: object
       required:
@@ -732,7 +715,6 @@ components:
                         - $ref: '#/components/schemas/User_Password'
                     newPassword:
                       $ref: '#/components/schemas/User_Password'
-
     ListMetadata:
       type: object
       description: Metadata of a listing
@@ -743,10 +725,8 @@ components:
           type: integer
           description: Total number of items
           example: 1
-
     No_Content:
       description: No content
-
     ErrorObject:
       type: object
       properties:
@@ -798,7 +778,6 @@ components:
                     type: string
                     example: offset
                     description: a string indicating which URI query parameter caused the error
-
   responses:
     Forbidden:
       description: Forbidden
@@ -811,21 +790,21 @@ components:
             Forbidden:
               $ref: "#/components/examples/forbidden"
     id_mismatch:
-        description: Conflict
-        content:
-            application/vnd.api+json:
-                schema:
-                    allOf:
-                        -   $ref: "#/components/schemas/ErrorObject"
-                examples:
-                    Id mismatch:
-                      value:
-                        errors:
-                          - status: '409'
-                            code: error
-                            detail: "The resource object's id (985ed9d7-b652-47b8-b9cf-c17d62735261) does not match url's lookup id (8209367f-691b-475e-84c3-d1c69f46075b)"
-                            source:
-                               pointer: /data
+      description: Conflict
+      content:
+        application/vnd.api+json:
+          schema:
+            allOf:
+              - $ref: "#/components/schemas/ErrorObject"
+          examples:
+            Id mismatch:
+              value:
+                errors:
+                  - status: '409'
+                    code: error
+                    detail: "The resource object's id (985ed9d7-b652-47b8-b9cf-c17d62735261) does not match url's lookup id (8209367f-691b-475e-84c3-d1c69f46075b)"
+                    source:
+                      pointer: /data
     Not_Found:
       description: Not Found
       content:
