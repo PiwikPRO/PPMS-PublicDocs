@@ -2,7 +2,7 @@ Profile attributes
 ==================
 
 Profile attributes in Customer Data Platform are populated with values attached
-to events coming from your website, or those sent through `Profile update API <../customer_data_platform/public_api/public_api.html#operation/post-profile-attributes>`_.
+to events coming from your website, or those sent through `Profile update API <../customer_data_platform/public_api/profiles.html#operation/post-profile-attributes>`_.
 For example, user attribute *Medium* collects values associated with event data
 key ``analytics.medium``.
 
@@ -12,7 +12,7 @@ an event data key used by another attribute to collect the same data twice
 (potentially with different aggregations), or a new key to collect data
 independently.
 
-Events send through `Profile update API <../customer_data_platform/public_api/public_api.html#operation/post-profile-attributes>`_
+Events send through `Profile update API <../customer_data_platform/public_api/profiles.html#operation/post-profile-attributes>`_
 can specify values for analytics event data keys, as well as custom keys
 configured during creation of custom user attributes. This allows you to update
 profile data gathered from your website or enrich profiles with information
