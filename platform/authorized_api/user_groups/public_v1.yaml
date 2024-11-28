@@ -5,7 +5,6 @@ info:
 paths:
   /api/user-groups/v1:
     get:
-      x-api-publish: true
       summary: List user groups
       description: Lists user groups
       operationId: list_user_group_v1
@@ -35,7 +34,6 @@ paths:
         "403":
           description: Forbidden
     post:
-      x-api-publish: true
       summary: Add user group
       description: Adds user group with unique name
       operationId: add_user_group_v1
@@ -69,7 +67,6 @@ paths:
           description: Forbidden
   "/api/user-groups/v1/{user_group_id}":
     get:
-      x-api-publish: true
       summary: Get user group
       description: Gets specific user group details
       operationId: UserGroupDetails_v1
@@ -92,7 +89,6 @@ paths:
         "403":
           description: Forbidden
     patch:
-      x-api-publish: true
       summary: Edit user group
       description: Updates user group details
       operationId: edit_user_group_v1
@@ -128,7 +124,6 @@ paths:
         "403":
           description: Forbidden
     delete:
-      x-api-publish: true
       summary: Delete user group
       description: Deletes user group
       operationId: delete_user_group_v1
@@ -145,7 +140,6 @@ paths:
           description: Forbidden
   "/api/user-groups/v1/{user_group_id}/users":
     get:
-      x-api-publish: true
       summary: Get user group members
       description: Gets user group members
       operationId: list_user_group_users_v1
@@ -170,7 +164,6 @@ paths:
           description: Forbidden
   "/api/user-groups/v1/{user_group_id}/users/excluded":
     get:
-      x-api-publish: true
       summary: Get users excluded from group
       description: Gets users excluded from given user group
       operationId: list_user_group_users_excluded_v1
@@ -195,7 +188,6 @@ paths:
           description: Forbidden
   "/api/user-groups/v1/{user_group_id}/relationships/users":
     post:
-      x-api-publish: true
       summary: Add users to user group
       description: Adds users to user group
       operationId: add_users_to_group_v1
@@ -218,7 +210,6 @@ paths:
         "403":
           description: Forbidden
     delete:
-      x-api-publish: true
       summary: Remove users from user group
       description: Remove users from user group
       operationId: remove_users_from_group_v1
@@ -242,7 +233,6 @@ paths:
           description: Forbidden
   "/api/user-groups/v1/{user_group_id}/permissions":
     post:
-      x-api-publish: true
       deprecated: true
       summary: Set permission group
       description: >

@@ -1,5 +1,4 @@
 openapi: 3.0.3
-x-api-category: Audit Log
 info:
   title: Audit Log Api
   version: auto
@@ -8,7 +7,6 @@ servers:
 paths:
   /api/audit-log/v1/entries:
     get:
-      x-api-publish: true
       summary: Entry list
       description: >
         List of Audit Log entries<br><br>

@@ -7,7 +7,6 @@ servers:
 paths:
   /api/users/v2/invite:
     post:
-      x-api-publish: true
       summary: Invite user
       operationId: api_users_invited_v2
       requestBody:
@@ -75,7 +74,6 @@ paths:
           $ref: '#/components/responses/Forbidden'
   /api/users/v2:
     post:
-      x-api-publish: true
       deprecated: true
       description: |
         Please use <a href="#operation/api_users_invited_v2">Invite user</a> instead.<br><br>
@@ -131,7 +129,6 @@ paths:
         403:
           $ref: '#/components/responses/Forbidden'
     get:
-      x-api-publish: true
       summary: Get users list
       operationId: api_users_list_v2
       parameters:
@@ -174,7 +171,6 @@ paths:
           $ref: '#/components/responses/Forbidden'
   /api/users/v2/{userId}:
     get:
-      x-api-publish: true
       summary: Get details of an user
       operationId: api_users_user_details_v2
       parameters:
@@ -206,7 +202,6 @@ paths:
         404:
           $ref: '#/components/responses/Not_Found'
     delete:
-      x-api-publish: true
       summary: Delete user
       operationId: api_users_delete_v2
       responses:
@@ -241,7 +236,6 @@ paths:
         409:
           $ref: "#/components/responses/id_mismatch"
     patch:
-      x-api-publish: true
       summary: Edit user
       operationId: api_users_edit_v2
       requestBody:
@@ -298,7 +292,6 @@ paths:
           $ref: "#/components/responses/id_mismatch"
   /api/users/v2/{userId}/change-role:
     patch:
-      x-api-publish: true
       summary: Change user role
       operationId: api_users_change_role_v2
       parameters:
@@ -356,7 +349,6 @@ paths:
           $ref: "#/components/responses/id_mismatch"
   /api/users/v2/me/change-password:
     patch:
-      x-api-publish: true
       summary: Change my password
       operationId: api_users_me_change_password_v2
       requestBody:
@@ -397,7 +389,6 @@ paths:
           $ref: "#/components/responses/id_mismatch"
   /api/users/v2/me/details:
     get:
-      x-api-publish: true
       deprecated: true
       description: |
         Please use <a href="#operation/api_users_me_details_v2">Current user details</a> instead.<br><br>
@@ -416,7 +407,6 @@ paths:
                     $ref: '#/components/schemas/JsonApi_User'
   /api/users/v2/me:
     get:
-      x-api-publish: true
       summary: Current user details
       operationId: api_users_me_details_v2
       responses:
@@ -430,7 +420,6 @@ paths:
                   data:
                     $ref: '#/components/schemas/JsonApi_User'
     patch:
-      x-api-publish: true
       summary: Edit own account
       operationId: api_users_me_edit_v2
       requestBody:

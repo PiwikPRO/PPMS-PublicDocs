@@ -1,12 +1,10 @@
 openapi: 3.0.3
-x-api-category: Meta sites
 info:
   title: Meta sites API
   version: auto
 paths:
   /api/meta-sites/v1:
     get:
-      x-api-publish: true
       summary: List meta sites
       description: Lists meta sites
       operationId: list_meta_site_v1
@@ -61,7 +59,6 @@ paths:
         "401":
           $ref: "#/components/responses/UnauthorizedError"
     post:
-      x-api-publish: true
       summary: Add meta site
       description: >
         Adds meta site with unique name. You can add apps to this meta site in
@@ -120,7 +117,6 @@ paths:
           $ref: "#/components/responses/ForbiddenError"
   "/api/meta-sites/v1/{meta_site_id}":
     get:
-      x-api-publish: true
       summary: Get meta site
       description: Gets meta site
       operationId: get_meta_site_v1
@@ -148,7 +144,6 @@ paths:
         "404":
           $ref: "#/components/responses/NotFoundMetaSite"
     patch:
-      x-api-publish: true
       summary: Edit meta site
       description: Edits meta site
       operationId: edit_meta_site_v1
@@ -189,7 +184,6 @@ paths:
         "404":
           $ref: "#/components/responses/NotFoundMetaSite"
     delete:
-      x-api-publish: true
       summary: Delete meta site
       description: Deletes meta site
       operationId: delete_meta_site_v1
@@ -206,7 +200,6 @@ paths:
           $ref: "#/components/responses/NotFoundMetaSite"
   "/api/meta-sites/v1/{meta_site_id}/relationships/apps":
     post:
-      x-api-publish: true
       summary: Add apps to meta site
       description: Adds apps to meta site. You can add up to 1000 apps to meta site in one api call.
       operationId: add_apps_to_meta_site_v1
@@ -231,7 +224,6 @@ paths:
         "404":
           $ref: "#/components/responses/NotFoundMetaSite"
     delete:
-      x-api-publish: true
       summary: Remove apps from meta site
       description: Removes apps from meta site. You can remove up to 1000 apps from meta
         site in one api call.
@@ -258,7 +250,6 @@ paths:
           $ref: "#/components/responses/NotFoundMetaSite"
   "/api/meta-sites/v1/{meta_site_id}/apps":
     get:
-      x-api-publish: true
       summary: List apps in meta site
       description: Lists apps that belong to given meta site
       operationId: list_apps_in_meta_site_v1
@@ -293,7 +284,6 @@ paths:
           $ref: "#/components/responses/NotFoundMetaSite"
   "/api/meta-sites/v1/{meta_site_id}/apps/excluded":
     get:
-      x-api-publish: true
       summary: List apps excluded from meta site
       description: Lists apps that don't belong to given meta site
       operationId: list_apps_excluded_from_meta_site_v1
@@ -328,7 +318,6 @@ paths:
           $ref: "#/components/responses/NotFoundMetaSite"
   /api/meta-sites/v1/apps-with-meta-sites:
     get:
-      x-api-publish: true
       summary: List apps & meta sites
       description: >
         Get list of apps with meta sites. App with `demo` type will be always first on the list if exists (sorting method is irrelevant)
@@ -410,7 +399,6 @@ paths:
           $ref: "#/components/responses/ListBadRequest"
   "/api/meta-sites/v1/{meta_site_id}/apps/integrity":
     get:
-      x-api-publish: true
       summary: Meta site integrity
       description: It informs whether all apps of given meta site have the same currency and timezone as meta site itself
       operationId: meta_site_integrity_v1

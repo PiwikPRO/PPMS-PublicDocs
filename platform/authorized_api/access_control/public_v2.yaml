@@ -1,5 +1,4 @@
 openapi: 3.0.3
-x-api-category: Access Control
 info:
   title: Access Control Api
   version: auto
@@ -90,7 +89,6 @@ info:
 paths:
   "/api/access-control/v2/entry/{entity_id}":
     get:
-      x-api-publish: true
       summary: Entity actions
       description: Returns granted actions to a given entity for current user.
       operationId: get_entity_actions_v2
@@ -109,7 +107,6 @@ paths:
           description: Forbidden
   "/api/access-control/v2/entry/ppms/app/action/{action}":
     get:
-      x-api-publish: true
       summary: Apps with granted action
       description: Returns apps with granted action for current user.
       operationId: get_apps_with_action_v2
@@ -140,7 +137,6 @@ paths:
           description: Forbidden
   "/api/access-control/v2/entry/ppms/meta-site/action/{action}":
     get:
-      x-api-publish: true
       summary: Meta sites with granted action
       description: Returns meta sites with granted action for current user.
       operationId: get_meta_sites_with_action_v2
@@ -175,7 +171,6 @@ paths:
           description: Forbidden
   "/api/access-control/v2/entry/ppms/user/action/{action}":
     get:
-      x-api-publish: true
       summary: Users with granted action
       description: Returns users with granted action for current user.
       operationId: get_users_with_action_v2
@@ -207,7 +202,6 @@ paths:
           description: Forbidden
   /api/access-control/v2/global/actions:
     get:
-      x-api-publish: true
       summary: Global actions
       description: It gets actions without specific entity context for a given user.
       operationId: get_global_actions_v2
@@ -220,7 +214,6 @@ paths:
                 $ref: "#/components/schemas/GlobalActions"
   "/api/access-control/v2/app/{app_id}/permission/user":
     get:
-      x-api-publish: true
       summary: Users permissions for a given app
       description: >
         Lists all users (but not owners) and their permissions for a given app.
@@ -258,7 +251,6 @@ paths:
           description: Not Found
   "/api/access-control/v2/app/{app_id}/permission/user-group":
     get:
-      x-api-publish: true
       summary: User groups permissions for a given app
       description: Lists all user groups and their permissions for a given app.
       operationId: list_app_permissions_for_user_group_v2
@@ -295,7 +287,6 @@ paths:
           description: Not Found
   "/api/access-control/v2/meta-site/{meta_site_id}/permission/user":
     get:
-      x-api-publish: true
       summary: Users permissions for a given meta site
       description: >
         Lists all users (but not owners) and their permissions for a given meta
@@ -334,7 +325,6 @@ paths:
           description: Not Found
   "/api/access-control/v2/meta-site/{meta_site_id}/permission/user-group":
     get:
-      x-api-publish: true
       summary: User groups permissions for a given meta site
       description: Lists all user groups and their permission for a given meta site.
       operationId: list_meta_site_permissions_for_user_group_v2
@@ -359,7 +349,6 @@ paths:
           description: Not Found
   "/api/access-control/v2/app/{app_id}/permission/user/{user_id}":
     post:
-      x-api-publish: true
       summary: Set user permission for a given app
       description: Sets user permission for a given app
       operationId: set_app_permission_for_user_v2
@@ -386,7 +375,6 @@ paths:
           description: Forbidden
   "/api/access-control/v2/app/{app_id}/permission/user-group/{user_group_id}":
     post:
-      x-api-publish: true
       summary: Set user group permission for a given app
       description: It sets permission for a given app for a user group
       operationId: set_app_permission_for_user_group_v2
@@ -413,7 +401,6 @@ paths:
           description: Forbidden
   "/api/access-control/v2/meta-site/{meta_site_id}/permission/user/{user_id}":
     post:
-      x-api-publish: true
       summary: Set user permission for a given meta site
       description: It sets permission for a given meta site for a user
       operationId: set_meta_site_permission_for_user_v2
@@ -440,7 +427,6 @@ paths:
           description: Forbidden
   "/api/access-control/v2/meta-site/{meta_site_id}/permission/user-group/{user_group_id}":
     post:
-      x-api-publish: true
       summary: Set user group permission for a given meta site
       description: It sets permission for a given meta site for a user group
       operationId: set_meta_site_permission_for_user_group_v2
@@ -467,7 +453,6 @@ paths:
           description: Forbidden
   /api/access-control/v2/entry/group:
     post:
-      x-api-publish: true
       summary: Permission set
       deprecated: true
       description: >
@@ -493,7 +478,6 @@ paths:
           description: Forbidden
   "/api/access-control/v2/entry/groups/ppms/app/{entity_id}":
     get:
-      x-api-publish: true
       summary: Permissions
       deprecated: true
       description: >

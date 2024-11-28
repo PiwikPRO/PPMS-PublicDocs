@@ -1,5 +1,4 @@
 openapi: 3.0.3
-x-api-category: Apps
 info:
   title: Apps Api
   version: auto
@@ -538,7 +537,6 @@ components:
 paths:
   /api/apps/v2:
     get:
-      x-api-publish: true
       summary: Apps list
       description: |
         Get list of apps<br><br>
@@ -563,7 +561,6 @@ paths:
               schema:
                 $ref: "#/components/schemas/App_List_JsonApi"
     post:
-      x-api-publish: true
       summary: App add
       description: It adds app
       operationId: api_app_add_v2
@@ -646,7 +643,6 @@ paths:
                           example: Limit of apps has been reached
   /api/apps/v2/{app_id}:
     get:
-      x-api-publish: true
       summary: App details
       description: It gets app details
       operationId: api_apps_details_v2
@@ -662,7 +658,6 @@ paths:
         404:
           description: Not Found
     delete:
-      x-api-publish: true
       summary: App delete
       description: It deletes app with given ID
       operationId: api_app_delete_v2
@@ -674,7 +669,6 @@ paths:
         400:
           description: Bad Request
     patch:
-      x-api-publish: true
       summary: App edit
       description: It edits app
       operationId: api_app_edit_v2
@@ -694,7 +688,6 @@ paths:
           description: Bad Request
   /api/apps/v2/{app_id}/permissions:
     get:
-      x-api-publish: true
       deprecated: true
       summary: App permissions
       description: Get app permissions
@@ -716,7 +709,6 @@ paths:
           description: Not Found
   /api/apps/v2/user-group/{user_group_id}/permissions:
     get:
-      x-api-publish: true
       summary: Apps permission for user group
       description: Get apps permission for user group
       operationId: api_apps_user_group_permissions_v2
