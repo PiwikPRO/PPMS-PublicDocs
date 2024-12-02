@@ -64,6 +64,7 @@ paths:
         Adds meta site with unique name. You can add apps to this meta site in
 
         [/api/meta-sites/v1/{meta_site_id}/relationships/apps](#operation/add_apps_to_meta_site_v1) endpoint.
+
       operationId: add_meta_site_v1
       requestBody:
         content:
@@ -200,8 +201,7 @@ paths:
   "/api/meta-sites/v1/{meta_site_id}/relationships/apps":
     post:
       summary: Add apps to meta site
-      description: Adds apps to meta site. You can add up to 1000 apps to meta site in one
-        api call.
+      description: Adds apps to meta site. You can add up to 1000 apps to meta site in one api call.
       operationId: add_apps_to_meta_site_v1
       parameters:
         - $ref: "#/components/parameters/MetaSiteId"
@@ -333,6 +333,7 @@ paths:
         ```
 
         this will list 10 apps and meta sites which I have access to (can execute `edit` action) starting on 101th matching search query "nifty marketing".
+
       operationId: list_apps_and_meta_sites_v1
       parameters:
         - $ref: "#/components/parameters/Offset"
@@ -399,8 +400,7 @@ paths:
   "/api/meta-sites/v1/{meta_site_id}/apps/integrity":
     get:
       summary: Meta site integrity
-      description: It informs whether all apps of given meta site have the same currency
-        and timezone as meta site itself
+      description: It informs whether all apps of given meta site have the same currency and timezone as meta site itself
       operationId: meta_site_integrity_v1
       parameters:
         - $ref: "#/components/parameters/MetaSiteId"

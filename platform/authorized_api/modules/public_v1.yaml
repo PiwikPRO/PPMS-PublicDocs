@@ -146,6 +146,7 @@ paths:
         Lists all modules to which a given user has access to.
 
         List contains both explicit access for a user and implicit access inherited from user groups which user belongs to.
+
       operationId: get_user_modules_access_v1
       parameters:
         - $ref: "#/components/parameters/UserId"
