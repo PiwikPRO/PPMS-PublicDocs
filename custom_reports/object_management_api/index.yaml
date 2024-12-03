@@ -78,17 +78,19 @@ components:
     Offset:
       name: offset
       in: query
-      type: integer
-      default: 0
-      minimum: 0
+      schema:
+        type: integer
+        default: 0
+        minimum: 0
       description: Number of rows to skip before beginning to return rows.
     Limit:
       name: limit
       in: query
-      type: integer
-      default: 10
-      minimum: 1
-      maximum: 100000
+      schema:
+        type: integer
+        default: 10
+        minimum: 1
+        maximum: 100000
       description: Number of rows to return.
   schemas:
     Meta:

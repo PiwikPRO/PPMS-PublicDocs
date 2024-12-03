@@ -85,6 +85,7 @@ info:
     - add_app_to_meta_site - allows adding apps to a meta site (owner only)
 
     - remove_app_from_meta_site - allows removing apps from a meta site (owner only)
+
 paths:
   "/api/access-control/v2/entry/{entity_id}":
     get:
@@ -218,6 +219,7 @@ paths:
         Lists all users (but not owners) and their permissions for a given app.
 
         List contains both explicit permission of a user and implicit highest permission inherited from user groups which user belongs to.
+
       operationId: list_app_permissions_for_user_v2
       parameters:
         - $ref: "#/components/parameters/Limit"
@@ -291,6 +293,7 @@ paths:
         site.
 
         List contains both explicit permission of a user and implicit highest permission inherited from user groups which user belongs to.
+
       operationId: list_meta_site_permissions_for_user_v2
       parameters:
         - $ref: "#/components/parameters/Limit"

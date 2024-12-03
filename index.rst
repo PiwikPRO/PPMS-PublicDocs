@@ -130,7 +130,7 @@ Developer docs and guides
             </a>
         </div>
         <div class="popular-links-el subdued">
-            <a class="link" href="customer_data_platform/public_api/public_api.html">
+            <a class="link" href="customer_data_platform/public_api/index.html">
                 Customer Data Platform public api
             </a>
             <a class="link" href="customer_data_platform/authorized_api/index.html">
