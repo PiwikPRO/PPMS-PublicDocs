@@ -1,4 +1,5 @@
 openapi: '3.0.0'
+x-api-category: Tag Manager
 info:
     title: Tag Manager API
     version: '1.0'
@@ -48,6 +49,7 @@ paths:
             - $ref: 'common/api/common_request_parameters.json#/components/parameters/app_id'
 
         get:
+            x-api-publish: true
             summary: List of tags
             description: |
                 ### JSON API compatibility divergence
@@ -88,6 +90,7 @@ paths:
                 '500':
                     $ref: 'common/api/common_error_responses.json#/components/responses/internal_server_error'
         patch:
+            x-api-publish: true
             summary: Edit tags order
             requestBody:
                 required: true
@@ -112,6 +115,7 @@ paths:
                     $ref: 'common/api/common_error_responses.json#/components/responses/service_unavailable'
 
         post:
+            x-api-publish: true
             summary: Create tag
             description: |
                 See more details about API changes: <a href="#section/Deprecations-and-changes">Deprecations and changes</a>
@@ -156,6 +160,7 @@ paths:
             - $ref: 'common/api/common_request_parameters.json#/components/parameters/app_id'
             - $ref: 'tags/api/tags_request_parameters.json#/components/parameters/tag_id'
         get:
+            x-api-publish: true
             summary: List of triggers for a given tag
             parameters:
                 - $ref: 'common/api/common_request_parameters.json#/components/parameters/page[limit]'
@@ -181,11 +186,12 @@ paths:
                 '500':
                     $ref: 'common/api/common_error_responses.json#/components/responses/internal_server_error'
 
-    /api/tag/v1/{appId}/tags/{tag_id}:
+    /api/tag/v1/{app_id}/tags/{tag_id}:
         parameters:
             - $ref: 'common/api/common_request_parameters.json#/components/parameters/app_id'
             - $ref: 'tags/api/tags_request_parameters.json#/components/parameters/tag_id'
         get:
+            x-api-publish: true
             summary: Get tag
             responses:
                 '200':
@@ -206,6 +212,7 @@ paths:
                     $ref: 'common/api/common_error_responses.json#/components/responses/internal_server_error'
 
         patch:
+            x-api-publish: true
             summary: Edit tag
             description: |
                 See more details about API changes: <a href="#section/Deprecations-and-changes">Deprecations and changes</a>
@@ -232,6 +239,7 @@ paths:
                     $ref: 'common/api/common_error_responses.json#/components/responses/service_unavailable'
 
         delete:
+            x-api-publish: true
             summary: Delete tag
             responses:
                 '204':
@@ -253,6 +261,7 @@ paths:
             - $ref: 'tags/api/tags_request_parameters.json#/components/parameters/tag_id'
 
         post:
+            x-api-publish: true
             summary: Copy tag
             responses:
                 '202':
