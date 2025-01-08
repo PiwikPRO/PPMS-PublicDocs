@@ -1,4 +1,5 @@
 openapi: '3.0.0'
+x-api-category: Tag Manager
 info:
     title: Tag Manager API
     version: '1.0'
@@ -54,6 +55,7 @@ paths:
             - $ref: 'common/api/common_request_parameters.json#/components/parameters/app_id'
 
         get:
+            x-api-publish: true
             summary: List of variables
             description: |
                 ### JSON API compatibility divergence
@@ -93,6 +95,7 @@ paths:
                     $ref: 'common/api/common_error_responses.json#/components/responses/internal_server_error'
 
         post:
+            x-api-publish: true
             summary: Create variable
             responses:
                 '201':
@@ -128,6 +131,7 @@ paths:
             - $ref: 'variables/api/variables_request_parameters.json#/components/parameters/variable_id'
 
         get:
+            x-api-publish: true
             summary: Get variable
             responses:
                 '200':
@@ -148,6 +152,7 @@ paths:
                     $ref: 'common/api/common_error_responses.json#/components/responses/internal_server_error'
 
         patch:
+            x-api-publish: true
             summary: Edit variable
             description: It is possible to edit variable's type. Just make a request with a new type and all required attributes from its schema.
             responses:
@@ -173,6 +178,7 @@ paths:
                             $ref: 'variables/example/edit/variables_edit_request_example.json'
 
         delete:
+            x-api-publish: true
             summary: Delete variable
             responses:
                 '204':
@@ -194,6 +200,7 @@ paths:
             - $ref: 'variables/api/variables_request_parameters.json#/components/parameters/variable_id'
 
         post:
+            x-api-publish: true
             summary: Copy variable
             responses:
                 '202':
