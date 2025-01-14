@@ -4,6 +4,7 @@
         "type": "version",
         "attributes": {
             "version_type": "published",
+            "has_changes": false,
             "version_major": 1,
             "version_minor": 1,
             "created_at": "2020-01-29T13:43:57+00:00",

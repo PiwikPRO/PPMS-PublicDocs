@@ -1,4 +1,5 @@
 openapi: '3.0.0'
+x-api-category: Tag Manager
 info:
     title: Tag Manager API
     version: '1.0'
@@ -16,6 +17,7 @@ paths:
             - $ref: 'operations/api/operations_request_parameters.json#/components/parameters/operation_id'
 
         get:
+            x-api-publish: true
             summary: Get operation
             responses:
                 '200':

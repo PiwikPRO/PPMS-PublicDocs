@@ -110,8 +110,10 @@
         "total": 25
     },
     "links": {
-        "prev": "/api/tag/v1/1f74dda5-b598-41d6-a9e4-f501ef4379e1/variables?page[offset]=0&page[limit]=10",
-        "self": "/api/tag/v1/1f74dda5-b598-41d6-a9e4-f501ef4379e1/variables?page[offset]=10&page[limit]=10",
-        "next": "/api/tag/v1/1f74dda5-b598-41d6-a9e4-f501ef4379e1/variables?page[offset]=20&page[limit]=10"
+        "self": "/api/tag/v1/1f74dda5-b598-41d6-a9e4-f501ef4379e1/variables?page[offset]=0&page[limit]=10",
+        "first": "/api/tag/v1/1f74dda5-b598-41d6-a9e4-f501ef4379e1/variables?page[offset]=10&page[limit]=10",
+        "last": "/api/tag/v1/1f74dda5-b598-41d6-a9e4-f501ef4379e1/variables?page[offset]=20&page[limit]=10",
+        "prev": null,
+        "next": null
     }
 }
