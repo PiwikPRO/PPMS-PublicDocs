@@ -3,6 +3,18 @@ x-api-category: Tag Manager
 info:
     title: Tag Manager API
     version: '1.0'
+    description: |
+        # Asynchronous operations
+
+        - Some actions result in asynchronous operations. In such cases, the API will return a 202 status code with operation id in `relationships` object.
+        - The operation status can be checked by sending a GET request to `/api/tag/v1/{app_id}/operations/{operation_id}` URL.
+        - Operation can be in one of the following states:
+            - `created` - the operation has been created
+            - `started` - the operation has been started and is currently in progress
+            - `completed` - the operation been completed successfully and the result is available
+            - `failed` - the operation has failed
+        - Operations can be distinguished by the `operation_type` attribute.
+        - There can only be 1 operation of a given type (in state `started` or `created`) for a given resource (app) at a time.
 
 security:
     - BearerAuth: []
@@ -18,6 +30,8 @@ paths:
         get:
             x-api-publish: true
             summary: List of triggers
+            tags:
+                - Triggers
             description: |
                 ### JSON API compatibility divergence
 
@@ -57,6 +71,8 @@ paths:
         post:
             x-api-publish: true
             summary: Create trigger
+            tags:
+                - Triggers
             responses:
                 '201':
                     description: Trigger data
@@ -93,6 +109,8 @@ paths:
         get:
             x-api-publish: true
             summary: Get trigger
+            tags:
+                - Triggers
             responses:
                 '200':
                     description: Trigger data
@@ -114,6 +132,8 @@ paths:
         patch:
             x-api-publish: true
             summary: Edit trigger
+            tags:
+                - Triggers
             responses:
                 '204':
                     description: No content
@@ -139,6 +159,8 @@ paths:
         delete:
             x-api-publish: true
             summary: Delete trigger
+            tags:
+                - Triggers
             responses:
                 '204':
                     description: No content
@@ -161,6 +183,10 @@ paths:
         post:
             x-api-publish: true
             summary: Copy trigger
+            tags:
+                - Triggers
+            description: |
+                This action results in asynchronous operation. See more: <a href="#section/Asynchronous-operations">Asynchronous operations</a>
             responses:
                 '202':
                     description: Operation data with new (copied) trigger identifier

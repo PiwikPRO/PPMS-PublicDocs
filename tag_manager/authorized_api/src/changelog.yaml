@@ -19,6 +19,8 @@ paths:
         get:
             x-api-publish: true
             summary: Get list of changes
+            tags:
+                - Changelog
             parameters:
                 - $ref: 'common/api/common_request_parameters.json#/components/parameters/page[limit]'
                 - $ref: 'common/api/common_request_parameters.json#/components/parameters/page[offset]'

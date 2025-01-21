@@ -2,7 +2,7 @@
     "description": "Tag create request",
     "oneOf": [
         {
-            "$ref": "request/custom_tag_async_create.json"
+            "$ref": "request/custom_tag_create.json"
         },
         {
             "$ref": "request/custom_content_create.json"

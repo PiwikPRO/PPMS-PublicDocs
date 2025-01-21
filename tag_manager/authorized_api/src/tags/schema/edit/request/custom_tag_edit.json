@@ -1,12 +1,10 @@
 {
-    "title": "Custom tag (synchronous) [DEPRECATED]",
-    "description": "Custom tag create request",
-    "deprecated": true,
+    "title": "Custom tag (asynchronous)",
+    "description": "Custom tag edit request",
     "type": "object",
     "properties": {
         "data": {
             "title": "JSON:API 1.0 request data",
-            "deprecated": true,
             "type": "object",
             "properties": {
                 "id": {
@@ -23,40 +21,31 @@
                             "$ref": "../../tag_attributes.json#/definitions/code"
                         },
                         "disable_in_debug_mode": {
-                            "$ref": "../../tag_attributes.json#/definitions/disable_in_debug_mode_default"
+                            "$ref": "../../tag_attributes.json#/definitions/disable_in_debug_mode"
+                        },
+                        "document_write": {
+                            "$ref": "../../tag_attributes.json#/definitions/document_write"
                         },
                         "is_active": {
-                            "$ref": "../../tag_attributes.json#/definitions/is_active_default"
+                            "$ref": "../../tag_attributes.json#/definitions/is_active"
                         },
                         "priority": {
-                            "$ref": "../../tag_attributes.json#/definitions/priority_default"
-                        },
-                        "tag_type": {
-                            "$ref": "../../tag_attributes.json#/definitions/tag_type_sync"
+                            "$ref": "../../tag_attributes.json#/definitions/priority"
                         },
                         "name": {
                             "$ref": "../../tag_attributes.json#/definitions/name"
                         },
                         "respect_visitors_privacy": {
-                            "$ref": "../../tag_attributes.json#/definitions/respect_visitors_privacy_default"
+                            "$ref": "../../tag_attributes.json#/definitions/respect_visitors_privacy"
                         },
                         "scheduler": {
                             "$ref": "../../tag_attributes.json#/definitions/scheduler"
                         },
                         "consent_type": {
                             "$ref": "../../tag_attributes.json#/definitions/consent_type"
-                        },
-                        "template": {
-                            "$ref": "../../tag_templates/custom_tag_attributes.json#/definitions/template"
                         }
                     },
-                    "additionalProperties": false,
-                    "required": [
-                        "code",
-                        "name",
-                        "consent_type",
-                        "template"
-                    ]
+                    "additionalProperties": false
                 },
                 "relationships": {
                     "allOf": [
@@ -70,18 +59,15 @@
                                     "$ref": "../../tag_types.json#/definitions/trigger_relationship"
                                 }
                             },
-                            "additionalProperties": false,
-                            "required": [
-                                "triggers"
-                            ]
+                            "additionalProperties": false
                         }
                     ]
                 }
             },
             "additionalProperties": false,
             "required": [
-                "type",
-                "attributes"
+                "id",
+                "type"
             ]
         }
     },

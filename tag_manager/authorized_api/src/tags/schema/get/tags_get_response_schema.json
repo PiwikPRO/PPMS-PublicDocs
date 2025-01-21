@@ -2,7 +2,7 @@
     "description": "Tag details response",
     "oneOf": [
         {
-            "$ref": "response/custom_tag_async_get.json"
+            "$ref": "response/custom_tag_get.json"
         },
         {
             "$ref": "response/custom_content_get.json"

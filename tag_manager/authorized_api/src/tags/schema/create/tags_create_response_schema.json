@@ -2,7 +2,7 @@
     "description": "Tag create response",
     "oneOf": [
         {
-            "$ref": "../get/response/custom_tag_async_get.json"
+            "$ref": "../get/response/custom_tag_get.json"
         },
         {
             "$ref": "../get/response/custom_content_get.json"
