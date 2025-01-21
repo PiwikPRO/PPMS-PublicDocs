@@ -1,0 +1,29 @@
+{
+    "title": "Static resources domain for organization",
+    "type": "object",
+    "properties": {
+        "id": {
+            "$ref": "./static_resources_domain.json#/definitions/static_resources_domain_id"
+        },
+        "type": {
+            "$ref": "../../common_types.json#/definitions/organization_container_setting_resource_type"
+        },
+        "attributes": {
+            "description": "Container setting for organization",
+            "type": "object",
+            "properties": {
+                "value": {
+                    "$ref": "./static_resources_domain.json#/definitions/static_resources_domain_value"
+                }
+            },
+            "required": ["value"],
+            "additionalProperties": false
+        }
+    },
+    "additionalProperties": false,
+    "required": [
+        "id",
+        "type",
+        "attributes"
+    ]
+}

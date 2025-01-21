@@ -65,6 +65,9 @@
                 },
                 "custom_dimensions": {
                     "$ref": "../piwik_base_attributes.json#/definitions/custom_dimensions"
+                },
+                "currency": {
+                    "$ref": "ecommerce_common_attributes.json#/definitions/currency"
                 }
             },
             "additionalProperties": false,

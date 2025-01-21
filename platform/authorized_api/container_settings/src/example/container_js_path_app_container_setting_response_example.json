@@ -1,0 +1,10 @@
+{
+    "data": {
+        "id": "container_js_path",
+        "type": "container/app/setting",
+        "attributes": {
+            "value": "/{{ app_id }}.js",
+            "is_custom": false
+        }
+    }
+}

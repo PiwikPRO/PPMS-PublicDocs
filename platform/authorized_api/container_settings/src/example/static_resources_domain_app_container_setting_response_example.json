@@ -1,0 +1,10 @@
+{
+    "data": {
+        "id": "static_resources_domain",
+        "type": "container/app/setting",
+        "attributes": {
+            "value": "test.containers.piwik.pro",
+            "is_custom": false
+        }
+    }
+}

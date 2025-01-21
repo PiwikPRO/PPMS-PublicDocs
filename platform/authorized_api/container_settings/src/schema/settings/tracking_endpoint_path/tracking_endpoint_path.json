@@ -1,0 +1,15 @@
+{
+    "definitions": {
+        "tracking_endpoint_path_id": {
+            "description": "Container setting name",
+            "type": "string",
+            "enum": ["tracking_endpoint_path"]
+        },
+        "tracking_endpoint_path_value": {
+            "type": "string",
+            "format": "path",
+            "description": "Tracking endpoint path setting value",
+            "example": "/subdirectory/ppms.php"
+        }
+    }
+}

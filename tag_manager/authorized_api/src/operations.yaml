@@ -19,6 +19,8 @@ paths:
         get:
             x-api-publish: true
             summary: Get operation
+            tags:
+                - Operations
             responses:
                 '200':
                     description:  Get operation

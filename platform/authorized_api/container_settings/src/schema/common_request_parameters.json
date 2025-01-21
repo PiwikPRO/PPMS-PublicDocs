@@ -18,7 +18,16 @@
                 "description": "Container setting name",
                 "schema": {
                     "type": "string",
-                    "enum": ["automatic_scroll_tracking", "spa_tracking"]
+                    "enum": [
+                        "automatic_scroll_tracking",
+                        "spa_tracking",
+                        "container_js_path",
+                        "fpc",
+                        "static_resources_domain",
+                        "tracking_domain",
+                        "tracking_script_path",
+                        "tracking_endpoint_path"
+                    ]
                 }
             },
             "organization": {

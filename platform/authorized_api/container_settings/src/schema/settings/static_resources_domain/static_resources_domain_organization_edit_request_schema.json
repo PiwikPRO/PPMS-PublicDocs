@@ -1,0 +1,13 @@
+{
+    "description": "Edit Static resources domain request for organization",
+    "type": "object",
+    "properties": {
+        "data": {
+            "$ref": "./static_resources_domain_organization_request_schema.json"
+        }
+    },
+    "additionalProperties": false,
+    "required": [
+        "data"
+    ]
+}

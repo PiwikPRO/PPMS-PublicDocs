@@ -1,0 +1,41 @@
+{
+    "description": "App's container installation code response",
+    "type": "object",
+    "properties": {
+        "data": {
+            "title": "App's container installation code",
+            "type": "object",
+            "properties": {
+                "id": {
+                    "description": "App ID",
+                    "type": "string",
+                    "format": "uuid"
+                },
+                "type": {
+                    "$ref": "../common_types.json#/definitions/app_container_installation_code_resource_type"
+                },
+                "attributes": {
+                    "description": "App's container installation code attributes",
+                    "type": "object",
+                    "properties": {
+                        "code": {
+                            "description": "Installation code in HTML format",
+                            "type": "string"
+                        }
+                    },
+                    "required": ["code"],
+                    "additionalProperties": false
+                }
+            },
+            "additionalProperties": false,
+            "required": [
+                "id",
+                "type",
+                "attributes"
+            ]
+        }
+    },
+    "required": [
+        "data"
+    ]
+}

@@ -1,5 +1,5 @@
 {
-    "description": "Edit automatic scroll tracking request for Organization",
+    "description": "Edit automatic scroll tracking request for organization",
     "type": "object",
     "properties": {
         "data": {

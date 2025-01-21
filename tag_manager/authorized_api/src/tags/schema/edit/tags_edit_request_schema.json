@@ -2,7 +2,7 @@
     "description": "Tag edit request",
     "oneOf": [
         {
-            "$ref": "request/custom_tag_async_edit.json"
+            "$ref": "request/custom_tag_edit.json"
         },
         {
             "$ref": "request/custom_content_edit.json"

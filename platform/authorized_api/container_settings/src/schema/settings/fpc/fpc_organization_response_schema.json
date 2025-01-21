@@ -1,0 +1,32 @@
+{
+    "title": "FPC for organization",
+    "type": "object",
+    "properties": {
+        "id": {
+            "$ref": "./fpc.json#/definitions/fpc_id"
+        },
+        "type": {
+            "$ref": "../../common_types.json#/definitions/organization_container_setting_resource_type"
+        },
+        "attributes": {
+            "description": "Container setting for organization",
+            "type": "object",
+            "properties": {
+                "value": {
+                    "$ref": "./fpc.json#/definitions/fpc_value"
+                },
+                "is_custom": {
+                    "$ref": "../../common_types.json#/definitions/is_custom"
+                }
+            },
+            "required": ["value", "is_custom"],
+            "additionalProperties": false
+        }
+    },
+    "additionalProperties": false,
+    "required": [
+        "id",
+        "type",
+        "attributes"
+    ]
+}

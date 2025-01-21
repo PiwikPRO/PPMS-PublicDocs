@@ -1,5 +1,5 @@
 {
-    "title": "Automatic scroll tracking for Organization",
+    "title": "Automatic scroll tracking for organization",
     "type": "object",
     "properties": {
         "id": {
@@ -9,14 +9,17 @@
             "$ref": "../../common_types.json#/definitions/organization_container_setting_resource_type"
         },
         "attributes": {
-            "description": "Container setting for Organization",
+            "description": "Container setting for organization",
             "type": "object",
             "properties": {
                 "value": {
                     "$ref": "./automatic_scroll_tracking.json#/definitions/automatic_scroll_tracking_value"
+                },
+                "is_custom": {
+                    "$ref": "../../common_types.json#/definitions/is_custom"
                 }
             },
-            "required": ["value"],
+            "required": ["value", "is_custom"],
             "additionalProperties": false
         }
     },

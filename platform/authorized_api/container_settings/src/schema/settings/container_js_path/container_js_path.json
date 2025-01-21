@@ -1,0 +1,15 @@
+{
+    "definitions": {
+        "container_js_path_id": {
+            "description": "Container setting name",
+            "type": "string",
+            "enum": ["container_js_path"]
+        },
+        "container_js_path_value": {
+            "type": "string",
+            "format": "path",
+            "description": "ContainerJS path setting value",
+            "example": "/tracking/{{ app_id }}.js"
+        }
+    }
+}

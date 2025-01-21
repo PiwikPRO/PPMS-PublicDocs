@@ -1,0 +1,12 @@
+{
+    "data": {
+        "id": "fpc",
+        "type": "container/app/setting",
+        "attributes": {
+            "value": {
+                "is_enabled": true
+            },
+            "is_custom": true
+        }
+    }
+}

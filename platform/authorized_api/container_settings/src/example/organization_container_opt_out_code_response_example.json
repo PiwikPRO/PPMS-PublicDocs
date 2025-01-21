@@ -1,0 +1,9 @@
+{
+    "data": {
+        "type": "container/organization/opt-out-code",
+        "id": "my_organization",
+        "attributes": {
+            "code": "<script>window['stg'] = window['stg'] || {};window['stg'].optedOutCheckboxText=\"You\u2019re opted out. Uncheck to opt in.\";window['stg'].optedInCheckboxText=\"Opt out of data collection and usage\";<\/script>\n<div id=\"_stg_opt_out_iframe_content\" style=\"display: none;\"><p>Privacy on this site: We collect and process your data on this site to better understand how it is used. You can opt in or out at any time.<\/p><input id=\"_stg_optout_checkbox\" onclick=\"window.parent.storeUserOptOutPreferences();\" type=\"checkbox\"><label id=\"_stg_optout_checkbox_label\" for=\"_stg_optout_checkbox\"><\/label><\/div>\n<script src=\"https:\/\/statics.example.com\/privacy\/script.v2.js\"><\/script>"
+        }
+    }
+}

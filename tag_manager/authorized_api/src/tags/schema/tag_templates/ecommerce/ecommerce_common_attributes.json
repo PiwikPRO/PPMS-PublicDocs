@@ -117,6 +117,17 @@
             "required": [
                 "sku"
             ]
+        },
+        "currency": {
+            "description": "Currency code",
+            "anyOf": [
+                {
+                    "$ref": "../../tag_types.json#/definitions/non_empty_string"
+                },
+                {
+                    "$ref": "../../../../common/schema/common_types.json#/definitions/variable_reference"
+                }
+            ]
         }
     }
 }

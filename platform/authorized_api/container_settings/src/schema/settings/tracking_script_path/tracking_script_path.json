@@ -1,0 +1,15 @@
+{
+    "definitions": {
+        "tracking_script_path_id": {
+            "description": "Container setting name",
+            "type": "string",
+            "enum": ["tracking_script_path"]
+        },
+        "tracking_script_path_value": {
+            "type": "string",
+            "format": "path",
+            "description": "Tracking script path setting value",
+            "example": "/subdirectory/ppms.js"
+        }
+    }
+}

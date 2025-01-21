@@ -1,0 +1,13 @@
+{
+    "description": "Edit Tracking endpoint path request for organization",
+    "type": "object",
+    "properties": {
+        "data": {
+            "$ref": "./tracking_endpoint_path_organization_request_schema.json"
+        }
+    },
+    "additionalProperties": false,
+    "required": [
+        "data"
+    ]
+}

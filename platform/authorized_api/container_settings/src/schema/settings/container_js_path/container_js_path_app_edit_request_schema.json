@@ -1,0 +1,13 @@
+{
+    "description": "Edit ContainerJS path request for app",
+    "type": "object",
+    "properties": {
+        "data": {
+            "$ref": "./container_js_path_app_request_schema.json"
+        }
+    },
+    "additionalProperties": false,
+    "required": [
+        "data"
+    ]
+}

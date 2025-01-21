@@ -53,7 +53,6 @@
                     "additionalProperties": false,
                     "required": [
                         "code",
-                        "tag_type",
                         "name",
                         "consent_type",
                         "template"

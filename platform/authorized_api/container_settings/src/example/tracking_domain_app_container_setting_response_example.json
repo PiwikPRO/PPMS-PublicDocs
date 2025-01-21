@@ -1,0 +1,10 @@
+{
+    "data": {
+        "id": "tracking_domain",
+        "type": "container/app/setting",
+        "attributes": {
+            "value": "test.piwik.pro",
+            "is_custom": false
+        }
+    }
+}

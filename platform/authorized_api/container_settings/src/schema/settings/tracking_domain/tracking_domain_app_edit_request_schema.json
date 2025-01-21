@@ -1,0 +1,13 @@
+{
+    "description": "Edit Tracking domain request for app",
+    "type": "object",
+    "properties": {
+        "data": {
+            "$ref": "./tracking_domain_app_request_schema.json"
+        }
+    },
+    "additionalProperties": false,
+    "required": [
+        "data"
+    ]
+}

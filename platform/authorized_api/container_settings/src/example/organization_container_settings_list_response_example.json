@@ -14,7 +14,8 @@
                 "value": {
                     "is_enabled": true,
                     "thresholds": [5, 50, 95]
-                }
+                },
+                "is_custom": true
             }
         },
         {
@@ -23,7 +24,8 @@
             "attributes": {
                 "value": {
                     "is_enabled": true
-                }
+                },
+                "is_custom": false
             }
         }
     ]

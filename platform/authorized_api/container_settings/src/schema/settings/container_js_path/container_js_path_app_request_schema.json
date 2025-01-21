@@ -1,0 +1,29 @@
+{
+    "title": "ContainerJS path for app",
+    "type": "object",
+    "properties": {
+        "id": {
+            "$ref": "./container_js_path.json#/definitions/container_js_path_id"
+        },
+        "type": {
+            "$ref": "../../common_types.json#/definitions/app_container_setting_resource_type"
+        },
+        "attributes": {
+            "description": "Container setting for app",
+            "type": "object",
+            "properties": {
+                "value": {
+                    "$ref": "./container_js_path.json#/definitions/container_js_path_value"
+                }
+            },
+            "required": ["value"],
+            "additionalProperties": false
+        }
+    },
+    "additionalProperties": false,
+    "required": [
+        "id",
+        "type",
+        "attributes"
+    ]
+}
