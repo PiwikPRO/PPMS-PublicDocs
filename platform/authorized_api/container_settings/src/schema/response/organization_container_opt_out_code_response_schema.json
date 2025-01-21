@@ -1,0 +1,40 @@
+{
+    "description": "Organization's container opt-out code response",
+    "type": "object",
+    "properties": {
+        "data": {
+            "title": "Organization's container opt-out code",
+            "type": "object",
+            "properties": {
+                "id": {
+                    "description": "Organization name",
+                    "type": "string"
+                },
+                "type": {
+                    "$ref": "../common_types.json#/definitions/organization_container_opt_out_code_resource_type"
+                },
+                "attributes": {
+                    "description": "Organization's container opt-out code attributes",
+                    "type": "object",
+                    "properties": {
+                        "code": {
+                            "description": "Opt-out code in HTML format",
+                            "type": "string"
+                        }
+                    },
+                    "required": ["code"],
+                    "additionalProperties": false
+                }
+            },
+            "additionalProperties": false,
+            "required": [
+                "id",
+                "type",
+                "attributes"
+            ]
+        }
+    },
+    "required": [
+        "data"
+    ]
+}

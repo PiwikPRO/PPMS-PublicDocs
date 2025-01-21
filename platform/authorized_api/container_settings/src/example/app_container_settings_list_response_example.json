@@ -8,24 +8,74 @@
     },
     "data": [
         {
-            "type": "container/app/setting",
             "id": "automatic_scroll_tracking",
+            "type": "container/app/setting",
             "attributes": {
                 "value": {
                     "is_enabled": true,
                     "thresholds": [5, 50, 95]
                 },
+                "is_custom": true
+            }
+        },
+        {
+            "id": "spa_tracking",
+            "type": "container/app/setting",
+            "attributes": {
+                "value": {
+                    "is_enabled": true
+                },
                 "is_custom": false
             }
         },
         {
+            "id": "container_js_path",
             "type": "container/app/setting",
-            "id": "spa_tracking",
+            "attributes": {
+                "value": "/{{ app_id }}.js",
+                "is_custom": false
+            }
+        },
+        {
+            "id": "fpc",
+            "type": "container/app/setting",
             "attributes": {
                 "value": {
                     "is_enabled": true
                 },
                 "is_custom": true
+            }
+        },
+        {
+            "id": "static_resources_domain",
+            "type": "container/app/setting",
+            "attributes": {
+                "value": "test.containers.piwik.pro",
+                "is_custom": false
+            }
+        },
+        {
+            "id": "tracking_domain",
+            "type": "container/app/setting",
+            "attributes": {
+                "value": "test.piwik.pro",
+                "is_custom": false
+            }
+        },
+        {
+            "id": "tracking_script_path",
+            "type": "container/app/setting",
+            "attributes": {
+                "value": "/ppms.js",
+                "is_custom": false
+            }
+        },
+        {
+            "id": "tracking_endpoint_path",
+            "type": "container/app/setting",
+            "attributes": {
+                "value": "/ppms.php",
+                "is_custom": false
             }
         }
     ]

@@ -1,0 +1,14 @@
+{
+    "definitions": {
+        "tracking_domain_id": {
+            "description": "Container setting name",
+            "type": "string",
+            "enum": ["tracking_domain"]
+        },
+        "tracking_domain_value": {
+            "type": "string",
+            "format": "hostname",
+            "description": "Tracking domain setting value"
+        }
+    }
+}

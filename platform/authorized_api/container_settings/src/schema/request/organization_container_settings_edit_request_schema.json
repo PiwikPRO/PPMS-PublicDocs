@@ -3,7 +3,7 @@
     "type": "object",
     "properties": {
         "data": {
-            "title": "Organization's container settings list to be edited",
+            "title": "organization's container settings list to be edited",
             "type": "array",
             "items": {
                 "oneOf": [
@@ -12,6 +12,24 @@
                     },
                     {
                         "$ref": "../settings/spa_tracking/spa_tracking_organization_request_schema.json"
+                    },
+                    {
+                        "$ref": "../settings/container_js_path/container_js_path_organization_request_schema.json"
+                    },
+                    {
+                        "$ref": "../settings/fpc/fpc_organization_request_schema.json"
+                    },
+                    {
+                        "$ref": "../settings/static_resources_domain/static_resources_domain_organization_request_schema.json"
+                    },
+                    {
+                        "$ref": "../settings/tracking_domain/tracking_domain_organization_request_schema.json"
+                    },
+                    {
+                        "$ref": "../settings/tracking_script_path/tracking_script_path_organization_request_schema.json"
+                    },
+                    {
+                        "$ref": "../settings/tracking_endpoint_path/tracking_endpoint_path_organization_request_schema.json"
                     }
                 ]
             }

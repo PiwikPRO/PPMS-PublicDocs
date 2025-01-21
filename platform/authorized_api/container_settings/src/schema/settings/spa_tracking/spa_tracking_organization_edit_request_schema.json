@@ -1,5 +1,5 @@
 {
-    "description": "Edit SPA tracking request for Organization",
+    "description": "Edit SPA tracking request for organization",
     "type": "object",
     "properties": {
         "data": {

@@ -1,0 +1,10 @@
+{
+    "data": {
+        "id": "tracking_endpoint_path",
+        "type": "container/app/setting",
+        "attributes": {
+            "value": "/ppms.php",
+            "is_custom": false
+        }
+    }
+}

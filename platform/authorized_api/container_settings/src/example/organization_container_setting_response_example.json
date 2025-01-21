@@ -6,7 +6,8 @@
             "value": {
                 "is_enabled": true,
                 "thresholds": [5, 50, 95]
-            }
+            },
+            "is_custom": true
         }
     }
 }

@@ -1,0 +1,9 @@
+{
+    "data": {
+        "type": "container/app/installation-code",
+        "id": "9efa6364-8982-45c5-a288-cdabdf7a4001",
+        "attributes": {
+            "code": "<script type=\"text\/javascript\">\n(function(window, document, dataLayerName, id) {\nwindow[dataLayerName]=window[dataLayerName]||[],window[dataLayerName].push({start:(new Date).getTime(),event:\"stg.start\"});var scripts=document.getElementsByTagName(\nscript')[0],tags=document.createElement('script');\nfunction stgCreateCookie(a,b,c){var d=\"\";if(c){var e=new Date;e.setTime(e.getTime()+24*c*60*60*1e3),d=\"; expires=\"+e.toUTCString();f=\"; SameSite=Strict\"}document.cookie=a+\"=\"+b+d+f+\"; path=\/\"}\nvar isStgDebug=(window.location.href.match(\"stg_debug\")||document.cookie.match(\"stg_debug\"))&&!window.location.href.match(\"stg_disable_debug\");stgCreateCookie(\"stg_debug\",isStgDebug?1:\"\",isStgDebug?14:-1);\nvar qP=[];dataLayerName!==\"dataLayer\"&&qP.push(\"data_layer_name=\"+dataLayerName),isStgDebug&&qP.push(\"stg_debug\");var qPString=qP.length>0?(\"?\"+qP.join(\"&\")):\"\";\ntags.async=!0,tags.src=\"my_app_statics.example.com\/custom\/container\/\"+id+\"\"+qPString,scripts.parentNode.insertBefore(tags,scripts);\n!function(a,n,i){a[n]=a[n]||{};for(var c=0;c<i.length;c++)!function(i){a[n][i]=a[n][i]||{},a[n][i].api=a[n][i].api||function(){var a=[].slice.call(arguments,0);\"string\"==typeof a[0]&&window[dataLayerName].push({event:n+\".\"+i+\":\"+a[0],parameters:[].slice.call(arguments,1)})}}(i[c])}(window,\"ppms\",[\"tm\",\"cm\"]);\n})(window, document, 'dataLayer', '9efa6364-8982-45c5-a288-cdabdf7a4001');\n<\/script>"
+        }
+    }
+}

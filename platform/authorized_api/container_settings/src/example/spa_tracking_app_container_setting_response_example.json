@@ -1,0 +1,12 @@
+{
+    "data": {
+        "id": "spa_tracking",
+        "type": "container/app/setting",
+        "attributes": {
+            "value": {
+                "is_enabled": false
+            },
+            "is_custom": false
+        }
+    }
+}

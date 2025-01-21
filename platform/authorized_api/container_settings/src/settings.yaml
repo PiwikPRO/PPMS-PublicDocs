@@ -1,4 +1,5 @@
 openapi: '3.0.0'
+x-api-category: Container Settings
 info:
     title: Container Settings API
     version: '1.0'
@@ -14,6 +15,7 @@ paths:
         parameters:
             - $ref : 'schema/common_request_parameters.json#/components/parameters/app_id'
         get:
+            x-api-publish: true
             summary: Get App's container settings
             responses:
                 '200':
@@ -33,6 +35,7 @@ paths:
                 '500':
                     $ref: 'common/api/common_error_responses.json#/components/responses/internal_server_error'
         patch:
+            x-api-publish: true
             summary: Modify App's container settings
             requestBody:
                 required: true
@@ -58,6 +61,7 @@ paths:
             - $ref : 'schema/common_request_parameters.json#/components/parameters/app_id'
             - $ref : 'schema/common_request_parameters.json#/components/parameters/setting_name'
         get:
+            x-api-publish: true
             summary: Get the App's container setting
             responses:
                 '200':
@@ -66,8 +70,28 @@ paths:
                         application/vnd.api+json:
                             schema:
                                 $ref: 'schema/response/app_container_setting_response_schema.json'
-                            example:
-                                $ref: 'example/app_container_setting_response_example.json'
+                            examples:
+                                'automatic_scroll_tracking':
+                                    value:
+                                        $ref: 'example/automatic_scroll_tracking_app_container_setting_response_example.json'
+                                'container_js_path':
+                                    value:
+                                        $ref: 'example/container_js_path_app_container_setting_response_example.json'
+                                'fpc':
+                                    value:
+                                        $ref: 'example/fpc_app_container_setting_response_example.json'
+                                'static_resources_domain':
+                                    value:
+                                        $ref: 'example/static_resources_domain_app_container_setting_response_example.json'
+                                'tracking_domain':
+                                    value:
+                                        $ref: 'example/tracking_domain_app_container_setting_response_example.json'
+                                'tracking_script_path':
+                                    value:
+                                        $ref: 'example/tracking_script_path_app_container_setting_response_example.json'
+                                'tracking_endpoint_path':
+                                    value:
+                                        $ref: 'example/tracking_endpoint_path_app_container_setting_response_example.json'
                 '400':
                     $ref: 'common/api/common_error_responses.json#/components/responses/bad_request_uri_parameter'
                 '401':
@@ -77,6 +101,7 @@ paths:
                 '500':
                     $ref: 'common/api/common_error_responses.json#/components/responses/internal_server_error'
         delete:
+            x-api-publish: true
             summary: Remove the App's container setting
             responses:
                 '204':
@@ -90,6 +115,7 @@ paths:
                 '500':
                     $ref: 'common/api/common_error_responses.json#/components/responses/internal_server_error'
         put:
+            x-api-publish: true
             summary: Modify App's container setting
             requestBody:
                 required: true
@@ -114,6 +140,7 @@ paths:
         parameters:
             - $ref : 'schema/common_request_parameters.json#/components/parameters/organization'
         get:
+            x-api-publish: true
             summary: Get list of organization's container settings
             responses:
                 '200':
@@ -133,7 +160,8 @@ paths:
                 '500':
                     $ref: 'common/api/common_error_responses.json#/components/responses/internal_server_error'
         patch:
-            summary: Modify Organization's container settings
+            x-api-publish: true
+            summary: Modify organization's container settings
             requestBody:
                 required: true
                 content:
@@ -158,6 +186,7 @@ paths:
             - $ref : 'schema/common_request_parameters.json#/components/parameters/organization'
             - $ref : 'schema/common_request_parameters.json#/components/parameters/setting_name'
         get:
+            x-api-publish: true
             summary: Fetch organization's container setting
             responses:
                 '200':
@@ -177,6 +206,7 @@ paths:
                 '500':
                     $ref: 'common/api/common_error_responses.json#/components/responses/internal_server_error'
         put:
+            x-api-publish: true
             summary: Modify organization\'s container setting
             requestBody:
                 required: true

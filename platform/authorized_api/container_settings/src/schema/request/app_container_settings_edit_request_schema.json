@@ -1,5 +1,5 @@
 {
-    "description": "Edit App's container settings request",
+    "description": "Edit app's container settings request",
     "type": "object",
     "properties": {
         "data": {
@@ -12,6 +12,24 @@
                     },
                     {
                         "$ref": "../settings/spa_tracking/spa_tracking_app_request_schema.json"
+                    },
+                    {
+                        "$ref": "../settings/container_js_path/container_js_path_app_request_schema.json"
+                    },
+                    {
+                        "$ref": "../settings/fpc/fpc_app_request_schema.json"
+                    },
+                    {
+                        "$ref": "../settings/static_resources_domain/static_resources_domain_app_request_schema.json"
+                    },
+                    {
+                        "$ref": "../settings/tracking_domain/tracking_domain_app_request_schema.json"
+                    },
+                    {
+                        "$ref": "../settings/tracking_script_path/tracking_script_path_app_request_schema.json"
+                    },
+                    {
+                        "$ref": "../settings/tracking_endpoint_path/tracking_endpoint_path_app_request_schema.json"
                     }
                 ]
             }

@@ -1,0 +1,32 @@
+{
+    "title": "Static resources domain for app",
+    "type": "object",
+    "properties": {
+        "id": {
+            "$ref": "./static_resources_domain.json#/definitions/static_resources_domain_id"
+        },
+        "type": {
+            "$ref": "../../common_types.json#/definitions/app_container_setting_resource_type"
+        },
+        "attributes": {
+            "description": "Container setting for app",
+            "type": "object",
+            "properties": {
+                "value": {
+                    "$ref": "./static_resources_domain.json#/definitions/static_resources_domain_value"
+                },
+                "is_custom": {
+                    "$ref": "../../common_types.json#/definitions/is_custom"
+                }
+            },
+            "required": ["value", "is_custom"],
+            "additionalProperties": false
+        }
+    },
+    "additionalProperties": false,
+    "required": [
+        "id",
+        "type",
+        "attributes"
+    ]
+}

@@ -1,0 +1,14 @@
+{
+    "definitions": {
+        "static_resources_domain_id": {
+            "description": "Container setting name",
+            "type": "string",
+            "enum": ["static_resources_domain"]
+        },
+        "static_resources_domain_value": {
+            "type": "string",
+            "format": "hostname",
+            "description": "Static resources domain setting value"
+        }
+    }
+}

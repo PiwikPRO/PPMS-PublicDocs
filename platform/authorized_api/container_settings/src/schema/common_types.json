@@ -6,14 +6,28 @@
             "example": "test.example.org"
         },
         "is_custom": {
-            "description": "Flag informing, that setting is a custom App setting",
+            "description": "Indicates if the setting is custom for the app or the organization scope. `true` means it has been customized by the user; If no custom setting exists for the app, the organization's setting value is used with `is_custom` set to `false` (regardless the value coming from organization is custom or not). If no custom setting exists for the organization, a default setting is used with `is_custom` set to `false`.",
             "type": "boolean"
         },
         "app_container_setting_resource_type": {
-            "description": "Container setting for App resource type",
+            "description": "Container setting for app resource type",
             "type": "string",
             "enum": [
                 "container/app/setting"
+            ]
+        },
+        "app_container_installation_code_resource_type": {
+            "description": "Container installation code resource type",
+            "type": "string",
+            "enum": [
+                "container/app/installation-code"
+            ]
+        },
+        "organization_container_opt_out_code_resource_type": {
+            "description": "Container opt-out code for organization resource type",
+            "type": "string",
+            "enum": [
+                "container/organization/opt-out-code"
             ]
         },
         "organization_container_setting_resource_type": {

@@ -3,7 +3,7 @@
     "type": "object",
     "properties": {
         "data": {
-            "title": "List of container settings for App",
+            "title": "List of container settings for app",
             "type": "array",
             "items": {
                 "oneOf": [
@@ -12,6 +12,24 @@
                     },
                     {
                         "$ref": "../settings/spa_tracking/spa_tracking_app_response_schema.json"
+                    },
+                    {
+                        "$ref": "../settings/container_js_path/container_js_path_app_response_schema.json"
+                    },
+                    {
+                        "$ref": "../settings/fpc/fpc_app_response_schema.json"
+                    },
+                    {
+                        "$ref": "../settings/static_resources_domain/static_resources_domain_app_response_schema.json"
+                    },
+                    {
+                        "$ref": "../settings/tracking_domain/tracking_domain_app_response_schema.json"
+                    },
+                    {
+                        "$ref": "../settings/tracking_script_path/tracking_script_path_app_response_schema.json"
+                    },
+                    {
+                        "$ref": "../settings/tracking_endpoint_path/tracking_endpoint_path_app_response_schema.json"
                     }
                 ]
             }

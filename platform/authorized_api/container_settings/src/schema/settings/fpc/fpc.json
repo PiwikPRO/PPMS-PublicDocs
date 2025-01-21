@@ -1,0 +1,20 @@
+{
+    "definitions": {
+        "fpc_id": {
+            "description": "Container setting name",
+            "type": "string",
+            "enum": ["fpc"]
+        },
+        "fpc_value": {
+            "type": "object",
+            "description": "FPC setting value",
+            "properties": {
+                "is_enabled": {
+                    "type": "boolean",
+                    "description": "It determines if the setting is enabled"
+                }
+            },
+            "required": ["is_enabled"]
+        }
+    }
+}
