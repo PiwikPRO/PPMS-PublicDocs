@@ -1,5 +1,9 @@
 # PPMS-PublicDocs
 
+> [!WARNING]
+> This repository is no longer maintained as we have transitioned to a different tool for keeping our documentation. 
+> Please refer to the new documentation at [developers.piwik.pro](https://developers.piwik.pro).
+
 ## Choosing the right version
 
 When working on this repository, ensure that you start from the right version. There
